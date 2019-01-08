@@ -6,13 +6,8 @@ If you found typos or suggestions, please use the [issues](https://github.com/aa
 
 All the files of this work except fitch.sty are licensed under the Creative
 Commons Attribution-NonCommercial-NoDerivatives 4.0 International License, the
-<<<<<<< HEAD
 information about fitch.sty can be found on the
 [webpage](https://www.mathstat.dal.ca/~selinger/fitch/) of this package.
-=======
-information about fitch.sty can be found on the [webpage](https://
-www.mathstat.dal.ca/~selinger/fitch/) of this package.
->>>>>>> 84a571dbe6ccba15ec550d32c51043724259039c
 
 While these notes will remain freely available, at some point I may create a
 printed book based on these notes. By making any contribution to this work, you
