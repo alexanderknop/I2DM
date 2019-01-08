@@ -1,0 +1,21 @@
+\newtheorem{exercise}{Exercise}[chapter]
+\newtheorem{principle}{Principle}[chapter]
+\newtheorem{definition}{Definition}[chapter]
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{corollary}{Corollary}[chapter]
+
+\newsavebox{\mybox}
+\newenvironment{remark}
+{
+  \vskip 5pt
+  \begin{lrbox}{\mybox}\begin{minipage}{0.9\textwidth}
+}
+{
+  \end{minipage}\end{lrbox}\fbox{\usebox{\mybox}}
+  \vskip 5pt
+}
+
+\newlist{exercises}{enumerate}{1}
+\setlist[exercises]{label=\textbf{\theexercise}}
+
+\newcommand{\exerciseitem}{\stepcounter{exercise}\item}

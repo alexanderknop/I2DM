@@ -1,0 +1,166 @@
+\chapter{Proofs}
+\section{Direct Proofs}
+We start the discussion of the proofs in mathematics from an example of a proof
+in ``everyday'' life. Assume that we know that the following statements are
+true.
+\begin{enumerate}
+  \item If a fish has fins and scales it is kosher,
+  \item if a fish has scales it has fins,
+  \item any salmon has scales.
+\end{enumerate}
+Using these facts we may conclude that any salmon is kosher; indeed, any salmon
+has scales by the third statement, hence, by the second statement any salmon has
+fins, finally, by the first statement any salmon is kosher since it has fins and
+scales.
+
+One may notice that this explanation is a sequence of conclusions such that
+each of them true because the previous one is true.
+Mathematical proof is also a sequence of statements such that every statement
+if the previous statement is true. If $P$ and $Q$ are some statement and $Q$ is
+always true whether $P$ is true, then we say that $P$ implies $Q$. We denote
+the statement that $P$ implies $Q$ by $P \implies Q$.
+
+In order to define the implication formally let us consider the following table.
+\begin{center}
+  \begin{tabular}{ c | c | c }
+    $P$ & $Q$ & $P \implies Q$ \\ \hline
+    T   & T   & T \\
+    T   & F   & F \\
+    F   & T   & T \\
+    F   & F   & T \\
+  \end{tabular}
+\end{center}
+Let $P$ and $Q$ be some statements. Then this table says that if $P$ and $Q$
+both false, then $P \implies Q$ is true etc.
+
+\begin{exercise}
+  Let $n$ be an integer.
+  \begin{enumerate}
+    \item Is it always true that ``$n^2$ is positive''
+      implies ``$n$ is not equal to $0$''?
+    \item Is it always true that ``$n^2 - n - 2$ is equal to $0$'' implies
+      ``$n$ is equal to $2$''?
+  \end{enumerate}
+\end{exercise}
+
+In the example we gave at the beginning of the section we used some
+\textit{known} facts. But what it means to know something? In math we typically
+say that we know a statement if we can prove it. But in order to prove it we
+need to know something again, it is a problem! In order to solve it,
+mathematicians introduced the notion of an \textit{axiom}.
+An axiom is a statement that believed to be true and when we prove a statement
+we prove it under the assumption that these axioms are true\footnote{Note that
+in different parts of math axioms may be different}.
+
+For example, we may consider axioms of inequalities for real numbers.
+\begin{enumerate}
+  \item Let $a, b \in \R$. Only one of the following is true:
+    \begin{itemize}
+      \item $a < b$,
+      \item $b < a$, or
+      \item $a = b$.
+    \end{itemize}
+  \item Let $a, b, c \in \R$. Then $a < b$ iff $a + c < b + c$.
+  \item Let $a, b, c \in \R$. Then $a < b$ iff $ac < bc$ provided
+    that $c > 0$ and $a < b$ iff $ac > bc$ if $c < 0$.
+  \item Let $a, b, c \in \R$. If $a < b$ and $b < c$, then $a < c$.
+\end{enumerate}
+
+Let us now try to prove something using these axioms, we prove that if $a > 0$,
+then $a^2 > 0$. Note that $a > 0$, hence, by the third axiom $a^2 > 0$.
+
+Similarly, we may prove that if $a < 0$, then $a^2 > 0$. And combining these
+two statements together we may prove that if $a \neq 0$, then $a^2 > 0$.
+
+Such a way of constructing proof is called direct proofs.
+
+\begin{exercise}
+  Axiomatic system for a four-point geometry.
+
+  Undefined terms: point, line, is on.
+
+  Axioms:
+  \begin{itemize}
+    \item For every pair of distinct points $x$ and $y$, there is a unique line
+      $\ell$ such that x is on l and y is on l.
+    \item Given a line $\ell$ and a point $x$ that is not on $\ell$, there is a
+      unique line $m$ such that $x$ is on $m$ and no point on $\ell$ is also on
+      $m$.
+    \item There are exactly four points.
+    \item It is impossible for three points to be on the same line.
+  \end{itemize}
+  Prove that there are at least two distinct lines.
+\end{exercise}
+
+\section{Constructing Proofs Backwards}
+However, sometimes it is not easy to find the proof. In this case one of the
+possible methods to deal with this problem is to try to prove starting from
+the end.
+
+For example we may consider the statement. $(a + b)^2 = a^2 + 2ba + b^2$.
+Imagine, for a second, that you have not learned about axioms.
+In this case you would write something like this:
+\begin{multline*}
+    (a + b)^2 = (a + b) \cdot (a + b) = \\
+    a (a + b) + b (a + b) = \\
+    a^2 + ab + ba + b^2 = a^2 + 2ba + b^2.
+\end{multline*}
+
+Let us try to prove it completely formally using the following axioms.
+\begin{enumerate}
+  \item Let $a, b, c \in \R$. If $a = b$ and $b = c$, then $a = c$.
+  \item Let $a, b, c \in \R$. If $a = b$, then $a + c = b + c$ and
+    $c + a = c + a$.
+  \item Let $a, b, c \in \R$. Then $a (b + c) = ab + bc$.
+  \item Let $a, b, c \in \R$. Then $ab = ba$.
+  \item Let $a, b, c \in \R$. Then $a + b = b + a$.
+  \item Let $a, b, c \in \R$. Then $a \cdot a = a^2$.
+  \item Let $a, b, c \in \R$. Then $a + a = 2a$.
+\end{enumerate}
+So the formal proof of the statement $(a + b)^2 = a^2 + 2ab + b^2$ is as
+follows. First note that $(a + b)^2 = (a + b) \cdot (a + b)$ (by axiom~5),
+hence, by axiom~1, it is enough to show that
+$(a + b) \cdot (a + b) = a + 2ab + b^2$. By axiom~3 applied twice,
+$(a + b) \cdot (a + b) = a \cdot (a + b) + b \cdot (a + b) =
+a \cdot a + a \cdot b + b \cdot a + b \cdot b$; so by axiom 1, it is enough
+to show that $a \cdot a + a \cdot b + b \cdot a + b \cdot b = a^2 + 2ab + b^2$.
+Additionally, by axiom~6, $a \cdot a = a^2$ and $b \cdot b = b^2$. Hence, by
+axiom~2, it is enough to show that
+$a^2 + a \cdot b + b \cdot a + b^2 = a^2 + 2ab + b^2$. By axiom~4,
+$a \cdot b = b \cdot a$, hence, by axiom~2,
+$a \cdot b + b \cdot a = b \cdot a + b \cdot a$. Therefore by axiom~7,
+$a \cdot b + b \cdot a = 2 b \cdot a$. Finally, by axiom~2,
+$a \cdot b + b \cdot a + a^2 + b^2 = 2b \cdot a + a^2 + b^2$ and by axiom~5,
+$a \cdot b + b \cdot a + a^2 + b^2 = a^2 + a \cdot b + b \cdot a + b^2$ and
+$2b \cdot a + a^2 + b^2 =  a^2 + 2b \cdot a + b^2$. Which finishes the proof by
+axiom~1.
+
+\section{Proofs in Real-life Mathematics}
+In this paragraph we explicitly used axioms to prove statement. However, it
+leads us to really long and hard to understand proofs (the last example in the
+previous section is a good example of this phenomenon). Because of this
+mathematicians tend to skip steps in the proofs when they believe that they are
+clear. This is the reason why it is arduous to read mathematical texts and it
+is very different from reading non-mathematical books. Add problem arising
+because of this tendency is that some mistakes may arise if we skip way to many
+steps. In the last two centuries there were several attempts to solve this
+issue, one approach to this we are going to discuss in the second part of this
+book.
+
+\section*{End of The Chapter Exercises}
+\begin{exercises}
+  \exerciseitem Using the axioms of inequalities show that if $a$ is a non-zero
+    real number, then $a^2 > 0$.
+  \exerciseitem Using the axioms of inequalities prove that for all real
+    numbers $a$, $b$, and $c$, $$bc + ac + ab \le a^2 + b^2 + c^2.$$
+  \exerciseitem Prove that for all integers $a$, $b$, and $c$,
+    If $a$ divides $b$ and $b$ divides $c$, then $a$ divides $c$.
+    Recall that an integer $m$ divides an integer $n$ if there is an integer
+    $k$ such that $mk = n$.
+  \exerciseitem Show that square of an even integer is even.
+  \exerciseitem Prove that $0$ divides an integer $a$ iff $a = 0$.
+  \exerciseitem Using the axioms of inequalities, that if $a > 0$, $b$, and $c$
+    are real numbers, then $b \ge c$ implies that $ab \ge ac$.
+  \exerciseitem Using the axioms of inequalities, that if $a, b < 0$ are real
+    numbers, then $a \le b$ implies that $a^2 \ge b^2$.
+\end{exercises}
