@@ -138,15 +138,29 @@ Let us try to prove it completely formally using the following axioms.
   \item Let $a$, $b$, and $c$ be reals. Then $a (b + c) = ab + bc$.
   \item Let $a$ and $b$ be reals. Then $ab = ba$.
   \item Let $a$ and $b$ be reals. Then $a + b = b + a$.
-  \item Let $a$ be a real number. Then $a^2 = a \cdot a$.
+  \item Let $a$ be a real number. Then $a^2 = a \cdot a$ and $a \cdot a = a^2$.
   \item Let $a$ be a real number. Then $a + a = 2a$.
 \end{enumerate}
 So the formal proof of the statement $(a + b)^2 = a^2 + 2ab + b^2$ is as
-follows. First note that $(a + b)^2 = (a + b) \cdot (a + b)$ (by axiom~5),
+follows. First note that $(a + b)^2 = (a + b) \cdot (a + b)$ (by axiom~6),
 hence, by axiom~1, it is enough to show that
-$(a + b) \cdot (a + b) = a + 2ab + b^2$. By axiom~3 applied twice,
-$(a + b) \cdot (a + b) = a \cdot (a + b) + b \cdot (a + b) =
-a \cdot a + a \cdot b + b \cdot a + b \cdot b$; so by axiom 1, it is enough
+$(a + b) \cdot (a + b) = a^2 + 2ab + b^2$. By axiom~3,
+$(a + b) \cdot (a + b) = (a + b) \cdot a + (a + b) \cdot b$. Axiom~4 implies
+that $(a + b) \cdot a = a \cdot (a + b)$ and $(a + b) \cdot b = b \cdot (a + b)$
+Hence, by axioms~1 and~2 applied twice
+\[
+  a \cdot (a + b) + b \cdot (a + b) =
+  (a + b) \cdot a + b \cdot (a + b) =
+  (a + b) \cdot a + (a + b) \cdot b.
+\]
+As a result,
+\begin{multline*}
+  (a + b) \cdot (a + b) =
+  (a + b) \cdot a + (a + b) \cdot b =
+  a \cdot (a + b) + b \cdot (a + b) =
+  a \cdot a + a \cdot b + b \cdot a + b \cdot b;
+\end{multline*}
+so by axiom 1, it is enough
 to show that $a \cdot a + a \cdot b + b \cdot a + b \cdot b = a^2 + 2ab + b^2$.
 Additionally, by axiom~6, $a \cdot a = a^2$ and $b \cdot b = b^2$. Hence, by
 axiom~2, it is enough to show that
