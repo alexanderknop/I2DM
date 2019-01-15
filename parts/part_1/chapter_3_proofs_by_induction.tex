@@ -214,6 +214,63 @@ Now we are ready to prove the strong induction principle.
   $k$. Which implies that $P(n_0 + k)$ is true for all positive integers $k$.
 \end{proof}
 
+\section{Recursive Definitions}
+Sometimes you wish to define objects using objects of the same form like in the
+case of inductive defenitions but you do not know how to enumerate them using
+an integer parameter.
+
+One example of such a situation is the definition of an arithmetic formula.
+\begin{description}
+  \item[base case:] $x_i$ is an arithmetic formula on the variables $x_1$,
+    \dots, $x_n$ for all $i$.
+  \item[recursion step:] If $P$ and $Q$ are arithmetic formulas on the variables
+    $x_1$, \dots, $x_n$, then $(P + Q)$ and $P \cdot Q$ are arithmetic formulas
+    on the variables $x_1$, \dots, $x_n$.
+\end{description}
+Note that this definition implicitly state that any other expressions are not
+arithmetic formulas.
+
+We can define recursively the value of such a formula. Let $v_1$, \dots, $v_n$
+be some integers.
+\begin{description}
+  \item[base case:] $x_i\big\rvert_{x_1 = v_1, \dots, x_n = v_n} = v_i$; in other words,
+    the value of the arythmetic formula $x_i$ is equal to $v_1$ when $x_1 =
+    v_1$, \dots, $x_n = v_n$.
+  \item[recursion step:] If $P$ and $Q$ are arythmetic formulas on the
+    variables $x_1$, \dots, $x_n$, then
+    \[
+      (P + Q)\big\rvert_{x_1 = v_1, \dots, x_n = v_n} =
+      P\big\rvert_{x_1 = v_1, \dots, x_n = v_n} + Q\big\rvert_{x_1 = v_1, \dots, x_n = v_n}
+    \]
+    and
+    \[
+      (P \cdot Q)\big\rvert_{x_1 = v_1, \dots, x_n = v_n} =
+      P\big\rvert_{x_1 = v_1, \dots, x_n = v_n} \cdot Q\big\rvert_{x_1 = v_1, \dots, x_n = v_n}.
+    \]
+\end{description}
+
+For example, $((x_1 + x_2) \cdot x_3)$ is clearly an arithmetic formula on the
+variables $x_1$, \dots, $x_n$. One may expect the value of this formula with $x_1 = 1$, $x_2 = 0$, and $x_3 = -1$ be equal to $-1$, let us check:
+\begin{itemize}
+  \item Note that
+    \[
+      \begin{array}{l}
+        x_1\big\rvert_{x_1 = 1, x_2 = 0, x_3 = -1} = 1, \\
+        x_2\big\rvert_{x_1 = 1, x_2 = 0, x_3 = -1} = 0\text{, and} \\
+        x_3\big\rvert_{x_1 = 1, x_2 = 0, x_3 = -1} = -1.
+      \end{array}
+    \]
+  \item Hence,
+    \[
+      (x_1 + x_2)\big\rvert_{x_1 = 1, x_2 = 0, x_3 = -1} = 1 + 0 = 1.
+    \]
+  \item Finally,
+    \[
+      ((x_1 + x_2) \cdot x_3)\big\rvert_{x_1 = 1, x_2 = 0, x_3 = -1} = 1 \cdot -
+      1 = -1.
+    \]
+\end{itemize}
+
 \section*{End of The Chapter Exercises}
 \begin{exercises}
   \exerciseitem Show that for any positive integer $n$, $n^2 + n$ is even.
@@ -238,4 +295,7 @@ Now we are ready to prove the strong induction principle.
     all $n \in \mathbb{N}$. Show that
     $f_n \ge \left(\frac{3}{2}\right)^{n - 2}$.
   \exerciseitem Show that $f_{n + m} = f_{n - 1} f_m + f_n f_{m + 1}$.
+  \exerciseitem Show that two arythmetic formulas $(x_1 + x_2) \cdot x_3$ and
+    $x_1 \cdot x_3 + x_2 \cdot x_3$ on the variables $x_1$, $x_2$, and $x_3$
+    have the same values.
 \end{exercises}
