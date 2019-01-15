@@ -5,7 +5,18 @@
 \newtheorem{corollary}{Corollary}[chapter]
 
 \newsavebox{\mybox}
-\newenvironment{remark}
+\newenvironment{warning}
+{
+  \vskip 5pt
+  \begin{lrbox}{\mybox}\begin{minipage}{0.9\textwidth}
+    \textbf{Warning:}
+}
+{
+  \end{minipage}\end{lrbox}\fbox{\usebox{\mybox}}
+  \vskip 5pt
+}
+
+\newenvironment{template}
 {
   \vskip 5pt
   \begin{lrbox}{\mybox}\begin{minipage}{0.9\textwidth}
