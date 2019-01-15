@@ -185,6 +185,45 @@ steps. In the last two centuries there were several attempts to solve this
 issue, one approach to this we are going to discuss in the second part of this
 book.
 
+\section{Alnalyzis of Simple Algorithms}
+We can use this knowledge to analyze simple algorithms. For example, let us
+consider the following algorithm.
+\begin{algorithm}
+  \begin{algorithmic}[1]
+    \Function{$\text{Max}$}{$a$, $b$, $c$}
+      \State $r \gets a$
+      \If {$b > r$}
+        \State $r \gets b$
+      \EndIf
+
+      \If {$c > r$}
+        \State $r \gets c$
+      \EndIf
+      \State \Return $r$
+    \EndFunction
+  \end{algorithmic}
+\end{algorithm}
+Let us prove that it is correct i.e. it returns the maximum of $a$, $b$, and
+$c$. We need to consider
+the following cases.
+\begin{itemize}
+  \item If the maximum is equal to $a$. In this case, at line~2, we set $r = a$,
+    at line~3 the inequality $b > r$ is false (since $a = r$ is the maximum) and
+    at line~6 the inequality $c > r$ is also false (since $a = r$ is the
+    maximum). Hence, we do not change the value of $r$ after line~2 and
+    the returned value is $a$.
+  \item If the maximum is equal to $b$. We set $r = a$ at line~2.
+    The inequality $b > r$ at line~3 is true (since $b$ is the maximum) and
+    we set $r$ to be equal to $b$.
+    So at line~6, the inequality $c > r$ is false (since $b = r$ is the
+    maximum). Hence, the returned value is $b$.
+  \item If the maximum is equal to $c$. We set $r = a$ at line~2.
+    If the inequality $b > r$ is true at line~3 we set $r$ to be equal to $b$.
+    So at line~6 the inequality $c > r$ is true (since $c$ is the
+    maximum). Hence, we set $r$ being equal to $c$ and the returned value is
+    $c$.
+\end{itemize}
+
 \section*{End of The Chapter Exercises}
 \begin{exercises}
   \exerciseitem Using the axioms of inequalities show that if $a$ is a non-zero
