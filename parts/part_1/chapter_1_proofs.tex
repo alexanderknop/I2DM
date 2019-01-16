@@ -149,8 +149,8 @@ Let us try to prove it completely formally using the following axioms.
 \begin{enumerate}
   \item Let $a$, $b$, and $c$ be reals. If $a = b$ and $b = c$, then $a = c$.
   \item Let $a$, $b$, and $c$ be reals. If $a = b$, then $a + c = b + c$ and
-    $c + a = c + a$.
-  \item Let $a$, $b$, and $c$ be reals. Then $a (b + c) = ab + bc$.
+    $c + a = c + b$.
+  \item Let $a$, $b$, and $c$ be reals. Then $a (b + c) = ab + ac$.
   \item Let $a$ and $b$ be reals. Then $ab = ba$.
   \item Let $a$ and $b$ be reals. Then $a + b = b + a$.
   \item Let $a$ be a real number. Then $a^2 = a \cdot a$ and $a \cdot a = a^2$.
@@ -188,7 +188,7 @@ $a \cdot b + b \cdot a + a^2 + b^2 = a^2 + a \cdot b + b \cdot a + b^2$ and
 $2b \cdot a + a^2 + b^2 =  a^2 + 2b \cdot a + b^2$. Which finishes the proof by
 axiom~1.
 
-\section{Alnalyzis of Simple Algorithms}
+\section{Analysis of Simple Algorithms}
 We can use this knowledge to analyze simple algorithms. For example, let us
 consider the following algorithm.
 \begin{algorithm}
