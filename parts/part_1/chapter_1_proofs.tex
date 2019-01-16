@@ -116,6 +116,21 @@ Such a way of constructing proof is called direct proofs.
   Prove that there are at least two distinct lines.
 \end{exercise}
 
+Let $n$ and $m$ be some integers. Using direct proofs we may prove the
+following two statements.
+\begin{itemize}
+  \item if $n$ is even, then $nm$ is also even\footnote{A number $n$ is even
+    if there is an integer $k$ such that $n = 2k$.},
+  \item if $n$ is even and $m$ is even, then $n + m$ is also even.
+\end{itemize}
+
+We start from proving the first statement. There is an integer $k$ such that
+$n = 2k$ since $n$ is even. As a result, $nm = 2 (nk)$ so $nm$ is even.
+
+Now we prove the second statement. Since $n$ and $m$ are even there are $k$ and
+$\ell$ such that $n = 2k$ and $m = 2\ell$. Hence, $n + m = 2 (k + \ell)$ so
+$n + m$ is even.
+
 \section{Constructing Proofs Backwards}
 However, sometimes it is not easy to find the proof. In this case one of the
 possible methods to deal with this problem is to try to prove starting from
@@ -173,18 +188,6 @@ $a \cdot b + b \cdot a + a^2 + b^2 = a^2 + a \cdot b + b \cdot a + b^2$ and
 $2b \cdot a + a^2 + b^2 =  a^2 + 2b \cdot a + b^2$. Which finishes the proof by
 axiom~1.
 
-\section{Proofs in Real-life Mathematics}
-In this chapter we explicitly used axioms to prove statements. However, it
-leads us to really long and hard to understand proofs (the last example in the
-previous section is a good example of this phenomenon). Because of this
-mathematicians tend to skip steps in the proofs when they believe that they are
-clear. This is the reason why it is arduous to read mathematical texts and it
-is very different from reading non-mathematical books. A problem that arises
-because of this tendency is that some mistakes may happen if we skip way too many
-steps. In the last two centuries there were several attempts to solve this
-issue, one approach to this we are going to discuss in the second part of this
-book.
-
 \section{Alnalyzis of Simple Algorithms}
 We can use this knowledge to analyze simple algorithms. For example, let us
 consider the following algorithm.
@@ -223,6 +226,18 @@ the following cases.
     maximum). Hence, we set $r$ being equal to $c$ and the returned value is
     $c$.
 \end{itemize}
+
+\section{Proofs in Real-life Mathematics}
+In this chapter we explicitly used axioms to prove statements. However, it
+leads us to really long and hard to understand proofs (the last example in the
+previous section is a good example of this phenomenon). Because of this
+mathematicians tend to skip steps in the proofs when they believe that they are
+clear. This is the reason why it is arduous to read mathematical texts and it
+is very different from reading non-mathematical books. A problem that arises
+because of this tendency is that some mistakes may happen if we skip way too
+many steps. In the last two centuries there were several attempts to solve this
+issue, one approach to this we are going to discuss in the second part of this
+book.
 
 \section*{End of The Chapter Exercises}
 \begin{exercises}
