@@ -8,22 +8,20 @@
     \vskip 0.25cm
     \href{https://youtu.be/jOnZTWGpX_I}{youtu.be/jOnZTWGpX\_I}
   \end{center}
-  \vskip -0.5cm
+  \vskip -1.5cm
 \end{wrapfigure}
 Let us consider a simple problem: what is bigger $2^n$ or $n$? In this chapter
 we are going to study the simplest way to prove that $2^n > n$ for all positive
-integers $n$. Let us first prove it by contradiction. Assume that it is not
-true; denote by $n_0$ the least positive integer such that $2^{n_0} \le n_0$.
-We may consider the following two cases.
-\begin{itemize}
-  \item If $n_0 = 1$, then it leads to a contradiction since $2 = 2^1 > 1$.
-  \item Otherwise, note that $1 \le n_0 - 1 < n_0$, hence,
-    $2^{n_0 - 1} > n_0 - 1$. So $2^{n_0} > 2n_0 - 2 \ge n_0$. Which is a
-    contradiction with the definition of $n_0$.
-\end{itemize}
-
-However, there is a problem in this approach, we have not explained why such
-an $n_0$ exists.
+integers $n$. First let us check that it is true for small integers $n$.
+\begin{flushright}
+  \begin{tabular}{c | c | c | c | c | c | c | c | c}
+    $n$   & 1 & 2 & 3 & 4  & 5  & 6  & 7   & 8   \\
+    \hline
+    $2^n$ & 2 & 4 & 8 & 16 & 32 & 64 & 128 & 256
+  \end{tabular}
+\end{flushright}
+We may also note that $2^n$ is growing faster than $n$, so we expect that if
+$2^n > n$ for small integers $n$, then it is true for all positive integers $n$
 
 In order to prove this statement formally, we use the following principle.
 \begin{principle}[The Induction Principle]
