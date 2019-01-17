@@ -1,0 +1,415 @@
+\chapter{Proofs by Induction}
+\section{Simple Induction}
+\begin{wrapfigure}{l}{4cm}
+  \begin{center}
+    \vskip -0.5cm
+    \qrset{link, height=3cm}
+    \qrcode{https://youtu.be/jOnZTWGpX_I}
+    \vskip 0.25cm
+    \href{https://youtu.be/jOnZTWGpX_I}{youtu.be/jOnZTWGpX\_I}
+  \end{center}
+  \vskip -1.5cm
+\end{wrapfigure}
+Let us consider a simple problem: what is bigger $2^n$ or $n$? In this chapter
+we are going to study the simplest way to prove that $2^n > n$ for all positive
+integers $n$. First let us check that it is true for small integers $n$.
+\begin{flushright}
+  \begin{tabular}{c | c | c | c | c | c | c | c | c}
+    $n$   & 1 & 2 & 3 & 4  & 5  & 6  & 7   & 8   \\
+    \hline
+    $2^n$ & 2 & 4 & 8 & 16 & 32 & 64 & 128 & 256
+  \end{tabular}
+\end{flushright}
+We may also note that $2^n$ is growing faster than $n$, so we expect that if
+$2^n > n$ for small integers $n$, then it is true for all positive integers $n$
+
+In order to prove this statement formally, we use the following principle.
+\begin{principle}[The Induction Principle]
+  Let $P(n)$ be some statement about a positive integer $n$.
+  Hence, $P(n)$ is true for every positive integer $n$ iff
+  \begin{description}
+    \item[base case:] $P(1)$ is true and
+    \item[induction step:] $P(k) \implies P(k + 1)$ is true for all positive
+      integers $k$.
+  \end{description}
+\end{principle}
+
+Let's prove now the statement using this principle.
+We define $P(n)$ be the statement that ``$2^n > n$''.
+$P(1)$ is true since $2^1 > 1$. Let us assume now that $2^n > n$. Note that
+$2^{n + 1} = 2 \cdot 2^n > 2n \ge n + 1$. Hence, we proved the induction step.
+
+\begin{exercise}
+  Prove that $(1 + x)^n \ge 1 + nx$ for all positive integers $n$ and real
+  numbers $x \ge -1$.
+\end{exercise}
+
+\section{Changing the Base Case}
+Let us consider functions $n^2$ and $2^n$.
+
+\begin{center}
+  \begin{tabular}{c | c | c | c | c | c | c | c | c}
+    $n$   & 1 & 2 & 3 & 4  & 5  & 6  & 7   & 8   \\
+    \hline
+    $n^2$ & 1 & 4 & 9 & 16 & 25 & 36 & 49  & 64  \\
+    $2^n$ & 2 & 4 & 8 & 16 & 32 & 64 & 128 & 256
+  \end{tabular}
+\end{center}
+Note that $2^n$ is greater than $n^2$ starting from $5$. But without some trick
+we can not prove this using induction since for $n = 3$ it is not true!
+
+The trick is to use the statement $P(n)$ stating that $(n + 4)^2 < 2^{n + 4}$.
+The base case when $n = 1$ is true.
+Let us now prove the induction step. Assume that $P(k)$ is true i.e.
+$(k + 4)^2 < 2^{k + 4}$. Note that $2(k + 4)^2 < 2^{k + 1 + 4}$ but
+$(k + 5)^2 = k^2 + 10k + 25 \le 2k^2 + 8k + 32 = 2(k + 4)^2$. Which implies that
+$2^{k + 1 + 4} > (k + 5)^2$. So $P(k + 1)$ is also true.
+
+In order to avoid this strange $+4$ we may change the base
+case and use the following argument.
+
+\begin{theorem}
+\label{theorem:induction-shifted-base}
+  Let $P(n)$ be some statement about an integer $n$.
+  Hence, $P(n)$ is true for every integer $n > n_0$ iff
+  \begin{description}
+    \item[base case:] $P(n_0 + 1)$ is true and
+    \item[induction step:] $P(k) \implies P(k + 1)$ is true for all
+      integers $k > n_0$.
+  \end{description}
+\end{theorem}
+
+Using this generalized induction principle we may prove that $2^n \ge n^2$ for
+$n \ge 5$. The base case for $n = 4$ is true. The induction step is also true;
+indeed let $P(k)$ be true i.e. $(k + 4)^2 < 2^{k + 4}$. Hence,
+$2(k + 4)^2 < 2^{k + 1 + 4}$ but
+$(k + 5)^2 = k^2 + 10k + 25 \le 2k^2 + 8k + 32 = 2(k + 4)^2$.
+
+Let us now prove the theorem. Note that the proof is based on an idea similar
+to the trick with $+4$, we just used.
+\begin{proof}[Proof of Theorem~\ref{theorem:induction-shifted-base}]
+  \begin{description}
+    \item[$\Rightarrow$] If $P(n)$ is true for any $n > n_0$ it is also true
+      for $n = n_0 + 1$ which implies the base case. Additionally, it true for
+      $n = k + 1$ so the induction step is also true.
+    \item[$\Leftarrow$] In this direction the proof is a bit harder. Let us
+      consider a statement $Q(n)$ saying that $P(n + n_0)$ is true. Note that
+      by the base case for $P$, $Q(1)$ is true; by the induction step for $P$
+      we know that $Q(n)$ implies $P(n + 1)$. As a result, by the induction
+      principle $Q(n)$ is true for all positive integers $n$. Which implies
+      that $P(n)$ is true for all integers $n > n_0$.
+  \end{description}
+\end{proof}
+
+\section{Inductive Definitions}
+
+We may also define objects inductively. Let us consider the sum
+$1 + 2 + \dots + n$ a line of dots indicating ``and so on'' which indicates the
+definition by induction. In this case a more precise notation is
+$\sum_{i = 1}^n i$.
+
+\begin{definition}
+  Let $a(1)$, \dots, $a(n)$, \dots be a sequence of integers. Then
+  $\sum_{i = 1}^n a(i)$ is defined inductively by the following
+  statements:
+  \begin{itemize}
+    \item $\sum_{i = 1}^1 a(i) = a(1)$, and
+    \item $\sum_{i = 1}^{k + 1} a(i) =
+        \sum_{i = 1}^k a(i) + a(k + 1)$.
+  \end{itemize}
+\end{definition}
+
+Let us prove that $\sum_{i = 1}^n i = \frac{n (n + 1)}{2}$.
+Note that by definition $\sum_{i = 1}^1 i = 1$ and
+$\frac{1 (1 + 1)}{2} = 1$; hence, the base case holds. Assume that
+$\sum_{i = 1}^n i = \frac{n (n + 1)}{2}$. Note that
+$\sum_{i = 1}^{n + 1} i = \sum_{i = 1}^n i + (n + 1)$ and by the
+induction hypothesis $\sum_{i = 1}^n i = \frac{n (n + 1)}{2}$.
+Hence, $\sum_{i = 1}^{n + 1} i = \frac{n (n + 1)}{2} + (n + 1) =
+\frac{(n + 1)(n + 2)}{2}$.
+
+\begin{exercise}
+  Prove that $\sum_{i = 1}^n 2^i = 2^{n + 1} - 1$.
+\end{exercise}
+
+\section{Analysis of Algorithms with Cycles}
+
+Induction is very useful for analasing algorithms using cycles. Let us extend
+the example we considered in Section~\ref{section:simple-algorithm}.
+
+Let us consider the following algorithm.
+\begin{algorithm}
+  \begin{algorithmic}[1]
+    \Function{Max}{$a_1$, \dots, $a_n$}
+      \State{$r \gets a_1$}
+      \For{$i$ from $2$ to $n$}
+        \If{$a_i > r$}
+          \State{$r \gets a_i$}
+        \EndIf
+      \EndFor
+      \State\Return{r}
+    \EndFunction
+  \end{algorithmic}
+  \caption{The algorithm that finds the maximum element of $a_1$, \dots, $a_n$.}
+\end{algorithm}
+We prove that it is working correctly. First, we need to define $r_1$,
+\dots, $r_n$ the value of $r$ during the execution of the algorithm.
+It is easy to see that $r_1 = a_1$ and
+$
+  r_{i + 1} =
+  \begin{cases}
+    r_i & \text{if } r_i > a_{i + 1} \\
+    a_{i + 1} & \text{otherwise}
+  \end{cases}
+$.
+Secondly, we prove by induction that $r_i$ is the maximum of $a_1$, \dots,
+$a_i$. It is clear that the base case for $i = 1$ is true. Let us prove the
+induction step from $k$ to $k + 1$. By the induction hypothesis, $r_k$
+is the maximum of $a_1$, \dots, $a_k$. We may consider two following cases.
+\begin{itemize}
+  \item If $r_k > a_{k + 1}$, then $r_{k + 1} = r_{k}$ is the maximum of $a_1$,
+    \dots, $a_{k + 1}$ since $r_k$ is the maximum of $a_1$, \dots, $a_k$.
+  \item Otherwise, $a_{k + 1}$ is greater than $a_1$, \dots, $a_k$, hence,
+    $r_{k + 1} = a_{k + 1}$.
+\end{itemize}
+
+\begin{exercise}
+  Show that line~6 in the following sorting algorithm executes
+  $\frac{n (n + 1)}{2}$ times.
+  \begin{algorithm}
+    \begin{algorithmic}[1]
+      \Function{SelectionSort}{$a_1$, \dots, $a_n$}
+        \For{$i$ from $1$ to $n$}
+          \State{$r \gets a_i$}
+          \State{$\ell \gets i$}
+          \For{$j$ from $i$ to $n$}
+            \If{$a_j > r$}
+              \State $r \gets a_j$
+              \State $\ell \gets j$
+            \EndIf
+          \EndFor
+          \State{Swap $a_i$ and $a_\ell$.}
+        \EndFor
+      \EndFunction
+    \end{algorithmic}
+    \caption{The algorithm is selection sort, it sorts $a_1$, \dots, $a_n$.}
+  \end{algorithm}
+\end{exercise}
+
+
+
+\section{Strong Induction}
+
+Sometimes $P(k)$ is not enough to prove $P(k + 1)$ and we need all the
+statements $P(1)$, \dots, $P(k)$. In this case we may use the following
+induction  principle.
+
+\begin{theorem}[The Strong Induction Principle]
+\label{theorem:strong-induction}
+  Let $P(n)$ be some statement about positive integer $n$.
+  Hence, $P(n)$ is true for every integer $n > n_0$ iff
+  \begin{description}
+    \item[base case:] $P(n_0 + 1)$ is true and
+    \item[induction step:] If $P(n_0 + 1)$, \dots, $P(n_0 + k)$ are true, then
+      $P(n_0 + k + 1)$ is also true for all positive integers $k$.
+  \end{description}
+\end{theorem}
+
+Before we prove this theorem let us prove some properties of Fibonacci numbers
+using this theorem. The Fibonacci numbers are defined as follows:
+$f_0 = 0$, $f_1 = 1$, and $f_k = f_{k - 1} + f_{k - 2}$ for $k \ge 3$.
+
+\begin{theorem}[The Binet formula]
+  The Fibonacci numbers are given by the following formula
+  \[
+      f_n = \frac{\alpha^n - \beta^n}{\sqrt{5}},
+  \]
+  where $\alpha = \frac{1 + \sqrt{5}}{2}$ and
+  $\beta = \frac{1 - \sqrt{5}}{2}$.
+\end{theorem}
+\begin{proof}
+  We use the strong induction principle to prove this statement with $n_0 = -1$.
+  Let us first prove the base case,
+  $\frac{(\alpha^0 - \beta^0)}{\sqrt{5}} = 0 = f_0$.
+  We also need to prove the induction step.
+  \begin{itemize}
+    \item If $k = 1$, then $\frac{(\alpha^1 - \beta^1)}{\sqrt{5}} = 1 = f_1$.
+    \item Otherwise, by the induction hypothesis,
+      $f_k = \frac{\alpha^k - \beta^k}{\sqrt{5}}$ and
+      $f_{k - 1} = \frac{\alpha^{k - 1} - \beta^{k - 1}}{\sqrt{5}}$.
+      By the definition of the Fibonacci numbers $f_{k + 1} = f_k + f_{k - 1}$.
+      Hence,
+      \[
+        f_{k + 1} = \frac{\alpha^k - \beta^k}{\sqrt{5}} +
+        \frac{\alpha^{k - 1} - \beta^{k - 1}}{\sqrt{5}}.
+      \]
+      Note that it is enough to show that
+      \begin{equation}
+      \label{equation:binet}
+        \frac{\alpha^{k + 1} - \beta^{k + 1}}{\sqrt{5}} =
+        \frac{\alpha^k - \beta^k}{\sqrt{5}} +
+        \frac{\alpha^{k - 1} - \beta^{k - 1}}{\sqrt{5}}.
+      \end{equation}
+      Note that it is the same as
+      \[
+        \frac{\alpha^{k + 1} - \alpha^k - \alpha^{k - 1}}{\sqrt{5}} =
+        \frac{\beta^{k + 1} - \beta^k - \beta^{k - 1}}{\sqrt{5}}.
+      \]
+      Additionally, note that $\alpha$ and $\beta$ are roots of the equation
+      $x^2 - x - 1 = 0$. Hence,
+      $\alpha^{k + 1} - \alpha^k - \alpha^{k - 1} = \alpha^{k - 1}(\alpha^2 -
+      \alpha - 1) = 0$ and
+      $\beta^{k + 1} - \beta^k - \beta^{k - 1} =
+      \beta^{k - 1}(\beta^2 - \beta - 1) = 0$. Which implies that
+      equality~(\ref{equation:binet}).
+  \end{itemize}
+\end{proof}
+
+Now we are ready to prove the strong induction principle.
+\begin{proof}[Proof of Theorem~\ref{theorem:strong-induction}]
+  It is easy to see that if $P(n)$ is true for all $n > n_0$, then the base
+  case and the induction steps are true. Let us prove that if the base case and
+  the induction step are true, then $P(n)$ is true for all $n > n_0$.
+
+  Let $Q(k)$ be the statement that $P(n_0 + 1)$, \dots, $P(n_0 + k)$ are true.
+  Note that $Q(1)$ is true by the base case for $P$. Additionally, note that if
+  $Q(k)$ is true, then $Q(k + 1)$ is also true, by the induction step for $P$.
+  Hence, by the induction principle, $Q(k)$ is true for all positive integers
+  $k$. Which implies that $P(n_0 + k)$ is true for all positive integers $k$.
+\end{proof}
+
+\section{Recursive Definitions}
+Sometimes you wish to define objects using objects of the same form like in the
+case of inductive defenitions but you do not know how to enumerate them using
+an integer parameter.
+
+One example of such a situation is the definition of an arithmetic formula.
+\begin{description}
+  \item[base case:] $x_i$ is an arithmetic formula on the variables $x_1$,
+    \dots, $x_n$ for all $i$.
+  \item[recursion step:] If $P$ and $Q$ are arithmetic formulas on the variables
+    $x_1$, \dots, $x_n$, then $(P + Q)$ and $P \cdot Q$ are arithmetic formulas
+    on the variables $x_1$, \dots, $x_n$.
+\end{description}
+Note that this definition implicitly state that any other expressions are not
+arithmetic formulas.
+
+We can define recursively the value of such a formula. Let $v_1$, \dots, $v_n$
+be some integers.
+\begin{description}
+  \item[base case:] $x_i\big\rvert_{x_1 = v_1, \dots, x_n = v_n} = v_i$; in other words,
+    the value of the arythmetic formula $x_i$ is equal to $v_1$ when $x_1 =
+    v_1$, \dots, $x_n = v_n$.
+  \item[recursion step:] If $P$ and $Q$ are arythmetic formulas on the
+    variables $x_1$, \dots, $x_n$, then
+    \[
+      (P + Q)\big\rvert_{x_1 = v_1, \dots, x_n = v_n} =
+      P\big\rvert_{x_1 = v_1, \dots, x_n = v_n} + Q\big\rvert_{x_1 = v_1, \dots, x_n = v_n}
+    \]
+    and
+    \[
+      (P \cdot Q)\big\rvert_{x_1 = v_1, \dots, x_n = v_n} =
+      P\big\rvert_{x_1 = v_1, \dots, x_n = v_n} \cdot Q\big\rvert_{x_1 = v_1, \dots, x_n = v_n}.
+    \]
+\end{description}
+
+For example, $((x_1 + x_2) \cdot x_3)$ is clearly an arithmetic formula on the
+variables $x_1$, \dots, $x_n$. One may expect the value of this formula with $x_1 = 1$, $x_2 = 0$, and $x_3 = -1$ be equal to $-1$, let us check:
+\begin{itemize}
+  \item Note that
+    \[
+      \begin{array}{l}
+        x_1\big\rvert_{x_1 = 1, x_2 = 0, x_3 = -1} = 1, \\
+        x_2\big\rvert_{x_1 = 1, x_2 = 0, x_3 = -1} = 0\text{, and} \\
+        x_3\big\rvert_{x_1 = 1, x_2 = 0, x_3 = -1} = -1.
+      \end{array}
+    \]
+  \item Hence,
+    \[
+      (x_1 + x_2)\big\rvert_{x_1 = 1, x_2 = 0, x_3 = -1} = 1 + 0 = 1.
+    \]
+  \item Finally,
+    \[
+      ((x_1 + x_2) \cdot x_3)\big\rvert_{x_1 = 1, x_2 = 0, x_3 = -1} = 1 \cdot -
+      1 = -1.
+    \]
+\end{itemize}
+
+\section{Analysis of Recursive Algorithms}
+To illustrate power of recursive definitions and strong induction, let us
+analyze Algorithm~\ref{algorithm:binary-search}.
+\begin{algorithm}
+  \begin{algorithmic}[1]
+    \Function{BinarySearch}{$e$, $a_1$, \dots, $a_n$}
+      \If{$n \le 5$}
+        \For{$i$ from $1$ to $n$}
+          \If{$a_i = e$}
+            \State\Return{i}
+          \EndIf
+        \EndFor
+      \Else
+        \State{$\ell \gets \floor{\frac{n}{2}}$}
+        \If{$a_\ell \le e$}
+          \State\Call{BinarySearch}{$e$, $a_1$, \dots, $a_\ell$}
+        \Else
+          \State\Call{BinarySearch}{$e$, $a_{\ell + 1}$, \dots, $a_n$}
+        \EndIf
+      \EndIf
+    \EndFunction
+  \end{algorithmic}
+  \caption{The binary search algorithm that finds an element $e$ in the sorted
+    list $a_1$, \dots, $a_n$.}
+  \label{algorithm:binary-search}
+\end{algorithm}
+We prove that number of comparisons of this algorithm is bounded by
+$6 + 2\log_2(n)$. First step of the proof is to denote the worst
+number of comparisons when we run the algorithm on the list of length $n$ by
+$C(n)$. It is easy to see that $C(n) = n$ for $n \le 5$. Additionally,
+$C(n) \le 1 + \max(C(\floor{\frac{n}{2}}), C(n - \floor{\frac{n}{2}}))$ for
+$n > 5$. As we mentioned we prove that $C(n) \le 6 + 2\log_2(n)$, we prove it
+by induction. The base case is clear; let us now prove the induction step.
+By the induction hypothesis,
+\[
+  C(\floor{\frac{n}{2}}) \le 6 + 2\log_2(\floor{\frac{n}{2}})
+\]
+and
+\[
+  C(n - \floor{\frac{n}{2}}) \le 6 + 2\log_2(n - \floor{\frac{n}{2}}).
+\]
+Since $\floor{\frac{n}{2}} \le \frac{n}{2}$ and $n - \floor{\frac{n}{2}} \le
+\frac{n}{2} + 1$, $C(n) \le 1 + 2\log_2(\frac{n}{2} + 1)$.
+However,
+\[
+  1 + 6 + 2\log_2\left(\frac{n}{2} + 1\right) \le
+  6 + 2\log_2\left(\frac{n}{\sqrt{2}} + \sqrt{2}\right) \le 6 + 2 \log_2(n)
+\]
+for $n \ge 5$. As a result, we proved the induction step.
+
+\section*{End of The Chapter Exercises}
+\begin{exercises}
+  \exerciseitem Show that for any positive integer $n$, $n^2 + n$ is even.
+  \exerciseitem Show that for any integer $n \ge 10$,
+    $n^3 \le 2^n$.
+  \exerciseitem Show that for any positive integer $n$,
+    $\sum_{i = 0}^n x^i = \frac{1 - x^{n + 1}}{1 - x}$.
+  \exerciseitem Show that for any matrix $A \in \mathbb{R}^{m \times n}$
+    ($n > m$) there is a nonzero vector $x \in \mathbb{R}^n$ such that $Ax = 0$.
+  \exerciseitem  Show that all the elements of $\set{0, 1}^n$ (Binary strings)
+    may be ordered such that every successive strings in this order are
+    different only in one character.
+    (For example, for $n = 2$ the order may be $00$, $01$, $11$, $10$.)
+  \exerciseitem Let $a_0 = 2$, $a_1 = 5$, and $a_n = 5a_{n - 1} - 6 a_{n - 2}$
+    for all integers $n \ge 2$. Show that $a_n = 3^n + 2^n$ for all integers
+    $n \ge 0$.
+  \exerciseitem Show that $\sum_{i = 1}^n i^2 = \frac{n (n + 1)(2n + 1)}{6}$
+    for all integers $n \ge 1$.
+  \exerciseitem Show that $\sum\limits_{i = 1}^n \frac{1}{i (i + 1)} =
+    \frac{n}{n + 1}$.
+  \exerciseitem Let $f_0 = 1$, $f_1 = 1$, and $f_{n + 2} = f_{n + 1} + f_n$ for
+    all $n \in \mathbb{N}$. Show that
+    $f_n \ge \left(\frac{3}{2}\right)^{n - 2}$.
+  \exerciseitem Show that $f_{n + m} = f_{n - 1} f_m + f_n f_{m + 1}$.
+  \exerciseitem Show that two arythmetic formulas $(x_1 + x_2) \cdot x_3$ and
+    $x_1 \cdot x_3 + x_2 \cdot x_3$ on the variables $x_1$, $x_2$, and $x_3$
+    have the same values.
+\end{exercises}
