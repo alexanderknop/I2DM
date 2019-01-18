@@ -10,9 +10,9 @@
   \end{center}
   \vskip -1.5cm
 \end{wrapfigure}
-Let us consider a simple problem: what is bigger $2^n$ or $n$? In this chapter
+Let us consider a simple problem: what is bigger $2^n$ or $n$? In this chapter,
 we are going to study the simplest way to prove that $2^n > n$ for all positive
-integers $n$. First let us check that it is true for small integers $n$.
+integers $n$. First, let us check that it is true for small integers $n$.
 \begin{flushright}
   \begin{tabular}{c | c | c | c | c | c | c | c | c}
     $n$   & 1 & 2 & 3 & 4  & 5  & 6  & 7   & 8   \\
@@ -21,7 +21,7 @@ integers $n$. First let us check that it is true for small integers $n$.
   \end{tabular}
 \end{flushright}
 We may also note that $2^n$ is growing faster than $n$, so we expect that if
-$2^n > n$ for small integers $n$, then it is true for all positive integers $n$
+$2^n > n$ for small integers $n$, then it is true for all positive integers $n$.
 
 In order to prove this statement formally, we use the following principle.
 \begin{principle}[The Induction Principle]
@@ -34,7 +34,7 @@ In order to prove this statement formally, we use the following principle.
   \end{description}
 \end{principle}
 
-Let's prove now the statement using this principle.
+Let us prove now the statement using this principle.
 We define $P(n)$ be the statement that ``$2^n > n$''.
 $P(1)$ is true since $2^1 > 1$. Let us assume now that $2^n > n$. Note that
 $2^{n + 1} = 2 \cdot 2^n > 2n \ge n + 1$. Hence, we proved the induction step.
@@ -105,7 +105,7 @@ to the trick with $+4$, we just used.
 
 We may also define objects inductively. Let us consider the sum
 $1 + 2 + \dots + n$ a line of dots indicating ``and so on'' which indicates the
-definition by induction. In this case a more precise notation is
+definition by induction. In this case, a more precise notation is
 $\sum_{i = 1}^n i$.
 
 \begin{definition}
@@ -280,7 +280,7 @@ Now we are ready to prove the strong induction principle.
 
 \section{Recursive Definitions}
 Sometimes you wish to define objects using objects of the same form like in the
-case of inductive defenitions but you do not know how to enumerate them using
+case of inductive definitions but you do not know how to enumerate them using
 an integer parameter.
 
 One example of such a situation is the definition of an arithmetic formula.
@@ -336,7 +336,7 @@ variables $x_1$, \dots, $x_n$. One may expect the value of this formula with $x_
 \end{itemize}
 
 \section{Analysis of Recursive Algorithms}
-To illustrate power of recursive definitions and strong induction, let us
+To illustrate the power of recursive definitions and strong induction, let us
 analyze Algorithm~\ref{algorithm:binary-search}.
 \begin{algorithm}
   \begin{algorithmic}[1]
