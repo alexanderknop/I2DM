@@ -87,7 +87,7 @@ $(k + 5)^2 = k^2 + 10k + 25 \le 2k^2 + 8k + 32 = 2(k + 4)^2$.
 
 Let us now prove the theorem. Note that the proof is based on an idea similar
 to the trick with $+4$, we just used.
-\begin{proof}[Proof of Theorem~\ref{theorem:induction-shifted-base}]
+\begin{proof}[Proof of \Cref{theorem:induction-shifted-base}]
   \begin{description}
     \item[$\Rightarrow$] If $P(n)$ is true for any $n > n_0$ it is also true
       for $n = n_0 + 1$ which implies the base case. Additionally, it true for
@@ -135,7 +135,7 @@ Hence, $\sum_{i = 1}^{n + 1} i = \frac{n (n + 1)}{2} + (n + 1) =
 \section{Analysis of Algorithms with Cycles}
 
 Induction is very useful for analasing algorithms using cycles. Let us extend
-the example we considered in Section~\ref{section:simple-algorithm}.
+the example we considered in \Vref{section:simple-algorithm}.
 
 Let us consider the following algorithm.
 \begin{algorithm}
@@ -260,13 +260,13 @@ $f_0 = 0$, $f_1 = 1$, and $f_k = f_{k - 1} + f_{k - 2}$ for $k \ge 3$.
       $\alpha^{k + 1} - \alpha^k - \alpha^{k - 1} = \alpha^{k - 1}(\alpha^2 -
       \alpha - 1) = 0$ and
       $\beta^{k + 1} - \beta^k - \beta^{k - 1} =
-      \beta^{k - 1}(\beta^2 - \beta - 1) = 0$. Which implies that
+      \beta^{k - 1}(\beta^2 - \beta - 1) = 0$. Which implies
       equality~(\ref{equation:binet}).
   \end{itemize}
 \end{proof}
 
 Now we are ready to prove the strong induction principle.
-\begin{proof}[Proof of Theorem~\ref{theorem:strong-induction}]
+\begin{proof}[Proof of \Cref{theorem:strong-induction}]
   It is easy to see that if $P(n)$ is true for all $n > n_0$, then the base
   case and the induction steps are true. Let us prove that if the base case and
   the induction step are true, then $P(n)$ is true for all $n > n_0$.
@@ -297,24 +297,27 @@ arithmetic formulas.
 We can define recursively the value of such a formula. Let $v_1$, \dots, $v_n$
 be some integers.
 \begin{description}
-  \item[base case:] $x_i\big\rvert_{x_1 = v_1, \dots, x_n = v_n} = v_i$; in other words,
-    the value of the arithmetic formula $x_i$ is equal to $v_1$ when $x_1 =
-    v_1$, \dots, $x_n = v_n$.
+  \item[base case:] $x_i\big\rvert_{x_1 = v_1, \dots, x_n = v_n} = v_i$; in
+    other words, the value of the arithmetic formula $x_i$ is equal to $v_1$
+    when $x_1 = v_1$, \dots, $x_n = v_n$.
   \item[recursion step:] If $P$ and $Q$ are arithmetic formulas on the
     variables $x_1$, \dots, $x_n$, then
     \[
       (P + Q)\big\rvert_{x_1 = v_1, \dots, x_n = v_n} =
-      P\big\rvert_{x_1 = v_1, \dots, x_n = v_n} + Q\big\rvert_{x_1 = v_1, \dots, x_n = v_n}
+      P\big\rvert_{x_1 = v_1, \dots, x_n = v_n} +
+      Q\big\rvert_{x_1 = v_1, \dots, x_n = v_n}
     \]
     and
     \[
       (P \cdot Q)\big\rvert_{x_1 = v_1, \dots, x_n = v_n} =
-      P\big\rvert_{x_1 = v_1, \dots, x_n = v_n} \cdot Q\big\rvert_{x_1 = v_1, \dots, x_n = v_n}.
+      P\big\rvert_{x_1 = v_1, \dots, x_n = v_n} \cdot
+      Q\big\rvert_{x_1 = v_1, \dots, x_n = v_n}.
     \]
 \end{description}
 
 For example, $((x_1 + x_2) \cdot x_3)$ is clearly an arithmetic formula on the
-variables $x_1$, \dots, $x_n$. One may expect the value of this formula with $x_1 = 1$, $x_2 = 0$, and $x_3 = -1$ be equal to $-1$, let us check:
+variables $x_1$, \dots, $x_n$. One may expect the value of this formula with
+$x_1 = 1$, $x_2 = 0$, and $x_3 = -1$ be equal to $-1$, let us check:
 \begin{itemize}
   \item Note that
     \[
@@ -337,7 +340,7 @@ variables $x_1$, \dots, $x_n$. One may expect the value of this formula with $x_
 
 \section{Analysis of Recursive Algorithms}
 To illustrate the power of recursive definitions and strong induction, let us
-analyze Algorithm~\ref{algorithm:binary-search}.
+analyze \Cref{algorithm:binary-search}.
 \begin{algorithm}
   \begin{algorithmic}[1]
     \Function{BinarySearch}{$e$, $a_1$, \dots, $a_n$}
