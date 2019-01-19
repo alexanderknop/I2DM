@@ -22,25 +22,20 @@ Thus, the assumption was false.
 
 Let us consider a more useful example, let us prove that if $p^2$ is even, then
 $p$ is also even ($p$ is an integer). Assume the opposite i.e. that $p^2$ is
-even but $p$ is not. Let $p^2 = 2a$ and $p = 2b + 1$. Note that
-$2a = p^2 = (2b + 1)^2 = 2(2b^2 + 2b) + 1$. Hence, $2(a - 2b^2 - 2b) = 1$ but
-$2(a - 2b^2 - 2b)$ is an integer and either at least $2$ or at most $-2$. Note
-that we proved that $1$ should be at least $2$ or at most $-2$ which is a
-contradiction.
+even but $p$ is not. Let $p = 2b + 1$\footnote{Note that we use here the
+statement that an integer $n$ is not even iff it is odd, which, formally
+speaking, should be proven.}. Note that $p^2 = (2b + 1)^2 = 2(2b^2 + 2b) + 1$.
+Hence, $p^2$ is odd which contradicts to the assumption that $p^2$ is even.
 
 Using this idea we may prove much more complicated results e.g. one may show
 that $\sqrt{2}$ is irrational. For the sake of contradiction, let us assume
 that it is not true. In other words there are $p$ and $q$ such that
-$\sqrt{2} = \frac{p}{q}$.
-
-Note that if some integer $d > 1$ devises both $p$ and $q$, then there are
-$p' < p$ and $q' < q$ such that $\frac{p}{q} = \frac{p'}{q'}$. Hence, we may
-assume that $p$ and $q$ do not have common divisors.
+$\sqrt{2} = \frac{p}{q}$ and $\frac{p}{q}$ is an irreducible fraction.
 
 Note that $\sqrt{2} q = p$, so $2q^2 = p^2$. Which implies that $p$ is even
 and $4$ devises $p^2$. Therefore $4$ devises $2q^2$ and $q$ is also even. As
-a result, we get a contradiction with the assumption that $p$ and $q$ do not
-have common divisors.
+a result, we get a contradiction with the assumption that $\frac{p}{q}$ is an
+irreducible fraction.
 
 \begin{template}
   \textbf{Template for proving a statement by contradiction.} \\
@@ -56,9 +51,9 @@ have common divisors.
 
 \section{Proving Implications by Contradiction}
 This method works especially well when we need to prove an implication.
-Since the implication $P \implies Q$ is false only when $P$ is true but $Q$ is
-false. Hence, you need to derive a contradiction from the fact that $P$ is true
-and $Q$ is false.
+Since the implication $A \implies B$ is false only when $A$ is true but $B$ is
+false. Hence, you need to derive a contradiction from the fact that $A$ is true
+and $B$ is false.
 
 We have already seen such examples in the previous section, we proved that
 $p^2$ is even implies $p$ is even for any integer $p$. Let us consider another
@@ -68,8 +63,8 @@ the multiplicativity of the inequalities we know that if $(a > b)$ and $c > 0$,
 then $ac > bc$ which contradicts to $ac < bc$.
 
 A special case of such a proof is when we need to prove the implication
-$P \implies Q$, assume that $Q$ is false and derive that $P$ is false which
-contradicts to  $P$ (such proofs are called proofs by contraposition); note
+$A \implies B$, assume that $B$ is false and derive that $A$ is false which
+contradicts to  $A$ (such proofs are called proofs by contraposition); note
 that the previous proof is the proof of this form.
 
 \section{Proof of ``OR'' Statements}
@@ -79,9 +74,9 @@ $b = 0$. We start from the implication from the right to the left. Since if
 $a = 0$, then $ab = 0$ and the same is true for $b = 0$ this implication is
 obvious.
 
-The second part of the proof is the proof by contradiction. Assume $ab = 0$ and
-$a \neq 0$, we need to derive that $b = 0$. Note that $b = \frac{ab}{a} = 0$,
-hence $b = 0$.
+The second part of the proof is the proof by contradiction. Assume $ab = 0$,
+$a \neq 0$, and $b \neq 0$. Note that $b = \frac{ab}{a} = 0$,
+hence $b = 0$ which is a contradiction to the assumption.
 
 \section*{End of The Chapter Exercises}
 \begin{exercises}
@@ -95,6 +90,8 @@ hence $b = 0$.
         \item any two distinct lines have exactly one point on both of them, and
         \item each point is on exactly two lines.
     \end{enumerate}
+
+    Show that every line has exactly three points on it.
   \exerciseitem
     Let us consider group theory, it is a theory with undefined
     terms: group-element and times (if $a$ and $b$ are group elements, we denote $a$ times $b$ by $a \cdot b$), and axioms:
