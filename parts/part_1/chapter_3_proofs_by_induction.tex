@@ -218,7 +218,9 @@ induction  principle.
 
 Before we prove this theorem let us prove some properties of Fibonacci numbers
 using this theorem. The Fibonacci numbers are defined as follows:
-$f_0 = 0$, $f_1 = 1$, and $f_k = f_{k - 1} + f_{k - 2}$ for $k \ge 3$.
+$f_0 = 0$, $f_1 = 1$, and $f_k = f_{k - 1} + f_{k - 2}$ for $k \ge 3$ (note
+that they are also defined using strong induction since we use not only
+$f_{k - 1}$ to define $f_k$).
 
 \begin{theorem}[The Binet formula]
   The Fibonacci numbers are given by the following formula
@@ -287,7 +289,8 @@ an integer parameter.
 One example of such a situation is the definition of an arithmetic formula.
 \begin{description}
   \item[base case:] $x_i$ is an arithmetic formula on the variables $x_1$,
-    \dots, $x_n$ for all $i$.
+    \dots, $x_n$ for all $i$; if $c$ is a real number, then $c$ is also
+    an arithmetic formula on the variables $x_1$, \dots, $x_n$.
   \item[recursion step:] If $P$ and $Q$ are arithmetic formulas on the variables
     $x_1$, \dots, $x_n$, then $(P + Q)$ and $P \cdot Q$ are arithmetic formulas
     on the variables $x_1$, \dots, $x_n$.
@@ -300,7 +303,8 @@ be some integers.
 \begin{description}
   \item[base case:] $x_i\big\rvert_{x_1 = v_1, \dots, x_n = v_n} = v_i$; in
     other words, the value of the arithmetic formula $x_i$ is equal to $v_1$
-    when $x_1 = v_1$, \dots, $x_n = v_n$.
+    when $x_1 = v_1$, \dots, $x_n = v_n$; if $c$ is a real number, then
+    $c\rvert_{x_1 = v_1, \dots, x_n = v_n} = c$.
   \item[recursion step:] If $P$ and $Q$ are arithmetic formulas on the
     variables $x_1$, \dots, $x_n$, then
     \[
@@ -338,6 +342,11 @@ $x_1 = 1$, $x_2 = 0$, and $x_3 = -1$ be equal to $-1$, let us check:
       1 = -1.
     \]
 \end{itemize}
+
+\begin{exercise}
+  Show that for any arithmetic formula $A$ on $x$, there is a polynomial
+  $p$ such that $p(v) = A\big\rvert_{x = v}$ for any real value $v$.
+\end{exercise}
 
 \section{Analysis of Recursive Algorithms}
 To illustrate the power of recursive definitions and strong induction, let us
