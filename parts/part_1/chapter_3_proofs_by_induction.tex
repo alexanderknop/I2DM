@@ -301,11 +301,11 @@ arithmetic formulas.
 We can define recursively the value of such a formula. Let $v_1$, \dots, $v_n$
 be some integers.
 \begin{description}
-  \item[base case:] $x_i\big\rvert_{x_1 = v_1, \dots, x_n = v_n} = v_i$; in
+  \item[base cases:] $x_i\big\rvert_{x_1 = v_1, \dots, x_n = v_n} = v_i$; in
     other words, the value of the arithmetic formula $x_i$ is equal to $v_1$
     when $x_1 = v_1$, \dots, $x_n = v_n$; if $c$ is a real number, then
     $c\rvert_{x_1 = v_1, \dots, x_n = v_n} = c$.
-  \item[recursion step:] If $P$ and $Q$ are arithmetic formulas on the
+  \item[recursion steps:] If $P$ and $Q$ are arithmetic formulas on the
     variables $x_1$, \dots, $x_n$, then
     \[
       (P + Q)\big\rvert_{x_1 = v_1, \dots, x_n = v_n} =
@@ -343,10 +343,61 @@ $x_1 = 1$, $x_2 = 0$, and $x_3 = -1$ be equal to $-1$, let us check:
     \]
 \end{itemize}
 
-\begin{exercise}
-  Show that for any arithmetic formula $A$ on $x$, there is a polynomial
+
+A special case of induction which called structural induction is the easiest way
+to prove properties of recursively defined objects. The idea of this is similar
+to the idea of strong induction:
+\begin{itemize}
+  \item first, we prove the statement for the base case,
+  \item after that we prove the induction step, using the assumption that the
+    statement is true for all the substructures (e.g. subformulas in the
+    previous definition).
+\end{itemize}
+To illustrate this method, we prove the following theorem.
+
+\begin{theorem}
+  For any arithmetic formula $A$ on $x$, there is a polynomial
   $p$ such that $p(v) = A\big\rvert_{x = v}$ for any real value $v$.
+\end{theorem}
+\begin{proof}
+  \begin{description}
+    \item[base cases:] If $A = x_i$, then consider the polynomial $p(x) = x$;
+      it is easy to see that $A\big\rvert_{x = v} = v = p(v)$.
+      If $A = c$ where $c$ is a real number, then consider the constant
+      polynomial  $p(x) = c$; it is easy to note that $A\big\rvert_{x = v} = c =
+       p(v)$.
+    \item[induction step:] We need to consider two cases. Consider the case when
+      $A = B_1 + B_2$. By the induction hypothesis, there are polynomials $q_1$
+      and $q_2$ such that $B_1\big\rvert_{x = v} = q_1(v)$ and
+      $B_2\big\rvert_{x = v} = q_2(v)$ for all real numbers $v$.
+      We define $p(x) = q_1(x) + q_2(x)$ (it is a polynomial since sum of
+      two polynomials is a polynomial). It is obvious that
+      $A\big\rvert_{x = v} = B_1\big\rvert_{x = v} + B_2\big\rvert_{x = v} =
+      q_1(v) + q_2(v) = p(v)$.
+
+      Another case is $A = B_1 \cdot B_2$. Again, by the induction hypothesis,
+      there are polynomials $q_1$ and $q_2$ such that
+      $B_1\big\rvert_{x = v} = q_1(v)$ and
+      $B_2\big\rvert_{x = v} = q_2(v)$ for all real numbers $v$.
+      We define $p(x) = q_1(x) \cdot q_2(x)$ (it is a polynomial since product of
+      two polynomials is a polynomial). It is obvious that
+      $A\big\rvert_{x = v} = B_1\big\rvert_{x = v} \cdot B_2\big\rvert_{x = v} =
+      q_1(v) \cdot q_2(v) = p(v)$.
+  \end{description}
+\end{proof}
+
+\begin{exercise}
+  \begin{itemize}
+    \item Define arithmetic formulas with devision and define their value (make sure
+      that you handled divisions by $0$).
+
+    \item Show that for any arithmetic formula with division $A$ on $x$,
+      there are polynomials $p$ and $q$ such that $\frac{p(v)}{q(v)} =
+      A\big\rvert_{x = v}$ or $A\big\rvert_{x = v}$ is not defined for
+      any real value $v$.
+  \end{itemize}
 \end{exercise}
+
 
 \section{Analysis of Recursive Algorithms}
 To illustrate the power of recursive definitions and strong induction, let us
