@@ -451,7 +451,10 @@ for $n \ge 5$. As a result, we proved the induction step.
 
 \section*{End of The Chapter Exercises}
 \begin{exercises}
+  \exerciseitem Show that there does not exist the largest integer.
   \exerciseitem Show that for any positive integer $n$, $n^2 + n$ is even.
+  \exerciseitem Show that for any positive integer $n$, $3$ divises
+    $n^3 + 2n$.
   \exerciseitem Show that for any integer $n \ge 10$,
     $n^3 \le 2^n$.
   \exerciseitem Show that for any positive integer $n$,
@@ -468,7 +471,27 @@ for $n \ge 5$. As a result, we proved the induction step.
   \exerciseitem Show that $\sum_{i = 1}^n i^2 = \frac{n (n + 1)(2n + 1)}{6}$
     for all integers $n \ge 1$.
   \exerciseitem Show that $\sum\limits_{i = 1}^n \frac{1}{i (i + 1)} =
-    \frac{n}{n + 1}$.
+    \frac{n}{n + 1}$ for all integers $n \ge 1$.
+  \exerciseitem Show that $\sum\limits_{i = 1}^n \frac{1}{i^2} \le
+    2 - \frac{1}{n}$ for all integers $n \ge 1$.
+  \exerciseitem Show that $\sum_{i = 1}^n (2i - 1) = n^2$ for any positive
+    integer $n$.
+  \exerciseitem Prove that $\sum_{i = 1}^n \frac{1}{i (i + 1)} =
+    \frac{n}{n + 1}$ for any positive integer $n$.
+  \exerciseitem Prove that $\sum\limits_{i = 2}^n (i + 1) 2^i = n 2^{n + 1}$
+    for all integers $n > 2$.
+  \exerciseitem Let $a_1$, \dots, $a_n$ be a sequence of real numbers.
+    We define inductively
+    $\prod_{i = k}^n a_i$ as follows:
+    \begin{itemize}
+      \item $\prod_{i = 1}^1 a_i = a_1$ and
+      \item $\prod_{i = 1}^{k + 1} a_i =
+        \left( \prod_{i = 1}^k a_i \right) \cdot a_{k + 1}$.
+      \end{itemize}
+
+      Prove that $\prod_{i = 1}^{n - 1} \left(1 - \frac{1}{(i + 1)^2} \right) =
+      \frac{n + 1}{2n}$ for all integers $n > 1$.
+
   \exerciseitem Let $f_0 = 1$, $f_1 = 1$, and $f_{n + 2} = f_{n + 1} + f_n$ for
     all $n \in \mathbb{N}$. Show that
     $f_n \ge \left(\frac{3}{2}\right)^{n - 2}$.
@@ -476,4 +499,23 @@ for $n \ge 5$. As a result, we proved the induction step.
   \exerciseitem Show that two arithmetic formulas $(x_1 + x_2) \cdot x_3$ and
     $x_1 \cdot x_3 + x_2 \cdot x_3$ on the variables $x_1$, $x_2$, and $x_3$
     have the same values.
+
+  \exerciseitem We say that $L$ is a list of powers of $x$ iff
+    \begin{itemize}
+      \item either $L = x^k$ for some positive integer $k$ or
+      \item $L = (x^k, L')$ where $L'$ is a list of powers of $x$ and
+        $k$ is a positive integer.
+    \end{itemize}
+
+    Let $L$ be a list of powers of $x$. We say that the sum of $L$
+    with $x = v$ denoted by $\sum L\big\rvert_{x = v}$
+    \begin{itemize}
+      \item is equal to $x^k$ whether $L = x^k$ and
+      \item is equal to $x^k + \sum L'\big\rvert_{x = v}$ whether
+        $L = (x^k, L')$.
+    \end{itemize}
+
+    Prove that for any list $L$ of powers of $x$ there is a polynomial such that
+    $\sum L\big\rvert_{x = v} = p(v)$ for all real numbers $v$.
+
 \end{exercises}
