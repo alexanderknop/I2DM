@@ -1,0 +1,156 @@
+\chapter{Predicates and Connectives}
+\begin{wrapfigure}{l}{4cm}
+  \begin{center}
+    \vskip -0.5cm
+    \qrset{link, height=3cm}
+    \qrcode{https://youtu.be/0unvlq2OTaE}
+    \vskip 0.25cm
+    \href{https://youtu.be/0unvlq2OTaE}{youtu.be/0unvlq2OTaE}
+    {\footnotesize Connectives and Propositions}
+  \end{center}
+  \vskip -0.5cm
+\end{wrapfigure}
+
+\section{Propositions and Predicates}
+In the previous chapters we used the word ``statement'' without any even
+relatively formal definition what it means. In this chapter we are going to
+give a semi-formal definition and discuss how to create complicated statements
+from simple statements.
+
+It is difficult to give a formal definition what a mathematical statement is,
+hence, we are not going to do it in this book. The goal of this section is to
+enable the reader to recognize mathematical statements.
+
+A \textit{proposition} or a mathematical statement is a declarative sentence
+which is either true or false but not both. Consider the following list of
+sentences.
+\begin{enumerate}
+  \item $2 \times 2 = 4$
+  \item $\pi = 4$
+  \item $n$ is even
+  \item 32 is special
+  \item The square of any odd number is odd.
+  \item The sum of any even number and one is prime.
+\end{enumerate}
+Of those first two are propositions; note that this says nothing whether they
+are true or not. Actually, the first is true and the second is false.
+However, the third sentence became a proposition only when the value
+of $n$ is fixed and the fours is not a proposition. Finally, the last
+two are proposition.
+
+Third statement is somewhat special, there is a simple way to make it a
+proposition, one just need to fix the value of the variables. Such sentences
+are called predicates and the variables that need to me specified are called
+free variables of these predicates.
+
+Note that the fourth sentence is also interesting, since if we define what it
+means to be special, the phrase became a proposition.
+Mathematicians are tend to do such things and to give mathematical meanings to
+everyday words.
+
+\section{Connectives}
+
+Mathematicians often need to decide whether a given proposition is true or
+false. Many statements are complicated and constructed from simpler statements
+using \textit{logical connectives}. For example we may consider the following
+statements:
+\begin{enumerate}
+  \item $3 > 4$ and $1 < 1$;
+  \item $1 \times 2 = 5$ or $6 > 1$.
+\end{enumerate}
+
+\paragraph{Logical connective ``OR''.}
+The second statement is an example of usage of this connective. The statement
+``P or Q'' is true if and only if at least one of P and Q is true. We may
+define the connective using the truth table of it.
+\begin{center}
+  \begin{tabular}{c | c | c}
+    P & Q & P or Q \\
+    \hline
+    T & T & T \\
+    T & F & T \\
+    F & T & T \\
+    F & F & F
+  \end{tabular}
+\end{center}
+
+The or connective is also called \textit{disjunction} and the disjunction of $P$
+and $Q$ is often dented as $P \lor Q$.
+
+\begin{warning}
+  Note that in everyday speech ``or'' is often used in the exclusive case, like
+  in the sentence ``we need to decide whether it is an insect or a spider''.
+  In this case the precise meaning of ``or'' is made clear by the context.
+  However, mathematical language should be formal, hence, we always use ``or''
+  inclusively.
+\end{warning}
+
+\paragraph{Logical connective ``AND''.}
+The first statement is an example of this connective. The statement ``P or Q''
+is true if and only if both P and Q are true. We may define the
+connective using the truth table of it.
+\begin{center}
+  \begin{tabular}{c | c | c}
+    P & Q & P and Q \\
+    \hline
+    T & T & T \\
+    T & F & F \\
+    F & T & F \\
+    F & F & F
+  \end{tabular}
+\end{center}
+
+The or connective is also called \textit{conjunction} and the conjunction of
+$P$ and $Q$ is often dented as $P \land Q$.
+
+\begin{warning}
+  Not all the properties of ``and'' from everyday speach are captured by
+  logical conjunction. For example, ``and'' sometimes implies order. For
+  example, ``They got married and had a child'' in common language means that
+  the marriage came before the child. The word ``and'' can also imply a
+  partition of a thing into parts, as ``The American flag is red, white, and
+  blue.'' Here it is not meant that the flag is at once red, white, and blue,
+  but rather that it has a part of each color.
+\end{warning}
+
+\paragraph{Logical connective ``NOT''.}
+The last connective is called \textit{negation} and examples of usage of it are
+the following:
+\begin{enumerate}
+  \item 5 is not greater than 8;
+  \item Does not exist an integer $n$ such that $n^2 = 2$.
+\end{enumerate}
+
+Note that it is not straightforward where to put the negation in these
+sentences.
+\section*{End of The Chapter Exercises}
+\begin{exercises}
+  \exerciseitem Construct truth tables for the statements
+    \begin{itemize}
+      \item not ($P$ and $Q$);
+      \item (not $P$) or (not $Q$);
+      \item $P$ and (not $Q$);
+      \item (not $P$) or $Q$;
+    \end{itemize}
+  \exerciseitem Consider the statement ``All gnomes like cookies''. Which of
+    the following statements is the negation of the above statement?
+    \begin{itemize}
+      \item All gnomes hate cookies.
+      \item All gnomes do not like cookies.
+      \item Some gnome do not like cookies.
+      \item Some gnome hate cookies.
+      \item All creatures who like cookies are gnomes.
+      \item All creatures who do not like cookies are not gnomes.
+    \end{itemize}
+  \exerciseitem Using truth tables show that the following statements are
+    equivalent:
+    \begin{itemize}
+      \item $P \implies Q$,
+      \item $(P \lor Q) \iff Q$
+        ($A \implies B$ is the same as $(A \implies B) \land (B \implies A)$),
+      \item $(P \land Q) \iff P$
+    \end{itemize}
+  \exerciseitem Prove that three connectives ``or'', ``and'', and ``not'' can
+    all be written in terms of the single connective ``notand'' where ``$P$
+    notand $Q$'' is interpreted as ``not ($P$ and $Q$)''.
+\end{exercises}
