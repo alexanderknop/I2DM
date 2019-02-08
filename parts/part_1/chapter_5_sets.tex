@@ -13,12 +13,9 @@
 \section{The Intuitive Definition of a Set}
 A set is one of two most important concepts in mathematics. Many mathematical
 statements involve ``an integer $n$'' or ``a real number $a$''. Set theory
-notation provides a simple way to express that $a$ is a real number. However,
-this language is much more expressible and it is impossible to imagine modern
-mathematics without this notation.
+notation provides a simple way to express that $a$ is a real number. However, this language is much more expressible and it is impossible to imagine modern mathematics without this notation.
 
-As in the previous chapter it is difficult to define a set formally so we give
-a not formal definition which should be enough to use the notation.
+As in the previous chapter it is difficult to define a set formally so we give a not formal definition which should be enough to use the notation.
 A \textit{set} is a well-defined collection of objects. Important examples of
 sets are:
 \begin{enumerate}
@@ -39,29 +36,12 @@ Objects in a set are called \textit{elements} of the set and we denote the
 statement ``x is in the set $E$'' by the formula $x \in E$ and the negation of
 this statement by $x \not\in E$. For example, we proved that
 $\sqrt{2} \not\in \Q$\footnote{%
-  The symbol $\in$ was first used by Giuseppe Peano 1889 in his work
-  ``Arithmetices principia, nova methodo exposita''. Here he wrote on page X:
+  The symbol $\in$ was first used by Giuseppe Peano 1889 in his work ``Arithmetices principia, nova methodo exposita''. Here he wrote on page X:
   ``The symbol $\in$ means is. So $a \in b$ is read as a \textit{is} a b;
   \dots''
   The symbol itself is a stylized lowercase Greek letter epsilon
-  (``$\epsilon$''), the first letter of the word  \textgreek{esti}, which means
-  ``is''.
+  (``$\epsilon$''), the first letter of the word  \textgreek{esti}, which means ``is''.
 }.
-
-\section{Basic Relations Between Sets}
-Many problems in mathematics are problems of determining whether two description
-of sets are describing the same set or not. For example, when we learn how to
-solve quadratic equations of the form $ax^2 + bx + c = 0$ ($a, b, c \in \R$) we
-learn how to list the elements of the set $\set[ax^2 + bx + c = 0]{x \in \R}$.
-
-We say that two sets $A$ and $B$ are equal if they contain the
-same elements (we denote it by $A = B$). If all the elements of $A$ belong to
-$B$ we say that $A$ is a subset of $B$ and denote it by $A \subseteq B$.
-
-For example, $\Q \subseteq \R$ since any rational number is
-also a real number.
-A special set is an empty set i.e. the set that does not have elements, we
-denote it $\emptyset$.
 
 \begin{exercise}
   \label{exercise:inclusion}
@@ -79,6 +59,29 @@ denote it $\emptyset$.
     \item The set of all prime numbers less than $11$.
   \end{enumerate}
 \end{exercise}
+
+\section{Basic Relations Between Sets}
+Many problems in mathematics are problems of determining whether two description
+of sets are describing the same set or not. For example, when we learn how to
+solve quadratic equations of the form $ax^2 + bx + c = 0$ ($a, b, c \in \R$) we
+learn how to list the elements of the set $\set[ax^2 + bx + c = 0]{x \in \R}$.
+
+We say that two sets $A$ and $B$ are equal if they contain the
+same elements (we denote it by $A = B$). If all the elements of $A$ belong to
+$B$ we say that $A$ is a subset of $B$ and denote it by
+$A \subseteq B$\footnote{%
+  In the litrature there are three symbols for ``subset'': $\subseteq$,
+  $\subsetneq$, and $\subseteq$. $A \subseteq B$ means that $A$ is a subset of
+  $B$ and we allow $A = B$ and $A \subsetneq B$ means that $A$ is a subset of
+  $B$ and we forbid $A = B$. However, there is a problem with the third symbol,
+  some people use it as a synonim of $\subseteq$ and some use it as a synonim of
+  $\subsetneq$. Due to this ambiguity we are going to avoid using it in this
+  book.
+}.
+
+For example, $\Q \subseteq \R$ since any rational number is
+also a real number. A special set is an empty set i.e. the set that does not
+have elements, we denote it $\emptyset$.
 
 \subsection{Diagrams}
 If we think of a set $A$ as represented by all the points within a circle or
@@ -140,8 +143,9 @@ even numbers is to use the constructive definition of a set:
 $\set[k \in \Z]{2k}$.
 
 We may also describe a set of rational numbers using this description:
-$\Q = \set[a, b \in \Z, b \neq 0]{a / b}$ (note that this definition is a mix of
-a conditional and constructive definitions).
+$\Q = \set[a,\in \Z, b \in \N]{a / b}$ (note that we may also use a mix of
+a conditional and constructive definitions,
+$\Q = \set[a, b \in \Z, b \neq 0]{a / b}$).
 
 \begin{exercise}
   Describe a set of perfect squares using constructive type of definition.
@@ -213,7 +217,11 @@ $B$ be sets.
 
 The first example of the operations on sets is the \textit{union} operation.
 The union of $A$ and $B$ is the set containing all the elements of $A$ and all
-the elements of $B$ i.e. $A \cup B = \set[x \in A \text{ or } x \in B]{x}$.
+the elements of $B$ i.e.
+$A \cup B = \set[x \in A \text{ or } x \in B]{x}$\footnote{%
+  Note that this definition is not correct since in the conditional definitions
+  we have to specify the set $x$ belongs to and we cannot do this here.
+}.
 
 Another example of such an operation is \textit{intersection}. The
 intersection of $A$ and $B$ is the set of all the elements belonging to both
