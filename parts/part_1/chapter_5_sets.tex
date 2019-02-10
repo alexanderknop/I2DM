@@ -129,9 +129,9 @@ it it clear that one may draw Euler diagrams for more than two sets.
 \paragraph{Listing elements.} There are several ways to construct a set, the
 simplest one is just to list them. For example
 \begin{enumerate}
-  \item $\set{1, 2 \pi}$ is a set consisting of three elements 1, 2, and $\pi$
-    and
-  \item $\set{1, 2, 3, \dots, }$ is a set of all positive integers i.e. it is
+  \item $\set{1, 2, \pi}$ is the set consisting of three elements 1, 2, and
+    $\pi$, and
+  \item $\set{1, 2, 3, \dots}$ is the set of all positive integers i.e. it is
     the set $\N$.
 \end{enumerate}
 
@@ -141,7 +141,7 @@ numbers using the following formula $\set[n \text{ is even}]{n \in \Z}$
 (we read it as ``the set of all integers $n$ such that $n$ is even'').
 
 Using this we may also define the set of all integers from $1$ to $m$, we
-denote it $[m]$, $[m] = \set[0 < n \le m]{n \in \N}$.
+denote it $[m]$; i.e. $[m] = \set[0 < n \le m]{n \in \N}$.
 
 \paragraph{Constructive definitions.} Another way to construct a set of all
 even numbers is to use the constructive definition of a set:
@@ -234,7 +234,7 @@ $A$ and $B$ i.e $A \cap B = \set[x \in A \text{ and } x \in B]{x}$\footnote{%
   You may notice that in the definition of the union we use disjunction and
   in the definition of intersection we use conjunction. Actually this is a the
   reason the symbol of the conjunction is similar to the symbol of intersection
-  and the symbol of the disjunction is similar to the symbol of union. 
+  and the symbol of the disjunction is similar to the symbol of union.
 }.
 
 The third operation we are going to discuss this lecture is set difference.
@@ -290,8 +290,8 @@ by $\mathcal{P}(A)$) and called the power set of $A$. In other words $2^A =
   empty set and $A$ itself.
 \end{warning}
 
-\noindent For example if $A = \set{1, 2, 3}$, then $$2^A = \set{\set{1},
-\set{2}, \set{3}, \set{1, 2}, \set{1, 3}, \set{2, 3}, \set{1, 2, 3}}.$$
+\noindent For example if $A = \set{1, 2, 3}$, then $$2^A = \set{\emptyset,
+\set{1}, \set{2}, \set{3}, \set{1, 2}, \set{1, 3}, \set{2, 3}, \set{1, 2, 3}}.$$
 
 \section{The Well-ordering Principle}
 Using the set notation we may finally justify the proof of the statement
@@ -311,7 +311,7 @@ minimum.
 
 Recall that we wish to prove that $2^n > n$ for all positive $n$.
 Assume that it is not true, in this case the set
-$A = \set[2^n > n]{n \in \N}$ is non-empty. Denote by $n_0$ the minimum of the
+$A = \set[2^n < n]{n \in \N}$ is non-empty. Denote by $n_0$ the minimum of the
 set $A$, $n_0$ exists by Theorem~\ref{theorem:well-ordering}. We may consider
 the following two cases.
 \begin{itemize}
