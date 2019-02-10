@@ -216,6 +216,12 @@ order should be compatible with the partial ordering. In other words, if $x
 total order. The technique of finding such a total ordering is called
 \textit{topological sorting}.
 
+\begin{theorem}
+  Let $S$ be a finite set and $\preceq$ be a partial order on $S$. Then there is
+  a total order $\preceq_t$ on $S$ such that if $x \preceq y$, then
+  $x \preceq_t y$ for all $x, y \in S$
+\end{theorem}
+
 This sorting can be done using the following procedure.
 \begin{itemize}
   \item Initiate the set $S$ beeing equal to $T$
@@ -303,106 +309,6 @@ As a result, the final list is
   R = \text{Math 18}, \text{Math 20A}, \text{Math 20B}, \text{Math 20C},
   \text{Math 109}, \text{Math 184A}.
 \]
-
-\subsection{Isomorphisms}
-% TODO the section about the isomorphisms
-
-\subsection{Boolean Algebras}
-In this section we duscuss a beautiful connection between partial orderings and
-mathematical logic.
-
-\begin{definition}
-  Let $\preceq$ be a partial order on a set $S$.
-  For any elements $a, b \in S$, meet of $a$ and $b$ denoted $a \land b$
-  is the greatest lower bound of $a$ and $b$ (provided that such an element
-  exists). In other words, $a \land b$ is an element of $S$ such that it
-  satisfies the following properties.
-  \begin{itemize}
-    \item $a \land b \preceq a$, and $a \land b \preceq b$.
-    \item For any $c \in S$, if $c \preceq a$ and $c \preceq b$, then
-      $c \preceq a \land b$.
-  \end{itemize}
-\end{definition}
-It is easy to note that if $a \land b$ exists, it is unique.
-
-Similarly we can define join of two elements.
-\begin{definition}
-  Let $\preceq$ be a partial order on a set $S$.
-  For any elements $a, b \in S$, join of $a$ and $b$ denoted $a \lor b$
-  is the greatest lower bound of $a$ and $b$ (provided that such an element
-  exists). In other words, $a \lor b$ is an element of $S$ such that it
-  satisfies the following properties.
-  \begin{itemize}
-    \item $a \preceq a \lor b$, and $b \preceq a \lor b$.
-    \item For any $c \in S$, if $a \preceq c$ and $b \preceq c$, then
-      $a \lor b \preceq c$.
-  \end{itemize}
-\end{definition}
-
-Finally, using these operations we may define a lattice.
-\begin{definition}
-  Let $\preceq$ be a partial order on a set $S$.
-  If $a \land b$ and $a \lor c$ exist for any $a, b \in S$, then $\preceq$ forms
-  a lattice on $S$.
-\end{definition}
-
-\begin{exercise}
-\label{exercise:set-lattice}
-  Show that $\subseteq$ forms a lattice on the set $2^{[n]}$.
-\end{exercise}
-
-It is easy to see that a lattice have several nice properties.
-\begin{theorem}
-\label{theorem:lattice-properties}
-  Let $\preceq$ be a partial order on a set $S$ forming a lattice on $S$,
-  and $a, b, c \in S$.
-  \begin{description}
-    \item[commutativity:] $a \land b = b \land a$ and $a \lor b = b \lor a$.
-    \item[associativity:] $a \land (b \land c) = (a \land b) \land c$ and
-      $a \lor (b \lor c) = (a \lor b) \lor c$.
-    \item[absorbtion:] $a \lor (a \land b) = a$ and $a \land (a \lor b) = a$.
-  \end{description}
-\end{theorem}
-\begin{proof}
-  We prove only $a \land b = b \land a$ since the proofs of all the other
-  properties are similar.
-
-  Note that $b \land a \le a$ and $b \land a \le b$; hence, by the definition of
-  meet of $a$ and $b$, $b \land a = a \land b$.
-\end{proof}
-
-\begin{exercise}
-  Prove the rest of \Cref{theorem:lattice-properties}.
-\end{exercise}
-
-A special type of lattices are Boolean algebras.
-\begin{definition}
-  Let $\preceq$ be a partial order on a set $S$ forming a lattice on $S$.
-  We say that $\preceq$ forms a Boolean algebra on $S$ if it satisfies
-  thres additional properties.
-  \begin{description}
-    \item[distributivity:] $a \land (b \lor c) = (a \land b) \lor (a \land c)$
-      and $a \lor (b \land c) = (a \lor b) \land (a \lor c)$.
-    \item[boundness:] there are elements $0, 1 \in S$ such that $a \preceq 1$
-      and $0 \preceq a$ for all $a \in S$.
-    \item[complements:] for any $a \in S$, there is $\lnot a \in S$ such that
-      $a \land \lnot a = 0$ and $a \lor \lnot a = 1$.
-  \end{description}
-\end{definition}
-
-\begin{exercise}
-\label{exercise:set-boolean-algebra}
-  Show that $\subseteq$ forms a Boolean algebra on the set $2^{[n]}$.
-\end{exercise}
-
-From \Cref{exercise:set-boolean-algebra} we know that $\subseteq$ forms a Boolean
-algebra on the set $2^{[n]}$. Apparently this is the only type of finite Boolean
-algebras.
-\begin{theorem}
-  Let $S$ be some set and $\preceq$ form a Boolean algebra on a set $S$.
-  Then $(S, \preceq) \cong (2^{[n]}, \subseteq)$ for some $n \in \N$.
-\end{theorem}
-
 
 \section*{End of The Chapter Exercises}
 \begin{exercises}
