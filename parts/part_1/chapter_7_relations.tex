@@ -217,6 +217,7 @@ total order. The technique of finding such a total ordering is called
 \textit{topological sorting}.
 
 \begin{theorem}
+\label{theorem:topological-order}
   Let $S$ be a finite set and $\preceq$ be a partial order on $S$. Then there is
   a total order $\preceq_t$ on $S$ such that if $x \preceq y$, then
   $x \preceq_t y$ for all $x, y \in S$
@@ -311,7 +312,49 @@ As a result, the final list is
 \]
 
 \subsection{Induction over Partial Orderings}
-%TODO
+The notion of partial orderings allos us to formalize structural induction.
+In order to do this we need the following theorem.
+\begin{theorem}
+  Consider a finite set $S$ and be a partial ordering $\preceq$.
+  Let $P(x)$ be some predicate such that if $P(x)$ is true for all $x \prec m$,
+  then $P(m)$ is also true. Then $P(x)$ is true for all $x \in S$.
+\end{theorem}
+\begin{proof}
+  By \Cref{theorem:topological-order}, there is a total order $\preceq_t$
+  correspoding to $\preceq$. Let $s_1$, \dots, $s_\ell$ (existence of such a
+  sequence follows from the algorithm for the topological ordering) be all the
+  elements of $S$ ordered with respect to $\preceq_t$.
+
+  We prove by induction that $P(s_n)$ for any natural $n$. The base case is
+  clear since $s_1$ is a minimal element so $P(x)$ is true for all
+  $x \prec s_1$ and thus $P(s_1)$ is also true. We need to prove now the
+  induction step. Assume that $P(s_i)$ is true for any $i < k$. Note that if
+  $s_i \prec s_k$, then $i < k$. As a result,$P(x)$ is true for all
+  $x \prec s_k$ and $P(s_k)$ is also true.
+\end{proof}
+
+Using this theorem we may formalize the proof of
+\Cref{theorem:formulas-to-polynomials}.
+
+First of all we need to define a partial order over formulas. The order is very
+simple we say that if $A = B_1 \# B_2$, then $B_1, B_2 \prec A$
+($\# \in \set{+, \cdot}$). Now we need to prove that if for all arithmetic
+formulas $B \prec A$ on $x$ there is a polynomial $q$ such that
+$B\big\rvert_{x = v} = q(v)$, then there is a polynomial $p$ such that
+$A\big\rvert_{x = v} = p(v)$. Assume that it is true; i.e. for all arithmetic
+formulas $B \prec A$ on $x$ there is a polynomial $q$ such that
+$B\big\rvert_{x = v} = q(v)$, and consider the following two cases.
+\begin{itemize}
+  \item Let $A = B_1 + B_2$. In this case due to the asssumption there are
+    polynomials $q_1$ and $q_2$ such that $B_i\big\rvert_{x = v} = q_i(v)$ for all
+    $v$. Note that $A\big\rvert_{x = v} = B_1\big\rvert_{x = v} +
+    B_2\big\rvert_{x = v} = q_1(v) + q_2(v) = p(v)$, where $p(x) = q_1(x) + q(x)$.
+  \item Let $A = B_1 \cdot B_2$. In this case due to the asssumption there are
+    polynomials $q_1$ and $q_2$ such that $B_i\big\rvert_{x = v} = q_i(v)$ for all
+    $v$. Note that $A\big\rvert_{x = v} = B_1\big\rvert_{x = v} \cdot
+    B_2\big\rvert_{x = v} = q_1(v) \cdot q_2(v) = p(v)$, where
+    $p(x) = q_1(x) \cdot q(x)$.
+\end{itemize}
 
 \section*{End of The Chapter Exercises}
 \begin{exercises}
