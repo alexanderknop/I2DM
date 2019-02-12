@@ -52,10 +52,20 @@ is a bijection.
 \begin{theorem}
 \label{theorem:bijections-composition}
   Let $X$, $Y$, and $Z$ be some sets and $f : X \to Y$ and $g : Y \to Z$ be
-  bijections. Then $g \circ f : X \to Z$ is also a bijection.
+  bijections. Then $(g \circ f) : X \to Z$ is also a bijection.
 \end{theorem}
 \begin{proof}
-  % TODO
+  We need to check two properties.
+  \begin{itemize}
+    \item Let $x_1 \neq x_2 \in X$. Note that $f(x_1) \neq f(x_2)$ since $f$
+      is a bijection. Hence, $g(f(x_1)) \neq g(f(x_2))$ since $g$ is a bijection
+      as well. As a result, $(g \circ f)(x_1) \neq (g \circ f)(x_2)$.
+    \item Let $z \in Z$; we need to find $x \in X$ such that
+      $(g \circ f)(x) = y$. Note that since $g$ is a bijection there is
+      $y \in Y$ such that $g(y) = z$. Additionally, there is $x \in X$ such
+      that $f(x) = y$ since $f$ is a bijection. Thus,
+      $(g \circ f)(x) = g(f(x)) = z$.
+  \end{itemize}
 \end{proof}
 
 One may notice that if we have a bijection $f$ from $[n]$ to a set $S$ we
