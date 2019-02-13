@@ -1,0 +1,367 @@
+\chapter{Relations}
+Nonetheless that function are used almost everywhere in mathematics, many
+relations are not functional by their nature. For example, could never define a
+function $r(a)$ that gives the solution of $x^2 = a$ because there are two
+solutions for $a > 0$ and there are zero solutions for $a < 0$. A relation is a
+more general mathematical object.
+
+In order to define a relation we need to relax the definition of the graph of a
+function (\Cref{section:graph}) by allowing more than one ``result'' and
+by allowing zero ``results''. In other words we just say that any set $R
+\subseteq X_1 \times \dots \times X_k$ is a $k$-ary \textit{relation} on $X_1$,
+\dots, $X_k$. We also say that $x_1 \in X_1$, \dots, $x_k \in X_k$ are in the
+relation $R$ iff $(x_1, \dots, x_k) \in R$. If $k = 2$ such a relation is
+called a \textit{binary relation} and we write $x R y$ if $x$ and $y$ are in
+the relation $R$. If $X_1 = \dots = X_k = X$, we say that $R$ is a $k$-ary
+relation on $X$.
+
+Note that $=$, $\le$, $\ge$, $<$, and $>$ define relations on $\R$ (or any
+subset $S$ of $\R$). For example, if $S = \set{0, 1, 2}$, then $<$ defines
+the relation $R = \set{(0, 1), (0, 2), (1, 2)}$.
+
+Probably the most popular relation in mathematics is the following relation on
+$\Z$. Let $a, b \in \Z$. If $n$ divides $a - b$ for some $n \in Z$, we say that
+``$a$ equivalent to $b$ modulo $n$'' and denote it as $a \equiv b \pmod{n}$.
+For example, $1$ and $4$ are equivalent modulo $3$ since $3$ divides
+$1 - 4 = -3$.
+
+\section{Equivalence Relations}
+The definition of a relation is way to broad. Hence, quite often we consider
+some types of relation. Probably the most interesting type of the relations is
+equivalence relations.
+
+\begin{definition}
+  Let $R$ be a relation on a set $X$. We say that $R$ is an \textit{equivalence
+  relation} if it satisfies the following conditions:
+  \begin{description}
+    \item[reflexivity:]  $x R x$ for any $x \in X$;
+    \item[symmetry:]  $x R y$ iff $y R x$ for any $x, y \in X$;
+    \item[transitivity:]  for any $x, y, z \in X$, if $x R y$ and $y R Z$, then
+      $x R z$;
+  \end{description}
+\end{definition}
+One may guess that the equivalence relation are mimicking $=$, so it is not a
+surprise that $=$ is an equivalence relation.
+
+The definition seems quite bizarre, however, all of you are already familiar
+with an important example: you know that equivalent fractions represent the
+same number. For example $\frac{2}{4}$ is the same as $\frac{1}{2}$.
+Let us consider this example more thorough, let $S$ be a set of symbols of the
+form $\frac{x}{y}$ (note that it is not a set of numbers) where $x, y \in Z$
+and $y \neq 0$. We define a binary relation $R$ on $S$ such that
+$\frac{x}{y}$ and $\frac{z}{w}$ are in the relation $R$ iff $xw = zy$.
+It is easy to prove that this relation is an equivalence relation.
+\begin{description}
+  \item[reflexivity:] Let $\frac{a}{b} \in S$. Since $ab = ab$, we have that
+    $\frac{a}{b} R \frac{a}{b}$.
+  \item[symmetry:] Let $\frac{a}{b}, \frac{c}{d} \in S$. Suppose that
+    $\frac{a}{b} R \frac{c}{d}$, by the definition of $R$, it implies that
+    $ac = db$. As a result, $\frac{c}{d} R \frac{a}{b}$.
+  \item[transitivity:] Let $\frac{a}{b}, \frac{c}{d}, \frac{e}{f} \in S$ with
+    $\frac{a}{b} R \frac{c}{d}$ and $\frac{c}{d} R \frac{e}{f}$. Then
+    $ad = cb$ and $cf = ed$. The first equality can be rewritten as $c = ad / b$.
+    Hence, $adf / b = ed$ and $af = eb$ since $d \neq 0$. So $\frac{a}{b} R
+    \frac{e}{f}$.
+\end{description}
+
+\subsection{Partitions}
+Let $S$ be some set. We say that $\set{P_1, \dots, P_k}$ form a partition of
+$S$ iff $P_1$, \dots, $P_k$ are pairwise disjoint and
+$P_1 \cup \dots \cup P_k = S$; in other words, a partition is a way of dividing
+a set into overlapping pieces.
+
+\begin{exercise}
+  Let $\set{P_1, \dots, P_k}$ be a partition of a set $S$ and $R$ be a binary
+  relation of $S$ such that $a R b$ iff $a, b \in P_i$ for some $i \in [k]$.
+  Show that $R$ is an equivalence relation.
+\end{exercise}
+
+This exercise shows that one may transform a partition of the set $S$ into an
+equivalence relation on $S$. However, it is possible to do the opposite.
+\begin{theorem}
+\label{theorem:partition}
+  Let $R$ be a binary equivalence relation on a set $S$. For any element $x \in
+  S$, define $R_x = \set[x R y]{y \in S}$ (the set of all the elements of $S$
+  related to $x$) we call such a set the equivalence class of $x$.
+  Then $\set[x \in S]{R_x}$ is a partition of $S$.
+\end{theorem}
+
+\begin{exercise}
+  Prove \Cref{theorem:partition}.
+\end{exercise}
+
+\subsection{Modular Arithmetic}
+The relation ``$\equiv \pmod{n}$'' is actively used in the number theory. One
+of the important properties of this relation is that it is an equivalence
+relation.
+\begin{theorem}
+  The relation $\equiv \pmod{n}$ is an equivalence relation.
+\end{theorem}
+\begin{proof}
+  To prove this statement we need to prove all three properties: reflexivity,
+  symmetry, and transitivity.
+  \begin{description}
+    \item[reflexivity:] Note that for any integer $x$, $x - x = 0$ is divisible
+      by any integer including $n$. Hence, $x \equiv x \pmod{n}$.
+    \item[symmetry:] Let us assume that $x \equiv y \pmod{n}$; i.e. $x - y = kn$
+      for some integer $k$. Note that $y - x = (-k) n$, so
+      $y \equiv x \pmod{n}$.
+    \item[transitivity:] finally, assume that $x \equiv y \pmod{n}$ and
+      $y \equiv z \pmod{n}$; i.e. $x - y = k n$ and $y - z = \ell n$
+      for some integers $k$ and $\ell$. It is easy to note that
+      $x - z = (x - y) + (y - z) = (k + \ell) n$. As a result,
+      $x \equiv z \pmod{n}$.
+  \end{description}
+  Thus, we proved that $\equiv \pmod{n}$ is an equivalence relation.
+\end{proof}
+
+Let $x \in \Z$; we denote by $r_{x, n}$ the equivalence class of $x$ with
+respect to the relation $\equiv \pmod{n}$, we also denote by $\Z / n\Z$ the set
+of all the equivalence classes with respect to the relation $\equiv \pmod{n}$.
+
+Another important property of these relation is that they behave well with
+respect to the arithmetic operations.
+\begin{theorem}
+  Let $x, y \in Z$ and $n \in \N$. Suppose that $a \in r_{x, n}$ and $b \in
+  r_{y, n}$, then $(a + b) \in r_{x + y, n}$ and $ab \in r_{xy, n}$.
+\end{theorem}
+
+Using this theorem we may define arithmetic operations on the equivalence
+classes with respect to the relation $\equiv \pmod{n}$.
+Let $x, y \in \Z$ and $n \in \N$. Then
+$r_{x, n} + r_{y, n} = \set[a \in r_{x, n}, b \in r_{y, n}]{a + b} =
+r_{x + y, n}$ and
+$r_{x, n} r_{y, n} = \set[a \in r_{x, n}, b \in r_{y, n}]{ab} = r_{xy, n}$.
+Moreover, these operations have plenty of good properties.
+\begin{exercise}
+  Let $a, b, c \in \Z / n\Z$.
+  Show that the following equalities are true:
+  \begin{itemize}
+    \item $a + (b + c) = (a + b) + c$,
+    \item $a + r_{0, n} = a$ (thus we denote $r_{0, n}$ as $0$),
+    \item $a r_{1, n} = a$ (thus we denote $r_{1, n}$ as $1$),
+    \item there is a class $d \in \Z / n\Z$ such that $a + d = r_{0, n}$
+      (thus we denote this $d$ as $-a$),
+    \item $a + b = b + a$,
+    \item $ab = ba$,
+    \item $a(b + c) = ab + ac$,
+  \end{itemize}
+\end{exercise}
+
+\section{Partial Orderings}
+In the previous section we discussed a mathematical way to express
+the property being similar. In this section we are going to give a way to
+analyze relation similar to comparisons.
+
+\begin{definition}
+  A binary relation $R$ on $S$ is a partial ordering if it satisfies the
+  following
+ constraints.
+  \begin{description}
+    \item[reflexivity:]  $x R x$ for any $x \in S$;
+    \item[antisymmetry:] if $x R y$ and $y R x$, then $x = y$ for all $x, y \in
+      S$;
+    \item[transitivity:] for any $x, y, z \in S$, if $x R y$ and $y R Z$, then
+      $x R z$;
+  \end{description}
+
+  We say that an order $R$ on a set $S$ is total iff for any $x, y \in S$,
+  either $x R y$ or $y R x$.
+\end{definition}
+\noindent Note that if $S$ is a set of numbers, then $\le$ defines a partial
+ordering on $S$; moreover, it defines a total order.
+
+Typically we use symbols similar to $\preceq$ to denote partial orderings and we
+write $a \prec b$ to express that $a \preceq b$ and $a \neq b$.
+
+Let $\divides$ be the relation on $\Z$ such that $d \divides n$ iff $d$
+divides $n$.
+\begin{theorem}
+  The relation $\divides$ is a partial ordering of the set $\N$.
+\end{theorem}
+\begin{proof}
+  To prove that this relation is a partial ordering we need to check all three
+  properties.
+  \begin{description}
+    \item[reflexivity:] Note that $x = 1 \cdot x$ for any integer $x$;
+      hence, $x \divides x$ for any integer $x$.
+    \item[antisymmetry:] Assume that $x \divides y$ and $y \divides x$. Note
+      that it means that $k x = y$ and $\ell y = x$ for some integers $k$ and
+      $\ell$. Hence, $y = (k \cdot \ell) y$ which implies that
+      $k \cdot \ell = 1$ and $k = \ell = 1$. Thus, $x = y$.
+    \item[transitivity:] finally, assume that $x \divides y$ and $y \divides z$;
+    i.e. $k x = y$ and $\ell y = z$. As a result, $(k \cdot \ell) x = z$ and
+    $x \divides z$.
+  \end{description}
+\end{proof}
+
+\begin{exercise}
+  Let $S$ be some set, show that $\subseteq$ defines a partial ordering on the
+  set $2^S$.
+\end{exercise}
+
+\subsection{Topological Sorting}
+Partial orderings are very useful for describing complex processes. Suppose
+that some process consists of several tasks, $T$ denotes the set of these tasks.
+Some tasks can be done only after some others e.g. when you cooking a salat you
+need to wash vegetables before you chop them. If $x, y \in T$ be some tasks, $x
+\preceq y$ if $x$ should be done before $y$ and this is a partial ordering.
+
+In the applications this order is not a total order because some steps do not
+depend on other steps beeing done first (you can chop tomatos and chop
+cucumbers in any order). However, if we need to create a schedule in which the
+tasks should be done, we need to create a total ordering on $T$. Moreover, this
+order should be compatible with the partial ordering. In other words, if $x
+\preceq y$, then $x \preceq_t y$ for all $x, y \in T$, where $\preceq_t$ is the
+total order. The technique of finding such a total ordering is called
+\textit{topological sorting}.
+
+\begin{theorem}
+\label{theorem:topological-order}
+  Let $S$ be a finite set and $\preceq$ be a partial order on $S$. Then there is
+  a total order $\preceq_t$ on $S$ such that if $x \preceq y$, then
+  $x \preceq_t y$ for all $x, y \in S$
+\end{theorem}
+
+This sorting can be done using the following procedure.
+\begin{itemize}
+  \item Initiate the set $S$ beeing equal to $T$
+  \item Choose the minimal element of the set $S$ with respect to the ordering
+    $\preceq$ (such an element exists since $S$ is a finite set).
+    %TODO add a link to the thereom
+    Add this element to the list, remove it from the set $S$, and repeate this
+    step if $S \neq \emptyset$.
+\end{itemize}
+
+Let us consider the following example. In the left column we list the classes
+and in the right column the prerequisite.
+\begin{center}
+  \begin{tabular}{c | c}
+    Courses & Prerequisite \\
+    \hline
+    Math 20A \\
+    Math 20B & Math 20A \\
+    Math 20C & Math 20B \\
+    Math 18 \\
+    Math 109 & Math 20C, Math 18 \\
+    Math 184A & Math 109
+  \end{tabular}
+\end{center}
+We need to find an order to take the courses.
+\begin{enumerate}
+  \item We start with
+    \[
+      S = \set{\text{Math 20A}, \text{Math 20B},
+        \text{Math 20C}, \text{Math 18}, \text{Math 109}, \text{Math 184}}.
+    \]
+    There are two minimal elements: Math 20A and Math 18. Let us remove Math 18
+    from $S$ and add it to the resulting list $R$.
+  \item Now we have
+    \[
+      R = \text{Math 18}
+    \]
+    and
+    \[
+      S = \set{\text{Math 20A},
+      \text{Math 20B}, \text{Math 20C}, \text{Math 109}, \text{Math 184}}.
+    \]
+    There is only one minimal element Math 20A. We remove it and add it to the
+    list $R$.
+  \item On this step
+    \[
+      R = \text{Math 18}, \text{Math 20A}
+    \]
+    and
+    \[
+      S = \set{
+        \text{Math 20B}, \text{Math 20C}, \text{Math 109}, \text{Math 184}}.
+    \]
+    Again there is only one minimal element: Math 20B.
+  \item
+    \[
+      R = \text{Math 18}, \text{Math 20A}, \text{Math 20B}
+    \] and
+    \[
+      S = \set{\text{Math 20C}, \text{Math 109}, \text{Math 184}}.
+    \]
+    There is only one minimal element: Math 20C.
+  \item
+    \[
+      R = \text{Math 18}, \text{Math 20A}, \text{Math 20B}, \text{Math 20C}
+    \]
+    and
+    \[
+      S = \set{\text{Math 109}, \text{Math 184}}.
+    \]
+    There is only one minimal element: Math 109.
+  \item Finally,
+    \[
+      R = \text{Math 18}, \text{Math 20A}, \text{Math 20B}, \text{Math 20C},
+      \text{Math 109}
+    \]
+    and
+    \[
+      S = \set{\text{Math 184}}.
+    \]
+    There is only one minimal element: Math 184A.
+\end{enumerate}
+As a result, the final list is
+\[
+  R = \text{Math 18}, \text{Math 20A}, \text{Math 20B}, \text{Math 20C},
+  \text{Math 109}, \text{Math 184A}.
+\]
+
+\subsection{Induction over Partial Orderings}
+The notion of partial orderings allos us to formalize structural induction.
+In order to do this we need the following theorem.
+\begin{theorem}
+  Consider a finite set $S$ and be a partial ordering $\preceq$.
+  Let $P(x)$ be some predicate such that if $P(x)$ is true for all $x \prec m$,
+  then $P(m)$ is also true. Then $P(x)$ is true for all $x \in S$.
+\end{theorem}
+\begin{proof}
+  By \Cref{theorem:topological-order}, there is a total order $\preceq_t$
+  correspoding to $\preceq$. Let $s_1$, \dots, $s_\ell$ (existence of such a
+  sequence follows from the algorithm for the topological ordering) be all the
+  elements of $S$ ordered with respect to $\preceq_t$.
+
+  We prove by induction that $P(s_n)$ for any natural $n$. The base case is
+  clear since $s_1$ is a minimal element so $P(x)$ is true for all
+  $x \prec s_1$ and thus $P(s_1)$ is also true. We need to prove now the
+  induction step. Assume that $P(s_i)$ is true for any $i < k$. Note that if
+  $s_i \prec s_k$, then $i < k$. As a result,$P(x)$ is true for all
+  $x \prec s_k$ and $P(s_k)$ is also true.
+\end{proof}
+
+Using this theorem we may formalize the proof of
+\Cref{theorem:formulas-to-polynomials}.
+
+First of all we need to define a partial order over formulas. The order is very
+simple we say that if $A = B_1 \# B_2$, then $B_1, B_2 \prec A$
+($\# \in \set{+, \cdot}$). Now we need to prove that if for all arithmetic
+formulas $B \prec A$ on $x$ there is a polynomial $q$ such that
+$B\big\rvert_{x = v} = q(v)$, then there is a polynomial $p$ such that
+$A\big\rvert_{x = v} = p(v)$. Assume that it is true; i.e. for all arithmetic
+formulas $B \prec A$ on $x$ there is a polynomial $q$ such that
+$B\big\rvert_{x = v} = q(v)$, and consider the following two cases.
+\begin{itemize}
+  \item Let $A = B_1 + B_2$. In this case due to the asssumption there are
+    polynomials $q_1$ and $q_2$ such that $B_i\big\rvert_{x = v} = q_i(v)$ for all
+    $v$. Note that $A\big\rvert_{x = v} = B_1\big\rvert_{x = v} +
+    B_2\big\rvert_{x = v} = q_1(v) + q_2(v) = p(v)$, where $p(x) = q_1(x) + q(x)$.
+  \item Let $A = B_1 \cdot B_2$. In this case due to the asssumption there are
+    polynomials $q_1$ and $q_2$ such that $B_i\big\rvert_{x = v} = q_i(v)$ for all
+    $v$. Note that $A\big\rvert_{x = v} = B_1\big\rvert_{x = v} \cdot
+    B_2\big\rvert_{x = v} = q_1(v) \cdot q_2(v) = p(v)$, where
+    $p(x) = q_1(x) \cdot q(x)$.
+\end{itemize}
+
+\section*{End of The Chapter Exercises}
+\begin{exercises}
+  \exerciseitem Show that the relation $\divides$ does not define a partial
+    ordering on $\Z$.
+  \exerciseitem Let a relation $R$ be defined on the set of real numbers as
+    follows: $x R y$ iff $2x + y = 3$. Show that it is antisymmetric.
+  \exerciseitem Are there any minimal elements in $\N$ with respect to
+    $\divides$? Are there any maximal elements?
+\end{exercises}
