@@ -68,28 +68,9 @@ is a bijection.
   \end{itemize}
 \end{proof}
 
-One may notice that if we have a bijection $f$ from $[n]$ to a set $S$ we
-enumerate all the elements of $S$: $f(1)$, \dots, $f(n)$.
-This observation allows us to define the cardinality of a set.
-\begin{definition}
-  Let $S$ be a set, we say that cardinality of $S$ is equal to $n$ (we write
-  that $|S| = n$) iff there is a bijection from $[n]$ to $S$.
-
-  We also say that a set $T$ is finite if there is an integer $n$ such that
-  $|T| = n$.
-\end{definition}
-
-Note that this definition does not guarantee that cardianlity is unique.
-\begin{theorem}
-  For any set $S$, if there are bijections $f : [n] \to S$ and $g : [m] \to S$,
-  then $n = m$.
-\end{theorem}
-\begin{proof}
-  % TODO
-\end{proof}
-
 Probably the most important property of a bijection is that we may invert it.
 \begin{theorem}
+\label{theorem:inverse-of-bijections}
   Let $f : X \to Y$ be a function. $f$ is invertible (i.e. there is a function
   $g : Y \to X$ such that $(f \circ g)(y) = y$ and $(g \circ f)(x) = x$ for all
   $x \in X$ and $y \in Y$) iff $f$ is a bijection.
@@ -115,8 +96,53 @@ Probably the most important property of a bijection is that we may invert it.
   \end{description}
 \end{proof}
 
-Using this theorem we may derive a way to apply this in combinatircs; we can use
-a bijection to prove that two sets have the same cardinality.
+One may notice that if we have a bijection $f$ from $[n]$ to a set $S$ we
+enumerate all the elements of $S$: $f(1)$, \dots, $f(n)$.
+This observation allows us to define the cardinality of a set.
+\begin{definition}
+  Let $S$ be a set, we say that cardinality of $S$ is equal to $n$ (we write
+  that $|S| = n$) iff there is a bijection from $[n]$ to $S$.
+
+  We also say that a set $T$ is finite if there is an integer $n$ such that
+  $|T| = n$.
+\end{definition}
+
+Note that this definition does not guarantee that cardianlity is unique.
+\begin{theorem}
+  For any set $S$, if there are bijections $f : [n] \to S$ and $g : [m] \to S$,
+  then $n = m$.
+\end{theorem}
+\begin{proof}
+  Let us consider the inverse $g^{-1}$ of $g$. Note that $h = f \circ g^{-1}$
+  is a bijection from $[n]$ to $[m]$.
+
+  We prove using induction by $n$ that if there is a bijection $h'$
+  from $[n]$ to $[m]$ than $n = m$. The base case is for $n = 1$; if $m \ge 2$,
+  then there are $x, y \in [1]$ such that $h'(x) = 1$ and $h'(y) = 2$, but
+  $x \neq y$ and we have only one element in $[1]$.
+
+  The induction step is also simple. Assume that there is a bijection $h'$ from
+  $[n + 1]$ to $[m]$. We define a function $h'' : [n] \to [m - 1]$ as follows:
+  \[
+    h''(i) =
+    \begin{cases}
+      h'(i) & \text{if } h'(i) < h(n + 1) \\
+      h'(i) - 1 & \text{otherwise}
+    \end{cases}.
+  \]
+  We prove that $h''$ is a bijection.
+  \begin{itemize}
+    \item Let $i_1 \neq i_2 \in [n]$. If $h'(i_1), h'(i_1) < h'(n + 1)$ or
+      $h'(i_1), h'(i_1) \ge h'(n + 1)$, then $h''(i_1) \neq h''(i_2)$ since
+      $h'(i_1) \neq h'(i_2)$. Otherwise, without loss of generality we
+      may assume that $h'(i_1) < h(n + 1) < h'(i_2)$ but it implies that
+      $h''(i_1) = h'(i_1) \le h'(n + 1) \le h'(i_2) - 1 = h''(i_2)$.
+  \end{itemize}
+\end{proof}
+
+Using \Cref{theorem:inverse-of-bijections} we may derive a way to apply this
+theory in combinatircs; we can use a bijection to prove that two sets have the
+same cardinality.
 \begin{theorem}
   Let $X$ and $Y$ be two finite sets such that there is a bijection $f$ from
   $X$ to $Y$. Then $|X| = |Y|$.
