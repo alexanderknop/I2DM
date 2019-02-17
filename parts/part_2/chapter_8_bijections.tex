@@ -160,15 +160,32 @@ same cardinality.
   $X$ to $Y$. Then $|X| = |Y|$.
 \end{theorem}
 \begin{proof}
-  %TODO
+  Let $|X| = n$, and $g : [n] \to X$ be a bijection.
+  Note that $f \circ g : [n] \to Y$ is a bijection, hence $|Y| = m$.
 \end{proof}
 
 Using this result we can finally explain why we denote the set of all the
 subsets of a set $X$ by $2^X$.
 \begin{corollary}
-  Let $X$ be a finite set of cardianlity $n$. Then $2^X$ has cardinality $2^n$.
+  Let $X$ be a finite set of cardianlity $n$. Then $2^X$ has the same
+  cardinality as $\set{0, 1}^{|X|}$.
 \end{corollary}
 \begin{proof}
+  To prove this statement we need to construct a bijection from $2^X$ to
+  $\set{0, 1}^{|X|}$. Let $|X| = n$ and $f : [n] \to X$ be a bijection.
+
+  First we construct a bijection $g_1$ from $2^X$ to $2^{[n]}$:
+  $g_1(Y) = \set[x \in Y]{f(x)}$ ($Y \in 2^X$). It is easy to see that the
+  function $g^{-1}_1(Y) = \set[x \in [n]]{f^{-1}(x)}$ ($Y \in 2^{[n]}$) is an
+  inverse of $g_1$, so $g_1$ is indeed a bijection.
+
+  Now we need to construct a bijection $g_2$ from $2^{[n]}$ to $\set{0, 1}^n$:
+  $g_2(Y) = (u_1, \dots, u_n)$, where $u_i = 1$ iff $i \in Y$. It is clear
+  that $g^{-1}_2(u_1, \dots, u_n) = \set[u_i = 1]{i \in [n]}$ is an inverse
+  of $g_2$ so $g_2$ is indeed a bijection.
+
+  As a result, by \Cref{theorem:bijections-composition}, the function
+  $(g_2 \circ g_1) : 2^X \to \set{0, 1}^{|X|}$ is a bijection.
 \end{proof}
 
 \section{Surjections and Injections}
