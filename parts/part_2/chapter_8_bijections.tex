@@ -16,7 +16,7 @@ In the previous chapters we used the property that the set is finite. However,
 we have never defined formally what it means. In this chapter we define
 cardinality which is a formalization of the notion size of the set.
 
-\section{Cardinality}
+\section{Bijections}
 \begin{definition}
   Let $f : X \to Y$ be a function. We say that $f$ is a bijection iff the
   following properties are satisfied.
@@ -116,8 +116,9 @@ Note that this definition does not guarantee that cardianlity is unique.
   Let us consider the inverse $g^{-1}$ of $g$. Note that $h = f \circ g^{-1}$
   is a bijection from $[n]$ to $[m]$.
 
-  We prove using induction by $n$ that if there is a bijection $h'$
-  from $[n]$ to $[m]$ than $n = m$. The base case is for $n = 1$; if $m \ge 2$,
+  We prove using induction by $n$ that for any $n, m \in \N$,
+  if there is a bijection $h'$ from $[n]$ to $[m]$, then $n = m$.
+  The base case is for $n = 1$; if $m \ge 2$,
   then there are $x, y \in [1]$ such that $h'(x) = 1$ and $h'(y) = 2$, but
   $x \neq y$ and we have only one element in $[1]$.
 
@@ -137,8 +138,18 @@ Note that this definition does not guarantee that cardianlity is unique.
       $h'(i_1) \neq h'(i_2)$. Otherwise, without loss of generality we
       may assume that $h'(i_1) < h(n + 1) < h'(i_2)$ but it implies that
       $h''(i_1) = h'(i_1) < h'(n + 1) \le h'(i_2) - 1 = h''(i_2)$.
-    \item %TODO
+    \item Let $j \in [m - 1]$. We need to consider two cases.
+      \begin{enumerate}
+        \item Let $j < h(n + 1)$. There is $i \in [n + 1]$ such that
+          $h'(i) = j$ since $h'$ is a bijection (note that $i \neq n + 1$).
+          Thus $h''(i) = j$.
+        \item Otherwise, there is $i \in [n + 1]$ such that
+          $h'(i) = j + 1$ since $h'$ is a bijection (note that $i \neq n + 1$).
+          Thus $h''(i) = j$.
+      \end{enumerate}
   \end{itemize}
+  Since $h''$ is a bijection, the induction hypothesis implies that $n = m - 1$.
+  As a result, $n + 1 = m$.
 \end{proof}
 
 Using \Cref{theorem:inverse-of-bijections} we may derive a way to apply this
