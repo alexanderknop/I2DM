@@ -176,7 +176,7 @@ $B$ be sets.
 
 \begin{figure}
     \centering
-    \begin{subfigure}[b]{0.3\textwidth}
+    \begin{subfigure}[b]{0.4\textwidth}
       \begin{center}
         \begin{tikzpicture}[scale=0.8]
             \fill[yellow] (45:2cm) circle (1.5cm);
@@ -189,7 +189,7 @@ $B$ be sets.
       \caption{$A \cup B$}
     \end{subfigure}
     ~
-    \begin{subfigure}[b]{0.3\textwidth}
+    \begin{subfigure}[b]{0.4\textwidth}
       \begin{center}
         \begin{tikzpicture}[scale=0.8]
           \begin{scope}
@@ -203,7 +203,7 @@ $B$ be sets.
       \caption{$A \cap B$}
     \end{subfigure}
     ~
-    \begin{subfigure}[b]{0.3\textwidth}
+    \begin{subfigure}[b]{0.4\textwidth}
       \begin{center}
         \begin{tikzpicture}[scale=0.8]
           \begin{scope}[even odd rule]% first circle without the second
@@ -215,6 +215,17 @@ $B$ be sets.
         \end{tikzpicture}
       \end{center}
       \caption{$A \setminus B$}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.4\textwidth}
+      \begin{center}
+        \begin{tikzpicture}[scale=0.8]
+          \fill[yellow, even odd rule] (45:2cm) circle (1.5cm) node {$A$}
+            (0:2cm) circle (1.5cm) node{$B$};
+          \draw (45:2cm) circle (1.5cm) node {$A$};
+          \draw (0:2cm) circle (1.5cm) node {$B$};
+        \end{tikzpicture}
+      \end{center}
+      \caption{$A \Delta B$}
     \end{subfigure}
     \caption{Operations over the sets}
 \end{figure}
@@ -237,9 +248,13 @@ $A$ and $B$ i.e $A \cap B = \set[x \in A \text{ and } x \in B]{x}$\footnote{%
   and the symbol of the disjunction is similar to the symbol of union.
 }.
 
-The third operation we are going to discuss this lecture is set difference.
-If $A$ and $B$ are some sets, then
+The third operation we are going to discuss this lecture is
+\textit{set difference}. If $A$ and $B$ are some sets, then
 $A \setminus B = \set[x \in A \text{ and } x \not\in B]{x}$.
+
+The last operation is \textit{symmetric difference}. If $A$ and $B$ are some
+sets, then $A \Delta B = (A \setminus B) \union (B \setminus A)$. Note that
+alternatively $A \Delta B = (A \cup B) \setminus (A \cap B)$
 
 \begin{exercise}
   Describe the set
@@ -349,7 +364,7 @@ Finally, we prove Theorem~\ref{theorem:well-ordering}.
     \begin{itemize}
       \item $A \subseteq B \iff A \cup B = B$,
       \item $A \subseteq B \iff A \cap B = A$.
-    \end{itemize}  
+    \end{itemize}
   \exerciseitem Let $A$ be a subset of a set $U$ we call this set a universe.
     We say that the set $\overline{A} = U \setminus A$ is a compliment of $A$
     in $U$. Show the following equalities
