@@ -373,4 +373,30 @@ Finally, we prove Theorem~\ref{theorem:well-ordering}.
       \item $\overline{A \cup B} = \overline{A} \cap \overline{B}$.
       \item $\overline{A \cap B} = \overline{A} \cup \overline{B}$.
     \end{itemize}
+  \exerciseitem Let us define an intersection of more than two sets as follows.
+    Let $A_1$, \dots, $A_n$ be some sets. Then
+    \begin{itemize}
+      \item $\bigcap_{i = 1}^1 A_i = A_1$ and
+      \item $\bigcap_{i = 1}^{k + 1} A_i = \left( \bigcap_{i = 1}^k A_i \right)
+        \cap A_{k + 1}$.
+    \end{itemize}
+
+    Show that $\bigcap_{i = 1}^n \set[i \le x \le n]{x \in \mathbb{N}} =
+    \set{n}$ for all integers $n > 0$.
+    \exerciseitem Let us define a union of more than two sets as follows.
+      Let $A_1$, \dots, $A_n$ be some sets. Then
+      \begin{itemize}
+        \item $\bigcup_{i = 1}^1 A_i = A_1$ and
+        \item $\bigcup_{i = 1}^{k + 1} A_i =
+          \left( \bigcup_{i = 1}^k A_i \right) \cup A_{k + 1}$.
+      \end{itemize}
+
+      Show that $\bigcup_{i = 1}^n [i] = [n]$ for all integers $n > 0$.
+  \exerciseitem Let $\Omega$ be some set and $A_1, \dots, A_n \subseteq \Omega$.
+    Show that $\bigcup_{i = 1}^n A_i =
+      \set[{\exists i \in [n]\ x \in A_i}]{x \in \Omega}$.
+  \exerciseitem Let $A_1$, \dots, $A_n$ be some sets.
+    Show that $\bigcup\limits_{i = 1}^n (A_i \cap B) =
+    \left(\bigcup_{i = 1}^n A_i\right) \cap B$.
+  \exerciseitem Show that $A \Delta (B \Delta C) = (A \Delta B) \Delta C$.
 \end{exercises}
