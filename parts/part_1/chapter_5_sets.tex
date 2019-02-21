@@ -18,7 +18,7 @@ this language is much more expressible and it is impossible to imagine modern
 mathematics without this notation.
 
 As in the previous chapter it is difficult to define a set formally so we give
-a not formal definition which should be enough to use the notation.
+a less formal definition which should be enough to use the notation.
 A \textit{set} is a well-defined collection of objects. Important examples of
 sets are:
 \begin{enumerate}
@@ -95,15 +95,15 @@ subset of another set $B$ also represented by all the points within a circle.
 We just put a circle labeled by $A$ inside of the circle labeled by $B$. We can
 also diagram an equality by drawing a circle labeled by both $A$ and $B$. (see
 fig.~\ref{figure:euler-diagram}). Such diagrams are called Euler diagrams and
-it it clear that one may draw Euler diagrams for more than two sets.
+it is clear that one may draw Euler diagrams for more than two sets.
 
 \begin{figure}
     \centering
     \begin{subfigure}[b]{0.45\textwidth}
       \begin{center}
         \begin{tikzpicture}[scale=0.6]
-          \draw (20:2cm) circle (3cm) node [yshift=10ex] {$A$};
-          \draw (0:2cm) circle (1.5cm) node {$B$};
+          \draw (20:2cm) circle (3cm) node [yshift=10ex] {$B$};
+          \draw (0:2cm) circle (1.5cm) node {$A$};
         \end{tikzpicture}
       \end{center}
       \caption{$A \subseteq B$}
@@ -148,7 +148,7 @@ even numbers is to use the constructive definition of a set:
 $\set[k \in \Z]{2k}$.
 
 We may also describe a set of rational numbers using this description:
-$\Q = \set[a,\in \Z, b \in \N]{a / b}$ (note that we may also use a mix of
+$\Q = \set[a \in \Z, b \in \N]{a / b}$ (note that we may also use a mix of
 a conditional and constructive definitions,
 $\Q = \set[a, b \in \Z, b \neq 0]{a / b}$).
 
@@ -176,7 +176,7 @@ $B$ be sets.
 
 \begin{figure}
     \centering
-    \begin{subfigure}[b]{0.3\textwidth}
+    \begin{subfigure}[b]{0.4\textwidth}
       \begin{center}
         \begin{tikzpicture}[scale=0.8]
             \fill[yellow] (45:2cm) circle (1.5cm);
@@ -189,7 +189,7 @@ $B$ be sets.
       \caption{$A \cup B$}
     \end{subfigure}
     ~
-    \begin{subfigure}[b]{0.3\textwidth}
+    \begin{subfigure}[b]{0.4\textwidth}
       \begin{center}
         \begin{tikzpicture}[scale=0.8]
           \begin{scope}
@@ -203,7 +203,7 @@ $B$ be sets.
       \caption{$A \cap B$}
     \end{subfigure}
     ~
-    \begin{subfigure}[b]{0.3\textwidth}
+    \begin{subfigure}[b]{0.4\textwidth}
       \begin{center}
         \begin{tikzpicture}[scale=0.8]
           \begin{scope}[even odd rule]% first circle without the second
@@ -215,6 +215,17 @@ $B$ be sets.
         \end{tikzpicture}
       \end{center}
       \caption{$A \setminus B$}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.4\textwidth}
+      \begin{center}
+        \begin{tikzpicture}[scale=0.8]
+          \fill[yellow, even odd rule] (45:2cm) circle (1.5cm) node {$A$}
+            (0:2cm) circle (1.5cm) node{$B$};
+          \draw (45:2cm) circle (1.5cm) node {$A$};
+          \draw (0:2cm) circle (1.5cm) node {$B$};
+        \end{tikzpicture}
+      \end{center}
+      \caption{$A \Delta B$}
     \end{subfigure}
     \caption{Operations over the sets}
 \end{figure}
@@ -237,9 +248,13 @@ $A$ and $B$ i.e $A \cap B = \set[x \in A \text{ and } x \in B]{x}$\footnote{%
   and the symbol of the disjunction is similar to the symbol of union.
 }.
 
-The third operation we are going to discuss this lecture is set difference.
-If $A$ and $B$ are some sets, then
+The third operation we are going to discuss this lecture is
+\textit{set difference}. If $A$ and $B$ are some sets, then
 $A \setminus B = \set[x \in A \text{ and } x \not\in B]{x}$.
+
+The last operation is \textit{symmetric difference}. If $A$ and $B$ are some
+sets, then $A \Delta B = (A \setminus B) \cup (B \setminus A)$. Note that
+alternatively $A \Delta B = (A \cup B) \setminus (A \cap B)$
 
 \begin{exercise}
   Describe the set
@@ -303,7 +318,7 @@ induction. In order to do this let us first formulate the following theorem.
   bound for the set $A$ iff $b \le a$ for all $a \in A$. Additionally, we say
   that the set $A$ is bounded if there is a lower bound for $A$.
 
-  Then if $A$ is bounded, then there is a lower bound $a \in A$ for the set $A$
+  Given this, if $A$ is bounded, then there is a lower bound $a \in A$ for the set $A$
   (we say that $a$ is the minimum of the set $A$).
 \end{theorem}
 Note that this theorem also states that any subset of natural numbers have a
@@ -350,8 +365,6 @@ Finally, we prove Theorem~\ref{theorem:well-ordering}.
       \item $A \subseteq B \iff A \cup B = B$,
       \item $A \subseteq B \iff A \cap B = A$.
     \end{itemize}
-  \exerciseitem Show that if $A \cap B \subseteq C$, then
-    $x \notin A \setminus B$.
   \exerciseitem Let $A$ be a subset of a set $U$ we call this set a universe.
     We say that the set $\overline{A} = U \setminus A$ is a compliment of $A$
     in $U$. Show the following equalities
@@ -360,4 +373,30 @@ Finally, we prove Theorem~\ref{theorem:well-ordering}.
       \item $\overline{A \cup B} = \overline{A} \cap \overline{B}$.
       \item $\overline{A \cap B} = \overline{A} \cup \overline{B}$.
     \end{itemize}
+  \exerciseitem Let us define an intersection of more than two sets as follows.
+    Let $A_1$, \dots, $A_n$ be some sets. Then
+    \begin{itemize}
+      \item $\bigcap_{i = 1}^1 A_i = A_1$ and
+      \item $\bigcap_{i = 1}^{k + 1} A_i = \left( \bigcap_{i = 1}^k A_i \right)
+        \cap A_{k + 1}$.
+    \end{itemize}
+
+    Show that $\bigcap_{i = 1}^n \set[i \le x \le n]{x \in \mathbb{N}} =
+    \set{n}$ for all integers $n > 0$.
+    \exerciseitem Let us define a union of more than two sets as follows.
+      Let $A_1$, \dots, $A_n$ be some sets. Then
+      \begin{itemize}
+        \item $\bigcup_{i = 1}^1 A_i = A_1$ and
+        \item $\bigcup_{i = 1}^{k + 1} A_i =
+          \left( \bigcup_{i = 1}^k A_i \right) \cup A_{k + 1}$.
+      \end{itemize}
+
+      Show that $\bigcup_{i = 1}^n [i] = [n]$ for all integers $n > 0$.
+  \exerciseitem Let $\Omega$ be some set and $A_1, \dots, A_n \subseteq \Omega$.
+    Show that $\bigcup_{i = 1}^n A_i =
+      \set[{\exists i \in [n]\ x \in A_i}]{x \in \Omega}$.
+  \exerciseitem Let $A_1$, \dots, $A_n$ be some sets.
+    Show that $\bigcup\limits_{i = 1}^n (A_i \cap B) =
+    \left(\bigcup_{i = 1}^n A_i\right) \cap B$.
+  \exerciseitem Show that $A \Delta (B \Delta C) = (A \Delta B) \Delta C$.
 \end{exercises}

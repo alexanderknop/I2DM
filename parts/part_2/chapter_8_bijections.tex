@@ -1,0 +1,176 @@
+\chapter{Bijections, Surjections, and Injections}
+\label{chapter:bijections-surjections-injections}
+\begin{wrapfigure}{l}{4cm}
+  \begin{center}
+    \vskip -0.5cm
+    \qrset{link, height=3cm}
+    \qrcode{https://youtu.be/fW5Zxg0TMDc}
+    \vskip 0.25cm
+    \href{https://youtu.be/fW5Zxg0TMDc}{youtu.be/fW5Zxg0TMDc}
+    {\footnotesize Bijections, Surjections, and Injections}
+  \end{center}
+  \vskip -2cm
+\end{wrapfigure}
+
+In the previous chapters we used the property that the set is finite. However,
+we have never defined formally what it means. In this chapter we define
+cardinality which is a formalization of the notion size of the set.
+
+\section{Cardinality}
+\begin{definition}
+  Let $f : X \to Y$ be a function. We say that $f$ is a bijection iff the
+  following properties are satisfied.
+  \begin{itemize}
+    \item Every element of $Y$ is an image of some element of $X$. In other
+    words,
+      $$
+          \forall y \in Y~\exists x \in X\ f(x) = y.
+      $$
+    \item Images of any two elements
+      of $X$ are different. In other words,
+      $$
+          \forall x_1, x_2 \in X\ f(x_1) \neq f(x_2).
+      $$
+    \end{itemize}
+\end{definition}
+
+Let us consider the following example. Let $f : \mathbb{R} \to \mathbb{R}$ be a
+function such that $f(x) = x + 1$; Note that it is a bijection:
+\begin{itemize}
+  \item If $f(x_1) = f(x_2)$, then $x_1 + 1 = x_2 + 1$ i.e. $x_1 = x_2$.
+  \item For any $y \in \mathbb{R}$, $f(y - 1) = (y - 1) + 1 = y$.
+\end{itemize}
+
+
+\begin{exercise}
+  Show that $x^3$ is a bijection.
+\end{exercise}
+
+
+One of the nicest properties of bijections is that composition of two bijections
+is a bijection.
+\begin{theorem}
+\label{theorem:bijections-composition}
+  Let $X$, $Y$, and $Z$ be some sets and $f : X \to Y$ and $g : Y \to Z$ be
+  bijections. Then $g \circ f : X \to Z$ is also a bijection.
+\end{theorem}
+\begin{proof}
+  % TODO
+\end{proof}
+
+One may notice that if we have a bijection $f$ from $[n]$ to a set $S$ we
+enumerate all the elements of $S$: $f(1)$, \dots, $f(n)$.
+This observation allows us to define the cardinality of a set.
+\begin{definition}
+  Let $S$ be a set, we say that cardinality of $S$ is equal to $n$ (we write
+  that $|S| = n$) iff there is a bijection from $[n]$ to $S$.
+
+  We also say that a set $T$ is finite if there is an integer $n$ such that
+  $|T| = n$.
+\end{definition}
+
+Note that this definition does not guarantee that cardianlity is unique.
+\begin{theorem}
+  For any set $S$, if there are bijections $f : [n] \to S$ and $g : [m] \to S$,
+  then $n = m$.
+\end{theorem}
+\begin{proof}
+  % TODO
+\end{proof}
+
+Probably the most important property of a bijection is that we may invert it.
+\begin{theorem}
+  Let $f : X \to Y$ be a function. $f$ is invertible (i.e. there is a function
+  $g : Y \to X$ such that $(f \circ g)(y) = y$ and $(g \circ f)(x) = x$ for all
+  $x \in X$ and $y \in Y$) iff $f$ is a bijection.
+\end{theorem}
+\begin{proof}
+  \begin{description}
+    \item[$\Rightarrow$] Let's assume that $f$ is invertible. We need to prove
+      that $f$ is a bijection.
+      \begin{itemize}
+        \item Let's assume that $f$ is not an injection i.e. there are
+          $x_1, x_2 \in X$ such that $f(x_1) = f(x_2)$ but $x_1 = g(f(x_1)) =
+          g(f(x_2)) = x_2$, which is a contradiction.
+        \item Let $y \in Y$. Note that $f(g(y)) = y$, hence, $f$ is a
+          surjection.
+      \end{itemize}
+
+    \item[$\Leftarrow$] Let's assume that $f$ is bijective. We need to define a
+      function $g : Y \to X$ which is an inverse of $f$. Let $y \in Y$, note
+      that there is a unique $x$ such that $f(x) = y$, we define $g(y) = x$.
+      Note that $f(g(y)) = y$ for every $y$ by the construction of $g$.
+      Additionally, $g(f(x)) = x$ since $f(g(f(x))) = f(x)$ and $f$ is a
+      bijection.
+  \end{description}
+\end{proof}
+
+Using this theorem we may derive a way to apply this in combinatircs; we can use
+a bijection to prove that two sets have the same cardinality.
+\begin{theorem}
+  Let $X$ and $Y$ be two finite sets such that there is a bijection $f$ from
+  $X$ to $Y$. Then $|X| = |Y|$.
+\end{theorem}
+\begin{proof}
+  %TODO
+\end{proof}
+
+Using this result we can finally explain why we denote the set of all the
+subsets of a set $X$ by $2^X$.
+\begin{corollary}
+  Let $X$ be a finite set of cardianlity $n$. Then $2^X$ has cardinality $2^n$.
+\end{corollary}
+\begin{proof}
+\end{proof}
+
+\section{Surjections and Injections}
+
+It is possible to note that the definition of the bijection consists of two part.
+Both of these parts are intresting in their own regard, so they have their own
+names.
+\begin{definition}
+  Let $f : X \to Y$ be a function.
+  \begin{itemize}
+    \item We say that $f$ is a surjection iff every element of $Y$ is an image
+      of some element of $X$. In other words,
+      $$
+          \forall y \in Y~\exists x \in X\ f(x) = y.
+      $$
+    \item We say that $f$ is an injection iff images of any two elements
+      of $X$ are different. In other words,
+      $$
+          \forall x_1, x_2 \in X\ f(x_1) \neq f(x_2).
+      $$
+  \end{itemize}
+\end{definition}
+
+\begin{remark}
+  Let $f : X \to Y$ be an injection. Then $g : X \to \Im f$ such that
+  $f(x) = g(x)$ is a bijection.
+\end{remark}
+
+\begin{exercise}
+  Let $\R^+ = \set[x > 0]{x \in \R}$. Is $f : \R^+ \to \R^+$ such that
+  $f(x) = x + 1$ a surjection/injection?
+\end{exercise}
+
+Like in the case of the bijection we may use surjections and injections to
+compare sizes of sets.
+\begin{theorem}
+  Let $X$ and $Y$ be finite sets.
+  \begin{itemize}
+    \item If there is an injection from $X$ to $Y$, then $|X| \le |Y|$.
+    \item If there is a surjection from $X$ to $Y$, then $|X| \ge |Y|$.
+  \end{itemize}
+\end{theorem}
+\begin{proof}
+  %TODO
+\end{proof}
+
+\section*{End of The Chapter Exercises}
+\begin{exercises}
+  \exerciseitem Construct a bijection from $\set{0, 1, 2, 3}^n$ to
+    $$\set[{A, B, C \subseteq [n] \text{ and } A, B, C \text{ are pairwise
+    disjoint}}]{(A, B, C)}.$$
+  \exerciseitem Construct a bijection from $\set{0, 1} \times [n]$ to $[2n]$.
+\end{exercises}
