@@ -47,6 +47,26 @@ We need to consider two cases.
     not an injection.
 \end{itemize}
 
+\begin{theorem}[Erd\H{o}s–-Szekeres]
+  Every sequence of $(r - 1)(s - 1) + 1$ distinct real numbers contains a
+  subsequence of length $r$ that is increasing or a
+  subsequence of length $s$ that is decreasing.
+\end{theorem}
+\begin{proof}
+  Given a sequence of length $(r - 1)(s - 1) + 1$, label each number $x_i$ in
+  the sequence with the pair $(a_i, b_i)$, where $a_i$ is the length of the
+  longest increasing subsequence ending with $x_i$ and $b_i$ is
+  the length of the longest decreasing subsequence ending with $x_i$.
+  Each two numbers in the sequence are labeled with a different pair: if $i < j$
+  and $x_i < x_j$ then $a_i < a_j$, and on the other hand if $x_i > x_j$ then
+  $b_i < b_j$. But there are only $(r - 1)(s - 1)$ possible labels if $a_i$ is
+  at most $r - 1$ and $b_i$ is at most $s - 1$, so by the pigeonhole principle
+  there must exist a value of $i$ for which $a_i$ or $bi$ is outside this
+  range. If ai is out of range then $x_i$ is part of an increasing sequence of
+  length at least $r$, and if $b_i$ is out of range then $x_i$ is part of a
+  decreasing sequence of length at least $s$.
+\end{proof}
+
 \section{The Generalized Pigeonhole Principle}
 One may generalize the pigeonhole principle in the following way.
 If $N$ objects are placed into $k$ boxes, then there is at least one box
@@ -108,6 +128,9 @@ friends. Otherwise, $B$, $C$, and $D$ form a set of three mutual enemies.
     will be a period of consecutive days where he trains exactly $14$ times.
   \exerciseitem Show that among any $n + 1$ positive integers not exceeding $2n$
     there must be an integer that divides one of the other integers.
+  \exerciseitem Let $a_1$, $a_2$, \dots, $a_t$ be positive integers. Show that
+    if $a_1 + a_2 + \dots + a_t - t + 1$ objects are placed into $t$ boxes,
+    then for some $i \in [t]$, the $i$th box contains at least $a_i$ objects.
   \exerciseitem Let $\set{(x_1,y_1), \dots, (x_5, y_5)} \subseteq \Z^2$ be a
     set of five distinct points with integer coordinates in the xy plane. Show
     that the midpoint of the line joining at least one pair of these points has
