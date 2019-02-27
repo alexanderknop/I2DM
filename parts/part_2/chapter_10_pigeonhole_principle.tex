@@ -1,13 +1,24 @@
 \chapter{The Pigeonhole Principle}
-We know that if there is an injection from $[n]$ to $[m]$ then $n \le m$.
-Contraposition of this statement says that if $n > m$, then any function from
-$[n]$ to $[m]$ is not an injection. This simple statement is famous in
-mathematics and called \textit{the pigeonhole principle}.
+The principle we are going to discuss in this chapter is very simple: it states
+that if you have more objects than boxes, then you cannot put all the objects to
+boxes without puting two objects in the same box.
+
+More formally the principle can be formulated as follows: if $n > m$, then any
+function from $[n]$ to $[m]$ is not an injection. This simple statement is
+famous in mathematics and called \textit{the pigeonhole principle}\footnote{%
+  The pigeonhole principle is also called the Dirichlet principle, after the
+  German mathematician G. Lejeune Dirichlet, who demonstrated that there were
+  at least two Parisians with the same number of hairs on their heads.
+}.
 
 \begin{theorem}
   Let $X$ and $Y$ be some sets such that $|X| > |Y|$. Then for any function
   $f : |X| \to |Y|$ there are $x_0 \neq x_1 \in X$ such that $f(x_0) = f(x_1)$.
 \end{theorem}
+\begin{proof}
+  The statement follows from
+  \Cref{theorem:injections-surjections-inequalities}.
+\end{proof}
 
 This simple statement is very handy in combinatorics. For example, using this
 statement one may prove that in any group of more than $12$ people there are
@@ -36,6 +47,31 @@ We need to consider two cases.
     not an injection.
 \end{itemize}
 
+\section{The Generalized Pigeonhole Principle}
+One may generalize the pigeonhole principle in the following way.
+If $N$ objects are placed into $k$ boxes, then there is at least one box
+containing at least $\ceil{N / k}$ objects.
+\begin{theorem}
+\label{theorem:generalized-pigeonhole-principle}
+  Let $X$ and $Y$ be some sets. Then for any function $f : |X| \to |Y|$ there
+  are $x_1, \dots, x_\ell \in X$ such that
+  \begin{itemize}
+    \item $f(x_i) = f(x_j)$,
+    \item $x_i \neq x_j$ for any $i \neq j \in [\ell]$, and
+    \item $\ell \ge \ceil{|X| / |Y|}$
+  \end{itemize}
+\end{theorem}
+
+\begin{exercise}
+    Prove \Cref{theorem:generalized-pigeonhole-principle}.
+\end{exercise}
+
+Using this theorem we can prove that if we draw $9$ cards out of a deck of
+cards, we are guaranteed that at least three of them are of the same suit.
+Indeed, there are $4$ suits and by pigeonhole principle if we put each card to
+one out of four boxes according to their suit, one of the boxes should have
+at least $\ceil{9 / 4} = 3$ cards.
+
 \section*{End of The Chapter Exercises}
 \begin{exercises}
   \exerciseitem Prove that for every integers $a_1$, \dots, $a_n$ there are
@@ -46,4 +82,6 @@ We need to consider two cases.
   \exerciseitem Sasha is training for a triathlon. Over a $30$ day period, he
     pledges to train at least once per day, and $45$ times in all. Then there
     will be a period of consecutive days where he trains exactly $14$ times.
+  \exerciseitem Show that among any n + 1 positive integers not exceeding 2n
+    there must be an integer that divides one of the other integers.
 \end{exercises}
