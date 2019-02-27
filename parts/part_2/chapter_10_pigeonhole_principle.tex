@@ -72,16 +72,44 @@ Indeed, there are $4$ suits and by pigeonhole principle if we put each card to
 one out of four boxes according to their suit, one of the boxes should have
 at least $\ceil{9 / 4} = 3$ cards.
 
+Another example shows how the generalized pigeonhole principle can be applied
+to an important part of combinatorics called Ramsey theory.
+
+Assume that in a group of six people, each pair of individuals consists of two
+friends or two enemies. One may prove that there are either three mutual
+friends or three mutual enemies in the group.
+
+Let $A$ be one of the six people; of the five other people in the group, there
+are either three or more who are friends of $A$, or three or more who are
+his enemies $A$. This statements follows from the generalized pigeonhole
+principle since when five objects are divided into two sets, one of the sets
+has at least $\ceil{5 / 2} = 3$ elements. Without loss of generality we may
+suppose that $B$, $C$, and $D$ are friends of $A$. If any two of these three
+individuals are friends, then these two and $A$ form a group of three mutual
+friends. Otherwise, $B$, $C$, and $D$ form a set of three mutual enemies.
+
 \section*{End of The Chapter Exercises}
 \begin{exercises}
+  \exerciseitem Show that among any group of five (not necessarily consecutive)
+    integers, there are two with the same remainder when divided by $4$.
+  \exerciseitem Show that if there are 30 students in a class, then at least
+    two have last names that begin with the same letter.
+  \exerciseitem Let $n$ be a positive integer. Show that in any set of $n$
+    consecutive integers there is exactly one divisible by $n$.
   \exerciseitem Prove that for every integers $a_1$, \dots, $a_n$ there are
     $k > 0$ and $\ell \ge 0$ such that $k + \ell \le n$ and
     $\sum\limits_{i = k}^{k + \ell} a_i$ is divisible by $n$.
   \exerciseitem Let $S \subseteq [20]$ be a set. Show that if
     $|S| \ge 13$, then there are $a, b \in S$ such that $a - b = 6$.
+  \exerciseitem How many numbers must be selected from the set $[6]$ to
+    guarantee that at least one pair of these numbers add up to $7$?
   \exerciseitem Sasha is training for a triathlon. Over a $30$ day period, he
     pledges to train at least once per day, and $45$ times in all. Then there
     will be a period of consecutive days where he trains exactly $14$ times.
-  \exerciseitem Show that among any n + 1 positive integers not exceeding 2n
+  \exerciseitem Show that among any $n + 1$ positive integers not exceeding $2n$
     there must be an integer that divides one of the other integers.
+  \exerciseitem Let $\set{(x_1,y_1), \dots, (x_5, y_5)} \subseteq \Z^2$ be a
+    set of five distinct points with integer coordinates in the xy plane. Show
+    that the midpoint of the line joining at least one pair of these points has
+    integer coordinates.
 \end{exercises}
