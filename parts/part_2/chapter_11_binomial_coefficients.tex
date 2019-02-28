@@ -10,28 +10,15 @@ how many function exist from $X$ to $Y$.
   functions from $X$ to $Y$. Then $|Y^X| = |Y|^{|X|}$.
 \end{theorem}
 \begin{proof}
-  For simplicity we prove the statement in the case when $X = [n]$.
-  Proof of this statement is similar to \Cref{theorem:cardinality-of-power-set}.
-  First, we prove that $|Y^X| = |Y^n|$. In order to do this we construct
-  a bijection from $Y^n$ to $Y^X$. Consider the function
-  \[
-    F(y_1, \dots, y_n) = f_{y_1, \dots, y_n},
-  \]
-  where $f_{y_1, \dots, y_n}(i) = y_{i}$. We need to show that it is indeed a
-  bijection.
-  \begin{description}
-    \item[Injection:] assume $F$ is not an injection, i.e. there are
-      $(a_1, \dots, a_n) \neq (b_1, \dots, b_n) \in Y^{|X|}$ such that
-      $F(a_1, \dots, a_n) = F(b_1, \dots, b_n)$. Note that this implies that
-      $a_i = f_{a_1, \dots, a_n}(i) =
-        f_{b_1, \dots, b_n}(i) = b_i$ for all $i \in [n]$. Thus
-      $(a_1, \dots, a_n) = (b_1, \dots, b_n)$, which is a contradiction.
-    \item[Surjection:] consider some function $f \in Y^X$. Note that
-      $F(f(1), \dots f(n)) = f$. Thus $f \in \Im F$.
-  \end{description}
-
-  Finally, we may notice that, by the multiplicative principle, $|Y^{|X|}| =
-  |Y|^{|X|}$.
+  For simplicity we prove the statement in the case when $X = [n]$. Fix some
+  finite set $Y$. We prove the statement using induction by $n$. The base case
+  for $n = 1$ is ovbious, since there are $|Y|$ different functions from $[1]$
+  to $Y$. Let us prove the induction step, by the induction hypothesis,
+  $|Y^{[n - 1]}| = |Y|^{n - 1}$. Note that
+  \begin{multline*}
+    |Y^{[n]}| = \left| \set[f \in Y^{[ n - 1]}, y \in Y]{(f, y)} \right| = \\
+    |Y^{[n - 1]} \times Y| = |Y^{[n - 1]}| \cdot |Y| = |Y|^n.
+  \end{multline*}
 \end{proof}
 
 \begin{exercise}
@@ -90,7 +77,7 @@ this notation is that $|2^X| = 2^{|X|}$.
 
 A quite famous example of a subset of this set is the set
 \[
-  \binom{X}{k} = \set[|X| = k]{A \subseteq [n]}.
+  \binom{X}{k} = \set[|A| = k]{A \subseteq [n]}.
 \]
 In other words, it is the set of all possible ways to select $k$ elements from
 $X$. Size of this set we denote by $\binom{|X|}{k}$ and call it a binomial
@@ -101,8 +88,49 @@ Let us find several useful properties of the binomial coefficients.
   Let $n$, $m$, and $k$ be some integers such that $m > n > k$.
   \begin{itemize}
     \item $\binom{n}{k} = \binom{n}{n - k}$.
-    \item $\sum\limits_{k = 0}^n \binom{n}{k} x^k y^{n - k} = (x + y)^n$.
     \item $\binom{n}{k} = \binom{n - 1}{k - 1} + \binom{n - 1}{k}$.
     \item $\binom{n}{k} = \frac{(m)_n}{n!}$.
+    \item $\sum\limits_{k = 0}^n \binom{n}{k} = 2^n$.
   \end{itemize}
+\end{theorem}
+\begin{proof}
+  We prove the second property all the others are left as an exercise.
+
+  Informally, the proof is the following. Assume we need to choose $k$ objects
+  out of $n$, there are two possible ways:
+  \begin{itemize}
+    \item we may select $n$ and choose $k - 1$ objects from the rest,
+    \item or we may decide to not select $n$ choose $k$ objects from the rest.
+  \end{itemize}
+  In the first case we have $\binom{n - 1}{k - 1}$ ways to select objects and
+  in the second case we have $\binom{n - 1}{k}$ ways to select objects.
+
+  Let us prove the statement a bit more formally. Note that
+  \[
+    \binom{[n]}{k} = \set[|A| = k \text{ and } n \in A]{A \subseteq [n]} \cup
+    \set[|A| = k \text{ and } n \notin A]{A \subseteq [n]}.
+  \]
+  Since these sets are disjoint and $\set[|A| = k \text{ and } n \notin A]{A
+  \subseteq [n]} = \binom{[n - 1]}{k}$, we get the following equality
+  \[
+    \binom{n}{k} = |\set[|A| = k \text{ and } n \in A]{A \subseteq [n]}| +
+    \binom{n - 1}{k}.
+  \]
+
+  Hence, to finish the proof we need to explain that
+  $|\set[|A| = k \text{ and } n \in A]{A \subseteq [n]}| =
+  \binom{n - 1}{k - 1}$. To prove this statement we construct a bijection $f$
+  from $\set[|A| = k \text{ and } n \in A]{A \subseteq [n]}$ to
+  $\binom{[n - 1]}{k}$:
+  \[
+    f(A) = A \setminus \set{n}.
+  \]
+  It is clear that this is a bijection, thus we prove the statement.
+\end{proof}
+
+\begin{theorem}[Binomial theorem]
+  For any real numbers $x$ and $y$,
+    \[
+      \sum\limits_{k = 0}^n \binom{n}{k} x^k y^{n - k} = (x + y)^n.
+    \]
 \end{theorem}
