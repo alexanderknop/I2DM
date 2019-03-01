@@ -1,9 +1,9 @@
 \chapter{Propositional Logic}
-In the previous part we studied the most important mathematical notation and
-how to prove theorems, we gave several ``formal'' definitions; however, our
-definition of the proof was not quite formal. It just allowed us to distinguish
-between good arguments and bad arguments. It is not enough if we wish to study
-proofs which is the core of mathematical logic.
+In the \Cref{part:mathematical-reasoning} we studied the most important
+mathematical notation and how to prove theorems, we gave several ``formal''
+definitions; however, our definition of the proof was not quite formal. It just
+allowed us to distinguish between good arguments and bad arguments. It is not
+enough if we wish to study proofs which is the core of mathematical logic.
 
 \section{Propositional Formulas}
 First, we need to define what precisely we mean by ``mathematical statement''.
@@ -57,10 +57,9 @@ $(\text{T} \land \text{T}) \lor \text{F} = \text{T}$.
 
 \section{Truth Tables}
 Let us start the discussion of mathematical logic from an example similar to
-the proof we gave in the begining of the first chapter.
-Assume that we know that if $x$ is a real number such that $x < -2$ or $x > 2$,
-then $x^2 > 4$. We can derive that if $\lnot (x^2 > 4)$, then $\lnot (x < -2)$
-and $\lnot (x > 2)$.
+the proof we gave in the begining of the first chapter. Assume that we know
+that if $x$ is a real number such that $x < -2$ or $x > 2$, then $x^2 > 4$. We
+can derive that if $\lnot (x^2 > 4)$, then $\lnot (x < -2)$ and $\lnot (x > 2)$.
 
 In order ot emphasize the logical structure of the argument let us denote
 $x > 2$ by $p$, $x < -2$ by $q$, and $x^2 > 4$ by $r$. In this case the
@@ -85,13 +84,17 @@ also true.
     F & F & F & T & T
   \end{tabular}
 \end{center}
-It is easy to note that the argument is indeed correct i.e.
+It is easy to note that the argument is indeed correct, i.e.
+if $(p \lor q) \implies r$ is true, then
+$\lnot r \implies (\lnot p \land \lnot q)$ is also true.
+This statement says that
 \[
   \bigl((p \lor q) \implies r\bigr) \iff
   \bigl(\lnot r \implies (\lnot p \land \lnot q) \bigr)
 \]
-is always true (we say
-that this statement is a tautology). Such an argument is called the
+is always true (we say that this propositional formula is a
+\textit{tautology}). A generalization of this saying the if $p \implies q$ is
+true, then $\lnot q \implies \lnot p$ is also true is called the
 \textit{contraposition} argument.
 
 Let us now consider another argument. If we know that Joe was a good boy and we
@@ -114,25 +117,30 @@ $\lnot p$ is true since $\lnot q$ is true.
 
 In other words, we can combine several tautologies to prove another tautology.
 Apparently it is enough to fix some small number of tautlogies to derive all
-other tautologies, we call these tautlogies ``rules''.
-There are several ways to write such proofs, we are going to use Fitch
-notation. In this notation any proof is writen in several rows, each row in a
-Fitch-style proof is either:
+other tautologies, we call these tautlogies ``rules''. There are several ways
+to write such proofs, we are going to use Fitch notation for natural deduction.
+In this notation any proof is writen in several rows, each row in a Fitch-style
+proof is either:
 \begin{itemize}
   \item an assumption or subproof assumption.
   \item a sentence justified by the citation of (1) a rule of inference and (2)
     the prior line or lines of the proof that license that rule.
 \end{itemize}
-Using this scheme we may write the argument we jsut mentioned as follows.
-\[
+We say that there is a natural deduction derivation of $\phi$ from $\psi_1$,
+\dots, $\psi_k$. If there is a Fitch-style proof starting with the assumptions
+$\psi_1$, \dots, $\psi_k$, and finishes with the formula $\phi$.
+Using this scheme we may write the argument we just mentioned as follows.
+
+\noindent $
   \begin{nd}
-    \have {1} {\lnot q}
-    \have {2} {p \implies q}
+    \hypo {1} {\lnot q}
+    \hypo {2} {p \implies q}
     \have {3} {\lnot q \implies \lnot p} \by{contraposition}{2}
     \have {4} {\lnot p} \by{modus ponens}{1, 3}
   \end{nd}
-\]
-In the rest of the section we are going to list all the rules we use.
+$
+
+\noindent In the rest of the section we are going to list all the rules we use.
 
 \paragraph{Conjunctions.}
 In order to introduce a conjunction we can use the following rule.
@@ -271,7 +279,18 @@ Additionally, we have the following two rules.
     \end{nd}$
   \end{tabular}
 \end{center}
-% Give a link to https://proofs.openlogicproject.org/
+
+\begin{wrapfigure}{r}{4cm}
+  \begin{center}
+    \vskip -1cm
+    \qrset{link, height=3cm}
+    \qrcode{https://proofs.openlogicproject.org/}
+    \vskip 0.25cm
+    \href{https://proofs.openlogicproject.org/}{proofs.openlogicproject.org/}
+    {\footnotesize An online tool to check natural deduction proofs}
+  \end{center}
+  \vskip -4cm
+\end{wrapfigure}
 
 \begin{exercise}
   Check that all the tautologies we mentioned are indeed tautlogies.
@@ -282,7 +301,8 @@ In this section we give several derivations using the rules we just introduced.
 
 First, we prove that if we know that $A \implies \lnot A$ we can derive that
 $\lnot A$.
-\[
+
+\noindent $
   \begin{nd}
     \hypo {1} {A \implies \lnot A}
     \open
@@ -292,11 +312,12 @@ $\lnot A$.
     \close
     \have {5} {\lnot A} \ni{2-4}
   \end{nd}
-\]
+$
 
 Another statement we are going to prove is that if
 $A \implies (A \land \lnot A)$ is true, then $\lnot A$ is also true.
-\[
+
+\noindent $
   \begin{nd}
     \hypo {1} {A \implies (A \land \lnot A)}
     \open
@@ -307,11 +328,12 @@ $A \implies (A \land \lnot A)$ is true, then $\lnot A$ is also true.
     \close
     \have {6} {\lnot A} \ni{2-5}
   \end{nd}
-\]
+$
 
 A bit more complicated is the proof of the law of excluded middle:
 $A \lor \lnot A$.
-\[
+
+\noindent $
   \begin{nd}
     \hypo {1} {}
     \open
@@ -327,7 +349,22 @@ $A \lor \lnot A$.
     \close
     \have {9} {A \lor \lnot A} \by{IP}{2-8}
   \end{nd}
-\]
+$
+
+\section{Soundness and Completeness}
+The most important properties of the natural deduction are the following two
+theorems.
+
+\begin{theorem}[completeness of natural deductions]
+  Let $\phi$ be a propositional formula. If $\phi$ is a tautology, then
+  there is a proof of $\phi$.
+\end{theorem}
+
+\begin{theorem}[soundness of natural deductions]
+  Let $\phi$ be a propositional formula. If there is a proof of $\phi$, then
+  $\phi$ is a tautology.
+\end{theorem}
+
 
 \section*{End of The Chapter Exercises}
 \begin{exercises}
