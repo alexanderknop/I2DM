@@ -488,7 +488,62 @@ Thus using introudction of the negation we can prove the statement.
 $
 
 \paragraph{Soundness of natural deductions.}
+Idea behind the soundness is also simple. We just explain that every line of
+the proof represent a tautology, including the last one. We illustrate this on
+the exaple of the proof of $A \lor \lnot A$. Recall that the proof of this
+tautology is the following.
 
+\noindent $
+  \begin{nd}
+    \hypo {1} {}
+    \open
+      \hypo {2} {\lnot (A \lor \lnot A)}
+      \open
+        \hypo {3} {A}
+        \have {4} {A \lor \lnot A}
+        \have {5} {\perp}
+      \close
+      \have {6} {\lnot A}
+      \have {7} {A \lor \lnot A}
+      \have {8} {\perp}
+    \close
+    \have {9} {A \lor \lnot A}
+  \end{nd}
+$
+
+\begin{enumerate}
+  \item The second line is just an assumption, so the corresponding tautology is
+    $\lnot (A \lor \lnot A) \implies \lnot (A \lor \lnot A)$.
+  \item Line~3 is also an assumption so the corresponding tautology is
+    $\lnot (A \lor \lnot A) \implies (A \implies A)$.
+  \item Line~4 is a formula $A \lor \lnot A$ which we derived under assumptions
+    $\lnot (A \lor \lnot A)$ and $A$, so the corresponding tautlogy is
+    $\lnot (A \lor \lnot A) \implies (A \implies (A \lor \lnot A))$ (it is a
+    tautology since we replaced $A$ by $A \lor \lnot A$ in the conclusion of
+    the formula corresponding to Line~3).
+  \item Line~5 is a formula $\perp$ which we derived under assumptions
+    $\lnot (A \lor \lnot A)$ and $A$, so the corresponding tautlogy is
+    $\lnot (A \lor \lnot A) \implies (A \implies \perp)$ (it is a
+    tautology since on Line~4 we explained that $\lnot (A \lor \lnot A)
+    \implies (A \implies (A \lor \lnot A))$).
+  \item Line~6 is a formula $\lnot A$ which we derived under assumptions
+    $\lnot (A \lor \lnot A)$, so the corresponding tautlogy is
+    $\lnot (A \lor \lnot A) \implies \lnot A$ (it is a
+    tautology since on Line~5 we explained that $A \implies \perp$ under the
+    assumption $\lnot (A \lor \lnot A)$).
+  \item Line~7 is a formula $A \lor \lnot A$ which we derived under assumptions
+    $\lnot (A \lor \lnot A)$, so the corresponding tautlogy is
+    $\lnot (A \lor \lnot A) \implies (A \lor \lnot A)$ (it is a
+    tautology since on Line~6 we explained that $A$ under the
+    assumption $\lnot (A \lor \lnot A)$).
+  \item Line~8 is a formula $\perp$ which we derived under assumptions
+    $\lnot (A \lor \lnot A)$, so the corresponding tautlogy is
+    $\lnot (A \lor \lnot A) \implies \perp$ (it is a
+    tautology since on Line~6 we explained that $A \lor \lnot A$ under the
+    assumption $\lnot (A \lor \lnot A)$).
+  \item Finally, Line~9 is a formula $A \lor \lnot A$ (it is a tautlogy since
+    we proved that $\lnot (A \lor \lnot A) \implies \perp$ is a tautlogy)
+\end{enumerate}
 
 
 \section*{End of The Chapter Exercises}
