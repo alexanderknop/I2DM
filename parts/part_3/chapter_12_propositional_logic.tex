@@ -1,0 +1,340 @@
+\chapter{Propositional Logic}
+In the previous part we studied the most important mathematical notation and
+how to prove theorems, we gave several ``formal'' definitions; however, our
+definition of the proof was not quite formal. It just allowed us to distinguish
+between good arguments and bad arguments. It is not enough if we wish to study
+proofs which is the core of mathematical logic.
+
+\section{Propositional Formulas}
+First, we need to define what precisely we mean by ``mathematical statement''.
+In order to do this we define a class of formulas called propositional formulas.
+\begin{definition}
+  We say that $\phi$ is a propositional formula on the variables $x_1$, \dots,
+  $x_n$ if
+  \begin{itemize}
+    \item either $\phi$ is equal to $x_i$ for some $i \in [n]$,
+    \item or $\phi$ is equal to $(\psi_1 \land \psi_2)$ or
+      $(\psi_1 \lor \psi_2)$, where $\psi_1$ and $\psi_2$ are propositional
+      formulas on $x_1$, \dots $x_n$,
+    \item or $\phi$ is equal to $\lnot \psi$, where $\psi$ is a propositional
+      formula on $x_1$, \dots $x_n$.
+  \end{itemize}
+\end{definition}
+
+We can also define the value of a formula.
+\begin{definition}
+  Let $\phi$ be a propositional formula on the variables $x_1$, \dots, $x_n$
+  and $v_1, \dots, v_n \in \set{\text{T}, \text{F}}$.
+
+  We say that the value $\phi\big\rvert_{x_1 = v_1, \dots, x_n = v_n}$ of the
+  formula $\phi$ when $v_1$ is substituted as the value of $x_1$, \dots,
+  and $v_n$  is substituted as the value of $x_n$ is equal to
+  \begin{itemize}
+    \item $v_i$ if $\phi$ is equal to $x_i$, and
+    \item $\psi_1\big\rvert_{x_1 = v_1, \dots, x_n = v_n} \land
+      \psi_2\big\rvert_{x_1 = v_1, \dots, x_n = v_n}$ if
+      $\phi$ is equal to $(\psi_1 \land \psi_2)$, and
+    \item $\psi_1\big\rvert_{x_1 = v_1, \dots, x_n = v_n} \lor
+      \psi_2\big\rvert_{x_1 = v_1, \dots, x_n = v_n}$ if
+      $\phi$ is equal to $(\psi_1 \lor \psi_2)$, and
+    \item $\lnot\psi\big\rvert_{x_1 = v_1, \dots, x_n = v_n}$
+      if $\phi$ is equal to $\lnot \psi$.
+  \end{itemize}
+\end{definition}
+
+For example, the value of a formula $(x_1 \land x_2) \lor x_3$ when T is
+substituted as the value of $x_1$, T is substituted as the value of $x_2$,
+and F is substituted as the value of $x_3$ is equal to
+$(\text{T} \land \text{T}) \lor \text{F} = \text{T}$.
+
+\begin{theorem}
+  For any function $f : \set{\text{T}, \text{F}}^n \to
+  \set{\text{T}, \text{F}}$ there is a
+  formula $\phi$ on the variables $x_1$, \dots, $x_n$ such that
+  $\phi\big\rvert_{x_1 = v_1, \dots, x_n = v_n} = f(v_1, \dots, v_n)$ for all
+  $v_1, \dots, v_n \in \set{\text{T}, \text{F}}$
+\end{theorem}
+
+\section{Truth Tables}
+Let us start the discussion of mathematical logic from an example similar to
+the proof we gave in the begining of the first chapter.
+Assume that we know that if $x$ is a real number such that $x < -2$ or $x > 2$,
+then $x^2 > 4$. We can derive that if $\lnot (x^2 > 4)$, then $\lnot (x < -2)$
+and $\lnot (x > 2)$.
+
+In order ot emphasize the logical structure of the argument let us denote
+$x > 2$ by $p$, $x < -2$ by $q$, and $x^2 > 4$ by $r$. In this case the
+argument is as follows. Assume that we know that $(p \lor q) \implies r$. We
+can derive that $\lnot r \implies (\lnot p \land \lnot q)$.
+
+How can we check that this argument is correct? The simplest way is to use a
+truth table to check that whether the assumption is true, the consequence is
+also true.
+\begin{center}
+  \begin{tabular}{c | c | c | c | c}
+    $p$ & $q$ & $r$ & $(p \lor q) \implies r$ &
+      $\lnot r \implies (\lnot p \land \lnot q)$ \\
+    \hline
+    T & T & T & T & T \\
+    T & T & F & F & F \\
+    T & F & T & T & T \\
+    T & F & F & F & F \\
+    F & T & T & T & T \\
+    F & T & F & F & F \\
+    F & F & T & T & T \\
+    F & F & F & T & T
+  \end{tabular}
+\end{center}
+It is easy to note that the argument is indeed correct i.e.
+\[
+  \bigl((p \lor q) \implies r\bigr) \iff
+  \bigl(\lnot r \implies (\lnot p \land \lnot q) \bigr)
+\]
+is always true (we say
+that this statement is a tautology). Such an argument is called the
+\textit{contraposition} argument.
+
+Let us now consider another argument. If we know that Joe was a good boy and we
+know that if Joe is a good boy, then Santa gives a present to Joe. We may
+conclude that Santa gives a present to Joe. We can similarly to the previous
+example write this argument using variables and connectives.
+If we know that $p$ and $p \implies q$, we may conclude that $q$ is true.
+\begin{exercise}
+  Show that this argument is correct.
+\end{exercise}
+Such an argument is called \textit{modus ponens}.
+
+\section{Derivation Rules}
+The problem of this method is that we need to consider \textbf{all} possible
+values of the variables. Let us now consider a more complicated example.
+Imagine that we know that $\lnot q$, $p \implies q$. Using the contraposition
+argument and modus ponens we may derive $\lnot p$. Indeed, by contraposition
+we may conclude that $\lnot q \implies \lnot p$ and modus ponens impies that
+$\lnot p$ is true since $\lnot q$ is true.
+
+In other words, we can combine several tautologies to prove another tautology.
+Apparently it is enough to fix some small number of tautlogies to derive all
+other tautologies, we call these tautlogies ``rules''.
+There are several ways to write such proofs, we are going to use Fitch
+notation. In this notation any proof is writen in several rows, each row in a
+Fitch-style proof is either:
+\begin{itemize}
+  \item an assumption or subproof assumption.
+  \item a sentence justified by the citation of (1) a rule of inference and (2)
+    the prior line or lines of the proof that license that rule.
+\end{itemize}
+Using this scheme we may write the argument we jsut mentioned as follows.
+\[
+  \begin{nd}
+    \have {1} {\lnot q}
+    \have {2} {p \implies q}
+    \have {3} {\lnot q \implies \lnot p} \by{contraposition}{2}
+    \have {4} {\lnot p} \by{modus ponens}{1, 3}
+  \end{nd}
+\]
+In the rest of the section we are going to list all the rules we use.
+
+\paragraph{Conjunctions.}
+In order to introduce a conjunction we can use the following rule.
+\[
+  \begin{nd}
+    \have [m] {1} {A}
+    \have [n] {3} {B}
+    \have [~] {5} {A \land B} \ai{1, 3}
+  \end{nd}
+\]
+This rule corresponds to the tautology $(A \land B) \implies (A \land B)$.
+
+In order to eliminate conjunctions we can use the following two rules.
+\begin{center}
+  \begin{tabular}{c c}
+    $\begin{nd}
+      \have [m] {1} {A \land B}
+      \have [~] {3} {A} \ae{1}
+    \end{nd}$
+    &
+    $\begin{nd}
+      \have [m] {1} {A \land B}
+      \have [~] {3} {B} \ae{1}
+    \end{nd}$
+  \end{tabular}
+\end{center}
+These rules correspond to the tautologies $(A \land B) \implies A$ and
+$(A \land B) \implies B$.
+
+\paragraph{Disjuctions.}
+In order to introduce a disjunction we can use the following two rules.
+\begin{center}
+  \begin{tabular}{c c}
+    $\begin{nd}
+      \have [m] {1} {A}
+      \have [~] {3} {A \lor B} \oi{1}
+    \end{nd}$
+    &
+    $\begin{nd}
+      \have [m] {1} {A}
+      \have [~] {3} {B \lor A} \oi{1}
+    \end{nd}$
+  \end{tabular}
+\end{center}
+These rules correspond to the tautologies $A \implies (A \lor B)$ and
+$A \implies (B \lor A)$.
+
+In order to eliminate a disjunction we can use the following rule.
+\[
+  \begin{nd}
+    \have [m] {1} {A \lor B}
+    \open
+      \hypo [i] {3} {A}
+      \have[j] {5} {C}
+    \close
+    \open
+      \hypo [k] {6} {B}
+      \have[l] {8} {C}
+    \close
+    \have[~] {9} {C} \oe{1, 3-5, 6-8}
+  \end{nd}
+\]
+This rule corresponds to the tautology
+$\bigl( (A \lor B) \land (A \implies C) \land (B \implies C) \bigr)
+\implies C$.
+
+\paragraph{Implications.}
+In order to introduce an implication we can use the following two rules.
+\[
+  \begin{nd}
+    \open
+      \hypo [i] {3} {A}
+      \have[j] {5} {B}
+    \close
+    \have[~] {9} {A \implies B} \ii{3-5}
+  \end{nd}
+\]
+This rule corresponds to the tautology
+$(A \implies B) \implies (A \implies B)$.
+
+In order to eliminate an implication we can use the following rule.
+\[
+  \begin{nd}
+    \have [m] {1} {A \implies B}
+    \have [n] {2} {A}
+    \have[~] {9} {B} \ie{1, 2}
+  \end{nd}
+\]
+This rule corresponds to the tautology
+$\bigl( (A \implies B) \land A \bigr)
+\implies B$.
+
+\paragraph{Negations.}
+In order to introduce a negation we can use the following two rules ($\perp$ is
+a special symbol representing a false statement).
+\[
+  \begin{nd}
+    \open
+      \hypo [i] {3} {A}
+      \have[j] {5} {\perp}
+    \close
+    \have[~] {9} {\lnot A} \ni{3-5}
+  \end{nd}
+\]
+This rule corresponds to the tautology
+$\bigl( A \implies \perp \bigr)
+\implies \lnot A$.
+
+In order to eliminate a negation we can use the following rule.
+\[
+  \begin{nd}
+    \have [m] {1} {A}
+    \have [n] {2} {\lnot A}
+    \have[~] {9} {\perp} \ne{1, 2}
+  \end{nd}
+\]
+This rule corresponds to the tautology
+$\bigl( A \land \lnot A \bigr)
+\implies \perp$.
+
+\paragraph{Truths and falsities.}
+Additionally, we have the following two rules.
+\begin{center}
+  \begin{tabular}{c c}
+    $\begin{nd}
+      \have [m] {1} {\perp}
+      \have [~] {3} {A} \be{1}
+    \end{nd}$
+    &
+    $\begin{nd}
+      \open
+        \hypo [i] {3} {\lnot A}
+        \have[j] {5} {\perp}
+      \close
+      \have[~] {9} {A} \by{IP}{3, 5}
+    \end{nd}$
+  \end{tabular}
+\end{center}
+% Give a link to https://proofs.openlogicproject.org/
+
+\begin{exercise}
+  Check that all the tautologies we mentioned are indeed tautlogies.
+\end{exercise}
+
+\section{Examples of Derivations}
+In this section we give several derivations using the rules we just introduced.
+
+First, we prove that if we know that $A \implies \lnot A$ we can derive that
+$\lnot A$.
+\[
+  \begin{nd}
+    \hypo {1} {A \implies \lnot A}
+    \open
+      \hypo {2} {A}
+      \have {3} {\lnot A} \ie{1, 2}
+      \have {4} {\perp} \ne{2, 3}
+    \close
+    \have {5} {\lnot A} \ni{2-4}
+  \end{nd}
+\]
+
+Another statement we are going to prove is that if
+$A \implies (A \land \lnot A)$ is true, then $\lnot A$ is also true.
+\[
+  \begin{nd}
+    \hypo {1} {A \implies (A \land \lnot A)}
+    \open
+      \hypo {2} {A}
+      \have {3} {A \land \lnot A} \ie{1, 2}
+      \have {4} {\lnot A} \ae{3}
+      \have {5} {\perp} \ne{2, 4}
+    \close
+    \have {6} {\lnot A} \ni{2-5}
+  \end{nd}
+\]
+
+A bit more complicated is the proof of the law of excluded middle:
+$A \lor \lnot A$.
+\[
+  \begin{nd}
+    \hypo {1} {}
+    \open
+      \hypo {2} {\lnot (A \lor \lnot A)}
+      \open
+        \hypo {3} {A}
+        \have {4} {A \lor \lnot A} \oi{3}
+        \have {5} {\perp} \ne{2, 4}
+      \close
+      \have {6} {\lnot A} \ni{3-5}
+      \have {7} {A \lor \lnot A} \oi{6}
+      \have {8} {\perp} \ne{2, 8}
+    \close
+    \have {9} {A \lor \lnot A} \by{IP}{2-8}
+  \end{nd}
+\]
+
+\section*{End of The Chapter Exercises}
+\begin{exercises}
+  \exerciseitem Derive $(A \land B) \implies C$ from
+    $A \implies (B \implies C)$.
+  \exerciseitem Derive $A \lor C$ from
+    $(A \land B) \lor C$.
+  \exerciseitem Derive $B \lor C$ from
+    $A \implies B$ and $\lnot A \implies C$.
+\end{exercises}
