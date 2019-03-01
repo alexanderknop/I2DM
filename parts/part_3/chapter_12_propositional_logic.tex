@@ -366,6 +366,131 @@ theorems.
 \end{theorem}
 
 
+Proofs of these two theorems are not that difficult but very technicall. So
+prove these statements on examples to at least illustate them.
+
+\paragraph{Completeness of natural deductions.}
+Proofs of this statement exploit the following idea: if a propositional formula
+is a tautlogy, then we can verify this statement using the truth table. So
+the proof simply bruteforce all the values of the variables of a formula and
+check that the formula is indeed true.
+Consider a tautlogy $(\lnot A \land \lnot B) \implies \lnot (A \lor B)$.
+The proof of this tautlogy is as follows.
+
+First we derive $A \lor \lnot A$ and $B \lor \lnot B$, we use these two
+formulas to consider casess using the elimination of disjunction.
+
+\noindent$
+\begin{nd}
+  \hypo {1} {}
+  \have {2} {A \lor \lnot A} \by{the law of excluded middle}{}
+  \have {3} {B \lor \lnot B} \by{the law of excluded middle}{}
+\end{nd}
+$
+
+
+\noindent After that we consider the case when $A$ and $B$ are both true. Note
+that the assumption of the implication is false in this case. Thus we just need
+to assume $\lnot A \land \lnot B$, derive the contradiction, and derive
+$\lnot (A \lor B)$.
+
+\noindent$
+\begin{ndresume}
+  \open
+    \hypo {4} {A}
+    \open
+      \hypo {5} {B}
+      \open
+        \hypo {6} {\lnot A \land \lnot B}
+        \have {7} {\lnot A} \ae{6}
+        \have {8} {\perp} \ne{4, 7}
+        \have {9} {\lnot (A \lor B)} \be{8}
+      \close
+      \have {10} {(\lnot A \land \lnot B) \implies \lnot (A \lor B)} \ii{6-9}
+    \close
+\end{ndresume}
+$
+
+
+\noindent After that we consider the case when $A$ is true but and $B$ is
+false. In this case the assumption of the implication is also false, thus the
+proof is the same as in the previous case.
+
+\noindent$
+\begin{ndresume}
+    \open
+      \hypo {11} {\lnot B}
+      \open
+        \hypo {12} {\lnot A \land \lnot B}
+        \have {13} {\lnot A} \ae{12}
+        \have {14} {\perp} \ne{4, 13}
+        \have {15} {\lnot (A \lor B)} \be{14}
+      \close
+      \have {16} {(\lnot A \land \lnot B) \implies \lnot (A \lor B)} \ii{6-9}
+    \close
+    \have {17} {(\lnot A \land \lnot B) \implies \lnot (A \lor B)} \oe{2, 5-10, 11-16}
+  \close
+\end{ndresume}
+$
+
+\noindent The third case is when $A$ is false but and $B$ is
+true. In this case the assumption of the implication is false again, thus the
+proof is the same as in the previous two cases.
+
+\noindent$
+\begin{ndresume}
+  \open
+    \hypo {18} {\lnot A}
+    \open
+      \hypo {19} {B}
+      \open
+        \hypo {20} {\lnot A \land \lnot B}
+        \have {21} {\lnot B} \ae{20}
+        \have {22} {\perp} \ne{19, 22}
+        \have {23} {\lnot (A \lor B)} \be{22}
+      \close
+      \have {24} {(\lnot A \land \lnot B) \implies \lnot (A \lor B)} \ii{20-23}
+    \close
+\end{ndresume}
+$
+
+\noindent Finally, we consider the case when $A$ and $B$ are false. In this
+case the assumption of the implication is true, and since the formula is a
+tautlogy and $\lnot A \land \lnot B$ is true, we know that $\lnot (A \lor B)$
+is also true. Assume that $A \lor B$ is true and note that this is impossible.
+Thus using introudction of the negation we can prove the statement.
+
+\noindent$
+\begin{ndresume}
+    \open
+      \hypo {25} {\lnot B}
+      \open
+        \hypo {26} {\lnot A \land \lnot B}
+        \open
+          \hypo {27} {A \lor B}
+          \open
+            \hypo {28} {A}
+            \have {29} {\perp} \ne{18, 28}
+          \close
+          \open
+            \hypo {30} {B}
+            \have {31} {\perp} \ne{25, 30}
+          \close
+          \have {32} {\perp} \oe{27, 28-29, 30-31}
+        \close
+        \have {33} {\lnot (A \lor B)} \ne{26-32}
+      \close
+      \have {39} {(\lnot A \land \lnot B) \implies \lnot (A \lor B)} \ii{26-33}
+    \close
+    \have {40} {(\lnot A \land \lnot B) \implies \lnot (A \lor B)} \oe{1, 3-17, 18-39}
+  \close
+\end{ndresume}
+$
+
+\paragraph{Soundness of natural deductions.}
+
+
+
 \section*{End of The Chapter Exercises}
 \begin{exercises}
   \exerciseitem Derive $(A \land B) \implies C$ from
