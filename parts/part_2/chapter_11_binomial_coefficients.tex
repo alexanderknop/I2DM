@@ -128,9 +128,39 @@ Let us find several useful properties of the binomial coefficients.
   It is clear that this is a bijection, thus we prove the statement.
 \end{proof}
 
+Now we are ready to prove the theorem which gave the name to binomial
+coefficients.
 \begin{theorem}[Binomial theorem]
   For any real numbers $x$ and $y$,
     \[
       \sum\limits_{k = 0}^n \binom{n}{k} x^k y^{n - k} = (x + y)^n.
     \]
 \end{theorem}
+\begin{proof}
+  As always, we prove the statement using induction by $n$. The base case is
+  true, since $\sum\limits_{k = 0}^1 \binom{1}{k} x^k y^{1 - k} = x + y =
+  (x + y)^1$. Asume that
+  \[
+    \sum\limits_{k = 0}^n \binom{n}{k} x^k y^{n - k} = (x + y)^n,
+  \]
+  we wish to prove that
+  \[
+    \sum\limits_{k = 0}^{n + 1} \binom{n + 1}{k} x^k y^{n + 1 - k} =
+      (x + y)^{n + 1}.
+  \]
+  Note that
+  \begin{multline*}
+    (x + y)^{n + 1} = (x + y)
+      \left(
+        \sum\limits_{k = 0}^n \binom{n}{k} x^k y^{n - k}
+      \right) = \\
+    \sum\limits_{k = 0}^n \binom{n}{k} x^{k + 1} y^{n - k} +
+      \sum\limits_{k = 0}^n \binom{n}{k} x^{k} y^{n + 1 - k} = \\
+    \sum\limits_{k = 0}^{n + 1}
+      \left(
+        \binom{n + 1}{k - 1} + \binom{n}{k}
+      \right)
+      x^k y^{n + 1 - k} =
+    \sum\limits_{k = 0}^{n + 1} \binom{n + 1}{k} x^k y^{n + 1 - k}.
+  \end{multline*}
+\end{proof}
