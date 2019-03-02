@@ -1,14 +1,17 @@
 \chapter{Proofs by Induction}
 \section{Simple Induction}
 \begin{marginfigure}
-  \begin{center}
-    \qrset{link, height=3cm}
-    \qrcode{https://youtu.be/jOnZTWGpX_I}
-    \vskip 0.25cm
-    \href{https://youtu.be/jOnZTWGpX_I}{youtu.be/jOnZTWGpX\_I} \\
-    {\footnotesize The Induction Principle}
-  \end{center}
+  {\scriptsize The Induction Principle:\\\noindent
+  Introduction to Mathematical Reasoning \#4}
+  \vskip 0.25cm
+  \noindent
+  \qrset{link, height=3cm}
+  \qrcode{https://youtu.be/jOnZTWGpX_I}
+  \vskip 0.25cm
+  \noindent
+  %\href{https://youtu.be/jOnZTWGpX_I}{youtu.be/jOnZTWGpX\_I}
 \end{marginfigure}
+
 Let us consider a simple problem: what is bigger $2^n$ or $n$? In this chapter,
 we are going to study the simplest way to prove that $2^n > n$ for all positive
 integers $n$. First, let us check that it is true for small integers $n$.
@@ -138,20 +141,20 @@ Induction is very useful for analysing algorithms using cycles. Let us extend
 the example we considered in Section~\ref{section:simple-algorithm}.
 
 Let us consider the following algorithm.
-% \begin{algorithm}
-%   \begin{algorithmic}[1]
-%     \Function{Max}{$a_1$, \dots, $a_n$}
-%       \State{$r \gets a_1$}
-%       \For{$i$ from $2$ to $n$}
-%         \If{$a_i > r$}
-%           \State{$r \gets a_i$}
-%         \EndIf
-%       \EndFor
-%       \State\Return{r}
-%     \EndFunction
-%   \end{algorithmic}
-%   \caption{The algorithm that finds the maximum element of $a_1$, \dots, $a_n$.}
-% \end{algorithm}
+\begin{algorithm}
+  \begin{algorithmic}[1]
+    \Function{Max}{$a_1$, \dots, $a_n$}
+      \State{$r \gets a_1$}
+      \For{$i$ from $2$ to $n$}
+        \If{$a_i > r$}
+          \State{$r \gets a_i$}
+        \EndIf
+      \EndFor
+      \State\Return{r}
+    \EndFunction
+  \end{algorithmic}
+  \caption{The algorithm that finds the maximum element of $a_1$, \dots, $a_n$.}
+\end{algorithm}
 We prove that it is working correctly. First, we need to define $r_1$,
 \dots, $r_n$ the value of $r$ during the execution of the algorithm.
 It is easy to see that $r_1 = a_1$ and
@@ -176,24 +179,24 @@ is the maximum of $a_1$, \dots, $a_k$. We may consider two following cases.
 \begin{exercise}
   Show that line~6 in the following sorting algorithm executes
   $\frac{n (n + 1)}{2}$ times.
-  % \begin{algorithm}
-  %   \begin{algorithmic}[1]
-  %     \Function{SelectionSort}{$a_1$, \dots, $a_n$}
-  %       \For{$i$ from $1$ to $n$}
-  %         \State{$r \gets a_i$}
-  %         \State{$\ell \gets i$}
-  %         \For{$j$ from $i$ to $n$}
-  %           \If{$a_j > r$}
-  %             \State $r \gets a_j$
-  %             \State $\ell \gets j$
-  %           \EndIf
-  %         \EndFor
-  %         \State{Swap $a_i$ and $a_\ell$.}
-  %       \EndFor
-  %     \EndFunction
-  %   \end{algorithmic}
-  %   \caption{The algorithm is selection sort, it sorts $a_1$, \dots, $a_n$.}
-  % \end{algorithm}
+  \begin{algorithm}
+    \begin{algorithmic}[1]
+      \Function{SelectionSort}{$a_1$, \dots, $a_n$}
+        \For{$i$ from $1$ to $n$}
+          \State{$r \gets a_i$}
+          \State{$\ell \gets i$}
+          \For{$j$ from $i$ to $n$}
+            \If{$a_j > r$}
+              \State $r \gets a_j$
+              \State $\ell \gets j$
+            \EndIf
+          \EndFor
+          \State{Swap $a_i$ and $a_\ell$.}
+        \EndFor
+      \EndFunction
+    \end{algorithmic}
+    \caption{The algorithm is selection sort, it sorts $a_1$, \dots, $a_n$.}
+  \end{algorithm}
 \end{exercise}
 
 
@@ -401,29 +404,29 @@ To illustrate this method, we prove the following theorem.
 \section{Analysis of Recursive Algorithms}
 To illustrate the power of recursive definitions and strong induction, let us
 analyze Algorithm~\ref{algorithm:binary-search}.
-% \begin{algorithm}
-%   \begin{algorithmic}[1]
-%     \Function{BinarySearch}{$e$, $a_1$, \dots, $a_n$}
-%       \If{$n \le 5$}
-%         \For{$i$ from $1$ to $n$}
-%           \If{$a_i = e$}
-%             \State\Return{i}
-%           \EndIf
-%         \EndFor
-%       \Else
-%         \State{$\ell \gets \floor{\frac{n}{2}}$}
-%         \If{$a_\ell \le e$}
-%           \State\Call{BinarySearch}{$e$, $a_1$, \dots, $a_\ell$}
-%         \Else
-%           \State\Call{BinarySearch}{$e$, $a_{\ell + 1}$, \dots, $a_n$}
-%         \EndIf
-%       \EndIf
-%     \EndFunction
-%   \end{algorithmic}
-%   \caption{The binary search algorithm that finds an element $e$ in the sorted
-%     list $a_1$, \dots, $a_n$.}
-%   \label{algorithm:binary-search}
-% \end{algorithm}
+\begin{algorithm}
+  \begin{algorithmic}[1]
+    \Function{BinarySearch}{$e$, $a_1$, \dots, $a_n$}
+      \If{$n \le 5$}
+        \For{$i$ from $1$ to $n$}
+          \If{$a_i = e$}
+            \State\Return{i}
+          \EndIf
+        \EndFor
+      \Else
+        \State{$\ell \gets \floor{\frac{n}{2}}$}
+        \If{$a_\ell \le e$}
+          \State\Call{BinarySearch}{$e$, $a_1$, \dots, $a_\ell$}
+        \Else
+          \State\Call{BinarySearch}{$e$, $a_{\ell + 1}$, \dots, $a_n$}
+        \EndIf
+      \EndIf
+    \EndFunction
+  \end{algorithmic}
+  \caption{The binary search algorithm that finds an element $e$ in the sorted
+    list $a_1$, \dots, $a_n$.}
+  \label{algorithm:binary-search}
+\end{algorithm}
 We prove that number of comparisons of this algorithm is bounded by
 $6 + 2\log_2(n)$. First step of the proof is to denote the worst
 number of comparisons when we run the algorithm on the list of length $n$ by

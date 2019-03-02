@@ -1,12 +1,14 @@
 \chapter{Functions}
 \begin{marginfigure}
-  \begin{center}
+  {\scriptsize Functions and Quantifiers:\\\noindent
+  Introduction to Mathematical Reasoning \#7}
+  \vskip 0.25cm
+  \noindent
   \qrset{link, height=3cm}
   \qrcode{https://youtu.be/VHJeUrCedTU}
   \vskip 0.25cm
-  \href{https://youtu.be/VHJeUrCedTU}{youtu.be/VHJeUrCedTU} \\
-  {\footnotesize Functions and Quantifiers}
-  \end{center}
+  \noindent
+  %\href{https://youtu.be/VHJeUrCedTU}{youtu.be/VHJeUrCedTU} \\
 \end{marginfigure}
 Another important type of objects in mathematics are functions. Function $f$
 from a set $X$ to a set $Y$ (we write it as $f : X \to Y$) is a unique
@@ -274,49 +276,52 @@ make a domain smaller.
 \end{definition}
 
 \section{Composition of Functions}
-\begin{center}
-    \begin{tikzpicture}[
-    >=stealth,
-    bullet/.style={
-        fill=black,
-        circle,
-        minimum width=1pt,
-        inner sep=1pt
-    },
-    projection/.style={
-        ->,
-        thick,
-        shorten <=2pt,
-        shorten >=2pt
-    },
-    every fit/.style={
-        ellipse,
-        draw,
-        inner sep=0pt
-    }
-    ]
-    \node at (2,4.7) {$f$};
-    \draw[projection] (1,4.5) -- (3,4.5);
-    \node at (0,5) {$X$};
-    \node[bullet,label=below:$x$] (START)   at (0,2.5){};
-    \node at (4,5) {$Y$};
-    \node[bullet,label=below:$f(x)$] at (4,2.5){};
-    \node at (6,4.7) {$g$};
-    \draw[projection] (5,4.5) -- (7,4.5);
-    \node at (8,5) {$Z$};
-    \node[bullet,label=below:$g\big(f(x)\big)$] (END) at (8,2.5){};
+\begin{figure}
+  \begin{center}
+      \begin{tikzpicture}[
+      >=stealth,
+      bullet/.style={
+          fill=black,
+          circle,
+          minimum width=1pt,
+          inner sep=1pt
+      },
+      projection/.style={
+          ->,
+          thick,
+          shorten <=2pt,
+          shorten >=2pt
+      },
+      every fit/.style={
+          ellipse,
+          draw,
+          inner sep=0pt
+      }
+      ]
+      \node at (2,4.7) {$f$};
+      \draw[projection] (1,4.5) -- (3,4.5);
+      \node at (0,5) {$X$};
+      \node[bullet,label=below:$x$] (START)   at (0,2.5){};
+      \node at (4,5) {$Y$};
+      \node[bullet,label=below:$f(x)$] at (4,2.5){};
+      \node at (6,4.7) {$g$};
+      \draw[projection] (5,4.5) -- (7,4.5);
+      \node at (8,5) {$Z$};
+      \node[bullet,label=below:$g\big(f(x)\big)$] (END) at (8,2.5){};
 
-    \draw [line width=8pt, yellow, shorten <=0.25cm,, shorten >=0.6cm, ->] (START.south) to[out=-50, in=-120, distance=4cm, ] node[black, midway, below, align = center, yshift = -0.25cm] {$g \circ f$} (END);
+      \draw [line width=8pt, yellow, shorten <=0.25cm,, shorten >=0.6cm, ->] (START.south) to[out=-50, in=-120, distance=4cm, ] node[black, midway, below, align = center, yshift = -0.25cm] {$g \circ f$} (END);
 
-    \draw (0,2.5) ellipse (1.02cm and 2.2cm);
-    \draw (4,2.5) ellipse (1.02cm and 2.2cm);
-    \draw (8,2.5) ellipse (1.02cm and 2.2cm);
+      \draw (0,2.5) ellipse (1.02cm and 2.2cm);
+      \draw (4,2.5) ellipse (1.02cm and 2.2cm);
+      \draw (8,2.5) ellipse (1.02cm and 2.2cm);
 
-    \draw[projection] (0.3,2.5) -- (3.7,2.5);
-    \draw[projection] (4.3,2.5) -- (7.7,2.5);
-    \end{tikzpicture}
-    \newline
-\end{center}
+      \draw[projection] (0.3,2.5) -- (3.7,2.5);
+      \draw[projection] (4.3,2.5) -- (7.7,2.5);
+      \end{tikzpicture}
+      \newline
+  \end{center}
+  \caption{Composition of functions}
+\end{figure}
 
 Suppose $f : X \ to Y$ and $g : Y \to Z$ be some function. Then, given an
 element $x \in X$, the function $f$ assigns $y = f(x) \in Y$, and the function
@@ -327,7 +332,7 @@ $g$.
 
 \begin{definition}
   If $f : X \to Y$ and $g : Y \to Z$, then $h = g \circ f$ is a
-  function from $X$ to $Z$ such that $\forall x \in X\ g(f(x)) = h(x)$.
+  function from $X$ to $Z$ such that $g(f(x)) = h(x)$ for all $x \in X$.
 \end{definition}.
 
 Let us consider an example. Let $f : \R \to \R$ such that $f(x) = x + 1$ and
@@ -382,10 +387,10 @@ Thus we may give the following definition.
     $f(x) = 3x$.
   \exerciseitem Determine the following sets:
     \begin{itemize}
-      \item $\set[\exists n \in N \ m \le n]{m \in \N}$;
-      \item $\set[\forall n \in N \ m \le n]{m \in \N}$;
-      \item $\set[\exists m \in N \ m \le n]{n \in \N}$;
-      \item $\set[\exists m \in N \ m \le n]{n \in \N}$.
+      \item $\set[\exists n \in \N \ m \le n]{m \in \N}$;
+      \item $\set[\forall n \in \N \ m \le n]{m \in \N}$;
+      \item $\set[\exists m \in \N \ m \le n]{n \in \N}$;
+      \item $\set[\exists m \in \N \ m \le n]{n \in \N}$.
     \end{itemize}
   \exerciseitem Prove or disprove the following statements.
     \begin{itemize}

@@ -30,5 +30,16 @@
 
 \usepackage{epigraph}
 
+\setcounter{secnumdepth}{1}
+
+\titleformat{\chapter}%
+[block]% shape
+{\relax\ifthenelse{\NOT\boolean{@tufte@symmetric}}{\begin{minipage}{\linewidth}}{}}% format applied to label+text
+{\itshape\huge\thechapter\hspace{10pt}}% label
+{0pt}% horizontal separation between label and title body
+{\huge\rmfamily\itshape}% before the title body
+[\ifthenelse{\NOT\boolean{@tufte@symmetric}}{\end{minipage}}{}]% after the title body
+
+
 \input{macroses/enviroments}
 \input{macroses/commands}

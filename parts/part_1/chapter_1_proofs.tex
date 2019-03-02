@@ -1,13 +1,15 @@
 \chapter{Proofs}
 \section{Direct Proofs}
 \begin{marginfigure}
-  \begin{center}
-    \qrset{link, height=3cm}
-    \qrcode{https://youtu.be/eJD0gGqveIE}
-    \vskip 0.25cm
-    \href{https://youtu.be/eJD0gGqveIE}{youtu.be/eJD0gGqveIE} \\
-    {\footnotesize What is a Mathematical Proof}
-  \end{center}
+  {\scriptsize What is a Mathematical Proof:\\\noindent
+  Introduction to Mathematical Reasoning \#1}
+  \vskip 0.25cm
+  \noindent
+  \qrset{link, height=3cm}
+  \qrcode{https://youtu.be/eJD0gGqveIE}
+  \vskip 0.25cm
+  \noindent
+  %\href{https://youtu.be/eJD0gGqveIE}{youtu.be/eJD0gGqveIE}
 \end{marginfigure}
 
 We start the discussion of the proofs in mathematics from an example of a proof
@@ -52,16 +54,6 @@ are both false, then $P \implies Q$ is true etc.
       ``$n$ is equal to $2$''?
   \end{enumerate}
 \end{exercise}
-\begin{marginfigure}
-  \begin{center}
-    \qrset{link, height=3cm}
-    \qrcode{https://youtu.be/nBjJi6aTk2M}
-    \vskip 0.25cm
-    \href{https://youtu.be/nBjJi6aTk2M}{youtu.be/nBjJi6aTk2M} \\
-    {\footnotesize What We Know and How to Find a Proof}
-  \end{center}
-\end{marginfigure}
-
 In the example we gave at the beginning of the section we used some
 \textit{known} facts. But what does it mean to know something? In math we
 typically say that we know a statement if we can prove it. But in order to prove
@@ -85,6 +77,20 @@ For example, we may consider axioms of inequalities for real numbers.
     that $c > 0$ and $a < b$ iff $ac > bc$ if $c < 0$.
   \item Let $a, b, c \in \R$. If $a < b$ and $b < c$, then $a < c$.
 \end{enumerate}
+
+
+\begin{marginfigure}
+  {\scriptsize What We Know and How to Find a Proof:\\\noindent
+  Introduction to Mathematical Reasoning \#2}
+  \vskip 0.25cm
+  \noindent
+  \qrset{link, height=3cm}
+  \qrcode{https://youtu.be/nBjJi6aTk2M}
+  \vskip 0.25cm
+  \noindent
+  %\href{https://youtu.be/nBjJi6aTk2M}{youtu.be/nBjJi6aTk2M} \\
+\end{marginfigure}
+
 
 Let us now try to prove something using these axioms, we prove that if $a > 0$,
 then $a^2 > 0$. Note that $a > 0$, hence, by the third axiom $a^2 > 0$.
@@ -115,8 +121,8 @@ Such a way of constructing proof is called direct proofs.
 Let $n$ and $m$ be some integers. Using direct proofs we may prove the
 following two statements.
 \begin{itemize}
-  \item if $n$ is even, then $nm$ is also even\footnote{A number $n$ is even
-    if there is an integer $k$ such that $n = 2k$.},
+  \item if $n$ is even, then $nm$ is also even (a number $\ell$ is even
+    if there is an integer $k$ such that $\ell = 2k$),
   \item if $n$ is even and $m$ is even, then $n + m$ is also even.
 \end{itemize}
 
@@ -188,22 +194,22 @@ axiom~1.
 \label{section:simple-algorithm}
 We can use this knowledge to analyze simple algorithms. For example, let us
 consider the following algorithm.
-% \begin{algorithm}
-%   \begin{algorithmic}[1]
-%     \Function{Max}{$a$, $b$, $c$}
-%       \State $r \gets a$
-%       \If {$b > r$}
-%         \State $r \gets b$
-%       \EndIf
-%
-%       \If {$c > r$}
-%         \State $r \gets c$
-%       \EndIf
-%       \State \Return $r$
-%     \EndFunction
-%   \end{algorithmic}
-%   \caption{The algorithm that finds the maximum element of $a$, $b$, $c$.}
-% \end{algorithm}
+\begin{algorithm}
+  \begin{algorithmic}[1]
+    \Function{Max}{$a$, $b$, $c$}
+      \State $r \gets a$
+      \If {$b > r$}
+        \State $r \gets b$
+      \EndIf
+
+      \If {$c > r$}
+        \State $r \gets c$
+      \EndIf
+      \State \Return $r$
+    \EndFunction
+  \end{algorithmic}
+  \caption{The algorithm that finds the maximum element of $a$, $b$, $c$.}
+\end{algorithm}
 Let us prove that it is correct i.e. it returns the maximum of $a$, $b$, and
 $c$. We need to consider
 the following cases.
