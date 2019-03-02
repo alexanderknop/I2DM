@@ -88,30 +88,24 @@ We just put a circle labeled by $A$ inside of the circle labeled by $B$. We can
 also diagram an equality by drawing a circle labeled by both $A$ and $B$. (see
 fig.~\ref{figure:euler-diagram}). Such diagrams are called Euler diagrams and
 it it clear that one may draw Euler diagrams for more than two sets.
-%
-% \begin{figure}
-%     \centering
-%     \subfloat[$A \subseteq B$] {
-%       \begin{center}
-%         \begin{tikzpicture}[scale=0.6]
-%           \draw (20:2cm) circle (3cm) node [yshift=10ex] {$A$};
-%           \draw (0:2cm) circle (1.5cm) node {$B$};
-%         \end{tikzpicture}
-%       \end{center}
-%       \label{figure:euler-diagram-subset}
-%     }
-%     ~
-%     \subfloat[\caption{$A = B$}] {
-%       \begin{center}
-%         \begin{tikzpicture}[scale=0.6]
-%           \draw (20:2cm) circle (3cm) node [yshift=10ex] {$A, B$};
-%         \end{tikzpicture}
-%       \end{center}
-%       \label{figure:euler-diagram-equal}
-%     }
-%     \caption{Euler diagrams}
-%     \label{figure:euler-diagram}
-% \end{figure}
+
+\begin{figure}
+    \centering
+    \subfloat[$A \subseteq B$]{
+      \begin{tikzpicture}[scale=0.6]
+        \draw (20:2cm) circle (3cm) node [yshift=10ex] {$A$};
+        \draw (0:2cm) circle (1.5cm) node {$B$};
+      \end{tikzpicture}
+    }
+    \qquad\qquad
+    \subfloat[$A = B$] {
+      \begin{tikzpicture}[scale=0.6]
+        \draw (20:2cm) circle (3cm) node [yshift=10ex] {$A, B$};
+      \end{tikzpicture}
+    }
+    \caption{Euler diagrams for subset and equality relations}
+    \label{figure:euler-diagram}
+\end{figure}
 
 
 \subsection{Descriptions of Sets}
