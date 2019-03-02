@@ -1,16 +1,13 @@
 \chapter{Counting Principles}
-\begin{wrapfigure}{l}{4cm}
+\begin{marginfigure}
   \begin{center}
-    \vskip -0.5cm
-    \qrset{link, height=3cm}
-    \qrcode{https://youtu.be/dAoperLCjb8}
-    \vskip 0.25cm
-    \href{https://youtu.be/dAoperLCjb8}{youtu.be/dAoperLCjb8}
-    {\footnotesize Counting Principles}
+  \qrset{link, height=3cm}
+  \qrcode{https://youtu.be/dAoperLCjb8}
+  \vskip 0.25cm
+  \href{https://youtu.be/dAoperLCjb8}{youtu.be/dAoperLCjb8} \\
+  {\footnotesize Counting Principles}
   \end{center}
-  \vskip -1cm
-\end{wrapfigure}
-
+\end{marginfigure}
 \section{The Additive Principle}
 The first principle is called \textit{additive} principle and it states that if
 you have two disjoint sets, then their union have size equal to the sum of their
@@ -69,7 +66,7 @@ this principle the answer is $2 + 3 = 5$.
 \end{corollary}
 
 \begin{exercise}
-  Prove \Cref{corollary:additive-principle}.
+  Prove Corollary~\ref{corollary:additive-principle}.
 \end{exercise}
 
 
@@ -118,7 +115,7 @@ $\bigtimes_{i = 1}^{k + 1} A_i =
 \end{corollary}
 
 \begin{exercise}
-  Prove \Cref{corollary:multiplicative-principle}.
+  Prove Corollary~\ref{corollary:multiplicative-principle}.
 \end{exercise}
 
 \begin{theorem}
@@ -126,10 +123,10 @@ $\bigtimes_{i = 1}^{k + 1} A_i =
   For any set $|X|$, $|2^X| = 2^{|X|}$.
 \end{theorem}
 \begin{proof}
-  By \Cref{corollary:power-set-and-set-of-binary-strings}, $|2^X| =
+  By Corollary~\ref{corollary:power-set-and-set-of-binary-strings}, $|2^X| =
   \left|\set{0, 1}^{|X|}\right|$, so it is enough to prove that
   $|\set{0, 1}^{|X|}| = 2^{|X|}$. This statement is true by
-  \Cref{corollary:multiplicative-principle} since $|\set{0, 1}^{|X|}| =
+  Corollary~\ref{corollary:multiplicative-principle} since $|\set{0, 1}^{|X|}| =
   \prod_{i = 1}^{|X|} |\set{0, 1}| = 2^{|X|}$.
 \end{proof}
 
@@ -160,14 +157,14 @@ of sets when they are not disjoint.
 \end{corollary}
 \begin{proof}
   As always, we prove this statement using induction by $n$. The base case for
-  $n = 2$ is true by \Cref{theorem:inclusion-exclusion-principle}.
+  $n = 2$ is true by Theorem~\ref{theorem:inclusion-exclusion-principle}.
 
   By the induction hypothesis,
   \[
     \left|\bigcup_{i = 1}^k X_i\right| =
     \sum_{S \subseteq [k] ~:~ S \neq \emptyset} (-1)^{|S| + 1} \left|\bigcap_{i \in S} X_i\right|.
   \]
-  In addition, by \Cref{theorem:inclusion-exclusion-principle},
+  In addition, by Theorem~\ref{theorem:inclusion-exclusion-principle},
   \begin{align*}
     \left|\bigcup_{i = 1}^{k + 1} X_i\right| =
     \left|\bigcup_{i = 1}^k X_i\right|& + |X_{k + 1}| -

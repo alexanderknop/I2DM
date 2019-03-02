@@ -1,15 +1,13 @@
 \chapter{Sets}
-\begin{wrapfigure}{l}{4cm}
+\begin{marginfigure}
   \begin{center}
-    \vskip -0.5cm
     \qrset{link, height=3cm}
     \qrcode{https://youtu.be/bshBV2H4Sqo}
     \vskip 0.25cm
-    \href{https://youtu.be/bshBV2H4Sqo}{youtu.be/bshBV2H4Sqo}
+    \href{https://youtu.be/bshBV2H4Sqo}{youtu.be/bshBV2H4Sqo} \\
     {\footnotesize Sets}
   \end{center}
-  \vskip -0.5cm
-\end{wrapfigure}
+\end{marginfigure}
 \section{The Intuitive Definition of a Set}
 A set is one of two most important concepts in mathematics. Many mathematical
 statements involve ``an integer $n$'' or ``a real number $a$''. Set theory
@@ -83,32 +81,30 @@ We just put a circle labeled by $A$ inside of the circle labeled by $B$. We can
 also diagram an equality by drawing a circle labeled by both $A$ and $B$. (see
 fig.~\ref{figure:euler-diagram}). Such diagrams are called Euler diagrams and
 it it clear that one may draw Euler diagrams for more than two sets.
-
-\begin{figure}
-    \centering
-    \begin{subfigure}[b]{0.45\textwidth}
-      \begin{center}
-        \begin{tikzpicture}[scale=0.6]
-          \draw (20:2cm) circle (3cm) node [yshift=10ex] {$A$};
-          \draw (0:2cm) circle (1.5cm) node {$B$};
-        \end{tikzpicture}
-      \end{center}
-      \caption{$A \subseteq B$}
-      \label{figure:euler-diagram-subset}
-    \end{subfigure}
-    ~
-    \begin{subfigure}[b]{0.45\textwidth}
-      \begin{center}
-        \begin{tikzpicture}[scale=0.6]
-          \draw (20:2cm) circle (3cm) node [yshift=10ex] {$A, B$};
-        \end{tikzpicture}
-      \end{center}
-      \caption{$A = B$}
-      \label{figure:euler-diagram-equal}
-    \end{subfigure}
-    \caption{Euler diagrams}
-    \label{figure:euler-diagram}
-\end{figure}
+%
+% \begin{figure}
+%     \centering
+%     \subfloat[$A \subseteq B$] {
+%       \begin{center}
+%         \begin{tikzpicture}[scale=0.6]
+%           \draw (20:2cm) circle (3cm) node [yshift=10ex] {$A$};
+%           \draw (0:2cm) circle (1.5cm) node {$B$};
+%         \end{tikzpicture}
+%       \end{center}
+%       \label{figure:euler-diagram-subset}
+%     }
+%     ~
+%     \subfloat[\caption{$A = B$}] {
+%       \begin{center}
+%         \begin{tikzpicture}[scale=0.6]
+%           \draw (20:2cm) circle (3cm) node [yshift=10ex] {$A, B$};
+%         \end{tikzpicture}
+%       \end{center}
+%       \label{figure:euler-diagram-equal}
+%     }
+%     \caption{Euler diagrams}
+%     \label{figure:euler-diagram}
+% \end{figure}
 
 
 \subsection{Descriptions of Sets}
@@ -159,51 +155,51 @@ disjoint with $A_j$ for all $i \neq j \in [\ell]$
 \section{Operations over Sets.}
 Another way to describe a set is to apply operation to other sets. Let $A$ and
 $B$ be sets.
-
-\begin{figure}
-    \centering
-    \begin{subfigure}[b]{0.3\textwidth}
-      \begin{center}
-        \begin{tikzpicture}[scale=0.8]
-            \fill[yellow] (45:2cm) circle (1.5cm);
-            \fill[yellow] (0:2cm) circle (1.5cm);
-
-            \draw (45:2cm) circle (1.5cm) node [above] {$A$};
-            \draw (0:2cm) circle (1.5cm) node [below] {$B$};
-        \end{tikzpicture}
-      \end{center}
-      \caption{$A \cup B$}
-    \end{subfigure}
-    ~
-    \begin{subfigure}[b]{0.3\textwidth}
-      \begin{center}
-        \begin{tikzpicture}[scale=0.8]
-          \begin{scope}
-              \clip (45:2cm) circle (1.5cm);
-              \fill[yellow] (0:2cm) circle (1.5cm);
-          \end{scope}
-          \draw (45:2cm) circle (1.5cm) node [above] {$A$};
-          \draw (0:2cm) circle (1.5cm) node [below] {$B$};
-        \end{tikzpicture}
-      \end{center}
-      \caption{$A \cap B$}
-    \end{subfigure}
-    ~
-    \begin{subfigure}[b]{0.3\textwidth}
-      \begin{center}
-        \begin{tikzpicture}[scale=0.8]
-          \begin{scope}[even odd rule]% first circle without the second
-            \clip (0:2cm) circle (1.5cm) (-0.25,-0.25) rectangle (3,3);
-            \fill[yellow] (45:2cm) circle (1.5cm);
-          \end{scope}
-          \draw (45:2cm) circle (1.5cm) node {$A$};
-          \draw (0:2cm) circle (1.5cm) node {$B$};
-        \end{tikzpicture}
-      \end{center}
-      \caption{$A \setminus B$}
-    \end{subfigure}
-    \caption{Operations over the sets}
-\end{figure}
+%
+% \begin{figure}
+%     \centering
+%     \begin{subfigure}[b]{0.3\textwidth}
+%       \begin{center}
+%         \begin{tikzpicture}[scale=0.8]
+%             \fill[yellow] (45:2cm) circle (1.5cm);
+%             \fill[yellow] (0:2cm) circle (1.5cm);
+%
+%             \draw (45:2cm) circle (1.5cm) node [above] {$A$};
+%             \draw (0:2cm) circle (1.5cm) node [below] {$B$};
+%         \end{tikzpicture}
+%       \end{center}
+%       \caption{$A \cup B$}
+%     \end{subfigure}
+%     ~
+%     \begin{subfigure}[b]{0.3\textwidth}
+%       \begin{center}
+%         \begin{tikzpicture}[scale=0.8]
+%           \begin{scope}
+%               \clip (45:2cm) circle (1.5cm);
+%               \fill[yellow] (0:2cm) circle (1.5cm);
+%           \end{scope}
+%           \draw (45:2cm) circle (1.5cm) node [above] {$A$};
+%           \draw (0:2cm) circle (1.5cm) node [below] {$B$};
+%         \end{tikzpicture}
+%       \end{center}
+%       \caption{$A \cap B$}
+%     \end{subfigure}
+%     ~
+%     \begin{subfigure}[b]{0.3\textwidth}
+%       \begin{center}
+%         \begin{tikzpicture}[scale=0.8]
+%           \begin{scope}[even odd rule]% first circle without the second
+%             \clip (0:2cm) circle (1.5cm) (-0.25,-0.25) rectangle (3,3);
+%             \fill[yellow] (45:2cm) circle (1.5cm);
+%           \end{scope}
+%           \draw (45:2cm) circle (1.5cm) node {$A$};
+%           \draw (0:2cm) circle (1.5cm) node {$B$};
+%         \end{tikzpicture}
+%       \end{center}
+%       \caption{$A \setminus B$}
+%     \end{subfigure}
+%     \caption{Operations over the sets}
+% \end{figure}
 
 
 The first example of the operations on sets is the \textit{union} operation.

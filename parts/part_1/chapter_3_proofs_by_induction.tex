@@ -1,25 +1,24 @@
 \chapter{Proofs by Induction}
 \section{Simple Induction}
-\begin{wrapfigure}{l}{4cm}
+\begin{marginfigure}
   \begin{center}
-    \vskip -0.5cm
     \qrset{link, height=3cm}
     \qrcode{https://youtu.be/jOnZTWGpX_I}
     \vskip 0.25cm
-    \href{https://youtu.be/jOnZTWGpX_I}{youtu.be/jOnZTWGpX\_I}
+    \href{https://youtu.be/jOnZTWGpX_I}{youtu.be/jOnZTWGpX\_I} \\
+    {\footnotesize The Induction Principle}
   \end{center}
-  \vskip -1.5cm
-\end{wrapfigure}
+\end{marginfigure}
 Let us consider a simple problem: what is bigger $2^n$ or $n$? In this chapter,
 we are going to study the simplest way to prove that $2^n > n$ for all positive
 integers $n$. First, let us check that it is true for small integers $n$.
-\begin{flushright}
+\begin{center}
   \begin{tabular}{c | c | c | c | c | c | c | c | c}
     $n$   & 1 & 2 & 3 & 4  & 5  & 6  & 7   & 8   \\
     \hline
     $2^n$ & 2 & 4 & 8 & 16 & 32 & 64 & 128 & 256
   \end{tabular}
-\end{flushright}
+\end{center}
 We may also note that $2^n$ is growing faster than $n$, so we expect that if
 $2^n > n$ for small integers $n$, then it is true for all positive integers $n$.
 
@@ -88,7 +87,7 @@ $(k + 5)^2 = k^2 + 10k + 25 \le 2k^2 + 16k + 32 = 2(k + 4)^2$.
 
 Let us now prove the theorem. Note that the proof is based on an idea similar
 to the trick with $+4$, we just used.
-\begin{proof}[Proof of \Cref{theorem:induction-shifted-base}]
+\begin{proof}[Proof of Theorem~\ref{theorem:induction-shifted-base}]
   \begin{description}
     \item[$\Rightarrow$] If $P(n)$ is true for any $n > n_0$ it is also true
       for $n = n_0 + 1$ which implies the base case. Additionally, it true for
@@ -136,23 +135,23 @@ Hence, $\sum_{i = 1}^{n + 1} i = \frac{n (n + 1)}{2} + (n + 1) =
 \section{Analysis of Algorithms with Cycles}
 
 Induction is very useful for analysing algorithms using cycles. Let us extend
-the example we considered in \Vref{section:simple-algorithm}.
+the example we considered in Section~\ref{section:simple-algorithm}.
 
 Let us consider the following algorithm.
-\begin{algorithm}
-  \begin{algorithmic}[1]
-    \Function{Max}{$a_1$, \dots, $a_n$}
-      \State{$r \gets a_1$}
-      \For{$i$ from $2$ to $n$}
-        \If{$a_i > r$}
-          \State{$r \gets a_i$}
-        \EndIf
-      \EndFor
-      \State\Return{r}
-    \EndFunction
-  \end{algorithmic}
-  \caption{The algorithm that finds the maximum element of $a_1$, \dots, $a_n$.}
-\end{algorithm}
+% \begin{algorithm}
+%   \begin{algorithmic}[1]
+%     \Function{Max}{$a_1$, \dots, $a_n$}
+%       \State{$r \gets a_1$}
+%       \For{$i$ from $2$ to $n$}
+%         \If{$a_i > r$}
+%           \State{$r \gets a_i$}
+%         \EndIf
+%       \EndFor
+%       \State\Return{r}
+%     \EndFunction
+%   \end{algorithmic}
+%   \caption{The algorithm that finds the maximum element of $a_1$, \dots, $a_n$.}
+% \end{algorithm}
 We prove that it is working correctly. First, we need to define $r_1$,
 \dots, $r_n$ the value of $r$ during the execution of the algorithm.
 It is easy to see that $r_1 = a_1$ and
@@ -177,24 +176,24 @@ is the maximum of $a_1$, \dots, $a_k$. We may consider two following cases.
 \begin{exercise}
   Show that line~6 in the following sorting algorithm executes
   $\frac{n (n + 1)}{2}$ times.
-  \begin{algorithm}
-    \begin{algorithmic}[1]
-      \Function{SelectionSort}{$a_1$, \dots, $a_n$}
-        \For{$i$ from $1$ to $n$}
-          \State{$r \gets a_i$}
-          \State{$\ell \gets i$}
-          \For{$j$ from $i$ to $n$}
-            \If{$a_j > r$}
-              \State $r \gets a_j$
-              \State $\ell \gets j$
-            \EndIf
-          \EndFor
-          \State{Swap $a_i$ and $a_\ell$.}
-        \EndFor
-      \EndFunction
-    \end{algorithmic}
-    \caption{The algorithm is selection sort, it sorts $a_1$, \dots, $a_n$.}
-  \end{algorithm}
+  % \begin{algorithm}
+  %   \begin{algorithmic}[1]
+  %     \Function{SelectionSort}{$a_1$, \dots, $a_n$}
+  %       \For{$i$ from $1$ to $n$}
+  %         \State{$r \gets a_i$}
+  %         \State{$\ell \gets i$}
+  %         \For{$j$ from $i$ to $n$}
+  %           \If{$a_j > r$}
+  %             \State $r \gets a_j$
+  %             \State $\ell \gets j$
+  %           \EndIf
+  %         \EndFor
+  %         \State{Swap $a_i$ and $a_\ell$.}
+  %       \EndFor
+  %     \EndFunction
+  %   \end{algorithmic}
+  %   \caption{The algorithm is selection sort, it sorts $a_1$, \dots, $a_n$.}
+  % \end{algorithm}
 \end{exercise}
 
 
@@ -269,7 +268,7 @@ $f_{k - 1}$ to define $f_k$).
 \end{proof}
 
 Now we are ready to prove the strong induction principle.
-\begin{proof}[Proof of \Cref{theorem:strong-induction}]
+\begin{proof}[Proof of Theorem~\ref{theorem:strong-induction}]
   It is easy to see that if $P(n)$ is true for all $n > n_0$, then the base
   case and the induction steps are true. Let us prove that if the base case and
   the induction step are true, then $P(n)$ is true for all $n > n_0$.
@@ -401,30 +400,30 @@ To illustrate this method, we prove the following theorem.
 
 \section{Analysis of Recursive Algorithms}
 To illustrate the power of recursive definitions and strong induction, let us
-analyze \Cref{algorithm:binary-search}.
-\begin{algorithm}
-  \begin{algorithmic}[1]
-    \Function{BinarySearch}{$e$, $a_1$, \dots, $a_n$}
-      \If{$n \le 5$}
-        \For{$i$ from $1$ to $n$}
-          \If{$a_i = e$}
-            \State\Return{i}
-          \EndIf
-        \EndFor
-      \Else
-        \State{$\ell \gets \floor{\frac{n}{2}}$}
-        \If{$a_\ell \le e$}
-          \State\Call{BinarySearch}{$e$, $a_1$, \dots, $a_\ell$}
-        \Else
-          \State\Call{BinarySearch}{$e$, $a_{\ell + 1}$, \dots, $a_n$}
-        \EndIf
-      \EndIf
-    \EndFunction
-  \end{algorithmic}
-  \caption{The binary search algorithm that finds an element $e$ in the sorted
-    list $a_1$, \dots, $a_n$.}
-  \label{algorithm:binary-search}
-\end{algorithm}
+analyze Algorithm~\ref{algorithm:binary-search}.
+% \begin{algorithm}
+%   \begin{algorithmic}[1]
+%     \Function{BinarySearch}{$e$, $a_1$, \dots, $a_n$}
+%       \If{$n \le 5$}
+%         \For{$i$ from $1$ to $n$}
+%           \If{$a_i = e$}
+%             \State\Return{i}
+%           \EndIf
+%         \EndFor
+%       \Else
+%         \State{$\ell \gets \floor{\frac{n}{2}}$}
+%         \If{$a_\ell \le e$}
+%           \State\Call{BinarySearch}{$e$, $a_1$, \dots, $a_\ell$}
+%         \Else
+%           \State\Call{BinarySearch}{$e$, $a_{\ell + 1}$, \dots, $a_n$}
+%         \EndIf
+%       \EndIf
+%     \EndFunction
+%   \end{algorithmic}
+%   \caption{The binary search algorithm that finds an element $e$ in the sorted
+%     list $a_1$, \dots, $a_n$.}
+%   \label{algorithm:binary-search}
+% \end{algorithm}
 We prove that number of comparisons of this algorithm is bounded by
 $6 + 2\log_2(n)$. First step of the proof is to denote the worst
 number of comparisons when we run the algorithm on the list of length $n$ by

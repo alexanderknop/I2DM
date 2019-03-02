@@ -22,7 +22,7 @@ how many function exist from $X$ to $Y$.
 \end{proof}
 
 \begin{exercise}
-  Finish the proof of \Cref{theorem:number-of-functions} by proving that
+  Finish the proof of Theorem~\ref{theorem:number-of-functions} by proving that
   the statement holds for any set $X$.
 \end{exercise}
 
@@ -67,7 +67,7 @@ bijections from $[n]$ to $[n]$. Such bijections are called permutations and the
 number is denoted by $n!$.
 
 \begin{exercise}
-  Finish the proof of \Cref{theorem:number-of-injections} by proving that
+  Finish the proof of Theorem~\ref{theorem:number-of-injections} by proving that
   the statement holds for any set $X$.
 \end{exercise}
 
@@ -118,9 +118,14 @@ Let us find several useful properties of the binomial coefficients.
   \]
 
   Hence, to finish the proof we need to explain that
-  $|\set[|A| = k \text{ and } n \in A]{A \subseteq [n]}| =
-  \binom{n - 1}{k - 1}$. To prove this statement we construct a bijection $f$
-  from $\set[|A| = k \text{ and } n \in A]{A \subseteq [n]}$ to
+  \[
+    |\set[|A| = k \text{ and } n \in A]{A \subseteq [n]}| =
+    \binom{n - 1}{k - 1}.
+  \]
+  To prove this statement we construct a bijection $f$
+  from \[
+    \set[|A| = k \text{ and } n \in A]{A \subseteq [n]}
+  \] to
   $\binom{[n - 1]}{k}$:
   \[
     f(A) = A \setminus \set{n}.
