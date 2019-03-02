@@ -13,9 +13,12 @@
 \section{The Intuitive Definition of a Set}
 A set is one of two most important concepts in mathematics. Many mathematical
 statements involve ``an integer $n$'' or ``a real number $a$''. Set theory
-notation provides a simple way to express that $a$ is a real number. However, this language is much more expressible and it is impossible to imagine modern mathematics without this notation.
+notation provides a simple way to express that $a$ is a real number. However,
+this language is much more expressible and it is impossible to imagine modern
+mathematics without this notation.
 
-As in the previous chapter it is difficult to define a set formally so we give a not formal definition which should be enough to use the notation.
+As in the previous chapter it is difficult to define a set formally so we give
+a not formal definition which should be enough to use the notation.
 A \textit{set} is a well-defined collection of objects. Important examples of
 sets are:
 \begin{enumerate}
@@ -36,11 +39,13 @@ Objects in a set are called \textit{elements} of the set and we denote the
 statement ``x is in the set $E$'' by the formula $x \in E$ and the negation of
 this statement by $x \not\in E$. For example, we proved that
 $\sqrt{2} \not\in \Q$\footnote{%
-  The symbol $\in$ was first used by Giuseppe Peano 1889 in his work ``Arithmetices principia, nova methodo exposita''. Here he wrote on page X:
+  The symbol $\in$ was first used by Giuseppe Peano 1889 in his work
+  ``Arithmetices principia, nova methodo exposita''. Here he wrote on page X:
   ``The symbol $\in$ means is. So $a \in b$ is read as a \textit{is} a b;
   \dots''
   The symbol itself is a stylized lowercase Greek letter epsilon
-  (``$\epsilon$''), the first letter of the word  \textgreek{esti}, which means ``is''.
+  (``$\epsilon$''), the first letter of the word  \textgreek{esti}, which means
+  ``is''.
 }.
 
 \begin{exercise}
@@ -157,51 +162,54 @@ disjoint with $A_j$ for all $i \neq j \in [\ell]$
 \section{Operations over Sets.}
 Another way to describe a set is to apply operation to other sets. Let $A$ and
 $B$ be sets.
-%
-% \begin{figure}
-%     \centering
-%     \begin{subfigure}[b]{0.3\textwidth}
-%       \begin{center}
-%         \begin{tikzpicture}[scale=0.8]
-%             \fill[yellow] (45:2cm) circle (1.5cm);
-%             \fill[yellow] (0:2cm) circle (1.5cm);
-%
-%             \draw (45:2cm) circle (1.5cm) node [above] {$A$};
-%             \draw (0:2cm) circle (1.5cm) node [below] {$B$};
-%         \end{tikzpicture}
-%       \end{center}
-%       \caption{$A \cup B$}
-%     \end{subfigure}
-%     ~
-%     \begin{subfigure}[b]{0.3\textwidth}
-%       \begin{center}
-%         \begin{tikzpicture}[scale=0.8]
-%           \begin{scope}
-%               \clip (45:2cm) circle (1.5cm);
-%               \fill[yellow] (0:2cm) circle (1.5cm);
-%           \end{scope}
-%           \draw (45:2cm) circle (1.5cm) node [above] {$A$};
-%           \draw (0:2cm) circle (1.5cm) node [below] {$B$};
-%         \end{tikzpicture}
-%       \end{center}
-%       \caption{$A \cap B$}
-%     \end{subfigure}
-%     ~
-%     \begin{subfigure}[b]{0.3\textwidth}
-%       \begin{center}
-%         \begin{tikzpicture}[scale=0.8]
-%           \begin{scope}[even odd rule]% first circle without the second
-%             \clip (0:2cm) circle (1.5cm) (-0.25,-0.25) rectangle (3,3);
-%             \fill[yellow] (45:2cm) circle (1.5cm);
-%           \end{scope}
-%           \draw (45:2cm) circle (1.5cm) node {$A$};
-%           \draw (0:2cm) circle (1.5cm) node {$B$};
-%         \end{tikzpicture}
-%       \end{center}
-%       \caption{$A \setminus B$}
-%     \end{subfigure}
-%     \caption{Operations over the sets}
-% \end{figure}
+\begin{figure}
+  \centering
+  \subfloat[$A \cup B$]{
+    \begin{tikzpicture}[scale=0.8]
+        \fill[yellow] (45:2cm) circle (1.5cm);
+        \fill[yellow] (0:2cm) circle (1.5cm);
+
+        \draw (45:2cm) circle (1.5cm) node [above] {$A$};
+        \draw (0:2cm) circle (1.5cm) node [below] {$B$};
+    \end{tikzpicture}
+  }
+  \qquad\qquad
+  \subfloat[$A \cap B$]{
+    \begin{tikzpicture}[scale=0.8]
+      \begin{scope}
+          \clip (45:2cm) circle (1.5cm);
+          \fill[yellow] (0:2cm) circle (1.5cm);
+      \end{scope}
+      \draw (45:2cm) circle (1.5cm) node [above] {$A$};
+      \draw (0:2cm) circle (1.5cm) node [below] {$B$};
+    \end{tikzpicture}
+  }
+  \vskip 0.25cm
+  \subfloat[$A \setminus B$]{
+    \begin{tikzpicture}[scale=0.8]
+      \begin{scope}[even odd rule]
+        \clip (0:2cm) circle (1.5cm) (-0.25,-0.25) rectangle (3,3);
+        \fill[yellow] (45:2cm) circle (1.5cm);
+      \end{scope}
+      \draw (45:2cm) circle (1.5cm) node [above] {$A$};
+      \draw (0:2cm) circle (1.5cm) node [below] {$B$};
+    \end{tikzpicture}
+  }
+  \qquad\qquad
+  \subfloat[$A \Delta B$]{
+    \begin{tikzpicture}[scale=0.8]
+      \begin{scope}[even odd rule]
+        \clip (0:2cm) circle (1.5cm) (45:2cm) circle (1.5cm);
+        \fill[yellow] (45:2cm) circle (1.5cm);
+        \fill[yellow] (0:2cm) circle (1.5cm);
+      \end{scope}
+
+      \draw (45:2cm) circle (1.5cm) node [above] {$A$};
+      \draw (0:2cm) circle (1.5cm) node [below] {$B$};
+    \end{tikzpicture}
+  }
+  \caption{Euler diagrams for set operations}
+\end{figure}
 
 
 The first example of the operations on sets is the \textit{union} operation.

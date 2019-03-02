@@ -106,10 +106,10 @@ Let us find several useful properties of the binomial coefficients.
   in the second case we have $\binom{n - 1}{k}$ ways to select objects.
 
   Let us prove the statement a bit more formally. Note that
-  \[
-    \binom{[n]}{k} = \set[|A| = k \text{ and } n \in A]{A \subseteq [n]} \cup
+  \begin{multline*}
+    \binom{[n]}{k} = \set[|A| = k \text{ and } n \in A]{A \subseteq [n]} \cup \\
     \set[|A| = k \text{ and } n \notin A]{A \subseteq [n]}.
-  \]
+  \end{multline*}
   Since these sets are disjoint and $\set[|A| = k \text{ and } n \notin A]{A
   \subseteq [n]} = \binom{[n - 1]}{k}$, we get the following equality
   \[
@@ -126,10 +126,7 @@ Let us find several useful properties of the binomial coefficients.
   from \[
     \set[|A| = k \text{ and } n \in A]{A \subseteq [n]}
   \] to
-  $\binom{[n - 1]}{k}$:
-  \[
-    f(A) = A \setminus \set{n}.
-  \]
+  $\binom{[n - 1]}{k}$: $f(A) = A \setminus \set{n}$.
   It is clear that this is a bijection, thus we prove the statement.
 \end{proof}
 
