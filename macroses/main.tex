@@ -1,4 +1,9 @@
-\documentclass[a4paper]{tufte-book}
+\documentclass[nohyper,nobib]{tufte-book}
+\usepackage{nameref}
+
+\usepackage{url}
+
+\usepackage{xargs}
 
 \usepackage[LGR,T1]{fontenc}
 
@@ -16,8 +21,6 @@
 
 \usepackage{ifthen}
 
-\usepackage{graphicx}
-\usepackage{subfig}
 
 \usepackage{enumitem}
 
@@ -29,6 +32,53 @@
 \usepackage{wrapfig}
 
 \usepackage{epigraph}
+
+\usepackage{booktabs}
+
+\usepackage{xspace}
+
+\usepackage{units}
+
+
+% Generates the index
+\usepackage{makeidx}
+\makeindex
+
+%%%% Kevin Godny's code for title page and contents from https://groups.google.com/forum/#!topic/tufte-latex/ujdzrktC1BQ
+\makeatletter
+\renewcommand{\maketitlepage}{%
+\begingroup%
+\setlength{\parindent}{0pt}
+
+{\fontsize{24}{24}\selectfont\textit{\@author}\par}
+
+\vspace{1.75in}{\begin{minipage}{1.5\linewidth}\fontsize{36}{54}\selectfont\@title\par\end{minipage}}
+
+\vspace{0.5in}{\fontsize{14}{14}\selectfont\textsf{\smallcaps{\@date}}\par}
+
+\vfill{\fontsize{14}{14}\selectfont\textit{\@publisher}\par}
+
+\thispagestyle{empty}
+\endgroup
+}
+\makeatother
+
+\titlecontents{part}%
+    [0pt]% distance from left margin
+    {\addvspace{0.25\baselineskip}}% above (global formatting of entry)
+    {\allcaps{Part~\thecontentslabel}\allcaps}% before w/ label (label = ``Part I'')
+    {\allcaps{Part~\thecontentslabel}\allcaps}% before w/o label
+    {}% filler and page (leaders and page num)
+    [\vspace*{0.5\baselineskip}]% after
+
+\titlecontents{chapter}%
+    [4em]% distance from left margin
+    {}% above (global formatting of entry)
+    {\contentslabel{2em}\textit}% before w/ label (label = ``Chapter 1'')
+    {\hspace{0em}\textit}% before w/o label
+    {\qquad\thecontentspage}% filler and page (leaders and page num)
+    [\vspace*{0.5\baselineskip}]% after
+%%%% End additional code by Kevin Godby
 
 \setcounter{secnumdepth}{1}
 
