@@ -80,11 +80,11 @@ Probably the most important property of a bijection is that we may invert it.
     \item[$\Rightarrow$] Let's assume that $f$ is invertible. We need to prove
       that $f$ is a bijection.
       \begin{itemize}
-        \item Let's assume that $f$ is not an injection i.e. there are
+        \item Let's assume that $f$ does not satisfy the first property in the
+          definitions of bijections i.e. there are
           $x_1, x_2 \in X$ such that $f(x_1) = f(x_2)$ but $x_1 = g(f(x_1)) =
           g(f(x_2)) = x_2$, which is a contradiction.
-        \item Let $y \in Y$. Note that $f(g(y)) = y$, hence, $f$ is a
-          surjection.
+        \item Let $y \in Y$. Note that $f(g(y)) = y$, hence, $\Im f = Y$.
       \end{itemize}
 
     \item[$\Leftarrow$] Let's assume that $f$ is bijective. We need to define a
@@ -107,7 +107,7 @@ This observation allows us to define the cardinality of a set.
   $|T| = n$.
 \end{definition}
 
-Note that this definition does not guarantee that cardianlity is unique.
+Note that this definition does not guarantee that cardinality is unique.
 \begin{theorem}
   For any set $S$, if there are bijections $f : [n] \to S$ and $g : [m] \to S$,
   then $n = m$.
@@ -190,7 +190,7 @@ Using this result we can make prove the following equality.
 \section{Surjections and Injections}
 
 It is possible to note that the definition of the bijection consists of two part.
-Both of these parts are intresting in their own regard, so they have their own
+Both of these parts are interesting in their own regard, so they have their own
 names.
 \begin{definition}
   Let $f : X \to Y$ be a function.
