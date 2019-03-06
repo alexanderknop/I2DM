@@ -166,6 +166,7 @@ same cardinality.
 
 Using this result we can make prove the following equality.
 \begin{corollary}
+\label{corollary:power-set-and-set-of-binary-strings}
   Let $X$ be a finite set of cardianlity $n$. Then $2^X$ has the same
   cardinality as $\set{0, 1}^{|X|}$.
 \end{corollary}
@@ -175,7 +176,7 @@ Using this result we can make prove the following equality.
 
   First we construct a bijection $g_1$ from $2^X$ to $2^{[n]}$:
   $g_1(Y) = \set[x \in Y]{f(x)}$ ($Y \in 2^X$). It is easy to see that the
-  function $g^{-1}_1(Y) = \set[x \in [n]]{f^{-1}(x)}$ ($Y \in 2^{[n]}$) is an
+  function $g^{-1}_1(Y) = \set[{x \in [n]}]{f^{-1}(x)}$ ($Y \in 2^{[n]}$) is an
   inverse of $g_1$, so $g_1$ is indeed a bijection.
 
   Now we need to construct a bijection $g_2$ from $2^{[n]}$ to $\set{0, 1}^n$:
@@ -185,6 +186,20 @@ Using this result we can make prove the following equality.
 
   As a result, by \Cref{theorem:bijections-composition}, the function
   $(g_2 \circ g_1) : 2^X \to \set{0, 1}^{|X|}$ is a bijection.
+\end{proof}
+
+\begin{theorem}
+  Let $X$, $Y$, $Z$ be some sets
+  There are bijctions from $X \times (Y \times Z)$ and
+  $(X \times Y) \times Z$ to $\set[x \in X, y \in Y, z \in Z]{(x, y, z)}$.
+\end{theorem}
+\begin{proof}
+  Since the statement is symmetric, it is enough to prove that there is
+  a bijection $f$ from $X \times (Y \times Z)$ to
+  $\set[x \in X, y \in Y, z \in Z]{(x, y, z)}$. Define $f$ such that
+  $f(x, (y, z)) = (x, y, z)$.
+  Clearly, $f^{-1}(x, y, z) = (x, (y, z))$ is the inverse of $f$, so $f$ is
+  indeed a bijection.
 \end{proof}
 
 \section{Surjections and Injections}
@@ -231,9 +246,9 @@ compare sizes of sets.
 
 \section*{End of The Chapter Exercises}
 \begin{exercises}
-  \exerciseitem Construct a bijection from $\set{0, 1, 2, 3}^n$ to
-    $$\set[{A, B, C \subseteq [n] \text{ and } A, B, C \text{ are pairwise
-    disjoint}}]{(A, B, C)}.$$
+  \exerciseitem Construct a bijection from $\set{0, 1, 2}^n$ to
+    $$\set[{A, B \subseteq [n] \text{ and } A, B \text{ are
+    disjoint}}]{(A, B)}.$$
   \exerciseitem Construct a bijection from $\set{0, 1} \times [n]$ to $[2n]$.
   \exerciseitem Prove \Cref{theorem:injections-surjections-inequalities}.
 \end{exercises}
