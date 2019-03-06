@@ -1,4 +1,15 @@
 \chapter{Permutations and Binomial Coefficients}
+\begin{marginfigure}
+  {\scriptsize Permutations and Binomial Coefficients:\\\noindent
+  Introduction to Combinatorics \#4}
+  \vskip 0.25cm
+  \noindent
+  \qrset{link, height=3cm}
+  \qrcode{https://youtu.be/HLClazoqqzg}
+  \vskip 0.25cm
+  \noindent
+  \url{youtu.be/HLClazoqqzg}
+\end{marginfigure}
 \section{Counting Functions}
 Assume we have two finite sets $X$ and $Y$. The first question we may ask is:
 how many function exist from $X$ to $Y$.
@@ -85,6 +96,7 @@ coefficient.
 
 Let us find several useful properties of the binomial coefficients.
 \begin{theorem}
+\label{theorem:binomial-coefficients-equalitites}
   Let $n$, $m$, and $k$ be some integers such that $m > n > k$.
   \begin{itemize}
     \item $\binom{n}{k} = \binom{n}{n - k}$.
@@ -129,6 +141,11 @@ Let us find several useful properties of the binomial coefficients.
   $\binom{[n - 1]}{k}$: $f(A) = A \setminus \set{n}$.
   It is clear that this is a bijection, thus we prove the statement.
 \end{proof}
+
+\begin{exercise}
+  Prove the rest of the equalities in
+  Theorem~\ref{theorem:binomial-coefficients-equalitites}.
+\end{exercise}
 
 Now we are ready to prove the theorem which gave the name to binomial
 coefficients.
