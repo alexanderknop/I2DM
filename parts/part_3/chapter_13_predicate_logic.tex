@@ -52,7 +52,8 @@ three objects:
   \item arities of these functions and relations (i.e. how many arguments they
     may take).
 \end{itemize}
-An example of a signature is a triple $(\set{\text{``R''}}, \set{\text{``f''}}, \mathrm{ar})$, where
+An example of a signature is a triple $(\set{\text{``R''}}, \set{\text{``f''}},
+\mathrm{ar})$, where
 \[
   \mathrm{ar}(s) = \begin{cases}
     2 & \text{if } s =  \text{``R''} \\
@@ -65,7 +66,8 @@ to defin the predicate formulas.
 \begin{definition}
   Let $\mathcal{S} = (S_\mathrm{rel}, S_\mathrm{fun}, a)$ be a signature.
 
-  We say that $t$ is a term in the signature $\mathcal{S}$ if
+  We say that $t$ is a term in the signature $\mathcal{S}$ over the variables
+  $x_1$, \dots, $x_n$ if
   \begin{itemize}
     \item either $t$ is equal to a variable $x_i$
     \item or $t$ is equal to $f(t_1, \dots, t_\ell)$, where
@@ -73,7 +75,8 @@ to defin the predicate formulas.
       are terms in the signature $\mathcal{S}$.
   \end{itemize}
 
-  We say that $\phi$ is a predicate formula in the signature $\mathcal{S}$ if
+  We say that $\phi$ is a predicate formula in the signature $\mathcal{S}$
+  over the variables $x_1$, \dots, $x_n$  if
   \begin{itemize}
     \item either $\phi$ is equal to $R(t_1, \dots, t_\ell)$, where
       $R \in S_\mathrm{rel}$, $\ell = a(R)$, and $t_1$, \dots, $t_\ell$
@@ -86,8 +89,20 @@ to defin the predicate formulas.
     \item or $\phi$ is equal to $\exists x~\psi$ or $\forall x~\psi$ where
       $\psi$ is a predicate formula in the signature $\mathcal{S}$.
   \end{itemize}
-
 \end{definition}
+
+In order to compute the truth value of a predicate formula, we need to specify
+the values of all the free variables and all the symbols from the signature.
+The specification of the symbols from the signature is called structure; i.e.
+a structure for a signature $\mathcal{S} = (S_\mathrm{rel}, S_\mathrm{fun}, a)$
+is a triple $(M, F_\mathrm{rel}, F_\mathrm{fun})$ such that
+\begin{itemize}
+  \item $F_\mathrm{rel} : S_\mathrm{rel} \to \bigcup_{i = 0}^\infty 2^{M^i}$
+    such that $F_\mathrm{rel}(R) \in 2^{M^{a(R)}}$ and
+  \item $F_\mathrm{fun} : S_\mathrm{fun} \to \bigcup_{i = 0}^\infty M^{M^i}$
+    such that $F_\mathrm{fun}(f) \in M^{M^{a(f)}}$.
+\end{itemize}
+
 
 
 
