@@ -257,10 +257,78 @@ $f(i)$ for all the $i \in \set[P(i)]{i \in S}$; i.e.
 where $k = |\set[P(i)]{i \in S}|$ and $g : \set[P(i)]{i \in S} \to [k]$ is a
 bijection.
 
-\begin{exercise}
-  Show that the definition of $\sum\limits_{i \in S : P(i)} f(i)$ is correct,
-  i.e. that it does not depend on the choice of $g$.
-\end{exercise}
+\begin{theorem}
+  The definition of $\sum\limits_{i \in S : P(i)} f(i)$ is correct;
+  i.e.
+  $\sum\limits_{i = 1}^k f(g_1(i)) = \sum\limits_{i = 1}^k f(g_2(i))$
+  for any two bijections $g_1, g_2 : \set[P(i)]{i \in S} \to [k]$.
+\end{theorem}
+\begin{proof}
+  Proof of this theorem consists of two parts.
+  First, we prove that
+  \begin{equation}
+    \label{equation:summation-with-respect-to_bijection}
+    \sum\limits_{i = 1}^k f(g(i)) = \sum\limits_{i = 1}^k f(g(h(i)))
+  \end{equation}
+  for any bijections $g : \set[P(i)]{i \in S} \to [k]$ and $h : [k] \to [k]$.
+
+  To prove this statement, we introduce the notion of inversion. We say that
+  $i, j \in [k]$ for an inversion in $h$ iff $h(i) > h(j)$ and $i < j$.
+  We denote by $I(h)$ the number of inversions in $h$; i.e. $I(h) =
+  |\set[i, j \text{ form an inversion in } h]{(i, j)}|$. It is easy to see that
+  $I(h) = 0$ iff $h(i) = i$ for any $i \in [k]$. It is also clear that if $i, j$
+  form an inversion in $h$, then $I(h) > I(h')$, where
+  \[
+    h'(x) =
+    \begin{cases}
+      h(j) & \text{if } x = i \\
+      h(i) & \text{if } x = j \\
+      h(x) & \text{otherwise}
+    \end{cases}.
+  \]
+  We prove Equation~\ref{equation:summation-with-respect-to_bijection} using the
+  induction by $I(h)$.
+  \begin{description}
+    \item[The base case:] if $I(h) = 0$, then $h$ is an identity function and
+      $g(i) = g(h(i))$. Hence,
+      Equation~\ref{equation:summation-with-respect-to_bijection} is true.
+    \item[The induction step:] by the induction hypothesis,
+      if $I(h') < \ell$, then
+      \[
+        \sum\limits_{i = 1}^k f(g(i)) = \sum\limits_{i = 1}^k f(g(h'(i)))
+      \]
+      for any bijection $h' : [k] \to [k]$.
+      Let us consider a bijection $h : [k] \to [k]$ such that $I(h) = \ell$.
+      Define $h' : [k] \to [k]$ such that
+      \[
+        h'(x) =
+        \begin{cases}
+          h(j) & \text{if } x = i \\
+          h(i) & \text{if } x = j \\
+          h(x) & \text{otherwise}
+        \end{cases}.
+      \]
+      Note that by the induction hypothesis,
+      \[
+        \sum\limits_{i = 1}^k f(g(i)) = \sum\limits_{i = 1}^k f(g(h'(i)))
+      \]
+      and it is clear that
+      \[
+        \sum\limits_{i = 1}^k f(g(h'(i))) = \sum\limits_{i = 1}^k f(g(h(i))).
+      \]
+      As a result,
+      Equation~\ref{equation:summation-with-respect-to_bijection} is true.
+  \end{description}
+
+  Now we are ready to finish proof of the theorem.
+  Consider $g_1, g_2 : \set[P(i)]{i \in S} \to [k]$ and define
+  $h = g_1^{-1} \circ g_2$. Note that $h : [k] \to [k]$ is a bijection and
+  $g_1(h(i)) = g_2(i)$. Thus we proved that
+  \[
+    \sum\limits_{i = 1}^k f(g_1(i)) = \sum\limits_{i = 1}^k f(g(h(i))) =
+    \sum\limits_{i = 1}^k f(g_2(i)).
+  \]
+\end{proof}
 
 Similarly one may define a generalized union and intersection of sets.
 Let $\Omega$ and $S$ be some sets, $X : S \to 2^\Omega$ and $P(i)$ be a
