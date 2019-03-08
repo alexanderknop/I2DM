@@ -80,11 +80,11 @@ Probably the most important property of a bijection is that we may invert it.
     \item[$\Rightarrow$] Let's assume that $f$ is invertible. We need to prove
       that $f$ is a bijection.
       \begin{itemize}
-        \item Let's assume that $f$ is not an injection i.e. there are
+        \item Let's assume that $f$ does not satisfy the first property in the
+          definitions of bijections i.e. there are
           $x_1, x_2 \in X$ such that $f(x_1) = f(x_2)$ but $x_1 = g(f(x_1)) =
           g(f(x_2)) = x_2$, which is a contradiction.
-        \item Let $y \in Y$. Note that $f(g(y)) = y$, hence, $f$ is a
-          surjection.
+        \item Let $y \in Y$. Note that $f(g(y)) = y$, hence, $\Im f = Y$.
       \end{itemize}
 
     \item[$\Leftarrow$] Let's assume that $f$ is bijective. We need to define a
@@ -107,7 +107,7 @@ This observation allows us to define the cardinality of a set.
   $|T| = n$.
 \end{definition}
 
-Note that this definition does not guarantee that cardianlity is unique.
+Note that this definition does not guarantee that cardinality is unique.
 \begin{theorem}
   For any set $S$, if there are bijections $f : [n] \to S$ and $g : [m] \to S$,
   then $n = m$.
@@ -205,7 +205,7 @@ Using this result we can make prove the following equality.
 \section{Surjections and Injections}
 
 It is possible to note that the definition of the bijection consists of two part.
-Both of these parts are intresting in their own regard, so they have their own
+Both of these parts are interesting in their own regard, so they have their own
 names.
 \begin{definition}
   Let $f : X \to Y$ be a function.
@@ -243,6 +243,41 @@ compare sizes of sets.
     \item If there is a surjection from $X$ to $Y$, then $|X| \ge |Y|$.
   \end{itemize}
 \end{theorem}
+
+\section{Generalized Commutative Operations}
+Using the notation of cardianlity we may generalize the summation operation in
+the followin way: $\sum\limits_{i \in S ~:~ P(i)} f(i)$ is equal to the sum of
+$f(i)$ for all the $i \in \set[P(i)]{i \in S}$; i.e.
+\[
+  \sum\limits_{i \in S ~:~ P(i)} f(i) = \sum\limits_{j = 1}^k f(i_j),
+\] where $\set[P(i)]{i \in S} = \set{i_1, \dots, i_k}$. More formally,
+\[
+  \sum\limits_{i \in S ~:~ P(i)} f(i) = \sum\limits_{j = 1}^k f(g(j)),
+\]
+where $k = |\set[P(i)]{i \in S}|$ and $g : \set[P(i)]{i \in S} \to [k]$ is a
+bijection.
+
+\begin{exercise}
+  Show that the definition of $\sum\limits_{i \in S : P(i)} f(i)$ is correct,
+  i.e. that it does not depend on the choice of $g$.
+\end{exercise}
+
+Similarly one may define a generalized union and intersection of sets.
+Let $\Omega$ and $S$ be some sets, $X : S \to 2^\Omega$ and $P(i)$ be a
+predicate. Then
+\begin{gather*}
+  \bigcup_{i \in S ~:~ P(i)} X(i) = \bigcup_{i = 1}^k X(g(i) \\
+  \text{and}\\
+  \bigcap_{i \in S ~:~ P(i)} X(i) = \bigcap_{i = 1}^k X(g(i),
+\end{gather*}
+where $k = |\set[P(i)]{i \in S}|$ and $g : \set[P(i)]{i \in S} \to [k]$ is a
+bijection.
+
+\begin{exercise}
+  Show that the definitions of $\bigcup\limits_{i \in S : P(i)} X(i)$ and
+  $\bigcap\limits_{i \in S : P(i)} X(i)$ are correct,
+  i.e. that the do not depend on the choice of $g$.
+\end{exercise}
 
 \section*{End of The Chapter Exercises}
 \begin{exercises}
