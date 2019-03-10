@@ -95,6 +95,27 @@ Probably the most important property of a bijection is that we may invert it.
       bijection.
   \end{description}
 \end{proof}
+We denote $g$ from this theorem as $f^{-1}$.
+
+Using this theorem we may notice that nonetheless that $X \times (Y \times Z)$
+is not the same as $(X \times Y) \times Z$, there is a natural correspondence
+between the elements of these sets.
+\begin{theorem}
+  Let $X$, $Y$, $Z$ be some sets
+  There are bijctions from $X \times (Y \times Z)$ and
+  $(X \times Y) \times Z$ to $\set[x \in X, y \in Y, z \in Z]{(x, y, z)}$.
+\end{theorem}
+\begin{proof}
+  Since the statement is symmetric, it is enough to prove that there is
+  a bijection $f$ from $X \times (Y \times Z)$ to
+  $\set[x \in X, y \in Y, z \in Z]{(x, y, z)}$. Define $f$ such that
+  $f(x, (y, z)) = (x, y, z)$.
+  Clearly, $f^{-1}(x, y, z) = (x, (y, z))$ is the inverse of $f$, so $f$ is
+  indeed a bijection.
+\end{proof}
+Due to this correspondence we will think about elements $(x, (y, z))$,
+$((x, y), z)$, and $(x, y, z)$ as they are equal to each other.
+
 
 One may notice that if we have a bijection $f$ from $[n]$ to a set $S$ we
 enumerate all the elements of $S$: $f(1)$, \dots, $f(n)$.
@@ -186,20 +207,6 @@ Using this result we can make prove the following equality.
 
   As a result, by Theorem~\ref{theorem:bijections-composition}, the function
   $(g_2 \circ g_1) : 2^X \to \set{0, 1}^{|X|}$ is a bijection.
-\end{proof}
-
-\begin{theorem}
-  Let $X$, $Y$, $Z$ be some sets
-  There are bijctions from $X \times (Y \times Z)$ and
-  $(X \times Y) \times Z$ to $\set[x \in X, y \in Y, z \in Z]{(x, y, z)}$.
-\end{theorem}
-\begin{proof}
-  Since the statement is symmetric, it is enough to prove that there is
-  a bijection $f$ from $X \times (Y \times Z)$ to
-  $\set[x \in X, y \in Y, z \in Z]{(x, y, z)}$. Define $f$ such that
-  $f(x, (y, z)) = (x, y, z)$.
-  Clearly, $f^{-1}(x, y, z) = (x, (y, z))$ is the inverse of $f$, so $f$ is
-  indeed a bijection.
 \end{proof}
 
 \section{Surjections and Injections}
