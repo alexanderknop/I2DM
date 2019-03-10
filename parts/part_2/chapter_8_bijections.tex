@@ -95,7 +95,7 @@ Probably the most important property of a bijection is that we may invert it.
       bijection.
   \end{description}
 \end{proof}
-We denote $g$ from this theorem as $f^{-1}$.
+\noindent We denote $g$ from this theorem as $f^{-1}$.
 
 Using this theorem we may notice that nonetheless that $X \times (Y \times Z)$
 is not the same as $(X \times Y) \times Z$, there is a natural correspondence
@@ -107,8 +107,8 @@ between the elements of these sets.
 \end{theorem}
 \begin{proof}
   Since the statement is symmetric, it is enough to prove that there is
-  a bijection $f$ from $X \times (Y \times Z)$ to
-  $\set[x \in X, y \in Y, z \in Z]{(x, y, z)}$. Define $f$ such that
+  a bijection $f : X \times (Y \times Z) \to
+  \set[x \in X, y \in Y, z \in Z]{(x, y, z)}$. Define $f$ such that
   $f(x, (y, z)) = (x, y, z)$.
   Clearly, $f^{-1}(x, y, z) = (x, (y, z))$ is the inverse of $f$, so $f$ is
   indeed a bijection.
@@ -195,10 +195,14 @@ Using this result we can make prove the following equality.
   To prove this statement we need to construct a bijection from $2^X$ to
   $\set{0, 1}^{|X|}$. Let $|X| = n$ and $f : [n] \to X$ be a bijection.
 
-  First we construct a bijection $g_1$ from $2^X$ to $2^{[n]}$:
-  $g_1(Y) = \set[x \in Y]{f(x)}$ ($Y \in 2^X$). It is easy to see that the
-  function $g^{-1}_1(Y) = \set[{x \in [n]}]{f^{-1}(x)}$ ($Y \in 2^{[n]}$) is an
-  inverse of $g_1$, so $g_1$ is indeed a bijection.
+  First we construct a bijection $g_1 : 2^X \to 2^{[n]}$:
+  \[
+    g_1(Y) = \set[x \in Y]{f(x)}.
+  \] It is easy to see that the function
+  \[
+    g^{-1}_1(Y) = \set[{x \in [n]}]{f^{-1}(x)}
+  \]
+  is an inverse of $g_1$, so $g_1$ is indeed a bijection.
 
   Now we need to construct a bijection $g_2$ from $2^{[n]}$ to $\set{0, 1}^n$:
   $g_2(Y) = (u_1, \dots, u_n)$, where $u_i = 1$ iff $i \in Y$. It is clear
