@@ -23,15 +23,21 @@ A \textit{set} is a well-defined collection of objects. Important examples of
 sets are:
 \begin{enumerate}
   \item $\R$ a set of reals,
+    \nomenclature[N]{$\R$}{denotes the set of all real numbers}
   \item $\Z$ the set of integers\footnote{``Z'' stands for the German word
     Zahlen (``numbers'').},
+    \nomenclature[N]{$\Z$}{denotes the set of all integers}
   \item $\N$ the set of natural numbers\footnote{Note that in the litrature
       there are two diffirent traditions: in one $0$ is a natural number, in
       another it is not; in this book we are going to assume that $0$ is not a
       natural number.
     },
+    \nomenclature[N]{$\N$}{denotes the set of all integers greater
+    than $0$}
   \item $\Q$ a set of rational numbers,
+    \nomenclature[N]{$\Q$}{denotes the set of all rational numbers}
   \item $\mathbb{C}$ a set of complex numbers.
+    \nomenclature[N]{$\C$}{denotes the set of all complex numbers}
 \end{enumerate}
 Usually, sets are denoted by single letter.
 
@@ -80,6 +86,11 @@ also a real number.
 A special set is an empty set i.e. the set that does not have elements, we
 denote it $\emptyset$.
 
+\nomenclature[R]{$A \subseteq B$}{says that $A$ is a subset of $B$}
+
+\nomenclature[N]{$\emptyset$}{denotes the set that does
+  not have elements}
+
 \subsection{Diagrams}
 If we think of a set $A$ as represented by all the points within a circle or
 any other closed figure, then it is easy to represent the notion of $A$ being a
@@ -126,6 +137,8 @@ numbers using the following formula $\set[n \text{ is even}]{n \in \Z}$
 
 Using this we may also define the set of all integers from $1$ to $m$, we
 denote it $[m]$, $[m] = \set[0 < n \le m]{n \in \N}$.
+\nomenclature[N]{$[n]$}{denotes the set of all the integers from $1$ to n}
+
 
 \paragraph{Constructive definitions.} Another way to construct a set of all
 even numbers is to use the constructive definition of a set:
@@ -209,14 +222,17 @@ $B$ be sets.
 The first example of the operations on sets is the \textit{union} operation.
 The union of $A$ and $B$ is the set containing all the elements of $A$ and all
 the elements of $B$ i.e. $A \cup B = \set[x \in A \text{ or } x \in B]{x}$.
+\nomenclature[S]{$A \cup B$}{denotes the union of two sets $A$ and $B$}
 
 Another example of such an operation is \textit{intersection}. The
 intersection of $A$ and $B$ is the set of all the elements belonging to both
 $A$ and $B$ i.e $A \cap B = \set[x \in A \text{ and } x \in B]{x}$.
+\nomenclature[S]{$A \cap B$}{denotes the intersection of two sets $A$ and $B$}
 
 The third operation we are going to discuss this lecture is set difference.
 If $A$ and $B$ are some sets, then
 $A \setminus B = \set[x \in A \text{ and } x \not\in B]{x}$.
+\nomenclature[S]{$A \setminus B$}{denotes the difference of two sets $A$ and $B$}
 
 \begin{exercise}
   Describe the set
@@ -261,6 +277,8 @@ the concept of a power set. Let $A$ be some set, then the set of
 all possible subsets of $A$ is denoted by $2^A$ (sometimes this set is denoted
 by $\mathcal{P}(A)$) and called the power set of $A$. In other words $2^A =
 \set[B \subseteq A]{B}$.
+
+\nomenclature[S]{$2^A$}{denotes the set of all the subsets of the set $A$}
 
 \begin{warning}
   Please do not forget about two extremal elements of the power set $2^A$: the
