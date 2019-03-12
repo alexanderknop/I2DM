@@ -1,0 +1,166 @@
+\chapter{Permutations and Binomial Coefficients}
+\section{Counting Functions}
+Assume we have two finite sets $X$ and $Y$. The first question we may ask is:
+how many function exist from $X$ to $Y$.
+
+
+\begin{theorem}
+\label{theorem:number-of-functions}
+  Let $X$ and $Y$ be some finite sets. We denote by $Y^X$ the set of all
+  functions from $X$ to $Y$. Then $|Y^X| = |Y|^{|X|}$.
+\end{theorem}
+\begin{proof}
+  For simplicity we prove the statement in the case when $X = [n]$. Fix some
+  finite set $Y$. We prove the statement using induction by $n$. The base case
+  for $n = 1$ is ovbious, since there are $|Y|$ different functions from $[1]$
+  to $Y$. Let us prove the induction step, by the induction hypothesis,
+  $|Y^{[n - 1]}| = |Y|^{n - 1}$. Note that
+  \begin{multline*}
+    |Y^{[n]}| = \left| \set[f \in Y^{[ n - 1]}, y \in Y]{(f, y)} \right| = \\
+    |Y^{[n - 1]} \times Y| = |Y^{[n - 1]}| \cdot |Y| = |Y|^n.
+  \end{multline*}
+\end{proof}
+
+\begin{exercise}
+  Finish the proof of \Cref{theorem:number-of-functions} by proving that
+  the statement holds for any set $X$.
+\end{exercise}
+
+However, what if we need to find size of a subset of $Y^X$ satisfying some
+constraint. For example, we may try to find size of the set
+\[
+  (Y)_X = \set[f\text{ is an injection}]{f \in Y^X}.
+\]
+First, let us try to do this informally. Assume that $X = [n]$ and $|Y| = m$,
+to define $f \in (Y)_X$ we need to choose images of $1$, $2$, \dots, $n$. There
+are $m$ possible ways to select an image of $1$, $m - 1$ ways to define $f(2)$
+since we can not use the value selected for $1$ etc. Hence,
+$|(Y)_X| = m (m - 1) \dots (m - n + 1)$ (we denote this number as $(m)_n$).
+
+
+\begin{theorem}
+\label{theorem:number-of-injections}
+  Let $X$ and $Y$ be some sets. Then $|(Y)_X| = (|Y|)_{|X|}$.
+\end{theorem}
+\begin{proof}
+  Let us prove this statement for $X = [n]$. We prove this using induction by
+  $n$. The base case, for $n = 1$, is clear. Now we need to prove the induction
+  step from $n$ to $n + 1$. By the induction hypothesis, for any $m$, the
+  number of injections from $[n]$ to $Y$ is equal to $(|Y|)_n$.
+
+  Fix some $m$ and some set $Y$ of cardinality $m$. Note that
+  \[
+    |(Y)_X| =
+    |\set[v \not\in \Im f]{(f, v) \in (Y)_{[n - 1]} \times [m]}|.
+  \]
+  It is easy to see that $|\set[v \not\in \Im f]{(f, v)}| = m - n + 1$
+  for any $f \in (Y)_{[n - 1]}$ and
+  \[
+    \set[v \not\in \Im f]{(f, v) \in (Y)_{[n - 1]} \times [m]} =
+    \bigcup\limits_{f \in (Y)_{[n - 1]}} \set[v \not\in \Im f]{(f, v)}.
+  \]
+  As a result, $|(Y)_X| = (m)_{n - 1} \cdot (m - n + 1) = (m)_n$.
+\end{proof}
+
+The special case of this result is that there are $n (n - 1) \dots 1$ different
+bijections from $[n]$ to $[n]$. Such bijections are called permutations and the
+number is denoted by $n!$.
+
+\begin{exercise}
+  Finish the proof of \Cref{theorem:number-of-injections} by proving that
+  the statement holds for any set $X$.
+\end{exercise}
+
+\section{Counting Subsets}
+Recall that we denoted the set of all subsets of $X$ by $2^X$. The reason for
+this notation is that $|2^X| = 2^{|X|}$.
+
+A quite famous example of a subset of this set is the set
+\[
+  \binom{X}{k} = \set[|A| = k]{A \subseteq [n]}.
+\]
+In other words, it is the set of all possible ways to select $k$ elements from
+$X$. Size of this set we denote by $\binom{|X|}{k}$ and call it a binomial
+coefficient.
+
+Let us find several useful properties of the binomial coefficients.
+\begin{theorem}
+  Let $n$, $m$, and $k$ be some integers such that $m > n > k$.
+  \begin{itemize}
+    \item $\binom{n}{k} = \binom{n}{n - k}$.
+    \item $\binom{n}{k} = \binom{n - 1}{k - 1} + \binom{n - 1}{k}$.
+    \item $\binom{n}{k} = \frac{(m)_n}{n!}$.
+    \item $\sum\limits_{k = 0}^n \binom{n}{k} = 2^n$.
+  \end{itemize}
+\end{theorem}
+\begin{proof}
+  We prove the second property all the others are left as an exercise.
+
+  Informally, the proof is the following. Assume we need to choose $k$ objects
+  out of $n$, there are two possible ways:
+  \begin{itemize}
+    \item we may select $n$ and choose $k - 1$ objects from the rest,
+    \item or we may decide to not select $n$ choose $k$ objects from the rest.
+  \end{itemize}
+  In the first case we have $\binom{n - 1}{k - 1}$ ways to select objects and
+  in the second case we have $\binom{n - 1}{k}$ ways to select objects.
+
+  Let us prove the statement a bit more formally. Note that
+  \[
+    \binom{[n]}{k} = \set[|A| = k \text{ and } n \in A]{A \subseteq [n]} \cup
+    \set[|A| = k \text{ and } n \notin A]{A \subseteq [n]}.
+  \]
+  Since these sets are disjoint and $\set[|A| = k \text{ and } n \notin A]{A
+  \subseteq [n]} = \binom{[n - 1]}{k}$, we get the following equality
+  \[
+    \binom{n}{k} = |\set[|A| = k \text{ and } n \in A]{A \subseteq [n]}| +
+    \binom{n - 1}{k}.
+  \]
+
+  Hence, to finish the proof we need to explain that
+  $|\set[|A| = k \text{ and } n \in A]{A \subseteq [n]}| =
+  \binom{n - 1}{k - 1}$. To prove this statement we construct a bijection $f$
+  from $\set[|A| = k \text{ and } n \in A]{A \subseteq [n]}$ to
+  $\binom{[n - 1]}{k}$:
+  \[
+    f(A) = A \setminus \set{n}.
+  \]
+  It is clear that this is a bijection, thus we prove the statement.
+\end{proof}
+
+Now we are ready to prove the theorem which gave the name to binomial
+coefficients.
+\begin{theorem}[Binomial theorem]
+  For any real numbers $x$ and $y$,
+    \[
+      \sum\limits_{k = 0}^n \binom{n}{k} x^k y^{n - k} = (x + y)^n.
+    \]
+\end{theorem}
+\begin{proof}
+  As always, we prove the statement using induction by $n$. The base case is
+  true, since $\sum\limits_{k = 0}^1 \binom{1}{k} x^k y^{1 - k} = x + y =
+  (x + y)^1$. Asume that
+  \[
+    \sum\limits_{k = 0}^n \binom{n}{k} x^k y^{n - k} = (x + y)^n,
+  \]
+  we wish to prove that
+  \[
+    \sum\limits_{k = 0}^{n + 1} \binom{n + 1}{k} x^k y^{n + 1 - k} =
+      (x + y)^{n + 1}.
+  \]
+  Note that
+  \begin{multline*}
+    (x + y)^{n + 1} = (x + y)
+      \left(
+        \sum\limits_{k = 0}^n \binom{n}{k} x^k y^{n - k}
+      \right) = \\
+    \sum\limits_{k = 0}^n \binom{n}{k} x^{k + 1} y^{n - k} +
+      \sum\limits_{k = 0}^n \binom{n}{k} x^{k} y^{n + 1 - k} = \\
+    \sum\limits_{k = 0}^{n + 1}
+      \left(
+        \binom{n + 1}{k - 1} + \binom{n}{k}
+      \right)
+      x^k y^{n + 1 - k} =
+    \sum\limits_{k = 0}^{n + 1} \binom{n + 1}{k} x^k y^{n + 1 - k}.
+  \end{multline*}
+\end{proof}
