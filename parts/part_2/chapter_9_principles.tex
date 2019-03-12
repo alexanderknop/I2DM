@@ -165,33 +165,64 @@ of sets when they are not disjoint.
   By the induction hypothesis,
   \[
     \left|\bigcup_{i = 1}^k X_i\right| =
-    \sum_{S \subseteq [k] ~:~ S \neq \emptyset} (-1)^{|S| + 1} \left|\bigcap_{i \in S} X_i\right|.
+    \sum_{S \subseteq [k] ~:~ S \neq \emptyset} (-1)^{|S| + 1}
+      \left|\bigcap_{i \in S} X_i\right|.
   \]
   In addition, by \Cref{theorem:inclusion-exclusion-principle},
-  \begin{align*}
+  \[
     \left|\bigcup_{i = 1}^{k + 1} X_i\right| =
-    \left|\bigcup_{i = 1}^k X_i\right|& + |X_{k + 1}| -
-      \left|\left(\bigcup_{i = 1}^k X_i\right) \cap X_{k + 1}\right| = \\
-    \sum_{S \subseteq [k] ~:~ S \neq \emptyset}&
-          (-1)^{|S| + 1} \left|\bigcap_{i \in S} X_i\right| +
-      |X_{k + 1}| -
-      \left|\left(\bigcup_{i = 1}^k X_i\right) \cap X_{k + 1}\right| = \\
-    \sum_{S \subseteq [k] ~:~ S \neq \emptyset}&
-          (-1)^{|S| + 1} \left|\bigcap_{i \in S} X_i\right| +
-      |X_{k + 1}| -
-      \left|\bigcup_{i = 1}^k X_i \cap X_{k + 1}\right| = \\
-    \sum_{S \subseteq [k] ~:~ S \neq \emptyset}&
-          (-1)^{|S| + 1} \left|\bigcap_{i \in S} X_i\right| +
-      |X_{k + 1}| - \\
-    &\sum_{S \subseteq [k] ~:~ S \neq \emptyset}
-          (-1)^{|S| + 1} \left|\bigcap_{i \in S} (X_i \cap X_{k + 1})\right| = \\
-    \sum_{S \subseteq [k] ~:~ S \neq \emptyset}&
-          (-1)^{|S| + 1} \left|\bigcap_{i \in S} X_i\right| +
+    \left|\bigcup_{i = 1}^k X_i\right| + |X_{k + 1}| -
+      \left|\left(\bigcup_{i = 1}^k X_i\right) \cap X_{k + 1}\right|.
+  \]
+  We need to simplify two elements of the sum on the right of the equality.
+  By the induction hypothesis,
+  \[
+    \left|\bigcup_{i = 1}^k X_i\right| =
+      \sum_{S \subseteq [k] ~:~ S \neq \emptyset}
+        (-1)^{|S| + 1}
+        \left|
+          \bigcap_{i \in S} X_i
+        \right|.
+  \]
+  In addition, it is esy to note that
+  \[
+    \left|\left(\bigcup_{i = 1}^k X_i\right) \cap X_{k + 1}\right| =
+    \left|\bigcup_{i = 1}^k \left(X_i \cap X_{k + 1}\right)\right|.
+  \]
+  Thus using the induction hypothesis,
+  \begin{multline*}
+    \left|\left(\bigcup_{i = 1}^k X_i\right) \cap X_{k + 1}\right| = \\
+    \sum_{S \subseteq [k] ~:~ S \neq \emptyset}
+          (-1)^{|S| + 1}
+          \left|
+            \bigcap_{i \in S} (X_i \cap X_{k + 1})
+          \right| = \\
+    \sum_{S \subseteq [k + 1] ~:~ (k + 1) \in S \text{ and } S \neq \set{k + 1}}
+          (-1)^{|S|} \left|\bigcap_{i \in S} X_i \right|.
+  \end{multline*}
+  As a result,
+  \[
+    |X_{k + 1}| -
+      \left|\left(\bigcup_{i = 1}^k X_i\right) \cap X_{k + 1}\right| =
+    \sum_{S \subseteq [k + 1] ~:~ (k + 1) \in S}
+          (-1)^{|S| + 1} \left|\bigcap_{i \in S} X_i \right|.
+  \]
+  Which implies that
+  \begin{multline*}
+    \left|\bigcup_{i = 1}^{k + 1} X_i\right| =
+    \sum_{S \subseteq [k] ~:~ S \neq \emptyset}
+      (-1)^{|S| + 1}
+      \left|
+        \bigcap_{i \in S} X_i
+      \right| + \\
     \sum_{S \subseteq [k + 1] ~:~ (k + 1) \in S}
           (-1)^{|S| + 1} \left|\bigcap_{i \in S} X_i \right| = \\
-    &\sum_{S \subseteq [k + 1] ~:~ S \neq \emptyset}
-          (-1)^{|S| + 1} \left|\bigcap_{i \in S} X_i\right|.
-  \end{align*}
+    \sum_{S \subseteq [k + 1] ~:~ S \neq \emptyset}
+      (-1)^{|S| + 1}
+      \left|
+        \bigcap_{i \in S} X_i
+      \right|.
+  \end{multline*}
 \end{proof}
 
 
