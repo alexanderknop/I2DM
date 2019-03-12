@@ -86,7 +86,7 @@ to defin the predicate formulas.
       formulas in the signature $\mathcal{S}$,
     \item or $\phi$ is equal to $\lnot \psi$, where $\psi$ is a predicate
       formula in the signature $\mathcal{S}$,
-    \item or $\phi$ is equal to $\exists x~\psi$ or $\forall x~\psi$ where
+    \item or $\phi$ is equal to $\exists x_i~\psi$ or $\forall x_i~\psi$ where
       $\psi$ is a predicate formula in the signature $\mathcal{S}$.
   \end{itemize}
 \end{definition}
@@ -102,6 +102,54 @@ is a triple $(M, F_\mathrm{rel}, F_\mathrm{fun})$ such that
   \item $F_\mathrm{fun} : S_\mathrm{fun} \to \bigcup_{i = 0}^\infty M^{M^i}$
     such that $F_\mathrm{fun}(f) \in M^{M^{a(f)}}$.
 \end{itemize}
+The set $M$ in the structure is called the domain of the structure.
+
+
+\begin{definition}
+  Let $\mathcal{S} = (S_\mathrm{rel}, S_\mathrm{fun}, a)$ be a signature and
+  $\mathcal{M} = (M, F_\mathrm{rel}, F_\mathrm{fun})$ be a structure for
+  $\mathcal{S}$.
+
+  Let $t$ be a term in the signature $\mathcal{S}$ over the variables
+  $x_1$, \dots, $x_n$ and $v_1, \dots, v_n \in M$.
+  The value of $t$ with $x_1 = v_1$, \dots, $x_n = t_n$ with respect to the
+  structure $\mathcal{M}$ is equal
+  \begin{itemize}
+    \item either to $v_i$ when $t = x_i$,
+    \item or $F_\mathrm{fun}(f)(u_1, \dots, u_{a(f)})$ when
+      $t = f(t_1, \dots, t_{a(f)})$, where $a_i$ is equal to the value of
+      $t_i$ with $x_1 = v_1$, \dots, $x_n = t_n$ with respect to the
+      structure $\mathcal{M}$.
+  \end{itemize}
+
+  We say that the value of a predicate formula $\phi$ in the signature
+  $\mathcal{S}$ over the variables $x_1$, \dots, $x_n$ with $x_1 = v_1$, \dots,
+  $x_n = v_n$ with respect to the structure $\mathcal{M}$ is equal
+  \begin{itemize}
+    \item either to $R(a_1, \dots, a_{a(R)})$ when
+      $\phi = R(t_1, \dots, t_{a(f)})$, where $a_i$ is equal to the value of
+      $t_i$ with $x_1 = v_1$, \dots, $x_n = t_n$ with respect to the
+      structure $\mathcal{M}$,
+    \item or to $b_1 \lor b_2$ when $\phi = \psi_1 \lor \psi_2$, where $b_i$ is
+      equal to the value of $\psi_i$ with $x_1 = v_1$, \dots, $x_n = t_n$ with
+      respect to the structure $\mathcal{M}$,
+    \item or to $b_1 \land b_2$ when $\phi = \psi_1 \land \psi_2$, where
+      $b_i$ is equal to the value of $\psi_i$ with $x_1 = v_1$, \dots, $x_n =
+      t_n$ with respect to the structure $\mathcal{M}$,
+    \item or to $\lnot b$ when $\phi = \lnot \psi$, where
+      $b$ is equal to the value of $\psi$ with $x_1 = v_1$, \dots,
+      $x_n = t_n$ with respect to the structure $\mathcal{M}$,
+    \item or to true when $\phi = \exists x_i ~ \psi$ and the value of $\psi$
+      with $x_1 = v_1$, \dots, $x_{i - 1} = v_{i - 1}$, $x_i = u$, $x_{i + 1} =
+      v_{i + 1}$, \dots $x_n = t_n$ with respect to the structure $\mathcal{M}$
+      is true for some $u \in M$,
+    \item or to true when $\phi = \forall x_i ~ \psi$ and the value of $\psi$
+      with $x_1 = v_1$, \dots, $x_{i - 1} = v_{i - 1}$, $x_i = u$, $x_{i + 1} =
+      v_{i + 1}$, \dots $x_n = t_n$ with respect to the structure $\mathcal{M}$
+      is true for all $u \in M$,
+    \item otherwise it is false.
+  \end{itemize}
+\end{definition}
 
 
 
