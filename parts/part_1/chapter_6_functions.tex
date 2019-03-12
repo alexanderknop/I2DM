@@ -1,17 +1,15 @@
 \chapter{Functions}
-
-\begin{wrapfigure}{l}{4cm}
-  \begin{center}
-    \vskip -0.5cm
-    \qrset{link, height=3cm}
-    \qrcode{https://youtu.be/VHJeUrCedTU}
-    \vskip 0.25cm
-    \href{https://youtu.be/VHJeUrCedTU}{youtu.be/VHJeUrCedTU}
-    {\footnotesize Functions and Quantifiers}
-  \end{center}
-  \vskip -0.5cm
-\end{wrapfigure}
-
+\begin{marginfigure}
+  {\scriptsize Functions and Quantifiers:\\\noindent
+  Introduction to Mathematical Reasoning \#7}
+  \vskip 0.25cm
+  \noindent
+  \qrset{link, height=3cm}
+  \qrcode{https://youtu.be/VHJeUrCedTU}
+  \vskip 0.25cm
+  \noindent
+  \url{youtu.be/VHJeUrCedTU}
+\end{marginfigure}
 Another important type of objects in mathematics are functions. Function $f$
 from a set $X$ to a set $Y$ (we write it as $f : X \to Y$) is a unique
 assignment of elements of $Y$ to the elements of $X$. In other words, for each
@@ -28,20 +26,30 @@ the people in the class have smartphones.'' However, we still do not know how to
 write it using symbols.
 
 \paragraph{The Universal Quantifier.}
-In order to say ``all'' or ``every'' we use the symbol $\forall$: if
-$P(a)$ is a predicate about $a \in A$, then $\forall a \in A\ P(a)$ is a
+In order to say ``all'' or ``every'' we use the symbol $\forall$\footnote{%
+  The symbol is a turned ``A'' symbol, the first letter of the word ``all''.
+}: if $P(a)$ is a predicate about $a \in A$, then $\forall a \in A\ P(a)$ is a
 statement saying that all the elements of $A$ satisfy the predicate $P$. In
 other words it is the same as the statement
 $\set[P(a)]{a \in A} = A$. For example, $\forall x \in \R\ x \cdot 0 = 0$ says
 that product of every real number and zero is equal to zero.
+\nomenclature[P]{$\forall \alpha \in A~P(a)$}{denotes the statement saying that
+$P$ is true for all elements of $A$}
 
 \paragraph{The Existential Quantifier.}
-The second quantifier means ``there is'' and denoted by the symbol $\exists$:
+The second quantifier means ``there is'' and denoted by the symbol $\exists$\footnote{%
+  The symbol is a turned ``E'' symbol, the first letter of the word ``exists''.
+  It is also intresting that the symbol for the universal quantifier was
+  introduced by Gerhard Gentzen in 1935 but the symbol for the existencial
+  qunatifier was intriduced, 38 years earlier, by Giuseppe Peano in 1897.
+}:
 if $P(a)$ is a predicate about an element of $A$, then $\exists a \in A\ P(a)$
 says that there is an element of $A$ satisfying the predicate $P$ i.e.
 $\set[P(a)]{a \in A} \neq \emptyset$. For example,
 $\exists x \in \R\ x^2 - 1 = 0$ states that there is a real solution of the
 equation $x^2 - 1 = 0$.
+\nomenclature[P]{$\exists \alpha \in A~P(a)$}{denotes the statement saying that $P$ is
+true for some element of $A$}
 
 \begin{warning}
   Note that the word ``any'' sometimes indicates a universal statement and
@@ -114,7 +122,7 @@ it is the same as proving the negation.
 \paragraph{Disproving statements of the form $\forall a \in A \ P(a)$.}
 We may note that the negation of such a statement is the statement $\exists a
 \in A \ \lnot P(a)$. So we can disprove it by giving a single example for which
-it is false. This is called \textit{Disproof by counterexample} to $P(a)$.
+it is false. This is called \textit{disproof by counterexample} to $P(a)$.
 
 For example, we may disprove the statement $\forall x \in \R \ x^2 > 2$ by
 giving a counterexample $x = 1$ since $1^2 = 1 < 2$.
@@ -130,13 +138,15 @@ know that, for all $x \in \R$, we have the inequality $x^2 \ge 0$ and so $x^2
 \section{Cartesian product}
 Another ingredient is the notion of Cartesian product. If $X$ and $Y$ are two
 sets, then $X \times Y = \set[x \in X \text{ and } y \in Y]{(x, y)}$. We also
-denote $\underbrace{X \times X \times \dots \times X}_{k \text{ times}}$ by 
+denote $\underbrace{X \times X \times \dots \times X}_{k \text{ times}}$ by
 $X^k$.
 
 Consider the following example. If $X = \set{a, b, c}$ and $Y = \set{a, b}$,
 then $$X \times Y = \set{(a, a), (a, b), (b, a), (b, b), (c, a), (c, b)}.$$
 Additionally, $\R^2 = \R \times \R$ is the familiar $2$-dimensional Euclidean
 plane.
+\nomenclature[SO]{$A \times B$}{denotes the set of all ordered pairs of elements of
+$A$ and $B$}
 
 \begin{exercise}
   Find the set $\set{a, b} \times \set{a, b} \setminus
@@ -278,49 +288,52 @@ make a domain smaller.
 \end{definition}
 
 \section{Composition of Functions}
-\begin{center}
-    \begin{tikzpicture}[
-    >=stealth,
-    bullet/.style={
-        fill=black,
-        circle,
-        minimum width=1pt,
-        inner sep=1pt
-    },
-    projection/.style={
-        ->,
-        thick,
-        shorten <=2pt,
-        shorten >=2pt
-    },
-    every fit/.style={
-        ellipse,
-        draw,
-        inner sep=0pt
-    }
-    ]
-    \node at (2,4.7) {$f$};
-    \draw[projection] (1,4.5) -- (3,4.5);
-    \node at (0,5) {$X$};
-    \node[bullet,label=below:$x$] (START)   at (0,2.5){};
-    \node at (4,5) {$Y$};
-    \node[bullet,label=below:$f(x)$] at (4,2.5){};
-    \node at (6,4.7) {$g$};
-    \draw[projection] (5,4.5) -- (7,4.5);
-    \node at (8,5) {$Z$};
-    \node[bullet,label=below:$g\big(f(x)\big)$] (END) at (8,2.5){};
+\begin{figure}
+  \begin{center}
+      \begin{tikzpicture}[
+      >=stealth,
+      bullet/.style={
+          fill=black,
+          circle,
+          minimum width=1pt,
+          inner sep=1pt
+      },
+      projection/.style={
+          ->,
+          thick,
+          shorten <=2pt,
+          shorten >=2pt
+      },
+      every fit/.style={
+          ellipse,
+          draw,
+          inner sep=0pt
+      }
+      ]
+      \node at (2,4.7) {$f$};
+      \draw[projection] (1,4.5) -- (3,4.5);
+      \node at (0,5) {$X$};
+      \node[bullet,label=below:$x$] (START)   at (0,2.5){};
+      \node at (4,5) {$Y$};
+      \node[bullet,label=below:$f(x)$] at (4,2.5){};
+      \node at (6,4.7) {$g$};
+      \draw[projection] (5,4.5) -- (7,4.5);
+      \node at (8,5) {$Z$};
+      \node[bullet,label=below:$g\big(f(x)\big)$] (END) at (8,2.5){};
 
-    \draw [line width=8pt, yellow, shorten <=0.25cm,, shorten >=0.6cm, ->] (START.south) to[out=-50, in=-120, distance=4cm, ] node[black, midway, below, align = center, yshift = -0.25cm] {$g \circ f$} (END);
+      \draw [line width=8pt, yellow, shorten <=0.25cm,, shorten >=0.6cm, ->] (START.south) to[out=-50, in=-120, distance=4cm, ] node[black, midway, below, align = center, yshift = -0.25cm] {$g \circ f$} (END);
 
-    \draw (0,2.5) ellipse (1.02cm and 2.2cm);
-    \draw (4,2.5) ellipse (1.02cm and 2.2cm);
-    \draw (8,2.5) ellipse (1.02cm and 2.2cm);
+      \draw (0,2.5) ellipse (1.02cm and 2.2cm);
+      \draw (4,2.5) ellipse (1.02cm and 2.2cm);
+      \draw (8,2.5) ellipse (1.02cm and 2.2cm);
 
-    \draw[projection] (0.3,2.5) -- (3.7,2.5);
-    \draw[projection] (4.3,2.5) -- (7.7,2.5);
-    \end{tikzpicture}
-    \newline
-\end{center}
+      \draw[projection] (0.3,2.5) -- (3.7,2.5);
+      \draw[projection] (4.3,2.5) -- (7.7,2.5);
+      \end{tikzpicture}
+      \newline
+  \end{center}
+  \caption{Composition of functions}
+\end{figure}
 
 Suppose $f : X \ to Y$ and $g : Y \to Z$ be some function. Then, given an
 element $x \in X$, the function $f$ assigns $y = f(x) \in Y$, and the function
@@ -328,10 +341,11 @@ $g$ assigns $z = g(y) = g(f(x)) \in Z$. Thus using $f$ and $g$ an element of
 $Z$ can be assigned to $x$. This operation defines a function from $X$ to $Z$
 and the result of this operation is called the \textit{composition} of $f$ and
 $g$.
+\nomenclature[F]{$f \circ g$}{denotes the composition of funcitons $f$ and $g$}
 
 \begin{definition}
   If $f : X \to Y$ and $g : Y \to Z$, then $h = g \circ f$ is a
-  function from $X$ to $Z$ such that $\forall x \in X\ g(f(x)) = h(x)$.
+  function from $X$ to $Z$ such that $g(f(x)) = h(x)$ for all $x \in X$.
 \end{definition}.
 
 Let us consider an example. Let $f : \R \to \R$ such that $f(x) = x + 1$ and
@@ -379,6 +393,7 @@ Thus we may give the following definition.
   words it is the projection of the graph $D$ of $f$ on the second coordinate:
   $\Im f = \set[(x, y) \in D]{y}$).
 \end{definition}
+\nomenclature[F]{$\Im f$}{denotes the image of $f$}
 
 \section*{End of The Chapter Exercises}
 \begin{exercises}

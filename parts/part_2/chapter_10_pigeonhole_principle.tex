@@ -1,16 +1,16 @@
 \chapter{The Pigeonhole Principle}
-\begin{wrapfigure}{l}{4cm}
-  \begin{center}
-    \vskip -0.5cm
-    \qrset{link, height=3cm}
-    \qrcode{https://youtu.be/1D1Fa7WIUO8}
-    \vskip 0.25cm
-    \href{https://youtu.be/1D1Fa7WIUO8}{youtu.be/1D1Fa7WIUO8}
-    {\footnotesize The Pigeonhole Principle}
-  \end{center}
-  \vskip -0.5cm
-\end{wrapfigure}
-The principle we are going to discuss in this chapter is very simple: it states
+\begin{marginfigure}
+  {\scriptsize The Pigeonhole Principle:\\\noindent
+  Introduction to Combinatorics \#3}
+  \vskip 0.25cm
+  \noindent
+  \qrset{link, height=3cm}
+  \qrcode{https://youtu.be/1D1Fa7WIUO8}
+  \vskip 0.25cm
+  \noindent
+  \url{youtu.be/1D1Fa7WIUO8}
+\end{marginfigure}
+The principle we are going to discuss in this chapter is very simple, it states
 that if you have more objects than boxes, then you cannot put all the objects to
 boxes without puting two objects in the same box.
 
@@ -29,7 +29,7 @@ famous in mathematics and called \textit{the pigeonhole principle}\footnote{%
 \end{theorem}
 \begin{proof}
   The statement follows from
-  \Cref{theorem:injections-surjections-inequalities}.
+  Theorem~\ref{theorem:injections-surjections-inequalities}.
 \end{proof}
 
 This simple statement is very handy in combinatorics. For example, using this
@@ -95,7 +95,7 @@ containing at least $\ceil{N / k}$ objects.
 \end{theorem}
 
 \begin{exercise}
-    Prove \Cref{theorem:generalized-pigeonhole-principle}.
+    Prove Theorem~\ref{theorem:generalized-pigeonhole-principle}.
 \end{exercise}
 
 Using this theorem we can prove that if we draw $9$ cards out of a deck of
@@ -140,6 +140,8 @@ friends. Otherwise, $B$, $C$, and $D$ form a set of three mutual enemies.
     will be a period of consecutive days where he trains exactly $14$ times.
   \exerciseitem Show that among any $n + 1$ positive integers not exceeding $2n$
     there must be an integer that divides one of the other integers.
+    \textit{Advise: consider the set of holes equal to the set of odd numbers
+    from $1$ to $2n$.}
   \exerciseitem Let $a_1$, $a_2$, \dots, $a_t$ be positive integers. Show that
     if $a_1 + a_2 + \dots + a_t - t + 1$ objects are placed into $t$ boxes,
     then for some $i \in [t]$, the $i$th box contains at least $a_i$ objects.

@@ -1,4 +1,9 @@
-\documentclass{book}
+\documentclass[nohyper,nobib]{tufte-book}
+\usepackage{nameref}
+
+\usepackage{url}
+
+\usepackage{xargs}
 
 \usepackage[LGR,T1]{fontenc}
 
@@ -15,16 +20,12 @@
 \usepackage{tikz}
 \usetikzlibrary{shapes,backgrounds}
 
+\usepackage{subfig}
+
 \usepackage{ifthen}
 
-\usepackage{graphicx}
-\usepackage{subcaption}
 
 \usepackage{enumitem}
-
-\usepackage{varioref}
-\usepackage[linktoc=all,colorlinks=true,linkcolor=black, urlcolor=black]{hyperref}
-\usepackage{cleveref}
 
 \usepackage{anyfontsize}
 
@@ -34,6 +35,89 @@
 \usepackage{wrapfig}
 
 \usepackage{epigraph}
+
+\usepackage{booktabs}
+
+\usepackage{xspace}
+
+\usepackage{units}
+
+\usepackage[refpage]{nomencl}
+\makenomenclature
+
+
+% Generates the index
+\usepackage{makeidx}
+\makeindex
+
+%%%% Kevin Godny's code for title page and contents from https://groups.google.com/forum/#!topic/tufte-latex/ujdzrktC1BQ
+\makeatletter
+\renewcommand{\maketitlepage}{%
+\begingroup%
+\setlength{\parindent}{0pt}
+
+{\fontsize{24}{24}\selectfont\textit{\@author}\par}
+
+\vspace{1.75in}{\begin{minipage}{1.5\linewidth}\fontsize{36}{54}\selectfont\@title\par\end{minipage}}
+
+\vspace{0.5in}{\fontsize{14}{14}\selectfont\textsf{\smallcaps{\@date}}\par}
+
+\vfill{\fontsize{14}{14}\selectfont\textit{\@publisher}\par}
+
+\thispagestyle{empty}
+\endgroup
+}
+\makeatother
+
+\titlecontents{part}%
+    [0pt]% distance from left margin
+    {\addvspace{0.25\baselineskip}}% above (global formatting of entry)
+    {\allcaps{Part~\thecontentslabel}\allcaps}% before w/ label (label = ``Part I'')
+    {\allcaps{Part~\thecontentslabel}\allcaps}% before w/o label
+    {}% filler and page (leaders and page num)
+    [\vspace*{0.5\baselineskip}]% after
+
+\titlecontents{chapter}%
+    [4em]% distance from left margin
+    {}% above (global formatting of entry)
+    {\contentslabel{2em}\textit}% before w/ label (label = ``Chapter 1'')
+    {\hspace{0em}\textit}% before w/o label
+    {\qquad\thecontentspage}% filler and page (leaders and page num)
+    [\vspace*{0.5\baselineskip}]% after
+%%%% End additional code by Kevin Godby
+
+\setcounter{secnumdepth}{1}
+
+\titleformat{\chapter}%
+[block]% shape
+{\relax\ifthenelse{\NOT\boolean{@tufte@symmetric}}{\begin{minipage}{\linewidth}}{}}% format applied to label+text
+{\itshape\huge\thechapter\hspace{10pt}}% label
+{0pt}% horizontal separation between label and title body
+{\huge\rmfamily\itshape}% before the title body
+[\ifthenelse{\NOT\boolean{@tufte@symmetric}}{\end{minipage}}{}]% after the title body
+
+\renewcommand{\nomname}{List of Symbols}
+
+\usepackage{ifthen}
+  \renewcommand{\nomgroup}[1]{%
+  \item[\bfseries%
+  \ifthenelse{\equal{#1}{S}}{Set Operations}{%
+  \ifthenelse{\equal{#1}{P}}{Predicates}{%
+  \ifthenelse{\equal{#1}{L}}{Logical Operations}{%
+  \ifthenelse{\equal{#1}{R}}{Relations}{%
+  \ifthenelse{\equal{#1}{F}}{Operations on Functions}{%
+  \ifthenelse{\equal{#1}{N}}{Standard Sets}{}}}}}}%
+]}
+
+\setlength\nomlabelwidth{2.5cm}
+
+\renewcommand{\nompreamble}{%
+  The letters $A$ and $B$ denote sets, the letters $P$ and $Q$ denote
+  propositions and predicates, the lower case latin letters $f$ and $g$ denote
+  functions, and the lower case latin letters $a$, $b$, $n$,
+  and $k$ denote integer numbers.
+}
+
 
 \input{macroses/enviroments}
 \input{macroses/commands}

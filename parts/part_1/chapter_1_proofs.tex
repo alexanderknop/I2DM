@@ -1,16 +1,17 @@
 \chapter{Proofs}
 \section{Direct Proofs}
-\begin{wrapfigure}{l}{4cm}
-  \begin{center}
-    \vskip -0.5cm
-    \qrset{link, height=3cm}
-    \qrcode{https://youtu.be/eJD0gGqveIE}
-    \vskip 0.25cm
-    \href{https://youtu.be/eJD0gGqveIE}{youtu.be/eJD0gGqveIE}
-    {\footnotesize What is a Mathematical Proof}
-  \end{center}
-  \vskip -1cm
-\end{wrapfigure}
+\begin{marginfigure}
+  {\scriptsize What is a Mathematical Proof:\\\noindent
+  Introduction to Mathematical Reasoning \#1}
+  \vskip 0.25cm
+  \noindent
+  \qrset{link, height=3cm}
+  \qrcode{https://youtu.be/eJD0gGqveIE}
+  \vskip 0.25cm
+  \noindent
+  \url{youtu.be/eJD0gGqveIE}
+\end{marginfigure}
+
 We start the discussion of the proofs in mathematics from an example of a proof
 in ``everyday'' life. Assume that we know that the following statements are
 true.
@@ -30,6 +31,10 @@ Mathematical proof is also a sequence of statements such that every statement
 is true if the previous statement is true. If $P$ and $Q$ are some statements
 and $Q$ is always true when $P$ is true, then we say that $P$ implies $Q$.
 We denote the statement that $P$ implies $Q$ by $P \implies Q$.
+
+\nomenclature[LO]{$P \implies Q$}{denotes the statement saying that
+if $P$ is true, then $Q$ is true as well}
+
 
 In order to define the implication formally let us consider the following table.
 \begin{center}
@@ -53,19 +58,6 @@ are both false, then $P \implies Q$ is true etc.
       ``$n$ is equal to $2$''?
   \end{enumerate}
 \end{exercise}
-
-\begin{wrapfigure}{r}{4cm}
-  \begin{center}
-    \vskip -0.5cm
-    \qrset{link, height=3cm}
-    \qrcode{https://youtu.be/nBjJi6aTk2M}
-    \vskip 0.25cm
-    \href{https://youtu.be/nBjJi6aTk2M}{youtu.be/nBjJi6aTk2M}
-    {\footnotesize What We Know and How to Find a Proof}
-  \end{center}
-  \vskip -0.5cm
-\end{wrapfigure}
-
 In the example we gave at the beginning of the section we used some
 \textit{known} facts. But what does it mean to know something? In math we
 typically say that we know a statement if we can prove it. But in order to prove
@@ -73,7 +65,7 @@ this statement we need to know something again, which is a problem! In order to
 solve it, mathematicians introduced the notion of an \textit{axiom}.
 An axiom is a statement that is believed to be true and when we prove a statement
 we prove it under the assumption that these axioms are true\footnote{Note that
-in different parts of math axioms may be different}.
+in different parts of math axioms may be different.}.
 
 For example, we may consider axioms of inequalities for real numbers.
 \begin{enumerate}
@@ -89,6 +81,20 @@ For example, we may consider axioms of inequalities for real numbers.
     that $c > 0$ and $a < b$ iff $ac > bc$ if $c < 0$.
   \item Let $a, b, c \in \R$. If $a < b$ and $b < c$, then $a < c$.
 \end{enumerate}
+
+
+\begin{marginfigure}
+  {\scriptsize What We Know and How to Find a Proof:\\\noindent
+  Introduction to Mathematical Reasoning \#2}
+  \vskip 0.25cm
+  \noindent
+  \qrset{link, height=3cm}
+  \qrcode{https://youtu.be/nBjJi6aTk2M}
+  \vskip 0.25cm
+  \noindent
+  \url{youtu.be/nBjJi6aTk2M}
+\end{marginfigure}
+
 
 Let us now try to prove something using these axioms, we prove that if $a > 0$,
 then $a^2 > 0$. Note that $a > 0$, hence, by the third axiom $a^2 > 0$.
@@ -119,8 +125,8 @@ Such a way of constructing proof is called direct proofs.
 Let $n$ and $m$ be some integers. Using direct proofs we may prove the
 following two statements.
 \begin{itemize}
-  \item if $n$ is even, then $nm$ is also even\footnote{A number $n$ is even
-    if there is an integer $k$ such that $n = 2k$.},
+  \item if $n$ is even, then $nm$ is also even (a number $\ell$ is even
+    if there is an integer $k$ such that $\ell = 2k$),
   \item if $n$ is even and $m$ is even, then $n + m$ is also even.
 \end{itemize}
 
@@ -171,7 +177,7 @@ Hence, by axioms~1 and~2 applied twice
 As a result,
 \begin{multline*}
   (a + b) \cdot (a + b) =
-  (a + b) \cdot a + (a + b) \cdot b =
+  (a + b) \cdot a + (a + b) \cdot b = \\
   a \cdot (a + b) + b \cdot (a + b) =
   a \cdot a + a \cdot b + b \cdot a + b \cdot b;
 \end{multline*}

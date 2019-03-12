@@ -6,7 +6,7 @@ solutions for $a > 0$ and there are zero solutions for $a < 0$. A relation is a
 more general mathematical object.
 
 In order to define a relation we need to relax the definition of the graph of a
-function (\Cref{section:graph}) by allowing more than one ``result'' and
+function (Section~\ref{section:graph}) by allowing more than one ``result'' and
 by allowing zero ``results''. In other words we just say that any set $R
 \subseteq X_1 \times \dots \times X_k$ is a $k$-ary \textit{relation} on $X_1$,
 \dots, $X_k$. We also say that $x_1 \in X_1$, \dots, $x_k \in X_k$ are in the
@@ -87,13 +87,14 @@ equivalence relation on $S$. However, it is possible to do the opposite.
 \end{theorem}
 
 \begin{exercise}
-  Prove \Cref{theorem:partition}.
+  Prove Theorem~\ref{theorem:partition}.
 \end{exercise}
 
 \subsection{Modular Arithmetic}
 The relation ``$\equiv \pmod{n}$'' is actively used in the number theory. One
 of the important properties of this relation is that it is an equivalence
 relation.
+\nomenclature[R]{$a \equiv b \pmod{n}$}{says that $n$ divides $a - b$}
 \begin{theorem}
   The relation $\equiv \pmod{n}$ is an equivalence relation.
 \end{theorem}
@@ -176,6 +177,7 @@ write $a \prec b$ to express that $a \preceq b$ and $a \neq b$.
 
 Let $\divides$ be the relation on $\Z$ such that $d \divides n$ iff $d$
 divides $n$.
+\nomenclature[R]{$a \divides b$}{says that $a$ divides $b$}
 \begin{theorem}
   The relation $\divides$ is a partial ordering of the set $\N$.
 \end{theorem}
@@ -228,7 +230,7 @@ This sorting can be done using the following procedure.
   \item Initiate the set $S$ beeing equal to $T$
   \item Choose the minimal element of the set $S$ with respect to the ordering
     $\preceq$ (such an element exists since $S$ is a finite set, see
-    \Cref{chapter:bijections-surjections-injections}).
+    Chapter~\ref{chapter:bijections-surjections-injections}).
     Add this element to the list, remove it from the set $S$, and repeate this
     step if $S \neq \emptyset$.
 \end{itemize}

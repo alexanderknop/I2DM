@@ -1,15 +1,15 @@
 \chapter{Sets}
-\begin{wrapfigure}{l}{4cm}
-  \begin{center}
-    \vskip -0.5cm
-    \qrset{link, height=3cm}
-    \qrcode{https://youtu.be/bshBV2H4Sqo}
-    \vskip 0.25cm
-    \href{https://youtu.be/bshBV2H4Sqo}{youtu.be/bshBV2H4Sqo}
-    {\footnotesize Sets}
-  \end{center}
-  \vskip -0.5cm
-\end{wrapfigure}
+\begin{marginfigure}
+  {\scriptsize Sets:\\\noindent
+  Introduction to Mathematical Reasoning \#6}
+  \vskip 0.25cm
+  \noindent
+  \qrset{link, height=3cm}
+  \qrcode{https://youtu.be/bshBV2H4Sqo}
+  \vskip 0.25cm
+  \noindent
+  \url{youtu.be/bshBV2H4Sqo}
+\end{marginfigure}
 \section{The Intuitive Definition of a Set}
 A set is one of the two most important concepts in mathematics. Many mathematical
 statements involve ``an integer $n$'' or ``a real number $a$''. Set theory
@@ -23,15 +23,21 @@ A \textit{set} is a well-defined collection of objects. Important examples of
 sets are:
 \begin{enumerate}
   \item $\R$ a set of reals,
+    \nomenclature[N]{$\R$}{denotes the set of all real numbers}
   \item $\Z$ the set of integers\footnote{``Z'' stands for the German word
     Zahlen (``numbers'').},
+    \nomenclature[N]{$\Z$}{denotes the set of all integers}
   \item $\N$ the set of natural numbers\footnote{Note that in the literature
       there are two diffirent traditions: in one $0$ is a natural number, in
       another it is not; in this book we are going to assume that $0$ is not a
       natural number.
     },
+    \nomenclature[N]{$\N$}{denotes the set of all integers greater
+    than $0$}
   \item $\Q$ a set of rational numbers,
+    \nomenclature[N]{$\Q$}{denotes the set of all rational numbers}
   \item $\mathbb{C}$ a set of complex numbers.
+    \nomenclature[N]{$\C$}{denotes the set of all complex numbers}
 \end{enumerate}
 Usually, sets are denoted by single letter.
 
@@ -88,6 +94,11 @@ For example, $\Q \subseteq \R$ since any rational number is
 also a real number. A special set is an empty set i.e. the set that does not
 have elements, we denote it $\emptyset$.
 
+\nomenclature[R]{$A \subseteq B$}{says that $A$ is a subset of $B$}
+
+\nomenclature[N]{$\emptyset$}{denotes the set that does
+  not have elements}
+
 \subsection{Diagrams}
 If we think of a set $A$ as represented by all the points within a circle or
 any other closed figure, then it is easy to represent the notion of $A$ being a
@@ -99,35 +110,29 @@ it is clear that one may draw Euler diagrams for more than two sets.
 
 \begin{figure}
     \centering
-    \begin{subfigure}[b]{0.45\textwidth}
-      \begin{center}
-        \begin{tikzpicture}[scale=0.6]
-          \draw (20:2cm) circle (3cm) node [yshift=10ex] {$B$};
-          \draw (0:2cm) circle (1.5cm) node {$A$};
-        \end{tikzpicture}
-      \end{center}
-      \caption{$A \subseteq B$}
-      \label{figure:euler-diagram-subset}
-    \end{subfigure}
-    ~
-    \begin{subfigure}[b]{0.45\textwidth}
-      \begin{center}
-        \begin{tikzpicture}[scale=0.6]
-          \draw (20:2cm) circle (3cm) node [yshift=10ex] {$A, B$};
-        \end{tikzpicture}
-      \end{center}
-      \caption{$A = B$}
-      \label{figure:euler-diagram-equal}
-    \end{subfigure}
-    \caption{Euler diagrams}
+    \subfloat[$A \subseteq B$]{
+      \begin{tikzpicture}[scale=0.6]
+        \draw (20:2cm) circle (3cm) node [yshift=8ex] {$A$};
+        \draw (0:2cm) circle (1.5cm) node {$B$};
+      \end{tikzpicture}
+    }
+    \qquad\qquad
+    \subfloat[$A = B$] {
+      \begin{tikzpicture}[scale=0.6]
+        \draw (20:2cm) circle (3cm) node [yshift=8ex] {$A, B$};
+      \end{tikzpicture}
+    }
+    \caption{Euler diagrams for subset and equality relations}
     \label{figure:euler-diagram}
 \end{figure}
 
 
 \subsection{Descriptions of Sets}
+In this section we describe how to define new sets, this notation is also
+known as \textit{set-builder notation}.
 
-\paragraph{Listing elements.} There are several ways to construct a set, the
-simplest one is just to list them. For example
+\paragraph{Listing elements.} The simplest way to define a set is just to list
+the elements. For example
 \begin{enumerate}
   \item $\set{1, 2, \pi}$ is the set consisting of three elements 1, 2, and
     $\pi$, and
@@ -142,6 +147,8 @@ numbers using the following formula $\set[n \text{ is even}]{n \in \Z}$
 
 Using this we may also define the set of all integers from $1$ to $m$, we
 denote it $[m]$; i.e. $[m] = \set[0 < n \le m]{n \in \N}$.
+\nomenclature[N]{$[n]$}{denotes the set of all the integers from $1$ to n}
+
 
 \paragraph{Constructive definitions.} Another way to construct a set of all
 even numbers is to use the constructive definition of a set:
@@ -173,61 +180,53 @@ disjoint with $A_j$ for all $i \neq j \in [\ell]$
 \section{Operations over Sets.}
 Another way to describe a set is to apply operation to other sets. Let $A$ and
 $B$ be sets.
-
 \begin{figure}
-    \centering
-    \begin{subfigure}[b]{0.4\textwidth}
-      \begin{center}
-        \begin{tikzpicture}[scale=0.8]
-            \fill[yellow] (45:2cm) circle (1.5cm);
-            \fill[yellow] (0:2cm) circle (1.5cm);
+  \centering
+  \subfloat[$A \cup B$]{
+    \begin{tikzpicture}[scale=0.8]
+        \fill[yellow] (45:2cm) circle (1.5cm);
+        \fill[yellow] (0:2cm) circle (1.5cm);
 
-            \draw (45:2cm) circle (1.5cm) node [above] {$A$};
-            \draw (0:2cm) circle (1.5cm) node [below] {$B$};
-        \end{tikzpicture}
-      \end{center}
-      \caption{$A \cup B$}
-    \end{subfigure}
-    ~
-    \begin{subfigure}[b]{0.4\textwidth}
-      \begin{center}
-        \begin{tikzpicture}[scale=0.8]
-          \begin{scope}
-              \clip (45:2cm) circle (1.5cm);
-              \fill[yellow] (0:2cm) circle (1.5cm);
-          \end{scope}
-          \draw (45:2cm) circle (1.5cm) node [above] {$A$};
-          \draw (0:2cm) circle (1.5cm) node [below] {$B$};
-        \end{tikzpicture}
-      \end{center}
-      \caption{$A \cap B$}
-    \end{subfigure}
-    ~
-    \begin{subfigure}[b]{0.4\textwidth}
-      \begin{center}
-        \begin{tikzpicture}[scale=0.8]
-          \begin{scope}[even odd rule]% first circle without the second
-            \clip (0:2cm) circle (1.5cm) (-0.25,-0.25) rectangle (3,3);
-            \fill[yellow] (45:2cm) circle (1.5cm);
-          \end{scope}
-          \draw (45:2cm) circle (1.5cm) node {$A$};
-          \draw (0:2cm) circle (1.5cm) node {$B$};
-        \end{tikzpicture}
-      \end{center}
-      \caption{$A \setminus B$}
-    \end{subfigure}
-    \begin{subfigure}[b]{0.4\textwidth}
-      \begin{center}
-        \begin{tikzpicture}[scale=0.8]
-          \fill[yellow, even odd rule] (45:2cm) circle (1.5cm) node {$A$}
-            (0:2cm) circle (1.5cm) node{$B$};
-          \draw (45:2cm) circle (1.5cm) node {$A$};
-          \draw (0:2cm) circle (1.5cm) node {$B$};
-        \end{tikzpicture}
-      \end{center}
-      \caption{$A \Delta B$}
-    \end{subfigure}
-    \caption{Operations over the sets}
+        \draw (45:2cm) circle (1.5cm) node [above] {$A$};
+        \draw (0:2cm) circle (1.5cm) node [below] {$B$};
+    \end{tikzpicture}
+  }
+  \qquad\qquad
+  \subfloat[$A \cap B$]{
+    \begin{tikzpicture}[scale=0.8]
+      \begin{scope}
+          \clip (45:2cm) circle (1.5cm);
+          \fill[yellow] (0:2cm) circle (1.5cm);
+      \end{scope}
+      \draw (45:2cm) circle (1.5cm) node [above] {$A$};
+      \draw (0:2cm) circle (1.5cm) node [below] {$B$};
+    \end{tikzpicture}
+  }
+  \vskip 0.25cm
+  \subfloat[$A \setminus B$]{
+    \begin{tikzpicture}[scale=0.8]
+      \begin{scope}[even odd rule]
+        \clip (0:2cm) circle (1.5cm) (-0.25,-0.25) rectangle (3,3);
+        \fill[yellow] (45:2cm) circle (1.5cm);
+      \end{scope}
+      \draw (45:2cm) circle (1.5cm) node [above] {$A$};
+      \draw (0:2cm) circle (1.5cm) node [below] {$B$};
+    \end{tikzpicture}
+  }
+  \qquad\qquad
+  \subfloat[$A \Delta B$]{
+    \begin{tikzpicture}[scale=0.8]
+      \begin{scope}[even odd rule]
+        \clip (0:2cm) circle (1.5cm) (45:2cm) circle (1.5cm);
+        \fill[yellow] (45:2cm) circle (1.5cm);
+        \fill[yellow] (0:2cm) circle (1.5cm);
+      \end{scope}
+
+      \draw (45:2cm) circle (1.5cm) node [above] {$A$};
+      \draw (0:2cm) circle (1.5cm) node [below] {$B$};
+    \end{tikzpicture}
+  }
+  \caption{Euler diagrams for set operations}
 \end{figure}
 
 
@@ -238,6 +237,7 @@ $A \cup B = \set[x \in A \text{ or } x \in B]{x}$\footnote{%
   Note that this definition is not correct since in the conditional definitions
   we have to specify the set $x$ belongs to and we cannot do this here.
 }.
+\nomenclature[S]{$A \cup B$}{denotes the union of two sets $A$ and $B$}
 
 Another example of such an operation is \textit{intersection}. The
 intersection of $A$ and $B$ is the set of all the elements belonging to both
@@ -247,10 +247,12 @@ $A$ and $B$ i.e $A \cap B = \set[x \in A \text{ and } x \in B]{x}$\footnote{%
   reason the symbol of the conjunction is similar to the symbol of intersection
   and the symbol of the disjunction is similar to the symbol of union.
 }.
+\nomenclature[S]{$A \cap B$}{denotes the intersection of two sets $A$ and $B$}
 
 The third operation we are going to discuss this lecture is
 \textit{set difference}. If $A$ and $B$ are some sets, then
 $A \setminus B = \set[x \in A \text{ and } x \not\in B]{x}$.
+\nomenclature[S]{$A \setminus B$}{denotes the difference of two sets $A$ and $B$}
 
 The last operation is \textit{symmetric difference}. If $A$ and $B$ are some
 sets, then $A \Delta B = (A \setminus B) \cup (B \setminus A)$. Note that
@@ -299,6 +301,8 @@ the concept of a power set. Let $A$ be some set, then the set of
 all possible subsets of $A$ is denoted by $2^A$ (sometimes this set is denoted
 by $\mathcal{P}(A)$) and called the power set of $A$. In other words $2^A =
 \set[B \subseteq A]{B}$.
+
+\nomenclature[S]{$2^A$}{denotes the set of all the subsets of the set $A$}
 
 \begin{warning}
   Please do not forget about two extremal elements of the power set $2^A$: the

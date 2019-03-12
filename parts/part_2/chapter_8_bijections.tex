@@ -1,16 +1,16 @@
 \chapter{Bijections, Surjections, and Injections}
 \label{chapter:bijections-surjections-injections}
-\begin{wrapfigure}{l}{4cm}
-  \begin{center}
-    \vskip -0.5cm
-    \qrset{link, height=3cm}
-    \qrcode{https://youtu.be/fW5Zxg0TMDc}
-    \vskip 0.25cm
-    \href{https://youtu.be/fW5Zxg0TMDc}{youtu.be/fW5Zxg0TMDc}
-    {\footnotesize Bijections, Surjections, and Injections}
-  \end{center}
-  \vskip -2cm
-\end{wrapfigure}
+\begin{marginfigure}
+  {\scriptsize Bijections, Surjections, and Injections:\\\noindent
+  Introduction to Combinatorics \#1}
+  \vskip 0.25cm
+  \noindent
+  \qrset{link, height=3cm}
+  \qrcode{https://youtu.be/fW5Zxg0TMDc}
+  \vskip 0.25cm
+  \noindent
+  \url{youtu.be/fW5Zxg0TMDc}
+\end{marginfigure}
 
 In the previous chapters we used the property that the set is finite. However,
 we have never defined formally what it means. In this chapter we define
@@ -95,6 +95,27 @@ Probably the most important property of a bijection is that we may invert it.
       bijection.
   \end{description}
 \end{proof}
+\noindent We denote $g$ from this theorem as $f^{-1}$.
+
+Using this theorem we may notice that nonetheless that $X \times (Y \times Z)$
+is not the same as $(X \times Y) \times Z$, there is a natural correspondence
+between the elements of these sets.
+\begin{theorem}
+  Let $X$, $Y$, $Z$ be some sets
+  There are bijctions from $X \times (Y \times Z)$ and
+  $(X \times Y) \times Z$ to $\set[x \in X, y \in Y, z \in Z]{(x, y, z)}$.
+\end{theorem}
+\begin{proof}
+  Since the statement is symmetric, it is enough to prove that there is
+  a bijection $f : X \times (Y \times Z) \to
+  \set[x \in X, y \in Y, z \in Z]{(x, y, z)}$. Define $f$ such that
+  $f(x, (y, z)) = (x, y, z)$.
+  Clearly, $f^{-1}(x, y, z) = (x, (y, z))$ is the inverse of $f$, so $f$ is
+  indeed a bijection.
+\end{proof}
+Due to this correspondence we will think about elements $(x, (y, z))$,
+$((x, y), z)$, and $(x, y, z)$ as they are equal to each other.
+
 
 One may notice that if we have a bijection $f$ from $[n]$ to a set $S$ we
 enumerate all the elements of $S$: $f(1)$, \dots, $f(n)$.
@@ -152,7 +173,7 @@ Note that this definition does not guarantee that cardinality is unique.
   As a result, $n + 1 = m$.
 \end{proof}
 
-Using \Cref{theorem:inverse-of-bijections} we may derive a way to apply this
+Using Theorem~\ref{theorem:inverse-of-bijections} we may derive a way to apply this
 theory in combinatircs; we can use a bijection to prove that two sets have the
 same cardinality.
 \begin{theorem}
@@ -174,32 +195,22 @@ Using this result we can make prove the following equality.
   To prove this statement we need to construct a bijection from $2^X$ to
   $\set{0, 1}^{|X|}$. Let $|X| = n$ and $f : [n] \to X$ be a bijection.
 
-  First we construct a bijection $g_1$ from $2^X$ to $2^{[n]}$:
-  $g_1(Y) = \set[x \in Y]{f(x)}$ ($Y \in 2^X$). It is easy to see that the
-  function $g^{-1}_1(Y) = \set[{x \in [n]}]{f^{-1}(x)}$ ($Y \in 2^{[n]}$) is an
-  inverse of $g_1$, so $g_1$ is indeed a bijection.
+  First we construct a bijection $g_1 : 2^X \to 2^{[n]}$:
+  \[
+    g_1(Y) = \set[x \in Y]{f(x)}.
+  \] It is easy to see that the function
+  \[
+    g^{-1}_1(Y) = \set[{x \in [n]}]{f^{-1}(x)}
+  \]
+  is an inverse of $g_1$, so $g_1$ is indeed a bijection.
 
   Now we need to construct a bijection $g_2$ from $2^{[n]}$ to $\set{0, 1}^n$:
   $g_2(Y) = (u_1, \dots, u_n)$, where $u_i = 1$ iff $i \in Y$. It is clear
   that $g^{-1}_2(u_1, \dots, u_n) = \set[u_i = 1]{i \in [n]}$ is an inverse
   of $g_2$ so $g_2$ is indeed a bijection.
 
-  As a result, by \Cref{theorem:bijections-composition}, the function
+  As a result, by Theorem~\ref{theorem:bijections-composition}, the function
   $(g_2 \circ g_1) : 2^X \to \set{0, 1}^{|X|}$ is a bijection.
-\end{proof}
-
-\begin{theorem}
-  Let $X$, $Y$, $Z$ be some sets
-  There are bijctions from $X \times (Y \times Z)$ and
-  $(X \times Y) \times Z$ to $\set[x \in X, y \in Y, z \in Z]{(x, y, z)}$.
-\end{theorem}
-\begin{proof}
-  Since the statement is symmetric, it is enough to prove that there is
-  a bijection $f$ from $X \times (Y \times Z)$ to
-  $\set[x \in X, y \in Y, z \in Z]{(x, y, z)}$. Define $f$ such that
-  $f(x, (y, z)) = (x, y, z)$.
-  Clearly, $f^{-1}(x, y, z) = (x, (y, z))$ is the inverse of $f$, so $f$ is
-  indeed a bijection.
 \end{proof}
 
 \section{Surjections and Injections}
@@ -353,5 +364,5 @@ bijection.
     $$\set[{A, B \subseteq [n] \text{ and } A, B \text{ are
     disjoint}}]{(A, B)}.$$
   \exerciseitem Construct a bijection from $\set{0, 1} \times [n]$ to $[2n]$.
-  \exerciseitem Prove \Cref{theorem:injections-surjections-inequalities}.
+  \exerciseitem Prove Theorem~\ref{theorem:injections-surjections-inequalities}.
 \end{exercises}
