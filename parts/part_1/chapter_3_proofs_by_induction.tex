@@ -83,7 +83,7 @@ case and use the following argument.
 \end{theorem}
 
 Using this generalized induction principle we may prove that $2^n \ge n^2$ for
-$n \ge 5$. The base case for $n = 4$ is true. The induction step is also true;
+$n \ge 4$. The base case for $n = 4$ is true. The induction step is also true;
 indeed let $P(k)$ be true i.e. $(k + 4)^2 < 2^{k + 4}$. Hence,
 $2(k + 4)^2 < 2^{k + 1 + 4}$ but
 $(k + 5)^2 = k^2 + 10k + 25 \le 2k^2 + 16k + 32 = 2(k + 4)^2$.
@@ -304,7 +304,7 @@ We can define recursively the value of such a formula. Let $v_1$, \dots, $v_n$
 be some integers.
 \begin{description}
   \item[base cases:] $x_i\big\rvert_{x_1 = v_1, \dots, x_n = v_n} = v_i$; in
-    other words, the value of the arithmetic formula $x_i$ is equal to $v_1$
+    other words, the value of the arithmetic formula $x_i$ is equal to $v_i$
     when $x_1 = v_1$, \dots, $x_n = v_n$; if $c$ is a real number, then
     $c\rvert_{x_1 = v_1, \dots, x_n = v_n} = c$.
   \item[recursion steps:] If $P$ and $Q$ are arithmetic formulas on the
@@ -358,6 +358,7 @@ to the idea of strong induction:
 To illustrate this method, we prove the following theorem.
 
 \begin{theorem}
+\label{theorem:formulas-to-polynomials}
   For any arithmetic formula $A$ on $x$, there is a polynomial
   $p$ such that $p(v) = A\big\rvert_{x = v}$ for any real value $v$.
 \end{theorem}
@@ -495,7 +496,7 @@ for $n \ge 5$. As a result, we proved the induction step.
       \frac{n + 1}{2n}$ for all integers $n > 1$.
 
   \exerciseitem Let $f_0 = 1$, $f_1 = 1$, and $f_{n + 2} = f_{n + 1} + f_n$ for
-    all $n \in \mathbb{N}$. Show that
+    all integers $n \ge 0$. Show that
     $f_n \ge \left(\frac{3}{2}\right)^{n - 2}$.
   \exerciseitem Show that $f_{n + m} = f_{n - 1} f_{m - 1} + f_n f_m$.
   \exerciseitem Show that two arithmetic formulas $(x_1 + x_2) \cdot x_3$ and
@@ -519,5 +520,12 @@ for $n \ge 5$. As a result, we proved the induction step.
 
     Prove that for any list $L$ of powers of $x$ there is a polynomial such that
     $\sum L\big\rvert_{x = v} = p(v)$ for all real numbers $v$.
-
+  \exerciseitem Let us define $n!$ as follows: $1! = 1$ and
+    $n! = (n - 1)! \cdot n$. Show that $n! \ge 2^n$ for any $n \ge 4$.
+  \exerciseitem Show that
+    $\int\limits_0^{+\infty} x^n e^{- x} ~ \mathrm{d}x = n!$
+    for all $n \ge 0$.
+  \exerciseitem Prove that $\sum\limits_{i = 1}^n (i + 1) 2^i = n 2^{n + 1}$
+    for all integers $n \ge 1$.
+  \exerciseitem Show that $\sum_{k = 1}^n k \cdot k! = (n + 1)! - 1$.
 \end{exercises}
