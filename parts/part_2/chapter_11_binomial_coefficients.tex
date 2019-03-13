@@ -20,6 +20,7 @@ how many function exist from $X$ to $Y$.
   Let $X$ and $Y$ be some finite sets. We denote by $Y^X$ the set of all
   functions from $X$ to $Y$. Then $|Y^X| = |Y|^{|X|}$.
 \end{theorem}
+\nomenclature[S]{$B^A$}{denotes the set of functions from $A$ to $B$}
 \begin{proof}
   For simplicity we prove the statement in the case when $X = [n]$. Fix some
   finite set $Y$. We prove the statement using induction by $n$. The base case
@@ -42,6 +43,7 @@ constraint. For example, we may try to find size of the set
 \[
   (Y)_X = \set[f\text{ is an injection}]{f \in Y^X}.
 \]
+\nomenclature[S]{$(B)_A$}{denotes the set of infunctions from $A$ to $B$}
 First, let us try to do this informally. Assume that $X = [n]$ and $|Y| = m$,
 to define $f \in (Y)_X$ we need to choose images of $1$, $2$, \dots, $n$. There
 are $m$ possible ways to select an image of $1$, $m - 1$ ways to define $f(2)$
@@ -73,7 +75,8 @@ $|(Y)_X| = m (m - 1) \dots (m - n + 1)$ (we denote this number as $(m)_n$).
   As a result, $|(Y)_X| = (m)_{n - 1} \cdot (m - n + 1) = (m)_n$.
 \end{proof}
 
-The special case of this result is that there are $n (n - 1) \dots 1$ different
+The special case of this result is that there are
+$n \cdot (n - 1) \cdot  \ldots \cdot  1$ different
 bijections from $[n]$ to $[n]$. Such bijections are called permutations and the
 number is denoted by $n!$.
 
@@ -90,6 +93,8 @@ A quite famous example of a subset of this set is the set
 \[
   \binom{X}{k} = \set[|A| = k]{A \subseteq [n]}.
 \]
+\nomenclature[S]{$\binom{A}{k}$}{denotes the set of subsets of $A$ of
+cardianlity $k$}
 In other words, it is the set of all possible ways to select $k$ elements from
 $X$. Size of this set we denote by $\binom{|X|}{k}$ and call it a binomial
 coefficient.

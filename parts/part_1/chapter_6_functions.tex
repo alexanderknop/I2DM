@@ -33,6 +33,8 @@ statement saying that all the elements of $A$ satisfy the predicate $P$. In
 other words it is the same as the statement
 $\set[P(a)]{a \in A} = A$. For example, $\forall x \in \R\ x \cdot 0 = 0$ says
 that product of every real number and zero is equal to zero.
+\nomenclature[P]{$\forall \alpha \in A~P(a)$}{denotes the statement saying that
+$P$ is true for all elements of $A$}
 
 \paragraph{The Existential Quantifier.}
 The second quantifier means ``there is'' and denoted by the symbol $\exists$\footnote{%
@@ -46,6 +48,8 @@ says that there is an element of $A$ satisfying the predicate $P$ i.e.
 $\set[P(a)]{a \in A} \neq \emptyset$. For example,
 $\exists x \in \R\ x^2 - 1 = 0$ states that there is a real solution of the
 equation $x^2 - 1 = 0$.
+\nomenclature[P]{$\exists \alpha \in A~P(a)$}{denotes the statement saying that $P$ is
+true for some element of $A$}
 
 \begin{warning}
   Note that the word ``any'' sometimes indicates a universal statement and
@@ -56,16 +60,16 @@ equation $x^2 - 1 = 0$.
   $\forall a \in \R \ a^2 \ge 0$. Nonetheless, in the negative and interrogative
   statements ``any'' is used to mean ``some''. For example, ``There is not any
   real number $a$ such that $a^2 < 0$'' is asserting that the statement
-  $\exists a \ a^2 < 0$ is false. And ``Is there any real number $a$ such that
-  $a^2 = 1$?'' is asking whether the existential statement $\exists a \ a^2 =
-  1$ is true.
+  $\exists a \in \R \ a^2 < 0$ is false. And ``Is there any real number $a$ such
+  that $a^2 = 1$?'' is asking whether the existential statement
+  $\exists a \in \R \ a^2 = 1$ is true.
 
   Real care is required with questions involving ``any'': ``Is there any
   integer $a$ such that $a \ge 1$?'' clearly is asking whether $\exists a \in
-  \R \ a^2 \ge 1$ is true; however, ``Is $a > 1$ for any integer $a$'' is less
+  \R \ a^2 \ge 1$ is true; however, ``Is $a \ge 1$ for any integer $a$'' is less
   clear and might be taken to asking about the same question as the first
-  question, $\exists a \in \Z \ z \ge 1$ (which is true) but might also be
-  taken to be asking about $\forall a \in Z \ a \ge 1$ (which is false).
+  question, $\exists a \in \Z \ a \ge 1$ (which is true) but might also be
+  taken to be asking about $\forall a \in \Z \ a \ge 1$ (which is false).
 \end{warning}
 
 \subsection{Proving Statements Involving Quantifiers}
@@ -118,13 +122,13 @@ it is the same as proving the negation.
 \paragraph{Disproving statements of the form $\forall a \in A \ P(a)$.}
 We may note that the negation of such a statement is the statement $\exists a
 \in A \ \lnot P(a)$. So we can disprove it by giving a single example for which
-it is false. This is called \textit{Disproof by counterexample} to $P(a)$.
+it is false. This is called \textit{disproof by counterexample} to $P(a)$.
 
 For example, we may disprove the statement $\forall x \in \R \ x^2 > 2$ by
 giving a counterexample $x = 1$ since $1^2 = 1 < 2$.
 
 \paragraph{Disproving statements of the form $\exists a \in A \ P(a)$.}
-The negation of this statement is the statement $\exists a \in A \ \lnot P(a)$.
+The negation of this statement is the statement $\forall a \in A \ \lnot P(a)$.
 Which gives one way of disproving the statement.
 
 Let us prove that does not exist a real number $x$ such that $x^2 = -1$. We
@@ -141,6 +145,8 @@ Consider the following example. If $X = \set{a, b, c}$ and $Y = \set{a, b}$,
 then $$X \times Y = \set{(a, a), (a, b), (b, a), (b, b), (c, a), (c, b)}.$$
 Additionally, $\R^2 = \R \times \R$ is the familiar $2$-dimensional Euclidean
 plane.
+\nomenclature[SO]{$A \times B$}{denotes the set of all ordered pairs of elements of
+$A$ and $B$}
 
 \begin{exercise}
   Find the set $\set{a, b} \times \set{a, b} \setminus
@@ -154,9 +160,9 @@ plane.
     \item $A \times (B \cup C) = (A \times B) \cup (A \times C)$;
     \item $A \times (B \cap C) = (A \times B) \cap (A \times C)$;
     \item $(A \times B) \cup (C \times D) \subseteq
-      (A \cup B) \times (C \cup D)$;
+      (A \cup C) \times (B \cup D)$;
     \item $(A \times B) \cap (C \times D) =
-      (A \cap B) \times (C \cap D)$.
+      (A \cap C) \times (B \cap D)$.
   \end{itemize}
 \end{theorem}
 \begin{proof}
@@ -221,10 +227,10 @@ domain and the codomain of the function.
 
 Let $\R_+ = \set[x \ge 0]{x \in \R}$. Consider the following functions.
 \begin{itemize}
-  \item $f_1 : \R \to \R$ such that $f_1(x) = x^2$;
-  \item $f_1 : \R_+ \to \R$ such that $f_1(x) = x^2$;
-  \item $f_1 : \R \to \R_+$ such that $f_1(x) = x^2$;
-  \item $f_1 : \R_+ \to \R_+$ such that $f_1(x) = x^2$;
+  \item $g_1 : \R \to \R$ such that $g_1(x) = x^2$;
+  \item $g_2 : \R_+ \to \R$ such that $g_2(x) = x^2$;
+  \item $g_3 : \R \to \R_+$ such that $g_3(x) = x^2$;
+  \item $g_4 : \R_+ \to \R_+$ such that $g_4(x) = x^2$;
 \end{itemize}
 Nonetheless that all these functions are defined using the same formula $x^2$,
 we will see in the next chapters that these four functions have different
@@ -278,8 +284,11 @@ We defined $g_1$ and $g_2$ to extend $g$ to a bigger domain, similarly we can
 make a domain smaller.
 \begin{definition}
   Let $f : X \to Y$ and $A \subseteq X$. Then $f|_{A} : A \to Y$ is a function
-  such that $\forall x \in A\ f|_{A}(x) = f(x)$.
+  such that $\forall x \in A\ f|_{A}(x) = f(x)$ (we say that $f|_A$ is the
+  restriction of $f$ to the set $A$).
 \end{definition}
+
+\nomenclature[F]{$f\big\rvert_A$}{denotes the restriction of $f$ to the set $A$}
 
 \section{Composition of Functions}
 \begin{figure}
@@ -335,6 +344,7 @@ $g$ assigns $z = g(y) = g(f(x)) \in Z$. Thus using $f$ and $g$ an element of
 $Z$ can be assigned to $x$. This operation defines a function from $X$ to $Z$
 and the result of this operation is called the \textit{composition} of $f$ and
 $g$.
+\nomenclature[F]{$f \circ g$}{denotes the composition of funcitons $f$ and $g$}
 
 \begin{definition}
   If $f : X \to Y$ and $g : Y \to Z$, then $h = g \circ f$ is a
@@ -357,6 +367,7 @@ There are two special type functions.
     Let $X$ be some set. Then $I_X : X \to X$ is an identity function iff
     $I_X(x) = x$.
 \end{itemize}
+\nomenclature[F]{$I_A$}{denotes the identity function on the set $A$}
 
 \begin{theorem}
   Let $f : X \to Y$, $g : Y \to Z$, and $h : Z \to W$. Then
@@ -381,11 +392,12 @@ the formula $x^2$ does not have $-1$ as a value.
 Thus we may give the following definition.
 \begin{definition}
   The image of the function $f$ is defined as follows
-  $$\textrm{Im} f = \set[\exists x \in X\ f(x) = y]{y \in Y}
+  $$\Im f = \set[\exists x \in X\ f(x) = y]{y \in Y}
   = \set[x \in X]{f(x)}$$ (in other
   words it is the projection of the graph $D$ of $f$ on the second coordinate:
-  $\mathrm{Im} f = \set[(x, y) \in D]{y}$).
+  $\Im f = \set[(x, y) \in D]{y}$).
 \end{definition}
+\nomenclature[F]{$\Im f$}{denotes the image of $f$}
 
 \section*{End of The Chapter Exercises}
 \begin{exercises}
@@ -396,7 +408,7 @@ Thus we may give the following definition.
       \item $\set[\exists n \in \N \ m \le n]{m \in \N}$;
       \item $\set[\forall n \in \N \ m \le n]{m \in \N}$;
       \item $\set[\exists m \in \N \ m \le n]{n \in \N}$;
-      \item $\set[\exists m \in \N \ m \le n]{n \in \N}$.
+      \item $\set[\forall m \in \N \ m \le n]{n \in \N}$.
     \end{itemize}
   \exerciseitem Prove or disprove the following statements.
     \begin{itemize}

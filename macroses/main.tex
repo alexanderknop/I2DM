@@ -10,6 +10,7 @@
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amsthm}
+\usepackage{amssymb}
 
 \usepackage{mathtools}
 
@@ -40,6 +41,9 @@
 \usepackage{xspace}
 
 \usepackage{units}
+
+\usepackage[refpage]{nomencl}
+\makenomenclature
 
 
 % Generates the index
@@ -91,6 +95,28 @@
 {0pt}% horizontal separation between label and title body
 {\huge\rmfamily\itshape}% before the title body
 [\ifthenelse{\NOT\boolean{@tufte@symmetric}}{\end{minipage}}{}]% after the title body
+
+\renewcommand{\nomname}{List of Symbols}
+
+\usepackage{ifthen}
+  \renewcommand{\nomgroup}[1]{%
+  \item[\bfseries%
+  \ifthenelse{\equal{#1}{S}}{Set Operations}{%
+  \ifthenelse{\equal{#1}{P}}{Predicates}{%
+  \ifthenelse{\equal{#1}{L}}{Logical Operations}{%
+  \ifthenelse{\equal{#1}{R}}{Relations}{%
+  \ifthenelse{\equal{#1}{F}}{Operations on Functions}{%
+  \ifthenelse{\equal{#1}{N}}{Standard Sets}{}}}}}}%
+]}
+
+\setlength\nomlabelwidth{2.5cm}
+
+\renewcommand{\nompreamble}{%
+  The letters $A$ and $B$ denote sets, the letters $P$ and $Q$ denote
+  propositions and predicates, the lower case latin letters $f$ and $g$ denote
+  functions, and the lower case latin letters $a$, $b$, $n$,
+  and $k$ denote integer numbers.
+}
 
 
 \input{macroses/enviroments}

@@ -11,27 +11,33 @@
   \url{youtu.be/bshBV2H4Sqo}
 \end{marginfigure}
 \section{The Intuitive Definition of a Set}
-A set is one of two most important concepts in mathematics. Many mathematical
+A set is one of the two most important concepts in mathematics. Many mathematical
 statements involve ``an integer $n$'' or ``a real number $a$''. Set theory
 notation provides a simple way to express that $a$ is a real number. However,
 this language is much more expressible and it is impossible to imagine modern
 mathematics without this notation.
 
 As in the previous chapter it is difficult to define a set formally so we give
-a not formal definition which should be enough to use the notation.
+a less formal definition which should be enough to use the notation.
 A \textit{set} is a well-defined collection of objects. Important examples of
 sets are:
 \begin{enumerate}
   \item $\R$ a set of reals,
+    \nomenclature[N]{$\R$}{denotes the set of all real numbers}
   \item $\Z$ the set of integers\footnote{``Z'' stands for the German word
     Zahlen (``numbers'').},
-  \item $\N$ the set of natural numbers\footnote{Note that in the litrature
+    \nomenclature[N]{$\Z$}{denotes the set of all integers}
+  \item $\N$ the set of natural numbers\footnote{Note that in the literature
       there are two diffirent traditions: in one $0$ is a natural number, in
       another it is not; in this book we are going to assume that $0$ is not a
       natural number.
     },
+    \nomenclature[N]{$\N$}{denotes the set of all integers greater
+    than $0$}
   \item $\Q$ a set of rational numbers,
+    \nomenclature[N]{$\Q$}{denotes the set of all rational numbers}
   \item $\mathbb{C}$ a set of complex numbers.
+    \nomenclature[N]{$\C$}{denotes the set of all complex numbers}
 \end{enumerate}
 Usually, sets are denoted by single letter.
 
@@ -73,12 +79,25 @@ learn how to list the elements of the set $\set[ax^2 + bx + c = 0]{x \in \R}$.
 
 We say that two sets $A$ and $B$ are equal if they contain the
 same elements (we denote it by $A = B$). If all the elements of $A$ belong to
-$B$ we say that $A$ is a subset of $B$ and denote it by $A \subseteq B$.
+$B$ we say that $A$ is a subset of $B$ and denote it by
+$A \subseteq B$\footnote{%
+  In the literature there are three symbols for ``subset'': $\subseteq$,
+  $\subsetneq$, and $\subseteq$. $A \subseteq B$ means that $A$ is a subset of
+  $B$ and we allow $A = B$ and $A \subsetneq B$ means that $A$ is a subset of
+  $B$ and we forbid $A = B$. However, there is a problem with the third symbol,
+  some people use it as a synonym of $\subseteq$ and some use it as a synonym of
+  $\subsetneq$. Due to this ambiguity we are going to avoid using it in this
+  book.
+}.
 
 For example, $\Q \subseteq \R$ since any rational number is
-also a real number.
-A special set is an empty set i.e. the set that does not have elements, we
-denote it $\emptyset$.
+also a real number. A special set is an empty set i.e. the set that does not
+have elements, we denote it $\emptyset$.
+
+\nomenclature[R]{$A \subseteq B$}{says that $A$ is a subset of $B$}
+
+\nomenclature[N]{$\emptyset$}{denotes the set that does
+  not have elements}
 
 \subsection{Diagrams}
 If we think of a set $A$ as represented by all the points within a circle or
@@ -87,20 +106,20 @@ subset of another set $B$ also represented by all the points within a circle.
 We just put a circle labeled by $A$ inside of the circle labeled by $B$. We can
 also diagram an equality by drawing a circle labeled by both $A$ and $B$. (see
 fig.~\ref{figure:euler-diagram}). Such diagrams are called Euler diagrams and
-it it clear that one may draw Euler diagrams for more than two sets.
+it is clear that one may draw Euler diagrams for more than two sets.
 
 \begin{figure}
     \centering
     \subfloat[$A \subseteq B$]{
       \begin{tikzpicture}[scale=0.6]
-        \draw (20:2cm) circle (3cm) node [yshift=10ex] {$A$};
+        \draw (20:2cm) circle (3cm) node [yshift=8ex] {$A$};
         \draw (0:2cm) circle (1.5cm) node {$B$};
       \end{tikzpicture}
     }
     \qquad\qquad
     \subfloat[$A = B$] {
       \begin{tikzpicture}[scale=0.6]
-        \draw (20:2cm) circle (3cm) node [yshift=10ex] {$A, B$};
+        \draw (20:2cm) circle (3cm) node [yshift=8ex] {$A, B$};
       \end{tikzpicture}
     }
     \caption{Euler diagrams for subset and equality relations}
@@ -109,13 +128,15 @@ it it clear that one may draw Euler diagrams for more than two sets.
 
 
 \subsection{Descriptions of Sets}
+In this section we describe how to define new sets, this notation is also
+known as \textit{set-builder notation}.
 
-\paragraph{Listing elements.} There are several ways to construct a set, the
-simplest one is just to list them. For example
+\paragraph{Listing elements.} The simplest way to define a set is just to list
+the elements. For example
 \begin{enumerate}
-  \item $\set{1, 2 \pi}$ is a set consisting of three elements 1, 2, and $\pi$
-    and
-  \item $\set{1, 2, 3, \dots, }$ is a set of all positive integers i.e. it is
+  \item $\set{1, 2, \pi}$ is the set consisting of three elements 1, 2, and
+    $\pi$, and
+  \item $\set{1, 2, 3, \dots}$ is the set of all positive integers i.e. it is
     the set $\N$.
 \end{enumerate}
 
@@ -125,15 +146,18 @@ numbers using the following formula $\set[n \text{ is even}]{n \in \Z}$
 (we read it as ``the set of all integers $n$ such that $n$ is even'').
 
 Using this we may also define the set of all integers from $1$ to $m$, we
-denote it $[m]$, $[m] = \set[0 < n \le m]{n \in \N}$.
+denote it $[m]$; i.e. $[m] = \set[0 < n \le m]{n \in \N}$.
+\nomenclature[N]{$[n]$}{denotes the set of all the integers from $1$ to n}
+
 
 \paragraph{Constructive definitions.} Another way to construct a set of all
 even numbers is to use the constructive definition of a set:
 $\set[k \in \Z]{2k}$.
 
 We may also describe a set of rational numbers using this description:
-$\Q = \set[a, b \in \Z, b \neq 0]{a / b}$ (note that this definition is a mix of
-a conditional and constructive definitions).
+$\Q = \set[a \in \Z, b \in \N]{a / b}$ (note that we may also use a mix of
+a conditional and constructive definitions,
+$\Q = \set[a, b \in \Z, b \neq 0]{a / b}$).
 
 \begin{exercise}
   Describe a set of perfect squares using constructive type of definition.
@@ -208,15 +232,31 @@ $B$ be sets.
 
 The first example of the operations on sets is the \textit{union} operation.
 The union of $A$ and $B$ is the set containing all the elements of $A$ and all
-the elements of $B$ i.e. $A \cup B = \set[x \in A \text{ or } x \in B]{x}$.
+the elements of $B$ i.e.
+$A \cup B = \set[x \in A \text{ or } x \in B]{x}$\footnote{%
+  Note that this definition is not correct since in the conditional definitions
+  we have to specify the set $x$ belongs to and we cannot do this here.
+}.
+\nomenclature[S]{$A \cup B$}{denotes the union of two sets $A$ and $B$}
 
 Another example of such an operation is \textit{intersection}. The
 intersection of $A$ and $B$ is the set of all the elements belonging to both
-$A$ and $B$ i.e $A \cap B = \set[x \in A \text{ and } x \in B]{x}$.
+$A$ and $B$ i.e $A \cap B = \set[x \in A \text{ and } x \in B]{x}$\footnote{%
+  You may notice that in the definition of the union we use disjunction and
+  in the definition of intersection we use conjunction. Actually this is a the
+  reason the symbol of the conjunction is similar to the symbol of intersection
+  and the symbol of the disjunction is similar to the symbol of union.
+}.
+\nomenclature[S]{$A \cap B$}{denotes the intersection of two sets $A$ and $B$}
 
-The third operation we are going to discuss this lecture is set difference.
-If $A$ and $B$ are some sets, then
+The third operation we are going to discuss this lecture is
+\textit{set difference}. If $A$ and $B$ are some sets, then
 $A \setminus B = \set[x \in A \text{ and } x \not\in B]{x}$.
+\nomenclature[S]{$A \setminus B$}{denotes the difference of two sets $A$ and $B$}
+
+The last operation is \textit{symmetric difference}. If $A$ and $B$ are some
+sets, then $A \Delta B = (A \setminus B) \cup (B \setminus A)$. Note that
+alternatively $A \Delta B = (A \cup B) \setminus (A \cap B)$
 
 \begin{exercise}
   Describe the set
@@ -262,25 +302,27 @@ all possible subsets of $A$ is denoted by $2^A$ (sometimes this set is denoted
 by $\mathcal{P}(A)$) and called the power set of $A$. In other words $2^A =
 \set[B \subseteq A]{B}$.
 
+\nomenclature[S]{$2^A$}{denotes the set of all the subsets of the set $A$}
+
 \begin{warning}
   Please do not forget about two extremal elements of the power set $2^A$: the
   empty set and $A$ itself.
 \end{warning}
 
-\noindent For example if $A = \set{1, 2, 3}$, then $$2^A = \set{\set{1},
-\set{2}, \set{3}, \set{1, 2}, \set{1, 3}, \set{2, 3}, \set{1, 2, 3}}.$$
+\noindent For example if $A = \set{1, 2, 3}$, then $$2^A = \set{\emptyset,
+\set{1}, \set{2}, \set{3}, \set{1, 2}, \set{1, 3}, \set{2, 3}, \set{1, 2, 3}}.$$
 
 \section{The Well-ordering Principle}
-Using the set notation we may finally justify the first proof of the statement
-that $2^n > n$ for all positive integers $n$. In order to do this let us first
-formulate the following theorem.
+Using the set notation we may finally justify the proof of the statement
+that $2^n > n$ for all positive integers $n$ from the video about mathematical
+induction. In order to do this let us first formulate the following theorem.
 \begin{theorem}
 \label{theorem:well-ordering}
   Let $A \subseteq \Z$ be a non-empty set. We say that $b \in \Z$ is a lower
-  bound for the set $A$ iff $b \le a$ for all $a \in A$, additionally, we say
+  bound for the set $A$ iff $b \le a$ for all $a \in A$. Additionally, we say
   that the set $A$ is bounded if there is a lower bound for $A$.
 
-  Then if $A$ is bounded, then there is a lower bound $a \in A$ for the set $A$
+  Given this, if $A$ is bounded, then there is a lower bound $a \in A$ for the set $A$
   (we say that $a$ is the minimum of the set $A$).
 \end{theorem}
 Note that this theorem also states that any subset of natural numbers have a
@@ -288,7 +330,7 @@ minimum.
 
 Recall that we wish to prove that $2^n > n$ for all positive $n$.
 Assume that it is not true, in this case the set
-$A = \set[2^n > n]{n \in \N}$ is non-empty. Denote by $n_0$ the minimum of the
+$A = \set[2^n < n]{n \in \N}$ is non-empty. Denote by $n_0$ the minimum of the
 set $A$, $n_0$ exists by Theorem~\ref{theorem:well-ordering}. We may consider
 the following two cases.
 \begin{itemize}
@@ -327,14 +369,38 @@ Finally, we prove Theorem~\ref{theorem:well-ordering}.
       \item $A \subseteq B \iff A \cup B = B$,
       \item $A \subseteq B \iff A \cap B = A$.
     \end{itemize}
-  \exerciseitem Show that if $A \cap B \subseteq C$, then
-    $x \notin A \setminus B$.
   \exerciseitem Let $A$ be a subset of a set $U$ we call this set a universe.
-    We say that the set $\overline{A} = U \setminus A$ is a compliment of $A$
+    We say that the set $\overline{A} = U \setminus A$ is a complement of $A$
     in $U$. Show the following equalities
     \begin{itemize}
       \item $\overline{\overline{A}} = A$.
       \item $\overline{A \cup B} = \overline{A} \cap \overline{B}$.
       \item $\overline{A \cap B} = \overline{A} \cup \overline{B}$.
     \end{itemize}
+  \exerciseitem Let us define an intersection of more than two sets as follows.
+    Let $A_1$, \dots, $A_n$ be some sets. Then
+    \begin{itemize}
+      \item $\bigcap_{i = 1}^1 A_i = A_1$ and
+      \item $\bigcap_{i = 1}^{k + 1} A_i = \left( \bigcap_{i = 1}^k A_i \right)
+        \cap A_{k + 1}$.
+    \end{itemize}
+
+    Show that $\bigcap_{i = 1}^n \set[i \le x \le n]{x \in \mathbb{N}} =
+    \set{n}$ for all integers $n > 0$.
+    \exerciseitem Let us define a union of more than two sets as follows.
+      Let $A_1$, \dots, $A_n$ be some sets. Then
+      \begin{itemize}
+        \item $\bigcup_{i = 1}^1 A_i = A_1$ and
+        \item $\bigcup_{i = 1}^{k + 1} A_i =
+          \left( \bigcup_{i = 1}^k A_i \right) \cup A_{k + 1}$.
+      \end{itemize}
+
+      Show that $\bigcup_{i = 1}^n [i] = [n]$ for all integers $n > 0$.
+  \exerciseitem Let $\Omega$ be some set and $A_1, \dots, A_n \subseteq \Omega$.
+    Show that $\bigcup_{i = 1}^n A_i =
+      \set[{\exists i \in [n]\ x \in A_i}]{x \in \Omega}$.
+  \exerciseitem Let $A_1$, \dots, $A_n$ be some sets.
+    Show that $\bigcup\limits_{i = 1}^n (A_i \cap B) =
+    \left(\bigcup_{i = 1}^n A_i\right) \cap B$.
+  \exerciseitem Show that $A \Delta (B \Delta C) = (A \Delta B) \Delta C$.
 \end{exercises}

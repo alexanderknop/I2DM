@@ -94,6 +94,7 @@ equivalence relation on $S$. However, it is possible to do the opposite.
 The relation ``$\equiv \pmod{n}$'' is actively used in the number theory. One
 of the important properties of this relation is that it is an equivalence
 relation.
+\nomenclature[R]{$a \equiv b \pmod{n}$}{says that $n$ divides $a - b$}
 \begin{theorem}
   The relation $\equiv \pmod{n}$ is an equivalence relation.
 \end{theorem}
@@ -176,6 +177,7 @@ write $a \prec b$ to express that $a \preceq b$ and $a \neq b$.
 
 Let $\divides$ be the relation on $\Z$ such that $d \divides n$ iff $d$
 divides $n$.
+\nomenclature[R]{$a \divides b$}{says that $a$ divides $b$}
 \begin{theorem}
   The relation $\divides$ is a partial ordering of the set $\N$.
 \end{theorem}
@@ -217,6 +219,7 @@ total order. The technique of finding such a total ordering is called
 \textit{topological sorting}.
 
 \begin{theorem}
+\label{theorem:topological-order}
   Let $S$ be a finite set and $\preceq$ be a partial order on $S$. Then there is
   a total order $\preceq_t$ on $S$ such that if $x \preceq y$, then
   $x \preceq_t y$ for all $x, y \in S$
