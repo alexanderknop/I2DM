@@ -284,8 +284,11 @@ We defined $g_1$ and $g_2$ to extend $g$ to a bigger domain, similarly we can
 make a domain smaller.
 \begin{definition}
   Let $f : X \to Y$ and $A \subseteq X$. Then $f|_{A} : A \to Y$ is a function
-  such that $\forall x \in A\ f|_{A}(x) = f(x)$.
+  such that $\forall x \in A\ f|_{A}(x) = f(x)$ (we say that $f|_A$ is the
+  restriction of $f$ to the set $A$).
 \end{definition}
+
+\nomenclature[F]{$f\big\rvert_A$}{denotes the restriction of $f$ to the set $A$}
 
 \section{Composition of Functions}
 \begin{figure}
@@ -364,6 +367,7 @@ There are two special type functions.
     Let $X$ be some set. Then $I_X : X \to X$ is an identity function iff
     $I_X(x) = x$.
 \end{itemize}
+\nomenclature[F]{$I_A$}{denotes the identity function on the set $A$}
 
 \begin{theorem}
   Let $f : X \to Y$, $g : Y \to Z$, and $h : Z \to W$. Then
