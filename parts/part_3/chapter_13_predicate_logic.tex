@@ -116,43 +116,49 @@ The set $M$ in the structure is called the domain of the structure.
   structure $\mathcal{M}$ is equal
   \begin{itemize}
     \item either to $v_i$ when $t = x_i$,
-    \item or $F_\mathrm{fun}(f)(u_1, \dots, u_{a(f)})$ when
-      $t = f(t_1, \dots, t_{a(f)})$, where $a_i$ is equal to the value of
-      $t_i$ with $x_1 = v_1$, \dots, $x_n = t_n$ with respect to the
+    \item or $F_\mathrm{fun}(f)(\mu_1, \dots, \mu_{a(f)})$ when
+      $t = f(t_1, \dots, t_{a(f)})$, where $\mu_i$ is equal to the value of
+      $t_i$ with $x_1 = v_1$, \dots, $x_n = v_n$ with respect to the
       structure $\mathcal{M}$.
   \end{itemize}
 
-  We say that the value of a predicate formula $\phi$ in the signature
-  $\mathcal{S}$ over the variables $x_1$, \dots, $x_n$ with $x_1 = v_1$, \dots,
-  $x_n = v_n$ with respect to the structure $\mathcal{M}$ is equal
+  Let $\phi$ be a formula in the signature $\mathcal{S}$ over the variables
+  $x_1$, \dots, $x_n$.
   \begin{itemize}
-    \item either to $R(a_1, \dots, a_{a(R)})$ when
-      $\phi = R(t_1, \dots, t_{a(f)})$, where $a_i$ is equal to the value of
-      $t_i$ with $x_1 = v_1$, \dots, $x_n = t_n$ with respect to the
-      structure $\mathcal{M}$,
-    \item or to $b_1 \lor b_2$ when $\phi = \psi_1 \lor \psi_2$, where $b_i$ is
-      equal to the value of $\psi_i$ with $x_1 = v_1$, \dots, $x_n = t_n$ with
-      respect to the structure $\mathcal{M}$,
-    \item or to $b_1 \land b_2$ when $\phi = \psi_1 \land \psi_2$, where
-      $b_i$ is equal to the value of $\psi_i$ with $x_1 = v_1$, \dots, $x_n =
-      t_n$ with respect to the structure $\mathcal{M}$,
-    \item or to $\lnot b$ when $\phi = \lnot \psi$, where
-      $b$ is equal to the value of $\psi$ with $x_1 = v_1$, \dots,
-      $x_n = t_n$ with respect to the structure $\mathcal{M}$,
-    \item or to true when $\phi = \exists x_i ~ \psi$ and the value of $\psi$
-      with $x_1 = v_1$, \dots, $x_{i - 1} = v_{i - 1}$, $x_i = u$, $x_{i + 1} =
-      v_{i + 1}$, \dots $x_n = t_n$ with respect to the structure $\mathcal{M}$
-      is true for some $u \in M$,
-    \item or to true when $\phi = \forall x_i ~ \psi$ and the value of $\psi$
-      with $x_1 = v_1$, \dots, $x_{i - 1} = v_{i - 1}$, $x_i = u$, $x_{i + 1} =
-      v_{i + 1}$, \dots $x_n = t_n$ with respect to the structure $\mathcal{M}$
-      is true for all $u \in M$,
-    \item otherwise it is false.
+    \item Let $\phi$ be equal to $F_\mathrm{rel}(R)(t_1, \dots, t_{a(R)})$,
+      where $t_1, \dots, t_n$ are some terms in $\mathcal{S}$. Then the value
+      of $\phi$ with $x_1 = v_1$, \dots, $x_n = v_n$ with respect to
+      $\mathcal{M}$ is equal to $R(\mu_1, \dots, \mu_{a(R)})$, where $\mu_i$
+      is equal to the value of $t_i$ with $x_1 = v_1$, \dots, $x_n = v_n$ with
+      respect to $\mathcal{M}$.
+    \item Let $\phi$ be equal to $\psi_1 \# \psi_2$, where
+      $\# \in \set{\lor, \land}$ and $\psi_1$, $\psi_2$ are predicate
+      formulas. Then the value of $\phi$ with $x_1 = v_1$, \dots, $x_n = v_n$
+      with respect to $\mathcal{M}$ is equal to $\beta_1 \# \beta_2$, where
+      $\beta_i$ is equal to the value of $\psi_i$ with $x_1 = v_1$, \dots,
+      $x_n = v_n$ with respect to $\mathcal{M}$.
+    \item Let $\phi$ be equal to $\lnot \psi$, where
+      $\psi$ is a predicate formula.
+      Then the value of $\phi$ with $x_1 = v_1$, \dots, $x_n = v_n$ with
+      respect to $\mathcal{M}$ is equal to $\lnot \beta$, where
+      $\beta$ is equal to the value of $\psi$ with $x_1 = v_1$, \dots,
+      $x_n = v_n$ with respect to $\mathcal{M}$.
+    \item Let $\phi$ be equal to $\exists x_i ~ \psi$, where
+      $\psi$ is a predicate formula.
+      Then the value of $\phi$ with $x_1 = v_1$, \dots, $x_n = v_n$ with
+      respect to $\mathcal{M}$ is equal to true iff there is $\mu \in M$
+      such that the value of $\psi$ with $x_1 = v_1$, \dots,
+      $x_{i - 1} = v_{i - 1}$, $x_i = \mu$, $x_{i + 1} = v_{i + 1}$, \dots
+      $x_n = v_n$ with respect to $\mathcal{M}$.
+    \item Let $\phi$ be equal to $\forall x_i ~ \psi$, where
+      $\psi$ is a predicate formula.
+      Then the value of $\phi$ with $x_1 = v_1$, \dots, $x_n = v_n$ with
+      respect to $\mathcal{M}$ is equal to true iff for all $\mu \in M$,
+      the value of $\psi$ with $x_1 = v_1$, \dots,
+      $x_{i - 1} = v_{i - 1}$, $x_i = \mu$, $x_{i + 1} = v_{i + 1}$, \dots
+      $x_n = v_n$ with respect to $\mathcal{M}$.
   \end{itemize}
 \end{definition}
-
-
-
 
 \section{Natural Deduction}
 \section{Soundness and Completeness}
