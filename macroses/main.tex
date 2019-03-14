@@ -101,12 +101,12 @@
 \usepackage{ifthen}
   \renewcommand{\nomgroup}[1]{%
   \item[\bfseries%
-  \ifthenelse{\equal{#1}{S}}{Set Operations}{%
-  \ifthenelse{\equal{#1}{P}}{Predicates}{%
-  \ifthenelse{\equal{#1}{L}}{Logical Operations}{%
+  \ifthenelse{\equal{#1}{S}}{Set Notation}{%
+  \ifthenelse{\equal{#1}{C}}{Counting}{%
+  \ifthenelse{\equal{#1}{L}}{Logical Notation}{%
   \ifthenelse{\equal{#1}{R}}{Relations}{%
-  \ifthenelse{\equal{#1}{F}}{Operations on Functions}{%
-  \ifthenelse{\equal{#1}{N}}{Standard Sets}{}}}}}}%
+  \ifthenelse{\equal{#1}{F}}{Functions}{%
+  }}}}}%
 ]}
 
 \setlength\nomlabelwidth{2.5cm}
