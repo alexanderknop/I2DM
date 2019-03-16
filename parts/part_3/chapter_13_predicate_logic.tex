@@ -160,5 +160,100 @@ The set $M$ in the structure is called the domain of the structure.
   \end{itemize}
 \end{definition}
 
+Let us consider an example:
+\begin{itemize}
+  \item First, we define a signature
+    $\mathcal{S} = (\set{=, <}, \set{+, \cdot}, \mathrm{ar})$, where
+    $\mathrm{ar}(x) = 2$ for any $x \in \set{=, +, \cdot}$.
+  \item After this we define a structure $\mathcal{M} = (\R, F_\mathrm{rel},
+    F_\mathrm{fun})$, where
+    \begin{gather*}
+      F_\mathrm{fun}(f)(x, y) = \begin{cases}
+        x \cdot y & \text{if } f \text{ is } \cdot \\
+        x + y & \text{if } f \text{ is } +
+      \end{cases} \\
+      \text{and} \\
+      F_\mathrm{rel}(R)(x, y) \begin{cases}
+        x = y & \text{if } R \text{ is } = \\
+        x < y & \text{if } R \text{ is } <
+      \end{cases}
+    \end{gather*}
+  \item Finally, we consider the formulas in the signature $\mathcal{S}$
+    \begin{gather*}
+      \forall x \ \forall y \ x + y = y + x \\
+      \text{and} \\
+      \forall x \ \forall y \ \forall z \ (x < y \implies x + z < y + z).
+    \end{gather*}
+    (Note that we write $a = b$ instead of $=(a, b)$ and $a + b$ instead of
+    $a + b$, this is a common notation when we the standard mathematical
+    operations and relations are used in the signature.)
+\end{itemize}
+The first formula says that the operation $+$ is commutative, which is true, so
+the value of the formula with respect to the structure $\mathcal{M}$ should be
+true. (Note that we do not mention the values of the variables $x$ and $y$
+since both of them are not free.) Indeed, consider $a, b \in \R$ note that the
+value of $x + y = y + x$ with $x = a$ and $y = b$ and with respect to the
+structure $\mathcal{M}$ is equal to $F_\mathrm{rel}(F_\mathrm{fun}(a, b),
+F_\mathrm{fun}(b, a))$ which is the same as $a + b = b + a$; thus, the first
+formula is true.
+
+The second formula says that the inequalities are additive, so it should be also
+true with respect to the structure $\mathcal{M}$.
+\begin{exercise}
+  Show that the second formula is true with respect to the structure
+  $\mathcal{M}$.
+\end{exercise}
+
 \section{Natural Deduction}
+Natural deduction for the predicate formulas is defined in the same maner as
+the natural deduction for the propositional formulas but now the lines are
+predicate formulas and we can use four additional rules.
+
+\paragraph{Universal quantifier.}
+The first logically-valid formula we use as a rule is $A(x) \implies (\forall y
+\ A(y))$, this rule allows us to introduce an universal quantifier.
+In order to use the following rule, $x$ should not be a free variable of
+an open hypothesis.
+\[
+  \begin{nd}
+    \have [m] {1} {A(x)}
+    \have [~] {2} {\forall y \  A(y)} \Ai{1}
+  \end{nd}
+\]
+The second logically-valid formula we use as a rule says that if a statement is
+true for all the values of a variable, then it is also true when you substitute
+some specific term instead of the variable, i.e. $(\forall x \ A(x)) \implies
+A(t))$, this rule allows us to eliminate an universal quantifier.
+\[
+  \begin{nd}
+    \have [m] {1} {\forall x \  A(x)}
+    \have [~] {2} {A(t)} \Ae{1}
+  \end{nd}
+\]
+
+\paragraph{Existential quantifier.}
+The first formula for the exisential quantifier says that you can name any term
+in the formula by a variable and formula is still true for some value of the
+variable. The corresponding formula is $A(t) \implies (\exists x \ A(x))$.
+\[
+  \begin{nd}
+    \have [m] {1} {A(t)}
+    \have [~] {2} {\exists x \ A(x)} \Ei{1}
+  \end{nd}
+\]
+
+The last rule says that if $A(x)$ is true for some $x$ and we know that $A(y)$
+implies $B$, then we can derive $B$ (note that this is true only when
+$y$ is not used in $B$). Thus we can apply the following rule when $y$ is not
+be a free variable neither of $B$ nor of any open hypothesis.
+\[
+  \begin{nd}
+    \have [m] {1} {\exists x \ A(x)}
+    \open
+      \hypo [i] {2} {A(y)}
+      \have[j] {3} {B}
+    \close
+    \have [~] {4} {B} \Ee{1, 2-3}
+  \end{nd}
+\]
 \section{Soundness and Completeness}
