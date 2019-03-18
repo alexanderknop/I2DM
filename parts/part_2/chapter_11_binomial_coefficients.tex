@@ -60,7 +60,7 @@ subset of $n$ elements from a fixed set of $n$ elements}
   for any $f \in (Y)_{[n - 1]}$ and
   \[
     \set[v \not\in \Im f]{(f, v) \in (Y)_{[n - 1]} \times [m]} =
-    \bigcup\limits_{f \in (Y)_{[n - 1]}} \set[v \not\in \Im f]{(f, v)}.
+    \bigcup_{f \in (Y)_{[n - 1]}} \set[v \not\in \Im f]{(f, v)}.
   \]
   As a result, $|(Y)_X| = (m)_{n - 1} \cdot (m - n + 1) = (m)_n$.
 \end{proof}
@@ -98,7 +98,7 @@ Let us find several useful properties of the binomial coefficients.
     \item $\binom{n}{k} = \binom{n}{n - k}$.
     \item $\binom{n}{k} = \binom{n - 1}{k - 1} + \binom{n - 1}{k}$.
     \item $\binom{n}{k} = \frac{(m)_n}{n!}$.
-    \item $\sum\limits_{k = 0}^n \binom{n}{k} = 2^n$.
+    \item $\sum_{k = 0}^n \binom{n}{k} = 2^n$.
   \end{itemize}
 \end{theorem}
 \begin{proof}
@@ -143,62 +143,62 @@ coefficients.
 \begin{theorem}[Binomial theorem]
   For any real numbers $x$ and $y$,
     \[
-      \sum\limits_{k = 0}^n \binom{n}{k} x^k y^{n - k} = (x + y)^n.
+      \sum_{k = 0}^n \binom{n}{k} x^k y^{n - k} = (x + y)^n.
     \]
 \end{theorem}
 \begin{proof}
   As always, we prove the statement using induction by $n$. The base case is
-  true, since $\sum\limits_{k = 0}^1 \binom{1}{k} x^k y^{1 - k} = x + y =
+  true, since $\sum_{k = 0}^1 \binom{1}{k} x^k y^{1 - k} = x + y =
   (x + y)^1$. Asume that
   \[
-    \sum\limits_{k = 0}^n \binom{n}{k} x^k y^{n - k} = (x + y)^n,
+    \sum_{k = 0}^n \binom{n}{k} x^k y^{n - k} = (x + y)^n,
   \]
   we wish to prove that
   \[
-    \sum\limits_{k = 0}^{n + 1} \binom{n + 1}{k} x^k y^{n + 1 - k} =
+    \sum_{k = 0}^{n + 1} \binom{n + 1}{k} x^k y^{n + 1 - k} =
       (x + y)^{n + 1}.
   \]
   Note that
   \begin{multline*}
     (x + y)^{n + 1} = (x + y)
       \left(
-        \sum\limits_{k = 0}^n \binom{n}{k} x^k y^{n - k}
+        \sum_{k = 0}^n \binom{n}{k} x^k y^{n - k}
       \right) = \\
-    \sum\limits_{k = 0}^n \binom{n}{k} x^{k + 1} y^{n - k} +
-      \sum\limits_{k = 0}^n \binom{n}{k} x^{k} y^{n + 1 - k} = \\
-    \sum\limits_{k = 0}^{n + 1}
+    \sum_{k = 0}^n \binom{n}{k} x^{k + 1} y^{n - k} +
+      \sum_{k = 0}^n \binom{n}{k} x^{k} y^{n + 1 - k} = \\
+    \sum_{k = 0}^{n + 1}
       \left(
         \binom{n + 1}{k - 1} + \binom{n}{k}
       \right)
       x^k y^{n + 1 - k} =
-    \sum\limits_{k = 0}^{n + 1} \binom{n + 1}{k} x^k y^{n + 1 - k}.
+    \sum_{k = 0}^{n + 1} \binom{n + 1}{k} x^k y^{n + 1 - k}.
   \end{multline*}
 \end{proof}
 
 \section*{End of The Chapter Exercises}
 \begin{exercises}
   \exerciseitem Show that
-    $(x + y)_n = \sum\limits_{k = 0}^n \binom{n}{k} (x)_k (y)_{n - k}$.
+    $(x + y)_n = \sum_{k = 0}^n \binom{n}{k} (x)_k (y)_{n - k}$.
   \exerciseitem Show that
-    $\sum\limits_{i = 1}^k \binom{n}{i} \binom{m}{k - i} = \binom{n + m}{k}$.
+    $\sum_{i = 1}^k \binom{n}{i} \binom{m}{k - i} = \binom{n + m}{k}$.
   \exerciseitem Show that
-    $\sum\limits_{k = 0}^n \binom{n}{k}^2 = \binom{2n}{n}$.
-  \exerciseitem Shwo that $\sum\limits_{m = k}^n \binom{m}{k} =
+    $\sum_{k = 0}^n \binom{n}{k}^2 = \binom{2n}{n}$.
+  \exerciseitem Shwo that $\sum_{m = k}^n \binom{m}{k} =
     \binom{n + 1}{k + 1}$.
   \exerciseitem Using the previous formula, find the formulas for the following
     expressions:
     \begin{itemize}
-      \item $\sum\limits_{k = 0}^n k$,
-      \item $\sum\limits_{k = 0}^n k^2$, and
-      \item $\sum\limits_{k = 0}^n k^3$.
+      \item $\sum_{k = 0}^n k$,
+      \item $\sum_{k = 0}^n k^2$, and
+      \item $\sum_{k = 0}^n k^3$.
     \end{itemize}
-  \exerciseitem Show that $\sum\limits_{k = 0}^{n} \binom{2n}{2k} =
-    \sum\limits_{k = 0}^{n - 1} \binom{2n}{2k + 1}$ and
-    $\sum\limits_{k = 0}^{n} \binom{2n + 1}{2k} =
-    \sum\limits_{k = 0}^n \binom{2n + 1}{2k + 1}$.
-  \exerciseitem Show that $\sum\limits_{k = 0}^n \binom{m + k}{k} =
+  \exerciseitem Show that $\sum_{k = 0}^{n} \binom{2n}{2k} =
+    \sum_{k = 0}^{n - 1} \binom{2n}{2k + 1}$ and
+    $\sum_{k = 0}^{n} \binom{2n + 1}{2k} =
+    \sum_{k = 0}^n \binom{2n + 1}{2k + 1}$.
+  \exerciseitem Show that $\sum_{k = 0}^n \binom{m + k}{k} =
     \binom{m + n + 1}{n}$.
-  \exerciseitem Show that $\sum\limits_{k = 0}^n \binom{n - k}{k} = f_{n + 1}$,
+  \exerciseitem Show that $\sum_{k = 0}^n \binom{n - k}{k} = f_{n + 1}$,
     where $f_1 = 1$, $f_2 = 1$, and $f_{n + 2} = f_{n + 1} + f_n$ for $n > 0$.
   \exerciseitem Show that $\binom{n}{m} \binom{m}{k} =
     \binom{n}{k} \binom{n - k}{m - k}$.

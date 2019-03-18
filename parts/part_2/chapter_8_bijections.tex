@@ -257,21 +257,21 @@ compare sizes of sets.
 
 \section{Generalized Commutative Operations}
 Using the notation of cardianlity we may generalize the summation operation in
-the followin way: $\sum\limits_{i \in S ~:~ P(i)} f(i)$ is equal to the sum of
+the followin way: $\sum_{i \in S ~:~ P(i)} f(i)$ is equal to the sum of
 $f(i)$ for all the $i \in \set[P(i)]{i \in S}$; i.e.
 \[
-  \sum\limits_{i \in S ~:~ P(i)} f(i) = \sum\limits_{j = 1}^k f(i_j),
+  \sum_{i \in S ~:~ P(i)} f(i) = \sum_{j = 1}^k f(i_j),
 \] where $\set[P(i)]{i \in S} = \set{i_1, \dots, i_k}$. More formally,
 \[
-  \sum\limits_{i \in S ~:~ P(i)} f(i) = \sum\limits_{j = 1}^k f(g(j)),
+  \sum_{i \in S ~:~ P(i)} f(i) = \sum_{j = 1}^k f(g(j)),
 \]
 where $k = |\set[P(i)]{i \in S}|$ and $g : \set[P(i)]{i \in S} \to [k]$ is a
 bijection.
 
 \begin{theorem}
-  The definition of $\sum\limits_{i \in S : P(i)} f(i)$ is correct;
+  The definition of $\sum_{i \in S : P(i)} f(i)$ is correct;
   i.e.
-  $\sum\limits_{i = 1}^k f(g_1(i)) = \sum\limits_{i = 1}^k f(g_2(i))$
+  $\sum_{i = 1}^k f(g_1(i)) = \sum_{i = 1}^k f(g_2(i))$
   for any two bijections $g_1, g_2 : \set[P(i)]{i \in S} \to [k]$.
 \end{theorem}
 \begin{proof}
@@ -279,7 +279,7 @@ bijection.
   First, we prove that
   \begin{equation}
     \label{equation:summation-with-respect-to_bijection}
-    \sum\limits_{i = 1}^k f(g(i)) = \sum\limits_{i = 1}^k f(g(h(i)))
+    \sum_{i = 1}^k f(g(i)) = \sum_{i = 1}^k f(g(h(i)))
   \end{equation}
   for any bijections $g : \set[P(i)]{i \in S} \to [k]$ and $h : [k] \to [k]$.
 
@@ -306,7 +306,7 @@ bijection.
     \item[The induction step:] by the induction hypothesis,
       if $I(h') < \ell$, then
       \[
-        \sum\limits_{i = 1}^k f(g(i)) = \sum\limits_{i = 1}^k f(g(h'(i)))
+        \sum_{i = 1}^k f(g(i)) = \sum_{i = 1}^k f(g(h'(i)))
       \]
       for any bijection $h' : [k] \to [k]$.
       Let us consider a bijection $h : [k] \to [k]$ such that $I(h) = \ell$.
@@ -321,11 +321,11 @@ bijection.
       \]
       Note that by the induction hypothesis,
       \[
-        \sum\limits_{i = 1}^k f(g(i)) = \sum\limits_{i = 1}^k f(g(h'(i)))
+        \sum_{i = 1}^k f(g(i)) = \sum_{i = 1}^k f(g(h'(i)))
       \]
       and it is clear that
       \[
-        \sum\limits_{i = 1}^k f(g(h'(i))) = \sum\limits_{i = 1}^k f(g(h(i))).
+        \sum_{i = 1}^k f(g(h'(i))) = \sum_{i = 1}^k f(g(h(i))).
       \]
       As a result,
       Equation~\ref{equation:summation-with-respect-to_bijection} is true.
@@ -336,8 +336,8 @@ bijection.
   $h = g_1^{-1} \circ g_2$. Note that $h : [k] \to [k]$ is a bijection and
   $g_1(h(i)) = g_2(i)$. Thus we proved that
   \[
-    \sum\limits_{i = 1}^k f(g_1(i)) = \sum\limits_{i = 1}^k f(g(h(i))) =
-    \sum\limits_{i = 1}^k f(g_2(i)).
+    \sum_{i = 1}^k f(g_1(i)) = \sum_{i = 1}^k f(g(h(i))) =
+    \sum_{i = 1}^k f(g_2(i)).
   \]
 \end{proof}
 
@@ -353,7 +353,7 @@ where $k = |\set[P(i)]{i \in S}|$ and $g : \set[P(i)]{i \in S} \to [k]$ is a
 bijection.
 
 \begin{exercise}
-  Show that the definitions of $\bigcup\limits_{i \in S : P(i)} X(i)$ and
+  Show that the definitions of $\bigcup_{i \in S : P(i)} X(i)$ and
   $\bigcap\limits_{i \in S : P(i)} X(i)$ are correct,
   i.e. that the do not depend on the choice of $g$.
 \end{exercise}
