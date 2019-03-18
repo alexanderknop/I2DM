@@ -14,9 +14,16 @@
 
 In the previous chapters we used the property that the set is finite. However,
 we have never defined formally what it means. In this chapter we define
-cardinality which is a formalization of the notion size of the set.
+cardinality which is a formalization of the notion size of the set and explain
+how to compare sizes of two sets.
 
 \section{Bijections}
+The simplest way to explain that one set has the same number of elements as
+another is to show a correspondence between elements of these sets. For example,
+in order to expalin that the set $\set{0, \pi, 1 / 4}$ has the same number of
+elements as $\set{1, 2, 3}$ we may just say that $0$ corresponds to $1$,
+$\pi$ corresponds to $2$, and $1 / 4$ corresponds to $3$. More formally such a
+correspondence is defined using the following definition.
 \begin{definition}
   Let $f : X \to Y$ be a function. We say that $f$ is a bijection iff the
   following properties are satisfied.
@@ -46,6 +53,25 @@ function such that $f(x) = x + 1$; Note that it is a bijection:
   Show that $x^3$ is a bijection.
 \end{exercise}
 
+One may notice that if we have a bijection $f$ from $[n]$ to a set $S$ we
+enumerate all the elements of $S$: $f(1)$, \dots, $f(n)$.
+This observation allows us to define the cardinality of a set.
+\begin{definition}
+  Let $S$ be a set, we say that cardinality of $S$ is equal to $n$ (we write
+  that $|S| = n$) iff there is a bijection from $[n]$ to $S$.
+
+  We also say that a set $T$ is finite if there is an integer $n$ such that
+  $|T| = n$.
+\end{definition}
+
+Note that this definition does not guarantee that cardinality is unique so
+we need the following theorem.
+\begin{theorem}
+\label{theorem:correctness-of-cardianlity}
+  For any set $S$, if there are bijections $f : [n] \to S$ and $g : [m] \to S$,
+  then $n = m$.
+\end{theorem}
+Before we prove this theorem, let us study some properties of bijections.
 
 One of the nicest properties of bijections is that composition of two bijections
 is a bijection.
@@ -97,43 +123,7 @@ Probably the most important property of a bijection is that we may invert it.
 \end{proof}
 \noindent We denote $g$ from this theorem as $f^{-1}$.
 
-Using this theorem we may notice that nonetheless that $X \times (Y \times Z)$
-is not the same as $(X \times Y) \times Z$, there is a natural correspondence
-between the elements of these sets.
-\begin{theorem}
-  Let $X$, $Y$, $Z$ be some sets
-  There are bijctions from $X \times (Y \times Z)$ and
-  $(X \times Y) \times Z$ to $\set[x \in X, y \in Y, z \in Z]{(x, y, z)}$.
-\end{theorem}
-\begin{proof}
-  Since the statement is symmetric, it is enough to prove that there is
-  a bijection $f : X \times (Y \times Z) \to
-  \set[x \in X, y \in Y, z \in Z]{(x, y, z)}$. Define $f$ such that
-  $f(x, (y, z)) = (x, y, z)$.
-  Clearly, $f^{-1}(x, y, z) = (x, (y, z))$ is the inverse of $f$, so $f$ is
-  indeed a bijection.
-\end{proof}
-Due to this correspondence we will think about elements $(x, (y, z))$,
-$((x, y), z)$, and $(x, y, z)$ as they are equal to each other.
-
-
-One may notice that if we have a bijection $f$ from $[n]$ to a set $S$ we
-enumerate all the elements of $S$: $f(1)$, \dots, $f(n)$.
-This observation allows us to define the cardinality of a set.
-\begin{definition}
-  Let $S$ be a set, we say that cardinality of $S$ is equal to $n$ (we write
-  that $|S| = n$) iff there is a bijection from $[n]$ to $S$.
-
-  We also say that a set $T$ is finite if there is an integer $n$ such that
-  $|T| = n$.
-\end{definition}
-
-Note that this definition does not guarantee that cardinality is unique.
-\begin{theorem}
-  For any set $S$, if there are bijections $f : [n] \to S$ and $g : [m] \to S$,
-  then $n = m$.
-\end{theorem}
-\begin{proof}
+\begin{proof}[Proof of Theorem~\ref{theorem:correctness-of-cardianlity}]
   Let us consider the inverse $g^{-1}$ of $g$. Note that $h = f \circ g^{-1}$
   is a bijection from $[n]$ to $[m]$.
 
@@ -173,9 +163,29 @@ Note that this definition does not guarantee that cardinality is unique.
   As a result, $n + 1 = m$.
 \end{proof}
 
-Using Theorem~\ref{theorem:inverse-of-bijections} we may derive a way to apply this
-theory in combinatircs; we can use a bijection to prove that two sets have the
-same cardinality.
+Using Theorem~\ref{theorem:inverse-of-bijections} we may notice that
+nonetheless that $X \times (Y \times Z)$ is not the same as
+$(X \times Y) \times Z$, there is a natural correspondence between the elements
+of these sets.
+\begin{theorem}
+  Let $X$, $Y$, $Z$ be some sets
+  There are bijctions from $X \times (Y \times Z)$ and
+  $(X \times Y) \times Z$ to $\set[x \in X, y \in Y, z \in Z]{(x, y, z)}$.
+\end{theorem}
+\begin{proof}
+  Since the statement is symmetric, it is enough to prove that there is
+  a bijection $f : X \times (Y \times Z) \to
+  \set[x \in X, y \in Y, z \in Z]{(x, y, z)}$. Define $f$ such that
+  $f(x, (y, z)) = (x, y, z)$.
+  Clearly, $f^{-1}(x, y, z) = (x, (y, z))$ is the inverse of $f$, so $f$ is
+  indeed a bijection.
+\end{proof}
+Due to this correspondence we will think about elements $(x, (y, z))$,
+$((x, y), z)$, and $(x, y, z)$ as they are equal to each other.
+
+Also, using Theorem~\ref{theorem:inverse-of-bijections} we may finally prove
+that if there is a bijection from a finite set $X$ to a finite set $Y$, then
+they have the same cardianlity (i.e. they have the same number of elements).
 \begin{theorem}
   Let $X$ and $Y$ be two finite sets such that there is a bijection $f$ from
   $X$ to $Y$. Then $|X| = |Y|$.
@@ -354,7 +364,7 @@ bijection.
 
 \begin{exercise}
   Show that the definitions of $\bigcup_{i \in S : P(i)} X(i)$ and
-  $\bigcap\limits_{i \in S : P(i)} X(i)$ are correct,
+  $\bigcap_{i \in S : P(i)} X(i)$ are correct,
   i.e. that the do not depend on the choice of $g$.
 \end{exercise}
 
