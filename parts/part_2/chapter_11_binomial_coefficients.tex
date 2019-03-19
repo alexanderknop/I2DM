@@ -13,7 +13,7 @@ how many function exist from $X$ to $Y$.
 \begin{proof}
   For simplicity we prove the statement in the case when $X = [n]$. Fix some
   finite set $Y$. We prove the statement using induction by $n$. The base case
-  for $n = 1$ is ovbious, since there are $|Y|$ different functions from $[1]$
+  for $n = 1$ is obvious, since there are $|Y|$ different functions from $[1]$
   to $Y$. Let us prove the induction step, by the induction hypothesis,
   $|Y^{[n - 1]}| = |Y|^{n - 1}$. Note that
   \begin{multline*}
@@ -168,7 +168,7 @@ coefficients.
 \begin{proof}
   As always, we prove the statement using induction by $n$. The base case is
   true, since $\sum_{k = 0}^1 \binom{1}{k} x^k y^{1 - k} = x + y =
-  (x + y)^1$. Asume that
+  (x + y)^1$. Assume that
   \[
     \sum_{k = 0}^n \binom{n}{k} x^k y^{n - k} = (x + y)^n,
   \]
@@ -185,9 +185,11 @@ coefficients.
       \right) = \\
     \sum_{k = 0}^n \binom{n}{k} x^{k + 1} y^{n - k} +
       \sum_{k = 0}^n \binom{n}{k} x^{k} y^{n + 1 - k} = \\
+    \sum_{k = 1}^{n + 1} \binom{n}{k - 1} x^k y^{n + 1 - k} +
+      \sum_{k = 0}^n \binom{n}{k} x^k y^{n + 1 - k} = \\
     \sum_{k = 0}^{n + 1}
       \left(
-        \binom{n + 1}{k - 1} + \binom{n}{k}
+        \binom{n}{k - 1} + \binom{n}{k}
       \right)
       x^k y^{n + 1 - k} =
     \sum_{k = 0}^{n + 1} \binom{n + 1}{k} x^k y^{n + 1 - k}.
@@ -199,10 +201,10 @@ coefficients.
   \exercise Show that
     $(x + y)_n = \sum_{k = 0}^n \binom{n}{k} (x)_k (y)_{n - k}$.
   \exercise Show that
-    $\sum_{i = 1}^k \binom{n}{i} \binom{m}{k - i} = \binom{n + m}{k}$.
+    $\sum_{i = 10}^k \binom{n}{i} \binom{m}{k - i} = \binom{n + m}{k}$.
   \exercise Show that
     $\sum_{k = 0}^n \binom{n}{k}^2 = \binom{2n}{n}$.
-  \exercise Shwo that $\sum_{m = k}^n \binom{m}{k} =
+  \exercise Show that $\sum_{m = k}^n \binom{m}{k} =
     \binom{n + 1}{k + 1}$.
   \exercise Using the previous formula, find the formulas for the following
     expressions:
