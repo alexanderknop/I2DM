@@ -75,21 +75,40 @@ number is denoted by $n!$.
   the statement holds for any set $X$.
 \end{exercise}
 
-\section{Counting Subsets}
-Recall that we denoted the set of all subsets of $X$ by $2^X$. The reason for
-this notation is that $|2^X| = 2^{|X|}$.
+Let us consider the following problem: given a set of $m$ different objects,
+how many ways to select $n$ of them in some order (i.e. if the objects are
+numbers $1$, $2$, and $3$, then selecting $1$ and $2$ is not the same as
+selecting $2$ and $1$). It is clear the the number of ways to select these $n$
+objects is the same as the number of injections $f$ from $[n]$ to the set of
+objects since the first object is $f(1)$, the second is $f(2)$ etc.
+As a result,
+\begin{corollary}
+  There are $(m)_n$ ways to select $n$ objects if the order matters.
+\end{corollary}
 
-A quite famous example of a subset of this set is the set
+\section{Counting Subsets}
+In this section we consider a modification of the previous problem. We count
+the number of ways to select $n$ objects out of $m$ if the order does not
+matter. Note that it is the same as counting the number of subsets of
+cardianlity $n$ of the set of $m$ objects.
+
+Recall that we denoted the set of all subsets of $X$ by $2^X$. The reason for
+this notation is that $|2^X| = 2^{|X|}$. A quite famous example of a subset of
+this set is the set
 \[
-  \binom{X}{k} = \set[|A| = k]{A \subseteq [n]}.
+  \binom{X}{k} = \set[|A| = n]{A \subseteq X}.
 \]
 \nomenclature[S]{$\binom{A}{k}$}{denotes the set of subsets of $A$ of
 cardianlity $k$}
-In other words, it is the set of all possible ways to select $k$ elements from
-$X$. Size of this set we denote by $\binom{|X|}{k}$ and call it a binomial
-coefficient.
+In other words, it is the set of all possible ways to select $n$ elements from
+$X$. Size of the set $\binom{[m]}{n}$ we denote by $\binom{m}{n}$ and call it a
+binomial coefficient.
 \nomenclature[C]{$\binom{m}{n}$}{denotes the number of ways to choose an
 unordered subset of $n$ elements from a fixed set of $n$ elements}
+\begin{exercise}
+  Show that for any two finite sets $X$ and $Y$, if $|X| = |Y|$, then
+  $\left|\binom{X}{k}\right| = \left|\binom{Y}{k}\right|$.
+\end{exercise}
 
 Let us find several useful properties of the binomial coefficients.
 \begin{theorem}
