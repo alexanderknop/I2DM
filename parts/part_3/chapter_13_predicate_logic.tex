@@ -204,6 +204,10 @@ true with respect to the structure $\mathcal{M}$.
   $\mathcal{M}$.
 \end{exercise}
 
+By analogy with the tautology, in the predicate logic we wish to prove that a
+formula is true, whenever the structure and the values of the variables we
+choose. Such formulas a called \textit{logically valid}.
+
 \section{Natural Deduction}
 Natural deduction for the predicate formulas is defined in the same maner as
 the natural deduction for the propositional formulas but now the lines are
@@ -256,4 +260,41 @@ be a free variable neither of $B$ nor of any open hypothesis.
     \have [~] {4} {B} \Ee{1, 2-3}
   \end{nd}
 \]
+\section{Examples of Derivations}
+First example $\forall x \ F(x) \lor \lnot(\forall x \ F(x))$ is a special form
+of the law of excluded middle, which we proved
+in the previous chapter. However, in order to emphasize that the propositional
+logic can prove all the statements provable in the predicate case we present
+the proof of this statement as well.
+
+\noindent $
+  \begin{nd}
+    \hypo {1} {}
+    \open
+      \hypo {2} {\lnot (\forall x \  F(x) \lor \lnot (\forall x \  F(x)))}
+      \open
+        \hypo {3} {\forall x \  F(x)}
+        \have {4} {\forall x \  F(x) \lor \lnot (\forall x \  F(x))} \oi{3}
+        \have {5} {\perp} \ne{2, 4}
+      \close
+      \have {6} {\lnot (\forall x \  F(x))} \ni{3-5}
+      \have {7} {\forall x \  F(x) \lor \lnot (\forall x \  F(x))} \oi{6}
+      \have {8} {\perp} \ne{2, 8}
+    \close
+    \have {9} {\forall x \  F(x) \lor \lnot (\forall x \  F(x))} \by{IP}{2-8}
+  \end{nd}
+$
+
 \section{Soundness and Completeness}
+Like in the propositional case, the most important properties of the natural
+deduction are the following two theorems.
+
+\begin{theorem}[completeness of natural deductions]
+  Let $\phi$ be a predicate formula. If $\phi$ is logically valid, then
+  there is a proof of $\phi$.
+\end{theorem}
+
+\begin{theorem}[soundness of natural deductions]
+  Let $\phi$ be a predicate formula. If there is a proof of $\phi$, then
+  $\phi$ is logically valid.
+\end{theorem}
