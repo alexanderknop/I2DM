@@ -49,7 +49,7 @@ true for some element of $A$}
   Note that the word ``any'' sometimes indicates a universal statement and
   sometimes an existential statement.
 
-  Standard meaning of ``any'' is ``ever'' like in the statement ``$a^2 \ge 0$
+  Standard meaning of ``any'' is ``every'' like in the statement ``$a^2 \ge 0$
   for any real number'', therefore this statement can be rewritten as
   $\forall a \in \R \ a^2 \ge 0$. Nonetheless, in the negative and interrogative
   statements ``any'' is used to mean ``some''. For example, ``There is not any
@@ -191,7 +191,7 @@ function} $f$) such that
 \begin{itemize}
   \item $\forall x \in X~\exists y \in Y\ (x, y) \in D$ and
   \item $\forall x \in X, y_1, y_2 \in Y\
-    ((x, y_1) \in D \land (x, y_2) \implies y_1 = y_2)$.
+    ((x, y_1) \in D \land (x, y_2) \in D \implies y_1 = y_2)$.
 \end{itemize}
 We say that $y \in Y$ is the value $f(x)$ of the function described by $D$ at
 $x \in X$ iff $(x, y) \in D$.
@@ -355,7 +355,7 @@ There are two special type functions.
 \begin{itemize}
   \item Let $A \subseteq X$, then $i : A \to X$ such that $i(a) = a$ for all
     $a \in A$ is called the \emph{inclusion} function of $A$ into $X$. Observe
-    that $(f \circ i) : A \to X$ and $(f \circ i) = f|_A$
+    that $(f \circ i) : A \to Y$ and $(f \circ i) = f|_A$
     for any function $f : X \to Y$.
   \item Another important function is called the \emph{identity} function.
     Let $X$ be some set. Then $I_X : X \to X$ is an identity function iff
@@ -366,7 +366,7 @@ There are two special type functions.
 \begin{theorem}
   Let $f : X \to Y$, $g : Y \to Z$, and $h : Z \to W$. Then
   \begin{itemize}
-    \item $f \circ (g \circ h) = (f \circ g) \circ h$.
+    \item $h \circ (g \circ f) = (h \circ g) \circ f$.
     \item $f \circ I_X = f = I_Y \circ f$.
   \end{itemize}
 \end{theorem}
