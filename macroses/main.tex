@@ -71,11 +71,13 @@
 }
 \makeatother
 
+\usepackage[pageanchor,hidelinks,linktoc=all]{hyperref}
+
 \titlecontents{part}%
     [0pt]% distance from left margin
     {\addvspace{0.25\baselineskip}}% above (global formatting of entry)
-    {\allcaps{Part~\thecontentslabel}\allcaps}% before w/ label (label = ``Part I'')
-    {\allcaps{Part~\thecontentslabel}\allcaps}% before w/o label
+    {\uppercase{Part~\thecontentslabel}\uppercase}% before w/ label (label = ``Part I'')
+    {\uppercase{Part~\thecontentslabel}\uppercase}% before w/o label
     {}% filler and page (leaders and page num)
     [\vspace*{0.5\baselineskip}]% after
 
@@ -101,7 +103,7 @@
 \renewcommand{\nomname}{List of Symbols}
 
 \usepackage{ifthen}
-  \renewcommand{\nomgroup}[1]{%
+\renewcommand{\nomgroup}[1]{%
   \item[\bfseries%
   \ifthenelse{\equal{#1}{S}}{Set Notation}{%
   \ifthenelse{\equal{#1}{C}}{Counting}{%
@@ -110,6 +112,8 @@
   \ifthenelse{\equal{#1}{F}}{Functions}{%
   }}}}}%
 ]}
+
+\def\pagedeclaration#1{, \hyperlink{page.#1}{page\nobreakspace#1}}
 
 \setlength\nomlabelwidth{2.5cm}
 
