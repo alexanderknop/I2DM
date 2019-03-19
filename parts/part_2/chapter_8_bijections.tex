@@ -60,7 +60,7 @@ This observation allows us to define the cardinality of a set.
 Note that this definition does not guarantee that cardinality is unique so
 we need the following theorem.
 \begin{theorem}
-\label{theorem:correctness-of-cardianlity}
+\label{theorem:correctness-of-cardinality}
   For any set $S$, if there are bijections $f : [n] \to S$ and $g : [m] \to S$,
   then $n = m$.
 \end{theorem}
@@ -80,7 +80,7 @@ is a bijection.
       is a bijection. Hence, $g(f(x_1)) \neq g(f(x_2))$ since $g$ is a bijection
       as well. As a result, $(g \circ f)(x_1) \neq (g \circ f)(x_2)$.
     \item Let $z \in Z$; we need to find $x \in X$ such that
-      $(g \circ f)(x) = y$. Note that since $g$ is a bijection there is
+      $(g \circ f)(x) = z$. Note that since $g$ is a bijection there is
       $y \in Y$ such that $g(y) = z$. Additionally, there is $x \in X$ such
       that $f(x) = y$ since $f$ is a bijection. Thus,
       $(g \circ f)(x) = g(f(x)) = z$.
@@ -123,8 +123,10 @@ $\set[f(x) = y]{x \in X}$ if $f$ is not a bijection and it denotes the value of
 $f^{-1}$ at $y$ if $f$ is a bijection}
 
 
-\begin{proof}[Proof of Theorem~\ref{theorem:correctness-of-cardianlity}]
-  Let us consider the inverse $g^{-1}$ of $g$. Note that $h = f \circ g^{-1}$
+\begin{proof}[Proof of Theorem~\ref{theorem:correctness-of-cardinality}]
+  Let us consider the inverse $g^{-1}$ of $g$ (it exists by
+  Theorem~\ref{theorem:theorem:inverse-of-bijections} since $g$ is a
+  bijection). Note that $h = g^{-1} \circ f$
   is a bijection from $[n]$ to $[m]$.
 
   We prove using induction by $n$ that for any $n, m \in \N$,
@@ -185,7 +187,7 @@ $((x, y), z)$, and $(x, y, z)$ as they are equal to each other.
 
 Also, using Theorem~\ref{theorem:inverse-of-bijections} we may finally prove
 that if there is a bijection from a finite set $X$ to a finite set $Y$, then
-they have the same cardianlity (i.e. they have the same number of elements).
+they have the same cardinality (i.e. they have the same number of elements).
 \begin{theorem}
   Let $X$ and $Y$ be two finite sets such that there is a bijection $f$ from
   $X$ to $Y$. Then $|X| = |Y|$.
@@ -198,7 +200,7 @@ they have the same cardianlity (i.e. they have the same number of elements).
 Using this result we can make prove the following equality.
 \begin{corollary}
 \label{corollary:power-set-and-set-of-binary-strings}
-  Let $X$ be a finite set of cardianlity $n$. Then $2^X$ has the same
+  Let $X$ be a finite set of cardinality $n$. Then $2^X$ has the same
   cardinality as $\set{0, 1}^{|X|}$.
 \end{corollary}
 \begin{proof}
@@ -266,7 +268,7 @@ compare sizes of sets.
 \end{theorem}
 
 \section{Generalized Commutative Operations}
-Using the notation of cardianlity we may generalize the summation operation in
+Using the notation of cardinality we may generalize the summation operation in
 the followin way: $\sum_{i \in S ~:~ P(i)} f(i)$ is equal to the sum of
 $f(i)$ for all the $i \in \set[P(i)]{i \in S}$; i.e.
 \[
