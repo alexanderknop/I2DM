@@ -8,8 +8,8 @@ Another important type of objects in mathematics are functions. Function $f$
 from a set $X$ to a set $Y$ (we write it as $f : X \to Y$) is a unique
 assignment of elements of $Y$ to the elements of $X$. In other words, for each
 element $x \in X$ there is one assigned element $f(x) \in Y$. We call such an
-element the \textit{value} of $f$ at $x$, we also say that $f(x)$ is an
-\textit{image} of $x$.
+element the \emph{value} of $f$ at $x$, we also say that $f(x)$ is an
+\emph{image} of $x$.
 
 Unfortunately, the definition is not formal. In the rest of the chapter we are
 going to give a more formal definition.
@@ -79,7 +79,7 @@ approach.
 
 \paragraph{Proving statements of the form $\exists a \in A \ P(a)$.}
 The easiest way to prove such a statement is by simply exhibiting an element $a$
-of $A$ such that $P(a)$ is true. This method is called \textit{proof by
+of $A$ such that $P(a)$ is true. This method is called \emph{proof by
 example}.
 
 Let us prove the statement $\exists x \in \N \ x^2 = 4$ using this method.
@@ -116,7 +116,7 @@ it is the same as proving the negation.
 \paragraph{Disproving statements of the form $\forall a \in A \ P(a)$.}
 We may note that the negation of such a statement is the statement $\exists a
 \in A \ \lnot P(a)$. So we can disprove it by giving a single example for which
-it is false. This is called \textit{disproof by counterexample} to $P(a)$.
+it is false. This is called \emph{disproof by counterexample} to $P(a)$.
 
 For example, we may disprove the statement $\forall x \in \R \ x^2 > 2$ by
 giving a counterexample $x = 1$ since $1^2 = 1 < 2$.
@@ -186,7 +186,7 @@ $A$ and $B$}
 Now we have all the components to define a function. Mathematicians think about
 the functions in the way we defined them at the beginning of the chapter,
 however formally in order to define a function $f : X \to Y$ one need to define
-a set $D \subseteq X \times Y$ (such a set is called the \textit{graph of the
+a set $D \subseteq X \times Y$ (such a set is called the \emph{graph of the
 function} $f$) such that
 \begin{itemize}
   \item $\forall x \in X~\exists y \in Y\ (x, y) \in D$ and
@@ -336,7 +336,7 @@ Suppose $f : X \ to Y$ and $g : Y \to Z$ be some function. Then, given an
 element $x \in X$, the function $f$ assigns $y = f(x) \in Y$, and the function
 $g$ assigns $z = g(y) = g(f(x)) \in Z$. Thus using $f$ and $g$ an element of
 $Z$ can be assigned to $x$. This operation defines a function from $X$ to $Z$
-and the result of this operation is called the \textit{composition} of $f$ and
+and the result of this operation is called the \emph{composition} of $f$ and
 $g$.
 \nomenclature[F]{$f \circ g$}{denotes the composition of funcitons $f$ and $g$}
 
@@ -349,15 +349,15 @@ Let us consider an example. Let $f : \R \to \R$ such that $f(x) = x + 1$ and
 $g : \R \to \R$ such that $g(x) = x^2$. Then $(g \circ f) : \R \to \R$ and
 $(g \circ f)(x) = (x + 1)^2$ for all $x \in \R$. Note that the order of $f$ and
 $g$ is important since $(f \circ g)(x) = x^2 + 1$. Thus composition is not
-\textit{commutative}.
+\emph{commutative}.
 
 There are two special type functions.
 \begin{itemize}
   \item Let $A \subseteq X$, then $i : A \to X$ such that $i(a) = a$ for all
-    $a \in A$ is called the \textit{inclusion} function of $A$ into $X$. Observe
+    $a \in A$ is called the \emph{inclusion} function of $A$ into $X$. Observe
     that $(f \circ i) : A \to X$ and $(f \circ i) = f|_A$
     for any function $f : X \to Y$.
-  \item Another important function is called the \textit{identity} function.
+  \item Another important function is called the \emph{identity} function.
     Let $X$ be some set. Then $I_X : X \to X$ is an identity function iff
     $I_X(x) = x$.
 \end{itemize}
