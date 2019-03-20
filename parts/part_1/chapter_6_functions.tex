@@ -1,21 +1,15 @@
 \chapter{Functions}
-\begin{marginfigure}
-  {\scriptsize Functions and Quantifiers:\\\noindent
-  Introduction to Mathematical Reasoning \#7}
-  \vskip 0.25cm
-  \noindent
-  \qrset{link, height=3cm}
-  \qrcode{https://youtu.be/VHJeUrCedTU}
-  \vskip 0.25cm
-  \noindent
-  \url{youtu.be/VHJeUrCedTU}
-\end{marginfigure}
+\marginurl{%
+  Functions and Quantifiers:\\\noindent
+  Introduction to Mathematical Reasoning \#7
+}{youtu.be/VHJeUrCedTU}
+
 Another important type of objects in mathematics are functions. Function $f$
 from a set $X$ to a set $Y$ (we write it as $f : X \to Y$) is a unique
 assignment of elements of $Y$ to the elements of $X$. In other words, for each
 element $x \in X$ there is one assigned element $f(x) \in Y$. We call such an
-element the \textit{value} of $f$ at $x$, we also say that $f(x)$ is an
-\textit{image} of $x$.
+element the \emph{value} of $f$ at $x$, we also say that $f(x)$ is an
+\emph{image} of $x$.
 
 Unfortunately, the definition is not formal. In the rest of the chapter we are
 going to give a more formal definition.
@@ -33,11 +27,12 @@ statement saying that all the elements of $A$ satisfy the predicate $P$. In
 other words it is the same as the statement
 $\set[P(a)]{a \in A} = A$. For example, $\forall x \in \R\ x \cdot 0 = 0$ says
 that product of every real number and zero is equal to zero.
-\nomenclature[P]{$\forall \alpha \in A~P(a)$}{denotes the statement saying that
+\nomenclature[L]{$\forall \alpha \in A~P(a)$}{denotes the statement saying that
 $P$ is true for all elements of $A$}
 
 \paragraph{The Existential Quantifier.}
-The second quantifier means ``there is'' and denoted by the symbol $\exists$\footnote{%
+The second quantifier means ``there is'' and denoted by the symbol
+$\exists$\footnote{%
   The symbol is a turned ``E'' symbol, the first letter of the word ``exists''.
   It is also intresting that the symbol for the universal quantifier was
   introduced by Gerhard Gentzen in 1935 but the symbol for the existencial
@@ -48,14 +43,14 @@ says that there is an element of $A$ satisfying the predicate $P$ i.e.
 $\set[P(a)]{a \in A} \neq \emptyset$. For example,
 $\exists x \in \R\ x^2 - 1 = 0$ states that there is a real solution of the
 equation $x^2 - 1 = 0$.
-\nomenclature[P]{$\exists \alpha \in A~P(a)$}{denotes the statement saying that $P$ is
-true for some element of $A$}
+\nomenclature[L]{$\exists \alpha \in A~P(a)$}{denotes the statement saying that
+$P$ is true for some element of $A$}
 
 \begin{warning}
   Note that the word ``any'' sometimes indicates a universal statement and
   sometimes an existential statement.
 
-  Standard meaning of ``any'' is ``ever'' like in the statement ``$a^2 \ge 0$
+  Standard meaning of ``any'' is ``every'' like in the statement ``$a^2 \ge 0$
   for any real number'', therefore this statement can be rewritten as
   $\forall a \in \R \ a^2 \ge 0$. Nonetheless, in the negative and interrogative
   statements ``any'' is used to mean ``some''. For example, ``There is not any
@@ -85,7 +80,7 @@ approach.
 
 \paragraph{Proving statements of the form $\exists a \in A \ P(a)$.}
 The easiest way to prove such a statement is by simply exhibiting an element $a$
-of $A$ such that $P(a)$ is true. This method is called \textit{proof by
+of $A$ such that $P(a)$ is true. This method is called \emph{proof by
 example}.
 
 Let us prove the statement $\exists x \in \N \ x^2 = 4$ using this method.
@@ -122,7 +117,7 @@ it is the same as proving the negation.
 \paragraph{Disproving statements of the form $\forall a \in A \ P(a)$.}
 We may note that the negation of such a statement is the statement $\exists a
 \in A \ \lnot P(a)$. So we can disprove it by giving a single example for which
-it is false. This is called \textit{disproof by counterexample} to $P(a)$.
+it is false. This is called \emph{disproof by counterexample} to $P(a)$.
 
 For example, we may disprove the statement $\forall x \in \R \ x^2 > 2$ by
 giving a counterexample $x = 1$ since $1^2 = 1 < 2$.
@@ -142,10 +137,13 @@ denote $\underbrace{X \times X \times \dots \times X}_{k \text{ times}}$ by
 $X^k$.
 
 Consider the following example. If $X = \set{a, b, c}$ and $Y = \set{a, b}$,
-then $$X \times Y = \set{(a, a), (a, b), (b, a), (b, b), (c, a), (c, b)}.$$
+then
+\[
+  X \times Y = \set{(a, a), (a, b), (b, a), (b, b), (c, a), (c, b)}.
+\]
 Additionally, $\R^2 = \R \times \R$ is the familiar $2$-dimensional Euclidean
 plane.
-\nomenclature[SO]{$A \times B$}{denotes the set of all ordered pairs of elements of
+\nomenclature[S]{$A \times B$}{denotes the set of all ordered pairs of elements of
 $A$ and $B$}
 
 \begin{exercise}
@@ -192,12 +190,12 @@ $A$ and $B$}
 Now we have all the components to define a function. Mathematicians think about
 the functions in the way we defined them at the beginning of the chapter,
 however formally in order to define a function $f : X \to Y$ one need to define
-a set $D \subseteq X \times Y$ (such a set is called the \textit{graph of the
+a set $D \subseteq X \times Y$ (such a set is called the \emph{graph of the
 function} $f$) such that
 \begin{itemize}
   \item $\forall x \in X~\exists y \in Y\ (x, y) \in D$ and
   \item $\forall x \in X, y_1, y_2 \in Y\
-    ((x, y_1) \in D \land (x, y_2) \implies y_1 = y_2)$.
+    ((x, y_1) \in D \land (x, y_2) \in D \implies y_1 = y_2)$.
 \end{itemize}
 We say that $y \in Y$ is the value $f(x)$ of the function described by $D$ at
 $x \in X$ iff $(x, y) \in D$.
@@ -338,41 +336,41 @@ make a domain smaller.
   \caption{Composition of functions}
 \end{figure}
 
-Suppose $f : X \ to Y$ and $g : Y \to Z$ be some function. Then, given an
+Suppose $f : X \to Y$ and $g : Y \to Z$ be some function. Then, given an
 element $x \in X$, the function $f$ assigns $y = f(x) \in Y$, and the function
 $g$ assigns $z = g(y) = g(f(x)) \in Z$. Thus using $f$ and $g$ an element of
 $Z$ can be assigned to $x$. This operation defines a function from $X$ to $Z$
-and the result of this operation is called the \textit{composition} of $f$ and
+and the result of this operation is called the \emph{composition} of $f$ and
 $g$.
 \nomenclature[F]{$f \circ g$}{denotes the composition of funcitons $f$ and $g$}
 
 \begin{definition}
   If $f : X \to Y$ and $g : Y \to Z$, then $h = g \circ f$ is a
   function from $X$ to $Z$ such that $g(f(x)) = h(x)$ for all $x \in X$.
-\end{definition}.
+\end{definition}
 
 Let us consider an example. Let $f : \R \to \R$ such that $f(x) = x + 1$ and
 $g : \R \to \R$ such that $g(x) = x^2$. Then $(g \circ f) : \R \to \R$ and
 $(g \circ f)(x) = (x + 1)^2$ for all $x \in \R$. Note that the order of $f$ and
 $g$ is important since $(f \circ g)(x) = x^2 + 1$. Thus composition is not
-\textit{commutative}.
+\emph{commutative}.
 
 There are two special type functions.
 \begin{itemize}
   \item Let $A \subseteq X$, then $i : A \to X$ such that $i(a) = a$ for all
-    $a \in A$ is called the \textit{inclusion} function of $A$ into $X$. Observe
-    that $(f \circ i) : A \to X$ and $(f \circ i) = f|_A$
+    $a \in A$ is called the \emph{inclusion} function of $A$ into $X$. Observe
+    that $(f \circ i) : A \to Y$ and $(f \circ i) = f|_A$
     for any function $f : X \to Y$.
-  \item Another important function is called the \textit{identity} function.
-    Let $X$ be some set. Then $I_X : X \to X$ is an identity function iff
-    $I_X(x) = x$.
+  \item Another important function is called the \emph{identity} function.
+    Let $X$ be some set. Then $I_X : X \to X$ is the identity function on $X$
+    iff $I_X(x) = x$.
 \end{itemize}
 \nomenclature[F]{$I_A$}{denotes the identity function on the set $A$}
 
 \begin{theorem}
   Let $f : X \to Y$, $g : Y \to Z$, and $h : Z \to W$. Then
   \begin{itemize}
-    \item $f \circ (g \circ h) = (f \circ g) \circ h$.
+    \item $h \circ (g \circ f) = (h \circ g) \circ f$.
     \item $f \circ I_X = f = I_Y \circ f$.
   \end{itemize}
 \end{theorem}
@@ -392,25 +390,27 @@ the formula $x^2$ does not have $-1$ as a value.
 Thus we may give the following definition.
 \begin{definition}
   The image of the function $f$ is defined as follows
-  $$\Im f = \set[\exists x \in X\ f(x) = y]{y \in Y}
-  = \set[x \in X]{f(x)}$$ (in other
-  words it is the projection of the graph $D$ of $f$ on the second coordinate:
-  $\Im f = \set[(x, y) \in D]{y}$).
+  \[
+    \Im f = \set[\exists x \in X\ f(x) = y]{y \in Y}
+    = \set[x \in X]{f(x)}
+  \]
+  (in other words it is the projection of the graph $D$ of $f$ on the second
+  coordinate: $\Im f = \set[(x, y) \in D]{y}$).
 \end{definition}
 \nomenclature[F]{$\Im f$}{denotes the image of $f$}
 
 \section*{End of The Chapter Exercises}
 \begin{exercises}
-  \exerciseitem Find an image of the function $f : \Z \to \Z$ such that
+  \exercise Find an image of the function $f : \Z \to \Z$ such that
     $f(x) = 3x$.
-  \exerciseitem Determine the following sets:
+  \exercise Determine the following sets:
     \begin{itemize}
       \item $\set[\exists n \in \N \ m \le n]{m \in \N}$;
       \item $\set[\forall n \in \N \ m \le n]{m \in \N}$;
       \item $\set[\exists m \in \N \ m \le n]{n \in \N}$;
       \item $\set[\forall m \in \N \ m \le n]{n \in \N}$.
     \end{itemize}
-  \exerciseitem Prove or disprove the following statements.
+  \exercise Prove or disprove the following statements.
     \begin{itemize}
       \item $\forall m, n \in \N \ m \le n$.
       \item $\exists m, n \in \N \ m \le n$.

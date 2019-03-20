@@ -1,29 +1,23 @@
 \chapter{The Pigeonhole Principle}
-\begin{marginfigure}
-  {\scriptsize The Pigeonhole Principle:\\\noindent
-  Introduction to Combinatorics \#3}
-  \vskip 0.25cm
-  \noindent
-  \qrset{link, height=3cm}
-  \qrcode{https://youtu.be/1D1Fa7WIUO8}
-  \vskip 0.25cm
-  \noindent
-  \url{youtu.be/1D1Fa7WIUO8}
-\end{marginfigure}
+\marginurl{%
+  The Pigeonhole Principle:\\\noindent
+  Introduction to Combinatorics \#3
+}{youtu.be/1D1Fa7WIUO8}
+
 The principle we are going to discuss in this chapter is very simple, it states
 that if you have more objects than boxes, then you cannot put all the objects to
 boxes without puting two objects in the same box.
 
 More formally the principle can be formulated as follows: if $n > m$, then any
 function from $[n]$ to $[m]$ is not an injection. This simple statement is
-famous in mathematics and called \textit{the pigeonhole principle}\footnote{%
+famous in mathematics and called \emph{the pigeonhole principle}\footnote{%
   The pigeonhole principle is also called the Dirichlet principle, after the
   German mathematician G. Lejeune Dirichlet, who demonstrated, using this
   principle, that there were at least two Parisians with the same number of
   hairs on their heads.
 }.
 
-\begin{theorem}
+\begin{theorem}[the pigeonhole principle]
   Let $X$ and $Y$ be some sets such that $|X| > |Y|$. Then for any function
   $f : |X| \to |Y|$ there are $x_0 \neq x_1 \in X$ such that $f(x_0) = f(x_1)$.
 \end{theorem}
@@ -83,7 +77,7 @@ We need to consider two cases.
 One may generalize the pigeonhole principle in the following way.
 If $N$ objects are placed into $k$ boxes, then there is at least one box
 containing at least $\ceil{N / k}$ objects.
-\begin{theorem}
+\begin{theorem}[the generalized pigeonhole principle]
 \label{theorem:generalized-pigeonhole-principle}
   Let $X$ and $Y$ be some sets. Then for any function $f : |X| \to |Y|$ there
   are $x_1, \dots, x_\ell \in X$ such that
@@ -94,9 +88,8 @@ containing at least $\ceil{N / k}$ objects.
   \end{itemize}
 \end{theorem}
 
-\begin{exercise}
-    Prove Theorem~\ref{theorem:generalized-pigeonhole-principle}.
-\end{exercise}
+Now we illustrate applications of this principle on some examples and prove the
+statement in the next section.
 
 Using this theorem we can prove that if we draw $9$ cards out of a deck of
 cards, we are guaranteed that at least three of them are of the same suit.
@@ -120,32 +113,107 @@ suppose that $B$, $C$, and $D$ are friends of $A$. If any two of these three
 individuals are friends, then these two and $A$ form a group of three mutual
 friends. Otherwise, $B$, $C$, and $D$ form a set of three mutual enemies.
 
+\section{The Averaging Principle}
+Assume that we have a collection of $m$ objects, the $i$th of which has
+``size'' $l_i$, and we wish to show that at least one of the objects is large.
+In this situation we can argue that at least one of the objects has size
+greater or equal to the average size ($\sum l_i / m$).
+\begin{theorem}[the averaging principle]
+\label{theorem:averaging-principle}
+  Every sequence of numbers has a number at least as large as the average and a
+  number at least as small as the average; i.e. for any sequence $a_1$, \dots,
+  $a_m$ there are $i$ and $j$ such that
+  \begin{gather*}
+    a_i \ge \frac{1}{m} \sum_{i = 1}^n a_i \\
+    \text{and} \\
+    a_j \le \frac{1}{m} \sum_{i = 1}^n a_i.
+  \end{gather*}
+\end{theorem}
+\begin{proof}
+  We prove only the existence of $i$, proof of the existence of $j$ is almost
+  the same.
+
+  Assume the opposite, i.e. that $a_i < \sum_{i = 1}^n a_i / m$
+  for any $i \in [n]$. Note that this implies that
+  $\sum_{i = 1}^n a_i \le m \cdot \sum_{i = 1}^n a_i / m = \sum_{i = 1}^n a_i$.
+  Which is a contradiction.
+\end{proof}
+
+\begin{exercise}
+  Finish the proof of Theorem~\ref{theorem:averaging-principle}
+\end{exercise}
+
+Like the pigeonhole principle, this principle is very simple but the
+applications of it are surprisingly intresting.
+
+First, it allows to prove the generalized pigeonhole principle.
+\begin{proof}[Proof of Theorem~\ref{theorem:generalized-pigeonhole-principle}]
+  Let $Y = [m]$ (it is easy to see that the proof works for any other finite
+  $Y$). Define the sequence $a_i = |f^{-1}(i)|$. %TODO add the definition of $f^{-1}$ in the case when $f$ is not a bijection.
+  Note that we need to prove that $a_i \ge \ceil{|X| / m}$ for some
+  $i \in [m]$
+
+  It is clear that $\bigcup_{i = 1}^m f^{-1}(i) = X$ and that $f^{-1}(i) \cap
+  f^{-1}(j) = \emptyset$ for any $i \neq j \in [m]$. Thus, by the additive
+  principle, $\sum_{i = 1}^m a_i = |X|$. Hence, by the averaging principle,
+  $a_i \ge |X| / m$ for some $i \in [m]$. However, $a_i$ is an integer, thus
+  $a_i \ge \ceil{|X| / m}$.
+\end{proof}
+
+Another nice application of the averaging principle allows us to prove that if
+in some group (with more than one person) the number of pairs of people who
+know each other is less than $n - 1$, then we can split this group into two
+subgroups such that people from different subgroups do not know each other.
+
+Let us assume that there are $n$ people in the group. We prove the statement
+using the induction by $n$.
+\begin{description}
+  \item [(the base case)] If $n = 2$, there are less than $n - 1 = 1$ pairs
+    of people who know each other, in other words, these two people in the
+    group do not know each other. Thus we can put each of them into a separate
+    subgroup.
+  \item [(the induction step)] Let $p_i$ ($i \in [n]$) be the number of
+    acquaintances of the $i$th person. Note that
+    $\sum_{i = 1}^n p_i \le 2(n - 2)$ since we count each pair twice.
+    By the averaging principle, $p_i \le 2(n - 2) / n = 2 - 2 / n$ for some
+    $i \in [n]$.  Thus $p_i$ is either $0$ or $1$.
+    \begin{itemize}
+      \item If $p_i = 0$, we can put the $i$th person into the first subgroup
+        and everyone else into another.
+      \item If $p_i = 1$ we consider the group of $n - 1$ people without the
+        $i$th person, by the induction hypothesis, we can split everyone but
+        $i$th person into two subgroups and since the $i$th person has only one
+        acquaintance we can put them in the same subgroup.
+      \end{itemize}
+\end{description}
+
+
 \section*{End of The Chapter Exercises}
 \begin{exercises}
-  \exerciseitem Show that among any group of five (not necessarily consecutive)
+  \exercise Show that among any group of five (not necessarily consecutive)
     integers, there are two with the same remainder when divided by $4$.
-  \exerciseitem Show that if there are 30 students in a class, then at least
+  \exercise Show that if there are 30 students in a class, then at least
     two have last names that begin with the same letter.
-  \exerciseitem Let $n$ be a positive integer. Show that in any set of $n$
+  \exercise Let $n$ be a positive integer. Show that in any set of $n$
     consecutive integers there is exactly one divisible by $n$.
-  \exerciseitem Prove that for every integers $a_1$, \dots, $a_n$ there are
+  \exercise Prove that for every integers $a_1$, \dots, $a_n$ there are
     $k > 0$ and $\ell \ge 0$ such that $k + \ell \le n$ and
-    $\sum\limits_{i = k}^{k + \ell} a_i$ is divisible by $n$.
-  \exerciseitem Let $S \subseteq [20]$ be a set. Show that if
+    $\sum_{i = k}^{k + \ell} a_i$ is divisible by $n$.
+  \exercise Let $S \subseteq [20]$ be a set. Show that if
     $|S| \ge 13$, then there are $a, b \in S$ such that $a - b = 6$.
-  \exerciseitem How many numbers must be selected from the set $[6]$ to
+  \exercise How many numbers must be selected from the set $[6]$ to
     guarantee that at least one pair of these numbers add up to $7$?
-  \exerciseitem Sasha is training for a triathlon. Over a $30$ day period, he
+  \exercise Sasha is training for a triathlon. Over a $30$ day period, he
     pledges to train at least once per day, and $45$ times in all. Then there
     will be a period of consecutive days where he trains exactly $14$ times.
-  \exerciseitem Show that among any $n + 1$ positive integers not exceeding $2n$
+  \exercise Show that among any $n + 1$ positive integers not exceeding $2n$
     there must be an integer that divides one of the other integers.
-    \textit{Advise: consider the set of holes equal to the set of odd numbers
+    \emph{Advise: consider the set of holes equal to the set of odd numbers
     from $1$ to $2n$.}
-  \exerciseitem Let $a_1$, $a_2$, \dots, $a_t$ be positive integers. Show that
+  \exercise Let $a_1$, $a_2$, \dots, $a_t$ be positive integers. Show that
     if $a_1 + a_2 + \dots + a_t - t + 1$ objects are placed into $t$ boxes,
     then for some $i \in [t]$, the $i$th box contains at least $a_i$ objects.
-  \exerciseitem Let $\set{(x_1,y_1), \dots, (x_5, y_5)} \subseteq \Z^2$ be a
+  \exercise Let $\set{(x_1,y_1), \dots, (x_5, y_5)} \subseteq \Z^2$ be a
     set of five distinct points with integer coordinates in the xy plane. Show
     that the midpoint of the line joining at least one pair of these points has
     integer coordinates.

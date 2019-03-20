@@ -1,16 +1,9 @@
 \chapter{Proofs}
 \section{Direct Proofs}
-\begin{marginfigure}
-  {\scriptsize What is a Mathematical Proof:\\\noindent
-  Introduction to Mathematical Reasoning \#1}
-  \vskip 0.25cm
-  \noindent
-  \qrset{link, height=3cm}
-  \qrcode{https://youtu.be/eJD0gGqveIE}
-  \vskip 0.25cm
-  \noindent
-  \url{youtu.be/eJD0gGqveIE}
-\end{marginfigure}
+\marginurl{%
+  What is a Mathematical Proof:\\\noindent
+  Introduction to Mathematical Reasoning \#1
+}{youtu.be/eJD0gGqveIE}
 
 We start the discussion of the proofs in mathematics from an example of a proof
 in ``everyday'' life. Assume that we know that the following statements are
@@ -32,7 +25,7 @@ is true if the previous statement is true. If $P$ and $Q$ are some statements
 and $Q$ is always true when $P$ is true, then we say that $P$ implies $Q$.
 We denote the statement that $P$ implies $Q$ by $P \implies Q$.
 
-\nomenclature[LO]{$P \implies Q$}{denotes the statement saying that
+\nomenclature[L]{$P \implies Q$}{denotes the statement saying that
 if $P$ is true, then $Q$ is true as well}
 
 
@@ -59,10 +52,10 @@ are both false, then $P \implies Q$ is true etc.
   \end{enumerate}
 \end{exercise}
 In the example we gave at the beginning of the section we used some
-\textit{known} facts. But what does it mean to know something? In math we
+\emph{known} facts. But what does it mean to know something? In math we
 typically say that we know a statement if we can prove it. But in order to prove
 this statement we need to know something again, which is a problem! In order to
-solve it, mathematicians introduced the notion of an \textit{axiom}.
+solve it, mathematicians introduced the notion of an \emph{axiom}.
 An axiom is a statement that is believed to be true and when we prove a statement
 we prove it under the assumption that these axioms are true\footnote{Note that
 in different parts of math axioms may be different.}.
@@ -82,18 +75,10 @@ For example, we may consider axioms of inequalities for real numbers.
   \item Let $a, b, c \in \R$. If $a < b$ and $b < c$, then $a < c$.
 \end{enumerate}
 
-
-\begin{marginfigure}
-  {\scriptsize What We Know and How to Find a Proof:\\\noindent
-  Introduction to Mathematical Reasoning \#2}
-  \vskip 0.25cm
-  \noindent
-  \qrset{link, height=3cm}
-  \qrcode{https://youtu.be/nBjJi6aTk2M}
-  \vskip 0.25cm
-  \noindent
-  \url{youtu.be/nBjJi6aTk2M}
-\end{marginfigure}
+\marginurl{%
+  What We Know and How to Find a Proof:\\\noindent
+  Introduction to Mathematical Reasoning \#2
+}{youtu.be/nBjJi6aTk2M}
 
 
 Let us now try to prove something using these axioms, we prove that if $a > 0$,
@@ -240,27 +225,43 @@ In this chapter we explicitly used axioms to prove statements. However, it
 leads us to really long and hard to understand proofs (the last example in the
 previous section is a good example of this phenomenon). Because of this
 mathematicians tend to skip steps in the proofs when they believe that they are
-clear. This is the reason why it is arduous to read mathematical texts and it
-is very different from reading non-mathematical books. A problem that arises
-because of this tendency is that some mistakes may happen if we skip way too
-many steps. In the last two centuries there were several attempts to solve this
-issue, one approach to this we are going to discuss in the second part of this
-book.
+clear. It is worth to mention a
+nice quotation of Scott Aaronson about this problem
+\begin{displayquote}
+  When mathematicians say that a theorem has been ``proved,'' they still mean,
+  as they always have, something more like: ``we’ve reached a social consensus
+  that all the ideas are now in place for a strictly formal proof that could be
+  verified by a machine \dots with the only task remaining being massive rote
+  coding work that none of us has any intention of ever doing!''
+\end{displayquote}
+This is the reason why it is arduous to read mathematical texts and it
+is very different from reading non-mathematical books.
+A problem that arises because of this tendency is that some mistakes may happen
+if we skip way too many steps. In the last two centuries there were several
+attempts to solve this issue, one approach to this we are going to discuss in
+Part~\ref{part:logic}.
+\marginurl{%
+  Death of proof greatly exaggerated
+}{scottaaronson.com/blog/?p=4133}
+
 
 \section*{End of The Chapter Exercises}
 \begin{exercises}
-  \exerciseitem Using the axioms of inequalities show that if $a$ is a non-zero
+  \exercise Using the axioms of inequalities show that if $a$ is a non-zero
     real number, then $a^2 > 0$.
-  \exerciseitem Using the axioms of inequalities prove that for all real
-    numbers $a$, $b$, and $c$, $$bc + ac + ab \le a^2 + b^2 + c^2.$$
-  \exerciseitem Prove that for all integers $a$, $b$, and $c$,
+  \exercise Using the axioms of inequalities prove that for all real
+    numbers $a$, $b$, and $c$,
+    \[
+      bc + ac + ab \le a^2 + b^2 + c^2.
+    \]
+  \exercise Prove that for all integers $a$, $b$, and $c$,
     If $a$ divides $b$ and $b$ divides $c$, then $a$ divides $c$.
     Recall that an integer $m$ divides an integer $n$ if there is an integer
     $k$ such that $mk = n$.
-  \exerciseitem Show that square of an even integer is even.
-  \exerciseitem Prove that $0$ divides an integer $a$ iff $a = 0$.
-  \exerciseitem Using the axioms of inequalities, show that if $a > 0$, $b$, and $c$
+  \exercise Show that square of an even integer is even.
+  \exercise Prove that $0$ divides an integer $a$ iff $a = 0$.
+  \exercise Using the axioms of inequalities, show that if $a > 0$, $b$, and $c$
     are real numbers, then $b \ge c$ implies that $ab \ge ac$.
-  \exerciseitem Using the axioms of inequalities, show that if $a, b < 0$ are real
+  \exercise Using the axioms of inequalities, show that if $a, b < 0$ are real
     numbers, then $a \le b$ implies that $a^2 \ge b^2$.
 \end{exercises}
