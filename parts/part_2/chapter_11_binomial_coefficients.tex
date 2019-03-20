@@ -225,4 +225,16 @@ coefficients.
     \binom{n}{k} \binom{n - k}{m - k}$.
   \exercise Show that
     $(a + 1)^p \equiv a^p + 1 \pmod{p}$.
+  \exercise We say that a function $f : \{0, 1\}^n \to \{0, 1\}$ depends on the
+    $i$th argument iff for some
+    $a_1, \dots, a_{i - 1}, a_{i + 1}, \dots, a_n \in \set{0, 1}$
+    \[
+      f(a_1, \dots, a_{i - 1}, 0, a_{i + 1}, \dots, a_n) \neq
+      f(a_1, \dots, a_{i - 1}, 1, a_{i + 1}, \dots, a_n).
+    \]
+    We also say that the function $f$ depends on all the arguments iff for all $i
+    \in [n]$ it depends on $i$th argument.
+
+    Find the number of functions $f : \{0, 1\}^n \to \{0, 1\}$ depending on all
+    arguments.
 \end{exercises}
