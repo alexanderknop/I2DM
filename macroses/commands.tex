@@ -5,7 +5,21 @@
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\C}{\mathbb{C}}
 \newcommand{\floor}[1]{\left\lfloor {#1} \right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil {#1} \right\rceil}
 \newcommand{\textgreek}[1]{\begingroup\fontencoding{LGR}\selectfont#1\endgroup}
 \newcommand{\divides}{\mid}
 \newcommand{\notdivides}{\nmid}
 \renewcommand{\Im}{\mathrm{Im}}
+
+\newcommand{\marginurl}[2]{
+  \begin{marginfigure}
+    {\scriptsize {#1}}
+    \vskip 0.25cm
+    \noindent
+    \qrset{link, height=3cm}
+    \qrcode{https://#2}
+    \vskip 0.25cm
+    \noindent
+    \url{#2}
+  \end{marginfigure}
+}

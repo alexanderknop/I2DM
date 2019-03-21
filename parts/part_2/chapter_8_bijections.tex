@@ -1,36 +1,36 @@
 \chapter{Bijections, Surjections, and Injections}
 \label{chapter:bijections-surjections-injections}
-\begin{wrapfigure}{l}{4cm}
-  \begin{center}
-    \vskip -0.5cm
-    \qrset{link, height=3cm}
-    \qrcode{https://youtu.be/fW5Zxg0TMDc}
-    \vskip 0.25cm
-    \href{https://youtu.be/fW5Zxg0TMDc}{youtu.be/fW5Zxg0TMDc}
-    {\footnotesize Bijections, Surjections, and Injections}
-  \end{center}
-  \vskip -2cm
-\end{wrapfigure}
+\marginurl{%
+  Bijections, Surjections, and Injections:\\\noindent
+  Introduction to Combinatorics \#1
+}{youtu.be/fW5Zxg0TMDc}
 
 In the previous chapters we used the property that the set is finite. However,
 we have never defined formally what it means. In this chapter we define
-cardinality which is a formalization of the notion size of the set.
+cardinality which is a formalization of the notion size of the set and explain
+how to compare sizes of two sets.
 
-\section{Cardinality}
+\section{Bijections}
+The simplest way to explain that one set has the same number of elements as
+another is to show a correspondence between elements of these sets. For example,
+in order to expalin that the set $\set{0, \pi, 1 / 4}$ has the same number of
+elements as $\set{1, 2, 3}$ we may just say that $0$ corresponds to $1$,
+$\pi$ corresponds to $2$, and $1 / 4$ corresponds to $3$. More formally such a
+correspondence is defined using the following definition.
 \begin{definition}
   Let $f : X \to Y$ be a function. We say that $f$ is a bijection iff the
   following properties are satisfied.
   \begin{itemize}
     \item Every element of $Y$ is an image of some element of $X$. In other
     words,
-      $$
+      \[
           \forall y \in Y~\exists x \in X\ f(x) = y.
-      $$
+      \]
     \item Images of any two elements
       of $X$ are different. In other words,
-      $$
+      \[
           \forall x_1, x_2 \in X\ f(x_1) \neq f(x_2).
-      $$
+      \]
     \end{itemize}
 \end{definition}
 
@@ -46,18 +46,6 @@ function such that $f(x) = x + 1$; Note that it is a bijection:
   Show that $x^3$ is a bijection.
 \end{exercise}
 
-
-One of the nicest properties of bijections is that composition of two bijections
-is a bijection.
-\begin{theorem}
-\label{theorem:bijections-composition}
-  Let $X$, $Y$, and $Z$ be some sets and $f : X \to Y$ and $g : Y \to Z$ be
-  bijections. Then $g \circ f : X \to Z$ is also a bijection.
-\end{theorem}
-\begin{proof}
-  % TODO
-\end{proof}
-
 One may notice that if we have a bijection $f$ from $[n]$ to a set $S$ we
 enumerate all the elements of $S$: $f(1)$, \dots, $f(n)$.
 This observation allows us to define the cardinality of a set.
@@ -69,17 +57,39 @@ This observation allows us to define the cardinality of a set.
   $|T| = n$.
 \end{definition}
 
-Note that this definition does not guarantee that cardianlity is unique.
+Note that this definition does not guarantee that cardinality is unique so
+we need the following theorem.
 \begin{theorem}
+\label{theorem:correctness-of-cardinality}
   For any set $S$, if there are bijections $f : [n] \to S$ and $g : [m] \to S$,
   then $n = m$.
 \end{theorem}
+Before we prove this theorem, let us study some properties of bijections.
+
+One of the nicest properties of bijections is that composition of two bijections
+is a bijection.
+\begin{theorem}
+\label{theorem:bijections-composition}
+  Let $X$, $Y$, and $Z$ be some sets and $f : X \to Y$ and $g : Y \to Z$ be
+  bijections. Then $(g \circ f) : X \to Z$ is also a bijection.
+\end{theorem}
 \begin{proof}
-  % TODO
+  We need to check two properties.
+  \begin{itemize}
+    \item Let $x_1 \neq x_2 \in X$. Note that $f(x_1) \neq f(x_2)$ since $f$
+      is a bijection. Hence, $g(f(x_1)) \neq g(f(x_2))$ since $g$ is a bijection
+      as well. As a result, $(g \circ f)(x_1) \neq (g \circ f)(x_2)$.
+    \item Let $z \in Z$; we need to find $x \in X$ such that
+      $(g \circ f)(x) = z$. Note that since $g$ is a bijection there is
+      $y \in Y$ such that $g(y) = z$. Additionally, there is $x \in X$ such
+      that $f(x) = y$ since $f$ is a bijection. Thus,
+      $(g \circ f)(x) = g(f(x)) = z$.
+  \end{itemize}
 \end{proof}
 
 Probably the most important property of a bijection is that we may invert it.
 \begin{theorem}
+\label{theorem:inverse-of-bijections}
   Let $f : X \to Y$ be a function. $f$ is invertible (i.e. there is a function
   $g : Y \to X$ such that $(f \circ g)(y) = y$ and $(g \circ f)(x) = x$ for all
   $x \in X$ and $y \in Y$) iff $f$ is a bijection.
@@ -89,11 +99,11 @@ Probably the most important property of a bijection is that we may invert it.
     \item[$\Rightarrow$] Let's assume that $f$ is invertible. We need to prove
       that $f$ is a bijection.
       \begin{itemize}
-        \item Let's assume that $f$ is not an injection i.e. there are
+        \item Let's assume that $f$ does not satisfy the first property in the
+          definitions of bijections i.e. there are
           $x_1, x_2 \in X$ such that $f(x_1) = f(x_2)$ but $x_1 = g(f(x_1)) =
           g(f(x_2)) = x_2$, which is a contradiction.
-        \item Let $y \in Y$. Note that $f(g(y)) = y$, hence, $f$ is a
-          surjection.
+        \item Let $y \in Y$. Note that $f(g(y)) = y$, hence, $\Im f = Y$.
       \end{itemize}
 
     \item[$\Leftarrow$] Let's assume that $f$ is bijective. We need to define a
@@ -104,43 +114,135 @@ Probably the most important property of a bijection is that we may invert it.
       bijection.
   \end{description}
 \end{proof}
+\noindent We denote $g$ from this theorem as $f^{-1}$ and in case when $f$ is
+not a bijection $f^{-1}(y)$ denotes the set $\set[f(x) = y]{x \in X}$.
+\nomenclature[F]{$f^{-1}$}{denotes the inverse of the funciton $f$ (it's
+defined only when $f$ is a bijction)}
+\nomenclature[F]{$f^{-1}(y)$}{depend on the context it either denotes the set
+$\set[f(x) = y]{x \in X}$ if $f$ is not a bijection and it denotes the value of
+$f^{-1}$ at $y$ if $f$ is a bijection}
 
-Using this theorem we may derive a way to apply this in combinatircs; we can use
-a bijection to prove that two sets have the same cardinality.
+
+\begin{proof}[Proof of Theorem~\ref{theorem:correctness-of-cardinality}]
+  Let us consider the inverse $g^{-1}$ of $g$ (it exists by
+  Theorem~\ref{theorem:inverse-of-bijections} since $g$ is a
+  bijection). Note that $h = g^{-1} \circ f$
+  is a bijection from $[n]$ to $[m]$.
+
+  We prove using induction by $n$ that for any $n, m \in \N$,
+  if there is a bijection $h'$ from $[n]$ to $[m]$, then $n = m$.
+  The base case is for $n = 1$; if $m \ge 2$,
+  then there are $x, y \in [1]$ such that $h'(x) = 1$ and $h'(y) = 2$, but
+  $x \neq y$ and we have only one element in $[1]$.
+
+  The induction step is also simple. Assume that there is a bijection $h'$ from
+  $[n + 1]$ to $[m]$. We define a function $h'' : [n] \to [m - 1]$ as follows:
+  \[
+    h''(i) =
+    \begin{cases}
+      h'(i) & \text{if } h'(i) < h(n + 1) \\
+      h'(i) - 1 & \text{otherwise}
+    \end{cases}.
+  \]
+  We prove that $h''$ is a bijection.
+  \begin{itemize}
+    \item Let $i_1 \neq i_2 \in [n]$. If $h'(i_1), h'(i_1) < h'(n + 1)$ or
+      $h'(i_1), h'(i_1) \ge h'(n + 1)$, then $h''(i_1) \neq h''(i_2)$ since
+      $h'(i_1) \neq h'(i_2)$. Otherwise, without loss of generality we
+      may assume that $h'(i_1) < h(n + 1) < h'(i_2)$ but it implies that
+      $h''(i_1) = h'(i_1) < h'(n + 1) \le h'(i_2) - 1 = h''(i_2)$.
+    \item Let $j \in [m - 1]$. We need to consider two cases.
+      \begin{enumerate}
+        \item Let $j < h(n + 1)$. There is $i \in [n + 1]$ such that
+          $h'(i) = j$ since $h'$ is a bijection (note that $i \neq n + 1$).
+          Thus $h''(i) = j$.
+        \item Otherwise, there is $i \in [n + 1]$ such that
+          $h'(i) = j + 1$ since $h'$ is a bijection (note that $i \neq n + 1$).
+          Thus $h''(i) = j$.
+      \end{enumerate}
+  \end{itemize}
+  Since $h''$ is a bijection, the induction hypothesis implies that $n = m - 1$.
+  As a result, $n + 1 = m$.
+\end{proof}
+
+Using Theorem~\ref{theorem:inverse-of-bijections} we may notice that
+nonetheless that $X \times (Y \times Z)$ is not the same as
+$(X \times Y) \times Z$, there is a natural correspondence between the elements
+of these sets.
+\begin{theorem}
+  Let $X$, $Y$, $Z$ be some sets
+  There are bijctions from $X \times (Y \times Z)$ and
+  $(X \times Y) \times Z$ to $\set[x \in X, y \in Y, z \in Z]{(x, y, z)}$.
+\end{theorem}
+\begin{proof}
+  Since the statement is symmetric, it is enough to prove that there is
+  a bijection $f : X \times (Y \times Z) \to
+  \set[x \in X, y \in Y, z \in Z]{(x, y, z)}$. Define $f$ such that
+  $f(x, (y, z)) = (x, y, z)$.
+  Clearly, $f^{-1}(x, y, z) = (x, (y, z))$ is the inverse of $f$, so $f$ is
+  indeed a bijection.
+\end{proof}
+Due to this correspondence we will think about elements $(x, (y, z))$,
+$((x, y), z)$, and $(x, y, z)$ as they are equal to each other.
+
+Also, using Theorem~\ref{theorem:inverse-of-bijections} we may finally prove
+that if there is a bijection from a finite set $X$ to a finite set $Y$, then
+they have the same cardinality (i.e. they have the same number of elements).
 \begin{theorem}
   Let $X$ and $Y$ be two finite sets such that there is a bijection $f$ from
   $X$ to $Y$. Then $|X| = |Y|$.
 \end{theorem}
 \begin{proof}
-  %TODO
+  Let $|X| = n$, and $g : [n] \to X$ be a bijection.
+  Note that $f \circ g : [n] \to Y$ is a bijection, hence $|Y| = n$.
 \end{proof}
 
-Using this result we can finally explain why we denote the set of all the
-subsets of a set $X$ by $2^X$.
+Using this result we can make prove the following equality.
 \begin{corollary}
-  Let $X$ be a finite set of cardianlity $n$. Then $2^X$ has cardinality $2^n$.
+\label{corollary:power-set-and-set-of-binary-strings}
+  Let $X$ be a finite set of cardinality $n$. Then $2^X$ has the same
+  cardinality as $\set{0, 1}^{|X|}$.
 \end{corollary}
 \begin{proof}
+  To prove this statement we need to construct a bijection from $2^X$ to
+  $\set{0, 1}^{|X|}$. Let $|X| = n$ and $f : [n] \to X$ be a bijection.
+
+  First we construct a bijection $g_1 : 2^X \to 2^{[n]}$:
+  \[
+    g_1(Y) = \set[x \in Y]{f(x)}.
+  \] It is easy to see that the function
+  \[
+    g^{-1}_1(Y) = \set[{x \in [n]}]{f^{-1}(x)}
+  \]
+  is an inverse of $g_1$, so $g_1$ is indeed a bijection.
+
+  Now we need to construct a bijection $g_2$ from $2^{[n]}$ to $\set{0, 1}^n$:
+  $g_2(Y) = (u_1, \dots, u_n)$, where $u_i = 1$ iff $i \in Y$. It is clear
+  that $g^{-1}_2(u_1, \dots, u_n) = \set[u_i = 1]{i \in [n]}$ is an inverse
+  of $g_2$ so $g_2$ is indeed a bijection.
+
+  As a result, by Theorem~\ref{theorem:bijections-composition}, the function
+  $(g_2 \circ g_1) : 2^X \to \set{0, 1}^{|X|}$ is a bijection.
 \end{proof}
 
 \section{Surjections and Injections}
 
 It is possible to note that the definition of the bijection consists of two part.
-Both of these parts are intresting in their own regard, so they have their own
+Both of these parts are interesting in their own regard, so they have their own
 names.
 \begin{definition}
   Let $f : X \to Y$ be a function.
   \begin{itemize}
     \item We say that $f$ is a surjection iff every element of $Y$ is an image
       of some element of $X$. In other words,
-      $$
+      \[
           \forall y \in Y~\exists x \in X\ f(x) = y.
-      $$
+      \]
     \item We say that $f$ is an injection iff images of any two elements
       of $X$ are different. In other words,
-      $$
+      \[
           \forall x_1, x_2 \in X\ f(x_1) \neq f(x_2).
-      $$
+      \]
   \end{itemize}
 \end{definition}
 
@@ -157,20 +259,129 @@ names.
 Like in the case of the bijection we may use surjections and injections to
 compare sizes of sets.
 \begin{theorem}
+\label{theorem:injections-surjections-inequalities}
   Let $X$ and $Y$ be finite sets.
   \begin{itemize}
     \item If there is an injection from $X$ to $Y$, then $|X| \le |Y|$.
     \item If there is a surjection from $X$ to $Y$, then $|X| \ge |Y|$.
   \end{itemize}
 \end{theorem}
+
+\section{Generalized Commutative Operations}
+Using the notation of cardinality we may generalize the summation operation in
+the followin way: $\sum_{i \in S ~:~ P(i)} f(i)$ is equal to the sum of
+$f(i)$ for all the $i \in \set[P(i)]{i \in S}$; i.e.
+\[
+  \sum_{i \in S ~:~ P(i)} f(i) = \sum_{j = 1}^k f(i_j),
+\] where $\set[P(i)]{i \in S} = \set{i_1, \dots, i_k}$. More formally,
+\[
+  \sum_{i \in S ~:~ P(i)} f(i) = \sum_{j = 1}^k f(g(j)),
+\]
+where $k = |\set[P(i)]{i \in S}|$ and $g : \set[P(i)]{i \in S} \to [k]$ is a
+bijection.
+\nomenclature[C]{$\sum_{i \in S ~:~ P(i)} \alpha_i$}{denotes $\alpha_{i_1} +
+\dots + \alpha_{i_k}$, where $\set[P(i)]{i \in S} = \set{i_1, \dots, i_k}$}
+
+\begin{theorem}
+  The definition of $\sum_{i \in S : P(i)} f(i)$ is correct;
+  i.e.
+  $\sum_{i = 1}^k f(g_1(i)) = \sum_{i = 1}^k f(g_2(i))$
+  for any two bijections $g_1, g_2 : \set[P(i)]{i \in S} \to [k]$.
+\end{theorem}
 \begin{proof}
-  %TODO
+  Proof of this theorem consists of two parts.
+  First, we prove that
+  \begin{equation}
+    \label{equation:summation-with-respect-to_bijection}
+    \sum_{i = 1}^k f(g(i)) = \sum_{i = 1}^k f(g(h(i)))
+  \end{equation}
+  for any bijections $g : \set[P(i)]{i \in S} \to [k]$ and $h : [k] \to [k]$.
+
+  To prove this statement, we introduce the notion of inversion. We say that
+  $i, j \in [k]$ for an inversion in $h$ iff $h(i) > h(j)$ and $i < j$.
+  We denote by $I(h)$ the number of inversions in $h$; i.e. $I(h) =
+  |\set[i, j \text{ form an inversion in } h]{(i, j)}|$. It is easy to see that
+  $I(h) = 0$ iff $h(i) = i$ for any $i \in [k]$. It is also clear that if $i, j$
+  form an inversion in $h$, then $I(h) > I(h')$, where
+  \[
+    h'(x) =
+    \begin{cases}
+      h(j) & \text{if } x = i \\
+      h(i) & \text{if } x = j \\
+      h(x) & \text{otherwise}
+    \end{cases}.
+  \]
+  We prove Equation~\ref{equation:summation-with-respect-to_bijection} using the
+  induction by $I(h)$.
+  \begin{description}
+    \item[(the base case)] If $I(h) = 0$, then $h$ is an identity function and
+      $g(i) = g(h(i))$. Hence,
+      Equation~\ref{equation:summation-with-respect-to_bijection} is true.
+    \item[(the induction step)] By the induction hypothesis,
+      if $I(h') < \ell$, then
+      \[
+        \sum_{i = 1}^k f(g(i)) = \sum_{i = 1}^k f(g(h'(i)))
+      \]
+      for any bijection $h' : [k] \to [k]$.
+      Let us consider a bijection $h : [k] \to [k]$ such that $I(h) = \ell$.
+      Define $h' : [k] \to [k]$ such that
+      \[
+        h'(x) =
+        \begin{cases}
+          h(j) & \text{if } x = i \\
+          h(i) & \text{if } x = j \\
+          h(x) & \text{otherwise}
+        \end{cases}.
+      \]
+      Note that by the induction hypothesis,
+      \[
+        \sum_{i = 1}^k f(g(i)) = \sum_{i = 1}^k f(g(h'(i)))
+      \]
+      and it is clear that
+      \[
+        \sum_{i = 1}^k f(g(h'(i))) = \sum_{i = 1}^k f(g(h(i))).
+      \]
+      As a result,
+      Equation~\ref{equation:summation-with-respect-to_bijection} is true.
+  \end{description}
+
+  Now we are ready to finish proof of the theorem.
+  Consider $g_1, g_2 : \set[P(i)]{i \in S} \to [k]$ and define
+  $h = g_1^{-1} \circ g_2$. Note that $h : [k] \to [k]$ is a bijection and
+  $g_1(h(i)) = g_2(i)$. Thus we proved that
+  \[
+    \sum_{i = 1}^k f(g_1(i)) = \sum_{i = 1}^k f(g(h(i))) =
+    \sum_{i = 1}^k f(g_2(i)).
+  \]
 \end{proof}
+
+Similarly one may define a generalized union and intersection of sets.
+Let $\Omega$ and $S$ be some sets, $X : S \to 2^\Omega$ and $P(i)$ be a
+predicate. Then
+\begin{gather*}
+  \bigcup_{i \in S ~:~ P(i)} X(i) = \bigcup_{i = 1}^k X(g(i)) \\
+  \text{and}\\
+  \bigcap_{i \in S ~:~ P(i)} X(i) = \bigcap_{i = 1}^k X(g(i)),
+\end{gather*}
+where $k = |\set[P(i)]{i \in S}|$ and $g : \set[P(i)]{i \in S} \to [k]$ is a
+bijection.
+\nomenclature[S]{$\bigcup_{i \in S ~:~ P(i)} A_i$}{denotes $A_{i_1} \cup \dots
+\cup A_{i_k}$, where $\set[P(i)]{i \in S} = \set{i_1, \dots, i_k}$}
+\nomenclature[S]{$\bigcap_{i \in S ~:~ P(i)} A_i$}{denotes $A_{i_1} \cap \dots
+\cap A_{i_k}$, where $\set[P(i)]{i \in S} = \set{i_1, \dots, i_k}$}
+
+\begin{exercise}
+  Show that the definitions of $\bigcup_{i \in S : P(i)} X(i)$ and
+  $\bigcap_{i \in S : P(i)} X(i)$ are correct,
+  i.e. that the do not depend on the choice of $g$.
+\end{exercise}
 
 \section*{End of The Chapter Exercises}
 \begin{exercises}
-  \exerciseitem Construct a bijection from $\set{0, 1, 2, 3}^n$ to
-    $$\set[{A, B, C \subseteq [n] \text{ and } A, B, C \text{ are pairwise
-    disjoint}}]{(A, B, C)}.$$
-  \exerciseitem Construct a bijection from $\set{0, 1} \times [n]$ to $[2n]$.
+  \exercise Construct a bijection from $\set{0, 1, 2}^n$ to
+    \[
+      \set[{A, B \subseteq [n] \text{ and } A, B \text{ are disjoint}}]{(A, B)}.
+    \]
+  \exercise Construct a bijection from $\set{0, 1} \times [n]$ to $[2n]$.
+  \exercise Prove Theorem~\ref{theorem:injections-surjections-inequalities}.
 \end{exercises}

@@ -1,26 +1,20 @@
 \chapter{Proofs by Induction}
 \section{Simple Induction}
-\begin{wrapfigure}{l}{4cm}
-  \begin{center}
-    \vskip -0.5cm
-    \qrset{link, height=3cm}
-    \qrcode{https://youtu.be/jOnZTWGpX_I}
-    \vskip 0.25cm
-    \href{https://youtu.be/jOnZTWGpX_I}{youtu.be/jOnZTWGpX\_I}
-    {\footnotesize The Induction Principle}
-  \end{center}
-  \vskip -1.5cm
-\end{wrapfigure}
+\marginurl{%
+  The Induction Principle:\\\noindent
+  Introduction to Mathematical Reasoning \#4
+}{youtu.be/jOnZTWGpX_I}
+
 Let us consider a simple problem: what is bigger $2^n$ or $n$? In this chapter,
 we are going to study the simplest way to prove that $2^n > n$ for all positive
 integers $n$. First, let us check that it is true for small integers $n$.
-\begin{flushright}
+\begin{center}
   \begin{tabular}{c | c | c | c | c | c | c | c | c}
     $n$   & 1 & 2 & 3 & 4  & 5  & 6  & 7   & 8   \\
     \hline
     $2^n$ & 2 & 4 & 8 & 16 & 32 & 64 & 128 & 256
   \end{tabular}
-\end{flushright}
+\end{center}
 We may also note that $2^n$ is growing faster than $n$, so we expect that if
 $2^n > n$ for small integers $n$, then it is true for all positive integers $n$.
 
@@ -29,8 +23,8 @@ In order to prove this statement formally, we use the following principle.
   Let $P(n)$ be some statement about a positive integer $n$.
   Hence, $P(n)$ is true for every positive integer $n$ iff
   \begin{description}
-    \item[base case:] $P(1)$ is true and
-    \item[induction step:] $P(k) \implies P(k + 1)$ is true for all positive
+    \item [(the base case)] $P(1)$ is true and
+    \item [(the induction step)] $P(k) \implies P(k + 1)$ is true for all positive
       integers $k$.
   \end{description}
 \end{principle}
@@ -75,21 +69,21 @@ case and use the following argument.
   Let $P(n)$ be some statement about an integer $n$.
   Hence, $P(n)$ is true for every integer $n > n_0$ iff
   \begin{description}
-    \item[base case:] $P(n_0 + 1)$ is true and
-    \item[induction step:] $P(k) \implies P(k + 1)$ is true for all
+    \item [(the base case)] $P(n_0 + 1)$ is true and
+    \item [(the induction step)] $P(k) \implies P(k + 1)$ is true for all
       integers $k > n_0$.
   \end{description}
 \end{theorem}
 
 Using this generalized induction principle we may prove that $2^n \ge n^2$ for
-$n \ge 5$. The base case for $n = 4$ is true. The induction step is also true;
+$n \ge 4$. The base case for $n = 4$ is true. The induction step is also true;
 indeed let $P(k)$ be true i.e. $(k + 4)^2 < 2^{k + 4}$. Hence,
 $2(k + 4)^2 < 2^{k + 1 + 4}$ but
 $(k + 5)^2 = k^2 + 10k + 25 \le 2k^2 + 16k + 32 = 2(k + 4)^2$.
 
 Let us now prove the theorem. Note that the proof is based on an idea similar
 to the trick with $+4$, we just used.
-\begin{proof}[Proof of \Cref{theorem:induction-shifted-base}]
+\begin{proof}[Proof of Theorem~\ref{theorem:induction-shifted-base}]
   \begin{description}
     \item[$\Rightarrow$] If $P(n)$ is true for any $n > n_0$ it is also true
       for $n = n_0 + 1$ which implies the base case. Additionally, it true for
@@ -120,6 +114,8 @@ $\sum_{i = 1}^n i$.
         \sum_{i = 1}^k a(i) + a(k + 1)$.
   \end{itemize}
 \end{definition}
+\nomenclature[C]{$\sum_{i = 1}^k \alpha_i$}{denotes $\alpha_1 + \dots +
+\alpha_k$}
 
 Let us prove that $\sum_{i = 1}^n i = \frac{n (n + 1)}{2}$.
 Note that by definition $\sum_{i = 1}^1 i = 1$ and
@@ -137,7 +133,7 @@ Hence, $\sum_{i = 1}^{n + 1} i = \frac{n (n + 1)}{2} + (n + 1) =
 \section{Analysis of Algorithms with Cycles}
 
 Induction is very useful for analysing algorithms using cycles. Let us extend
-the example we considered in \Vref{section:simple-algorithm}.
+the example we considered in Section~\ref{section:simple-algorithm}.
 
 Let us consider the following algorithm.
 \begin{algorithm}
@@ -211,8 +207,8 @@ induction  principle.
   Let $P(n)$ be some statement about positive integer $n$.
   Hence, $P(n)$ is true for every integer $n > n_0$ iff
   \begin{description}
-    \item[base case:] $P(n_0 + 1)$ is true and
-    \item[induction step:] If $P(n_0 + 1)$, \dots, $P(n_0 + k)$ are true, then
+    \item [(the base case)] $P(n_0 + 1)$ is true and
+    \item [(the induction step)] If $P(n_0 + 1)$, \dots, $P(n_0 + k)$ are true, then
       $P(n_0 + k + 1)$ is also true for all positive integers $k$.
   \end{description}
 \end{theorem}
@@ -270,7 +266,7 @@ $f_{k - 1}$ to define $f_k$).
 \end{proof}
 
 Now we are ready to prove the strong induction principle.
-\begin{proof}[Proof of \Cref{theorem:strong-induction}]
+\begin{proof}[Proof of Theorem~\ref{theorem:strong-induction}]
   It is easy to see that if $P(n)$ is true for all $n > n_0$, then the base
   case and the induction steps are true. Let us prove that if the base case and
   the induction step are true, then $P(n)$ is true for all $n > n_0$.
@@ -289,7 +285,7 @@ an integer parameter.
 
 One example of such a situation is the definition of an arithmetic formula.
 \begin{description}
-  \item[base case:] $x_i$ is an arithmetic formula on the variables $x_1$,
+  \item [(the base case)] $x_i$ is an arithmetic formula on the variables $x_1$,
     \dots, $x_n$ for all $i$; if $c$ is a real number, then $c$ is also
     an arithmetic formula on the variables $x_1$, \dots, $x_n$.
   \item[recursion step:] If $P$ and $Q$ are arithmetic formulas on the variables
@@ -303,7 +299,7 @@ We can define recursively the value of such a formula. Let $v_1$, \dots, $v_n$
 be some integers.
 \begin{description}
   \item[base cases:] $x_i\big\rvert_{x_1 = v_1, \dots, x_n = v_n} = v_i$; in
-    other words, the value of the arithmetic formula $x_i$ is equal to $v_1$
+    other words, the value of the arithmetic formula $x_i$ is equal to $v_i$
     when $x_1 = v_1$, \dots, $x_n = v_n$; if $c$ is a real number, then
     $c\rvert_{x_1 = v_1, \dots, x_n = v_n} = c$.
   \item[recursion steps:] If $P$ and $Q$ are arithmetic formulas on the
@@ -368,7 +364,7 @@ To illustrate this method, we prove the following theorem.
       If $A = c$ where $c$ is a real number, then consider the constant
       polynomial  $p(x) = c$; it is easy to note that $A\big\rvert_{x = v} = c =
        p(v)$.
-    \item[induction step:] We need to consider two cases. Consider the case when
+    \item [(the induction step)] We need to consider two cases. Consider the case when
       $A = B_1 + B_2$. By the induction hypothesis, there are polynomials $q_1$
       and $q_2$ such that $B_1\big\rvert_{x = v} = q_1(v)$ and
       $B_2\big\rvert_{x = v} = q_2(v)$ for all real numbers $v$.
@@ -403,7 +399,7 @@ To illustrate this method, we prove the following theorem.
 
 \section{Analysis of Recursive Algorithms}
 To illustrate the power of recursive definitions and strong induction, let us
-analyze \Cref{algorithm:binary-search}.
+analyze Algorithm~\ref{algorithm:binary-search}.
 \begin{algorithm}
   \begin{algorithmic}[1]
     \Function{BinarySearch}{$e$, $a_1$, \dots, $a_n$}
@@ -453,36 +449,36 @@ for $n \ge 5$. As a result, we proved the induction step.
 
 \section*{End of The Chapter Exercises}
 \begin{exercises}
-  \exerciseitem Show that there does not exist the largest integer.
-  \exerciseitem Show that for any positive integer $n$, $n^2 + n$ is even.
-  \exerciseitem Show that for any positive integer $n$, $3$ divises
+  \exercise Show that there does not exist the largest integer.
+  \exercise Show that for any positive integer $n$, $n^2 + n$ is even.
+  \exercise Show that for any positive integer $n$, $3$ divises
     $n^3 + 2n$.
-  \exerciseitem Show that for any integer $n \ge 10$,
+  \exercise Show that for any integer $n \ge 10$,
     $n^3 \le 2^n$.
-  \exerciseitem Show that for any positive integer $n$,
+  \exercise Show that for any positive integer $n$,
     $\sum_{i = 0}^n x^i = \frac{1 - x^{n + 1}}{1 - x}$.
-  \exerciseitem Show that for any matrix $A \in \mathbb{R}^{m \times n}$
+  \exercise Show that for any matrix $A \in \mathbb{R}^{m \times n}$
     ($n > m$) there is a nonzero vector $x \in \mathbb{R}^n$ such that $Ax = 0$.
-  \exerciseitem  Show that all the elements of $\set{0, 1}^n$ (Binary strings)
+  \exercise  Show that all the elements of $\set{0, 1}^n$ (Binary strings)
     may be ordered such that every successive strings in this order are
     different only in one character.
     (For example, for $n = 2$ the order may be $00$, $01$, $11$, $10$.)
-  \exerciseitem Let $a_0 = 2$, $a_1 = 5$, and $a_n = 5a_{n - 1} - 6 a_{n - 2}$
+  \exercise Let $a_0 = 2$, $a_1 = 5$, and $a_n = 5a_{n - 1} - 6 a_{n - 2}$
     for all integers $n \ge 2$. Show that $a_n = 3^n + 2^n$ for all integers
     $n \ge 0$.
-  \exerciseitem Show that $\sum_{i = 1}^n i^2 = \frac{n (n + 1)(2n + 1)}{6}$
+  \exercise Show that $\sum_{i = 1}^n i^2 = \frac{n (n + 1)(2n + 1)}{6}$
     for all integers $n \ge 1$.
-  \exerciseitem Show that $\sum\limits_{i = 1}^n \frac{1}{i (i + 1)} =
+  \exercise Show that $\sum_{i = 1}^n \frac{1}{i (i + 1)} =
     \frac{n}{n + 1}$ for all integers $n \ge 1$.
-  \exerciseitem Show that $\sum\limits_{i = 1}^n \frac{1}{i^2} \le
+  \exercise Show that $\sum_{i = 1}^n \frac{1}{i^2} \le
     2 - \frac{1}{n}$ for all integers $n \ge 1$.
-  \exerciseitem Show that $\sum_{i = 1}^n (2i - 1) = n^2$ for any positive
+  \exercise Show that $\sum_{i = 1}^n (2i - 1) = n^2$ for any positive
     integer $n$.
-  \exerciseitem Prove that $\sum_{i = 1}^n \frac{1}{i (i + 1)} =
+  \exercise Prove that $\sum_{i = 1}^n \frac{1}{i (i + 1)} =
     \frac{n}{n + 1}$ for any positive integer $n$.
-  \exerciseitem Prove that $\sum\limits_{i = 2}^n (i + 1) 2^i = n 2^{n + 1}$
+  \exercise Prove that $\sum_{i = 2}^n (i + 1) 2^i = n 2^{n + 1}$
     for all integers $n > 2$.
-  \exerciseitem Let $a_1$, \dots, $a_n$ be a sequence of real numbers.
+  \exercise Let $a_1$, \dots, $a_n$ be a sequence of real numbers.
     We define inductively
     $\prod_{i = k}^n a_i$ as follows:
     \begin{itemize}
@@ -490,19 +486,21 @@ for $n \ge 5$. As a result, we proved the induction step.
       \item $\prod_{i = 1}^{k + 1} a_i =
         \left( \prod_{i = 1}^k a_i \right) \cdot a_{k + 1}$.
       \end{itemize}
+      \nomenclature[C]{$\prod_{i = 1}^k \alpha_i$}{denotes $\alpha_1 \cdot
+      \dots \cdot \alpha_k$}
 
       Prove that $\prod_{i = 1}^{n - 1} \left(1 - \frac{1}{(i + 1)^2} \right) =
       \frac{n + 1}{2n}$ for all integers $n > 1$.
 
-  \exerciseitem Let $f_0 = 1$, $f_1 = 1$, and $f_{n + 2} = f_{n + 1} + f_n$ for
+  \exercise Let $f_0 = 1$, $f_1 = 1$, and $f_{n + 2} = f_{n + 1} + f_n$ for
     all integers $n \ge 0$. Show that
     $f_n \ge \left(\frac{3}{2}\right)^{n - 2}$.
-  \exerciseitem Show that $f_{n + m} = f_{n - 1} f_{m - 1} + f_n f_m$.
-  \exerciseitem Show that two arithmetic formulas $(x_1 + x_2) \cdot x_3$ and
+  \exercise Show that $f_{n + m} = f_{n - 1} f_{m - 1} + f_n f_m$.
+  \exercise Show that two arithmetic formulas $(x_1 + x_2) \cdot x_3$ and
     $x_1 \cdot x_3 + x_2 \cdot x_3$ on the variables $x_1$, $x_2$, and $x_3$
     have the same values.
 
-  \exerciseitem We say that $L$ is a list of powers of $x$ iff
+  \exercise We say that $L$ is a list of powers of $x$ iff
     \begin{itemize}
       \item either $L = x^k$ for some positive integer $k$ or
       \item $L = (x^k, L')$ where $L'$ is a list of powers of $x$ and
@@ -519,12 +517,17 @@ for $n \ge 5$. As a result, we proved the induction step.
 
     Prove that for any list $L$ of powers of $x$ there is a polynomial such that
     $\sum L\big\rvert_{x = v} = p(v)$ for all real numbers $v$.
-  \exerciseitem Let us define $n!$ as follows: $1! = 1$ and
+  \exercise Let us define $n!$ as follows: $1! = 1$ and
     $n! = (n - 1)! \cdot n$. Show that $n! \ge 2^n$ for any $n \ge 4$.
-  \exerciseitem Show that
+    % ! is a special character for MakeIndex (that is used for sorting the
+    % nomenclature). Quote it with MakeIndex's method, that is, adding " in
+    % front of it
+    \nomenclature[C]{$n"!$}{denotes $n \cdot (n - 1) \cdot (n - 2) \cdot \ldots
+    \cdot 1$}
+  \exercise Show that
     $\int\limits_0^{+\infty} x^n e^{- x} ~ \mathrm{d}x = n!$
     for all $n \ge 0$.
-  \exerciseitem Prove that $\sum\limits_{i = 1}^n (i + 1) 2^i = n 2^{n + 1}$
+  \exercise Prove that $\sum_{i = 1}^n (i + 1) 2^i = n 2^{n + 1}$
     for all integers $n \ge 1$.
-  \exerciseitem Show that $\sum_{k = 1}^n k \cdot k! = (n + 1)! - 1$.
+  \exercise Show that $\sum_{k = 1}^n k \cdot k! = (n + 1)! - 1$.
 \end{exercises}

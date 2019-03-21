@@ -1,15 +1,8 @@
 \chapter{Sets}
-\begin{wrapfigure}{l}{4cm}
-  \begin{center}
-    \vskip -0.5cm
-    \qrset{link, height=3cm}
-    \qrcode{https://youtu.be/bshBV2H4Sqo}
-    \vskip 0.25cm
-    \href{https://youtu.be/bshBV2H4Sqo}{youtu.be/bshBV2H4Sqo}
-    {\footnotesize Sets}
-  \end{center}
-  \vskip -0.5cm
-\end{wrapfigure}
+\marginurl{%
+  Sets:\\\noindent
+  Introduction to Mathematical Reasoning \#6
+}{youtu.be/bshBV2H4Sqo}
 \section{The Intuitive Definition of a Set}
 A set is one of the two most important concepts in mathematics. Many mathematical
 statements involve ``an integer $n$'' or ``a real number $a$''. Set theory
@@ -19,29 +12,35 @@ mathematics without this notation.
 
 As in the previous chapter it is difficult to define a set formally so we give
 a less formal definition which should be enough to use the notation.
-A \textit{set} is a well-defined collection of objects. Important examples of
+A \emph{set} is a well-defined collection of objects. Important examples of
 sets are:
 \begin{enumerate}
   \item $\R$ a set of reals,
+    \nomenclature[S]{$\R$}{denotes the set of all real numbers}
   \item $\Z$ the set of integers\footnote{``Z'' stands for the German word
     Zahlen (``numbers'').},
+    \nomenclature[S]{$\Z$}{denotes the set of all integers}
   \item $\N$ the set of natural numbers\footnote{Note that in the literature
       there are two diffirent traditions: in one $0$ is a natural number, in
       another it is not; in this book we are going to assume that $0$ is not a
       natural number.
     },
+    \nomenclature[S]{$\N$}{denotes the set of all integers greater
+    than $0$}
   \item $\Q$ a set of rational numbers,
+    \nomenclature[S]{$\Q$}{denotes the set of all rational numbers}
   \item $\mathbb{C}$ a set of complex numbers.
+    \nomenclature[S]{$\C$}{denotes the set of all complex numbers}
 \end{enumerate}
 Usually, sets are denoted by single letter.
 
-Objects in a set are called \textit{elements} of the set and we denote the
+Objects in a set are called \emph{elements} of the set and we denote the
 statement ``x is in the set $E$'' by the formula $x \in E$ and the negation of
 this statement by $x \not\in E$. For example, we proved that
 $\sqrt{2} \not\in \Q$\footnote{%
   The symbol $\in$ was first used by Giuseppe Peano 1889 in his work
   ``Arithmetices principia, nova methodo exposita''. Here he wrote on page X:
-  ``The symbol $\in$ means is. So $a \in b$ is read as a \textit{is} a b;
+  ``The symbol $\in$ means is. So $a \in b$ is read as a \emph{is} a b;
   \dots''
   The symbol itself is a stylized lowercase Greek letter epsilon
   (``$\epsilon$''), the first letter of the word  \textgreek{esti}, which means
@@ -88,6 +87,11 @@ For example, $\Q \subseteq \R$ since any rational number is
 also a real number. A special set is an empty set i.e. the set that does not
 have elements, we denote it $\emptyset$.
 
+\nomenclature[R]{$A \subseteq B$}{says that $A$ is a subset of $B$}
+
+\nomenclature[S]{$\emptyset$}{denotes the set that does
+  not have elements}
+
 \subsection{Diagrams}
 If we think of a set $A$ as represented by all the points within a circle or
 any other closed figure, then it is easy to represent the notion of $A$ being a
@@ -99,35 +103,29 @@ it is clear that one may draw Euler diagrams for more than two sets.
 
 \begin{figure}
     \centering
-    \begin{subfigure}[b]{0.45\textwidth}
-      \begin{center}
-        \begin{tikzpicture}[scale=0.6]
-          \draw (20:2cm) circle (3cm) node [yshift=10ex] {$B$};
-          \draw (0:2cm) circle (1.5cm) node {$A$};
-        \end{tikzpicture}
-      \end{center}
-      \caption{$A \subseteq B$}
-      \label{figure:euler-diagram-subset}
-    \end{subfigure}
-    ~
-    \begin{subfigure}[b]{0.45\textwidth}
-      \begin{center}
-        \begin{tikzpicture}[scale=0.6]
-          \draw (20:2cm) circle (3cm) node [yshift=10ex] {$A, B$};
-        \end{tikzpicture}
-      \end{center}
-      \caption{$A = B$}
-      \label{figure:euler-diagram-equal}
-    \end{subfigure}
-    \caption{Euler diagrams}
+    \subfloat[$A \subseteq B$]{
+      \begin{tikzpicture}[scale=0.6]
+        \draw (20:2cm) circle (3cm) node [yshift=8ex] {$A$};
+        \draw (0:2cm) circle (1.5cm) node {$B$};
+      \end{tikzpicture}
+    }
+    \qquad\qquad
+    \subfloat[$A = B$] {
+      \begin{tikzpicture}[scale=0.6]
+        \draw (20:2cm) circle (3cm) node [yshift=8ex] {$A, B$};
+      \end{tikzpicture}
+    }
+    \caption{Euler diagrams for subset and equality relations}
     \label{figure:euler-diagram}
 \end{figure}
 
 
 \subsection{Descriptions of Sets}
+In this section we describe how to define new sets, this notation is also
+known as \emph{set-builder notation}.
 
-\paragraph{Listing elements.} There are several ways to construct a set, the
-simplest one is just to list them. For example
+\paragraph{Listing elements.} The simplest way to define a set is just to list
+the elements. For example
 \begin{enumerate}
   \item $\set{1, 2, \pi}$ is the set consisting of three elements 1, 2, and
     $\pi$, and
@@ -142,6 +140,8 @@ numbers using the following formula $\set[n \text{ is even}]{n \in \Z}$
 
 Using this we may also define the set of all integers from $1$ to $m$, we
 denote it $[m]$; i.e. $[m] = \set[0 < n \le m]{n \in \N}$.
+\nomenclature[S]{$[n]$}{denotes the set of all the integers from $1$ to n}
+
 
 \paragraph{Constructive definitions.} Another way to construct a set of all
 even numbers is to use the constructive definition of a set:
@@ -157,8 +157,8 @@ $\Q = \set[a, b \in \Z, b \neq 0]{a / b}$).
 \end{exercise}
 
 \subsection{Disjoint Sets}
-Two sets are \textit{disjoint} iff they do not have common elements. We also
-say that two sets are \textit{overlapping} iff they are not disjoint i.e. they
+Two sets are \emph{disjoint} iff they do not have common elements. We also
+say that two sets are \emph{overlapping} iff they are not disjoint i.e. they
 share an element.
 
 More generally, $A_1$, \dots, $A_\ell$ are pairwise disjoint iff $A_i$ is
@@ -173,73 +173,66 @@ disjoint with $A_j$ for all $i \neq j \in [\ell]$
 \section{Operations over Sets.}
 Another way to describe a set is to apply operation to other sets. Let $A$ and
 $B$ be sets.
-
 \begin{figure}
-    \centering
-    \begin{subfigure}[b]{0.4\textwidth}
-      \begin{center}
-        \begin{tikzpicture}[scale=0.8]
-            \fill[yellow] (45:2cm) circle (1.5cm);
-            \fill[yellow] (0:2cm) circle (1.5cm);
+  \centering
+  \subfloat[$A \cup B$]{
+    \begin{tikzpicture}[scale=0.8]
+        \fill[yellow] (45:2cm) circle (1.5cm);
+        \fill[yellow] (0:2cm) circle (1.5cm);
 
-            \draw (45:2cm) circle (1.5cm) node [above] {$A$};
-            \draw (0:2cm) circle (1.5cm) node [below] {$B$};
-        \end{tikzpicture}
-      \end{center}
-      \caption{$A \cup B$}
-    \end{subfigure}
-    ~
-    \begin{subfigure}[b]{0.4\textwidth}
-      \begin{center}
-        \begin{tikzpicture}[scale=0.8]
-          \begin{scope}
-              \clip (45:2cm) circle (1.5cm);
-              \fill[yellow] (0:2cm) circle (1.5cm);
-          \end{scope}
-          \draw (45:2cm) circle (1.5cm) node [above] {$A$};
-          \draw (0:2cm) circle (1.5cm) node [below] {$B$};
-        \end{tikzpicture}
-      \end{center}
-      \caption{$A \cap B$}
-    \end{subfigure}
-    ~
-    \begin{subfigure}[b]{0.4\textwidth}
-      \begin{center}
-        \begin{tikzpicture}[scale=0.8]
-          \begin{scope}[even odd rule]% first circle without the second
-            \clip (0:2cm) circle (1.5cm) (-0.25,-0.25) rectangle (3,3);
-            \fill[yellow] (45:2cm) circle (1.5cm);
-          \end{scope}
-          \draw (45:2cm) circle (1.5cm) node {$A$};
-          \draw (0:2cm) circle (1.5cm) node {$B$};
-        \end{tikzpicture}
-      \end{center}
-      \caption{$A \setminus B$}
-    \end{subfigure}
-    \begin{subfigure}[b]{0.4\textwidth}
-      \begin{center}
-        \begin{tikzpicture}[scale=0.8]
-          \fill[yellow, even odd rule] (45:2cm) circle (1.5cm) node {$A$}
-            (0:2cm) circle (1.5cm) node{$B$};
-          \draw (45:2cm) circle (1.5cm) node {$A$};
-          \draw (0:2cm) circle (1.5cm) node {$B$};
-        \end{tikzpicture}
-      \end{center}
-      \caption{$A \Delta B$}
-    \end{subfigure}
-    \caption{Operations over the sets}
+        \draw (45:2cm) circle (1.5cm) node [above] {$A$};
+        \draw (0:2cm) circle (1.5cm) node [below] {$B$};
+    \end{tikzpicture}
+  }
+  \qquad\qquad
+  \subfloat[$A \cap B$]{
+    \begin{tikzpicture}[scale=0.8]
+      \begin{scope}
+          \clip (45:2cm) circle (1.5cm);
+          \fill[yellow] (0:2cm) circle (1.5cm);
+      \end{scope}
+      \draw (45:2cm) circle (1.5cm) node [above] {$A$};
+      \draw (0:2cm) circle (1.5cm) node [below] {$B$};
+    \end{tikzpicture}
+  }
+  \vskip 0.25cm
+  \subfloat[$A \setminus B$]{
+    \begin{tikzpicture}[scale=0.8]
+      \begin{scope}[even odd rule]
+        \clip (0:2cm) circle (1.5cm) (-0.25,-0.25) rectangle (3,3);
+        \fill[yellow] (45:2cm) circle (1.5cm);
+      \end{scope}
+      \draw (45:2cm) circle (1.5cm) node [above] {$A$};
+      \draw (0:2cm) circle (1.5cm) node [below] {$B$};
+    \end{tikzpicture}
+  }
+  \qquad\qquad
+  \subfloat[$A \Delta B$]{
+    \begin{tikzpicture}[scale=0.8]
+      \begin{scope}[even odd rule]
+        \clip (0:2cm) circle (1.5cm) (45:2cm) circle (1.5cm);
+        \fill[yellow] (45:2cm) circle (1.5cm);
+        \fill[yellow] (0:2cm) circle (1.5cm);
+      \end{scope}
+
+      \draw (45:2cm) circle (1.5cm) node [above] {$A$};
+      \draw (0:2cm) circle (1.5cm) node [below] {$B$};
+    \end{tikzpicture}
+  }
+  \caption{Euler diagrams for set operations}
 \end{figure}
 
 
-The first example of the operations on sets is the \textit{union} operation.
+The first example of the operations on sets is the \emph{union} operation.
 The union of $A$ and $B$ is the set containing all the elements of $A$ and all
 the elements of $B$ i.e.
 $A \cup B = \set[x \in A \text{ or } x \in B]{x}$\footnote{%
   Note that this definition is not correct since in the conditional definitions
   we have to specify the set $x$ belongs to and we cannot do this here.
 }.
+\nomenclature[S]{$A \cup B$}{denotes the union of two sets $A$ and $B$}
 
-Another example of such an operation is \textit{intersection}. The
+Another example of such an operation is \emph{intersection}. The
 intersection of $A$ and $B$ is the set of all the elements belonging to both
 $A$ and $B$ i.e $A \cap B = \set[x \in A \text{ and } x \in B]{x}$\footnote{%
   You may notice that in the definition of the union we use disjunction and
@@ -247,12 +240,14 @@ $A$ and $B$ i.e $A \cap B = \set[x \in A \text{ and } x \in B]{x}$\footnote{%
   reason the symbol of the conjunction is similar to the symbol of intersection
   and the symbol of the disjunction is similar to the symbol of union.
 }.
+\nomenclature[S]{$A \cap B$}{denotes the intersection of two sets $A$ and $B$}
 
 The third operation we are going to discuss this lecture is
-\textit{set difference}. If $A$ and $B$ are some sets, then
+\emph{set difference}. If $A$ and $B$ are some sets, then
 $A \setminus B = \set[x \in A \text{ and } x \not\in B]{x}$.
+\nomenclature[S]{$A \setminus B$}{denotes the difference of two sets $A$ and $B$}
 
-The last operation is \textit{symmetric difference}. If $A$ and $B$ are some
+The last operation is \emph{symmetric difference}. If $A$ and $B$ are some
 sets, then $A \Delta B = (A \setminus B) \cup (B \setminus A)$. Note that
 alternatively $A \Delta B = (A \cup B) \setminus (A \cap B)$
 
@@ -300,13 +295,18 @@ all possible subsets of $A$ is denoted by $2^A$ (sometimes this set is denoted
 by $\mathcal{P}(A)$) and called the power set of $A$. In other words $2^A =
 \set[B \subseteq A]{B}$.
 
+\nomenclature[S]{$2^A$}{denotes the set of all the subsets of the set $A$}
+
 \begin{warning}
   Please do not forget about two extremal elements of the power set $2^A$: the
   empty set and $A$ itself.
 \end{warning}
 
-\noindent For example if $A = \set{1, 2, 3}$, then $$2^A = \set{\emptyset,
-\set{1}, \set{2}, \set{3}, \set{1, 2}, \set{1, 3}, \set{2, 3}, \set{1, 2, 3}}.$$
+\noindent For example if $A = \set{1, 2, 3}$, then
+\[
+  2^A = \set{\emptyset, \set{1}, \set{2}, \set{3}, \set{1, 2},
+  \set{1, 3}, \set{2, 3}, \set{1, 2, 3}}.
+\]
 
 \section{The Well-ordering Principle}
 Using the set notation we may finally justify the proof of the statement
@@ -358,14 +358,14 @@ Finally, we prove Theorem~\ref{theorem:well-ordering}.
 
 \section*{End of The Chapter Exercises}
 \begin{exercises}
-  \exerciseitem Find the power sets of $\emptyset$, $\set{1}$, $\set{1, 2}$,
+  \exercise Find the power sets of $\emptyset$, $\set{1}$, $\set{1, 2}$,
     $\set{1, 2, 3, 4}$. How many elements in each of this sets?
-  \exerciseitem Prove that
+  \exercise Prove that
     \begin{itemize}
       \item $A \subseteq B \iff A \cup B = B$,
       \item $A \subseteq B \iff A \cap B = A$.
     \end{itemize}
-  \exerciseitem Let $A$ be a subset of a set $U$ we call this set a universe.
+  \exercise Let $A$ be a subset of a set $U$ we call this set a universe.
     We say that the set $\overline{A} = U \setminus A$ is a complement of $A$
     in $U$. Show the following equalities
     \begin{itemize}
@@ -373,30 +373,34 @@ Finally, we prove Theorem~\ref{theorem:well-ordering}.
       \item $\overline{A \cup B} = \overline{A} \cap \overline{B}$.
       \item $\overline{A \cap B} = \overline{A} \cup \overline{B}$.
     \end{itemize}
-  \exerciseitem Let us define an intersection of more than two sets as follows.
+  \exercise Let us define an intersection of more than two sets as follows.
     Let $A_1$, \dots, $A_n$ be some sets. Then
     \begin{itemize}
       \item $\bigcap_{i = 1}^1 A_i = A_1$ and
       \item $\bigcap_{i = 1}^{k + 1} A_i = \left( \bigcap_{i = 1}^k A_i \right)
         \cap A_{k + 1}$.
     \end{itemize}
+    \nomenclature[S]{$\bigcap_{i = 1}^k A_i$}{denotes $A_1 \cap \dots \cap
+    A_k$}
 
     Show that $\bigcap_{i = 1}^n \set[i \le x \le n]{x \in \mathbb{N}} =
     \set{n}$ for all integers $n > 0$.
-    \exerciseitem Let us define a union of more than two sets as follows.
+    \exercise Let us define a union of more than two sets as follows.
       Let $A_1$, \dots, $A_n$ be some sets. Then
       \begin{itemize}
         \item $\bigcup_{i = 1}^1 A_i = A_1$ and
         \item $\bigcup_{i = 1}^{k + 1} A_i =
           \left( \bigcup_{i = 1}^k A_i \right) \cup A_{k + 1}$.
       \end{itemize}
+      \nomenclature[S]{$\bigcup_{i = 1}^k A_i$}{denotes $A_1 \cup \dots \cup
+      A_k$}
 
       Show that $\bigcup_{i = 1}^n [i] = [n]$ for all integers $n > 0$.
-  \exerciseitem Let $\Omega$ be some set and $A_1, \dots, A_n \subseteq \Omega$.
+  \exercise Let $\Omega$ be some set and $A_1, \dots, A_n \subseteq \Omega$.
     Show that $\bigcup_{i = 1}^n A_i =
       \set[{\exists i \in [n]\ x \in A_i}]{x \in \Omega}$.
-  \exerciseitem Let $A_1$, \dots, $A_n$ be some sets.
-    Show that $\bigcup\limits_{i = 1}^n (A_i \cap B) =
+  \exercise Let $A_1$, \dots, $A_n$ be some sets.
+    Show that $\bigcup_{i = 1}^n (A_i \cap B) =
     \left(\bigcup_{i = 1}^n A_i\right) \cap B$.
-  \exerciseitem Show that $A \Delta (B \Delta C) = (A \Delta B) \Delta C$.
+  \exercise Show that $A \Delta (B \Delta C) = (A \Delta B) \Delta C$.
 \end{exercises}

@@ -2,6 +2,7 @@
 \newtheorem{principle}{Principle}[chapter]
 \newtheorem{definition}{Definition}[chapter]
 \newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{remark}{Remark}[chapter]
 \newtheorem{corollary}{Corollary}[chapter]
 
 \newsavebox{\mybox}
@@ -26,7 +27,14 @@
   \vskip 5pt
 }
 
-\newlist{exercises}{enumerate}{1}
-\setlist[exercises]{label=\textbf{\theexercise}}
-
-\newcommand{\exerciseitem}{\stepcounter{exercise}\item}
+\newenvironment{exercises}
+{
+  \renewcommand{\exercise}[1][ ]{
+    \stepcounter{exercise}
+    \item[\textup{\textbf{\theexercise}}] \ifthenelse{\equal{##1}{ }}{}{\textit{(##1)}}
+  }
+  \begin{description}
+}
+{
+  \end{description}
+}
