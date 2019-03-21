@@ -27,14 +27,39 @@
   \vskip 5pt
 }
 
+\newcounter{solutionnumber}
+
+\newenvironment{solution}
+  {\begingroup\edef\x{\endgroup\noexpand\solutione{\theexercise}}\x}
+  {\endsolutione}
+
+\NewEnviron{solutione}[1]{
+  \Writetofile{solution_f}
+  {
+    \protect\item [\textup{\textbf{#1}}]
+    {\BODY}
+  }
+  \stepcounter{solutionnumber}
+}
+
 \newenvironment{exercises}
 {
   \renewcommand{\exercise}[1][ ]{
     \stepcounter{exercise}
     \item[\textup{\textbf{\theexercise}}] \ifthenelse{\equal{##1}{ }}{}{\textit{(##1)}}
   }
+  \section*{End of The Chapter Exercises}
+  \Opensolutionfile{solution_f}
   \begin{description}
 }
 {
   \end{description}
+  \Closesolutionfile{solution_f}
+  \ifnum\value{solutionnumber} > 0
+    \section*{Solutions to Selected Exercises}
+    \begin{description}
+      \Readsolutionfile{solution_f}      
+    \end{description}
+    \setcounter{solutionnumber}{0}
+  \fi
 }
