@@ -42,6 +42,10 @@
   \stepcounter{solutionnumber}
 }
 
+\newcommand{\hint}[1]{
+  \textit{Hint: #1}
+}
+
 \newenvironment{chapterendexercises}
 {
   \renewcommand{\exercise}[1][ ]{
@@ -58,7 +62,7 @@
   \ifnum\value{solutionnumber} > 0
     \section*{Solutions to Selected Exercises}
     \begin{description}
-      \Readsolutionfile{solution_f}      
+      \Readsolutionfile{solution_f}
     \end{description}
     \setcounter{solutionnumber}{0}
   \fi
