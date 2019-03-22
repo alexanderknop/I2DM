@@ -210,6 +210,9 @@ coefficients.
     $\sum_{k = 0}^n \binom{n}{k}^2 = \binom{2n}{n}$.
   \exercise Show that $\sum_{m = k}^n \binom{m}{k} =
     \binom{n + 1}{k + 1}$.
+    \hint{Note that summand on the right corresponds to the number of ways to
+    select $k$ elements out of $n + 1$; $m$ in the formula on the left denote
+    the maximum of this selected set minus one.}
   \exercise Using the previous formula, find the formulas for the following
     expressions:
     \begin{itemize}
@@ -229,6 +232,7 @@ coefficients.
     \binom{n}{k} \binom{n - k}{m - k}$.
   \exercise Show that
     $(a + 1)^p \equiv a^p + 1 \pmod{p}$.
+    \hint{Use the binomial therem.}
   \exercise We say that a function $f : \{0, 1\}^n \to \{0, 1\}$ depends on the
     $i$th argument iff for some
     $a_1, \dots, a_{i - 1}, a_{i + 1}, \dots, a_n \in \set{0, 1}$
