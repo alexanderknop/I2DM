@@ -4,13 +4,13 @@
   Introduction to Combinatorics \#4
 }{youtu.be/HLClazoqqzg}
 \section{Counting Functions}
-Assume we have two finite sets $X$ and $Y$. The first question we may ask is:
-how many function exist from $X$ to $Y$.
+Assume we have two finite sets $X$ and $Y$. The first question we may ask is
+how many function exist from $X$ to $Y$?
 
 
 \begin{theorem}
 \label{theorem:number-of-functions}
-  Let $X$ and $Y$ be some finite sets. We denote by $Y^X$ the set of all
+  Let $X$ and $Y$ be some finite sets. $Y^X$ represents the set of all
   functions from $X$ to $Y$. Then $|Y^X| = |Y|^{|X|}$.
 \end{theorem}
 \nomenclature[S]{$B^A$}{denotes the set of functions from $A$ to $B$}
@@ -32,7 +32,7 @@ how many function exist from $X$ to $Y$.
 \end{exercise}
 
 However, what if we need to find size of a subset of $Y^X$ satisfying some
-constraint. For example, we may try to find size of the set
+constraint? For example, we may try to find the size of the set
 \[
   (Y)_X = \set[f\text{ is an injection}]{f \in Y^X}.
 \]
@@ -40,7 +40,7 @@ constraint. For example, we may try to find size of the set
 First, let us try to do this informally. Assume that $X = [n]$ and $|Y| = m$,
 to define $f \in (Y)_X$ we need to choose images of $1$, $2$, \dots, $n$. There
 are $m$ possible ways to select an image of $1$, $m - 1$ ways to define $f(2)$
-since we can not use the value selected for $1$ etc. Hence,
+since we cannot use the value selected for $1$ etc. Hence,
 $|(Y)_X| = m (m - 1) \dots (m - n + 1)$ (we denote this number as $(m)_n$).
 \nomenclature[C]{$(m)_n$}{denotes the number of ways to choose an
 subset of $n$ elements from a fixed set of $n$ elements}
@@ -128,7 +128,7 @@ Let us find several useful properties of the binomial coefficients.
   We prove the second property all the others are left as an exercise.
 
   Informally, the proof is the following. Assume we need to choose $k$ objects
-  out of $n$, there are two possible ways:
+  out of $n$. There are two possible ways:
   \begin{itemize}
     \item we may select $n$ and choose $k - 1$ objects from the rest,
     \item or we may decide to not select $n$ choose $k$ objects from the rest.
@@ -158,7 +158,7 @@ Let us find several useful properties of the binomial coefficients.
     \set[|A| = k \text{ and } n \in A]{A \subseteq [n]}
   \] to
   $\binom{[n - 1]}{k}$: $f(A) = A \setminus \set{n}$.
-  It is clear that this is a bijection, thus we prove the statement.
+  It is clear that this is a bijection. Thus, we prove the statement.
 \end{proof}
 
 Now we are ready to prove the theorem which gave the name to binomial

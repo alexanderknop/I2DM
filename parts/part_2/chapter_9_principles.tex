@@ -28,8 +28,8 @@ this principle the answer is $2 + 3 = 5$.
     \end{cases}.
   \]
 
-  It's easy to see that $f$ is an injection. Indeed, assume the opposite i.e.
-  that there are $i_0 \neq i_1 \in X \cup Y$ such that $f(i_0) = f(i_1)$.
+  It's easy to see that $f$ is an injection. Let us start by assuming the opposite i.e.
+  that $i_0 \neq i_1 \in X \cup Y$ such that $f(i_0) = f(i_1)$.
   There are three cases.
   \begin{itemize}
     \item The first is when $i_0, i_1 \in [n]$. In this case $g(i_0) = g(i_1)$
@@ -44,7 +44,7 @@ this principle the answer is $2 + 3 = 5$.
       assumption that $X \cap Y = \emptyset$.
   \end{itemize}
 
-  To finitsh the proof we need to show that $f$ is a surjection. Let
+  To finish the proof we need to show that $f$ is a surjection. Let
   $w \in (X \cup Y)$. Consider the following two cases.
   \begin{itemize}
     \item Let $w \in X$. There is $i \in [n]$ such that $f(i) = g(i) = w$ since
@@ -67,17 +67,17 @@ this principle the answer is $2 + 3 = 5$.
 
 \section{The Multiplicative Principle}
 The next principle is called the \emph{multiplicative} principle and it can be
-illustration as follows: imagine that you are given two postal stamps and
-three envelopes, how many ways to pack the letter? The answer is obviously
+illustrated as follows: imagine that you are given two postal stamps and
+three envelopes, how many ways are there to pack the letters? The answer is obviously
 $2 \cdot 3 = 6$.
 \begin{theorem}[The Multiplicative Principle]
   Let $X$ and $Y$ be finite sets. Then $|X \times Y| = |X| \times |Y|$.
 \end{theorem}
 \begin{proof}
-  If one of the sets $X$ and $Y$ are empty, then $X \times Y$ is empty as well
-  and the statement follows.
+  If one of the sets $X$ and $Y$ is empty, then $X \times Y$ is empty as well
+  and the statement is as follows.
 
-  Assume that none of the sets is empty. Let $|X| = n$, $|Y| = m$, and
+  Assume that none of the sets are empty. Let $|X| = n$, $|Y| = m$, and
   $f : [n] \to X$ and $g : [m] \to Y$ be bijections.
   Note that
   \[
@@ -181,7 +181,7 @@ of sets when they are not disjoint.
           \bigcap_{i \in S} X_i
         \right|.
   \]
-  In addition, it is esy to note that
+  In addition, it is easy to note that
   \[
     \left|\left(\bigcup_{i = 1}^k X_i\right) \cap X_{k + 1}\right| =
     \left|\bigcup_{i = 1}^k \left(X_i \cap X_{k + 1}\right)\right|.

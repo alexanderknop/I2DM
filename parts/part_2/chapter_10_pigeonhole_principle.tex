@@ -5,8 +5,8 @@
 }{youtu.be/1D1Fa7WIUO8}
 
 The principle we are going to discuss in this chapter is very simple, it states
-that if you have more objects than boxes, then you cannot put all the objects to
-boxes without puting two objects in the same box.
+that if you have more objects than boxes, then you cannot put all the objects into
+boxes without puting two objects into the same box.
 
 More formally the principle can be formulated as follows: if $n > m$, then any
 function from $[n]$ to $[m]$ is not an injection. This simple statement is
@@ -45,11 +45,11 @@ have at most $n - 1$ friends. Hence, we may define a function $f: [n] \to
 this group of the $i$th person in this group.
 We need to consider two cases.
 \begin{itemize}
-  \item If $\Im f \subseteq [n - 1]$. In this case
+  \item If $\Im f \subseteq [n - 1]$, then
     $|[n]| > |\Im f|$ and $f$ is not an injection.
   \item Otherwise, note that it is not possible that $(n - 1) \in \Im f$
-    since it there is a friend of nobody it is not possible that there is a
-    friend of everyone. Hence, $f : [n] \to \set{0, 1, \dots, n - 2}$ and $f$ is
+    because if there is a friend with no friends it is not possible that there is a
+    friend who is friends with everyone. Hence, $f : [n] \to \set{0, 1, \dots, n - 2}$ and $f$ is
     not an injection.
 \end{itemize}
 
@@ -93,8 +93,8 @@ statement in the next section.
 
 Using this theorem we can prove that if we draw $9$ cards out of a deck of
 cards, we are guaranteed that at least three of them are of the same suit.
-Indeed, there are $4$ suits and by pigeonhole principle if we put each card to
-one out of four boxes according to their suit, one of the boxes should have
+Given that, there are $4$ suits in the deck, by pigeonhole principle if we put each card into
+one of the four boxes according to their suits, one of the boxes should have
 at least $\ceil{9 / 4} = 3$ cards.
 
 Another example shows how the generalized pigeonhole principle can be applied
@@ -115,7 +115,7 @@ friends. Otherwise, $B$, $C$, and $D$ form a set of three mutual enemies.
 
 \section{The Averaging Principle}
 Assume that we have a collection of $m$ objects, the $i$th of which has
-``size'' $l_i$, and we wish to show that at least one of the objects is large.
+``size'' $l_i$. We wish to show that at least one of the objects is large.
 In this situation we can argue that at least one of the objects has size
 greater or equal to the average size ($\sum l_i / m$).
 \begin{theorem}[the averaging principle]
