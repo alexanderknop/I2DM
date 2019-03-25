@@ -436,8 +436,10 @@ By the induction hypothesis,
 \]
 and
 \[
-  C(n - \floor{\frac{n}{2}}) \le 6 + 2\log_2(n - \floor{\frac{n}{2}}).
+  C(n - \floor{\frac{n}{2}}) \le 6 + 2\log_2(n - \floor{\frac{n}{2}}),
 \]
+where $\floor{\alpha}$ denotes the integer part of a real number $\alpha$.
+\nomenclature[C]{$\floor{\alpha}$}{denotes the integer part of $\alpha$}
 Since $\floor{\frac{n}{2}} \le \frac{n}{2}$ and $n - \floor{\frac{n}{2}} \le
 \frac{n}{2} + 1$, $C(n) \le 1 + 2\log_2(\frac{n}{2} + 1)$.
 However,
