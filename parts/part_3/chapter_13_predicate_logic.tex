@@ -1,0 +1,328 @@
+\chapter{Predicate Logic}
+In the previous chapter we defined natural deductions for propositional logic.
+But in real mathematics there are many formulas that are not propositional. For
+example we may wish to prove that if a relation $R$ on $M$ is transitive, then
+\[
+  (R(w, x) \land R(x, y) \land R(y, z)) \implies R(w, z)
+\]
+is true for any $w, x, y, z \in M$. In this chapter we define a logical
+system that allows us to formally prove such statements.
+
+\section{Predicate Formulas}
+Let us formalize the previous statement:
+\begin{multline*}
+  (\forall x, y, z \in M ~ (R(x, y) \land R(y, z)) \implies R(x, z)) \implies \\
+  (\forall w, x, y, z \in M ~ (R(w, x) \land R(x, y) \land R(y, z)) \implies
+  R(x, z))
+\end{multline*}
+Note that there are several things we need to explain if we wish to define
+formally formulas like this:
+\begin{itemize}
+  \item we need to explain what kind of sets we can use (in this case we need
+    to define $M$),
+  \item we need to explain what kind of relations we can use (in this case we
+    need to define $R$),
+\end{itemize}
+
+Another example of a formula we may wish to prove is saying that if
+$f : M \to M$ is an inverse of itself (i.e. $f(f(x)) = f(x)$ for any $x \in M$),
+then $f(f(f(x))) = f(x)$ for any $x \in M$; more formaly, we may wish to prove a
+statement
+\[
+  (\forall x \in M ~ f(f(x)) = x) \implies
+    (\forall x \in M ~ f(f(f(x))) = f(x)).
+\]
+In order to expalin what we mean by such formulas
+\begin{itemize}
+  \item we need to explain what kind functions we can use (in this case we need
+    to define $f$).
+\end{itemize}
+
+\paragraph{Signature.}
+In predicate logic, formula uses just symbols for all these objects. We specify
+these symbols only when we wish to compute actual truth value of the formula.
+We also assume that all the quantifiers are over the same set so we do not need
+a symbol for the set $M$.
+
+Signature is the way to define the list of all these symbols, it consists of
+three objects:
+\begin{itemize}
+  \item the set of symbols for relations,
+  \item the set of symbols for functions,
+  \item arities of these functions and relations (i.e. how many arguments they
+    may take).
+\end{itemize}
+An example of a signature is a triple $(\set{\text{``R''}}, \set{\text{``f''}},
+\mathrm{ar})$, where
+\[
+  \mathrm{ar}(s) = \begin{cases}
+    2 & \text{if } s =  \text{``R''} \\
+    1 & \text{if } s =  \text{``f''}
+  \end{cases}.
+\]
+This signature is enough to define the formulas we discussed. Now we are ready
+to defin the predicate formulas.
+
+\begin{definition}
+  Let $\mathcal{S} = (S_\mathrm{rel}, S_\mathrm{fun}, a)$ be a signature.
+
+  We say that $t$ is a term in the signature $\mathcal{S}$ over the variables
+  $x_1$, \dots, $x_n$ if
+  \begin{itemize}
+    \item either $t$ is equal to a variable $x_i$
+    \item or $t$ is equal to $f(t_1, \dots, t_\ell)$, where
+      $f \in S_\mathrm{fun}$, $\ell = a(f)$, and $t_1$, \dots, $t_\ell$
+      are terms in the signature $\mathcal{S}$.
+  \end{itemize}
+
+  We say that $\phi$ is a predicate formula in the signature $\mathcal{S}$
+  over the variables $x_1$, \dots, $x_n$  if
+  \begin{itemize}
+    \item either $\phi$ is equal to $R(t_1, \dots, t_\ell)$, where
+      $R \in S_\mathrm{rel}$, $\ell = a(R)$, and $t_1$, \dots, $t_\ell$
+      are terms in the signature $\mathcal{S}$.
+    \item or $\phi$ is equal to $(\psi_1 \land \psi_2)$ or
+      $(\psi_1 \lor \psi_2)$, where $\psi_1$ and $\psi_2$ are predicate
+      formulas in the signature $\mathcal{S}$,
+    \item or $\phi$ is equal to $\lnot \psi$, where $\psi$ is a predicate
+      formula in the signature $\mathcal{S}$,
+    \item or $\phi$ is equal to $\exists x_i~\psi$ or $\forall x_i~\psi$ where
+      $\psi$ is a predicate formula in the signature $\mathcal{S}$.
+  \end{itemize}
+\end{definition}
+
+In order to compute the truth value of a predicate formula, we need to specify
+the values of all the free variables and all the symbols from the signature.
+The specification of the symbols from the signature is called structure; i.e.
+a structure for a signature $\mathcal{S} = (S_\mathrm{rel}, S_\mathrm{fun}, a)$
+is a triple $(M, F_\mathrm{rel}, F_\mathrm{fun})$ such that
+\begin{itemize}
+  \item $F_\mathrm{rel} : S_\mathrm{rel} \to \bigcup_{i = 0}^\infty 2^{M^i}$
+    such that $F_\mathrm{rel}(R) \in 2^{M^{a(R)}}$ and
+  \item $F_\mathrm{fun} : S_\mathrm{fun} \to \bigcup_{i = 0}^\infty M^{M^i}$
+    such that $F_\mathrm{fun}(f) \in M^{M^{a(f)}}$.
+\end{itemize}
+The set $M$ in the structure is called the domain of the structure.
+
+
+\begin{definition}
+  Let $\mathcal{S} = (S_\mathrm{rel}, S_\mathrm{fun}, a)$ be a signature and
+  $\mathcal{M} = (M, F_\mathrm{rel}, F_\mathrm{fun})$ be a structure for
+  $\mathcal{S}$.
+
+  Let $t$ be a term in the signature $\mathcal{S}$ over the variables
+  $x_1$, \dots, $x_n$ and $v_1, \dots, v_n \in M$.
+  The value of $t$ with $x_1 = v_1$, \dots, $x_n = t_n$ with respect to the
+  structure $\mathcal{M}$ is equal
+  \begin{itemize}
+    \item either to $v_i$ when $t = x_i$,
+    \item or $F_\mathrm{fun}(f)(\mu_1, \dots, \mu_{a(f)})$ when
+      $t = f(t_1, \dots, t_{a(f)})$, where $\mu_i$ is equal to the value of
+      $t_i$ with $x_1 = v_1$, \dots, $x_n = v_n$ with respect to the
+      structure $\mathcal{M}$.
+  \end{itemize}
+
+  Let $\phi$ be a formula in the signature $\mathcal{S}$ over the variables
+  $x_1$, \dots, $x_n$.
+  \begin{itemize}
+    \item Let $\phi$ be equal to $F_\mathrm{rel}(R)(t_1, \dots, t_{a(R)})$,
+      where $t_1, \dots, t_n$ are some terms in $\mathcal{S}$. Then the value
+      of $\phi$ with $x_1 = v_1$, \dots, $x_n = v_n$ with respect to
+      $\mathcal{M}$ is equal to $R(\mu_1, \dots, \mu_{a(R)})$, where $\mu_i$
+      is equal to the value of $t_i$ with $x_1 = v_1$, \dots, $x_n = v_n$ with
+      respect to $\mathcal{M}$.
+    \item Let $\phi$ be equal to $\psi_1 \# \psi_2$, where
+      $\# \in \set{\lor, \land}$ and $\psi_1$, $\psi_2$ are predicate
+      formulas. Then the value of $\phi$ with $x_1 = v_1$, \dots, $x_n = v_n$
+      with respect to $\mathcal{M}$ is equal to $\beta_1 \# \beta_2$, where
+      $\beta_i$ is equal to the value of $\psi_i$ with $x_1 = v_1$, \dots,
+      $x_n = v_n$ with respect to $\mathcal{M}$.
+    \item Let $\phi$ be equal to $\lnot \psi$, where
+      $\psi$ is a predicate formula.
+      Then the value of $\phi$ with $x_1 = v_1$, \dots, $x_n = v_n$ with
+      respect to $\mathcal{M}$ is equal to $\lnot \beta$, where
+      $\beta$ is equal to the value of $\psi$ with $x_1 = v_1$, \dots,
+      $x_n = v_n$ with respect to $\mathcal{M}$.
+    \item Let $\phi$ be equal to $\exists x_i ~ \psi$, where
+      $\psi$ is a predicate formula.
+      Then the value of $\phi$ with $x_1 = v_1$, \dots, $x_n = v_n$ with
+      respect to $\mathcal{M}$ is equal to true iff there is $\mu \in M$
+      such that the value of $\psi$ with $x_1 = v_1$, \dots,
+      $x_{i - 1} = v_{i - 1}$, $x_i = \mu$, $x_{i + 1} = v_{i + 1}$, \dots
+      $x_n = v_n$ with respect to $\mathcal{M}$.
+    \item Let $\phi$ be equal to $\forall x_i ~ \psi$, where
+      $\psi$ is a predicate formula.
+      Then the value of $\phi$ with $x_1 = v_1$, \dots, $x_n = v_n$ with
+      respect to $\mathcal{M}$ is equal to true iff for all $\mu \in M$,
+      the value of $\psi$ with $x_1 = v_1$, \dots,
+      $x_{i - 1} = v_{i - 1}$, $x_i = \mu$, $x_{i + 1} = v_{i + 1}$, \dots
+      $x_n = v_n$ with respect to $\mathcal{M}$.
+  \end{itemize}
+\end{definition}
+
+Let us consider an example:
+\begin{itemize}
+  \item First, we define a signature
+    $\mathcal{S} = (\set{=, <}, \set{+, \cdot}, \mathrm{ar})$, where
+    $\mathrm{ar}(x) = 2$ for any $x \in \set{=, +, \cdot}$.
+  \item After this we define a structure $\mathcal{M} = (\R, F_\mathrm{rel},
+    F_\mathrm{fun})$, where
+    \begin{gather*}
+      F_\mathrm{fun}(f)(x, y) = \begin{cases}
+        x \cdot y & \text{if } f \text{ is } \cdot \\
+        x + y & \text{if } f \text{ is } +
+      \end{cases} \\
+      \text{and} \\
+      F_\mathrm{rel}(R)(x, y) \begin{cases}
+        x = y & \text{if } R \text{ is } = \\
+        x < y & \text{if } R \text{ is } <
+      \end{cases}
+    \end{gather*}
+  \item Finally, we consider the formulas in the signature $\mathcal{S}$
+    \begin{gather*}
+      \forall x \ \forall y \ x + y = y + x \\
+      \text{and} \\
+      \forall x \ \forall y \ \forall z \ (x < y \implies x + z < y + z).
+    \end{gather*}
+    (Note that we write $a = b$ instead of $=(a, b)$ and $a + b$ instead of
+    $a + b$, this is a common notation when we the standard mathematical
+    operations and relations are used in the signature.)
+\end{itemize}
+The first formula says that the operation $+$ is commutative, which is true, so
+the value of the formula with respect to the structure $\mathcal{M}$ should be
+true. (Note that we do not mention the values of the variables $x$ and $y$
+since both of them are not free.) Indeed, consider $a, b \in \R$ note that the
+value of $x + y = y + x$ with $x = a$ and $y = b$ and with respect to the
+structure $\mathcal{M}$ is equal to $F_\mathrm{rel}(F_\mathrm{fun}(a, b),
+F_\mathrm{fun}(b, a))$ which is the same as $a + b = b + a$; thus, the first
+formula is true.
+
+The second formula says that the inequalities are additive, so it should be also
+true with respect to the structure $\mathcal{M}$.
+\begin{exercise}
+  Show that the second formula is true with respect to the structure
+  $\mathcal{M}$.
+\end{exercise}
+
+By analogy with the tautology, in the predicate logic we wish to prove that a
+formula is true, whenever the structure and the values of the variables we
+choose. Such formulas a called \textit{logically valid}.
+
+\section{Natural Deduction}
+Natural deduction for the predicate formulas is defined in the same maner as
+the natural deduction for the propositional formulas but now the lines are
+predicate formulas and we can use four additional rules.
+
+\paragraph{Universal quantifier.}
+The first logically-valid formula we use as a rule is $A(x) \implies (\forall y
+\ A(y))$, this rule allows us to introduce an universal quantifier.
+In order to use the following rule, $x$ should not be a free variable of
+an open hypothesis.
+\[
+  \begin{nd}
+    \have [m] {1} {A(x)}
+    \have [~] {2} {\forall y \  A(y)} \Ai{1}
+  \end{nd}
+\]
+The second logically-valid formula we use as a rule says that if a statement is
+true for all the values of a variable, then it is also true when you substitute
+some specific term instead of the variable, i.e. $(\forall x \ A(x)) \implies
+A(t))$, this rule allows us to eliminate an universal quantifier.
+\[
+  \begin{nd}
+    \have [m] {1} {\forall x \  A(x)}
+    \have [~] {2} {A(t)} \Ae{1}
+  \end{nd}
+\]
+
+\paragraph{Existential quantifier.}
+The first formula for the exisential quantifier says that you can name any term
+in the formula by a variable and formula is still true for some value of the
+variable. The corresponding formula is $A(t) \implies (\exists x \ A(x))$.
+\[
+  \begin{nd}
+    \have [m] {1} {A(t)}
+    \have [~] {2} {\exists x \ A(x)} \Ei{1}
+  \end{nd}
+\]
+
+The last rule says that if $A(x)$ is true for some $x$ and we know that $A(y)$
+implies $B$, then we can derive $B$ (note that this is true only when
+$y$ is not used in $B$). Thus we can apply the following rule when $y$ is not
+be a free variable neither of $B$ nor of any open hypothesis.
+\[
+  \begin{nd}
+    \have [m] {1} {\exists x \ A(x)}
+    \open
+      \hypo [i] {2} {A(y)}
+      \have[j] {3} {B}
+    \close
+    \have [~] {4} {B} \Ee{1, 2-3}
+  \end{nd}
+\]
+\section{Examples of Derivations}
+First example $\forall x \ F(x) \lor \lnot(\forall x \ F(x))$ is a special form
+of the law of excluded middle, which we proved
+in the previous chapter. However, in order to emphasize that the propositional
+logic can prove all the statements provable in the predicate case we present
+the proof of this statement as well.
+
+\noindent $
+  \begin{nd}
+    \hypo {1} {}
+    \open
+      \hypo {2} {\lnot (\forall x \  F(x) \lor \lnot (\forall x \  F(x)))}
+      \open
+        \hypo {3} {\forall x \  F(x)}
+        \have {4} {\forall x \  F(x) \lor \lnot (\forall x \  F(x))} \oi{3}
+        \have {5} {\perp} \ne{2, 4}
+      \close
+      \have {6} {\lnot (\forall x \  F(x))} \ni{3-5}
+      \have {7} {\forall x \  F(x) \lor \lnot (\forall x \  F(x))} \oi{6}
+      \have {8} {\perp} \ne{2, 8}
+    \close
+    \have {9} {\forall x \  F(x) \lor \lnot (\forall x \  F(x))} \by{IP}{2-8}
+  \end{nd}
+$
+
+Unfortunately, this example just shows that a statement provable in the
+propositional logic can be proven in the predicate logic. The next example is
+an example that cannot be expressed in the propositional logic, we
+prove that if we know that
+$\forall x \forall y \ R(x, y) \implies R(y, x)$, the we can derive
+$\forall x \forall y \ ((R(x, y) \implies R(y, x)) \land
+  (R(y, x) \implies R(x, y)))$.
+
+
+\noindent $
+  \begin{nd}
+    \hypo {1} {\forall x \forall y \ R(x, y) \implies R(y, x)}
+
+    \have {2} {\forall y \ R(x', y) \implies R(y, x')} \Ae{1}
+    \have {3} {R(x', y') \implies R(y', x')} \Ae{2}
+    \have {4} {\forall y \ R(y', y) \implies R(y, y')} \Ae{1}
+    \have {5} {R(y', x') \implies R(x', y')} \Ae{4}
+    \have {6} {(R(x', y') \implies R(y', x')) \land R(y', x') \implies R(x', y')}
+              \ai{3, 5}
+    \have {6} {\forall y \ (R(x', y) \implies R(y, x')) \land
+      (R(y, x') \implies R(x', y))}
+              \Ai{6}
+    \have {6} {\forall x \forall y \ (R(x, y) \implies R(y, x)) \land
+      (R(y, x) \implies R(x, y))}
+              \Ai{7}    
+  \end{nd}
+$
+
+\section{Soundness and Completeness}
+Like in the propositional case, the most important properties of the natural
+deduction are the following two theorems.
+
+\begin{theorem}[completeness of natural deductions]
+  Let $\phi$ be a predicate formula. If $\phi$ is logically valid, then
+  there is a proof of $\phi$.
+\end{theorem}
+
+\begin{theorem}[soundness of natural deductions]
+  Let $\phi$ be a predicate formula. If there is a proof of $\phi$, then
+  $\phi$ is logically valid.
+\end{theorem}
