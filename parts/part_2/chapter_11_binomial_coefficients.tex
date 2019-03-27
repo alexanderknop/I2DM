@@ -133,6 +133,7 @@ since $n!$ is growing very fast. Thus the following theorem provides a much more
 efficient way to compute the values of binomial coefficients.
 
 \begin{theorem}[Pascal's rule]
+\label{theorem:pascals-rule}
   For $n > k \ge 1$, $\binom{n}{k} = \binom{n - 1}{k - 1} + \binom{n - 1}{k}$.
 \end{theorem}
 \begin{proof}
@@ -315,11 +316,56 @@ Similarly to the Binomial theorem, we can prove the following.
   Prove Theorem~\ref{theorem:multinomial-coefficients}.
 \end{exercise}
 
+\section{Double Counting}
+\marginurl{%
+  Double Counting:\\\noindent
+  Introduction to Combinatorics \#4
+}{youtu.be/OrzMP8nuuho}
+The method that was used to prove Theorem~\ref{theorem:pascals-rule} can be
+generalized to a method that is caleed \emph{double counting principle}.
+The double counting principle states the following “obvious” fact: if the
+size of a set is counted in two different ways, the answers are the same.
+
+Using this principle we may cprove the following theorem.
+\begin{theorem}[Vandermonde's identity]
+  For any integers $n, m > k$,
+  $\sum_{i = 0}^k \binom{n}{i} \binom{m}{k - i} = \binom{n + m}{k}$.
+\end{theorem}
+\begin{proof}
+  The idea is as follows, let us imagine that we have $n$ parrots and $m$ crows,
+  and we need to find how many ways to select $k$ birds.
+  It is easy to see that it is equal to $\binom{n + m}{k}$. At the same
+  if we need to select $i$ parrots there are $\binom{n}{i}\binom{m}{k - i}$
+  ways to do this. Thus the number is also equal to
+  $\sum_{i = 0}^k \binom{n}{i}\binom{m}{k - i}$.
+\end{proof}
+
+However, the method can be used in a more sophisticated way.
+\begin{lemma}[Handshaking Lemma]
+  Suppose some number of people meet at a party and some shake hands. Assume
+  that no person shakes his or her own hand and furthermore no two people shake
+  hands more than once.
+
+  The number of guests who shake hands an odd number of times is even.
+\end{lemma}
+\begin{proof}
+  Let $1$, \dots, $n$ be the people at the party. We apply double counting to
+  the set of ordered pairs $(i, j)$ for which $i$ and $j$ shake hands with each
+  other at the party. Let $d_i$ be the number of times that $i$ shakes hands,
+  and $e$ be the total number of handshakes that occur. On one hand, the number
+  of pairs is $\sum_{i = 1}^n d_i$, since for each $i$ the number of choices of
+  $j$ is equal to $d_i$. On the other hand, each handshake gives rise to two
+  pairs $(i, j)$ and $(j, i)$; so the total is $2e$.
+  Thus $\sum_{i = 1}^n d_i = 2e$. But, if the sum of $n$ numbers is even, then
+  evenly many of the numbers are odd.
+  (Because if we add an odd number of odd numbers and any number of even
+  numbers, the sum will be always odd).
+\end{proof}
+
+
 \begin{chapterendexercises}
   \exercise Show that
     $(x + y)_n = \sum_{k = 0}^n \binom{n}{k} (x)_k (y)_{n - k}$.
-  \exercise Show that
-    $\sum_{i = 0}^k \binom{n}{i} \binom{m}{k - i} = \binom{n + m}{k}$.
   \exercise Show that
     $\sum_{k = 0}^n \binom{n}{k}^2 = \binom{2n}{n}$.
   \exercise Show that $\sum_{m = k}^n \binom{m}{k} =
@@ -334,10 +380,14 @@ Similarly to the Binomial theorem, we can prove the following.
       \item $\sum_{k = 0}^n k^2$, and
       \item $\sum_{k = 0}^n k^3$.
     \end{itemize}
-  \exercise Show that $\sum_{k = 0}^{n} \binom{2n}{2k} =
-    \sum_{k = 0}^{n - 1} \binom{2n}{2k + 1}$ and
-    $\sum_{k = 0}^{n} \binom{2n + 1}{2k} =
-    \sum_{k = 0}^n \binom{2n + 1}{2k + 1}$.
+  \exercise Show that
+    \begin{gather*}
+      \sum_{k = 0}^{n} \binom{2n}{2k} =
+      \sum_{k = 0}^{n - 1} \binom{2n}{2k + 1} \\
+      \text{and} \\
+      \sum_{k = 0}^{n} \binom{2n + 1}{2k} =
+      \sum_{k = 0}^n \binom{2n + 1}{2k + 1}
+    \end{gather*}
   \exercise Show that $\sum_{k = 0}^n \binom{m + k}{k} =
     \binom{m + n + 1}{n}$.
   \exercise Show that $\sum_{k = 0}^n \binom{n - k}{k} = f_{n + 1}$,
