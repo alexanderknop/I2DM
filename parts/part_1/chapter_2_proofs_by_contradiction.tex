@@ -1,15 +1,8 @@
 \chapter{Proofs by Contradiction}
-\begin{marginfigure}
-  {\scriptsize Proofs by Contradiction:\\\noindent
-  Introduction to Mathematical Reasoning \#3}
-  \vskip 0.25cm
-  \noindent
-  \qrset{link, height=3cm}
-  \qrcode{https://youtu.be/bWP0VYx75DI}
-  \vskip 0.25cm
-  \noindent
-  \url{youtu.be/bWP0VYx75DI}
-\end{marginfigure}
+\marginurl{%
+  Proofs by Contradiction:\\\noindent
+  Introduction to Mathematical Reasoning \#3
+}{youtu.be/bWP0VYx75DI}
 \section{Proving Negative Statements}
 The direct method is not very convenient when we need to prove a negation of
 some statement.
@@ -41,9 +34,9 @@ irreducible fraction.
 \begin{template}
   \textbf{Template for proving a statement by contradiction.} \\
 
-  Assume, for the sake of contradiction, that \textit{the statement} is false.
-  Then \textit{present some argument that leads to a contradiction}. Hence, the
-  assumption is false and \textit{the statement} is true.
+  Assume, for the sake of contradiction, that \emph{the statement} is false.
+  Then \emph{present some argument that leads to a contradiction}. Hence, the
+  assumption is false and \emph{the statement} is true.
 \end{template}
 
 \begin{exercise}
@@ -81,10 +74,10 @@ hence $b = 0$ which is a contradiction to the assumption.
 
 \section*{End of The Chapter Exercises}
 \begin{exercises}
-  \exerciseitem Prove that if $n^2$ is odd, then $n$ is odd.
-  \exerciseitem  In Euclidean (standard) geometry, prove: If two lines share a
+  \exercise Prove that if $n^2$ is odd, then $n$ is odd.
+  \exercise  In Euclidean (standard) geometry, prove: If two lines share a
     common perpendicular, then the lines are parallel.
-  \exerciseitem Let us consider four-lines geometry, it is a theory with
+  \exercise Let us consider four-lines geometry, it is a theory with
     undefined terms: point, line, is on, and axioms:
     \begin{enumerate}
         \item there exist exactly four lines,
@@ -93,7 +86,7 @@ hence $b = 0$ which is a contradiction to the assumption.
     \end{enumerate}
 
     Show that every line has exactly three points on it.
-  \exerciseitem
+  \exercise
     Let us consider group theory, it is a theory with undefined
     terms: group-element and times (if $a$ and $b$ are group elements,
     we denote $a$ times $b$ by $a \cdot b$), and axioms:
@@ -118,7 +111,7 @@ hence $b = 0$ which is a contradiction to the assumption.
       \item if $a \cdot b_0 = b_1 \cdot a = e$, then $b_0 = b_1$, for every
         group-elements $a$, $b_0$, and $b_1$.
     \end{itemize}
-  \exerciseitem Let us consider three-points geometry, it is a theory with
+  \exercise Let us consider three-points geometry, it is a theory with
     undefined terms: point, line, is on, and axioms:
     \begin{enumerate}
         \item There exist exactly three points.
@@ -130,7 +123,22 @@ hence $b = 0$ which is a contradiction to the assumption.
     \end{enumerate}
 
     Show that there are exactly three lines.
-  \exerciseitem Show that there are irrational numbers $a$ and $b$ such that
+  \exercise Show that there are irrational numbers $a$ and $b$ such that
     $a^b$ is rational.
-  \exerciseitem Show that there does not exist the largest integer.
+  \exercise Show that there does not exist the largest integer.
+
+  \exercise Let us consider Young's geometry, it is a theory with undefined
+    terms: point, line, is on, and axioms:
+    \begin{enumerate}
+        \item there exists at least one line,
+        \item every line has exactly three points on it,
+        \item not all points are on the same line,
+        \item for two distinct points, there exists exactly one line on both of
+          them,
+        \item if a point does not lie on a given line, then there exists exactly
+          one line on that point that does not intersect the given line.
+    \end{enumerate}
+
+    Show that for every point, there are exactly four lines on that point.
+
 \end{exercises}

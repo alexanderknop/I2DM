@@ -1,15 +1,8 @@
 \chapter{Permutations and Binomial Coefficients}
-\begin{marginfigure}
-  {\scriptsize Permutations and Binomial Coefficients:\\\noindent
-  Introduction to Combinatorics \#4}
-  \vskip 0.25cm
-  \noindent
-  \qrset{link, height=3cm}
-  \qrcode{https://youtu.be/HLClazoqqzg}
-  \vskip 0.25cm
-  \noindent
-  \url{youtu.be/HLClazoqqzg}
-\end{marginfigure}
+\marginurl{%
+  Permutations and Binomial Coefficients:\\\noindent
+  Introduction to Combinatorics \#4
+}{youtu.be/HLClazoqqzg}
 \section{Counting Functions}
 Assume we have two finite sets $X$ and $Y$. The first question we may ask is:
 how many function exist from $X$ to $Y$.
@@ -24,7 +17,7 @@ how many function exist from $X$ to $Y$.
 \begin{proof}
   For simplicity we prove the statement in the case when $X = [n]$. Fix some
   finite set $Y$. We prove the statement using induction by $n$. The base case
-  for $n = 1$ is ovbious, since there are $|Y|$ different functions from $[1]$
+  for $n = 1$ is obvious, since there are $|Y|$ different functions from $[1]$
   to $Y$. Let us prove the induction step, by the induction hypothesis,
   $|Y^{[n - 1]}| = |Y|^{n - 1}$. Note that
   \begin{multline*}
@@ -49,7 +42,8 @@ to define $f \in (Y)_X$ we need to choose images of $1$, $2$, \dots, $n$. There
 are $m$ possible ways to select an image of $1$, $m - 1$ ways to define $f(2)$
 since we can not use the value selected for $1$ etc. Hence,
 $|(Y)_X| = m (m - 1) \dots (m - n + 1)$ (we denote this number as $(m)_n$).
-
+\nomenclature[C]{$(m)_n$}{denotes the number of ways to choose an
+subset of $n$ elements from a fixed set of $n$ elements}
 
 \begin{theorem}
 \label{theorem:number-of-injections}
@@ -70,7 +64,7 @@ $|(Y)_X| = m (m - 1) \dots (m - n + 1)$ (we denote this number as $(m)_n$).
   for any $f \in (Y)_{[n - 1]}$ and
   \[
     \set[v \not\in \Im f]{(f, v) \in (Y)_{[n - 1]} \times [m]} =
-    \bigcup\limits_{f \in (Y)_{[n - 1]}} \set[v \not\in \Im f]{(f, v)}.
+    \bigcup_{f \in (Y)_{[n - 1]}} \set[v \not\in \Im f]{(f, v)}.
   \]
   As a result, $|(Y)_X| = (m)_{n - 1} \cdot (m - n + 1) = (m)_n$.
 \end{proof}
@@ -85,19 +79,40 @@ number is denoted by $n!$.
   the statement holds for any set $X$.
 \end{exercise}
 
-\section{Counting Subsets}
-Recall that we denoted the set of all subsets of $X$ by $2^X$. The reason for
-this notation is that $|2^X| = 2^{|X|}$.
+Let us consider the following problem: given a set of $m$ different objects,
+how many ways to select $n$ of them in some order (i.e. if the objects are
+numbers $1$, $2$, and $3$, then selecting $1$ and $2$ is not the same as
+selecting $2$ and $1$). It is clear the the number of ways to select these $n$
+objects is the same as the number of injections $f$ from $[n]$ to the set of
+objects since the first object is $f(1)$, the second is $f(2)$ etc.
+As a result,
+\begin{corollary}
+  There are $(m)_n$ ways to select $n$ objects if the order matters.
+\end{corollary}
 
-A quite famous example of a subset of this set is the set
+\section{Counting Subsets}
+In this section we consider a modification of the previous problem. We count
+the number of ways to select $n$ objects out of $m$ if the order does not
+matter. Note that it is the same as counting the number of subsets of
+cardinality $n$ of the set of $m$ objects.
+
+Recall that we denoted the set of all subsets of $X$ by $2^X$. The reason for
+this notation is that $|2^X| = 2^{|X|}$. A quite famous example of a subset of
+this set is the set
 \[
-  \binom{X}{k} = \set[|A| = k]{A \subseteq [n]}.
+  \binom{X}{k} = \set[|A| = n]{A \subseteq X}.
 \]
 \nomenclature[S]{$\binom{A}{k}$}{denotes the set of subsets of $A$ of
-cardianlity $k$}
-In other words, it is the set of all possible ways to select $k$ elements from
-$X$. Size of this set we denote by $\binom{|X|}{k}$ and call it a binomial
-coefficient.
+cardinality $k$}
+In other words, it is the set of all possible ways to select $n$ elements from
+$X$. Size of the set $\binom{[m]}{n}$ we denote by $\binom{m}{n}$ and call it a
+binomial coefficient.
+\nomenclature[C]{$\binom{m}{n}$}{denotes the number of ways to choose an
+unordered subset of $n$ elements from a fixed set of $n$ elements}
+\begin{exercise}
+  Show that for any two finite sets $X$ and $Y$, if $|X| = |Y|$, then
+  $\left|\binom{X}{k}\right| = \left|\binom{Y}{k}\right|$.
+\end{exercise}
 
 Let us find several useful properties of the binomial coefficients.
 \begin{theorem}
@@ -107,7 +122,7 @@ Let us find several useful properties of the binomial coefficients.
     \item $\binom{n}{k} = \binom{n}{n - k}$.
     \item $\binom{n}{k} = \binom{n - 1}{k - 1} + \binom{n - 1}{k}$.
     \item $\binom{n}{k} = \frac{(m)_n}{n!}$.
-    \item $\sum\limits_{k = 0}^n \binom{n}{k} = 2^n$.
+    \item $\sum_{k = 0}^n \binom{n}{k} = 2^n$.
   \end{itemize}
 \end{theorem}
 \begin{proof}
@@ -157,34 +172,79 @@ coefficients.
 \begin{theorem}[Binomial theorem]
   For any real numbers $x$ and $y$,
     \[
-      \sum\limits_{k = 0}^n \binom{n}{k} x^k y^{n - k} = (x + y)^n.
+      \sum_{k = 0}^n \binom{n}{k} x^k y^{n - k} = (x + y)^n.
     \]
 \end{theorem}
 \begin{proof}
   As always, we prove the statement using induction by $n$. The base case is
-  true, since $\sum\limits_{k = 0}^1 \binom{1}{k} x^k y^{1 - k} = x + y =
-  (x + y)^1$. Asume that
+  true, since $\sum_{k = 0}^1 \binom{1}{k} x^k y^{1 - k} = x + y =
+  (x + y)^1$. Assume that
   \[
-    \sum\limits_{k = 0}^n \binom{n}{k} x^k y^{n - k} = (x + y)^n,
+    \sum_{k = 0}^n \binom{n}{k} x^k y^{n - k} = (x + y)^n,
   \]
   we wish to prove that
   \[
-    \sum\limits_{k = 0}^{n + 1} \binom{n + 1}{k} x^k y^{n + 1 - k} =
+    \sum_{k = 0}^{n + 1} \binom{n + 1}{k} x^k y^{n + 1 - k} =
       (x + y)^{n + 1}.
   \]
   Note that
   \begin{multline*}
     (x + y)^{n + 1} = (x + y)
       \left(
-        \sum\limits_{k = 0}^n \binom{n}{k} x^k y^{n - k}
+        \sum_{k = 0}^n \binom{n}{k} x^k y^{n - k}
       \right) = \\
-    \sum\limits_{k = 0}^n \binom{n}{k} x^{k + 1} y^{n - k} +
-      \sum\limits_{k = 0}^n \binom{n}{k} x^{k} y^{n + 1 - k} = \\
-    \sum\limits_{k = 0}^{n + 1}
+    \sum_{k = 0}^n \binom{n}{k} x^{k + 1} y^{n - k} +
+      \sum_{k = 0}^n \binom{n}{k} x^{k} y^{n + 1 - k} = \\
+    \sum_{k = 1}^{n + 1} \binom{n}{k - 1} x^k y^{n + 1 - k} +
+      \sum_{k = 0}^n \binom{n}{k} x^k y^{n + 1 - k} = \\
+    \sum_{k = 0}^{n + 1}
       \left(
-        \binom{n + 1}{k - 1} + \binom{n}{k}
+        \binom{n}{k - 1} + \binom{n}{k}
       \right)
       x^k y^{n + 1 - k} =
-    \sum\limits_{k = 0}^{n + 1} \binom{n + 1}{k} x^k y^{n + 1 - k}.
+    \sum_{k = 0}^{n + 1} \binom{n + 1}{k} x^k y^{n + 1 - k}.
   \end{multline*}
 \end{proof}
+
+\section*{End of The Chapter Exercises}
+\begin{exercises}
+  \exercise Show that
+    $(x + y)_n = \sum_{k = 0}^n \binom{n}{k} (x)_k (y)_{n - k}$.
+  \exercise Show that
+    $\sum_{i = 10}^k \binom{n}{i} \binom{m}{k - i} = \binom{n + m}{k}$.
+  \exercise Show that
+    $\sum_{k = 0}^n \binom{n}{k}^2 = \binom{2n}{n}$.
+  \exercise Show that $\sum_{m = k}^n \binom{m}{k} =
+    \binom{n + 1}{k + 1}$.
+  \exercise Using the previous formula, find the formulas for the following
+    expressions:
+    \begin{itemize}
+      \item $\sum_{k = 0}^n k$,
+      \item $\sum_{k = 0}^n k^2$, and
+      \item $\sum_{k = 0}^n k^3$.
+    \end{itemize}
+  \exercise Show that $\sum_{k = 0}^{n} \binom{2n}{2k} =
+    \sum_{k = 0}^{n - 1} \binom{2n}{2k + 1}$ and
+    $\sum_{k = 0}^{n} \binom{2n + 1}{2k} =
+    \sum_{k = 0}^n \binom{2n + 1}{2k + 1}$.
+  \exercise Show that $\sum_{k = 0}^n \binom{m + k}{k} =
+    \binom{m + n + 1}{n}$.
+  \exercise Show that $\sum_{k = 0}^n \binom{n - k}{k} = f_{n + 1}$,
+    where $f_1 = 1$, $f_2 = 1$, and $f_{n + 2} = f_{n + 1} + f_n$ for $n > 0$.
+  \exercise Show that $\binom{n}{m} \binom{m}{k} =
+    \binom{n}{k} \binom{n - k}{m - k}$.
+  \exercise Show that
+    $(a + 1)^p \equiv a^p + 1 \pmod{p}$.
+  \exercise We say that a function $f : \{0, 1\}^n \to \{0, 1\}$ depends on the
+    $i$th argument iff for some
+    $a_1, \dots, a_{i - 1}, a_{i + 1}, \dots, a_n \in \set{0, 1}$
+    \[
+      f(a_1, \dots, a_{i - 1}, 0, a_{i + 1}, \dots, a_n) \neq
+      f(a_1, \dots, a_{i - 1}, 1, a_{i + 1}, \dots, a_n).
+    \]
+    We also say that the function $f$ depends on all the arguments iff for all $i
+    \in [n]$ it depends on $i$th argument.
+
+    Find the number of functions $f : \{0, 1\}^n \to \{0, 1\}$ depending on all
+    arguments.
+\end{exercises}

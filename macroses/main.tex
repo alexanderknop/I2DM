@@ -42,6 +42,8 @@
 
 \usepackage{units}
 
+\usepackage{csquotes}
+
 \usepackage[refpage]{nomencl}
 \makenomenclature
 
@@ -69,11 +71,13 @@
 }
 \makeatother
 
+\usepackage[pageanchor,hidelinks,linktoc=all]{hyperref}
+
 \titlecontents{part}%
     [0pt]% distance from left margin
     {\addvspace{0.25\baselineskip}}% above (global formatting of entry)
-    {\allcaps{Part~\thecontentslabel}\allcaps}% before w/ label (label = ``Part I'')
-    {\allcaps{Part~\thecontentslabel}\allcaps}% before w/o label
+    {\uppercase{Part~\thecontentslabel}\uppercase}% before w/ label (label = ``Part I'')
+    {\uppercase{Part~\thecontentslabel}\uppercase}% before w/o label
     {}% filler and page (leaders and page num)
     [\vspace*{0.5\baselineskip}]% after
 
@@ -99,23 +103,27 @@
 \renewcommand{\nomname}{List of Symbols}
 
 \usepackage{ifthen}
-  \renewcommand{\nomgroup}[1]{%
+\renewcommand{\nomgroup}[1]{%
   \item[\bfseries%
-  \ifthenelse{\equal{#1}{S}}{Set Operations}{%
-  \ifthenelse{\equal{#1}{P}}{Predicates}{%
-  \ifthenelse{\equal{#1}{L}}{Logical Operations}{%
+  \ifthenelse{\equal{#1}{S}}{Set Notation}{%
+  \ifthenelse{\equal{#1}{C}}{Counting}{%
+  \ifthenelse{\equal{#1}{L}}{Logical Notation}{%
   \ifthenelse{\equal{#1}{R}}{Relations}{%
-  \ifthenelse{\equal{#1}{F}}{Operations on Functions}{%
-  \ifthenelse{\equal{#1}{N}}{Standard Sets}{}}}}}}%
+  \ifthenelse{\equal{#1}{F}}{Functions}{%
+  }}}}}%
 ]}
+
+\def\pagedeclaration#1{, \hyperlink{page.#1}{page\nobreakspace#1}}
 
 \setlength\nomlabelwidth{2.5cm}
 
 \renewcommand{\nompreamble}{%
-  The letters $A$ and $B$ denote sets, the letters $P$ and $Q$ denote
-  propositions and predicates, the lower case latin letters $f$ and $g$ denote
-  functions, and the lower case latin letters $a$, $b$, $n$,
-  and $k$ denote integer numbers.
+  The letters $A$, $B$, $X$, $Y$, and $Z$ denote sets, the letters $x$, $y$,
+  and $z$ denote the elements of $X$, $Y$, and $Z$ respectively, $P$ and $Q$
+  denote propositions and predicates, the lower case latin letters $f$ and $g$
+  denote functions from $X$ to $Y$ and from $Y$ to $Z$ respectively,
+  the letters $a$, $b$, $n$, and $k$ denote integer numbers, and the greek
+  letter $\alpha$ and $\beta$ denote real numbers.
 }
 
 
