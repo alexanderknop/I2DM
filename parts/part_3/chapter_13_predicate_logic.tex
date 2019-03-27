@@ -285,6 +285,34 @@ the proof of this statement as well.
   \end{nd}
 $
 
+Unfortunately, this example just shows that a statement provable in the
+propositional logic can be proven in the predicate logic. The next example is
+an example that cannot be expressed in the propositional logic, we
+prove that if we know that
+$\forall x \forall y \ R(x, y) \implies R(y, x)$, the we can derive
+$\forall x \forall y \ ((R(x, y) \implies R(y, x)) \land
+  (R(y, x) \implies R(x, y)))$.
+
+
+\noindent $
+  \begin{nd}
+    \hypo {1} {\forall x \forall y \ R(x, y) \implies R(y, x)}
+
+    \have {2} {\forall y \ R(x', y) \implies R(y, x')} \Ae{1}
+    \have {3} {R(x', y') \implies R(y', x')} \Ae{2}
+    \have {4} {\forall y \ R(y', y) \implies R(y, y')} \Ae{1}
+    \have {5} {R(y', x') \implies R(x', y')} \Ae{4}
+    \have {6} {(R(x', y') \implies R(y', x')) \land R(y', x') \implies R(x', y')}
+              \ai{3, 5}
+    \have {6} {\forall y \ (R(x', y) \implies R(y, x')) \land
+      (R(y, x') \implies R(x', y))}
+              \Ai{6}
+    \have {6} {\forall x \forall y \ (R(x, y) \implies R(y, x)) \land
+      (R(y, x) \implies R(x, y))}
+              \Ai{7}    
+  \end{nd}
+$
+
 \section{Soundness and Completeness}
 Like in the propositional case, the most important properties of the natural
 deduction are the following two theorems.
