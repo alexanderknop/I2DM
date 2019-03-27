@@ -404,13 +404,16 @@ However, the method can be used in a more sophisticated way.
       f(a_1, \dots, a_{i - 1}, 0, a_{i + 1}, \dots, a_n) \neq
       f(a_1, \dots, a_{i - 1}, 1, a_{i + 1}, \dots, a_n).
     \]
-    We also say that the function $f$ depends on all the arguments iff for all $i
-    \in [n]$ it depends on $i$th argument.
+    We also say that the function $f$ depends on all the arguments iff for all
+    $i \in [n]$ it depends on $i$th argument.
 
     Find the number of functions $f : \{0, 1\}^n \to \{0, 1\}$ depending on all
     arguments.
   \exercise Find the largest coefficient of $(x_1 + x_2 + \dots + x_k)^k$.
-  \exercise Prove that
-    $\sum_{k_1, k_2, k_3 ~:~ k_1 + k_2 + k_3 = n} \binom{n}{k_1 \ k_2 \ k_3} =
-    3^n$ without using Theorem~\ref{theorem:multinomial-coefficients}.
+  \exercise Prove that,
+    without using Theorem~\ref{theorem:multinomial-coefficients},
+    \[
+      \sum_{k_1, k_2, k_3 ~:~ k_1 + k_2 + k_3 = n} \binom{n}{k_1 \ k_2 \ k_3} =
+      3^n.
+    \]
 \end{chapterendexercises}
