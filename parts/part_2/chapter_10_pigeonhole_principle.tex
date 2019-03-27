@@ -5,8 +5,8 @@
 }{youtu.be/1D1Fa7WIUO8}
 
 The principle we are going to discuss in this chapter is very simple, it states
-that if you have more objects than boxes, then you cannot put all the objects to
-boxes without puting two objects in the same box.
+that if you have more objects than boxes, then you cannot put all the objects into
+boxes without puting two objects into the same box.
 
 More formally the principle can be formulated as follows: if $n > m$, then any
 function from $[n]$ to $[m]$ is not an injection. This simple statement is
@@ -19,7 +19,7 @@ famous in mathematics and called \emph{the pigeonhole principle}\footnote{%
 
 \begin{theorem}[the pigeonhole principle]
   Let $X$ and $Y$ be some sets such that $|X| > |Y|$. Then for any function
-  $f : |X| \to |Y|$ there are $x_0 \neq x_1 \in X$ such that $f(x_0) = f(x_1)$.
+  $f : X \to Y$ there are $x_0 \neq x_1 \in X$ such that $f(x_0) = f(x_1)$.
 \end{theorem}
 \begin{proof}
   The statement follows from
@@ -45,12 +45,12 @@ have at most $n - 1$ friends. Hence, we may define a function $f: [n] \to
 this group of the $i$th person in this group.
 We need to consider two cases.
 \begin{itemize}
-  \item If $\Im f \subseteq [n - 1]$. In this case
+  \item If $\Im f \subseteq [n - 1]$, then
     $|[n]| > |\Im f|$ and $f$ is not an injection.
   \item Otherwise, note that it is not possible that $(n - 1) \in \Im f$
-    since it there is a friend of nobody it is not possible that there is a
-    friend of everyone. Hence, $f : [n] \to \set{0, 1, \dots, n - 2}$ and $f$ is
-    not an injection.
+    because if there is a friend with no friends it is not possible that there
+    is a friend who is friends with everyone. Hence,
+    $f : [n] \to \set{0, 1, \dots, n - 2}$ and $f$ is not an injection.
 \end{itemize}
 
 \begin{theorem}[Erd\H{o}s–-Szekeres]
@@ -84,7 +84,8 @@ containing at least $\ceil{N / k}$ objects.
   \begin{itemize}
     \item $f(x_i) = f(x_j)$,
     \item $x_i \neq x_j$ for any $i \neq j \in [\ell]$, and
-    \item $\ell \ge \ceil{|X| / |Y|}$
+    \item $\ell \ge \ceil{|X| / |Y|}$, where $\ceil{\alpha}$ denotes the least
+      integer greater than or equal to $\alpha$.
   \end{itemize}
 \end{theorem}
 
@@ -93,8 +94,8 @@ statement in the next section.
 
 Using this theorem we can prove that if we draw $9$ cards out of a deck of
 cards, we are guaranteed that at least three of them are of the same suit.
-Indeed, there are $4$ suits and by pigeonhole principle if we put each card to
-one out of four boxes according to their suit, one of the boxes should have
+Given that, there are $4$ suits in the deck, by pigeonhole principle if we put each card into
+one of the four boxes according to their suits, one of the boxes should have
 at least $\ceil{9 / 4} = 3$ cards.
 
 Another example shows how the generalized pigeonhole principle can be applied
@@ -115,7 +116,7 @@ friends. Otherwise, $B$, $C$, and $D$ form a set of three mutual enemies.
 
 \section{The Averaging Principle}
 Assume that we have a collection of $m$ objects, the $i$th of which has
-``size'' $l_i$, and we wish to show that at least one of the objects is large.
+``size'' $l_i$. We wish to show that at least one of the objects is large.
 In this situation we can argue that at least one of the objects has size
 greater or equal to the average size ($\sum l_i / m$).
 \begin{theorem}[the averaging principle]
@@ -124,9 +125,9 @@ greater or equal to the average size ($\sum l_i / m$).
   number at least as small as the average; i.e. for any sequence $a_1$, \dots,
   $a_m$ there are $i$ and $j$ such that
   \begin{gather*}
-    a_i \ge \frac{1}{m} \sum_{i = 1}^n a_i \\
+    a_i \ge \frac{1}{m} \sum_{i = 1}^m a_i \\
     \text{and} \\
-    a_j \le \frac{1}{m} \sum_{i = 1}^n a_i.
+    a_j \le \frac{1}{m} \sum_{i = 1}^m a_i.
   \end{gather*}
 \end{theorem}
 \begin{proof}
@@ -149,7 +150,7 @@ applications of it are surprisingly intresting.
 First, it allows to prove the generalized pigeonhole principle.
 \begin{proof}[Proof of Theorem~\ref{theorem:generalized-pigeonhole-principle}]
   Let $Y = [m]$ (it is easy to see that the proof works for any other finite
-  $Y$). Define the sequence $a_i = |f^{-1}(i)|$. %TODO add the definition of $f^{-1}$ in the case when $f$ is not a bijection.
+  $Y$). Define the sequence $a_i = |f^{-1}(i)|$.
   Note that we need to prove that $a_i \ge \ceil{|X| / m}$ for some
   $i \in [m]$
 
@@ -188,8 +189,8 @@ using the induction by $n$.
 \end{description}
 
 
-\section*{End of The Chapter Exercises}
-\begin{exercises}
+
+\begin{chapterendexercises}
   \exercise Show that among any group of five (not necessarily consecutive)
     integers, there are two with the same remainder when divided by $4$.
   \exercise Show that if there are 30 students in a class, then at least
@@ -208,13 +209,15 @@ using the induction by $n$.
     will be a period of consecutive days where he trains exactly $14$ times.
   \exercise Show that among any $n + 1$ positive integers not exceeding $2n$
     there must be an integer that divides one of the other integers.
-    \emph{Advise: consider the set of holes equal to the set of odd numbers
+    \hint{Consider the set of holes equal to the set of odd numbers
     from $1$ to $2n$.}
   \exercise Let $a_1$, $a_2$, \dots, $a_t$ be positive integers. Show that
     if $a_1 + a_2 + \dots + a_t - t + 1$ objects are placed into $t$ boxes,
     then for some $i \in [t]$, the $i$th box contains at least $a_i$ objects.
+    \hint{It is important in this question that $a_1$, \dots, $a_t$ are
+    integers.}
   \exercise Let $\set{(x_1,y_1), \dots, (x_5, y_5)} \subseteq \Z^2$ be a
     set of five distinct points with integer coordinates in the xy plane. Show
     that the midpoint of the line joining at least one pair of these points has
     integer coordinates.
-\end{exercises}
+\end{chapterendexercises}

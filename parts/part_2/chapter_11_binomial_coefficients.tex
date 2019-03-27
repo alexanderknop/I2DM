@@ -4,13 +4,13 @@
   Introduction to Combinatorics \#4
 }{youtu.be/HLClazoqqzg}
 \section{Counting Functions}
-Assume we have two finite sets $X$ and $Y$. The first question we may ask is:
-how many function exist from $X$ to $Y$.
+Assume we have two finite sets $X$ and $Y$. The first question we may ask is
+how many function exist from $X$ to $Y$?
 
 
 \begin{theorem}
 \label{theorem:number-of-functions}
-  Let $X$ and $Y$ be some finite sets. We denote by $Y^X$ the set of all
+  Let $X$ and $Y$ be some finite sets. $Y^X$ represents the set of all
   functions from $X$ to $Y$. Then $|Y^X| = |Y|^{|X|}$.
 \end{theorem}
 \nomenclature[S]{$B^A$}{denotes the set of functions from $A$ to $B$}
@@ -32,15 +32,15 @@ how many function exist from $X$ to $Y$.
 \end{exercise}
 
 However, what if we need to find size of a subset of $Y^X$ satisfying some
-constraint. For example, we may try to find size of the set
+constraint? For example, we may try to find the size of the set
 \[
   (Y)_X = \set[f\text{ is an injection}]{f \in Y^X}.
 \]
-\nomenclature[S]{$(B)_A$}{denotes the set of infunctions from $A$ to $B$}
+\nomenclature[S]{$(B)_A$}{denotes the set of injections from $A$ to $B$}
 First, let us try to do this informally. Assume that $X = [n]$ and $|Y| = m$,
 to define $f \in (Y)_X$ we need to choose images of $1$, $2$, \dots, $n$. There
 are $m$ possible ways to select an image of $1$, $m - 1$ ways to define $f(2)$
-since we can not use the value selected for $1$ etc. Hence,
+since we cannot use the value selected for $1$ etc. Hence,
 $|(Y)_X| = m (m - 1) \dots (m - n + 1)$ (we denote this number as $(m)_n$).
 \nomenclature[C]{$(m)_n$}{denotes the number of ways to choose an
 subset of $n$ elements from a fixed set of $n$ elements}
@@ -108,28 +108,50 @@ In other words, it is the set of all possible ways to select $n$ elements from
 $X$. Size of the set $\binom{[m]}{n}$ we denote by $\binom{m}{n}$ and call it a
 binomial coefficient.
 \nomenclature[C]{$\binom{m}{n}$}{denotes the number of ways to choose an
-unordered subset of $n$ elements from a fixed set of $n$ elements}
+unordered subset of $n$ elements from a fixed set of $m$ elements}
 \begin{exercise}
   Show that for any two finite sets $X$ and $Y$, if $|X| = |Y|$, then
   $\left|\binom{X}{k}\right| = \left|\binom{Y}{k}\right|$.
 \end{exercise}
 
-Let us find several useful properties of the binomial coefficients.
+Note that by any ordered selection of $n$ object out of $m$, one may construct
+an unordered selection of $n$ objects out of $m$, and each unordered selection
+is counted $n!$.
 \begin{theorem}
-\label{theorem:binomial-coefficients-equalitites}
-  Let $n$, $m$, and $k$ be some integers such that $m > n > k$.
-  \begin{itemize}
-    \item $\binom{n}{k} = \binom{n}{n - k}$.
-    \item $\binom{n}{k} = \binom{n - 1}{k - 1} + \binom{n - 1}{k}$.
-    \item $\binom{n}{k} = \frac{(m)_n}{n!}$.
-    \item $\sum_{k = 0}^n \binom{n}{k} = 2^n$.
-  \end{itemize}
+\label{theorem:binomial-coefficients-explicit}
+  For any $n > k \ge 0$,
+  $\binom{n}{k} = \frac{(n)_k}{k!} = \frac{n!}{k!  (n - k)!}$.
+\end{theorem}
+
+\begin{exercise}
+  Show that $\binom{n}{k} = \binom{n}{n - k}$ for any $n > k$.
+\end{exercise}
+
+The formula in the Thorem~\ref{theorem:binomial-coefficients-explicit} allows
+to find the values of binomial ceofficients, however, it is not very convinient
+since $n!$ is growing very fast. Thus the following theorem provides a much more
+efficient way to compute the values of binomial coefficients.
+
+\begin{theorem}[Pascal's rule]
+\label{theorem:pascals-rule}
+  For $n > k \ge 1$, $\binom{n}{k} = \binom{n - 1}{k - 1} + \binom{n - 1}{k}$.
 \end{theorem}
 \begin{proof}
-  We prove the second property all the others are left as an exercise.
+  The first, algebraic, proof of this theorem is quite simple, we just notice
+  that
+  \begin{multline*}
+    \binom{n - 1}{k - 1} + \binom{n - 1}{k} =
+      \frac{(n - 1)!}{(k - 1)!(n - k)!} + \frac{(n - 1)!}{k!(n - k - 1)!} = \\
+      \frac{(n - 1)!}{(k - 1)! (n - k - 1)!}
+        \left(
+          \frac{1}{n - k} + \frac{1}{k}
+        \right) = \frac{n!}{k! (n - k)!} = \binom{n}{k}.
+  \end{multline*}
 
-  Informally, the proof is the following. Assume we need to choose $k$ objects
-  out of $n$, there are two possible ways:
+  However, this proof does not explain \emph{why} the statement is true.
+  So we consider an alternative proof, which informally can be explained as
+  follows. Assume we need to choose $k$ objects out of $n$. There are two
+  possible ways:
   \begin{itemize}
     \item we may select $n$ and choose $k - 1$ objects from the rest,
     \item or we may decide to not select $n$ choose $k$ objects from the rest.
@@ -154,18 +176,60 @@ Let us find several useful properties of the binomial coefficients.
     |\set[|A| = k \text{ and } n \in A]{A \subseteq [n]}| =
     \binom{n - 1}{k - 1}.
   \]
-  To prove this statement we construct a bijection $f$
-  from \[
-    \set[|A| = k \text{ and } n \in A]{A \subseteq [n]}
-  \] to
-  $\binom{[n - 1]}{k}$: $f(A) = A \setminus \set{n}$.
-  It is clear that this is a bijection, thus we prove the statement.
+  To prove this statement we construct a bijection
+  \[
+    f : \set[|A| = k \text{ and } n \in A]{A \subseteq [n]} \to
+      \binom{[n - 1]}{k}
+  \]
+  such that $f(A) = A \setminus \set{n}$.
+  It is clear that this is a bijection. Thus, we prove the statement.
 \end{proof}
 
+A mnemonic rule for the Pascal's rule is to use Pascal's triangle.
+\footnote{
+  The pattern of numbers that forms Pascal's triangle was known well before
+  Pascal's time.  Halayudha, around 975 explained obscure references to
+  Meru-prastaara, the Staircase of Mount Meru, giving the first surviving
+  description of the arrangement of these numbers into a triangle.
+
+  The Persian mathematician Al-Karaji (953–1029) wrote a now lost book which
+  contained the first description of Pascal's triangle. It was later repeated by
+  the Persian poet-astronomer-mathematician Omar Khayyám (1048–1131); thus the
+  triangle is also referred to as the Khayyam triangle in Iran.
+
+  Pascal's triangle was known in China in the early 11th century through the
+  work of the Chinese mathematician Jia Xian (1010–1070). In the 13th century,
+  Yang Hui (1238–1298) presented the triangle and hence it is still called Yang
+  Hui's triangle in China.
+
+  Pascal's Traité du triangle arithmétique (Treatise on Arithmetical Triangle)
+  was published in 1655. In this, Pascal collected several results then known
+  about the triangle, and employed them to solve problems in probability theory.
+  The triangle was later named after Pascal by Pierre Raymond de Montmort (1708)
+  who called it ``Table de M. Pascal pour les combinaisons'' (French: Table of
+  Mr. Pascal for combinations) and Abraham de Moivre (1730) who called it
+  ``Triangulum Arithmeticum PASCALIANUM'' (Latin: Pascal's Arithmetic Triangle),
+  which became the modern Western name.
+}
+\begin{figure}
+  \centering
+  \begin{tabular}{rccccccccc}
+    $n = 0$:&    &    &    &    &  1\\\noalign{\smallskip\smallskip}
+    $n = 1$:&    &    &    &  1 &    &  1\\\noalign{\smallskip\smallskip}
+    $n = 2$:&    &    &  1 &    &  2 &    &  1\\\noalign{\smallskip\smallskip}
+    $n = 3$:&    &  1 &    &  3 &    &  3 &    &  1\\\noalign{\smallskip\smallskip}
+    $n = 4$:&  1 &    &  4 &    &  6 &    &  4 &    &  1\\\noalign{\smallskip\smallskip}
+  \end{tabular}
+\end{figure}
+In this diagram the $k$the entry of the $n$th row is equal to $\binom{n}{k}$.
+Thus the rule for the triangle is very simple, the value of an entry is equal
+to $1$ if it is the first or the last in the row or it is equal to the sum
+of the two entries to the left and right on the row above.
+
 \begin{exercise}
-  Prove the rest of the equalities in
-  Theorem~\ref{theorem:binomial-coefficients-equalitites}.
+  Show that $\binom{n}{k} = \binom{n}{n - k}$ for any intgers $n > k \ge 0$
 \end{exercise}
+
 
 Now we are ready to prove the theorem which gave the name to binomial
 coefficients.
@@ -176,7 +240,17 @@ coefficients.
     \]
 \end{theorem}
 \begin{proof}
-  As always, we prove the statement using induction by $n$. The base case is
+  Informally, the explanation of the equality is as follows.
+  If we consider the product
+  \[
+    \underbrace{(x + y) \cdot (x + y) \cdot
+      \ldots \cdot (x + y)}_{n \text{ times}},
+  \]
+  then for every $k$ there are exactly $\binom{n}{k}$ possibilities to obtain
+  $x^k y^{n - k}$. Indeed, to obtain $x^k y^{n - k}$ we need to choose $x$ from
+  $n$ possibilities (corresponding to the multiplier $x + y$) exactly $k$ times.
+
+  A formal proof uses the induction by $n$. The base case is
   true, since $\sum_{k = 0}^1 \binom{1}{k} x^k y^{1 - k} = x + y =
   (x + y)^1$. Assume that
   \[
@@ -206,16 +280,99 @@ coefficients.
   \end{multline*}
 \end{proof}
 
-\section*{End of The Chapter Exercises}
-\begin{exercises}
+\subsection{Counting Groups of Subsets}
+In this section we study a generalization of the question we study in the
+previous section: ``How many ways to select $\ell$ groups made of $k_1$, $k_2$,
+\dots, $k_\ell$ objects, respectively, out of $n$''. We denote this number by
+$\binom{n}{k_1 \ k_2 \ \dots \ k_\ell \  (n - m)}$, where
+$m = k_1 + \dots + k_\ell$.
+
+Clearly selecting these objects is the same as selecting $k_1$ objects out of
+$n$, after that selecting $k_2$ objects out of $n - k_1$ etc. As a result,
+\begin{multline*}
+  \binom{n}{k_1 \ k_2 \ \dots \ k_\ell \ (n - m)} = \\
+  \frac{n!}{k_1! (n - k_1)!} \cdot \frac{(n - k_1)!}{k_2! (n - k_1 - k_2)!}
+  \cdot \ldots \cdot
+  \frac{
+    (n - k_1 - k_2 - \dots - k_{\ell - 1})!
+  }{
+    k_\ell! (n - k_1 - k_2 - \dots - k_\ell)!
+  } = \\
+  \frac{n!}{k_1! k_2! \dots k_\ell! (n - k_1 - k_2 - \dots - k_\ell)!}.
+\end{multline*}
+
+Similarly to the Binomial theorem, we can prove the following.
+\begin{theorem}[Multinomial theorem]
+\label{theorem:multinomial-coefficients}
+  For any real numbers $x_1$, $x_2$, \dots, $x_\ell$ and intger $n$,
+  \[
+    (x_1 + x_2 + \dots + x_\ell)^n =
+    \sum_{k_1, k_2, \dots, k_\ell ~:~ k_1 + k_2 + \dots + k_\ell = n}
+      \binom{n}{k_1 \ k_2 \ \dots \ k_\ell} \prod_{i = 1}^n x_i^{k_i}.
+  \]
+\end{theorem}
+
+\begin{exercise}
+  Prove Theorem~\ref{theorem:multinomial-coefficients}.
+\end{exercise}
+
+\section{Double Counting}
+\marginurl{%
+  Double Counting:\\\noindent
+  Introduction to Combinatorics \#4
+}{youtu.be/OrzMP8nuuho}
+The method that was used to prove Theorem~\ref{theorem:pascals-rule} can be
+generalized to a method that is caleed \emph{double counting principle}.
+The double counting principle states the following “obvious” fact: if the
+size of a set is counted in two different ways, the answers are the same.
+
+Using this principle we may cprove the following theorem.
+\begin{theorem}[Vandermonde's identity]
+  For any integers $n, m > k$,
+  $\sum_{i = 0}^k \binom{n}{i} \binom{m}{k - i} = \binom{n + m}{k}$.
+\end{theorem}
+\begin{proof}
+  The idea is as follows, let us imagine that we have $n$ parrots and $m$ crows,
+  and we need to find how many ways to select $k$ birds.
+  It is easy to see that it is equal to $\binom{n + m}{k}$. At the same
+  if we need to select $i$ parrots there are $\binom{n}{i}\binom{m}{k - i}$
+  ways to do this. Thus the number is also equal to
+  $\sum_{i = 0}^k \binom{n}{i}\binom{m}{k - i}$.
+\end{proof}
+
+However, the method can be used in a more sophisticated way.
+\begin{lemma}[Handshaking Lemma]
+  Suppose some number of people meet at a party and some shake hands. Assume
+  that no person shakes his or her own hand and furthermore no two people shake
+  hands more than once.
+
+  The number of guests who shake hands an odd number of times is even.
+\end{lemma}
+\begin{proof}
+  Let $1$, \dots, $n$ be the people at the party. We apply double counting to
+  the set of ordered pairs $(i, j)$ for which $i$ and $j$ shake hands with each
+  other at the party. Let $d_i$ be the number of times that $i$ shakes hands,
+  and $e$ be the total number of handshakes that occur. On one hand, the number
+  of pairs is $\sum_{i = 1}^n d_i$, since for each $i$ the number of choices of
+  $j$ is equal to $d_i$. On the other hand, each handshake gives rise to two
+  pairs $(i, j)$ and $(j, i)$; so the total is $2e$.
+  Thus $\sum_{i = 1}^n d_i = 2e$. But, if the sum of $n$ numbers is even, then
+  evenly many of the numbers are odd.
+  (Because if we add an odd number of odd numbers and any number of even
+  numbers, the sum will be always odd).
+\end{proof}
+
+
+\begin{chapterendexercises}
   \exercise Show that
     $(x + y)_n = \sum_{k = 0}^n \binom{n}{k} (x)_k (y)_{n - k}$.
-  \exercise Show that
-    $\sum_{i = 10}^k \binom{n}{i} \binom{m}{k - i} = \binom{n + m}{k}$.
   \exercise Show that
     $\sum_{k = 0}^n \binom{n}{k}^2 = \binom{2n}{n}$.
   \exercise Show that $\sum_{m = k}^n \binom{m}{k} =
     \binom{n + 1}{k + 1}$.
+    \hint{Note that summand on the right corresponds to the number of ways to
+    select $k$ elements out of $n + 1$; $m$ in the formula on the left denote
+    the maximum of this selected set minus one.}
   \exercise Using the previous formula, find the formulas for the following
     expressions:
     \begin{itemize}
@@ -223,10 +380,14 @@ coefficients.
       \item $\sum_{k = 0}^n k^2$, and
       \item $\sum_{k = 0}^n k^3$.
     \end{itemize}
-  \exercise Show that $\sum_{k = 0}^{n} \binom{2n}{2k} =
-    \sum_{k = 0}^{n - 1} \binom{2n}{2k + 1}$ and
-    $\sum_{k = 0}^{n} \binom{2n + 1}{2k} =
-    \sum_{k = 0}^n \binom{2n + 1}{2k + 1}$.
+  \exercise Show that
+    \begin{gather*}
+      \sum_{k = 0}^{n} \binom{2n}{2k} =
+      \sum_{k = 0}^{n - 1} \binom{2n}{2k + 1} \\
+      \text{and} \\
+      \sum_{k = 0}^{n} \binom{2n + 1}{2k} =
+      \sum_{k = 0}^n \binom{2n + 1}{2k + 1}
+    \end{gather*}
   \exercise Show that $\sum_{k = 0}^n \binom{m + k}{k} =
     \binom{m + n + 1}{n}$.
   \exercise Show that $\sum_{k = 0}^n \binom{n - k}{k} = f_{n + 1}$,
@@ -235,6 +396,7 @@ coefficients.
     \binom{n}{k} \binom{n - k}{m - k}$.
   \exercise Show that
     $(a + 1)^p \equiv a^p + 1 \pmod{p}$.
+    \hint{Use the binomial therem.}
   \exercise We say that a function $f : \{0, 1\}^n \to \{0, 1\}$ depends on the
     $i$th argument iff for some
     $a_1, \dots, a_{i - 1}, a_{i + 1}, \dots, a_n \in \set{0, 1}$
@@ -242,9 +404,16 @@ coefficients.
       f(a_1, \dots, a_{i - 1}, 0, a_{i + 1}, \dots, a_n) \neq
       f(a_1, \dots, a_{i - 1}, 1, a_{i + 1}, \dots, a_n).
     \]
-    We also say that the function $f$ depends on all the arguments iff for all $i
-    \in [n]$ it depends on $i$th argument.
+    We also say that the function $f$ depends on all the arguments iff for all
+    $i \in [n]$ it depends on $i$th argument.
 
     Find the number of functions $f : \{0, 1\}^n \to \{0, 1\}$ depending on all
     arguments.
-\end{exercises}
+  \exercise Find the largest coefficient of $(x_1 + x_2 + \dots + x_k)^k$.
+  \exercise Prove that,
+    without using Theorem~\ref{theorem:multinomial-coefficients},
+    \[
+      \sum_{k_1, k_2, k_3 ~:~ k_1 + k_2 + k_3 = n} \binom{n}{k_1 \ k_2 \ k_3} =
+      3^n.
+    \]
+\end{chapterendexercises}

@@ -5,14 +5,15 @@
 }{youtu.be/VHJeUrCedTU}
 
 Another important type of objects in mathematics are functions. Function $f$
-from a set $X$ to a set $Y$ (we write it as $f : X \to Y$) is a unique
-assignment of elements of $Y$ to the elements of $X$. In other words, for each
+from a set $X$ to a set $Y$ (written as $f : X \to Y$) is a unique
+assignment of elements of $Y$ to the elements of $X$ (note that it is not
+necessary that all the elements of $Y$ are used). In other words, for each
 element $x \in X$ there is one assigned element $f(x) \in Y$. We call such an
 element the \emph{value} of $f$ at $x$, we also say that $f(x)$ is an
 \emph{image} of $x$.
 
-Unfortunately, the definition is not formal. In the rest of the chapter we are
-going to give a more formal definition.
+Unfortunately, the definition is not formal. Through this chapter we will
+provide a more formal definition.
 
 \section{Quantifiers.}
 The first ingredient is called quantifiers. Very often we use phrases like ``all
@@ -27,11 +28,11 @@ statement saying that all the elements of $A$ satisfy the predicate $P$. In
 other words it is the same as the statement
 $\set[P(a)]{a \in A} = A$. For example, $\forall x \in \R\ x \cdot 0 = 0$ says
 that product of every real number and zero is equal to zero.
-\nomenclature[L]{$\forall \alpha \in A~P(a)$}{denotes the statement saying that
-$P$ is true for all elements of $A$}
+\nomenclature[L]{$\forall x \in X~P(x)$}{denotes the statement saying that
+$P$ is true for all elements of $X$}
 
 \paragraph{The Existential Quantifier.}
-The second quantifier means ``there is'' and denoted by the symbol
+The second quantifier means ``there is'' and is denoted by the symbol
 $\exists$\footnote{%
   The symbol is a turned ``E'' symbol, the first letter of the word ``exists''.
   It is also intresting that the symbol for the universal quantifier was
@@ -43,8 +44,8 @@ says that there is an element of $A$ satisfying the predicate $P$ i.e.
 $\set[P(a)]{a \in A} \neq \emptyset$. For example,
 $\exists x \in \R\ x^2 - 1 = 0$ states that there is a real solution of the
 equation $x^2 - 1 = 0$.
-\nomenclature[L]{$\exists \alpha \in A~P(a)$}{denotes the statement saying that
-$P$ is true for some element of $A$}
+\nomenclature[L]{$\exists x \in X~P(x)$}{denotes the statement saying that
+$P$ is true for some element of $X$}
 
 \begin{warning}
   Note that the word ``any'' sometimes indicates a universal statement and
@@ -103,7 +104,7 @@ The conclusion we wish to prove is that $n^2$ is even, which may be written as
 $\exists q \in \Z \ n^2 = 2q$. Note that $q$ here is a dummy variable used to
 express the statement $n^2$ is a doubled integer. We may replace it by any
 other letter not already in use, for example $\exists p \in \Z \ n^2 = 2p$.
-Hence, if we present $p$ such that $n^2 = 2p$ we finish the proof. As a result,
+Hence, if we present $p$ such that $n^2 = 2p$, we finish the proof. As a result,
 we can complete the proof as follows.
 \begin{center}
   Therefore, $n^2 = (2q)^2 = 4q^2$ and so, since $2q^2$ is an integer $n^2$ is
@@ -143,8 +144,8 @@ then
 \]
 Additionally, $\R^2 = \R \times \R$ is the familiar $2$-dimensional Euclidean
 plane.
-\nomenclature[S]{$A \times B$}{denotes the set of all ordered pairs of elements of
-$A$ and $B$}
+\nomenclature[S]{$A \times B$}{denotes the set of all ordered pairs of elements
+of $A$ and $B$}
 
 \begin{exercise}
   Find the set $\set{a, b} \times \set{a, b} \setminus
@@ -399,8 +400,8 @@ Thus we may give the following definition.
 \end{definition}
 \nomenclature[F]{$\Im f$}{denotes the image of $f$}
 
-\section*{End of The Chapter Exercises}
-\begin{exercises}
+
+\begin{chapterendexercises}
   \exercise Find an image of the function $f : \Z \to \Z$ such that
     $f(x) = 3x$.
   \exercise Determine the following sets:
@@ -419,4 +420,4 @@ Thus we may give the following definition.
       \item $\exists n \in \N \forall m \in \N \ m \le n$.
       \item $\forall n \in \N \exists m \in \N \ m \le n$.
     \end{itemize}
-\end{exercises}
+\end{chapterendexercises}

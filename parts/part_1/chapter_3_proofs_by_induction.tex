@@ -24,8 +24,8 @@ In order to prove this statement formally, we use the following principle.
   Hence, $P(n)$ is true for every positive integer $n$ iff
   \begin{description}
     \item [(the base case)] $P(1)$ is true and
-    \item [(the induction step)] $P(k) \implies P(k + 1)$ is true for all positive
-      integers $k$.
+    \item [(the induction step)] $P(k) \implies P(k + 1)$ is true
+      for all positive integers $k$.
   \end{description}
 \end{principle}
 
@@ -167,8 +167,8 @@ is the maximum of $a_1$, \dots, $a_k$. We may consider two following cases.
 \begin{itemize}
   \item If $r_k > a_{k + 1}$, then $r_{k + 1} = r_{k}$ is the maximum of $a_1$,
     \dots, $a_{k + 1}$ since $r_k$ is the maximum of $a_1$, \dots, $a_k$.
-  \item Otherwise, $a_{k + 1}$ is greater than or equal to $a_1$, \dots, $a_k$, hence,
-    $r_{k + 1} = a_{k + 1}$.
+  \item Otherwise, $a_{k + 1}$ is greater than or equal to $a_1$, \dots, $a_k$,
+    hence, $r_{k + 1} = a_{k + 1}$.
 \end{itemize}
 
 \begin{exercise}
@@ -208,8 +208,8 @@ induction  principle.
   Hence, $P(n)$ is true for every integer $n > n_0$ iff
   \begin{description}
     \item [(the base case)] $P(n_0 + 1)$ is true and
-    \item [(the induction step)] If $P(n_0 + 1)$, \dots, $P(n_0 + k)$ are true, then
-      $P(n_0 + k + 1)$ is also true for all positive integers $k$.
+    \item [(the induction step)] If $P(n_0 + 1)$, \dots, $P(n_0 + k)$ are true,
+      then $P(n_0 + k + 1)$ is also true for all positive integers $k$.
   \end{description}
 \end{theorem}
 
@@ -386,8 +386,8 @@ To illustrate this method, we prove the following theorem.
 
 \begin{exercise}
   \begin{itemize}
-    \item Define arithmetic formulas with division and define their value (make sure
-      that you handled divisions by $0$).
+    \item Define arithmetic formulas with division and define their value (make
+      sure that you handled divisions by $0$).
 
     \item Show that for any arithmetic formula with division $A$ on $x$,
       there are polynomials $p$ and $q$ such that $\frac{p(v)}{q(v)} =
@@ -436,8 +436,10 @@ By the induction hypothesis,
 \]
 and
 \[
-  C(n - \floor{\frac{n}{2}}) \le 6 + 2\log_2(n - \floor{\frac{n}{2}}).
+  C(n - \floor{\frac{n}{2}}) \le 6 + 2\log_2(n - \floor{\frac{n}{2}}),
 \]
+where $\floor{\alpha}$ denotes the integer part of a real number $\alpha$.
+\nomenclature[C]{$\floor{\alpha}$}{denotes the integer part of $\alpha$}
 Since $\floor{\frac{n}{2}} \le \frac{n}{2}$ and $n - \floor{\frac{n}{2}} \le
 \frac{n}{2} + 1$, $C(n) \le 1 + 2\log_2(\frac{n}{2} + 1)$.
 However,
@@ -447,8 +449,8 @@ However,
 \]
 for $n \ge 5$. As a result, we proved the induction step.
 
-\section*{End of The Chapter Exercises}
-\begin{exercises}
+
+\begin{chapterendexercises}
   \exercise Show that there does not exist the largest integer.
   \exercise Show that for any positive integer $n$, $n^2 + n$ is even.
   \exercise Show that for any positive integer $n$, $3$ divises
@@ -487,7 +489,7 @@ for $n \ge 5$. As a result, we proved the induction step.
         \left( \prod_{i = 1}^k a_i \right) \cdot a_{k + 1}$.
       \end{itemize}
       \nomenclature[C]{$\prod_{i = 1}^k \alpha_i$}{denotes $\alpha_1 \cdot
-      \dots \cdot \alpha_k$}
+      \ldots \cdot \alpha_k$}
 
       Prove that $\prod_{i = 1}^{n - 1} \left(1 - \frac{1}{(i + 1)^2} \right) =
       \frac{n + 1}{2n}$ for all integers $n > 1$.
@@ -530,4 +532,4 @@ for $n \ge 5$. As a result, we proved the induction step.
   \exercise Prove that $\sum_{i = 1}^n (i + 1) 2^i = n 2^{n + 1}$
     for all integers $n \ge 1$.
   \exercise Show that $\sum_{k = 1}^n k \cdot k! = (n + 1)! - 1$.
-\end{exercises}
+\end{chapterendexercises}
