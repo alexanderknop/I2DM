@@ -114,21 +114,43 @@ unordered subset of $n$ elements from a fixed set of $m$ elements}
   $\left|\binom{X}{k}\right| = \left|\binom{Y}{k}\right|$.
 \end{exercise}
 
-Let us find several useful properties of the binomial coefficients.
+Note that by any ordered selection of $n$ object out of $m$, one may construct
+an unordered selection of $n$ objects out of $m$, and each unordered selection
+is counted $n!$.
 \begin{theorem}
-  Let $n$, $m$, and $k$ be some integers such that $m > n > k$.
-  \begin{itemize}
-    \item $\binom{n}{k} = \binom{n}{n - k}$.
-    \item $\binom{n}{k} = \binom{n - 1}{k - 1} + \binom{n - 1}{k}$.
-    \item $\binom{n}{k} = \frac{(n)_k}{k!}$.
-    \item $\sum_{k = 0}^n \binom{n}{k} = 2^n$.
-  \end{itemize}
+\label{theorem:binomial-coefficients-explicit}
+  For any $n > k \ge 0$,
+  $\binom{n}{k} = \frac{(n)_k}{k!} = \frac{n!}{k!  (n - k)!}$.
+\end{theorem}
+
+\begin{exercise}
+  Show that $\binom{n}{k} = \binom{n}{n - k}$ for any $n > k$.
+\end{exercise}
+
+The formula in the Thorem~\ref{theorem:binomial-coefficients-explicit} allows
+to find the values of binomial ceofficients, however, it is not very convinient
+since $n!$ is growing very fast. Thus the following theorem provides a much more
+coefficient way to compute the values of binomial coefficients.
+
+\begin{theorem}
+  For $n > k \ge 1$, $\binom{n}{k} = \binom{n - 1}{k - 1} + \binom{n - 1}{k}$.
 \end{theorem}
 \begin{proof}
-  We prove the second property all the others are left as an exercise.
+  The first, algebraic, proof of this theorem is quite simple, we just notice
+  that
+  \begin{multline*}
+    \binom{n - 1}{k - 1} + \binom{n - 1}{k} =
+      \frac{(n - 1)!}{(k - 1)!(n - k)!} + \frac{(n - 1)!}{k!(n - k - 1)!} = \\
+      \frac{(n - 1)!}{(k - 1)! (n - k - 1)!}
+        \left(
+          \frac{1}{n - k} + \frac{1}{k}
+        \right) = \frac{n!}{k! (n - k)!} = \binom{n}{k}.
+  \end{multline*}
 
-  Informally, the proof is the following. Assume we need to choose $k$ objects
-  out of $n$. There are two possible ways:
+  However, this proof does not explain \emph{why} the statement is true.
+  So we consider an alternative proof, which informally can be explained as
+  follows. Assume we need to choose $k$ objects out of $n$. There are two
+  possible ways:
   \begin{itemize}
     \item we may select $n$ and choose $k - 1$ objects from the rest,
     \item or we may decide to not select $n$ choose $k$ objects from the rest.
@@ -160,6 +182,12 @@ Let us find several useful properties of the binomial coefficients.
   $\binom{[n - 1]}{k}$: $f(A) = A \setminus \set{n}$.
   It is clear that this is a bijection. Thus, we prove the statement.
 \end{proof}
+
+
+\begin{exercise}
+  Show that $\binom{n}{k} = \binom{n}{n - k}$ for any intgers $n > k \ge 0$
+\end{exercise}
+
 
 Now we are ready to prove the theorem which gave the name to binomial
 coefficients.
@@ -199,7 +227,6 @@ coefficients.
     \sum_{k = 0}^{n + 1} \binom{n + 1}{k} x^k y^{n + 1 - k}.
   \end{multline*}
 \end{proof}
-
 
 \begin{chapterendexercises}
   \exercise Show that
