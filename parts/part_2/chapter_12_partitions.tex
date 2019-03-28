@@ -1,0 +1,209 @@
+\chapter{Partitions}
+The main question we study in this chapter is as follows:
+``how many ways to put $n$ objects into $k$ boxes''.
+Note that there are four modes for this question:
+\begin{enumerate}
+  \item the objects and boxes are identical,
+  \item the objects are identical but boxes are different,
+  \item the objects are different but boxes are identical,
+  \item the objects and boxes are different.
+\end{enumerate}
+We are going to study the question in all these modes.
+The Table~\ref{table:} summarizes the results we are going
+to prove for the cases when all the boxes are not empty.
+\begin{table}[h!]
+  \centering
+  \begin{tabular}{lll}
+    \toprule
+    Object's name & Parameters & Formula \\
+    \midrule
+    \multirow{4}{*}{Surjections}
+                       & $n$ distinct objects & \multirow{2}{*}{$S(n, k) k!$} \\
+                       & $k$ distinct boxes   &  \\
+    \rule{0pt}{2ex}
+                       & $n$ distinct objects & \multirow{2}{*}{$\sum_{k = i}^n S(n, k) k!$} \\
+                       & any number of boxes  & \\
+    \rule{0pt}{4ex}
+    \multirow{4}{*}{Compositions}
+                       & $n$ distinct objects & \multirow{2}{*}{$\binom{n - 1}{k - 1}$} \\
+                       & $k$ distinct boxes   &  \\
+   \rule{0pt}{2ex}
+                       & $n$ distinct objects & \multirow{2}{*}{$2^{n - 1}$} \\
+                       & any number of boxes  & \\
+   \rule{0pt}{4ex}
+   \multirow{4}{*}{Set partitions}
+                      & $n$ distinct objects & \multirow{2}{*}{$S(n, k)$} \\
+                      & $k$ distinct boxes   &  \\
+    \rule{0pt}{2ex}
+                      & $n$ distinct objects & \multirow{2}{*}{$B(n)$} \\
+                      & any number of boxes  & \\
+    \rule{0pt}{4ex}
+    \multirow{4}{*}{Integer partitions}
+                       & $n$ distinct objects & \multirow{2}{*}{$p_k(n)$} \\
+                       & $k$ distinct boxes   &  \\
+    \rule{0pt}{2ex}
+                       & $n$ distinct objects & \multirow{2}{*}{$p(n)$} \\
+                       & any number of boxes  & \\
+    \bottomrule
+  \end{tabular}
+  \caption{Formulas for the cases when boxes are not empty}
+\label{table:1}
+\end{table}
+\section{Set Partitions}
+This section considers the case when objects are not identical.
+
+First, we define a notion that allows us to compute the asnwer in case when
+all the boxes are the same.
+\begin{definition}
+  A partition of the set $[n]$ is a collection of non-empty
+  blocks so that each element of $[n]$ belongs to exactly
+  one of these blocks. The number of partitions of $[n]$
+  into $k$ nonempty blocks is denoted by $S(n, k)$.
+  The numbers $S(n, k)$ are called the \emph{Stirling numbers
+  of the second kind}.
+\end{definition}
+
+It is easy to see that $S(n, 1) = 1$ and $S(n, n) = 1$.
+Moreover, $S(n, k) = 0$ if $k > n$ or $k \le 0$.
+
+Let us find the value in a more complicated setting, we
+claim that $S(n, n - 2) = \binom{n}{2}$. Indeed, any
+partition of $[n]$ into $n - 1$ blocks consists of
+$n - 1$ singletons and one set with two elements, thus we
+just need to select these two elements.
+
+Using double counting, one may prove a recursive formula
+for Stirling numbers of the second kind.
+\begin{theorem}
+  For any $n > k > 0$,
+  \[
+    S(n, k) = S(n - 1, k - 1) + S(n - 1, k).
+  \]
+\end{theorem}
+
+Note that the number of surjections from $[n]$ to $[k]$ is equal to the
+number of ways to put $n$ different objects into $k$ different boxes.
+\begin{lemma}
+  There are exactly $k! S(n, k)$ surjective functions from
+  $[n]$ to $[k]$.
+\end{lemma}
+
+Using this equality, we can prove a surprising result.
+\begin{theorem}
+  For any real $x$ and positive integer $n$,
+  \[
+    x^n = \sum_{k = 0}^n S(n, k) (x)_k,
+  \]
+  where $(x)_k = \prod_{i = 0}^{k - 1} (x - i)$.
+\end{theorem}
+
+\begin{definition}
+  The number of all set partitions of $[n]$ into nonempty parts
+  is denoted by $B(n)$, and is called the \emph{$n$th Bell number}.
+  (We deifine $B(0) = 0$).
+\end{definition}
+
+It is easy to see that the following theorem holds.
+\begin{theorem}
+  For any $n \ge 0$,
+  \[
+    B(n + 1) = \sum_{i = 0}^n \binom{n}{i} B(i).
+  \]
+\end{theorem}
+
+\section{Compoisiton}
+This section answers the question in the case when the objects
+are the same but boxes are different. Since all the objects
+are identical, only the number of objects in each box matters.
+
+\begin{definition}
+  A sequence $(a_1, \dots, a_k)$ of nonnegative integers such
+  that $a_1 + \dots + a_k = n$ is called a \emph{weak composition}
+  of $n$ into $k$. If, in addition, all the numbers are positive,
+  the sequence is called \emph{composition}.
+\end{definition}
+
+Using the binomial coefficients we can find the number of weak
+compositions.
+\begin{theorem}
+  For all positive integers $n$ and $k$,
+  the number of weak compositions of $n$ into $k$ is equal to
+  $\binom{n + k - 1}{n}$.
+\end{theorem}
+
+As a result, we can count the number of compositions.
+\begin{corollary}
+  For all positive integers $n$ and $k$,
+  the number of compositions of $n$ into $k$ is equal to
+  $\binom{n}{n}$.
+\end{corollary}
+
+\begin{exercise}
+  Let $\ell_1$, \dots, $\ell_k$ be some nonnegative numbers
+  such that $\ell_1 + \dots + \ell_k$.
+  Find the number of weak compositions $(a_1, \dots, a_k)$
+  of $n$ into $k$ such that $a_i \ge \ell_i$.
+\end{exercise}
+
+\begin{corollary}
+  The number of all compositions of $n$ is equal to $2^{n - 1}$.
+\end{corollary}
+
+\section{Integer Partitions}
+Now consider the case when both objects and boxes are identical. In this case,
+as in the previous we are only intrested in the numbers of objects in boxes, but
+in addition, we are not intrested in the order of these numbers.
+
+\begin{definition}
+  Let $n$ and $a_1 \ge a_2 \ge \dots \ge a_k \ge 1$ be integers so that
+  $a_1 + \dots a_k = n$. Then the sequence $(a_1, \dots, a_k)$ is called
+  a \emph{partition}\footnote{%
+    Note that we used the word partition in two different meanings: one to
+    denote a partition of a set $[n]$ and another to denote the partition of
+    an integer $n$. In most of the cases the meaning is clear from the context;
+    however, if it is necessary to emphasize that we mean partition of a set,
+    we say set-partition. Note that in some languages there are two different
+    words for these two notions; e.g in French ``partition'' is used for
+    set-partitions, and ``partage'' for partitions of the integer n).
+  } of the integer $n$.
+
+  The number of all the partitions is denoted by $p(n)$ and the number of
+  partitions of $n$ into $k$ parts is denoted by $p_k(n)$.
+\end{definition}
+
+There is no good formula allowing to find the value of $p(n)$. However, we will
+prove some properties of $p(n)$. The main tool to explain proofs we are going to
+discuss are Young diagrams\footnote{%
+  A small variation of these diagrams is called Ferrers shapes after an
+  american mathematician Norman Macleod Ferrers.
+}.
+A Young diagram for a partition $(a_1, \dots, a_k)$ consists of $k$ columns of
+squares called ``boxes'' such that in the $i$th column there are $a_i$ boxes
+(an example of such a diagram is depicted on \ref{figure:young-diagram-example}).
+\begin{figure}
+  \centering
+  \subfloat[The Young diagram for the partition $(4, 3, 1, 1)$.]{
+    \qquad\qquad$\yng(4,2,2,1)$\qquad\qquad
+  }
+  \qquad\qquad
+  \subfloat[The conjugate of the Young diagram for the partition $(4, 3, 1, 1)$.]{
+    \qquad\qquad$\yng(4,3,1,1)$\qquad\qquad
+  }
+  \caption[][1cm]{Young diagrams.}
+  \label{figure:young-diagram-example}
+\end{figure}
+We can reflect a Young diagram of a partition of $n$ with respect to its main
+diagonal, we get another shape, representing the \emph{conjugate} partition of
+$n$ (an example of such transformation is depicted on
+\ref{figure:young-diagram-example}).
+
+Using these diagrams it is easy to show the following theorems.
+\begin{theorem}
+  The number of partitions of $n$ into at most $k$ parts is equal to that of
+  partitions of $n$ into parts not larger than $k$.
+\end{theorem}
+
+\begin{theorem}
+  Let $q(n)$ be the number of partitions of $n$ in which each part is at least
+  two. Then $q(n) = p(n) - p(n - 1)$, for all positive integers $n \ge 2$.
+\end{theorem}
