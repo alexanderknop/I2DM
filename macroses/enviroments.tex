@@ -54,17 +54,8 @@
     \item[\textup{\textbf{\theexercise}}] \ifthenelse{\equal{##1}{ }}{}{\textit{(##1)}}
   }
   \section*{End of The Chapter Exercises}
-  \Opensolutionfile{solution_f}
   \begin{description}
 }
 {
-  \end{description}
-  \Closesolutionfile{solution_f}
-  \ifnum\value{solutionnumber} > 0
-    \section*{Solutions to Selected Exercises}
-    \begin{description}
-      \Readsolutionfile{solution_f}
-    \end{description}
-    \setcounter{solutionnumber}{0}
-  \fi
+  \end{description}  
 }

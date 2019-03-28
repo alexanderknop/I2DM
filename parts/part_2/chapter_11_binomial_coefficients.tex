@@ -213,15 +213,16 @@ A mnemonic rule for the Pascal's rule is to use Pascal's triangle.
 }
 \begin{figure}
   \centering
-  \begin{tabular}{rccccccccc}
-    $n = 0$:&    &    &    &    &  1\\\noalign{\smallskip\smallskip}
-    $n = 1$:&    &    &    &  1 &    &  1\\\noalign{\smallskip\smallskip}
-    $n = 2$:&    &    &  1 &    &  2 &    &  1\\\noalign{\smallskip\smallskip}
-    $n = 3$:&    &  1 &    &  3 &    &  3 &    &  1\\\noalign{\smallskip\smallskip}
-    $n = 4$:&  1 &    &  4 &    &  6 &    &  4 &    &  1\\\noalign{\smallskip\smallskip}
+  \begin{tabular}{lccccccccc}
+    &    &    &    &  1\\\noalign{\smallskip\smallskip}
+    &    &    &  1 &    &  1\\\noalign{\smallskip\smallskip}
+    &    &  1 &    &  2 &    &  1\\\noalign{\smallskip\smallskip}
+    &  1 &    &  3 &    &  3 &    &  1\\\noalign{\smallskip\smallskip}
+    1 &    &  4 &    &  6 &    &  4 &    &  1\\\noalign{\smallskip\smallskip}
   \end{tabular}
 \end{figure}
-In this diagram the $k$the entry of the $n$th row is equal to $\binom{n}{k}$.
+In this diagram the $k$the entry of the $n$th row
+(entries and rows have numbers starting from $0$) is equal to $\binom{n}{k}$.
 Thus the rule for the triangle is very simple, the value of an entry is equal
 to $1$ if it is the first or the last in the row or it is equal to the sum
 of the two entries to the left and right on the row above.
