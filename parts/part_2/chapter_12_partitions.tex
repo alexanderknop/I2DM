@@ -80,8 +80,17 @@ for Stirling numbers of the second kind.
 \begin{theorem}
   For any $n > k > 0$,
   \[
-    S(n, k) = S(n - 1, k - 1) + S(n - 1, k).
+    S(n, k) = S(n - 1, k - 1) + k \cdot S(n - 1, k).
   \]
+\end{theorem}
+\begin{theorem}
+  Let us consider $n$, note that there are two cases either $n$ forms a
+  singleton in a partition or it is not the only element in the part.
+
+  It is easy to see that there are $S(n - 1, k - 1)$ partitions where $n$ is
+  a singleton and $k \cdot S(n - 1, k)$ partitions when $n$ is not a singleton
+  (we multiply by $k$ since there are $k$ possible ways to add $n$ to a
+  partition of $[n - 1]$).
 \end{theorem}
 
 Note that the number of surjections from $[n]$ to $[k]$ is equal to the
@@ -90,15 +99,46 @@ number of ways to put $n$ different objects into $k$ different boxes.
   There are exactly $k! S(n, k)$ surjective functions from
   $[n]$ to $[k]$.
 \end{lemma}
+\begin{proof}
+  Let $\mathcal{S}(n, k)$ be the set of surjections from $[n]$ to $[k]$,
+  $\mathcal{P}(n, k)$ be the set of partitions with non-empty blocks, and
+  $F : \mathcal{S}(n, k) \to \mathcal{P}(n, k)$ such that
+  $F(f) = \set{f^{-1}(1), \dots, f^{-1}(k)}$.
+
+  It is easy to see that $F(f) = F(g)$ iff there is $h : [k] \to [k]$ such that
+  $f \circ h = g$. Hence, $F^{-1}(f) = k!$ for any $f \in \mathcal{S}(n, k)$.
+  Thus $|\mathcal{S}(n, k)| = k! |\mathcal{P}(n, k)|$.
+\end{proof}
 
 Using this equality, we can prove a surprising result.
 \begin{theorem}
+\label{theorem:stirling-numbers-and-polynomials}
   For any real $x$ and positive integer $n$,
   \[
     x^n = \sum_{k = 0}^n S(n, k) (x)_k,
   \]
   where $(x)_k = \prod_{i = 0}^{k - 1} (x - i)$.
 \end{theorem}
+
+To prove the statement we need the following statement.
+\begin{theorem}
+  Let $p$ and $q$ be a real polynomials. If $p(\ell) = q(\ell)$ for all
+  integers $\ell > 0$, then $p(x) = q(x)$ for all real numbers $x$.
+\end{theorem}
+
+\begin{proof}[Theorem~\ref{theorem:stirling-numbers-and-polynomials}]
+  Using the previous result, it is enough to prove that
+  \[
+    \ell^n = \sum_{k = 0}^n S(\ell, k) (\ell)_k
+  \]
+  for integers $\ell > 0$.
+
+  Clearly $\ell^n$ denotes the number of ways to put $n$ different
+  objects into $\ell$ different boxes. Note that if we have $k$ nonempty
+  boxes, then there are $\binom{n}{k}$ ways to select these boxes and
+  $k! S(\ell, k)$ ways to put objects in these $k$ boxes. Thus formula in
+  the left is equal to the fromula on the right.
+\end{proof}
 
 \begin{definition}
   The number of all set partitions of $[n]$ into nonempty parts
