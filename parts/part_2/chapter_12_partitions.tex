@@ -156,6 +156,15 @@ It is easy to see that the following theorem holds.
     B(n + 1) = \sum_{i = 0}^n \binom{n}{i} B(i).
   \]
 \end{theorem}
+\begin{proof}
+  Note that there are $B(n + 1)$ ways to split $[n]$ into
+  non-empty blocks. At the same time there are $\binom{n}{n - i}$
+  ways to select elements to put with $n + 1$ in the same block
+  (if we know that there are $n - i$ elements with $n + 1$ in the block)
+  and $B(i)$ ways to split the rest into blocks. As a result,
+  there are $\sum_{i = 0}^n \binom{n}{i} B(i)$ to split $[n + 1]$
+  into nonempty blocks.
+\end{proof}
 
 \section{Compoisiton}
 This section answers the question in the case when the objects
@@ -176,12 +185,21 @@ compositions.
   the number of weak compositions of $n$ into $k$ is equal to
   $\binom{n + k - 1}{n}$.
 \end{theorem}
+\begin{proof}
+  Let us consider $k$ boxes in line one after each other. Note that if we
+  put balls inside of the boxes we see a line consisting of $n$ balls and
+  $k - 1$ walls separating the $k$ boxes from each other. Note that simply
+  knowing in which order the n identical balls and $k - 1$ separating walls
+  follow each other is the same as knowing the number of balls in each box.
+  So our problem is equivalent to counting the number of ways to put $k - 1$
+  walls on one of $n + k - 1$ positions.
+\end{proof}
 
 As a result, we can count the number of compositions.
 \begin{corollary}
   For all positive integers $n$ and $k$,
   the number of compositions of $n$ into $k$ is equal to
-  $\binom{n}{n}$.
+  $\binom{n}{k}$.
 \end{corollary}
 
 \begin{exercise}
@@ -253,8 +271,15 @@ Using these diagrams it is easy to show the following theorems.
   The number of partitions of $n$ into at most $k$ parts is equal to that of
   partitions of $n$ into parts not larger than $k$.
 \end{theorem}
+\begin{proof}
+  Note that if a partition has at most $k$ parts, then the conjugate of this
+  partition has all the parts of size at most $k$. As, a result, the number
+  of partitions of $n$ into at most $k$ parts is equal to that of
+  partitions of $n$ into parts not larger than $k$.
+\end{proof}
 
-\begin{theorem}
+\begin{chapterendexercises}
+  \exercise
   Let $q(n)$ be the number of partitions of $n$ in which each part is at least
   two. Then $q(n) = p(n) - p(n - 1)$, for all positive integers $n \ge 2$.
-\end{theorem}
+\end{chapterendexercises}
