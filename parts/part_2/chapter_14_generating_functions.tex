@@ -1,1 +1,47 @@
 \chapter{Generating Function}
+In this chapter we discuss the basics of one of the most general methods we have
+in combinatorics, the method is called ``generating functions''. The core idea
+of this method is to use knowledge we have about mathematical analysis in
+combinatorics.
+
+\section{Recurrence Relations}
+Let us start from the following problem.
+Sasha took an insane credit in a bank: he took $100$\$ at the begining and
+his debt is growing twofold every year. At the begining of each year John is
+paing $100$\$ to the bank. How big will be his debt in 5 years?
+
+It is easy to see that the answer for this and simialr questions can be answered
+using a recurrent formula. Indeed, if $a_i$ denotes his debt on $i$th year,
+then $a_0 = 100$, and $a_{n + 1} = 2 a_n - 100$. Using this, one may compute
+all the values of $a_i$. However, the question became tricky if we want to
+find an explicit formula for $a_i$.
+
+To solve this kind of questions we can use beforementioned generating functions.
+\begin{definition}
+  Let $\set{c_n}_{n \ge 0}$ be a sequence of real numbers. Then
+  the generating function for this sequence is the power series
+  $F(x) = \sum_{n \ge 0} c_n x^n$.
+\end{definition}
+
+Let us use the definition of $a_i$ to find the generating function $G(x)$
+for this sequence. Note that
+$a_{n + 1} x^{n + 1} = 2 a_n x^{n + 1} - 100 x^{n + 1}$. Thus
+\[
+  \sum_{n \ge 0} a_{n + 1} x^{n + 1} =
+    \sum_{n \ge 0} 2 a_n x^{n + 1} - 100 \sum_{n \ge 0} x^{n + 1}.
+\]
+The left-hand side is equal to $G(x) - a_0$ and the right-hand side is
+equal to $2xG(x) - \frac{100 x}{1 - x}$. So we can derive the equality
+\[
+  G(x) - 100 = 2xG(x) - \frac{100 x}{1 - x}.
+\]
+Using this equality we can find explicitly a formula for $G(x)$,
+\[
+  G(x) = \frac{100}{1 - 2x} - \frac{100x}{(1 - x)(1 - 2x)}.
+\]
+Let us simplify the formula a bit.
+\[
+  G(x) = \frac{100}{1 - 2x} + \frac{100}{1 - x} - \frac{100}{1 - 2x} =
+  \frac{100}{1 - x}.
+\]
+Thus $G(x) = \sum_{n \ge 0} 100 x^n$. As a result, $a_n = 100$.
