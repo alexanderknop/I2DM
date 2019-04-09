@@ -4,7 +4,7 @@ in combinatorics, the method is called ``generating functions''. The core idea
 of this method is to use knowledge we have about mathematical analysis in
 combinatorics.
 
-\section{Recurrence Relations}
+\section{Easy Two Term Recurrences}
 Let us start from the following problem.
 Sasha took an insane credit in a bank: he took $100$\$ at the begining and
 his debt is growing twofold every year. At the begining of each year John is
@@ -22,6 +22,10 @@ To solve this kind of questions we can use beforementioned generating functions.
   the generating function for this sequence is the power series
   $F(x) = \sum_{n \ge 0} c_n x^n$.
 \end{definition}
+Note that these power series are not neccessary converging for $x \neq 0$.
+In this chapter, we will not discuss this problem and always pretend that
+they are converging, for a formal explanation of how to deal with this issue see
+Chapter~\ref{chapter:formal-power-series}.
 
 Let us use the definition of $a_i$ to find the generating function $G(x)$
 for this sequence. Note that
@@ -45,3 +49,169 @@ Let us simplify the formula a bit.
   \frac{100}{1 - x}.
 \]
 Thus $G(x) = \sum_{n \ge 0} 100 x^n$. As a result, $a_n = 100$.
+
+\begin{exercise}
+  Find a formula for $a_n$ in the case when $a_0 = 200$.
+\end{exercise}
+
+Let us consider another, more complicated, example. Consider a sequence
+$\set{a_n}_{n \ge 0}$ such that $a_{n + 1} = 2a_n + n$ for $n \ge 0$ and
+$a_0 = 1$. As in the previous case let us write an equation for the
+generating function $G(x)$.
+\[
+  G(x) - a_0 = 2xG(x) + \sum_{n \ge 0} n x^n.
+\]
+First, we find a formula for $\sum_{n \ge 0} n x^n$,
+\[
+  \sum_{n \ge 0} n x^n = \sum_{n \ge 0} x \frac{d x^n}{dx} =
+  x \frac{d \sum_{n \ge 0} x^n}{dx} = x \left(\frac{1}{1 - x}\right)' =
+  \frac{x}{(1 - x)^2}.
+\]
+Therefore,
+\[
+  G(x) = \frac{1 - 2x + 2x^2}{(1 - x)^2 (1 - 2x)}.
+\]
+So we need to find a more appropriate formula for $G(x)$.
+Let us try to find a formula in the form
+\[
+  \frac{1 - 2x + 2x^2}{(1 - x)^2 (1 - 2x)} =
+    \frac{A}{(1 - x)^2} + \frac{B}{1 - x} + \frac{C}{1 - 2x}.
+\]
+To find $A$, $B$, and $C$ we mutliply both sides by $(1 - x)^2$ and set $x = 1$.
+We get that $A = -1$. We can also multiply by $1 - 2x$ and substitute
+$x = 1 / 2$ and derive that $C = 2$. Now we need to find $C$, we substitute $0$
+to the equation and get $B = 0$. As a result,
+$G(x) = \frac{-1}{(1 - x)^2} + \frac{2}{1 - 2x}$. Using simple equalities from
+calculus we can derive $G(x) = \sum_{n \ge 0} -(n + 1) + 2^{n + 1} x^n$.
+So $a_n = -(n + 1) 2^{n + 1}$.
+
+\section{Recurrences With Two Variables}
+Two illustrate how to deal with recurrent relation in cases when we have
+more than one variable, we prove a verstion of the binomial theorem and
+derive a formula for binomial coefficients. In order to do it,
+we consider the reccurent relation
+\[
+  \binom{n + 1}{k} = \binom{n}{k} + \binom{n}{k - 1}.
+\]
+Let us denote $\sum_{k \ge 0} \binom{n}{k} x^k$ by $B_n(x)$.
+It is clear that
+\[
+  B_{n + 1}(x) - 1 = (B_n(x) - 1) + x B_n(x).
+\]
+Therefore, $B_{n + 1}(x) = (1 + x) B_n(x)$. As a result, $B_n(x) = (1 + x)^n$;
+i.e. $\sum_{k \ge 0} \binom{n}{k} x^k = (1 + x)^n$. To find a
+formula for binomial coefficients, we just need to use Taylor's formula,
+$\binom{n}{k} = \frac{x^k}{dx^k} B_n(x)\big\rvert_{x = 0}  / k!$. So
+$\binom{n}{k} = n (n - 1) \dots (n - k + 1) / k!$.
+
+\section{Products of Generating Functions}
+Let us consider a new problem, how many ways to design a class consisting of
+$n$ lectures with theoretical part and laboratory part (the first $k$ days of
+the quarter form the theoretical part, note that $k$ is not fixes) such that
+there are two midterms during the theoretical part and one exam during the
+laboratory part.
+
+Let $a_n$ be the answer. It is easy to see that
+\[
+  a_n = \sum_{k = 1}^{n - 2} k \binom{n - k}{2}.
+\]
+However, this formula is not suggesting us an explicit formula.
+Let us write an equation for the generating function for $a_n$,
+\[
+  G(x) = \sum_{n \ge 0} \sum_{k = 1}^{n - 2} k \binom{n - k}{2} x^n.
+\]
+It is easy to see that this formula implies that
+\[
+  G(x) = \left( \sum_{k \ge 0} k x^k \right)
+    \left( \sum_{k' \ge 0} \binom{k'}{2} x^{k'} \right).
+\]
+Thus
+\[
+  G(x) = \frac{x}{(1 - x)^2} \cdot \frac{x^2}{(1 - x)^3} =
+  \frac{x^4}{(1 - x)^5} = x^3\sum_{n \ge 0} \binom{n + 4}{4} x^n.
+\]
+As a result, $a_n = \binom{n + 1}{4}$.
+
+Using this example, we can formulate a general rule.
+\begin{theorem}
+  Let $a_n$ be the number of ways to build a certain structure on an $n$-element
+  set, and let $b_n$ be the number of way to build another structure on an
+  $n$-element set. Let $c_n$ be the number of ways to separate $[n]$ into two
+  parts consisting of numbers $\set{1, \dots, k}$ and $\set{k + 1, \dots, n}$
+  ($k \ge 0$), and then to build a structure of the first type on the first set,
+  and a structure of the second type on the second set.
+
+  Then $H(x) = F(x)G(x)$, where $F(x)$, $G(x)$, and $H(x)$ are generating
+  functions for $\set{a_n}_{n \ge 0}$, $\set{b_n}_{n \ge 0}$, and
+  $\set{c_n}_{n \ge 0}$, respectively.
+\end{theorem}
+
+To illustrate this theorem, let us solve another problem. A company
+``bolshoy brat'' needs to finish two projects. To do this, a manager of the
+company splits all the emploes into two projects and in each project she selects
+product team and marketing team. How many ways to do this.
+Let $c_n$ be the number of ways the manager can complete this task. Again, let
+us split the problem into two parts. Let $A(x)$ be the generating function for
+the number of ways to split people in the first project into marketing and
+product teams. It is clear that $A(x) = \sum_{k \ge 0} 2^k x^k = 1 / (1 - 2x)$
+since any $k$ element set has $2^k$ subsets. It is easy to see that the second
+project has the same generating function. Thus the generating function for
+$\set{c_n}_{n \ge 0}$, $C(x) = A(x) A(x) = 1 / (1 - 2x)^2$.
+As a result,
+\[
+  C(x) = \frac{1}{2} \sum_{n \ge 1} n 2^n x^{n - 1} =
+  \frac{1}{2} \sum_{n \ge 0} (n + 1) 2^{n + 1} x^n
+\]
+and $c_n = (n + 1) 2^{n + 1}$.
+
+\begin{exercise}
+  Find the number of ways to split an $n$-day semester into three parts, choose
+  any number of holidays in the first part, an odd number of holidays in the
+  second part, and an even number of holidays in the third part.
+\end{exercise}
+
+\section{Compositions of Generating Functions}
+As ususal, we start the section from a problem.
+All $n$ soldiers of a military squadron stand in a line. The officer in charge
+splits the line at several places, forming (non-empty) squads. Then she names
+one person in each unit to be the commander of that unit. Let $c_n$ be the
+number of ways he can do this. Find an explicit formula for $c_n$.
+
+If the officer splits the soldiers into $k$ squads, then there
+are
+\[
+  \sum_{n_1, \dots, n_k : n = n_1 + \dots + n_k} n_1 \cdot n_2 \dots n_2
+\]
+ways to do this. Hence, the generating function for spliting into squads and
+selecting commanders in all $k$ squads is equal to $A^k(x)$, where
+$A(x) = \sum_{n \ge 0} n x^n = \frac{x}{(1 - x)^2}$. Therefore,
+the generating function $C(x)$ for $\set{c_n}_{n \ge 0}$ is equal to
+$\sum_{k \ge 1} A^k(x)$. As a result,
+\[
+  C(x) = \frac{1}{1 - A(x)} = 1 + \frac{x}{1 - 3x + x^2}.
+\]
+It is possible to note that the roots $\alpha$ and $\beta$ of $x^2 - 3x + 1$ are
+equal to $(3 \pm \sqrt{5}) / 2$, respectively. We want to find $A$ and $B$ such
+that
+\[
+  \frac{1}{1 - 3x + x^2} = \frac{A}{x - \alpha} - \frac{B}{x - \beta}.
+\]
+Thus $1 = (A - B) x - A\beta + B\alpha$. Therefore, we have
+$A = B$ and $A(\alpha - \beta) = A\sqrt{5} = 1$; i.e.
+$A = B = \frac{1}{\sqrt{5}}$.
+By some simple calculations we may comclude that
+\[
+  \frac{1}{1 - 3x + x^2} =
+  \frac{1}{\sqrt{5}}(\frac{\alpha}{1 - \alpha x} + \frac{\beta}{1 - \beta x}).
+\]
+Hence, $c_0 = 1$ and $c_n = \frac{1}{\sqrt{5}}(\alpha^n - \beta^n)$ for $n > 0$.
+
+The following theorem generalises this obeservation.
+\begin{theorem}
+  Let $a_n$ be the number of ways to build a certain structure on an $n$-element
+  set, and let us assume that $a_0 = 0$. Let $c_n$ be the number of ways to
+  split the set $[n]$ into an unspecified number of disjoint non-empty
+  intervals, then build a structure of the given type on each of these
+  intervals. Set $h_0 = 1$. Denote $F(x) = \sum_{n \ge 0} a_n x^n$ and
+  $G(x) = \sum_{n \ge 0} c_n x^n$. Then $G(x) = \frac{1}{1 - A(x)}$.
+\end{theorem}
