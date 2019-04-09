@@ -1,2 +1,104 @@
-\chapter{Formal Power Series}
+series\chapter{Formal Power Series}
 \label{chapter:formal-power-series}
+Formal power series is an algebraic analogy of power series form analysis.
+A formal power series is something like
+$a_0 + x a_1 + x^2 a_2 + \dots a_n x^n + \dots$; to describe such an object it
+is enough to define the sequence $\set{a_n}_{n \ge 0}$ since $x$ is a variable.
+\begin{definition}
+  We say that $F(x)$ is a \emph{formal power series} in the variable $x$, if
+  $F(x) = \set{f_n}_{n \ge 0}$. To distinguish between formal power series and
+  sequences, we write formal power series as $\sum_{n \ge 0} f_n x^n$.
+  We say that $f_n$ is the coefficient of $x^n$ in $F(x)$.
+
+  We say that two formal power series $F(x)$ and $G(x)$ are equal iff for all
+  $n \ge  0$, the coefficients of $x^n$ in $F(x)$ and $G(x)$ are the same.
+
+  The set of all the power series in the variable $x$ is denoted as
+  $\R[[x]]$.
+\end{definition}
+\nomenclature[S]{$\R[[x]]$}{denotes the set all the power series in the
+variable $x$}
+
+\section{Arithmetic Operations}
+
+We can perform all the standard operations with the formal power series:
+\begin{gather*}
+  \sum_{n \ge 0} a_n x^n \pm \sum_{n \ge 0} b_n x^n =
+  \sum_{n \ge 0} (a_n \pm b_n) x^n, \\
+  c \sum_{n \ge 0} a_n x^n =
+  \sum_{n \ge 0} (c a_n) x^n,
+  \\
+  \text{and} \\
+  \sum_{n \ge 0} a_n x^n \sum_{n \ge 0} b_n x^n =
+  \sum_{n \ge 0} (\sum_{k = 0}^n a_{k} b_{n - k}) x^n.
+\end{gather*}
+
+These operations satisfy all the properties we may expect from them.
+\begin{theorem}
+  Let $F(x)$, $G(x)$, and $H(x)$ be some formal power series. Then the following
+  equalities hold:
+  \begin{itemize}
+    \item $(F(x) + G(x)) + H(x) = F(x) + (G(x) + H(x))$,
+    \item $F(x) + G(x) = G(x) + F(x)$,
+    \item $(F(x) G(x)) H(x) = F(x) (G(x) H(x))$,
+    \item $F(x) G(x) = G(x) F(x)$, and
+    \item $(F(x) + G(x)) H(x) = F(x)H(x) + G(x)H(x)$.
+  \end{itemize}
+\end{theorem}
+
+For example, $(1 - x) (1 + x + x^2 + \dots) = 1$. Thus we can say that the
+series $(1 - x)$ has an inverse, and that inverse is equal to $1 + x + x^2 +
+\dots$.
+\begin{theorem}
+  A formal power series $\sum_{n \ge 0} f_n x^n$ has an inverse iff
+  $f_0 \neq 0$ and moreover this inverse is unique.
+\end{theorem}
+\begin{proof}
+  Assume that a power series $F(x) = \sum_{n \ge 0} f_n x^n$ has an inverse
+  $G(x) = \sum_{n \ge 0} g_n x^n$. In this case $F \cdot G = 1$ i.e.
+  $f_0 g_0 = 1$ and $f_0 \neq 0$. Morevover,
+  $\sum_{k = 0}^n f_k g_{n - k} = 0$; from which we can conclude that
+  \begin{equation}
+    \label{equation:inverse-of-formal-power-series}
+    g_n = -\frac{1}{f_0} \sum_{k > 0} f_k g_{n - k}.
+  \end{equation}
+  This determine $g_n$ uniquely, as stated.
+
+  Conversely, if $f_0 \neq 0$, (\ref{equation:inverse-of-formal-power-seris})
+  determines the sequence $\set{g_n}_{n \ge 0}$.
+\end{proof}
+
+\section{Composition}
+Another operations we may need to perform is the composition; a composition of
+a power series $F(x)$ and $G(x)$ is a power series $F(G(x))$; i.e.
+$F(G(x)) = \sum_{n \ge 0} a_n G^n(x)$, where $F(x) = \sum_{n \ge 0} a_n x^n$
+Note that the composition is well-defined iff the coefficient of $x^0$ in $G(x)$
+is $0$ or if $F(x)$ is a polynomial.
+
+\section{Derivative}
+Let $F(x) = \sum_{n \ge 0} f_n x^n$ be a formal power series. Then the
+derivative $F'(x)$ (we also denote it as $\frac{d}{dx} F(x)$) of $F(x)$ is
+equal to
+$\sum_{n \ge 1} n f_n x^{n - 1} = \sum_{n \ge 0} (n + 1) f_{n + 1} x^n$.
+
+Th derivatives of formal power series are satisfying the same properties as
+derivatives of functions.
+\begin{theorem}
+  Let $F(x)$, $G(x)$, and $H(x)$ be some formal power series. Then the following
+  equalities hold:
+  \begin{itemize}
+    \item $\frac{d}{dx}(F(x) + G(x)) = F'(x) + G(x)$, and
+    \item $\frac{d}{dx}(F(x) G(x)) = F'(x)G(x) + F(x)G'(x)$.
+  \end{itemize}
+\end{theorem}
+
+\begin{remark}
+  If $F'(x) = 0$, then $F(x) = a_0$.
+\end{remark}
+
+We denote the formal power series $\sum_{n \ge 0} \frac{1}{n!} x^n$ by $e^x$
+(since the Taylor series of $e^x$ is equal to
+$\sum_{n \ge 0} \frac{1}{n!} x^n$).
+\begin{remark}
+  If $F'(x) = F(x)$, then $F(x) = c e^x$ for some $c \in \R$.
+\end{remark}
