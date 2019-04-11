@@ -83,7 +83,7 @@ for Stirling numbers of the second kind.
     S(n, k) = S(n - 1, k - 1) + k \cdot S(n - 1, k).
   \]
 \end{theorem}
-\begin{theorem}
+\begin{proof}
   Let us consider $n$, note that there are two cases either $n$ forms a
   singleton in a partition or it is not the only element in the part.
 
@@ -91,7 +91,7 @@ for Stirling numbers of the second kind.
   a singleton and $k \cdot S(n - 1, k)$ partitions when $n$ is not a singleton
   (we multiply by $k$ since there are $k$ possible ways to add $n$ to a
   partition of $[n - 1]$).
-\end{theorem}
+\end{proof}
 
 Note that the number of surjections from $[n]$ to $[k]$ is equal to the
 number of ways to put $n$ different objects into $k$ different boxes.
