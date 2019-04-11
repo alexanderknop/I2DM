@@ -92,6 +92,20 @@ derivatives of functions.
   \end{itemize}
 \end{theorem}
 
+As a corollary of these statements we can derive a formula for the derivative of
+$1 / F(x)$.
+\begin{corollary}
+  Let $F(x)$ be a formal power series such that $1 / F(x)$ exists. In this
+  case $\frac{d}{dx} \frac{1}{F(x)} = -\frac{F'(x)}{F^2(x)}$.
+\end{corollary}
+\begin{proof}
+  Note that $F(x) \frac{1}{F(x)} = 1$. Hence,
+  $\frac{d}{dx}(F(x) \frac{1}{F(x)}) = 0$. Using the formula for the derivative
+  of a product we may conclude that $F'(x)\frac{1}{F(x)} +
+  F(x)\frac{d}{dx}\frac{1}{F(x)} = 0$. As a result,
+  $-\frac{F'(x)}{F^2(x)} = \frac{d}{dx} \frac{1}{F(x)}$.
+\end{proof}
+
 \begin{remark}
   If $F'(x) = 0$, then $F(x) = a_0$.
 \end{remark}

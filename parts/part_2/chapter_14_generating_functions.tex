@@ -215,3 +215,38 @@ The following theorem generalises this obeservation.
   intervals. Set $h_0 = 1$. Denote $F(x) = \sum_{n \ge 0} a_n x^n$ and
   $G(x) = \sum_{n \ge 0} c_n x^n$. Then $G(x) = \frac{1}{1 - A(x)}$.
 \end{theorem}
+
+\begin{chapterendexercises}
+  \exercise Find the generating functions of each of the following sequences
+    (in the simplest form):
+    \begin{enumerate}[nolistsep]
+      \begin{multicols}{2}
+        \item $a_n = n$;
+        \item $a_n = \alpha n + \beta$;
+        \item $a_n = n^2$;
+        \item $a_n = \alpha n^2 + \beta n + \gamma$;
+        \item $a_n = 3^n$.
+      \end{multicols}
+    \end{enumerate}
+  \exercise Let $F(x)$ be a generating function for the sequence
+    $\set{a_n}_{n \ge 0}$. Write, in terms of $F(x)$, the generating functions
+    of the following sequences:
+    \begin{enumerate}[nolistsep]
+      \begin{multicols}{2}
+        \item $\set{a_n + \alpha}_{n \ge 0}$;
+        \item $\set{\alpha a_n + \beta}_{n \ge 0}$;
+        \item $\set{n a_n}_{n \ge 0}$;
+        \item $0$, $a_1$, \dots, $a_n$, \dots;
+        \item $a_1$, \dots, $a_n$, \dots;
+        \item $\set{a_{n + m}}_{n \ge 0}$ ($m$ is a constant).
+      \end{multicols}
+    \end{enumerate}
+  \exercise Let $f(n)$ be the number of subsets of $[n]$ that contain no two
+    consecutive elements, for integer $n$. Find the recurrence that is satisfied
+    by these numbers, and then find an explicit formula for these numbers.
+  \exercise Find an explicit formula for $a_n$ if $a_0 = 0$ and for any
+    $n \ge 0$, $a_{n + 1} = a_n + 2^n$.
+  \exercise Let $a_n$ be the number of ways to pay $n$ dollars using ten-dollar
+    bills, five-dollar bills, and one-dollar bills only. Find the generating
+    function for $a_n$.
+\end{chapterendexercises}
