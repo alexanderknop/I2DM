@@ -9,10 +9,13 @@ Let us consider a simple problem: what is bigger $2^n$ or $n$? In this chapter,
 we are going to study the simplest way to prove that $2^n > n$ for all positive
 integers $n$. First, let us check that it is true for small integers $n$.
 \begin{center}
-  \begin{tabular}{c | c | c | c | c | c | c | c | c}
+  \begin{tabular}{l l l  l  l  l  l  l  l}
+    \toprule
+          & 1 & 2 & 3 & 4  & 5  & 6  & 7   & 8   \\
+    \midrule
     $n$   & 1 & 2 & 3 & 4  & 5  & 6  & 7   & 8   \\
-    \hline
-    $2^n$ & 2 & 4 & 8 & 16 & 32 & 64 & 128 & 256
+    $2^n$ & 2 & 4 & 8 & 16 & 32 & 64 & 128 & 256 \\
+    \bottomrule
   \end{tabular}
 \end{center}
 We may also note that $2^n$ is growing faster than $n$, so we expect that if
@@ -43,11 +46,13 @@ $2^{n + 1} = 2 \cdot 2^n > 2n \ge n + 1$. Hence, we proved the induction step.
 Let us consider functions $n^2$ and $2^n$.
 
 \begin{center}
-  \begin{tabular}{c | c | c | c | c | c | c | c | c}
-    $n$   & 1 & 2 & 3 & 4  & 5  & 6  & 7   & 8   \\
-    \hline
+  \begin{tabular}{l  l  l  l  l  l  l  l  l}
+    \toprule
+          & 1 & 2 & 3 & 4  & 5  & 6  & 7   & 8   \\
+    \midrule
     $n^2$ & 1 & 4 & 9 & 16 & 25 & 36 & 49  & 64  \\
-    $2^n$ & 2 & 4 & 8 & 16 & 32 & 64 & 128 & 256
+    $2^n$ & 2 & 4 & 8 & 16 & 32 & 64 & 128 & 256 \\
+    \bottomrule
   \end{tabular}
 \end{center}
 Note that $2^n$ is greater than $n^2$ starting from $5$. But without some trick
@@ -153,13 +158,13 @@ Let us consider the following algorithm.
 We prove that it is working correctly. First, we need to define $r_1$,
 \dots, $r_n$ the value of $r$ during the execution of the algorithm.
 It is easy to see that $r_1 = a_1$ and
-$
+\[
   r_{i + 1} =
   \begin{cases}
     r_i & \text{if } r_i > a_{i + 1} \\
     a_{i + 1} & \text{otherwise}
-  \end{cases}
-$.
+  \end{cases}.
+\]
 Secondly, we prove by induction that $r_i$ is the maximum of $a_1$, \dots,
 $a_i$. It is clear that the base case for $i = 1$ is true. Let us prove the
 induction step from $k$ to $k + 1$. By the induction hypothesis, $r_k$
@@ -298,11 +303,11 @@ arithmetic formulas.
 We can define recursively the value of such a formula. Let $v_1$, \dots, $v_n$
 be some integers.
 \begin{description}
-  \item[base cases:] $x_i\big\rvert_{x_1 = v_1, \dots, x_n = v_n} = v_i$; in
+  \item[(the base cases)] $x_i\big\rvert_{x_1 = v_1, \dots, x_n = v_n} = v_i$; in
     other words, the value of the arithmetic formula $x_i$ is equal to $v_i$
     when $x_1 = v_1$, \dots, $x_n = v_n$; if $c$ is a real number, then
     $c\rvert_{x_1 = v_1, \dots, x_n = v_n} = c$.
-  \item[recursion steps:] If $P$ and $Q$ are arithmetic formulas on the
+  \item[(the recursion steps)] If $P$ and $Q$ are arithmetic formulas on the
     variables $x_1$, \dots, $x_n$, then
     \[
       (P + Q)\big\rvert_{x_1 = v_1, \dots, x_n = v_n} =
@@ -359,7 +364,7 @@ To illustrate this method, we prove the following theorem.
 \end{theorem}
 \begin{proof}
   \begin{description}
-    \item[base cases:] If $A = x_i$, then consider the polynomial $p(x) = x$;
+    \item[(the base cases)] If $A = x_i$, then consider the polynomial $p(x) = x$;
       it is easy to see that $A\big\rvert_{x = v} = v = p(v)$.
       If $A = c$ where $c$ is a real number, then consider the constant
       polynomial  $p(x) = c$; it is easy to note that $A\big\rvert_{x = v} = c =
@@ -439,7 +444,8 @@ and
   C(n - \floor{\frac{n}{2}}) \le 6 + 2\log_2(n - \floor{\frac{n}{2}}),
 \]
 where $\floor{\alpha}$ denotes the integer part of a real number $\alpha$.
-\nomenclature[C]{$\floor{\alpha}$}{denotes the integer part of $\alpha$}
+\nomenclature[C]{$\floor{\alpha}$}{denotes the greatest integer less than or
+equal to $\alpha$}
 Since $\floor{\frac{n}{2}} \le \frac{n}{2}$ and $n - \floor{\frac{n}{2}} \le
 \frac{n}{2} + 1$, $C(n) \le 1 + 2\log_2(\frac{n}{2} + 1)$.
 However,
