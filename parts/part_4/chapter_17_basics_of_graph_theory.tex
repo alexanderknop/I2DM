@@ -74,4 +74,47 @@ $e \in E$ be an edge, and $v \in V$ be a vertex.
     remove the vertex $v$ from $G$.
 \end{enumerate}
 
-\section{Examples of Graphs in Real Life}
+Note that we used the word ``subgraph'', in fact we can define formally the
+meaning fo this word.
+\begin{definition}
+  We say that a graph $H = (U, F)$ is a \emph{subgraph} of $G = (V, E)$ iff
+  $U \subseteq V$ and $F \subseteq E$.
+\end{definition}
+
+\section{Degrees of Vertices}
+The degree of a vertex is the number of endsegments of edges that ``stick out
+of'' the vertex.
+\begin{definition}
+  Let $G = (V, E)$ be a graph, and $v$ be a vertex. Then
+  $\deg_G(v) = |\set[{e \text{is connected to } v}]{e \in E}|$.
+\end{definition}
+
+Note that Lemma~\ref{lemma:handshaking} shows that in any simple graph the
+number of vertices with an odd degree is even.
+The essence of the proof of this Lemma is the following statement.
+\begin{theorem}
+  Let $G = (V, E)$ be a simple graph. Then $\sum_{v \in V} \deg_G(v) = 2|E|$.
+\end{theorem}
+
+\begin{chapterendexercises}
+  \exercise Either draw a graph with the specified properties or explain why
+    no such graph exists:
+    \begin{enumerate}[nolistsep]
+      \item simple graph with five vertices of degrees $1$, $2$, $3$, $3$,
+        and $5$;
+      \item simple graph with four vertices of degrees $1$, $2$, $3$, and $3$;
+      \item simple graph with four vertices of degrees $1$, $1$, $1$, and $5$;
+      \item simple graph with four vertices of degrees $1$, $2$, $3$, and $4$;
+      \item simple graph with four vertices of degrees $1$, $2$, $3$, and $5$.
+    \end{enumerate}
+  \exercise In a group of $25$ people, is it possible for each to shake hands
+    with exactly $3$ other people? Explain.
+  \exercise Suppose that $G$ is a graph with $v$ vertices and $e$ edges and
+    that the degree of each vertex is at least $d_\mathrm{min}$ and at most
+    $d_\mathrm{max}$. Show that
+    \[
+      \frac{1}{2} d_\mathrm{min} \le e \le \frac{1}{2} d_\mathrm{max}.
+    \]
+  \exercise Show that for all natural numbers $n$, the number of edges of $K_n$
+    is $\frac{n(n - 1)}{2}$.
+\end{chapterendexercises}
