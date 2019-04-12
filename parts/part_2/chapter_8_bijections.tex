@@ -140,16 +140,16 @@ $f^{-1}$ at $y$ if $f$ is a bijection}
   \[
     h''(i) =
     \begin{cases}
-      h'(i) & \text{if } h'(i) < h(n + 1) \\
+      h'(i) & \text{if } h'(i) < h'(n + 1) \\
       h'(i) - 1 & \text{otherwise}
     \end{cases}.
   \]
   We prove that $h''$ is a bijection.
   \begin{itemize}
-    \item Let $i_1 \neq i_2 \in [n]$. If $h'(i_1), h'(i_1) < h'(n + 1)$ or
-      $h'(i_1), h'(i_1) \ge h'(n + 1)$, then $h''(i_1) \neq h''(i_2)$ since
+    \item Let $i_1 \neq i_2 \in [n]$. If $h'(i_1), h'(i_2) < h'(n + 1)$ or
+      $h'(i_1), h'(i_2) \ge h'(n + 1)$, then $h''(i_1) \neq h''(i_2)$ since
       $h'(i_1) \neq h'(i_2)$. Otherwise, without loss of generality we
-      may assume that $h'(i_1) < h(n + 1) < h'(i_2)$ but it implies that
+      may assume that $h'(i_1) < h'(n + 1) < h'(i_2)$ but it implies that
       $h''(i_1) = h'(i_1) < h'(n + 1) \le h'(i_2) - 1 = h''(i_2)$.
     \item Let $j \in [m - 1]$. We need to consider two cases.
       \begin{enumerate}
@@ -205,7 +205,7 @@ Using this result we can make prove the following equality.
 \end{corollary}
 \begin{proof}
   To prove this statement we need to construct a bijection from $2^X$ to
-  $\set{0, 1}^{|X|}$. Let $|X| = n$ and $f : [n] \to X$ be a bijection.
+  $\set{0, 1}^{|X|}$. Let $|X| = n$ and $f : X \to [n]$ be a bijection.
 
   First we construct a bijection $g_1 : 2^X \to 2^{[n]}$:
   \[
