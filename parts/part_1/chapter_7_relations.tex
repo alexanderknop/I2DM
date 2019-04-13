@@ -120,7 +120,7 @@ Let $x \in \Z$; we denote by $r_{x, n}$ the equivalence class of $x$ with
 respect to the relation $\equiv \pmod{n}$, we also denote by $\Z / n\Z$ the set
 of all the equivalence classes with respect to the relation $\equiv \pmod{n}$.
 
-Another important property of these relation is that they behave well with
+Another important property of these relations is that they behave well with
 respect to the arithmetic operations.
 \begin{theorem}
   Let $x, y \in Z$ and $n \in \N$. Suppose that $a \in r_{x, n}$ and $b \in
@@ -205,12 +205,12 @@ divides $n$.
 \subsection{Topological Sorting}
 Partial orderings are very useful for describing complex processes. Suppose
 that some process consists of several tasks, $T$ denotes the set of these tasks.
-Some tasks can be done only after some others e.g. when you cooking a salat you
+Some tasks can be done only after some others e.g. when you cooking a salad you
 need to wash vegetables before you chop them. If $x, y \in T$ be some tasks, $x
 \preceq y$ if $x$ should be done before $y$ and this is a partial ordering.
 
 In the applications this order is not a total order because some steps do not
-depend on other steps beeing done first (you can chop tomatos and chop
+depend on other steps being done first (you can chop tomatoes and chop
 cucumbers in any order). However, if we need to create a schedule in which the
 tasks should be done, we need to create a total ordering on $T$. Moreover, this
 order should be compatible with the partial ordering. In other words, if $x
@@ -227,11 +227,11 @@ total order. The technique of finding such a total ordering is called
 
 This sorting can be done using the following procedure.
 \begin{itemize}
-  \item Initiate the set $S$ beeing equal to $T$
+  \item Initiate the set $S$ being equal to $T$
   \item Choose the minimal element of the set $S$ with respect to the ordering
     $\preceq$ (such an element exists since $S$ is a finite set, see
     Chapter~\ref{chapter:bijections-surjections-injections}).
-    Add this element to the list, remove it from the set $S$, and repeate this
+    Add this element to the list, remove it from the set $S$, and repeat this
     step if $S \neq \emptyset$.
 \end{itemize}
 

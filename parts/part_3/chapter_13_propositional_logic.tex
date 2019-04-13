@@ -130,14 +130,14 @@ The problem of this method is that we need to consider \textbf{all} possible
 values of the variables. Let us now consider a more complicated example.
 Imagine that we know that $\lnot q$, $p \implies q$. Using the contraposition
 argument and modus ponens we may derive $\lnot p$. Indeed, by contraposition
-we may conclude that $\lnot q \implies \lnot p$ and modus ponens impies that
+we may conclude that $\lnot q \implies \lnot p$ and modus ponens implies that
 $\lnot p$ is true since $\lnot q$ is true.
 
 In other words, we can combine several tautologies to prove another tautology.
-Apparently it is enough to fix some small number of tautlogies to derive all
-other tautologies, we call these tautlogies ``rules''. There are several ways
+Apparently it is enough to fix some small number of tautologies to derive all
+other tautologies, we call these tautologies ``rules''. There are several ways
 to write such proofs, we are going to use Fitch notation for natural deduction.
-In this notation any proof is writen in several rows, each row in a Fitch-style
+In this notation any proof is written in several rows, each row in a Fitch-style
 proof is either:
 \begin{itemize}
   \item an assumption or subproof assumption.
@@ -303,7 +303,7 @@ Additionally, we have the following two rules.
 }{proofs.openlogicproject.org/}
 
 \begin{exercise}
-  Check that all the tautologies we mentioned are indeed tautlogies.
+  Check that all the tautologies we mentioned are indeed tautologies.
 \end{exercise}
 
 \section{Examples of Derivations}
@@ -376,19 +376,19 @@ theorems.
 \end{theorem}
 
 
-Proofs of these two theorems are not that difficult but very technicall. So
-prove these statements on examples to at least illustate them.
+Proofs of these two theorems are not that difficult but very technical. So
+prove these statements on examples to at least illustrate them.
 
 \paragraph{Completeness of natural deductions.}
 Proofs of this statement exploit the following idea: if a propositional formula
-is a tautlogy, then we can verify this statement using the truth table. So
+is a tautology, then we can verify this statement using the truth table. So
 the proof simply bruteforce all the values of the variables of a formula and
 check that the formula is indeed true.
-Consider a tautlogy $(\lnot A \land \lnot B) \implies \lnot (A \lor B)$.
-The proof of this tautlogy is as follows.
+Consider a tautology $(\lnot A \land \lnot B) \implies \lnot (A \lor B)$.
+The proof of this tautology is as follows.
 
 First we derive $A \lor \lnot A$ and $B \lor \lnot B$, we use these two
-formulas to consider casess using the elimination of disjunction.
+formulas to consider cases using the elimination of disjunction.
 
 \noindent$
 \begin{nd}
@@ -466,9 +466,9 @@ $
 
 \noindent Finally, we consider the case when $A$ and $B$ are false. In this
 case the assumption of the implication is true, and since the formula is a
-tautlogy and $\lnot A \land \lnot B$ is true, we know that $\lnot (A \lor B)$
+tautology and $\lnot A \land \lnot B$ is true, we know that $\lnot (A \lor B)$
 is also true. Assume that $A \lor B$ is true and note that this is impossible.
-Thus using introudction of the negation we can prove the statement.
+Thus using introduction of the negation we can prove the statement.
 
 \noindent$
 \begin{ndresume}
@@ -527,32 +527,32 @@ $
   \item Line~3 is also an assumption so the corresponding tautology is
     $\lnot (A \lor \lnot A) \implies (A \implies A)$.
   \item Line~4 is a formula $A \lor \lnot A$ which we derived under assumptions
-    $\lnot (A \lor \lnot A)$ and $A$, so the corresponding tautlogy is
+    $\lnot (A \lor \lnot A)$ and $A$, so the corresponding tautology is
     $\lnot (A \lor \lnot A) \implies (A \implies (A \lor \lnot A))$ (it is a
     tautology since we replaced $A$ by $A \lor \lnot A$ in the conclusion of
     the formula corresponding to Line~3).
   \item Line~5 is a formula $\perp$ which we derived under assumptions
-    $\lnot (A \lor \lnot A)$ and $A$, so the corresponding tautlogy is
+    $\lnot (A \lor \lnot A)$ and $A$, so the corresponding tautology is
     $\lnot (A \lor \lnot A) \implies (A \implies \perp)$ (it is a
     tautology since on Line~4 we explained that $\lnot (A \lor \lnot A)
     \implies (A \implies (A \lor \lnot A))$).
   \item Line~6 is a formula $\lnot A$ which we derived under assumptions
-    $\lnot (A \lor \lnot A)$, so the corresponding tautlogy is
+    $\lnot (A \lor \lnot A)$, so the corresponding tautology is
     $\lnot (A \lor \lnot A) \implies \lnot A$ (it is a
     tautology since on Line~5 we explained that $A \implies \perp$ under the
     assumption $\lnot (A \lor \lnot A)$).
   \item Line~7 is a formula $A \lor \lnot A$ which we derived under assumptions
-    $\lnot (A \lor \lnot A)$, so the corresponding tautlogy is
+    $\lnot (A \lor \lnot A)$, so the corresponding tautology is
     $\lnot (A \lor \lnot A) \implies (A \lor \lnot A)$ (it is a
     tautology since on Line~6 we explained that $A$ under the
     assumption $\lnot (A \lor \lnot A)$).
   \item Line~8 is a formula $\perp$ which we derived under assumptions
-    $\lnot (A \lor \lnot A)$, so the corresponding tautlogy is
+    $\lnot (A \lor \lnot A)$, so the corresponding tautology is
     $\lnot (A \lor \lnot A) \implies \perp$ (it is a
     tautology since on Line~6 we explained that $A \lor \lnot A$ under the
     assumption $\lnot (A \lor \lnot A)$).
-  \item Finally, Line~9 is a formula $A \lor \lnot A$ (it is a tautlogy since
-    we proved that $\lnot (A \lor \lnot A) \implies \perp$ is a tautlogy)
+  \item Finally, Line~9 is a formula $A \lor \lnot A$ (it is a tautology since
+    we proved that $\lnot (A \lor \lnot A) \implies \perp$ is a tautology)
 \end{enumerate}
 
 

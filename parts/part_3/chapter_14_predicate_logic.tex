@@ -26,13 +26,13 @@ formally formulas like this:
 
 Another example of a formula we may wish to prove is saying that if
 $f : M \to M$ is an inverse of itself (i.e. $f(f(x)) = f(x)$ for any $x \in M$),
-then $f(f(f(x))) = f(x)$ for any $x \in M$; more formaly, we may wish to prove a
+then $f(f(f(x))) = f(x)$ for any $x \in M$; more formally, we may wish to prove a
 statement
 \[
   (\forall x \in M ~ f(f(x)) = x) \implies
     (\forall x \in M ~ f(f(f(x))) = f(x)).
 \]
-In order to expalin what we mean by such formulas
+In order to explain what we mean by such formulas
 \begin{itemize}
   \item we need to explain what kind functions we can use (in this case we need
     to define $f$).
@@ -61,7 +61,7 @@ An example of a signature is a triple $(\set{\text{``R''}}, \set{\text{``f''}},
   \end{cases}.
 \]
 This signature is enough to define the formulas we discussed. Now we are ready
-to defin the predicate formulas.
+to define the predicate formulas.
 
 \begin{definition}
   Let $\mathcal{S} = (S_\mathrm{rel}, S_\mathrm{fun}, a)$ be a signature.
@@ -309,7 +309,7 @@ $\forall x \forall y \ ((R(x, y) \implies R(y, x)) \land
               \Ai{6}
     \have {6} {\forall x \forall y \ (R(x, y) \implies R(y, x)) \land
       (R(y, x) \implies R(x, y))}
-              \Ai{7}    
+              \Ai{7}
   \end{nd}
 $
 
