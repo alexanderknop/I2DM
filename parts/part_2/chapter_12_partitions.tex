@@ -9,7 +9,7 @@ Note that there are four modes for this question:
   \item the objects and boxes are different.
 \end{enumerate}
 We are going to study the question in all these modes.
-The Table~\ref{table:} summarizes the results we are going
+The Table~\ref{table:partitions} summarizes the results we are going
 to prove for the cases when all the boxes are not empty.
 \begin{table}[h!]
   \centering
@@ -25,34 +25,34 @@ to prove for the cases when all the boxes are not empty.
                        & any number of boxes  & \\
     \rule{0pt}{4ex}
     \multirow{4}{*}{Compositions}
-                       & $n$ distinct objects & \multirow{2}{*}{$\binom{n - 1}{k - 1}$} \\
+                       & $n$ identical objects & \multirow{2}{*}{$\binom{n - 1}{k - 1}$} \\
                        & $k$ distinct boxes   &  \\
    \rule{0pt}{2ex}
-                       & $n$ distinct objects & \multirow{2}{*}{$2^{n - 1}$} \\
+                       & $n$ identical objects & \multirow{2}{*}{$2^{n - 1}$} \\
                        & any number of boxes  & \\
    \rule{0pt}{4ex}
    \multirow{4}{*}{Set partitions}
                       & $n$ distinct objects & \multirow{2}{*}{$S(n, k)$} \\
-                      & $k$ distinct boxes   &  \\
+                      & $k$ identical boxes   &  \\
     \rule{0pt}{2ex}
                       & $n$ distinct objects & \multirow{2}{*}{$B(n)$} \\
                       & any number of boxes  & \\
     \rule{0pt}{4ex}
     \multirow{4}{*}{Integer partitions}
-                       & $n$ distinct objects & \multirow{2}{*}{$p_k(n)$} \\
-                       & $k$ distinct boxes   &  \\
+                       & $n$ identical objects & \multirow{2}{*}{$p_k(n)$} \\
+                       & $k$ identical boxes   &  \\
     \rule{0pt}{2ex}
-                       & $n$ distinct objects & \multirow{2}{*}{$p(n)$} \\
+                       & $n$ identical objects & \multirow{2}{*}{$p(n)$} \\
                        & any number of boxes  & \\
     \bottomrule
   \end{tabular}
   \caption{Formulas for the cases when boxes are not empty}
-\label{table:1}
+  \label{table:partitions}
 \end{table}
 \section{Set Partitions}
 This section considers the case when objects are not identical.
 
-First, we define a notion that allows us to compute the asnwer in case when
+First, we define a notion that allows us to compute the answer in case when
 all the boxes are the same.
 \begin{definition}
   A partition of the set $[n]$ is a collection of non-empty
@@ -70,7 +70,7 @@ It is easy to see that $S(n, 1) = 1$ and $S(n, n) = 1$.
 Moreover, $S(n, k) = 0$ if $k > n$ or $k \le 0$.
 
 Let us find the value in a more complicated setting, we
-claim that $S(n, n - 2) = \binom{n}{2}$. Indeed, any
+claim that $S(n, n - 1) = \binom{n}{2}$. Indeed, any
 partition of $[n]$ into $n - 1$ blocks consists of
 $n - 1$ singletons and one set with two elements, thus we
 just need to select these two elements.
@@ -83,18 +83,17 @@ for Stirling numbers of the second kind.
     S(n, k) = S(n - 1, k - 1) + k \cdot S(n - 1, k).
   \]
 \end{theorem}
-\begin{theorem}
+\begin{proof}
   Let us consider $n$, note that there are two cases either $n$ forms a
   singleton in a partition or it is not the only element in the part.
 
   It is easy to see that there are $S(n - 1, k - 1)$ partitions where $n$ is
-  a singleton and $k \cdot S(n - 1, k)$ partitions when $n$ is not a singleton
+  a singleton and $k \cdot S(n - 1, k)$ partitions where $n$ is not a singleton
   (we multiply by $k$ since there are $k$ possible ways to add $n$ to a
   partition of $[n - 1]$).
-\end{theorem}
+\end{proof}
 
-Note that the number of surjections from $[n]$ to $[k]$ is equal to the
-number of ways to put $n$ different objects into $k$ different boxes.
+Using this notation, we can express the number of surjections.
 \begin{lemma}
   There are exactly $k! S(n, k)$ surjective functions from
   $[n]$ to $[k]$.
@@ -109,6 +108,8 @@ number of ways to put $n$ different objects into $k$ different boxes.
   $f \circ h = g$. Hence, $F^{-1}(f) = k!$ for any $f \in \mathcal{S}(n, k)$.
   Thus $|\mathcal{S}(n, k)| = k! |\mathcal{P}(n, k)|$.
 \end{proof}
+Note that the number of surjections from $[n]$ to $[k]$ is equal to the
+number of ways to put $n$ different objects into $k$ different boxes.
 
 Using this equality, we can prove a surprising result.
 \begin{theorem}
@@ -122,11 +123,11 @@ Using this equality, we can prove a surprising result.
 
 To prove the statement we need the following statement.
 \begin{theorem}
-  Let $p$ and $q$ be a real polynomials. If $p(\ell) = q(\ell)$ for all
-  integers $\ell > 0$, then $p(x) = q(x)$ for all real numbers $x$.
+  Let $p$ and $q$ be real polynomials. If $p(\ell) = q(\ell)$ for all
+  natural numbers $\ell$, then $p(x) = q(x)$ for all real numbers $x$.
 \end{theorem}
 
-\begin{proof}[Theorem~\ref{theorem:stirling-numbers-and-polynomials}]
+\begin{proof}[Proof of Theorem~\ref{theorem:stirling-numbers-and-polynomials}]
   Using the previous result, it is enough to prove that
   for any integer $\ell > 0$,
   \[
@@ -137,13 +138,13 @@ To prove the statement we need the following statement.
   objects into $\ell$ different boxes. Note that if we have $k$ nonempty
   boxes, then there are $\binom{n}{k}$ ways to select these boxes and
   $k! S(\ell, k)$ ways to put objects in these $k$ boxes. Thus formula in
-  the left is equal to the fromula on the right.
+  the left is equal to the formula on the right.
 \end{proof}
 
 \begin{definition}
   The number of all set partitions of $[n]$ into nonempty parts
   is denoted by $B(n)$, and is called the \emph{$n$th Bell number}.
-  (We deifine $B(0) = 0$).
+  (We define $B(0) = 0$).
 \end{definition}
 \nomenclature[C]{$B(n)$}{denotes the $n$th Bell number; i.e.
 the number of partitions of $[n]$ into nonempty blocks}
@@ -153,11 +154,20 @@ It is easy to see that the following theorem holds.
 \begin{theorem}
   For any $n \ge 0$,
   \[
+    B(n) = \sum_{k = 0}^n S(n, k).
+  \]
+\end{theorem}
+
+However, it is also possible to express the Bells numbers in terms
+of themself.
+\begin{theorem}
+  For any $n \ge 0$,
+  \[
     B(n + 1) = \sum_{i = 0}^n \binom{n}{i} B(i).
   \]
 \end{theorem}
 \begin{proof}
-  Note that there are $B(n + 1)$ ways to split $[n]$ into
+  Note that there are $B(n + 1)$ ways to split $[n + 1]$ into
   non-empty blocks. At the same time there are $\binom{n}{n - i}$
   ways to select elements to put with $n + 1$ in the same block
   (if we know that there are $n - i$ elements with $n + 1$ in the block)
@@ -166,7 +176,7 @@ It is easy to see that the following theorem holds.
   into nonempty blocks.
 \end{proof}
 
-\section{Compoisiton}
+\section{Compositon}
 This section answers the question in the case when the objects
 are the same but boxes are different. Since all the objects
 are identical, only the number of objects in each box matters.
@@ -204,9 +214,9 @@ As a result, we can count the number of compositions.
 
 \begin{exercise}
   Let $\ell_1$, \dots, $\ell_k$ be some nonnegative numbers
-  such that $\ell_1 + \dots + \ell_k$.
-  Find the number of weak compositions $(a_1, \dots, a_k)$
-  of $n$ into $k$ such that $a_i \ge \ell_i$.
+  such that $\ell_1 + \dots + \ell_k = \ell$.
+  Find the number of weak compositions (in terms of $\ell$, $k$, and $n$)
+  $(a_1, \dots, a_k)$ of $n$ into $k$ such that $a_i \ge \ell_i$.
 \end{exercise}
 
 \begin{corollary}
@@ -215,13 +225,13 @@ As a result, we can count the number of compositions.
 
 \section{Integer Partitions}
 Now consider the case when both objects and boxes are identical. In this case,
-as in the previous we are only intrested in the numbers of objects in boxes, but
-in addition, we are not intrested in the order of these numbers.
+as in the previous we are only interested in numbers of objects in boxes, but
+in addition, we are not interested in an order of these numbers.
 
 \begin{definition}
   Let $n$ and $a_1 \ge a_2 \ge \dots \ge a_k \ge 1$ be integers so that
   $a_1 + \dots a_k = n$. Then the sequence $(a_1, \dots, a_k)$ is called
-  a \emph{partition}\footnote{%
+  a \emph{partition}\footnote[][-3cm]{%
     Note that we used the word partition in two different meanings: one to
     denote a partition of a set $[n]$ and another to denote the partition of
     an integer $n$. In most of the cases the meaning is clear from the context;
@@ -229,7 +239,7 @@ in addition, we are not intrested in the order of these numbers.
     we say set-partition. Note that in some languages there are two different
     words for these two notions; e.g in French ``partition'' is used for
     set-partitions, and ``partage'' for partitions of the integer n).
-  } of the integer $n$.
+  } of the integer $n$ into $k$ parts.
 
   The number of all the partitions is denoted by $p(n)$ and the number of
   partitions of $n$ into $k$ parts is denoted by $p_k(n)$.
@@ -240,7 +250,7 @@ $k$ blocks}
 \nomenclature[C]{$p(n)$}{denotes the number of all the partitions of $n$}
 
 
-There is no good formula allowing to find the value of $p(n)$. However, we will
+There is no good formula allowing to find the value of $p(n)$. Nevertheless, we will
 prove some properties of $p(n)$. The main tool to explain proofs we are going to
 discuss are Young diagrams\footnote{%
   A small variation of these diagrams is called Ferrers shapes after an
@@ -263,10 +273,10 @@ squares called ``boxes'' such that in the $i$th column there are $a_i$ boxes
 \end{figure}
 We can reflect a Young diagram of a partition of $n$ with respect to its main
 diagonal, we get another shape, representing the \emph{conjugate} partition of
-$n$ (an example of such transformation is depicted on
+$n$ (an example of such transformation is also depicted on
 \ref{figure:young-diagram-example}).
 
-Using these diagrams it is easy to show the following theorems.
+Using these diagrams, it is easy to show the following theorem.
 \begin{theorem}
   The number of partitions of $n$ into at most $k$ parts is equal to that of
   partitions of $n$ into parts not larger than $k$.
@@ -282,8 +292,10 @@ Using these diagrams it is easy to show the following theorems.
   \exercise
     Let $q(n)$ be the number of partitions of $n$ in which each part is at least
     two. Then $q(n) = p(n) - p(n - 1)$, for all positive integers $n \ge 2$.
-  \exercise Find a formula for $S(n, 2)$.
-  \exercise Show that $B(n) \le n!$.
+  \exercise[recommended] Find a formula for $S(n, 2)$.
+  \exercise Find a formula for $S(n, 3)$.
+  \exercise Find a formula for $S(n, n - 2)$.
+  \exercise[recommended] Show that $B(n) \le n!$.
   \exercise Let $m \ge n$ be positive integers. Show that
     \[
       S(m, n) = \sum_{i = 1}^m S(m - i, n - 1) n^{i - 1}.
@@ -291,6 +303,6 @@ Using these diagrams it is easy to show the following theorems.
   \exercise Prove that the number of partitions of $n$ into exactly $k$
     parts is equal to the number of partitions of $n$ in which the
     largest part is exactly $k$.
-  \exercise Prove that the number of partitions of $n$ into at most $k$
+  \exercise[recommended] Prove that the number of partitions of $n$ into at most $k$
     parts is equal to that of partitions of $n + k$ into exactly $k$ parts.
 \end{chapterendexercises}

@@ -5,7 +5,7 @@
 }{youtu.be/HLClazoqqzg}
 \section{Counting Functions}
 Assume we have two finite sets $X$ and $Y$. The first question we may ask is
-how many function exist from $X$ to $Y$?
+how many functions exist from $X$ to $Y$?
 
 
 \begin{theorem}
@@ -43,7 +43,7 @@ are $m$ possible ways to select an image of $1$, $m - 1$ ways to define $f(2)$
 since we cannot use the value selected for $1$ etc. Hence,
 $|(Y)_X| = m (m - 1) \dots (m - n + 1)$ (we denote this number as $(m)_n$).
 \nomenclature[C]{$(m)_n$}{denotes the number of ways to choose an
-subset of $n$ elements from a fixed set of $n$ elements}
+subset of $n$ elements from a fixed set of $m$ elements}
 
 \begin{theorem}
 \label{theorem:number-of-injections}
@@ -81,7 +81,7 @@ permutations of $[n]$ (recall that the number is denoted by $n!$).
 Let us consider the following problem: given a set of $m$ different objects,
 how many ways to select $n$ of them in some order (i.e. if the objects are
 numbers $1$, $2$, and $3$, then selecting $1$ and $2$ is not the same as
-selecting $2$ and $1$). It is clear the the number of ways to select these $n$
+selecting $2$ and $1$). It is clear that the number of ways to select these $n$
 objects is the same as the number of injections $f$ from $[n]$ to the set of
 objects since the first object is $f(1)$, the second is $f(2)$ etc.
 As a result,
@@ -99,7 +99,7 @@ Recall that we denoted the set of all subsets of $X$ by $2^X$. The reason for
 this notation is that $|2^X| = 2^{|X|}$. A quite famous example of a subset of
 this set is the set
 \[
-  \binom{X}{k} = \set[|A| = n]{A \subseteq X}.
+  \binom{X}{n} = \set[|A| = n]{A \subseteq X}.
 \]
 \nomenclature[S]{$\binom{A}{k}$}{denotes the set of subsets of $A$ of
 cardinality $k$}
@@ -126,8 +126,8 @@ is counted $n!$.
   Show that $\binom{n}{k} = \binom{n}{n - k}$ for any $n > k$.
 \end{exercise}
 
-The formula in the Thorem~\ref{theorem:binomial-coefficients-explicit} allows
-to find the values of binomial ceofficients, however, it is not very convinient
+The formula in the Theorem~\ref{theorem:binomial-coefficients-explicit} allows
+to find the values of binomial coefficients, however, it is not very convenient
 since $n!$ is growing very fast. Thus the following theorem provides a much more
 efficient way to compute the values of binomial coefficients.
 
@@ -220,14 +220,14 @@ A mnemonic rule for the Pascal's rule is to use Pascal's triangle.
     1 &    &  4 &    &  6 &    &  4 &    &  1\\\noalign{\smallskip\smallskip}
   \end{tabular}
 \end{figure}
-In this diagram the $k$the entry of the $n$th row
+In this diagram the $k$th entry of the $n$th row
 (entries and rows have numbers starting from $0$) is equal to $\binom{n}{k}$.
 Thus the rule for the triangle is very simple, the value of an entry is equal
 to $1$ if it is the first or the last in the row or it is equal to the sum
 of the two entries to the left and right on the row above.
 
 \begin{exercise}
-  Show that $\binom{n}{k} = \binom{n}{n - k}$ for any intgers $n > k \ge 0$
+  Show that $\binom{n}{k} = \binom{n}{n - k}$ for any integers $n > k \ge 0$
 \end{exercise}
 
 
@@ -304,7 +304,7 @@ $n$, after that selecting $k_2$ objects out of $n - k_1$ etc. As a result,
 Similarly to the Binomial theorem, we can prove the following.
 \begin{theorem}[Multinomial theorem]
 \label{theorem:multinomial-coefficients}
-  For any real numbers $x_1$, $x_2$, \dots, $x_\ell$ and intger $n$,
+  For any real numbers $x_1$, $x_2$, \dots, $x_\ell$ and integer $n$,
   \[
     (x_1 + x_2 + \dots + x_\ell)^n =
     \sum_{k_1, k_2, \dots, k_\ell ~:~ k_1 + k_2 + \dots + k_\ell = n}
@@ -322,11 +322,11 @@ Similarly to the Binomial theorem, we can prove the following.
   Introduction to Combinatorics \#4
 }{youtu.be/OrzMP8nuuho}
 The method that was used to prove Theorem~\ref{theorem:pascals-rule} can be
-generalized to a method that is caleed \emph{double counting principle}.
+generalized to a method that is called \emph{double counting principle}.
 The double counting principle states the following “obvious” fact: if the
 size of a set is counted in two different ways, the answers are the same.
 
-Using this principle we may cprove the following theorem.
+Using this principle we may prove the following theorem.
 \begin{theorem}[Vandermonde's identity]
   For any integers $n, m > k$,
   $\sum_{i = 0}^k \binom{n}{i} \binom{m}{k - i} = \binom{n + m}{k}$.
@@ -388,16 +388,16 @@ However, the method can be used in a more sophisticated way.
       \sum_{k = 0}^{n} \binom{2n + 1}{2k} =
       \sum_{k = 0}^n \binom{2n + 1}{2k + 1}
     \end{gather*}
-  \exercise Show that $\sum_{k = 0}^n \binom{m + k}{k} =
+  \exercise[recommended] Show that $\sum_{k = 0}^n \binom{m + k}{k} =
     \binom{m + n + 1}{n}$.
   \exercise Show that $\sum_{k = 0}^n \binom{n - k}{k} = f_{n + 1}$,
     where $f_1 = 1$, $f_2 = 1$, and $f_{n + 2} = f_{n + 1} + f_n$ for $n > 0$.
   \exercise Show that $\binom{n}{m} \binom{m}{k} =
     \binom{n}{k} \binom{n - k}{m - k}$.
-  \exercise Show that
+  \exercise[recommended] Show that
     $(a + 1)^p \equiv a^p + 1 \pmod{p}$.
-    \hint{Use the binomial therem.}
-  \exercise We say that a function $f : \{0, 1\}^n \to \{0, 1\}$ depends on the
+    \hint{Use the binomial theorem.}
+  \exercise[recommended] We say that a function $f : \{0, 1\}^n \to \{0, 1\}$ depends on the
     $i$th argument iff for some
     $a_1, \dots, a_{i - 1}, a_{i + 1}, \dots, a_n \in \set{0, 1}$
     \[

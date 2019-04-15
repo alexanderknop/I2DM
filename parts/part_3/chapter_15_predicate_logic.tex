@@ -9,6 +9,10 @@ is true for any $w, x, y, z \in M$. In this chapter we define a logical
 system that allows us to formally prove such statements.
 
 \section{Predicate Formulas}
+\marginurl{%
+  Predicate Formulas:\\\noindent
+  Introduction to Mathematical Logic \#5
+}{youtu.be/yb9NvmXyFfg}
 Let us formalize the previous statement:
 \begin{multline*}
   (\forall x, y, z \in M ~ (R(x, y) \land R(y, z)) \implies R(x, z)) \implies \\
@@ -26,13 +30,13 @@ formally formulas like this:
 
 Another example of a formula we may wish to prove is saying that if
 $f : M \to M$ is an inverse of itself (i.e. $f(f(x)) = f(x)$ for any $x \in M$),
-then $f(f(f(x))) = f(x)$ for any $x \in M$; more formaly, we may wish to prove a
+then $f(f(f(x))) = f(x)$ for any $x \in M$; more formally, we may wish to prove a
 statement
 \[
   (\forall x \in M ~ f(f(x)) = x) \implies
     (\forall x \in M ~ f(f(f(x))) = f(x)).
 \]
-In order to expalin what we mean by such formulas
+In order to explain what we mean by such formulas
 \begin{itemize}
   \item we need to explain what kind functions we can use (in this case we need
     to define $f$).
@@ -61,7 +65,7 @@ An example of a signature is a triple $(\set{\text{``R''}}, \set{\text{``f''}},
   \end{cases}.
 \]
 This signature is enough to define the formulas we discussed. Now we are ready
-to defin the predicate formulas.
+to define the predicate formulas.
 
 \begin{definition}
   Let $\mathcal{S} = (S_\mathrm{rel}, S_\mathrm{fun}, a)$ be a signature.
@@ -209,6 +213,10 @@ formula is true, whenever the structure and the values of the variables we
 choose. Such formulas a called \textit{logically valid}.
 
 \section{Natural Deduction}
+\marginurl{%
+  Natural Deduction for Predicate Logic:\\\noindent
+  Introduction to Mathematical Logic \#6
+}{youtu.be/GVht3ES2qqo}
 Natural deduction for the predicate formulas is defined in the same maner as
 the natural deduction for the propositional formulas but now the lines are
 predicate formulas and we can use four additional rules.
@@ -309,7 +317,7 @@ $\forall x \forall y \ ((R(x, y) \implies R(y, x)) \land
               \Ai{6}
     \have {6} {\forall x \forall y \ (R(x, y) \implies R(y, x)) \land
       (R(y, x) \implies R(x, y))}
-              \Ai{7}    
+              \Ai{7}
   \end{nd}
 $
 
