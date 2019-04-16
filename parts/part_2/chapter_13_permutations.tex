@@ -215,6 +215,51 @@ $i$ is in a cycle of length $k$ does not depend on $k$ and is equal to $1 / n$.
   and the proof follows.
 \end{proof}
 
+\section{Superpermutations}
+In this section we consider the following problem. In the TV series ``The
+Melancholy of Haruhi Suzumiya'' there are $14$ episodes. The episodesare
+featuring time travel and chronologically challenging for the viewer. Moreover,
+they were originally aired in a nonlinear order. When the series went to DVD,
+the episodes were rearranged. Thus, it is something of an obsession for fans to
+rewatch the series over and over again, going through in many different
+chronologies. So the question is as follows: if you want to watch all the
+episodes of the anime in every possible order, what is the shortest sequence of
+episodes you need to watch?
+
+Let us first formulate a more formal question.
+\begin{definition}
+  A sequence $w_1, \dots, w_\ell \in [n]$ is called an $n$-superpermutation iff
+  for any $p \in S_n$ there is $i \in [\ell - n]$ such that $w_{i + 1} = p(1)$,
+  $w_{i + 2} = p(2)$, \dots, and $w_{i + n} = p(n)$.
+\end{definition}
+In other words, the question we wish to study can be formulated in the
+following way: what is the minumal length of a $14$-superpermutation?
+
+As usual, we would like to study a more complicated question, what is the
+minimal length of an $n$-superpermutation. The answer for this question is
+unknown; however, there are relatively tight knwon upper and lower bounds. The
+known upper bound was proven by Greg Egan in 2008.
+\begin{theorem}
+  For all $n \ge 4$, there is an $n$-superpermutation of length at most
+  \[
+    n! + (n - 1)! + (n - 2)! + (n - 3)! + n - 3.
+  \]
+\end{theorem}
+
+However, the problem became especially famos because the best known lower bound
+was proven by an anonymous author on 4chan. The anonymous proved the following
+theorem.
+\begin{theorem}
+  Every $n$-superpermutation has length at least
+  \[
+    n! + (n - 1)! + (n - 2)! + n - 3.
+  \]
+\end{theorem}
+\marginurl{%
+  The Verge: \\\noindent
+  An anonymous 4chan post could help solve a 25-year-old math mystery
+}{bit.ly/2Gj8kpT}
+
 \begin{chapterendexercises}
   \exercise Find a formula for $c(n, n - 2)$.
   \exercise Prove that for any fixed $k$, the function $c(n, n - k)$ is a
