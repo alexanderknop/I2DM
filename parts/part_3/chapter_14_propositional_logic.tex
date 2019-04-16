@@ -386,12 +386,12 @@ prove these statements on examples to at least illustrate them.
 \paragraph{Completeness of natural deductions.}
 Proofs of this statement exploit the following idea: if a propositional formula
 is a tautology, then we can verify this statement using the truth table. So
-the proof simply bruteforce all the values of the variables of a formula and
-check that the formula is indeed true.
+the proof simply brute-forces all the values of the variables of a formula and
+checks that the formula is indeed true.
 Consider a tautology $(\lnot A \land \lnot B) \implies \lnot (A \lor B)$.
 The proof of this tautology is as follows.
 
-First we derive $A \lor \lnot A$ and $B \lor \lnot B$, we use these two
+First we derive $A \lor \lnot A$ and $B \lor \lnot B$, and we use these two
 formulas to consider cases using the elimination of disjunction.
 
 \noindent$
@@ -403,8 +403,8 @@ formulas to consider cases using the elimination of disjunction.
 $
 
 
-\noindent After that we consider the case when $A$ and $B$ are both true. Note
-that the assumption of the implication is false in this case. Thus we just need
+\noindent After that, we consider the case when $A$ and $B$ are both true. Note
+that the assumption of the implication is false in this case. Thus, we just need
 to assume $\lnot A \land \lnot B$, derive the contradiction, and derive
 $\lnot (A \lor B)$.
 
@@ -426,8 +426,8 @@ $\lnot (A \lor B)$.
 $
 
 
-\noindent After that we consider the case when $A$ is true but and $B$ is
-false. In this case the assumption of the implication is also false, thus the
+\noindent After that, we consider the case when $A$ is true but and $B$ is
+false. In this case, the assumption of the implication is also false; thus, the
 proof is the same as in the previous case.
 
 \noindent$
@@ -447,7 +447,7 @@ proof is the same as in the previous case.
 \end{ndresume}
 $
 
-\noindent The third case is when $A$ is false but and $B$ is
+\noindent The third case is when $A$ is false and $B$ is
 true. In this case the assumption of the implication is false again, thus the
 proof is the same as in the previous two cases.
 
