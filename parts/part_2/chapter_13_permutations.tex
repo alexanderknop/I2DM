@@ -260,78 +260,113 @@ theorem.
   \]
 \end{theorem}
 \begin{proof}
-  Before we start the proof, let us denote the set of all the sequences of
-  numbers from $[n]$ by $[n]^*$ (we say that $w$ is a word iff $w \in [n]^*$);
-  i.e. $[n]^* = \bigcup_{i \in \N} [n]^i$. We also denote the length of
-  $w \in [n]^*$ by $|w|$; i.e. $|w| = i$ iff $w \in [n]^i$. If $w$ is a word
-  and $a \in [n]$, then the word $(w, a)$ is denoted as $wa$; moreover,
-  if $u \in [n]^k$, then the word $w u_1 \dots u_k$ is denoted as $wu$.
+  First we need to define the notion of length between two permutions
+  $p, q \in S_n$. We say that the distance between $p$ and $q$ is equal to
+  $\mathcal{D} = k$
+  iff there is a word $u$ of length $k$ such that the last $n$ letters of the
+  concatenation of  $w = p(1) p(2) \dots p(n)$ and $u$ encodes the permution
+  $q$ but any the last $n$ symbols of the concatenation of $w$ and any proper
+  prefix of $u$ is not a permution; otherwise, we say that the distance is
+  equal to $+\infty$.
+
+  Note that $n + \mathcal{D}(p_1, \dots, p_\ell) =
+  \sum_{i = 1}^{\ell - 1} \mathcal{D}(p_i, p_{i + 1}) \le m$, where
+  \begin{gather*}
+    w_1, w_2, \dots, w_m \in [n] \\
+    \text{and} \\
+    \set{i_1 < i_2 < \dots < i_\ell} =
+    \set[{
+      w_{i + 1} = p(1), \dots, w_{i + n} = p(n)
+    }]{
+      i \in [m - n]
+    }.
+  \end{gather*}
+  In other words, to find the minumal $n$-superpermutation, we need to find
+  a seqeunce of permuations $p_1, \dots, p_\ell$ containing all the permutions
+  and with the minimal $\mathcal{D}$.
 
   Instead of proving the statement right away, we prove four lower bounds, each
   stronger but more complicated than the previous one.
 
   \begin{itemize}
-    \item ($n! + n - 1$) Let us consider $D_0 : [n]^* \to \Z$ such that
-      $D_0(w) = |w| - C_0(w)$, where $C_0(w)$ is equal to the
-      number of permutations occuring in $w$; i.e.
+    \item ($n! + n - 1$) We prove that
+      \begin{equation}
+        \label{equation:inequality-1}
+        \mathcal{D}(p_1, \dots, p_k) \ge
+        C_0(p_1, \dots, p_k) - 1,
+      \end{equation}
+      where $C_0(p_1, \dots, p_k)$ is equal to
+      the number of permutations occuring in $p_1, \dots, p_k$.
+
+      It is easy to see that $C_0(p_1) = 1$ and $\mathcal{D}(p_1) = 0$ so
+      $\mathcal{D}(p_1) = 0 \ge 1 - 1 = C_0(p_1) - 1$. We may also
+      note that for any $p_{k + 1} \in S_n$,
+      $C_0(p_1, \dots, p_{k + 1}) \le C_0(p_1, \dots, p_k) + 1$ and
+      $\mathcal{D}(p_k, p_{k + 1}) \ge 1$. Therefore
       \begin{multline*}
-        C_0(w_1, \dots, w_\ell) = \\
-          |\set[{
-            \exists i \in [\ell - n] ~
-              w_{i + 1} = p(1), \dots, w_{i + n} = p(n)
-            }]{p \in S_n}|.
+        \mathcal{D}(p_1, \dots, p_{k + 1}) \ge
+        \mathcal{D}(p_1, \dots, p_k) + 1 \ge \\
+        C_0(p_1, \dots, p_k) + 1 - 1 \ge
+        C_0(p_1, \dots, p_{k + 1}) - 1.
       \end{multline*}
-      It is easy to see that any word $w$ of length $n$ has at most one
-      permutation ($C_0(w) \le 1$). Therefore $D_0(w) \ge n - 1$.  We may also
-      note that for any $a \in [n]$, $|wa| = |w| + 1$ and
-      $C_0(wa) \le C_0(w) + 1$. As a result, $D_0(wa) \ge D_0(w)$.
-      Let $W$ be an $n$-superpermutation.
-      Combining these obesrvation with the fact that $C_0(W) = n!$, we prove
-      that $|W| - n! \ge n - 1$. Which implies that $|W| \ge n! + n - 1$.
+
+      Combining (\ref{equation:inequality-1}) with the fact that if all the
+      permutions occur in the seqence $p_1, \dots, p_\ell$, then
+      $C_0(p_1, \dots, p_\ell) = n!$,
+      we prove that any $n$-superpermutation has length at least $n! - 1 + n$.
     \item ($n! + (n - 1)! + (n - 2)$)
       To prove this lower bound we need to introduce the notion of a $1$-cycle
+      class. A $1$-cycle class of permutations of $[n]$ is a
+      subset $\set{p_1, \dots, p_n} \subseteq S_n$ such that $p_{k + 1}(n) =
+      p_k(1)$, and $p_{k + 1}(i + 1) = p_k(i)$. For
+      example, $\set{12345, 23451, 34512, 45123, 51234}$ is a $1$-cycle
       class.
-      A $1$-cycle class of permutations of $[n]$ is a
-      set of permutations of $[n]$, each of which can be
-      formed by taking the first letter of a word and moving it to the end;
-      i.e. the seqence $\set{p_1, \dots, p_n} \subseteq S_n$ is a $1$-cycle
-      class iff $p_{k + 1}(n) = p_k(1)$, and $p_{k + 1}(i + 1) = p_k(i)$. For
-      example, $\set{12345, 23451, 34512, 45123, 51234}$ is a $1$-cycle class.
 
-      We also need to introduce the notion of a $k$-step. In the process of
-      building a word $w$ over the alphabet $[n]$ letter-by-letter, a $k$-step
-      consists of concatenating some word $u$ of length $k$ to the end of $w$
-      such that the last $n$ letters of $wu$ form a permutation of $[n]$ but the
-      same is not true for any proper prefix of $u$. For example,
-      going from $12345$ to $1234521$ is a $2$-step. Note that from any
-      permuation $p$ there are exactly one $1$-step and exactly one $2$-step.
+      Let us now prove that
+      \begin{equation}
+        \label{equation:inequality-2}
+        \mathcal{D}(p_1, \dots, p_k) \ge
+        C_0(p_1, \dots, p_k) + C_1(p_1, \dots, p_k) - 1,
+      \end{equation}
+      where $C_1(p_1, \dots, p_k)$ is equal to the number of completed $1$-cycle
+      classes in $p_1$, \dots, $p_{\ell - 1}$.
 
-      Let us consider $D_1 : [n]^* \to \Z$
-      such that $D_1(w) = |w| - C_0(w) - C_1(w)$, where $C_1(w)$ is equal to
-      the number of $1$-cycles classes we completed before the last symbol.
+      It is easy to see that $C_0(p_1) = 1$, $C_1(p_1) = 0$ and
+      $\mathcal{D}(p_1) = 0$ so
+      $\mathcal{D}(p_1) = 0 \ge 1 + 0 - 1 = C_0(p_1) + C_1(p_1) - 1$.
 
-      It is easy to see that any word $w$ of length $n$ has at most one
-      permutation ($C_0(w) \le 1$) and completed $0$ cycles.
-      ($C_1(w) = 0$). Therefore $D_1(w) \ge n - 1$. We may also
-      note that for any $k$ step from $w$ to $wu$ ($u \in [n]^k$),
-      $|wu| = |w| + k$, $C_0(wu) \le C_0(w) + 1$, and $C_1(wu) \le C_1(w) + 1$.
-      Therefore, $D(wu) \ge D(w)$ for $k \ge 2$. If $k = 1$, then we are still
-      inside the last cycle and we have two options:
+      It is easy to see that for any $p_{k + 1} \in S_n$,
+      \begin{gather*}
+        C_0(p_1, \dots, p_{k + 1}) \le C_0(p_1, \dots, p_k) + 1  \\
+        C_1(p_1, \dots, p_{k + 1}) \le C_1(p_1, \dots, p_k) + 1.
+      \end{gather*}
+      Hence, if $\mathcal{D}(p_k, p_{k + 1}) \ge 2$, then
+      (\ref{equation:inequality-2}) is true.
+
+      If $\mathcal{D}(p_k, p_{k + 1}) = 1$, we claim that only one of $C_0$ and
+      $C_1$ increased. Note that $p_k$ and $p_{k + 1}$ are in the same $1$-
+      cycle class. Therefore
       \begin{enumerate}
-        \item either this cycle is not finished yet and $C_1(wu) = C_1(w)$,
-        \item or we already finished the cycle and $C_0(wu) = C_0(w)$.
+        \item either this cycle is not completed yet and
+          $C_1(p_1, \dots, p_{k + 1}) = C_1(p_1, \dots, p_k)$,
+        \item or we finished the cycle and
+          $C_0(p_1, \dots, p_{k + 1}) = C_0(p_1, \dots, p_k)$.
       \end{enumerate}
-      As a result, $D_1(wa) \ge D_1(w)$.
+      As a result, (\ref{equation:inequality-2}) is true.
 
-      Let $W$ be an $n$-superpermutation. Combining these obesrvation with the
-      fact that $C_0(W) = n!$ and $C_1(W_1, \dots, W_{|W| - 1}) = (n - 1)!$, we
-      prove that $|W| - n! - (n - 1)! - 1 \ge n - 1$. Which implies that
-      $|W| \ge n! + (n - 1)! + (n - 2)$.
+      Combining (\ref{equation:inequality-2}) with the
+      fact that if all the
+      permutions occur in the seqence $p_1, \dots, p_\ell$, then
+      $C_0(p_1, \dots, p_\ell) = n!$ and $C_1(p_1, \dots, p_\ell) \ge
+      (n - 1)! - 1$,
+      we prove that any $n$-superpermutation has length at least
+      $n! + (n - 1)! - 1 - 1 + n$.
     \item ($n! + (n - 1)! + (n - 2)! + (n - 3)$)
       To prove the final lower bound we need to define $2$-cycles. The $2$-cycle
-      generated by $p$ is defined as the seqence of permuations that starts at
-      $p$, follows $n - 1$ consecutive $1$-steps, then follows the $2$-steps,
-      and then repeats these steps $n - 2$ more times. For example,
+      generated by $p$ is the seqence $p_1, \dots, p_{n(n - 1)}$ such that
+      $p_1 = p$, $\mathcal{D}(p_{in + j}, p_{in + j + 1}) = 1$ for $i \ge 0$
+      and $n \ge j \ge 1$, and $\mathcal{D}(p_{in}, p_{in + 1}) = 2$ for
+      $i \ge 1$ (note that the cycle is unique). For example,
       $12345$, $23451$, $34512$, $45123$, $51234$, $23415$, $34152$, $41523$,
       $15234$, $52341$, $34125$, $41253$, $12534$, $25341$, $53412$, $41235$,
       $12354$, $23541$, $35412$, $54123$ is a $2$-cycle generated by $12345$,
@@ -346,49 +381,62 @@ theorem.
         &\dots, \\
         &p(n - 1) p(1) \dots p(n - 2) p(n).
       \end{align*}
-      Note that each cycle consists of $n (n - 1)$ permuations. We say that a
-      word enters the $2$-cycle generated by $p$ if it arrives $2$-step reached
-      $p$. Because each $2$-cycle contains only $n (n - 1)$ permutations, a
-      superpermutation must enter at least $(n - 2)!$ different $2$-cycles.
+      We say that a seqence $p_1$, \dots, $p_k$ enters the $2$-cycle generated
+      by $p$ if $p_{i + 1} = p$ and $\mathcal{D}(p_i, p_{i + 1}) \ge 2$.
+      Because each $2$-cycle contains only $n (n - 1)$ permutations, any
+      sequence containing all the permutions must enter at least $(n - 2)!$
+      different $2$-cycles.
 
-      Let us consider $D_2 : [n]^* \to \Z$
-      such that $D_1(w) = |w| - C_0(w) - C_1(w) - C_2(w)$, where $C_2(w)$ is
-      equal to the number of $1$-cycles we entered.
+      Let us now prove that
+      \begin{multline}
+        \label{equation:inequality-3}
+        \mathcal{D}(p_1, \dots, p_k) \ge \\
+        C_0(p_1, \dots, p_k) + C_1(p_1, \dots, p_k) + C_2(p_1, \dots, p_k) - 2,
+      \end{multline}
+      where $C_2(p_1, \dots, p_k)$ is equal to the number of entered $2$-cycles.
 
-      It is easy to see that any word $w$ of length $n$ has at most one
-      permutation ($C_0(w) \le 1$), completed $0$ cycles.
-      ($C_1(w) = 0$), and entered only one $2$-cycle. Therefore
-      $D_2(w) \ge n - 2$. We may also
-      note that for any $k$ step from $w$ to $wu$ ($u \in [n]^k$),
-      $|wu| = |w| + k$, $C_0(wu) \le C_0(w) + 1$, $C_1(wu) \le C_1(w) + 1$, and
-      $C_1(wu) \le C_1(w) + 2$.
-      Therefore, $D(wu) \ge D(w)$ for $k \ge 3$.
+      It is easy to see that $C_0(p_1) = 1$, $C_1(p_1) = 0$, $C_2(p_1) = 1$, and
+      $\mathcal{D}(p_1) = 0$ so
+      $\mathcal{D}(p_1) = 0 \ge 1 + 0 + 1 - 2 =
+      C_0(p_1) + C_1(p_1) + C_2(p_1)- 2$.
+
+      It is easy to see that for any $p_{k + 1} \in S_n$,
+      \begin{gather*}
+        C_0(p_1, \dots, p_{k + 1}) \le C_0(p_1, \dots, p_k) + 1  \\
+        C_1(p_1, \dots, p_{k + 1}) \le C_1(p_1, \dots, p_k) + 1 \\
+        C_2(p_1, \dots, p_{k + 1}) \le C_2(p_1, \dots, p_k) + 1.
+      \end{gather*}
+      Hence, if $\mathcal{D}(p_k, p_{k + 1}) \ge 3$, then
+      (\ref{equation:inequality-3}) is true.
 
       If $k = 1$, then we are still
-      inside the last cycle and $C_2(wu) = C_2(w)$, therefore we have two
-      options:
-      \begin{enumerate}
-        \item either this cycle is not finished yet and $C_1(wu) = C_1(w)$,
-        \item or we already finished the cycle and $C_0(wu) = C_0(w)$.
-      \end{enumerate}
+      inside the last $2$-cycle and inside the last $1$-cycle class, therefore
+      like in the previous case (\ref{equation:inequality-3}) is true.
 
-      If $k = 2$, then we claim that if the value of $C_1(w)$ increases, then
-      the value of $C_2(w)$ cannot change. Suppose that the value of $C_1$
-      increases. This means that the permuation $q$ before the last one
-      completed the $1$-cycle class and we have not visited it before. Since we
-      completed the $1$-cycle class, we wisited the permutation $r = q(2) q(3)
-      \dots q(n) q(1)$ by $2$-step. It is also possible to note that $r$ and
-      the last visited permution $p$ generate the same cyclic class and it
-      implies that $C_2(wu) = C_2(w)$.
-      As a result, $D_2(wu) \ge D_2(w)$.
+      If $k = 2$, then we claim that if the value of $C_1$ increases, then
+      the value of $C_2$ cannot change. Suppose that the value of $C_1$
+      increases. This means that the permuation $p_k$ completed the $1$-cycle
+      class and we have not visited it before. Since we
+      completed the $1$-cycle class, we visited the permutation
+      $q = p_k(2) p_k(3) \dots p_k(n) p_k(1)$ by $2$-step.
+      It is also possible to note that $q$ and
+      $p_{k + 1}$ generate the same cyclic class and it
+      implies that $C_2(p_1, \dots, p_{k + 1}) = C_2(p_1, \dots, p_k)$.
+      As a result, (\ref{equation:inequality-3}) is true.
 
-      Let $W$ be an $n$-superpermutation. Combining these obesrvation with the
-      fact that $C_0(W) = n!$, $C_1(W_1, \dots, W_{|W| - 1}) = (n - 1)!$, and
-      $C_2(W) \ge (n - 2)!$, we prove that
-      $|W| - n! - (n - 1)! - 1  + (n - 2)! \ge n - 2$. Which implies that
-      $|W| \ge n! + (n - 1)! + (n - 2)! + (n - 3)$.
+      Combining (\ref{equation:inequality-2}) with the
+      fact that if all the
+      permutions occur in the seqence $p_1, \dots, p_\ell$, then
+      $C_0(p_1, \dots, p_\ell) = n!$, $C_1(p_1, \dots, p_\ell) \ge
+      (n - 1)! - 1$, and $C_2(p_1, \dots, p_\ell) \ge (n - 2)!$,
+      we prove that any $n$-superpermutation has length at least
+      $n! + (n - 1)! - 1 + (n - 2)! - 2 + n$.
   \end{itemize}
 \end{proof}
+
+Using this inequality we may conclude that real fans of
+``The Melancholy of Haruhi Suzumiya'' need to watch at least $93884313611$
+episodes which takes around $3572462$ years.
 \begin{chapterendexercises}
   \exercise Find a formula for $c(n, n - 2)$.
   \exercise Prove that for any fixed $k$, the function $c(n, n - k)$ is a
