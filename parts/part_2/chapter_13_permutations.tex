@@ -1,8 +1,8 @@
 \chapter{Permutations}
-Recall that permutation is a bijection from $[n]$ to $[n]$. We already discussed
-several properties of them. In this chapter we will discuss some combinatorial
-properties of them. We denote by $S_n$ the set of all permutations of
-$[n]$.\footnote{%
+Recall that a permutation is a bijection from $[n]$ to $[n]$. We already
+discussed several properties of them. In this chapter we will discuss some
+combinatorial properties of them. We denote by $S_n$ the set of all
+permutations of $[n]$.\footnote{%
   Letter $S$ is used since in the group theory this set is called
   the symmetric group.
 }
@@ -102,8 +102,9 @@ type exist?'', the following theorem gives an answer for this question.
 
 Note that this result allows us to answer the following problem. King Arthur has
 $n$ Knights of the Round Table; Arthur wonders: how many ways to seat in the
-round table? In other words he is asking how many permutations of the cyclic type
-$(0, 0, \dots, 0, 1)$. Hence, the answer for Arthur's question is $n!$.
+round table? In other words he is asking how many permutations of the cyclic
+type $(0, 0, \dots, 0, 1)$. Hence, the answer for Arthur's question is $n!$
+(note that we also need to give a seat to the king).
 
 \section{Stirling Numbers of The First Kind}
 In the previous chapter we defined Stirling numbers of the second kind; in this
@@ -217,8 +218,7 @@ $i$ is in a cycle of length $k$ does not depend on $k$ and is equal to $1 / n$.
 
 \section{Superpermutations}
 In this section we consider the following problem. In the TV series ``The
-Melancholy of Haruhi Suzumiya'' there are $14$ episodes. The episodes are
-featuring time travel and chronologically challenging for the viewer. Moreover,
+Melancholy of Haruhi Suzumiya'' there are $14$ episodes. The episodes feature time travel and are chronologically challenging for the viewer. Moreover,
 they were originally aired in a nonlinear order. When the series went to DVD,
 the episodes were rearranged. Thus, it is something of an obsession for fans to
 rewatch the series over and over again, going through in many different
@@ -438,7 +438,7 @@ Using this inequality we may conclude that real fans of
 ``The Melancholy of Haruhi Suzumiya'' need to watch at least $93884313611$
 episodes which takes around $3572462$ years.
 \begin{chapterendexercises}
-  \exercise[recommended] Find a formula for $c(n, n - 2)$.
+  \exercise[recommended] Find an explicit formula for $c(n, n - 2)$.
   \exercise Prove that for any fixed $k$, the function $c(n, n - k)$ is a
     polynomial function of $n$. Find the degree of that polynomial.
   \exercise Let $p$ be a permutation of $[n]$. We associate a permutation matrix
