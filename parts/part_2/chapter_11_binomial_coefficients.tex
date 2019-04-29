@@ -3,9 +3,52 @@
   Permutations and Binomial Coefficients:\\\noindent
   Introduction to Combinatorics \#4
 }{youtu.be/HLClazoqqzg}
+This chapter studies the following question:
+``how many ways to take $k$ objects out of a box with $n$ objects''.
+We assume that the objects are taken one by one; note that there are four modes
+for this question.
+\begin{enumerate}
+  \item we return objects to the box after we take them and the order in which
+    we take them matters,
+  \item we are \emph{do not} return the obejcts and the order in which
+    we take them matters,
+  \item we return objects to the box after we take them and the order in which
+    we take them \emph{does not} matter,
+  \item we are \emph{do not} return the obejcts and the order in which
+    we take them \emph{does not} matter.
+\end{enumerate}
+
+The Table~\ref{table:selections} summarizes the results we are going
+to prove.
+\begin{table}[h!]
+  \centering
+  \begin{tabular}{lll}
+    \toprule
+    Object's name & Parameters & Formula \\
+    \midrule
+    \multirow{2}{*}{Functions} & we return objects and & \multirow{2}{*}{$n^k$} \\
+                               & the order \emph{is} important & \\
+    \multirow{2}{*}{Injections} & we \emph{do not} return objects and & \multirow{2}{*}{$(n)_k$} \\
+                                & the order \emph{is} important & \\
+    \multirow{2}{*}{Subsets} & we \emph{do not} return objects and & \multirow{2}{*}{$\binom{n}{k}$} \\
+                             & the order \emph{is not} important & \\
+    \multirow{2}{*}{Multisets} & we return objects and & \multirow{2}{*}{$\binom{n + k - 1}{k}$} \\
+                               & the order \emph{is not} important & \\
+    \bottomrule
+  \end{tabular}
+  \caption{Formulas for the numbers of ways to take $k$ objects out of a box
+  with $n$ objects}
+  \label{table:selections}
+\end{table}
+
 \section{Counting Functions}
-Assume we have two finite sets $X$ and $Y$. The first question we may ask is
-how many functions exist from $X$ to $Y$?
+Note that if we number objects using numbers from $1$ to $n$, then in the first
+mode the asnwer is the same as the number of functions from $[n]$ to $[k]$ since
+we need to just choose which objects is selected on the $i$th step for
+$i \in [k]$.
+
+Let us solve a more general question; assume we have two finite sets $X$ and
+$Y$: how many functions exist from $X$ to $Y$?
 
 
 \begin{theorem}
@@ -25,6 +68,11 @@ how many functions exist from $X$ to $Y$?
     |Y^{[n - 1]} \times Y| = |Y^{[n - 1]}| \cdot |Y| = |Y|^n.
   \end{multline*}
 \end{proof}
+
+\begin{corollary}
+  There are $n^k$ ways to select $k$ objects out of $n$ if the order matters
+  and we return objects to the box after we pick them.
+\end{corollary}
 
 \begin{exercise}
   Finish the proof of Theorem~\ref{theorem:number-of-functions} by proving that
@@ -78,22 +126,14 @@ permutations of $[n]$ (recall that the number is denoted by $n!$).
   the statement holds for any set $X$.
 \end{exercise}
 
-Let us consider the following problem: given a set of $m$ different objects,
-how many ways to select $n$ of them in some order (i.e. if the objects are
-numbers $1$, $2$, and $3$, then selecting $1$ and $2$ is not the same as
-selecting $2$ and $1$). It is clear that the number of ways to select these $n$
-objects is the same as the number of injections $f$ from $[n]$ to the set of
-objects since the first object is $f(1)$, the second is $f(2)$ etc.
-As a result,
 \begin{corollary}
-  There are $(m)_n$ ways to select $n$ objects if the order matters.
+  There are $(n)_k$ ways to select $k$ objects out of $n$ if the order matters
+  and we do not return objects to the box after we pick them.
 \end{corollary}
 
 \section{Counting Subsets}
-In this section we consider a modification of the previous problem. We count
-the number of ways to select $n$ objects out of $m$ if the order does not
-matter. Note that it is the same as counting the number of subsets of
-cardinality $n$ of the set of $m$ objects.
+In this section we study the version of the question when we do not return the
+objects back to the box; i.e., we cannot select an object twice.
 
 Recall that we denoted the set of all subsets of $X$ by $2^X$. The reason for
 this notation is that $|2^X| = 2^{|X|}$. A quite famous example of a subset of
@@ -280,9 +320,22 @@ coefficients.
   \end{multline*}
 \end{proof}
 
+Finally, we need to answer the question in the mode, when the order does not
+matter and we do not return the objects to the box. The answer to this question
+is clearly equal to the number of multisets of $[n]$ containing $k$ objects.
+\begin{theorem}
+\label{theorem:multisets}
+  The number of $k$-element multisets whose elements all belong to $[n]$ is
+  $\binom{n + k - 1}{k}$.
+\end{theorem}
+
+\begin{theorem}
+  Prove Theorem~\ref{theorem:multisets}
+\end{theorem}
+
 \subsection{Counting Groups of Subsets}
 In this section we study a generalization of the question we study in the
-previous section: ``How many ways to select $\ell$ groups made of $k_1$, $k_2$,
+previous sections: ``How many ways to select $\ell$ groups made of $k_1$, $k_2$,
 \dots, $k_\ell$ objects, respectively, out of $n$''. We denote this number by
 $\binom{n}{k_1 \ k_2 \ \dots \ k_\ell \  (n - m)}$, where
 $m = k_1 + \dots + k_\ell$.
