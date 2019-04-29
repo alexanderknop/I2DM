@@ -179,24 +179,22 @@ $\fpm^{-1}(2 3 1 5 4) = (2) (3, 1) (5, 4) = (3, 1) (5, 4)$.
 Using this transformation we may prove the following result, which is very
 technical without this transformation.
 \begin{theorem}
-  Let $n$ be a positive integer and $i \neq j \in [n]$. There are $n! / 2$
-  permutations of $[n]$ such that $i$ and $j$ are in the same cycle.
+  Let $n$ be a positive integer and $x_1, \dots, x_k \in [n]$ be $k$ different
+  numbers. There are $n! / k$ permutations of $[n]$ such that $x_1$, \dots,
+  $x_k$ are in the same cycle.
 \end{theorem}
 \begin{proof}
-  Without loss of generality, $i = n$ and $j = n - 1$.
+  Without loss of generality, $x_1 = n$.
 
   Let $q = q_1 q_2 \dots q_n$ be a permutation of $n$, and let $\fpm(p) = q$,
-  where $\fpm$ is the bijection from Lemma~\ref{lemma:permuations-transfomration}.
-  The entries of $q$ that are larger than all entries on their left are called
-  left-to-right maxima. Note that if $q$ has $\ell$ left-to-right maxima,
-  then $p$ has t cycles. Also note that the rightmost left-to-right maximum of
-  $q$ is the entry $n$.
-
-  Therefore, the last cycle of $p$ starts with $n$, and the entries in that
+  where $\fpm$ is the bijection from
+  Lemma~\ref{lemma:permuations-transfomration}.
+  Note that the last cycle of $p$ starts with $x_1 = n$, and the entries in that
   cycle of $q$ are precisely the entries on the right of $n$ in $q$. Therefore,
-  $p$ contains $n$ and $n - 1$ in the same cycle if and only if $n - 1$ is on
-  the right of $n$ in $q$. As that happens in half of all permutations, the
-  proof follows.
+  $p$ contains $x_1$, \dots, $x_k$ in the same cycle if and only if $x_2$,
+  \dots, $x_k$ are on the right of $n$ in $q$. It is easy to see that
+  there are $\binom{n}{k} (k - 1)! (n - k)! = \frac{n!}{k}$ such permutations
+  $q$.
 \end{proof}
 
 Another nice result states that for any $i \in [n]$, the probability that
@@ -437,6 +435,8 @@ theorem.
 Using this inequality we may conclude that real fans of
 ``The Melancholy of Haruhi Suzumiya'' need to watch at least $93884313611$
 episodes which takes around $3572462$ years.
+
+
 \begin{chapterendexercises}
   \exercise[recommended] Find an explicit formula for $c(n, n - 2)$.
   \exercise Prove that for any fixed $k$, the function $c(n, n - k)$ is a
@@ -449,7 +449,7 @@ episodes which takes around $3572462$ years.
   \exercise[recommended] Prove that permutations $p$ and $p^{-1}$ are of the
     same cycle type for any permutation $p$.
   \exercise A permutation $p$ is called a nontrivial involution if
-    $p^2 = 1 2 \dots n$, but $p \neq 12 \dots n$. Prove that if $n > 1$, the
+    $p^2 = 1 2 \dots n$, but $p \neq 1 2 \dots n$. Prove that if $n > 1$, the
     number of nontrivial involutions in $S_n$ is odd.
   \exercise Show that any permutation can be obtained as a product of some
     transpositions; i.e., cycles of length $2$.
