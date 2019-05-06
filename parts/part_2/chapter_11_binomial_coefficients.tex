@@ -3,9 +3,52 @@
   Permutations and Binomial Coefficients:\\\noindent
   Introduction to Combinatorics \#4
 }{youtu.be/HLClazoqqzg}
+This chapter studies the following question:
+``how many ways to take $k$ objects out of a box with $n$ objects''.
+We assume that the objects are taken one by one; note that there are four modes
+for this question.
+\begin{enumerate}
+  \item we return objects to the box after we take them and the order in which
+    we take them matters,
+  \item we are \emph{do not} return the obejcts and the order in which
+    we take them matters,
+  \item we return objects to the box after we take them and the order in which
+    we take them \emph{does not} matter,
+  \item we are \emph{do not} return the obejcts and the order in which
+    we take them \emph{does not} matter.
+\end{enumerate}
+
+The Table~\ref{table:selections} summarizes the results we are going
+to prove.
+\begin{table}[h!]
+  \centering
+  \begin{tabular}{lll}
+    \toprule
+    Object's name & Parameters & Formula \\
+    \midrule
+    \multirow{2}{*}{Functions} & we return objects and & \multirow{2}{*}{$n^k$} \\
+                               & the order \emph{is} important & \\
+    \multirow{2}{*}{Injections} & we \emph{do not} return objects and & \multirow{2}{*}{$(n)_k$} \\
+                                & the order \emph{is} important & \\
+    \multirow{2}{*}{Subsets} & we \emph{do not} return objects and & \multirow{2}{*}{$\binom{n}{k}$} \\
+                             & the order \emph{is not} important & \\
+    \multirow{2}{*}{Multisets} & we return objects and & \multirow{2}{*}{$\binom{n + k - 1}{k}$} \\
+                               & the order \emph{is not} important & \\
+    \bottomrule
+  \end{tabular}
+  \caption{Formulas for the numbers of ways to take $k$ objects out of a box
+  with $n$ objects}
+  \label{table:selections}
+\end{table}
+
 \section{Counting Functions}
-Assume we have two finite sets $X$ and $Y$. The first question we may ask is
-how many function exist from $X$ to $Y$?
+Note that if we number objects using numbers from $1$ to $n$, then in the first
+mode the asnwer is the same as the number of functions from $[n]$ to $[k]$ since
+we need to just choose which objects is selected on the $i$th step for
+$i \in [k]$.
+
+Let us solve a more general question; assume we have two finite sets $X$ and
+$Y$: how many functions exist from $X$ to $Y$?
 
 
 \begin{theorem}
@@ -26,6 +69,11 @@ how many function exist from $X$ to $Y$?
   \end{multline*}
 \end{proof}
 
+\begin{corollary}
+  There are $n^k$ ways to select $k$ objects out of $n$ if the order matters
+  and we return objects to the box after we pick them.
+\end{corollary}
+
 \begin{exercise}
   Finish the proof of Theorem~\ref{theorem:number-of-functions} by proving that
   the statement holds for any set $X$.
@@ -42,8 +90,8 @@ to define $f \in (Y)_X$ we need to choose images of $1$, $2$, \dots, $n$. There
 are $m$ possible ways to select an image of $1$, $m - 1$ ways to define $f(2)$
 since we cannot use the value selected for $1$ etc. Hence,
 $|(Y)_X| = m (m - 1) \dots (m - n + 1)$ (we denote this number as $(m)_n$).
-\nomenclature[C]{$(m)_n$}{denotes the number of ways to choose an
-subset of $n$ elements from a fixed set of $n$ elements}
+\nomenclature[C]{$(m)_n$}{denotes the number of ways to choose a
+subset of $n$ elements from a fixed set of $m$ elements}
 
 \begin{theorem}
 \label{theorem:number-of-injections}
@@ -78,28 +126,20 @@ permutations of $[n]$ (recall that the number is denoted by $n!$).
   the statement holds for any set $X$.
 \end{exercise}
 
-Let us consider the following problem: given a set of $m$ different objects,
-how many ways to select $n$ of them in some order (i.e. if the objects are
-numbers $1$, $2$, and $3$, then selecting $1$ and $2$ is not the same as
-selecting $2$ and $1$). It is clear the the number of ways to select these $n$
-objects is the same as the number of injections $f$ from $[n]$ to the set of
-objects since the first object is $f(1)$, the second is $f(2)$ etc.
-As a result,
 \begin{corollary}
-  There are $(m)_n$ ways to select $n$ objects if the order matters.
+  There are $(n)_k$ ways to select $k$ objects out of $n$ if the order matters
+  and we do not return objects to the box after we pick them.
 \end{corollary}
 
 \section{Counting Subsets}
-In this section we consider a modification of the previous problem. We count
-the number of ways to select $n$ objects out of $m$ if the order does not
-matter. Note that it is the same as counting the number of subsets of
-cardinality $n$ of the set of $m$ objects.
+In this section we study the version of the question when we do not return the
+objects back to the box; i.e., we cannot select an object twice.
 
 Recall that we denoted the set of all subsets of $X$ by $2^X$. The reason for
 this notation is that $|2^X| = 2^{|X|}$. A quite famous example of a subset of
 this set is the set
 \[
-  \binom{X}{k} = \set[|A| = n]{A \subseteq X}.
+  \binom{X}{n} = \set[|A| = n]{A \subseteq X}.
 \]
 \nomenclature[S]{$\binom{A}{k}$}{denotes the set of subsets of $A$ of
 cardinality $k$}
@@ -126,8 +166,8 @@ is counted $n!$.
   Show that $\binom{n}{k} = \binom{n}{n - k}$ for any $n > k$.
 \end{exercise}
 
-The formula in the Thorem~\ref{theorem:binomial-coefficients-explicit} allows
-to find the values of binomial ceofficients, however, it is not very convinient
+The formula in the Theorem~\ref{theorem:binomial-coefficients-explicit} allows
+to find the values of binomial coefficients, however, it is not very convenient
 since $n!$ is growing very fast. Thus the following theorem provides a much more
 efficient way to compute the values of binomial coefficients.
 
@@ -185,7 +225,7 @@ efficient way to compute the values of binomial coefficients.
 \end{proof}
 
 A mnemonic rule for the Pascal's rule is to use Pascal's triangle.
-\footnote{
+\footnote[][-8cm]{
   The pattern of numbers that forms Pascal's triangle was known well before
   Pascal's time.  Halayudha, around 975 explained obscure references to
   Meru-prastaara, the Staircase of Mount Meru, giving the first surviving
@@ -220,14 +260,14 @@ A mnemonic rule for the Pascal's rule is to use Pascal's triangle.
     1 &    &  4 &    &  6 &    &  4 &    &  1\\\noalign{\smallskip\smallskip}
   \end{tabular}
 \end{figure}
-In this diagram the $k$the entry of the $n$th row
+In this diagram the $k$th entry of the $n$th row
 (entries and rows have numbers starting from $0$) is equal to $\binom{n}{k}$.
 Thus the rule for the triangle is very simple, the value of an entry is equal
 to $1$ if it is the first or the last in the row or it is equal to the sum
 of the two entries to the left and right on the row above.
 
 \begin{exercise}
-  Show that $\binom{n}{k} = \binom{n}{n - k}$ for any intgers $n > k \ge 0$
+  Show that $\binom{n}{k} = \binom{n}{n - k}$ for any integers $n > k \ge 0$
 \end{exercise}
 
 
@@ -280,9 +320,22 @@ coefficients.
   \end{multline*}
 \end{proof}
 
+Finally, we need to answer the question in the mode, when the order does not
+matter and we do not return the objects to the box. The answer to this question
+is clearly equal to the number of multisets of $[n]$ containing $k$ objects.
+\begin{theorem}
+\label{theorem:multisets}
+  The number of $k$-element multisets whose elements all belong to $[n]$ is
+  $\binom{n + k - 1}{k}$.
+\end{theorem}
+
+\begin{theorem}
+  Prove Theorem~\ref{theorem:multisets}
+\end{theorem}
+
 \subsection{Counting Groups of Subsets}
 In this section we study a generalization of the question we study in the
-previous section: ``How many ways to select $\ell$ groups made of $k_1$, $k_2$,
+previous sections: ``How many ways to select $\ell$ groups made of $k_1$, $k_2$,
 \dots, $k_\ell$ objects, respectively, out of $n$''. We denote this number by
 $\binom{n}{k_1 \ k_2 \ \dots \ k_\ell \  (n - m)}$, where
 $m = k_1 + \dots + k_\ell$.
@@ -304,7 +357,7 @@ $n$, after that selecting $k_2$ objects out of $n - k_1$ etc. As a result,
 Similarly to the Binomial theorem, we can prove the following.
 \begin{theorem}[Multinomial theorem]
 \label{theorem:multinomial-coefficients}
-  For any real numbers $x_1$, $x_2$, \dots, $x_\ell$ and intger $n$,
+  For any real numbers $x_1$, $x_2$, \dots, $x_\ell$ and integer $n$,
   \[
     (x_1 + x_2 + \dots + x_\ell)^n =
     \sum_{k_1, k_2, \dots, k_\ell ~:~ k_1 + k_2 + \dots + k_\ell = n}
@@ -322,11 +375,11 @@ Similarly to the Binomial theorem, we can prove the following.
   Introduction to Combinatorics \#4
 }{youtu.be/OrzMP8nuuho}
 The method that was used to prove Theorem~\ref{theorem:pascals-rule} can be
-generalized to a method that is caleed \emph{double counting principle}.
+generalized to a method that is called \emph{double counting principle}.
 The double counting principle states the following “obvious” fact: if the
 size of a set is counted in two different ways, the answers are the same.
 
-Using this principle we may cprove the following theorem.
+Using this principle we may prove the following theorem.
 \begin{theorem}[Vandermonde's identity]
   For any integers $n, m > k$,
   $\sum_{i = 0}^k \binom{n}{i} \binom{m}{k - i} = \binom{n + m}{k}$.
@@ -371,34 +424,34 @@ However, the method can be used in a more sophisticated way.
     $\sum_{k = 0}^n \binom{n}{k}^2 = \binom{2n}{n}$.
   \exercise Show that $\sum_{m = k}^n \binom{m}{k} =
     \binom{n + 1}{k + 1}$.
-    \hint{Note that summand on the right corresponds to the number of ways to
-    select $k$ elements out of $n + 1$; $m$ in the formula on the left denote
-    the maximum of this selected set minus one.}
+    \hint{Note that the formula on the right corresponds to the number of ways
+      to select $k + 1$ elements out of $n + 1$; $m$ in the summation on the left denotes the maximum of this selected set minus one.}
   \exercise Using the previous formula, find the formulas for the following
     expressions:
-    \begin{itemize}
+    \begin{enumerate*}
       \item $\sum_{k = 0}^n k$,
       \item $\sum_{k = 0}^n k^2$, and
       \item $\sum_{k = 0}^n k^3$.
-    \end{itemize}
-  \exercise Show that
-    \begin{gather*}
-      \sum_{k = 0}^{n} \binom{2n}{2k} =
-      \sum_{k = 0}^{n - 1} \binom{2n}{2k + 1} \\
-      \text{and} \\
-      \sum_{k = 0}^{n} \binom{2n + 1}{2k} =
-      \sum_{k = 0}^n \binom{2n + 1}{2k + 1}
-    \end{gather*}
-  \exercise Show that $\sum_{k = 0}^n \binom{m + k}{k} =
+    \end{enumerate*}
+  \exercise Using the binomial theorem, explain the following equalities:
+    \begin{enumerate*}
+      \item $\sum_{k = 0}^{n} \binom{2n}{2k} =
+        \sum_{k = 0}^{n - 1} \binom{2n}{2k + 1}$,
+        and
+      \item $\sum_{k = 0}^{n} \binom{2n + 1}{2k} =
+        \sum_{k = 0}^n \binom{2n + 1}{2k + 1}$.
+    \end{enumerate*}
+
+  \exercise[recommended] Show that $\sum_{k = 0}^n \binom{m + k}{k} =
     \binom{m + n + 1}{n}$.
   \exercise Show that $\sum_{k = 0}^n \binom{n - k}{k} = f_{n + 1}$,
     where $f_1 = 1$, $f_2 = 1$, and $f_{n + 2} = f_{n + 1} + f_n$ for $n > 0$.
   \exercise Show that $\binom{n}{m} \binom{m}{k} =
     \binom{n}{k} \binom{n - k}{m - k}$.
-  \exercise Show that
+  \exercise[recommended] Show that
     $(a + 1)^p \equiv a^p + 1 \pmod{p}$.
-    \hint{Use the binomial therem.}
-  \exercise We say that a function $f : \{0, 1\}^n \to \{0, 1\}$ depends on the
+    \hint{Use the binomial theorem.}
+  \exercise[recommended] We say that a function $f : \{0, 1\}^n \to \{0, 1\}$ depends on the
     $i$th argument iff for some
     $a_1, \dots, a_{i - 1}, a_{i + 1}, \dots, a_n \in \set{0, 1}$
     \[

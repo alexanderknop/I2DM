@@ -59,13 +59,13 @@ $\set{a_n}_{n \ge 0}$ such that $a_{n + 1} = 2a_n + n$ for $n \ge 0$ and
 $a_0 = 1$. As in the previous case let us write an equation for the
 generating function $G(x)$.
 \[
-  G(x) - a_0 = 2xG(x) + \sum_{n \ge 0} n x^n.
+  G(x) - a_0 = 2xG(x) + \sum_{n \ge 0} n x^{n + 1}.
 \]
 First, we find a formula for $\sum_{n \ge 0} n x^n$,
 \[
-  \sum_{n \ge 0} n x^n = \sum_{n \ge 0} x \frac{d x^n}{dx} =
-  x \frac{d \sum_{n \ge 0} x^n}{dx} = x \left(\frac{1}{1 - x}\right)' =
-  \frac{x}{(1 - x)^2}.
+  \sum_{n \ge 0} n x^{n + 1} = \sum_{n \ge 0} x^2 \cdot \frac{d x^n}{dx} =
+  x^2 \cdot \frac{d \sum_{n \ge 0} x^n}{dx} = x^2 \left(\frac{1}{1 - x}\right)'
+  = \frac{x^2}{(1 - x)^2}.
 \]
 Therefore,
 \[

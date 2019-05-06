@@ -21,7 +21,7 @@ sets are:
     Zahlen (``numbers'').},
     \nomenclature[S]{$\Z$}{denotes the set of all integers}
   \item $\N$ the set of natural numbers\footnote{Note that in the literature
-      there are two diffirent traditions: in one $0$ is a natural number, in
+      there are two different traditions: in one $0$ is a natural number, in
       another it is not; in this book we are going to assume that $0$ is not a
       natural number.
     },
@@ -65,7 +65,7 @@ $\sqrt{2} \not\in \Q$\footnote{%
 \end{exercise}
 
 \section{Basic Relations Between Sets}
-Many problems in mathematics are problems of determining whether two description
+Many problems in mathematics are problems of determining whether two descriptions
 of sets are describing the same set or not. For example, when we learn how to
 solve quadratic equations of the form $ax^2 + bx + c = 0$ ($a, b, c \in \R$) we
 learn how to list the elements of the set $\set[ax^2 + bx + c = 0]{x \in \R}$.
@@ -75,7 +75,7 @@ same elements (we denote it by $A = B$). If all the elements of $A$ belong to
 $B$ we say that $A$ is a subset of $B$ and denote it by
 $A \subseteq B$\footnote{%
   In the literature there are three symbols for ``subset'': $\subseteq$,
-  $\subsetneq$, and $\subseteq$. $A \subseteq B$ means that $A$ is a subset of
+  $\subsetneq$, and $\subset$. $A \subseteq B$ means that $A$ is a subset of
   $B$ and we allow $A = B$ and $A \subsetneq B$ means that $A$ is a subset of
   $B$ and we forbid $A = B$. However, there is a problem with the third symbol,
   some people use it as a synonym of $\subseteq$ and some use it as a synonym of
@@ -159,7 +159,7 @@ $\Q = \set[a, b \in \Z, b \neq 0]{a / b}$).
 \subsection{Disjoint Sets}
 Two sets are \emph{disjoint} iff they do not have common elements. We also
 say that two sets are \emph{overlapping} iff they are not disjoint i.e. they
-share an element.
+share at least one element.
 
 More generally, $A_1$, \dots, $A_\ell$ are pairwise disjoint iff $A_i$ is
 disjoint with $A_j$ for all $i \neq j \in [\ell]$
@@ -360,7 +360,7 @@ Finally, we prove Theorem~\ref{theorem:well-ordering}.
 \begin{chapterendexercises}
   \exercise Find the power sets of $\emptyset$, $\set{1}$, $\set{1, 2}$,
     $\set{1, 2, 3, 4}$. How many elements in each of this sets?
-  \exercise Prove that
+  \exercise[recommended] Prove that
     \begin{itemize}
       \item $A \subseteq B \iff A \cup B = B$,
       \item $A \subseteq B \iff A \cap B = A$.
@@ -373,7 +373,7 @@ Finally, we prove Theorem~\ref{theorem:well-ordering}.
       \item $\overline{A \cup B} = \overline{A} \cap \overline{B}$.
       \item $\overline{A \cap B} = \overline{A} \cup \overline{B}$.
     \end{itemize}
-  \exercise Let us define an intersection of more than two sets as follows.
+  \exercise[recommended] Let us define an intersection of more than two sets as follows.
     Let $A_1$, \dots, $A_n$ be some sets. Then
     \begin{itemize}
       \item $\bigcap_{i = 1}^1 A_i = A_1$ and
@@ -396,7 +396,7 @@ Finally, we prove Theorem~\ref{theorem:well-ordering}.
       A_k$}
 
       Show that $\bigcup_{i = 1}^n [i] = [n]$ for all integers $n > 0$.
-  \exercise Let $\Omega$ be some set and $A_1, \dots, A_n \subseteq \Omega$.
+  \exercise[recommended] Let $\Omega$ be some set and $A_1, \dots, A_n \subseteq \Omega$.
     Show that $\bigcup_{i = 1}^n A_i =
       \set[{\exists i \in [n]\ x \in A_i}]{x \in \Omega}$.
   \exercise Let $A_1$, \dots, $A_n$ be some sets.
