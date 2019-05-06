@@ -1,0 +1,43 @@
+\chapter{Paths in Graphs}
+\section{Connectivity}
+Imagine you are developing a game, where the map is generated automatocally.
+In this gate there are several areas connected by portals. So you need to check
+that all the areas in your map are reachable from one another.
+
+First we need to somehow understand what we mean by ``reachable'', we say that
+an area $A$ is reachable from an area $B$ if there is a path from $A$ to
+$B$. To formalize this notion using graphs we need to intrduce a graph
+corresponding to the map, consider a graph $G = (V, E)$ such that vertices of
+the graph are areas in your map and $(A, B) \in E$ iff the areas $A$ and $B$
+are connected by a portal. So a path from $A$ to $B$ is a sequence of areas
+$A = C_1$, \dots, $C_\ell = B$ such that $C_i$ and $C_{i + 1}$ are connected by
+a portal (i.e. $(C_i, C_{i + 1}) \in E$).
+\begin{definition}
+  Let $G = (V, E)$ be a graph. We say that a path from $u$ to $v$ is
+  a sequence $w_1, \dots, w_\ell \in V$ such that
+  \begin{itemize}
+    \item $w_1 = u$, $w_\ell = v$, and
+    \item $(w_i, w_{i + 1}) \in E$ for $i \in [\ell - 1]$.
+  \end{itemize}
+
+  We say that $u, v \in V$ are connected iff there is a path from $u$ to $v$.
+  So the graph is connected iff any $u, v \in V$ are connected.
+\end{definition}
+So, using this notatation, we need to check whether the graph corresponding to
+the map is connected.
+
+There are numerous ways to do it, we consider a simple algorithm just to see how
+it works.
+\begin{algorithm}
+  \begin{algorithmic}[1]
+    \Function{Connected}{$n$, $E$}
+      \State\Return{YES}
+    \EndFunction
+  \end{algorithmic}
+  \caption{An algorithm checking whether the graph on $[n]$ with the set of
+  edges $E$ is connected.}
+  \label{algorithm:connectivity}
+\end{algorithm}
+
+\section{Eulerian Paths}
+\section{Hameltonian Paths}
