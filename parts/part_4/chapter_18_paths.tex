@@ -110,10 +110,10 @@ Figure~\ref{figure:konigsberg-graph}.
 \begin{figure}
   \begin{center}
     \begin{tikzpicture}[thick]
-      \node[shape=circle,draw=black] (v1) at (0,0) {\tiny A};
-      \node[shape=circle,draw=black] (v2) at (1,1) {\tiny B};
-      \node[shape=circle,draw=black] (v3) at (-1,1) {\tiny C};
-      \node[shape=circle,draw=black] (v4) at (0,2) {\tiny D};
+      \node[circle, draw, inner sep=0pt, minimum size=6pt] (v1) at (0,0) {};
+      \node[circle, draw, inner sep=0pt, minimum size=6pt] (v2) at (1,1) {};
+      \node[circle, draw, inner sep=0pt, minimum size=6pt] (v3) at (-1,1) {};
+      \node[circle, draw, inner sep=0pt, minimum size=6pt] (v4) at (0,2) {};
 
       \draw (v4) to[out=-60, in=150] (v2);
       \draw (v4) to[out=-30, in=120] (v2);
