@@ -100,5 +100,48 @@ ending at the same place, so that we use each bridge exactly once?'' (the map of
   \caption{K\"{o}nigsberg's map}
   \label{figure:konigsberg}
 \end{figure}
+It is possible to see that the geometry of the islands is not inportant for
+this problem, the only important property is the number of bridges between
+islands.
+
+In other words, all the necessary information can be described by the graph
+(the islands are vertices and the bridges are edges) depicted on
+Figure~\ref{figure:konigsberg-graph}.
+\begin{figure}
+  \begin{center}
+    \begin{tikzpicture}[thick]
+      \node[shape=circle,draw=black] (v1) at (0,0) {\tiny A};
+      \node[shape=circle,draw=black] (v2) at (1,1) {\tiny B};
+      \node[shape=circle,draw=black] (v3) at (-1,1) {\tiny C};
+      \node[shape=circle,draw=black] (v4) at (0,2) {\tiny D};
+
+      \draw (v4) to[out=-60, in=150] (v2);
+      \draw (v4) to[out=-30, in=120] (v2);
+      \draw (v1) to[out=60, in=-150] (v2);
+      \draw (v1) to[out=30, in=-120] (v2);
+      \draw (v2) -- (v3);
+      \draw (v1) -- (v3);
+      \draw (v4) -- (v3);
+    \end{tikzpicture}
+  \end{center}
+  \caption{The graph of K\"{o}nigsberg's bridges}
+  \label{figure:konigsberg-graph}
+\end{figure}
+Hence, to formalize the problem we need to give the following definition.
+\begin{definition}
+  A path $v_1$, \dots, $v_k$ in a graph $G = (V, E)$ is called Eulerian if for
+  any edge $(u_1, u_2) \in E$ there is exactly one $i \in [k - 1]$ such that
+  $u_1 = v_i$ and $u_2 = v_{i + 1}$.
+
+  An Eulerian path is called an Eulerian cycle if $v_1 = v_k$.
+\end{definition}
+Using this definition the question is whether exists an Eulerian cycle in the
+graph of K\"{o}nigsberg's bridges.
+
+It is not hard to prove the following result.
+\begin{theorem}
+  A connected graph $G$ has a closed Eulerian cycle if and only if all vertices
+  of $G$ have even degree.
+\end{theorem}
 
 \section{Hameltonian Paths}
