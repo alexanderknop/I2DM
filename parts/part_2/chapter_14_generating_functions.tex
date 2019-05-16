@@ -202,8 +202,11 @@ $A = B = \frac{1}{\sqrt{5}}$.
 By some simple calculations we may comclude that
 \[
   \frac{1}{1 - 3x + x^2} =
-  \frac{1}{\sqrt{5}}(\frac{\alpha}{1 - \alpha x} + \frac{\beta}{1 - \beta x}).
+  \frac{1}{\sqrt{5}}(\frac{\alpha}{1 - \alpha x} - \frac{\beta}{1 - \beta x}).
 \]
+Therefore
+$C(x) = 1 + \frac{1}{\sqrt{5}}
+  \sum_{n \ge 0} (\alpha^{n + 1} - \beta^{n + 1}) x^{n + 1}$.
 Hence, $c_0 = 1$ and $c_n = \frac{1}{\sqrt{5}}(\alpha^n - \beta^n)$ for $n > 0$.
 
 The following theorem generalises this obeservation.
@@ -217,7 +220,7 @@ The following theorem generalises this obeservation.
 \end{theorem}
 
 \begin{chapterendexercises}
-  \exercise Find the generating functions of each of the following sequences
+  \exercise[recommended] Find the generating functions of each of the following sequences
     (in the simplest form):
     \begin{enumerate}[nolistsep]
       \begin{multicols}{2}
@@ -228,7 +231,7 @@ The following theorem generalises this obeservation.
         \item $a_n = 3^n$.
       \end{multicols}
     \end{enumerate}
-  \exercise Let $F(x)$ be a generating function for the sequence
+  \exercise[recommended] Let $F(x)$ be a generating function for the sequence
     $\set{a_n}_{n \ge 0}$. Write, in terms of $F(x)$, the generating functions
     of the following sequences:
     \begin{enumerate}[nolistsep]
@@ -246,7 +249,19 @@ The following theorem generalises this obeservation.
     by these numbers, and then find an explicit formula for these numbers.
   \exercise Find an explicit formula for $a_n$ if $a_0 = 0$ and for any
     $n \ge 0$, $a_{n + 1} = a_n + 2^n$.
-  \exercise Let $a_n$ be the number of ways to pay $n$ dollars using ten-dollar
+  \exercise[recommended] Let $a_n$ be the number of ways to pay $n$ dollars using ten-dollar
     bills, five-dollar bills, and one-dollar bills only. Find the generating
     function for $a_n$.
+  \exercise[recommended] Let $x_1$ and $x_2$ be two different solutions of the equation
+    $1 - bx - cx^2 = 0$. Show that a sequence $\set{f_n}_{n \ge}$ satisfies the
+    recurrent relation $f_{n + 2} = b f_{n + 1} + c f_n$ iff
+    $t_n = \alpha x_1^{-n} + \beta x_2^{-n}$ for some $\alpha, \beta \in \R$.
+  \exercise[recommended] Let $\set{a_n}_{n \ge 0}$, $\set{b_n}_{n \ge 0}$ be two sequences
+    such that $b_n = \sum_{k = 0}^n a_n$ and $F(x)$ be the generating function
+    for $\set{a_n}_{n \ge 0}$. Find the generating function for
+    $\set{b_n}_{n \ge 0}$ in terms of $F(x)$.
+  \exercise Let $\set{a_n}_{n \ge 0}$, $\set{b_n}_{n \ge 0}$ be two sequences
+    such that $b_n = a_{2n}$ and $F(x)$ be the generating function
+    for $\set{a_n}_{n \ge 0}$. Find the generating function for
+    $\set{b_n}_{n \ge 0}$ in terms of $F(x)$.
 \end{chapterendexercises}
