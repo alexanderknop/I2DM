@@ -140,8 +140,37 @@ graph of K\"{o}nigsberg's bridges.
 
 It is not hard to prove the following result.
 \begin{theorem}
-  A connected graph $G$ has a closed Eulerian cycle if and only if all vertices
+  A connected graph $G$ has an Eulerian cycle if and only if all vertices
   of $G$ have even degree.
+  Moreover, $G$ has a Eulerian path starting and ending in two different
+  vertices if and only if in $G$ there are exactly two vertices with odd
+  degrees.
+  (Note that the statement holds even if $G$ has parallel edges).
 \end{theorem}
+
+\begin{proof}
+  First we prove the second part of the statement. Assume that $G$ has two
+  vertices with odd degrees. The proof is relatively simple and, informally,
+  can be described as follows. We start walking from one of the vertices with
+  odd degrees, after each step we remove the edge we use, and because of this
+  we always stay in the vertex with an odd degree unless we reached the second
+  vertex with an odd degree. Therefore we finish the walk only when we reach
+  the second vertex with an odd degree.
+
+  More formally, we prove the statement using induction. We say that a graph $H$
+  is almost Eulerian iff it has only one connected component with more than one
+  vertex and it has exactly two vertices with odd degrees $u$ and $v$.
+  Using induction by the number of edges we prove that any almost Eulerian
+  graph has Eulerian paths from $u$ to $v$ and from $v$ to $u$. The base case
+  is simple, if we have only one edge, then $u$ and $v$ are adjacent; so
+  both paths are $u$, $v$ and $v$, $u$, respectively.
+
+  Let us now prove the induction step. Consider the vertex $u$, since
+  it has an odd degree there is an edge $e$ connecting $u$ and a vertex $w$.
+  Note that, by the induction hypothesis, there is an Eulerian path
+  $w = v_1$, \dots, $v_k = v$ in $G - e$. Therefore, there is an Eulerian
+  path in $u$, $v_1$, \dots, $v_k$ in $G$. Similarly, there is an Eulerian
+  path from $v$ to $u$.
+\end{proof}
 
 \section{Hameltonian Paths}
