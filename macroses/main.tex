@@ -112,7 +112,8 @@
   \ifthenelse{\equal{#1}{L}}{Logical Notation}{%
   \ifthenelse{\equal{#1}{R}}{Relations}{%
   \ifthenelse{\equal{#1}{F}}{Functions}{%
-  }}}}}%
+  \ifthenelse{\equal{#1}{G}}{Graphs}{%
+  }}}}}}%
 ]}
 
 \def\pagedeclaration#1{, \hyperlink{page.#1}{page\nobreakspace#1}}

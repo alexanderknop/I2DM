@@ -62,6 +62,7 @@ follows.
   } is a simple graph with $n$ vertices and exactly one edge connecting
   each pair of distinct vertices.
 \end{definition}
+\nomenclature[G]{$K_n$}{denotes the complete graph on $n$ vertices}
 
 Note that when we talk about the unoriented graphs, we count the edges $(a, b)$
 and $(b, a)$ as one edge.
@@ -78,13 +79,20 @@ $e \in E$ be an edge, and $v \in V$ be a vertex.
 \begin{enumerate}
   \item $G[U]$ denotes the graph $(U, \set[e \in U^2]{e \in E})$,
     $G[U]$ is called the induced subgraph of $G$ on the vertices $U$;
+    \nomenclature[G]{$G[U]$}{denotes the induced subgraph of $G$ on the vertices $U$
+    (i.e. $(U, \set[e \in U^2]{e \in E})$)}
   \item $G[F]$ denotes the graph $(V, F)$, $G[F]$ is called the induced
     subgraph of $G$ on the edges $F$;
-  \item $G - e$ denotes the graph $(V, E \setminus \set{e})$, we say that we
-    remove the edge $e$ from $G$;
+    \nomenclature[G]{$G[F]$}{denotes the induced subgraph of $G$ on the edges $F$
+    (i.e. $(V, F)$)}
+  \item $G - e$ denotes the graph $(V, E \setminus \set{e})$, i.e., the graph $G$
+    without the edge $e$.
+    \nomenclature[G]{$G - e$}{denotes the graph $(V, E \setminus \set{e})$}
   \item $G - v$ denotes the graph
-    $(V \setminus \set{v}, E \cap (V \setminus \set{v})^2)$, we say that we
-    remove the vertex $v$ from $G$.
+    $(V \setminus \set{v}, E \cap (V \setminus \set{v})^2)$, i.e., the graph $G$
+    without the vertix $v$.
+    \nomenclature[G]{$G - v$}{denotes the graph
+      $(V \setminus \set{v}, E \cap (V \setminus \set{v})^2)$}
 \end{enumerate}
 
 Note that we used the word ``subgraph'', in fact we can define formally the
