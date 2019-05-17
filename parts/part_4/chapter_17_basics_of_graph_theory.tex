@@ -5,19 +5,19 @@ of graph theory. Graphs are used in mathematics and computer science to describe
 networks, maps, and dependencies of objects.
 
 \begin{definition}
-  A \emph{graph} $G$ is a pair $(V, E)$ such that $E \subseteq V^2$.
-  We say that $G$ is \emph{unoriented} iff $(v, u) \in E$ for
-  any $u, v \in V$. Otherwise the graph is \emph{ordered}.
-  We say that a graph does not have \emph{loops} iff $(u, u) \notin E$ for any
-  $u \in V$.
-\end{definition}
-A graph is \emph{simple} iff it has no loops and its unordered. In the future
-chapters we assume by default that all the graphs are simple.
+  A \emph{graph} $G$ is a pair $(V, E)$ such that $E \subseteq V^2$ is a multiset.
 
-\begin{remark}
-  If we need to study situations when we have more than one edge between some
-  vertices, we can consider $E$ to be a multiset.
-\end{remark}
+  We say that $G$ is \emph{unoriented} iff $(u, v) \in E$ iff $(v, u) \in E$ for
+  any $u, v \in V$. Otherwise the graph is \emph{oriented}.
+  We say that a graph does not have \emph{loops} iff $(u, u) \notin E$ for any
+  $u \in V$. Finally, we say that the graph has \emph{parallel edges} if
+  $E$ is not a set.
+\end{definition}
+A graph is \emph{simple} iff it has no loops, it has not parallel edges, and
+it is unoriented.
+
+From now on we will follow a standard convention and think about the set of
+edges of unoriented graphs as sets of \emph{unordered} pairs.
 
 It is very convinient to draw graphs using pictures like this.
 \begin{center}
@@ -35,12 +35,13 @@ It is very convinient to draw graphs using pictures like this.
   \end{tikzpicture}
 \end{center}
 In this picture, each circle corresponds to a vertice and each line corresponds
-to an edge; i.e. this diagram describes the graph
+to a an edge; i.e. this diagram describes the graph
 \[
   (\underbrace{\set{A, B, C, D}}_V,
   \underbrace{\set{(A, B), (A, C), (B, C), (B, D)}}_E).
 \]
-(Note that there are multiple ways to draw a diagram for a graph.)
+Note that we already use the convention that in unoriented grpah the pairs are
+unordered and we have not listed $(B, A)$, $(C, A)$ etc.
 
 To talk about graphs we need to fix the vocubulary.
 An edge is said to \emph{connect} its endpoints; two vertices that are
@@ -64,8 +65,6 @@ follows.
 \end{definition}
 \nomenclature[G]{$K_n$}{denotes the complete graph on $n$ vertices}
 
-Note that when we talk about the unoriented graphs, we count the edges $(a, b)$
-and $(b, a)$ as one edge.
 \begin{exercise}
   Show that for all natural numbers $n$, the number of edges of $K_n$
   is $\frac{n(n - 1)}{2}$.
