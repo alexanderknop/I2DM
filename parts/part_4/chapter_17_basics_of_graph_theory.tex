@@ -1,12 +1,12 @@
 \chapter{The Definition of a Graph}
 In this chapter we start a very important topic in discrete mathematics, which
-became even more important with the rise of cimputers, we start the discussion
+became even more important with the rise of computers, we start the discussion
 of graph theory. Graphs are used in mathematics and computer science to describe
 networks, maps, and dependencies of objects.
 
 \begin{definition}
   A \emph{graph} $G$ is a pair $(V, E)$ such that $E \subseteq V^2$.
-  We say that $G$ is \emph{unoriented} iff $(u, v) \in E$ iff $(v, u) \in E$ for
+  We say that $G$ is \emph{unoriented} iff $(v, u) \in E$ for
   any $u, v \in V$. Otherwise the graph is \emph{ordered}.
   We say that a graph does not have \emph{loops} iff $(u, u) \notin E$ for any
   $u \in V$.
@@ -16,7 +16,7 @@ chapters we assume by default that all the graphs are simple.
 
 \begin{remark}
   If we need to study situations when we have more than one edge between some
-  vertics, we can consider $E$ to be a multiset.
+  vertices, we can consider $E$ to be a multiset.
 \end{remark}
 
 It is very convinient to draw graphs using pictures like this.
@@ -35,7 +35,7 @@ It is very convinient to draw graphs using pictures like this.
   \end{tikzpicture}
 \end{center}
 In this picture, each circle corresponds to a vertice and each line corresponds
-to a an edge; i.e. this diagram describes the graph
+to an edge; i.e. this diagram describes the graph
 \[
   (\underbrace{\set{A, B, C, D}}_V,
   \underbrace{\set{(A, B), (A, C), (B, C), (B, D)}}_E).
@@ -62,6 +62,7 @@ follows.
   } is a simple graph with $n$ vertices and exactly one edge connecting
   each pair of distinct vertices.
 \end{definition}
+\nomenclature[G]{$K_n$}{denotes the complete graph on $n$ vertices}
 
 Note that when we talk about the unoriented graphs, we count the edges $(a, b)$
 and $(b, a)$ as one edge.
@@ -72,19 +73,26 @@ and $(b, a)$ as one edge.
 
 \section{Operations on Graphs}
 Quite often in order to prove a theorem we need to modify a graph. The most
-often operations are the following five. Let $G = (V, E)$ be a graph,
+often operations are the following four. Let $G = (V, E)$ be a graph,
 $F \subseteq E$ be a set of edges, $U \subseteq V$ be a set of edges,
 $e \in E$ be an edge, and $v \in V$ be a vertex.
 \begin{enumerate}
   \item $G[U]$ denotes the graph $(U, \set[e \in U^2]{e \in E})$,
     $G[U]$ is called the induced subgraph of $G$ on the vertices $U$;
+    \nomenclature[G]{$G[U]$}{denotes the induced subgraph of $G$ on the vertices $U$
+    (i.e. $(U, \set[e \in U^2]{e \in E})$)}
   \item $G[F]$ denotes the graph $(V, F)$, $G[F]$ is called the induced
     subgraph of $G$ on the edges $F$;
-  \item $G - e$ denotes the graph $(V, E \setminus \set{e})$, we say that we
-    remove the edge $e$ from $G$;
+    \nomenclature[G]{$G[F]$}{denotes the induced subgraph of $G$ on the edges $F$
+    (i.e. $(V, F)$)}
+  \item $G - e$ denotes the graph $(V, E \setminus \set{e})$, i.e., the graph $G$
+    without the edge $e$.
+    \nomenclature[G]{$G - e$}{denotes the graph $(V, E \setminus \set{e})$}
   \item $G - v$ denotes the graph
-    $(V \setminus \set{v}, E \cap (V \setminus \set{v})^2)$, we say that we
-    remove the vertex $v$ from $G$.
+    $(V \setminus \set{v}, E \cap (V \setminus \set{v})^2)$, i.e., the graph $G$
+    without the vertix $v$.
+    \nomenclature[G]{$G - v$}{denotes the graph
+      $(V \setminus \set{v}, E \cap (V \setminus \set{v})^2)$}
 \end{enumerate}
 
 Note that we used the word ``subgraph'', in fact we can define formally the
