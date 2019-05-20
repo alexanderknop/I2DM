@@ -138,7 +138,13 @@ Hence, to formalize the problem we need to give the following definition.
 Using this definition the question is whether exists an Eulerian cycle in the
 graph of K\"{o}nigsberg's bridges.
 
-It is not hard to prove the following result.
+\begin{exercise}
+  Check whether the graph of K\"{o}nigsberg's bridges has an Eulerian cycle or
+  not.
+\end{exercise}
+
+The following theorem gives a simple criterion that allows us to solve the
+problem in the general case.
 \begin{theorem}
 \label{theorem:eulerian}
   A connected graph $G$ has an Eulerian cycle if and only if all vertices
@@ -193,11 +199,6 @@ It is not hard to prove the following result.
   $G$ has only vertices of an odd degree, then there is a simple cycle in $G$.
 \end{exercise}
 
-\begin{exercise}
-  Check whether the graph of K\"{o}nigsberg's bridges has an Eulerian cycle or
-  not.
-\end{exercise}
-
 \begin{corollary}
   A graph $G$ has an Eulerian path starting and ending in two different
   vertices if and only if in $G$ there are exactly two vertices with odd
@@ -215,3 +216,35 @@ It is not hard to prove the following result.
   $w_1$, \dots, $w_k$, $v$. Therefore, there is an Eulerian path $v$,
   $w_1$, \dots, $w_k$, $v$ in $G$.
 \end{proof}
+
+\section{Hamiltonian Paths}
+
+Another example of a path that mathematicians are intrested is Hamiltonian path.
+\begin{definition}
+  Let $G$ be a graph. We say that a path in $G$ is Hamilton
+  if it visits every vertex in $G$ exactly once. We say that such a path is a
+  Hamiltonian cycle if its starting and ending vertices are
+  connected.\footnote{%
+    Hamiltonian paths and cycles are named after William Rowan Hamilton who
+    invented the icosian game, now also known as Hamilton's puzzle, which
+    involves finding a Hamiltonian cycle in the edge graph of the dodecahedron.
+  }
+\end{definition}
+
+The greatest difference with Eulerian cycles is that it is not known whether
+there is a fast (polynomial-time) algorithm that allows to find the Hamiltonian
+cycles in a graph.\footnote{%
+  Proving or disproving that there is a polynomial-time algorithm allowing to
+  check whether a graph $G$ has a Hamiltonian path is one of the Millennium
+  Problems. Clay Mathematics Institute offers a prise of \$1 million to a person
+  who solves the problem.
+}
+
+It is easy to design an algorithm that checks whether a path exists in
+$O((n - 1)!)$ by just brute forcing all the possible candidates for such a path.
+However, using the ideas of the inclusion-exclustion principle, we may design
+a much faster algorithm.
+\begin{theorem}
+  There is an algorithm such that it checks whether a graph $G$ on $n$ vertices
+  has a Hamilton path in $O(2^n n^3)$ steps.
+\end{theorem}
