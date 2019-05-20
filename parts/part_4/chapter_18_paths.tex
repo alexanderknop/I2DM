@@ -204,5 +204,14 @@ It is not hard to prove the following result.
   degrees.
   (Note that the statement holds even if $G$ has parallel edges).
 \end{corollary}
-
-\section{Hameltonian Paths}
+\begin{proof}
+  Let $G = (V, E)$ and $u$ and $v$ be the vertices with odd degrees. Let us
+  consider the graph $G + (u, v) = (V, E \cup (u, v))$ (if there are edges
+  between $u$ and $v$ we increase their number by one). Note that all
+  the degrees in $G + (u, v)$ are even.
+  \nomenclature[G]{$G + (u, v)$}{denotes the graph $(V, E \cup (u, v))$}
+  Therefore by Theorem~\ref{theorem:eulerian}, there is an Eulerian cycle in
+  $G + (u, v)$. Without loss of generality the cycle is in the form $u$, $v$,
+  $w_1$, \dots, $w_k$, $v$. Therefore, there is an Eulerian path $v$,
+  $w_1$, \dots, $w_k$, $v$ in $G$.
+\end{proof}
