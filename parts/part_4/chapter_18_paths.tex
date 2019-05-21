@@ -100,6 +100,28 @@ it works.
   also stay true.
 \end{proof}
 
+Not all the graphs are connected, but it is always possible to split the
+graph into connected parts, such parts are called connected components.
+\begin{definition}
+  Let $G = (V, E)$ be a graph. We say that $U \subseteq V$ is a connected
+  component if for any $u \in U$ and $v \in V$,
+  $v \in U$ iff there is a path from $u$ to $v$ in $G$.
+\end{definition}
+
+\begin{theorem}
+  Let $G = (V, E)$ be a graph.
+  If $U_1$ and $U_2$ are connected components of $G$, then they
+  either equal to each other or disjoint.
+  Moreover there are connected components
+  $V_1$, \dots, $V_k$ in $G$ such that $V_1 \cup \dots \cup V_k = V$
+  and $V_1$, \dots, $V_k$ are disjoint.
+\end{theorem}
+
+\begin{exercise}
+  Find a modification of Algorithm~\ref{algorithm:connectivity}
+  that can find all the connected components of $([n], E)$.
+\end{exercise}
+
 \section{Eulerian Paths}
 
 Graph theory originated from a simple question asked by Leonard Euler:
@@ -275,3 +297,14 @@ a much faster algorithm.
   There is an algorithm such that it checks whether a graph $G$ on $n$ vertices
   has a Hamilton path in $O(2^n n^3)$ steps.
 \end{theorem}
+
+
+\begin{chapterendexercises}
+  \exercise[recommended] Let $G$ be a graph such that there are only $2$
+    vertices with odd degree. Prove that they belong to the same connected
+    component.
+  \exercise Let $G = (V, E)$ be a graph and $c : V \to \set{0, 1}$ be a
+    function. Show that there is a function $s : E \to \set{0, 1}$
+    such that $\sum_{(u, v) \in E} s(u, v)$ is odd iff $c(v)$ is odd
+    for all $v \in V$.
+\end{chapterendexercises}
