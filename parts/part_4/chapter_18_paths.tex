@@ -27,9 +27,14 @@ a portal (i.e. $(C_i, C_{i + 1}) \in E$).
   We say that $u, v \in V$ are connected iff there is a path from $u$ to $v$.
   So the graph is connected iff any $u, v \in V$ are connected.
 \end{definition}
+
+\begin{exercise}
+  Let $G = ([2n], E)$ be a graph such that $(i, j) \in E$ if $|i - j| = 2$.
+  Is $G$ connected?
+\end{exercise}
+
 So, using this notatation, we need to check whether the graph corresponding to
 the map is connected.
-
 There are numerous ways to do it, we consider a simple algorithm just to see how
 it works.
 \begin{algorithm}
