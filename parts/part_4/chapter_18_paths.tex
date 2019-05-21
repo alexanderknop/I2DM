@@ -303,8 +303,16 @@ a much faster algorithm.
   \exercise[recommended] Let $G$ be a graph such that there are only $2$
     vertices with odd degree. Prove that they belong to the same connected
     component.
-  \exercise Let $G = (V, E)$ be a graph and $c : V \to \set{0, 1}$ be a
-    function. Show that there is a function $s : E \to \set{0, 1}$
-    such that $\sum_{(u, v) \in E} s(u, v)$ is odd iff $c(v)$ is odd
-    for all $v \in V$.
+  \exercise Let $G = (V, E)$ be a connected graph and $c : V \to \set{0, 1}$
+    be a function.
+    \begin{enumerate}
+      \item Assume that $\sum_{v \in V} c(v)$ is odd.
+        Show that for any $s : E \to \set{0, 1}$, there is a vertex
+        $v \in V$ such that $\sum_{(u, v) \in E} s(u, v)$ and $c(v)$
+        have different reminders modulo $2$.
+      \item Assume that $\sum_{v \in V} c(v)$ is even.
+        Show that there is a function $s : E \to \set{0, 1}$
+        such that $\sum_{(u, v) \in E} s(u, v)$ is odd iff $c(v)$ is odd
+        for all $v \in V$.
+    \end{enumerate}
 \end{chapterendexercises}
