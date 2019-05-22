@@ -27,14 +27,9 @@ a portal (i.e. $(C_i, C_{i + 1}) \in E$).
   We say that $u, v \in V$ are connected iff there is a path from $u$ to $v$.
   So the graph is connected iff any $u, v \in V$ are connected.
 \end{definition}
-
-\begin{exercise}
-  Let $G = ([2n], E)$ be a graph such that $(i, j) \in E$ if $|i - j| = 2$.
-  Is $G$ connected?
-\end{exercise}
-
 So, using this notatation, we need to check whether the graph corresponding to
 the map is connected.
+
 There are numerous ways to do it, we consider a simple algorithm just to see how
 it works.
 \begin{algorithm}
@@ -43,7 +38,6 @@ it works.
       \State $S \gets \emptyset$
       \State $Q \gets \set{1}$
 
-      \label{algorithm:connectivity-cycle}
       \While{$Q \neq \emptyset$}
         \State Choose an element $v$ from $Q$
         \State $Q \gets S \setminus \set{v}$
@@ -67,67 +61,24 @@ it works.
   is connected.
 \end{theorem}
 \begin{proof}
-  First of all, note that the algorithm has a finite running time since
-  size of $S$ increases by $1$ in the cycle starting on
-  line~\ref{algorithm:connectivity-cycle}.
-  It is also easy to see that if a vertex $v \in Q$ at some point it is
-  in $S$ on line~\ref{line:connectivity-last}. In addition, if $v \in Q$
-  at some point, then $\set[{(v, u) \in E}]{u \in [n]} \subseteq S$ on
-  line~\ref{line:connectivity-last}.
+  To prove this we prove that $S$ is equal to the maximal connected subset $U$
+  of $[n]$ containing $1$ (we say that a set $U$ is connected iff $G[U]$ is
+  connected).
 
-  Therefore if $u \notin S$ and $(v, u) \in E$,
-  then $v \notin S$. Using this observation we may prove that
-  if $G = ([n], E)$ is connected, then Algorithm~\ref{algorithm:connectivity}
-  returns true. Indeed, assume the opposite. Consider $u \in [n] \setminus S$,
-  and $N_i \subseteq [n]$ such that \[
-    N_0 = \set{u},
-    N_{i + 1} = N_i \cup \set[{w \in N_i, (v, w) \in E}]{v \in [n]}.
-  \]
-  Note that by the previous observation if $v \in N_i$, then $v \notin S$.
-  Since $G$ is connected, there is a path $u = v_1, \dots, v_k = 1$.
-  Note that $u \in N_0$, $v_2 \in N_1$, \dots, $v_k \in N_{k - 1}$.
-  Therefore $1 = v_k \notin S$ which is a contradiction.
-
-  To finish the proof we need to show that if $S = [n]$, then the graph is
-  connected. To prove the statement we prove by induction that there is a path
-  from $1$ to any element of $S$ and $Q$ in every iteration of
-  line~\ref{algorithm:connectivity-cycle}. Indeed, initially $S$ is empty and
-  $Q$ contains only $1$. After an iteration of
-  line~\ref{algorithm:connectivity-cycle} we choose an element $v$ from $Q$
-  and by the induction hypothesis there is a path from $1$ to $v$.
-  We add it to $S$ and the statement about $S$ holds, afterwards we
-  add all the neighbours of $v$ to $Q$. So the statement about $Q$ is
-  also stay true.
+  It is easy to see that $S \subseteq U$.
+  Assume that $U \neq S$ on line~\ref{line:connectivity-last}.
+  Let $u \in U \setminus S$. Consider a sequence $N_i$ such that
+  $N_0 = \set{u}$ and $N_{i + 1} = \set[{u \in N_i, (u, v) \in E}]{v \in [n]}$.
+  Note that if a vertex $w \notin S$ on line~\ref{line:connectivity-last}, then
+  all the neighbours of $w$ are not $S$. It is also clear that $N_{n} = U$.
+  Therefore $S = \emptyset$ which is a contradiction.
 \end{proof}
-
-Not all the graphs are connected, but it is always possible to split the
-graph into connected parts, such parts are called connected components.
-\begin{definition}
-  Let $G = (V, E)$ be a graph. We say that $U \subseteq V$ is a connected
-  component if for any $u \in U$ and $v \in V$,
-  $v \in U$ iff there is a path from $u$ to $v$ in $G$.
-\end{definition}
-
-\begin{theorem}
-  Let $G = (V, E)$ be a graph.
-  If $U_1$ and $U_2$ are connected components of $G$, then they
-  either equal to each other or disjoint.
-  Moreover there are connected components
-  $V_1$, \dots, $V_k$ in $G$ such that $V_1 \cup \dots \cup V_k = V$
-  and $V_1$, \dots, $V_k$ are disjoint.
-\end{theorem}
-
-\begin{exercise}
-  Find a modification of Algorithm~\ref{algorithm:connectivity}
-  that can find all the connected components of $([n], E)$.
-\end{exercise}
 
 \section{Eulerian Paths}
 
 Graph theory originated from a simple question asked by Leonard Euler:
 ``Is it possible to walk through the town of K\"{o}nigsberg, starting and
-ending at the same place, so that we use each bridge exactly once?''
-(the map of K\"{o}nigsberg is depicted on Figure~\ref{figure:konigsberg}).
+ending at the same place, so that we use each bridge exactly once?'' (the map of K\"{o}nigsberg is depicted on Figure~\ref{figure:konigsberg}).
 \begin{figure}
   \begin{center}
     \begin{tikzpicture}[thick]
@@ -298,21 +249,9 @@ a much faster algorithm.
   has a Hamilton path in $O(2^n n^3)$ steps.
 \end{theorem}
 
-
-\begin{chapterendexercises}
-  \exercise[recommended] Let $G$ be a graph such that there are only $2$
-    vertices with odd degree. Prove that they belong to the same connected
-    component.
-  \exercise Let $G = (V, E)$ be a connected graph and $c : V \to \set{0, 1}$
-    be a function.
-    \begin{enumerate}
-      \item Assume that $\sum_{v \in V} c(v)$ is odd.
-        Show that for any $s : E \to \set{0, 1}$, there is a vertex
-        $v \in V$ such that $\sum_{(u, v) \in E} s(u, v)$ and $c(v)$
-        have different reminders modulo $2$.
-      \item Assume that $\sum_{v \in V} c(v)$ is even.
-        Show that there is a function $s : E \to \set{0, 1}$
-        such that $\sum_{(u, v) \in E} s(u, v)$ is odd iff $c(v)$ is odd
-        for all $v \in V$.
-    \end{enumerate}
-\end{chapterendexercises}
+However, one may prove that if all the vertices in a graph have large degree,
+then the graph has a Hamiltonian cycle.
+\begin{theorem}[Dirac]
+  Let $G$ be a graph on $n \ge 3$ vertices. If every vertex $v$ in $G$ has
+  degree at least $n / 2$, then there is a Hamiltonian cycle in $G$.
+\end{theorem}
