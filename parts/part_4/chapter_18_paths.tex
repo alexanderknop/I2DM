@@ -330,6 +330,27 @@ then the graph has a Hamiltonian cycle.
   Let $G$ be a graph on $n \ge 3$ vertices. If every vertex $v$ in $G$ has
   degree at least $n / 2$, then there is a Hamiltonian cycle in $G$.
 \end{theorem}
+\begin{proof}
+  For the sake of contradiction, let us assume that $G$ has not Hamiltonian
+  cycle bu all the vertices have degree at least $n / 2$, where $n$ is
+  the number of vertices in $G$.
+
+  Let us start adding edges to $G$ as long as we are not creating a
+  Hamiltonian cycle. When we stop we get a graph $H = (V, E)$ such that
+  all the vertices of $H$ have degree at least $n / 2$, $H$ does
+  not have a Hamiltonian cycle, but adding any new edge would create a
+  Hamiltonian cycle.
+
+  Consider any two vertices $x$ and $y$ that are not connected by
+  an edge. We know that in the graph $H + (x, y)$ there is
+  a Hamiltonian cycle $x = v_1$, \dots, $v_n = y$. Note that
+  $|\set[{(x, v) \in E \text{ or } (y, v) \in E}]{v \in V}| \ge n$
+  since $\deg_H(x) \ge n / 2$ and $\deg_H(y) \ge n / 2$.
+  Therefore by the pigeonhole principle, there is $2 \le i \le n - 1$
+  such that $(x, v_i) \in E$ and $(v_{i - 1}, y) \in E$. As a result,
+  $x$, $v_2$, \dots, $v_{i - 1}$, $y$, $v_{n - 1}$, \dots, $v_i$
+  is a Hamiltonian path in $H$.
+\end{proof}
 
 \begin{chapterendexercises}
   \exercise[recommended] Let $G$ be a graph such that there are only $2$
