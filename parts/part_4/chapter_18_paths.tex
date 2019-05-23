@@ -352,6 +352,43 @@ then the graph has a Hamiltonian cycle.
   is a Hamiltonian path in $H$.
 \end{proof}
 
+There are plenty of different applications of Hamiltonian paths. Here we describe
+the one that comes from bioinformatics.
+
+Imagine that we want to read a DNA strand, i.e., determine the order in which
+nucleotides occur on a strand of DNA. One of the methods, called
+``Sequencing by Hybridization'', is based on Hamiltonian paths.
+
+The method works as follows.
+\begin{itemize}
+  \item Attach all possible DNA probes of length $k$ to a flat surface, each
+    probe at a distinct and known location. This set of probes is called
+    the DNA microarray.
+  \item Apply a solution containing fluorescently labeled copies of a DNA
+    fragment to the array.
+  \item The DNA fragment hybridizes with those probes that are
+    complementary to substrings of length $k$ of the fragment.
+  \item Using a spectroscopic detector, determine which probes hybridize to
+    the DNA fragment to obtain the $k$-mer composition of the DNA fragment.
+  \item Reconstruct the sequence of the DNA fragment from the $k$-mer
+    composition.
+\end{itemize}
+
+In other words, we need to recunstruct a string $s$ from all $n - k + 1$
+substrings of length $k$; e.g, we need to reconstruct the string TATGGTGC
+from the strings ATG, GGT, GTG, TAT, TGC, TGG (in this example $k = 3$).
+(Note that different strings may have the same sets of substrings.
+Strings GTATCT and GTCTAT correspond to the strings
+AT, CT, GT, TA, TC when $k = 2$.)
+
+By a given set $p_1$, \dots, $p_\ell$ of strings ($k$-mers) of length $k$
+we construct the following graph. There are $\ell$ vertices corresponding to
+the strings $p_1$, \dots, $p_\ell$; there is an edge between $p_i$ and $p_j$
+whenever the same string of length $k - 1$ is a suffix of $p_i$ and a
+prefix of $p_j$ (for example, TG is a suffix of ATG and a prefix of TGG).
+It is easy to see that we can find a string corresponding to
+$p_1$, \dots, $p_\ell$ if we have a Hamiltonian path in the graph.
+
 \begin{chapterendexercises}
   \exercise[recommended] Let $G$ be a graph such that there are only $2$
     vertices with odd degree. Prove that they belong to the same connected
