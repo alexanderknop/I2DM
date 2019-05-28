@@ -299,29 +299,42 @@ $O((n - 1)!)$ by just brute forcing all the possible candidates for such a path.
 However, using the ideas of the inclusion-exclusion principle, we may design
 a much faster algorithm.
 \begin{theorem}
+\label{theorem:hamiltonian-algorithm}
   There is an algorithm with the running time $O(2^n n^3)$ such that it finds
   the number of Hamiltonian cycles in a graph $G = ([n], E)$.
 \end{theorem}
-\begin{proof}
-  As we mentioned before we the inclusion-exclusion principle to find the number
-  of Hamilton cycles. Clearly any Hamiltonian cycle is a sim] cycle that visits
-  all the vertices. Therefore
-  \[
-    H = \sum_{S \subseteq [n]} (-1)^{|S|} C_S,
-  \]
-  where $C_S$ is the number of simple cycles that do not go via the vertices
-  from $S$ but go via the vertex $1$ (note that if $1 \in S$, then $C_S = 0$).
 
-  If we know the values of $C_S$ we can compute the number of Hamiltonian cycles
-  in $O(2^n)$ steps. So the goal is to find these numbers.
-  Consider the values $P_{i, j, \ell, S}$ ($i \neq j \in [n]$, $S \subseteq [n]$)
-  equal to the number of simple paths of length $\ell$ from $i$ to $j$ and not
-  going via the vertices from $S$. It is clear that $P_{i, j, 1, S} = 1$ if
-  $i, j \notin S$ and $(i, j) \in E$ and $P_{i, j, 1, S} = 0$ otherwise.
-  It is also clear that $P_{i, j, \ell + 1, S} =
-  \sum_{j' \in [n] ~:~ (j', j) \in E} P_{i, j', \ell, S \cup \set{j}}$.
-  Therefore we can find all the values of $C_S$ in time $O(2^n n^3)$ since
-  $C_S = \sum_{\ell \in [n], u \in [n] ~:~ (u, 1) \in E} P_{1, u, \ell, S}$.
+Before we prove the theorem, recall that if $U$ and
+$A_1, \dots, A_\subseteq U$ are some finite sets, then
+\[
+  \left| \bigcap_{i = 1}^n A_i \right| =
+  \sum_{X \subseteq [n]} (-1)^{|X|}
+    \left| \bigcap_{i \in X} \overline{A}_i \right|,
+\]
+where $\overline{A}_i = U \setminus A_i$.
+
+\begin{proof}[Proof of Theorem~\ref{theorem:theorem:hamiltonian-algorithm}]
+  As we mentioned before we the inclusion-exclusion principle to find the number
+  of Hamilton cycles. Let $U$ be the set of all the cycles of length $n$
+  (length is the number of edges in the path) going
+  via the vertex $1$ and $A_v \subseteq U$ ($v \in [n])$ be the set of cycles of
+  length $n$ going via the vertices $1$ and $v$.
+
+  It is clear that the answer is $\left| \bigcap_{i = 1}^n A_i \right|$.
+  Therefore it is enough to find all the cardinalities of
+  $\left| \bigcap_{i \in X} \overline{A}_i \right|$. Note that
+  $\bigcap_{i \in X} \overline{A}_i$ is equal to the set of all the cycles of
+  length $n$ going via the vertex $1$ in $G - X$. We denote the cardinality of
+  this set by $C_X$.
+
+  To find the value of $C_X$ we use the following notation.
+  Let $E_X$ be the set of edges in $G - X$ and let $T_X(d, x)$ be
+  the number of length $d$ paths from $1$ to $x \in [n] \setminus X$ in $G - X$.
+  Clearly $T_X(0, x) = 1$ if $x = 1$ and $T_X(0, x) = 0$ otherwise. In addition,
+  $T_X(d + 1, x) = \sum_{y ~:~ (y, x) \in E_X} T_X(d, y)$. Therefore, we may
+  compute $T(n, x)$ for all $x \in [n] \setminus X$ in $n^3$ steps. As a result,
+  we may find the value of $\sum_{X \subseteq [n]} (-1)^{|X|} C_X$ in $2^n n^3$
+  steps.
 \end{proof}
 
 However, one may prove that if all the vertices in a graph have large degree,
