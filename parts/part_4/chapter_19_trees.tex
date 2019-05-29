@@ -164,8 +164,22 @@ To prove this statement we need a technical lemma.
 \begin{lemma}
   Let $F_1$ and $F_2$ be forests on the same vertex set $V$. If $F_1$ has less
   edges than $F_2$, then $F_2$ has an edge $e$ not in $F_1$ so
-  that the graph $F + e$ is still a forest.
+  that the graph $F_1 + e$ is still a forest.
 \end{lemma}
+\begin{proof}
+  Let $E_i$ be the set of edges of $F_i$.
+  Assume that there such edge does not exist; i.e., $F_1 + e$ has a cycle for
+  any edge $e \in E_2 \setminus E_1$.
+
+  Therefore any edge of $F_2$ is between two vertices in the same component of
+  $F_1$. Hence, $F_2$ has at least as many connected components as $F_1$.
+  Indeed, consider two connected components $U_1$ and $U_2$ of $F_1$ we claim
+  that they any $x \in U_1$ and $y \in U_2$ are not connected in $F_2$ since
+  there are no edges going outside of $U_1$ and $U_2$ in $F_2$.
+
+  However, $F_i$ has $n - |E_i|$ connected components, which contradicts to the
+  fact that $|E_1| < |E_2|$.
+\end{proof}
 
 \begin{proof}[Proof of Theorem~\ref{theorem:kruskal}]
   Let $T_1$, \dots, $T_m$ be the states of $T$ after iterations of
