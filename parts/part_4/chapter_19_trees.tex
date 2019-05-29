@@ -1,0 +1,97 @@
+\chapter{Trees}
+Let us consider the following problem. Given a network of several computers,
+in this network if a computer $A$ receives some message from a computer $B$,
+it broadcasts it to all the connected computers except $B$.
+However, in such setting there is an issue known as broadcast radiation.
+Assume we have three computers $A$, $B$, and $C$ such that they form a cycle.
+If $A$ sends something to $B$ and $C$ both of them send received information to
+$C$ and $B$, respectively; after that $B$ and $C$ send this information to $A$
+and $A$ start sending this information again, which leads to an infinite cycle.
+
+Therefore to avoid such problem we need to disable some connecion so that the
+graph of this network does not have cycles.
+In this chapter we are going to study properties of the graphs without cycles.
+\begin{definition}
+  We say that a connected graph $G$ is a \emph{tree} iff $G$ does not have cycles.
+\end{definition}
+
+\section{Minimally Connected Graphs}
+First we may make the following observation.
+\begin{theorem}
+  Let $G = (V, E)$ be a connected graph. Then the following statements are
+  equivalent.
+  \begin{itemize}
+    \item $G$ is a tree.
+    \item $G$ is minimally connected, that is, $G - e$ is not connected for any
+      $e \in E$.
+  \end{itemize}
+\end{theorem}
+
+Therefore in order to get a tree from a graph, we just need to delete edges
+in an arbitrary way until the moment when we cannot delete them anymore.
+\begin{corollary}
+  For any connected graph $G = (V, E)$, there is a tree $T = (V, E')$ such
+  that $T$ is a subgraph of $G$. Such tree is called a spanning tree of $G$.
+\end{corollary}
+
+Another question we may ask is how many edges we need to delete in this process.
+Aparenly, the answer is always $m - n + 1$, where $m$ is the number of edges in
+the initial graph and $n$ is the number of vertices.
+\begin{theorem}
+  Let $G$ be a connected graph on $n$ vertices.
+  If $G$ is a tree, then it has $n - 1$ edges. Moreover, if $G$ has $n - 1$
+  edge, then it is a tree.
+\end{theorem}
+
+\section{Minimum-weight Spanning Trees}
+In the initial example about the network, we missed an important detail: not
+all the connections are equally fast. Let us label each connection
+(edge in our graph) with the weight (the number that represents how slow is this
+connection). So now we need to choose a spanning tree of
+the graph of the network so that it has the minimal possible sum of weights.
+\begin{definition}
+  Let $G = (V, E)$ be a connected graph, and $w : E \to \R$ be weights of edges.
+  Then we say that a spanning tree $T = (V, E')$ of $G$ is a
+  \emph{minimum-weight spanning tree} of $G$ if
+  $\sum_{e \in E'} w(e) \le \sum_{e \in E''} w(e)$ for any spanning tree
+  $T' = (V, E'')$ of $G$.
+
+  The number $\sum_{e \in E'} w(e)$ is called the \emph{weight} of $T$.
+\end{definition}
+
+It is obvious that such a tree exists. The question is
+``how to find efficiently the minimum-weight spanning tree''.
+\begin{exercise}
+  Let $G = (V, E)$ be some graph and $w : E \to \R$ be a weight function such
+  that $w(e) = 1$. How to to find efficiently the minimum-weight spanning tree
+  of $G$?
+\end{exercise}
+
+
+Surprisingly, one may find such a minimum-weight spanning tree using the
+following greedy algorithm.
+\begin{algorithm}
+  \begin{algorithmic}[1]
+    \Function{Kruskal}{$n$, $E$, $w$}
+      \State Let $e_1$, \dots, $e_m$ be the edges from $E$ sorted in the
+        ascending order with respect to $w$.
+      \State $i \gets 1$
+      \State Set $T$ to be an empty graph.
+      \While{$i \le n$}
+        \If{$T + e_i$ does not have cycles}
+          \State $T \gets T + e_i$
+        \EndIf
+        \State Increase $i$ by $1$.
+      \EndWhile
+      \State \Return{$T$}
+    \EndFunction
+  \end{algorithmic}
+  \caption{Kruskal's algorithm, the algorithm that returns a minimum-weight
+  spanning tree of the graph on $[n]$ with the set of edges $E$.}
+  \label{algorithm:kruskal}
+\end{algorithm}
+
+\begin{theorem}
+  If the graph $([n], E)$ is connected, then Algorithm~\ref{algorithm:kruskal}
+  returns a minimum-weight spanning tree of the graph $([n], E)$.
+\end{theorem}
