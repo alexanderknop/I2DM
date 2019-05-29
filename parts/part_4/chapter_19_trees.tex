@@ -54,10 +54,56 @@ Another question we may ask is how many edges we need to delete in this process.
 Aparenly, the answer is always $m - n + 1$, where $m$ is the number of edges in
 the initial graph and $n$ is the number of vertices.
 \begin{theorem}
+\label{theorem:tree-is-minimally-connected}
   Let $G$ be a connected graph on $n$ vertices.
   If $G$ is a tree, then it has $n - 1$ edges. Moreover, if $G$ has $n - 1$
   edge, then it is a tree.
 \end{theorem}
+
+Before we prove the theorem, let us prove the following lemma.
+\begin{lemma}
+  If a tree $T$ has at least $2$ vertices, then it has at least two
+  vertices whose degree is $1$.
+\end{lemma}
+\begin{proof}
+  Let us choose a vertex $v$ of $T$ such that its degree is not $1$ (if such a
+  vertex does not exist, then we found at least $2$ vertices whose degree is
+  $1$). Let us start walking from $v$ to its neighbour, then to a new neighbor
+  of this neighbor, and so on, never revisiting a vertex. As $T$ has finite
+  number of vertices, we will eventually have to stop at a vertex $u$. We claim
+  that the only reason for us to stop at $u$ could be that $u$ is of degree $1$.
+  Indeed, the only possible other reason would be that $u$ has neighbors other
+  than the neighbor $u'$ we reached $u$ from, but they have all been visited
+  already. However, that would mean that there are at least two paths from $v$
+  to $u$, and that cannot happen in a tree. So $u$ is of degree $1$. To get
+  another vertex of degree $1$, remember that $v$ is of degree more than $1$.
+  So take another neighbor of $v$, and repeat this argument. This will result in
+  another vertex $w$ of degree $1$, and $u \neq w$ as that would again yield two
+  paths from $v$ to $u$.
+\end{proof}
+The vertices of a tree that have degree $1$ are called \emph{leaves}.
+
+\begin{proof}[Proof of Theorem~\ref{theorem:tree-is-minimally-connected}]
+  We prove the statement using induction by $n$. If $n = 1$, the statement is
+  clearly true.
+  Assume that the statement is true for trees on $n$ vertices. Consider a tree
+  $T$ on $n + 1$ vertices. Consider a leaf $\ell$ of $T$. Note that $T - \ell$
+  is a tree as well, therefore by the induction hypothesis, it has $n - 2$
+  edges. Hence, $T$ has $n - 1$ edges.
+
+  Let us now prove that if a graph $G$ has $n - 1$ edges and is connected,
+  then $G$ is a tree. Assume that it is not a tree, we start deleting edges as
+  long as the graph is connected, we call the resulting graph $T$. Note that
+  $T$ is minimally connected, so $T$ is a tree. Note that $T$ has $n$ vertices.
+  Therefore, it has $n - 1$ eges, which implies that we removed $0$ edges and
+  $T = G$. As a result, $G$ is a tree.
+\end{proof}
+
+\begin{exercise}
+  A graph such that every connected component of this graph is a tree is called
+  a \emph{forest}.
+  Show that a forest with $k$ connected components has $n - k$ edges.
+\end{exercise}
 
 \section{Minimum-weight Spanning Trees}
 In the initial example about the network, we missed an important detail: not
@@ -84,8 +130,8 @@ It is obvious that such a tree exists. The question is
 \end{exercise}
 
 
-Surprisingly, one may find such a minimum-weight spanning tree using the
-following greedy algorithm.
+Surprisingly, one may find such a minimum-weight spanning tree using a simple
+greedy algorithm (Algorithm~\ref{algorithm:kruskal}).
 \begin{algorithm}
   \begin{algorithmic}[1]
     \Function{MinimumSpanningTree}{$n$, $E$, $w$}
@@ -111,3 +157,17 @@ following greedy algorithm.
   If the graph $([n], E)$ is connected, then Algorithm~\ref{algorithm:kruskal}
   returns a minimum-weight spanning tree of the graph $([n], E)$.
 \end{theorem}
+
+To prove this statement we need a technical lemma.
+\begin{lemma}
+  Let $F_1$ and $F_2$ be forests on the same vertex set $V$. If $F_1$ has less
+  edges than $F_2$, then $F_2$ has an edge $e$ not in $F_1$ so
+  that the graph $F + e$ is still a forest.
+\end{lemma}
+
+
+
+\begin{chapterendexercises}
+  \exercise[recommended] Let $G$ be a graph with $k$ connected components and
+    $n - k$ edges. Show that $G$ is a forest.
+\end{chapterendexercises}
