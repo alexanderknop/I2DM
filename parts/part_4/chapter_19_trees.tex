@@ -138,7 +138,8 @@ greedy algorithm (Algorithm~\ref{algorithm:kruskal}).
       \State Let $e_1$, \dots, $e_m$ be the edges from $E$ sorted in the
         ascending order with respect to $w$.
       \State $i \gets 1$
-      \State Set $T$ to be an empty graph.
+      \State Set $T$ to be an empty graph on $[n]$.
+      \label{line:kruskal-while}
       \While{$i \le n$}
         \If{$T + e_i$ does not have cycles}
           \State $T \gets T + e_i$
@@ -154,6 +155,7 @@ greedy algorithm (Algorithm~\ref{algorithm:kruskal}).
 \end{algorithm}
 
 \begin{theorem}
+\label{theorem:kruskal}
   If the graph $([n], E)$ is connected, then Algorithm~\ref{algorithm:kruskal}
   returns a minimum-weight spanning tree of the graph $([n], E)$.
 \end{theorem}
@@ -165,6 +167,41 @@ To prove this statement we need a technical lemma.
   that the graph $F + e$ is still a forest.
 \end{lemma}
 
+\begin{proof}[Proof of Theorem~\ref{theorem:kruskal}]
+  Let $T_1$, \dots, $T_m$ be the states of $T$ after iterations of
+  line~\ref{line:kruskal-while} of Algorithm~\ref{algorithm:kruskal}.
+  Note that $T_i$ does not have cycles for $i \in [m]$. Therefore $T_i$ is a
+  forest for $i \in [m]$.
+
+  First we need to prove that Algorithm~\ref{algorithm:kruskal} returns a
+  spanning tree; i.e. that $T_m$ is connected.
+  Assume the opposite. Consider two vertices $x, y \in [n]$ such that
+  they are not connected in $T$. Since $G = ([n], E)$ is connected there is a
+  path $x = v_1, \dots, v_k = y$ in $G$. Consider the minimal $i \in [k - 1]$
+  such that $(v_i, v_{i + 1})$ is not an edge of $T_m$. Let
+  $e_j = (v_i, v_{i + 1})$. It is easy to see that $T_m + (v_i, v_{i + 1})$ does
+  not have cycles so $T_{j - 1} + e_j$ does not have cycles as well and $T_j =
+  T_{j - 1} + e_j$ which implies that $T_m$ has the edge $(v_i, v_{i + 1})$
+  which is a contradiction.
+
+  Before we start the second part of the proof note that if $w(e) < w(e_i)$,
+  then $T_{i - 1} + e_i$ has a cycle.
+
+  Now we need to prove that $T_m$ is a minimum-weight spanning tree. Assume
+  that there is a spanning tree $H$ such that the weight of $H$ is less than
+  the weight of $T_m$. Consider the edges $t_1$, \dots, $t_{n - 1}$ of $T_m$
+  and the edges $h_1$, \dots, $h_{n - 1}$ of $H$ such that
+  $w(t_1) \le w(t_2) \le \dots \le w(t_{n - 1})$ and
+  $w(h_1) \le w(h_2) \le \dots \le w(h_{n - 1})$.
+  Let us consider the first step when $H$ is better than $T_m$; i.e., the
+  minimal $i$ so that $\sum_{j = 1}^i w(h_j) < \sum_{j = 1}^i w(t_j)$
+  (obviously $i > 1$).
+
+  It is easy to see that $h_i < t_i$. Let $e_j = t_i$ and
+  $H_i = H[h_1, \dots, h_i]$. Since $H_i$ has more edges than $T_j$ there is an
+  edge $h_{i'}$ ($i' < i$) such that $T_{j - 1} + h_{i'}$ does not have cycles.
+  Wich is a contradiction since $h_{i'} < h_i < t_i$.
+\end{proof}
 
 
 \begin{chapterendexercises}
