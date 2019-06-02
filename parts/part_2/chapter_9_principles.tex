@@ -238,4 +238,13 @@ of sets when they are not disjoint.
     \]
   \exercise Let $X$ and $Y$ be some finite sets, and $f : X \to Y$ be a function
     such that $|f^{-1}(y)| = k$ for all $y \in Y$. Prove that $|X| = k|Y|$.
+  \exercise[recommended] Show that if $U$ and $X_1, \dots, X_n \subseteq U$ are
+    some finite sets, then
+    \[
+      \left| \bigcap_{i = 1}^n X_i \right| =
+      \sum_{S \subseteq [n]} (-1)^{|S|}
+        \left| \bigcap_{i \in S} \overline{X}_i \right|,
+    \]
+    where $\overline{X}_i = U \setminus X_i$ and
+    $\bigcap_{i \in \emptyset} \overline{X}_i = U$.
 \end{chapterendexercises}

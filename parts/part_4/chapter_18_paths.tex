@@ -305,13 +305,14 @@ a much faster algorithm.
 \end{theorem}
 
 Before we prove the theorem, recall that if $U$ and
-$A_1, \dots, A_\subseteq U$ are some finite sets, then
+$A_1, \dots, A_n \subseteq U$ are some finite sets, then
 \[
   \left| \bigcap_{i = 1}^n A_i \right| =
   \sum_{X \subseteq [n]} (-1)^{|X|}
     \left| \bigcap_{i \in X} \overline{A}_i \right|,
 \]
-where $\overline{A}_i = U \setminus A_i$.
+where $\overline{A}_i = U \setminus A_i$ and
+$\bigcap_{i \in \emptyset} \overline{A}_i = U$.
 
 \begin{proof}[Proof of Theorem~\ref{theorem:theorem:hamiltonian-algorithm}]
   As we mentioned before we the inclusion-exclusion principle to find the number
