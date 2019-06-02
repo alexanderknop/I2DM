@@ -6,7 +6,11 @@ However, in such setting there is an issue known as broadcast radiation.
 Assume we have three computers $A$, $B$, and $C$ such that they form a cycle.
 If $A$ sends something to $B$ and $C$ both of them send received information to
 $C$ and $B$, respectively; after that $B$ and $C$ send this information to $A$
-and $A$ start sending this information again, which leads to an infinite cycle.
+and $A$ start sending this information again, which leads to an infinite
+cycle.\footnote{%
+  This problem is a simplified version of a problem that is solved by STP
+  protocols in the modern networks.
+}
 
 Therefore to avoid such problem we need to disable some connecion so that the
 graph of this network does not have cycles.
