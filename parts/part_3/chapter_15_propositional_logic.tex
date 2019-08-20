@@ -1,6 +1,6 @@
 \chapter{Propositional Logic}
-In the Part~\ref{part:mathematical-reasoning} we studied the most important
-mathematical notation and how to prove theorems, we gave several ``formal''
+In \Cref{part:mathematical-reasoning} we studied the most important
+mathematical notation and how to prove theorems, we gave several semi-formal
 definitions; however, our definition of the proof was not quite formal. It just
 allowed us to distinguish between good arguments and bad arguments. It is not
 enough if we wish to study proofs which is the core of mathematical logic.
@@ -13,15 +13,17 @@ enough if we wish to study proofs which is the core of mathematical logic.
 }{youtu.be/X0797bVFf3Y}
 
 First, we need to define what precisely we mean by ``mathematical statement''.
-In order to do this we define a class of formulas called propositional formulas.
+In order to do this we define a class of formulas called propositional formulas
+(also known as sentential formulas or Boolean formulas).
 \begin{definition}
   We say that $\phi$ is a propositional formula on the variables $x_1$, \dots,
   $x_n$ if
   \begin{itemize}
-    \item either $\phi$ is equal to $x_i$ for some $i \in [n]$,
-    \item or $\phi$ is equal to $(\psi_1 \land \psi_2)$ or
-      $(\psi_1 \lor \psi_2)$, where $\psi_1$ and $\psi_2$ are propositional
-      formulas on $x_1$, \dots $x_n$,
+    \item either $\phi$ is equal to $x_i$ for some $i \in \range{n}$,
+    \item or $\phi$ is equal to $(\psi_1 \land \psi_2)$, or
+      $(\psi_1 \lor \psi_2)$, or $(\psi_1 \implies \psi_2)$ ,
+      where $\psi_1$ and $\psi_2$ are propositional formulas on $x_1$, \dots
+      $x_n$,
     \item or $\phi$ is equal to $\lnot \psi$, where $\psi$ is a propositional
       formula on $x_1$, \dots $x_n$.
   \end{itemize}
@@ -30,7 +32,7 @@ In order to do this we define a class of formulas called propositional formulas.
 We can also define the value of a formula.
 \begin{definition}
   Let $\phi$ be a propositional formula on the variables $x_1$, \dots, $x_n$
-  and $v_1, \dots, v_n \in \set{\text{T}, \text{F}}$.
+  and $v_1, \dots, v_n \in \set{\ltrue, \lfalse}$.
 
   We say that the value $\phi\big\rvert_{x_1 = v_1, \dots, x_n = v_n}$ of the
   formula $\phi$ when $v_1$ is substituted as the value of $x_1$, \dots,
@@ -39,10 +41,15 @@ We can also define the value of a formula.
     \item $v_i$ if $\phi$ is equal to $x_i$, and
     \item $\psi_1\big\rvert_{x_1 = v_1, \dots, x_n = v_n} \land
       \psi_2\big\rvert_{x_1 = v_1, \dots, x_n = v_n}$ if
-      $\phi$ is equal to $(\psi_1 \land \psi_2)$, and
+      $\phi$ is equal to $(\psi_1 \land \psi_2)$ (note that here and in the
+      sequel, we use connectives as symbols and as operations depending on
+      the content), and
     \item $\psi_1\big\rvert_{x_1 = v_1, \dots, x_n = v_n} \lor
       \psi_2\big\rvert_{x_1 = v_1, \dots, x_n = v_n}$ if
       $\phi$ is equal to $(\psi_1 \lor \psi_2)$, and
+    \item $\psi_1\big\rvert_{x_1 = v_1, \dots, x_n = v_n} \implies
+      \psi_2\big\rvert_{x_1 = v_1, \dots, x_n = v_n}$ if
+      $\phi$ is equal to $(\psi_1 \implies \psi_2)$, and
     \item $\lnot\psi\big\rvert_{x_1 = v_1, \dots, x_n = v_n}$
       if $\phi$ is equal to $\lnot \psi$.
   \end{itemize}
@@ -51,15 +58,83 @@ We can also define the value of a formula.
 For example, the value of a formula $(x_1 \land x_2) \lor x_3$ when T is
 substituted as the value of $x_1$, T is substituted as the value of $x_2$,
 and F is substituted as the value of $x_3$ is equal to
-$(\text{T} \land \text{T}) \lor \text{F} = \text{T}$.
+$(\ltrue \land \ltrue) \lor \lfalse = \ltrue$.
 
+Note that, by associativity of conjunction, the formulas
+$\phi_1 \land (\phi_2 \land \phi_3)$ and $(\phi_1 \land \phi_2) \land \phi_3$
+have the same values for any substitutions. Therefore we usually write them
+without parentheses: $\phi_1 \land \phi_2 \land \phi_3$. Similarly we drop the
+parentheses in the disjunctions of more than two formulas. Taking these
+observations into account we may introduce the following notation.
+Let $\phi_1$, \dots, $\phi_n$ be some propositional formulas. Then
+$\bigland_{i = 1}^n \phi_i$ denotes the conjunction of the formulas
+$\phi_1$, \dots, $\phi_n$, and $\biglor_{i = 1}^n \phi_i$
+denotes the disjunction of them.
+
+
+Using this notation we may show that the formulas we defined are enough to
+represent all the Boolean functions
+(functions from $\set{\ltrue, \lfalse}^n$ to $\set{\ltrue, \lfalse}$).
 \begin{theorem}
-  For any function $f : \set{\text{T}, \text{F}}^n \to
-  \set{\text{T}, \text{F}}$ there is a
+  For any function $f : \set{\ltrue, \lfalse}^n \to
+  \set{\ltrue, \lfalse}$ there is a
   formula $\phi$ on the variables $x_1$, \dots, $x_n$ such that
   $\phi\big\rvert_{x_1 = v_1, \dots, x_n = v_n} = f(v_1, \dots, v_n)$ for all
-  $v_1, \dots, v_n \in \set{\text{T}, \text{F}}$
+  $v_1, \dots, v_n \in \set{\ltrue, \lfalse}$.
 \end{theorem}
+\begin{proof}
+  We denote the formula $x_i$ by $x_i^1$ and the formula $\lnot x_i$ by $x_i^0$.
+  It is easy to see that $\bigland_{i = 1}^n x_i^{v_i}$ is true on the
+  substitution $u_1, \dots, u_n \in \set{\ltrue, \lfalse}$ iff $u_1 = v_1$,
+  \dots, $u_n = v_n$.
+
+  Let $S = \set[f(u_1, \dots, u_n) = \ltrue]{(u_1, \dots, u_n) \in
+    \set{\ltrue, \lfalse}^n}$.
+  Assume that
+  $S = \set{(u_{1, 1}, \dots, u_{1, n}), \dots, (u_{k, 1}, \dots, u_{k, n})}$.
+  It is clear that
+  \[
+    \left(
+      \bigland_{i = 1}^k
+        \biglor_{j = 1}^n x_j^{u_{i, j}}
+    \right)\Bigg\rvert_{x_1 = v_1, \dots, x_n = v_n}
+    =
+    f(v_1, \dots, v_n)
+  \]
+  for all $v_1, \dots, v_n \in \set{\ltrue, \lfalse}$.
+  (Note that we have not considered the case when $S = \emptyset$, in this
+  case $f$ is a constant $\lfalse$ function and it is equal to
+  $x_1 \land \lnot x_1$.)
+\end{proof}
+
+We say that a formula is a literal iff it is equal to $x_i$ or to $\lnot x_i$
+for some $i \in \range{n}$.
+We also say that a formula is in disjunctive normal form (DNF) iff
+it is a disjunction of one or more conjunctions of one or more literals.
+Note that the proof we just gave says that any function has a representation in
+DNF.
+
+We can also define a conjunctive normal form (DNF); we say that a formula is in
+CNF if it is a conjunction of one or more disjunctions of of one or
+more literals. Using the following simple trick we can prove that any function
+has a representation in CNF. First, we define a function
+$g(x_1, \dots, x_n) = \lnot f(x_1, \dots, x_n)$. Secondly, we may notice that
+\[
+  \left(
+    \lnot
+    \left(
+      \bigland_{i = 1}^k \biglor_{j = 1}^n \phi_{i, j}
+    \right)
+  \right) \Bigg\rvert_{x_1 = v_1, \dots, x_n = v_n}
+  =
+  \left(
+    \biglor_{i = 1}^k \bigland_{j = 1}^n \lnot \phi_{i, j}
+  \right)\Bigg\rvert_{x_1 = v_1, \dots, x_n = v_n}
+\]
+for all $v_1, \dots, v_n \in \set{\ltrue, \lfalse}$. Therefore the negation
+of a formula in DNF is a formula in CNF. Finally, we know that the function
+$g$ has a representation in DNF, which implies that $f$ has a representation
+in CNF.
 
 \section{Truth Tables}
 
