@@ -1,15 +1,24 @@
+\newcommand{\floor}[1]{\left\lfloor {#1} \right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil {#1} \right\rceil}
+\newcommand{\textgreek}[1]{\begingroup\fontencoding{LGR}\selectfont#1\endgroup}
+\newcommand{\divides}{\mid}
+\newcommand{\notdivides}{\nmid}
+
+% set theory
+\renewcommand{\Im}{\mathrm{Im}}
 \newcommand{\set}[2][ ]{\left\{#2 \ifthenelse{\equal{#1}{ }}{ }{~:~#1}\right\}}
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\C}{\mathbb{C}}
-\newcommand{\floor}[1]{\left\lfloor {#1} \right\rfloor}
-\newcommand{\ceil}[1]{\left\lceil {#1} \right\rceil}
-\newcommand{\textgreek}[1]{\begingroup\fontencoding{LGR}\selectfont#1\endgroup}
-\newcommand{\divides}{\mid}
-\newcommand{\notdivides}{\nmid}
-\renewcommand{\Im}{\mathrm{Im}}
+\newcommand{\range}[1]{[{#1}]}
+
+% math logic
+\newcommand{\bigland}{\bigwedge}
+\newcommand{\biglor}{\bigvee}
+\newcommand{\ltrue}{\text{T}}
+\newcommand{\lfalse}{\text{F}}
 
 \newcommand{\fpm}{\mathcal{G}}
 

@@ -46,12 +46,12 @@ function such that $f(x) = x + 1$; Note that it is a bijection:
   Show that $x^3$ is a bijection.
 \end{exercise}
 
-One may notice that if we have a bijection $f$ from $[n]$ to a set $S$ we
+One may notice that if we have a bijection $f$ from $\range{n}$ to a set $S$ we
 enumerate all the elements of $S$: $f(1)$, \dots, $f(n)$.
 This observation allows us to define the cardinality of a set.
 \begin{definition}
   Let $S$ be a set, we say that cardinality of $S$ is equal to $n$ (we write
-  that $|S| = n$) iff there is a bijection from $[n]$ to $S$.
+  that $|S| = n$) iff there is a bijection from $\range{n}$ to $S$.
 
   We also say that a set $T$ is finite if there is an integer $n$ such that
   $|T| = n$.
@@ -61,7 +61,7 @@ Note that this definition does not guarantee that cardinality is unique so
 we need the following theorem.
 \begin{theorem}
 \label{theorem:correctness-of-cardinality}
-  For any set $S$, if there are bijections $f : [n] \to S$ and $g : [m] \to S$,
+  For any set $S$, if there are bijections $f : \range{n} \to S$ and $g : \range{m} \to S$,
   then $n = m$.
 \end{theorem}
 Before we prove this theorem, let us study some properties of bijections.
@@ -127,16 +127,17 @@ $f^{-1}$ at $y$ if $f$ is a bijection}
   Let us consider the inverse $g^{-1}$ of $g$ (it exists by
   Theorem~\ref{theorem:inverse-of-bijections} since $g$ is a
   bijection). Note that $h = g^{-1} \circ f$
-  is a bijection from $[n]$ to $[m]$.
+  is a bijection from $\range{n}$ to $\range{m}$.
 
   We prove using induction by $n$ that for any $n, m \in \N$,
-  if there is a bijection $h'$ from $[n]$ to $[m]$, then $n = m$.
+  if there is a bijection $h'$ from $\range{n}$ to $\range{m}$, then $n = m$.
   The base case is for $n = 1$; if $m \ge 2$,
   then there are $x, y \in [1]$ such that $h'(x) = 1$ and $h'(y) = 2$, but
   $x \neq y$ and we have only one element in $[1]$.
 
   The induction step is also simple. Assume that there is a bijection $h'$ from
-  $[n + 1]$ to $[m]$. We define a function $h'' : [n] \to [m - 1]$ as follows:
+  $[n + 1]$ to $\range{m}$. We define a function
+  $h'' : \range{n} \to \range{m - 1}$ as follows:
   \[
     h''(i) =
     \begin{cases}
@@ -146,7 +147,7 @@ $f^{-1}$ at $y$ if $f$ is a bijection}
   \]
   We prove that $h''$ is a bijection.
   \begin{itemize}
-    \item Let $i_1 \neq i_2 \in [n]$. If $h'(i_1), h'(i_2) < h'(n + 1)$ or
+    \item Let $i_1 \neq i_2 \in \range{n}$. If $h'(i_1), h'(i_2) < h'(n + 1)$ or
       $h'(i_1), h'(i_2) \ge h'(n + 1)$, then $h''(i_1) \neq h''(i_2)$ since
       $h'(i_1) \neq h'(i_2)$. Otherwise, without loss of generality we
       may assume that $h'(i_1) < h'(n + 1) < h'(i_2)$ but it implies that
@@ -193,8 +194,8 @@ they have the same cardinality (i.e. they have the same number of elements).
   $X$ to $Y$. Then $|X| = |Y|$.
 \end{theorem}
 \begin{proof}
-  Let $|X| = n$, and $g : [n] \to X$ be a bijection.
-  Note that $f \circ g : [n] \to Y$ is a bijection, hence $|Y| = n$.
+  Let $|X| = n$, and $g : \range{n} \to X$ be a bijection.
+  Note that $f \circ g : \range{n} \to Y$ is a bijection, hence $|Y| = n$.
 \end{proof}
 
 Using this result we can make prove the following equality.
@@ -205,21 +206,22 @@ Using this result we can make prove the following equality.
 \end{corollary}
 \begin{proof}
   To prove this statement we need to construct a bijection from $2^X$ to
-  $\set{0, 1}^{|X|}$. Let $|X| = n$ and $f : X \to [n]$ be a bijection.
+  $\set{0, 1}^{|X|}$. Let $|X| = n$ and $f : X \to \range{n}$ be a bijection.
 
-  First we construct a bijection $g_1 : 2^X \to 2^{[n]}$:
+  First we construct a bijection $g_1 : 2^X \to 2^{\range{n}}$:
   \[
     g_1(Y) = \set[x \in Y]{f(x)}.
   \] It is easy to see that the function
   \[
-    g^{-1}_1(Y) = \set[{x \in [n]}]{f^{-1}(x)}
+    g^{-1}_1(Y) = \set[{x \in \range{n}}]{f^{-1}(x)}
   \]
   is an inverse of $g_1$, so $g_1$ is indeed a bijection.
 
-  Now we need to construct a bijection $g_2$ from $2^{[n]}$ to $\set{0, 1}^n$:
+  Now we need to construct a bijection $g_2$ from $2^{\range{n}}$ to
+  $\set{0, 1}^n$:
   $g_2(Y) = (u_1, \dots, u_n)$, where $u_i = 1$ iff $i \in Y$. It is clear
-  that $g^{-1}_2(u_1, \dots, u_n) = \set[u_i = 1]{i \in [n]}$ is an inverse
-  of $g_2$ so $g_2$ is indeed a bijection.
+  that $g^{-1}_2(u_1, \dots, u_n) = \set[u_i = 1]{i \in \range{n}}$ is an
+  inverse of $g_2$ so $g_2$ is indeed a bijection.
 
   As a result, by Theorem~\ref{theorem:bijections-composition}, the function
   $(g_2 \circ g_1) : 2^X \to \set{0, 1}^{|X|}$ is a bijection.
@@ -277,8 +279,8 @@ $f(i)$ for all the $i \in \set[P(i)]{i \in S}$; i.e.
 \[
   \sum_{i \in S ~:~ P(i)} f(i) = \sum_{j = 1}^k f(g(j)),
 \]
-where $k = |\set[P(i)]{i \in S}|$ and $g : \set[P(i)]{i \in S} \to [k]$ is a
-bijection.
+where $k = |\set[P(i)]{i \in S}|$ and $g : \set[P(i)]{i \in S} \to \range{k}$ is
+a bijection.
 \nomenclature[C]{$\sum_{i \in S ~:~ P(i)} \alpha_i$}{denotes $\alpha_{i_1} +
 \dots + \alpha_{i_k}$, where $\set[P(i)]{i \in S} = \set{i_1, \dots, i_k}$}
 
@@ -287,18 +289,18 @@ bijection.
   The definition of $\sum_{i \in S : P(i)} f(i)$ is correct;
   i.e.
   $\sum_{i = 1}^k f(g_1(i)) = \sum_{i = 1}^k f(g_2(i))$
-  for any two bijections $g_1, g_2 : \set[P(i)]{i \in S} \to [k]$.
+  for any two bijections $g_1, g_2 : \set[P(i)]{i \in S} \to \range{k}$.
 \end{theorem}
 Before we prove this statement we need to give a couple of definitions.
-We say that a function $h : [n] \to [n]$ is a \emph{permutation} of $[n]$
-iff $h$ is a bijection. We also say that
-$i, j \in [k]$ form the inversion in $h$ iff $h(i) > h(j)$ and $i < j$.
+We say that a function $h : \range{n} \to \range{n}$ is a \emph{permutation} of
+$\range{n}$ iff $h$ is a bijection. We also say that
+$i, j \in \range{k}$ form the inversion in $h$ iff $h(i) > h(j)$ and $i < j$.
 We denote by $I(h)$ the number of inversions in $h$; i.e. $I(h) =
 |\set[i, j \text{ form an inversion in } h]{(i, j)}|$.
 \nomenclature[C]{$I(h)$}{denotes the number of inversions in $h$}
 
-Important examples of permutations are transposition: for any $i, j \in [n]$,
-$\tau_{i, j} : [n] \to [n]$ such that
+Important examples of permutations are transposition: for any
+$i, j \in \range{n}$, $\tau_{i, j} : \range{n} \to \range{n}$ such that
 \[
   \tau_{i, j}(x) =
   \begin{cases}
@@ -310,7 +312,7 @@ $\tau_{i, j} : [n] \to [n]$ such that
 is called a transposition of $i$ and $j$.
 \nomenclature[F]{$\tau_{i, j}$}{denotes the transposition of $i$ and $j$}
 
-It is easy to see that $I(h) = 0$ iff $h(i) = i$ for any $i \in [k]$.
+It is easy to see that $I(h) = 0$ iff $h(i) = i$ for any $i \in \range{k}$.
 It is also clear that if $i, j$ form an inversion in $h$, then $I(h) > I(h')$,
 where $h' = h \circ \tau_{i, j}$, i.e.
 \[
@@ -330,7 +332,8 @@ where $h' = h \circ \tau_{i, j}$, i.e.
     \label{equation:summation-with-respect-to_bijection}
     \sum_{i = 1}^k f(g(i)) = \sum_{i = 1}^k f(g(h(i)))
   \end{equation}
-  for any bijections $g : \set[P(i)]{i \in S} \to [k]$ and $h : [k] \to [k]$.
+  for any bijections $g : \set[P(i)]{i \in S} \to \range{k}$ and
+  $h : \range{k} \to \range{k}$.
 
   We prove Equation~\ref{equation:summation-with-respect-to_bijection} using the
   induction by $I(h)$.
@@ -339,14 +342,14 @@ where $h' = h \circ \tau_{i, j}$, i.e.
       $g(i) = g(h(i))$. Hence,
       Equation~\ref{equation:summation-with-respect-to_bijection} is true.
     \item[(the induction step)] By the induction hypothesis, for any permutation
-      $h' : [k] \to [k]$,
+      $h' : \range{k} \to \range{k}$,
       if $I(h') < \ell$, then
       \[
         \sum_{i = 1}^k f(g(i)) = \sum_{i = 1}^k f(g(h'(i))).
       \]
-      Let us consider a permutation $h : [k] \to [k]$ such that $I(h) = \ell$.
-      Let $i$ and $j$ form an inversion in $h$ (such $i$ and $j$ exist since
-      $I(h) \neq 0$). Let $h' = h \circ \tau_{i, j}$.
+      Let us consider a permutation $h : \range{k} \to \range{k}$ such that
+      $I(h) = \ell$. Let $i$ and $j$ form an inversion in $h$ (such $i$ and $j$
+      exist since $I(h) \neq 0$). Let $h' = h \circ \tau_{i, j}$.
       Note that by the induction hypothesis,
       \[
         \sum_{i = 1}^k f(g(i)) = \sum_{i = 1}^k f(g(h'(i)))
@@ -360,9 +363,9 @@ where $h' = h \circ \tau_{i, j}$, i.e.
   \end{description}
 
   Now we are ready to finish proof of the theorem.
-  Consider $g_1, g_2 : \set[P(i)]{i \in S} \to [k]$ and define
-  $h = g_1^{-1} \circ g_2$. Note that $h : [k] \to [k]$ is a permutation and
-  $g_1(h(i)) = g_2(i)$. Thus we proved that
+  Consider $g_1, g_2 : \set[P(i)]{i \in S} \to \range{k}$ and define
+  $h = g_1^{-1} \circ g_2$. Note that $h : \range{k} \to \range{k}$ is a
+  permutation and $g_1(h(i)) = g_2(i)$. Thus we proved that
   \[
     \sum_{i = 1}^k f(g_1(i)) = \sum_{i = 1}^k f(g(h(i))) =
     \sum_{i = 1}^k f(g_2(i)).
@@ -377,8 +380,8 @@ predicate. Then
   \text{and}\\
   \bigcap_{i \in S ~:~ P(i)} X(i) = \bigcap_{i = 1}^k X(g(i)),
 \end{gather*}
-where $k = |\set[P(i)]{i \in S}|$ and $g : \set[P(i)]{i \in S} \to [k]$ is a
-bijection.
+where $k = |\set[P(i)]{i \in S}|$ and $g : \set[P(i)]{i \in S} \to \range{k}$ is
+a bijection.
 \nomenclature[S]{$\bigcup_{i \in S ~:~ P(i)} A_i$}{denotes $A_{i_1} \cup \dots
 \cup A_{i_k}$, where $\set[P(i)]{i \in S} = \set{i_1, \dots, i_k}$}
 \nomenclature[S]{$\bigcap_{i \in S ~:~ P(i)} A_i$}{denotes $A_{i_1} \cap \dots
@@ -394,8 +397,9 @@ bijection.
 \begin{chapterendexercises}
   \exercise Construct a bijection from $\set{0, 1, 2}^n$ to
     \[
-      \set[{A, B \subseteq [n] \text{ and } A, B \text{ are disjoint}}]{(A, B)}.
+      \set[{A, B \subseteq \range{n} \text{ and } A, B \text{ are disjoint}}]{(A, B)}.
     \]
-  \exercise[recommended] Construct a bijection from $\set{0, 1} \times [n]$ to $[2n]$.
+  \exercise[recommended] Construct a bijection from
+    $\set{0, 1} \times \range{n}$ to $\range{2n}$.
   \exercise Prove Theorem~\ref{theorem:injections-surjections-inequalities}.
 \end{chapterendexercises}
