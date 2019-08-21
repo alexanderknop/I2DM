@@ -34,14 +34,14 @@
   {\begingroup\edef\x{\endgroup\noexpand\solutione{\theexercise}}\x}
   {\endsolutione}
 
-\NewEnviron{solutione}[1]{
-  \Writetofile{solution_f}
-  {
-    \protect\item [\textup{\textbf{#1}}]
-    {\BODY}
-  }
-  \stepcounter{solutionnumber}
-}
+% \NewEnviron{solutione}[1]{
+%   \Writetofile{solution_f}
+%   {
+%     \protect\item [\textup{\textbf{#1}}]
+%     {\BODY}
+%   }
+%   \stepcounter{solutionnumber}
+% }
 
 \newcommand{\hint}[1]{
   \textit{Hint: #1}
@@ -58,4 +58,27 @@
 }
 {
   \end{description}  
+  \ifnum\thesolutionnumber>0
+    \section*{Solutions to The Exercises}
+    \begin{description}
+      \includecollection{solutions}
+    \end{description}
+  \fi
+  \setcounter{solutionnumber}{0}
+  \begin{collect}{solutions}{}{}
+    % We need to clean the file
+
+  \end{collect}
 }
+
+\definecollection{solutions}
+
+\newenvironment{solutione}[1]{
+  \collect{solutions}{
+    \protect \item[\textup{\textbf{#1}}]
+  }{}
+}{
+  \endcollect
+  \stepcounter{solutionnumber}
+}
+\makeatother

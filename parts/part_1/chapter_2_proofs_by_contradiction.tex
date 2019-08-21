@@ -75,71 +75,89 @@ hence $b = 0$ which is a contradiction to the assumption.
 
 
 \begin{chapterendexercises}
-  \exercise[recommended] Prove that if $n^2$ is odd, then $n$ is odd.
-  \exercise  In Euclidean (standard) geometry, prove: If two lines share a
-    common perpendicular, then the lines are parallel.
-  \exercise[recommended] Let us consider four-lines geometry, it is a theory with
-    undefined terms: point, line, is on, and axioms:
-    \begin{enumerate}
-        \item there exist exactly four lines,
-        \item any two distinct lines have exactly one point on both of them, and
-        \item each point is on exactly two lines.
-    \end{enumerate}
+    \exercise[recommended] Prove that if $n^2$ is odd, then $n$ is odd.
+    \exercise  In Euclidean (standard) geometry, prove: If two lines share a
+        common perpendicular, then the lines are parallel.
+    \exercise[recommended] Let us consider four-lines geometry, it is a theory with
+        undefined terms: point, line, is on, and axioms:
+        \begin{enumerate}
+            \item there exist exactly four lines,
+            \item any two distinct lines have exactly one point on both of them, and
+            \item each point is on exactly two lines.
+        \end{enumerate}
 
-    Show that every line has exactly three points on it.
-  \exercise
-    Let us consider group theory, it is a theory with undefined
-    terms: group-element and times (if $a$ and $b$ are group elements,
-    we denote $a$ times $b$ by $a \cdot b$), and axioms:
-    \begin{enumerate}
-      \item $(a \cdot b) \cdot c = a \cdot (b \cdot c)$
-        for every group-elements $a$, $b$, and $c$;
-      \item there is a unique group-element $e$ such that
-        $e \cdot a = a = a \cdot e$ for every group-element $a$
-        (we say that such an element is the identity element);
-      \item for every group-element $a$ there is a group-element $b$
-        such that $a \cdot b = e$, where $e$ is the identity element;
-      \item for every group-element $a$ there is a group-element $b$
-        such that $b \cdot a = e$, where $e$ is the identity element.
-    \end{enumerate}
+        Show that every line has exactly three points on it.
+    \exercise Let us consider group theory, it is a theory with undefined
+        terms: group-element and times (if $a$ and $b$ are group elements,
+        we denote $a$ times $b$ by $a \cdot b$), and axioms:
+        \begin{enumerate}
+          \item $(a \cdot b) \cdot c = a \cdot (b \cdot c)$
+            for every group-elements $a$, $b$, and $c$;
+          \item there is a unique group-element $e$ such that
+            $e \cdot a = a = a \cdot e$ for every group-element $a$
+            (we say that such an element is the identity element);
+          \item for every group-element $a$ there is a group-element $b$
+            such that $a \cdot b = e$, where $e$ is the identity element;
+          \item for every group-element $a$ there is a group-element $b$
+            such that $b \cdot a = e$, where $e$ is the identity element.
+        \end{enumerate}
 
-    Let $e$ be the identity element. Show the following statements
-    \begin{itemize}
-      \item if $b_0 \cdot a = b_1 \cdot a = e$, then $b_0 = b_1$, for every
-        group-elements $a$, $b_0$, and $b_1$.
-      \item if $a \cdot b_0 = a \cdot b_1 = e$, then $b_0 = b_1$, for every
-        group-elements $a$, $b_0$, and $b_1$.
-      \item if $a \cdot b_0 = b_1 \cdot a = e$, then $b_0 = b_1$, for every
-        group-elements $a$, $b_0$, and $b_1$.
-    \end{itemize}
-  \exercise Let us consider three-points geometry, it is a theory with
-    undefined terms: point, line, is on, and axioms:
-    \begin{enumerate}
-        \item There exist exactly three points.
-        \item Two distinct points are on exactly one line.
-        \item Not all the three points are collinear i.e. they do not lay on the
-            same line.
-        \item Two distinct lines are on at least one point i.e. there is at
-          least one point such that it is on both lines.
-    \end{enumerate}
+        Let $e$ be the identity element. Show the following statements
+        \begin{itemize}
+          \item if $b_0 \cdot a = b_1 \cdot a = e$, then $b_0 = b_1$, for every
+            group-elements $a$, $b_0$, and $b_1$.
+          \item if $a \cdot b_0 = a \cdot b_1 = e$, then $b_0 = b_1$, for every
+            group-elements $a$, $b_0$, and $b_1$.
+          \item if $a \cdot b_0 = b_1 \cdot a = e$, then $b_0 = b_1$, for every
+            group-elements $a$, $b_0$, and $b_1$.
+        \end{itemize}
+    \exercise Let us consider three-points geometry, it is a theory with
+        undefined terms: point, line, is on, and axioms:
+        \begin{enumerate}
+            \item There exist exactly three points.
+            \item Two distinct points are on exactly one line.
+            \item Not all the three points are collinear i.e. they do not lay on the
+                same line.
+            \item Two distinct lines are on at least one point i.e. there is at
+              least one point such that it is on both lines.
+        \end{enumerate}
 
-    Show that there are exactly three lines.
-  \exercise Show that there are irrational numbers $a$ and $b$ such that
-    $a^b$ is rational.
-  \exercise[recommended] Show that there does not exist the largest integer.
+        Show that there are exactly three lines.
 
-  \exercise Let us consider Young's geometry, it is a theory with undefined
-    terms: point, line, is on, and axioms:
-    \begin{enumerate}
-        \item there exists at least one line,
-        \item every line has exactly three points on it,
-        \item not all points are on the same line,
-        \item for two distinct points, there exists exactly one line on both of
-          them,
-        \item if a point does not lie on a given line, then there exists exactly
-          one line on that point that does not intersect the given line.
-    \end{enumerate}
+        \begin{solution}
+            Let us denote the points by $p_1$, $p_2$, and $p_3$ (they exist by
+            Axiom~1). By Axiom~2, there are lines $l_{1, 2}$,
+            $l_{1, 3}$, and $l_{2, 3}$ such that $p_i$ and $p_j$ are on
+            $l_{i, j}$ ($i \neq j$).
 
-    Show that for every point, there are exactly four lines on that point.
+            Note that the lines $l_{1, 2}$, $l_{1, 3}$, and $l_{2, 3}$ are different.
+            Indeed, assume the opposite, i.e., without loss of generality that
+            $l_{1, 2} = l_{1, 3}$. Note that $p_1$, $p_2$, and $p_3$ are on $l_{1, 2}$
+            which contradicts Axiom~3.
+
+            Let us now prove that there are no other lines. Assume the
+            opposite i.e. that there is another line $l$. There is a
+            point that is on $l$ and $l_{1, 2}$. Without loss of generality,
+            this point is $p_1$. Additionally there is a point $p_i$
+            ($i \neq 1$) that is on $l$ and  $l_{2, 3}$. However, it means that
+            $p_1$ and $p_i$ are on $l$ which contradicts Axiom~2.
+        \end{solution}
+    \exercise Show that there are irrational numbers $a$ and $b$ such that
+        $a^b$ is rational.
+    \exercise[recommended] Show that there does not exist the largest integer.
+
+    \exercise Let us consider Young's geometry, it is a theory with undefined
+        terms: point, line, is on, and axioms:
+        \begin{enumerate}
+            \item there exists at least one line,
+            \item every line has exactly three points on it,
+            \item not all points are on the same line,
+            \item for two distinct points, there exists exactly one line on both of
+              them,
+            \item if a point does not lie on a given line, then there exists exactly
+              one line on that point that does not intersect the given line.
+        \end{enumerate}
+
+        Show that for every point, there are exactly four lines on that point.
 
 \end{chapterendexercises}
