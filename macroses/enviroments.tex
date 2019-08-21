@@ -9,76 +9,73 @@
 \newsavebox{\mybox}
 \newenvironment{warning}
 {
-  \vskip 5pt
-  \begin{lrbox}{\mybox}\begin{minipage}{0.9\textwidth}
-    \textbf{Warning:}
+    \vskip 5pt
+    \begin{lrbox}{\mybox}\begin{minipage}{0.9\textwidth}
+        \textbf{Warning:}
 }
 {
-  \end{minipage}\end{lrbox}\fbox{\usebox{\mybox}}
-  \vskip 5pt
+    \end{minipage}\end{lrbox}\fbox{\usebox{\mybox}}
+    \vskip 5pt
 }
 
 \newenvironment{template}
 {
-  \vskip 5pt
-  \begin{lrbox}{\mybox}\begin{minipage}{0.9\textwidth}
+    \vskip 5pt
+    \begin{lrbox}{\mybox}\begin{minipage}{0.9\textwidth}
 }
 {
-  \end{minipage}\end{lrbox}\fbox{\usebox{\mybox}}
-  \vskip 5pt
+    \end{minipage}\end{lrbox}\fbox{\usebox{\mybox}}
+    \vskip 5pt
 }
 
 \newcounter{solutionnumber}
 
 \newenvironment{solution}
-  {\begingroup\edef\x{\endgroup\noexpand\solutione{\theexercise}}\x}
-  {\endsolutione}
-
-% \NewEnviron{solutione}[1]{
-%   \Writetofile{solution_f}
-%   {
-%     \protect\item [\textup{\textbf{#1}}]
-%     {\BODY}
-%   }
-%   \stepcounter{solutionnumber}
-% }
-
-\newcommand{\hint}[1]{
-  \textit{Hint: #1}
-}
-
-\newenvironment{chapterendexercises}
 {
-  \renewcommand{\exercise}[1][ ]{
-    \stepcounter{exercise}
-    \item[\textup{\textbf{\theexercise}}] \ifthenelse{\equal{##1}{ }}{}{\textit{(##1)}}
-  }
-  \section*{End of The Chapter Exercises}
-  \begin{description}
-}
+    \begingroup\edef\x{\endgroup\noexpand\solutione{\theexercise}}\x}
 {
-  \end{description}  
-  \ifnum\thesolutionnumber>0
-    \section*{Solutions to The Exercises}
-    \begin{description}
-      \includecollection{solutions}
-    \end{description}
-  \fi
-  \setcounter{solutionnumber}{0}
-  \begin{collect}{solutions}{}{}
-    % We need to clean the file
-
-  \end{collect}
+    \endsolutione
 }
 
 \definecollection{solutions}
 
 \newenvironment{solutione}[1]{
-  \collect{solutions}{
-    \protect \item[\textup{\textbf{#1}}]
-  }{}
+    \collect{solutions}{
+        \protect \item[\textup{\textbf{#1}}]
+    }{}
 }{
-  \endcollect
-  \stepcounter{solutionnumber}
+    \endcollect
+    \stepcounter{solutionnumber}
 }
+
+\newcommand{\hint}[1]{
+    \textit{Hint: #1}
+}
+
+\newenvironment{chapterendexercises}
+{
+    \renewcommand{\exercise}[1][ ]
+    {
+        \stepcounter{exercise}
+        \item[\textup{\textbf{\theexercise}}]
+            \ifthenelse{\equal{##1}{ }}{}{\textit{(##1)}}
+    }
+    \section*{End of The Chapter Exercises}
+    \begin{description}
+}
+{
+    \end{description}
+    \ifnum\thesolutionnumber>0
+        \section*{Solutions to The Exercises}
+        \begin{description}
+            \includecollection{solutions}
+        \end{description}
+    \fi
+    \setcounter{solutionnumber}{0}
+    \begin{collect}{solutions}{}{}
+        % We need to clean the file
+
+    \end{collect}
+}
+
 \makeatother
