@@ -189,12 +189,12 @@ To prove this statement we need a technical lemma.
 \begin{proof}[Proof of Theorem~\ref{theorem:kruskal}]
   Let $T_1$, \dots, $T_m$ be the states of $T$ after iterations of
   line~\ref{line:kruskal-while} of Algorithm~\ref{algorithm:kruskal}.
-  Note that $T_i$ does not have cycles for $i \in [m]$. Therefore $T_i$ is a
-  forest for $i \in [m]$.
+  Note that $T_i$ does not have cycles for $i \in \range{m}$. Therefore $T_i$ is a
+  forest for $i \in \range{m}$.
 
   First we need to prove that Algorithm~\ref{algorithm:kruskal} returns a
   spanning tree; i.e. that $T_m$ is connected.
-  Assume the opposite. Consider two vertices $x, y \in [n]$ such that
+  Assume the opposite. Consider two vertices $x, y \in \range{n}$ such that
   they are not connected in $T$. Since $G = ([n], E)$ is connected there is a
   path $x = v_1, \dots, v_k = y$ in $G$. Consider the minimal $i \in [k - 1]$
   such that $(v_i, v_{i + 1})$ is not an edge of $T_m$. Let

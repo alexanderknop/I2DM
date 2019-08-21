@@ -60,13 +60,13 @@ we prove that this is not a coincidence and we also study some properties of
 permutations with respect to the structure of these cycles.
 
 \begin{definition}
-  Let $p$ be a permutation of $[n]$, $x \in [n]$, and $i$ be the smallest
+  Let $p$ be a permutation of $[n]$, $x \in \range{n}$, and $i$ be the smallest
   integer such that
   $p^i(x) = \underbrace{p(p(\dots p(}_{i \text{ times}} x) \dots )) = x$.
   The we say that the entries $x$, $p(x)$, \dots, $p^{i - 1}(x)$ form an
   $i$-cycle in $p$.
 
-  We denote a permutation $q : [n] \to [n]$ consisting of one cycle
+  We denote a permutation $q : \range{n} \to \range{n}$ consisting of one cycle
   $a_1$, \dots, $a_k$ by $(a_1, \dots, a_k)$; i.e.
   \[
     q(x) =
@@ -90,7 +90,7 @@ permutations with respect to the structure of these cycles.
 For example, the discussed permutation $2 3 1 5 4$ can be decomposed into
 $(1, 2, 3) (4, 5)$.
 
-If an permutation $p : [n] \to [n]$ has $c_i$ cycles of length $i \in [n]$, then
+If an permutation $p : \range{n} \to \range{n}$ has $c_i$ cycles of length $i \in \range{n}$, then
 we say that $(c_1, c_2, \dots, c_n)$ is the \emph{cycle type} of $p$.
 The simplest question we may ask is ``how many permutations of a certain cyclic
 type exist?'', the following theorem gives an answer for this question.
@@ -169,7 +169,7 @@ Using this notation and the next lemma we can discover several nice properties
 of permutations.
 \begin{lemma}
 \label{lemma:permuations-transfomration}
-  Let $p : [n] \to [n]$ be a permutation written in canonical cycle notation.
+  Let $p : \range{n} \to \range{n}$ be a permutation written in canonical cycle notation.
   Let $\fpm(p)$ be the permutation obtained from $p$ by omitting the
   parentheses and reading the entries as a permutation in the one-line notation.
   Then $\fpm$ is a bijection from $S_n$ to $S_n$.
@@ -180,7 +180,7 @@ $\fpm^{-1}(2 3 1 5 4) = (2) (3, 1) (5, 4) = 32154$.
 Using this transformation we may prove the following result, which is very
 technical without this transformation.
 \begin{theorem}
-  Let $n$ be a positive integer and $x_1, \dots, x_k \in [n]$ be $k$ different
+  Let $n$ be a positive integer and $x_1, \dots, x_k \in \range{n}$ be $k$ different
   numbers. There are $n! / k$ permutations of $[n]$ such that $x_1$, \dots,
   $x_k$ are in the same cycle.
 \end{theorem}
@@ -198,10 +198,10 @@ technical without this transformation.
   $q$.
 \end{proof}
 
-Another nice result states that for any $i \in [n]$, the probability that
+Another nice result states that for any $i \in \range{n}$, the probability that
 $i$ is in a cycle of length $k$ does not depend on $k$ and is equal to $1 / n$.
 \begin{theorem}
-  Let $i \in [n]$. Then for all $k \in [n]$, there are exactly $(n - 1)!$
+  Let $i \in \range{n}$. Then for all $k \in \range{n}$, there are exactly $(n - 1)!$
   permutations of $[n]$ in which the cycle containing $i$ is of length $k$.
 \end{theorem}
 \begin{proof}
@@ -227,7 +227,7 @@ episodes you need to watch?
 
 Let us first formulate a more formal question.
 \begin{definition}
-  A sequence $w_1, \dots, w_\ell \in [n]$ is called an $n$-superpermutation iff
+  A sequence $w_1, \dots, w_\ell \in \range{n}$ is called an $n$-superpermutation iff
   for any $p \in S_n$ there is $0 \le i \le \ell - n$ such that
   $w_{i + 1} = p(1)$, $w_{i + 2} = p(2)$, \dots, and $w_{i + n} = p(n)$.
 \end{definition}
@@ -271,13 +271,13 @@ theorem.
   Note that $n + \mathcal{D}(p_1, \dots, p_\ell) =
   \sum_{i = 1}^{\ell - 1} \mathcal{D}(p_i, p_{i + 1}) \le m$, where
   \begin{gather*}
-    w_1, w_2, \dots, w_m \in [n] \\
+    w_1, w_2, \dots, w_m \in \range{n} \\
     \text{and} \\
     \set{i_1 < i_2 < \dots < i_\ell} =
     \set[{
       w_{i + 1} = p(1), \dots, w_{i + n} = p(n)
     }]{
-      i \in [m - n]
+      i \in \range{m - n}
     }.
   \end{gather*}
   In other words, to find the minimal $n$-superpermutation, we need to find

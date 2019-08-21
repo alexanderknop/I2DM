@@ -52,10 +52,10 @@ it works.
         \State $S \gets S \cup \set{v}$
 
         \State $Q \gets Q \cup
-          \set[{(v, u) \in E \text{ and } u \notin S}]{u \in [n]}$
+          \set[{(v, u) \in E \text{ and } u \notin S}]{u \in \range{n}}$
       \EndWhile
       \label{line:connectivity-last}
-      \State \Return{$S = [n]$}
+      \State \Return{$S = \range{n}$}
     \EndFunction
   \end{algorithmic}
   \caption{An algorithm checking whether the graph on $[n]$ with the set of
@@ -73,23 +73,23 @@ it works.
   line~\ref{algorithm:connectivity-cycle}.
   It is also easy to see that if a vertex $v \in Q$ at some point it is
   in $S$ on line~\ref{line:connectivity-last}. In addition, if $v \in Q$
-  at some point, then $\set[{(v, u) \in E}]{u \in [n]} \subseteq S$ on
+  at some point, then $\set[{(v, u) \in E}]{u \in \range{n}} \subseteq S$ on
   line~\ref{line:connectivity-last}.
 
   Therefore if $u \notin S$ and $(v, u) \in E$,
   then $v \notin S$. Using this observation we may prove that
   if $G = ([n], E)$ is connected, then Algorithm~\ref{algorithm:connectivity}
-  returns true. Indeed, assume the opposite. Consider $u \in [n] \setminus S$,
-  and $N_i \subseteq [n]$ such that \[
+  returns true. Indeed, assume the opposite. Consider $u \in \range{n} \setminus S$,
+  and $N_i \subseteq \range{n}$ such that \[
     N_0 = \set{u},
-    N_{i + 1} = N_i \cup \set[{w \in N_i, (v, w) \in E}]{v \in [n]}.
+    N_{i + 1} = N_i \cup \set[{w \in N_i, (v, w) \in E}]{v \in \range{n}}.
   \]
   Note that by the previous observation if $v \in N_i$, then $v \notin S$.
   Since $G$ is connected, there is a path $u = v_1, \dots, v_k = 1$.
   Note that $u \in N_0$, $v_2 \in N_1$, \dots, $v_k \in N_{k - 1}$.
   Therefore $1 = v_k \notin S$ which is a contradiction.
 
-  To finish the proof we need to show that if $S = [n]$, then the graph is
+  To finish the proof we need to show that if $S = \range{n}$, then the graph is
   connected. To prove the statement we prove by induction that there is a path
   from $1$ to any element of $S$ and $Q$ in every iteration of
   line~\ref{algorithm:connectivity-cycle}. Indeed, initially $S$ is empty and
@@ -309,7 +309,7 @@ Before we prove the theorem, recall that if $U$ and
 $A_1, \dots, A_n \subseteq U$ are some finite sets, then
 \[
   \left| \bigcap_{i = 1}^n A_i \right| =
-  \sum_{X \subseteq [n]} (-1)^{|X|}
+  \sum_{X \subseteq \range{n}} (-1)^{|X|}
     \left| \bigcap_{i \in X} \overline{A}_i \right|,
 \]
 where $\overline{A}_i = U \setminus A_i$ and
@@ -319,7 +319,7 @@ $\bigcap_{i \in \emptyset} \overline{A}_i = U$.
   As we mentioned before we the inclusion-exclusion principle to find the number
   of Hamilton cycles. Let $U$ be the set of all the cycles of length $n$
   (length is the number of edges in the path) going
-  via the vertex $1$ and $A_v \subseteq U$ ($v \in [n])$ be the set of cycles of
+  via the vertex $1$ and $A_v \subseteq U$ ($v \in \range{n})$ be the set of cycles of
   length $n$ going via the vertices $1$ and $v$.
 
   It is clear that the answer is $\left| \bigcap_{i = 1}^n A_i \right|$.
@@ -331,11 +331,11 @@ $\bigcap_{i \in \emptyset} \overline{A}_i = U$.
 
   To find the value of $C_X$ we use the following notation.
   Let $E_X$ be the set of edges in $G - X$ and let $T_X(d, x)$ be
-  the number of length $d$ paths from $1$ to $x \in [n] \setminus X$ in $G - X$.
+  the number of length $d$ paths from $1$ to $x \in \range{n} \setminus X$ in $G - X$.
   Clearly $T_X(0, x) = 1$ if $x = 1$ and $T_X(0, x) = 0$ otherwise. In addition,
   $T_X(d + 1, x) = \sum_{y ~:~ (y, x) \in E_X} T_X(d, y)$. Therefore, we may
-  compute $T_X(n, x)$ for all $x \in [n] \setminus X$ in $n^3$ steps. As a
-  result, we may find the value of $\sum_{X \subseteq [n]} (-1)^{|X|} C_X$ in
+  compute $T_X(n, x)$ for all $x \in \range{n} \setminus X$ in $n^3$ steps. As a
+  result, we may find the value of $\sum_{X \subseteq \range{n}} (-1)^{|X|} C_X$ in
   $2^n n^3$ steps.
 \end{proof}
 

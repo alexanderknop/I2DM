@@ -46,7 +46,7 @@ to prove.
 Note that if we number objects using numbers from $1$ to $n$, then in the first
 mode the asnwer is the same as the number of functions from $[n]$ to $[k]$ since
 we need to just choose which objects is selected on the $i$th step for
-$i \in [k]$.
+$i \in \range{k}$.
 
 Let us solve a more general question; assume we have two finite sets $X$ and
 $Y$: how many functions exist from $X$ to $Y$?
@@ -59,7 +59,7 @@ $Y$: how many functions exist from $X$ to $Y$?
 \end{theorem}
 \nomenclature[S]{$B^A$}{denotes the set of functions from $A$ to $B$}
 \begin{proof}
-  For simplicity we prove the statement in the case when $X = [n]$. Fix some
+  For simplicity we prove the statement in the case when $X = \range{n}$. Fix some
   finite set $Y$. We prove the statement using induction by $n$. The base case
   for $n = 1$ is obvious, since there are $|Y|$ different functions from $[1]$
   to $Y$. Let us prove the induction step, by the induction hypothesis,
@@ -86,7 +86,7 @@ constraint? For example, we may try to find the size of the set
   (Y)_X = \set[f\text{ is an injection}]{f \in Y^X}.
 \]
 \nomenclature[S]{$(B)_A$}{denotes the set of injections from $A$ to $B$}
-First, let us try to do this informally. Assume that $X = [n]$ and $|Y| = m$,
+First, let us try to do this informally. Assume that $X = \range{n}$ and $|Y| = m$,
 to define $f \in (Y)_X$ we need to choose images of $1$, $2$, \dots, $n$. There
 are $m$ possible ways to select an image of $1$, $m - 1$ ways to define $f(2)$
 since we cannot use the value selected for $1$ etc. Hence,
@@ -99,7 +99,7 @@ subset of $n$ elements from a fixed set of $m$ elements}
   Let $X$ and $Y$ be some sets. Then $|(Y)_X| = (|Y|)_{|X|}$.
 \end{theorem}
 \begin{proof}
-  Let us prove this statement for $X = [n]$. We prove this using induction by
+  Let us prove this statement for $X = \range{n}$. We prove this using induction by
   $n$. The base case, for $n = 1$, is clear. Now we need to prove the induction
   step from $n$ to $n + 1$. By the induction hypothesis, for any $m$, the
   number of injections from $[n]$ to $Y$ is equal to $(|Y|)_n$.
@@ -107,12 +107,12 @@ subset of $n$ elements from a fixed set of $m$ elements}
   Fix some $m$ and some set $Y$ of cardinality $m$. Note that
   \[
     |(Y)_X| =
-    |\set[v \not\in \Im f]{(f, v) \in (Y)_{[n - 1]} \times [m]}|.
+    |\set[v \not\in \Im f]{(f, v) \in (Y)_{[n - 1]} \times \range{m}}|.
   \]
   It is easy to see that $|\set[v \not\in \Im f]{(f, v)}| = m - n + 1$
   for any $f \in (Y)_{[n - 1]}$ and
   \[
-    \set[v \not\in \Im f]{(f, v) \in (Y)_{[n - 1]} \times [m]} =
+    \set[v \not\in \Im f]{(f, v) \in (Y)_{[n - 1]} \times \range{m}} =
     \bigcup_{f \in (Y)_{[n - 1]}} \set[v \not\in \Im f]{(f, v)}.
   \]
   As a result, $|(Y)_X| = (m)_{n - 1} \cdot (m - n + 1) = (m)_n$.
@@ -201,24 +201,24 @@ efficient way to compute the values of binomial coefficients.
 
   Let us prove the statement a bit more formally. Note that
   \begin{multline*}
-    \binom{[n]}{k} = \set[|A| = k \text{ and } n \in A]{A \subseteq [n]} \cup \\
-    \set[|A| = k \text{ and } n \notin A]{A \subseteq [n]}.
+    \binom{[n]}{k} = \set[|A| = k \text{ and } n \in A]{A \subseteq \range{n}} \cup \\
+    \set[|A| = k \text{ and } n \notin A]{A \subseteq \range{n}}.
   \end{multline*}
   Since these sets are disjoint and $\set[|A| = k \text{ and } n \notin A]{A
-  \subseteq [n]} = \binom{[n - 1]}{k}$, we get the following equality
+  \subseteq \range{n}} = \binom{[n - 1]}{k}$, we get the following equality
   \[
-    \binom{n}{k} = |\set[|A| = k \text{ and } n \in A]{A \subseteq [n]}| +
+    \binom{n}{k} = |\set[|A| = k \text{ and } n \in A]{A \subseteq \range{n}}| +
     \binom{n - 1}{k}.
   \]
 
   Hence, to finish the proof we need to explain that
   \[
-    |\set[|A| = k \text{ and } n \in A]{A \subseteq [n]}| =
+    |\set[|A| = k \text{ and } n \in A]{A \subseteq \range{n}}| =
     \binom{n - 1}{k - 1}.
   \]
   To prove this statement we construct a bijection
   \[
-    f : \set[|A| = k \text{ and } n \in A]{A \subseteq [n]} \to
+    f : \set[|A| = k \text{ and } n \in A]{A \subseteq \range{n}} \to
       \binom{[n - 1]}{k}
   \]
   such that $f(A) = A \setminus \set{n}$.
@@ -460,7 +460,7 @@ However, the method can be used in a more sophisticated way.
       f(a_1, \dots, a_{i - 1}, 1, a_{i + 1}, \dots, a_n).
     \]
     We also say that the function $f$ depends on all the arguments iff for all
-    $i \in [n]$ it depends on $i$th argument.
+    $i \in \range{n}$ it depends on $i$th argument.
 
     Find the number of functions $f : \{0, 1\}^n \to \{0, 1\}$ depending on all
     arguments.
