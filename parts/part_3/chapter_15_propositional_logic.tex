@@ -158,19 +158,21 @@ How can we check that this argument is correct? The simplest way is to use a
 truth table to check that whether the assumption is true, the consequence is
 also true.
 \begin{center}
-  \begin{tabular}{c | c | c | c | c}
-    $p$ & $q$ & $r$ & $(p \lor q) \implies r$ &
-      $\lnot r \implies (\lnot p \land \lnot q)$ \\
-    \hline
-    T & T & T & T & T \\
-    T & T & F & F & F \\
-    T & F & T & T & T \\
-    T & F & F & F & F \\
-    F & T & T & T & T \\
-    F & T & F & F & F \\
-    F & F & T & T & T \\
-    F & F & F & T & T
-  \end{tabular}
+    \begin{tabular}{l l l l l}
+        \toprule
+        $p$ & $q$ & $r$ & $(p \lor q) \implies r$ &
+        $\lnot r \implies (\lnot p \land \lnot q)$ \\
+        \midrule
+        T & T & T & T & T \\
+        T & T & F & F & F \\
+        T & F & T & T & T \\
+        T & F & F & F & F \\
+        F & T & T & T & T \\
+        F & T & F & F & F \\
+        F & F & T & T & T \\
+        F & F & F & T & T \\
+        \bottomrule
+    \end{tabular}
 \end{center}
 It is easy to note that the argument is indeed correct, i.e.
 if $(p \lor q) \implies r$ is true, then

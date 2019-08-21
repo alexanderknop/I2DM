@@ -239,16 +239,18 @@ This sorting can be done using the following procedure.
 Let us consider the following example. In the left column we list the classes
 and in the right column the prerequisite.
 \begin{center}
-  \begin{tabular}{c | c}
-    Courses & Prerequisite \\
-    \hline
-    Math 20A \\
-    Math 20B & Math 20A \\
-    Math 20C & Math 20B \\
-    Math 18 \\
-    Math 109 & Math 20C, Math 18 \\
-    Math 184A & Math 109
-  \end{tabular}
+    \begin{tabular}{l l}
+        \toprule
+        Courses & Prerequisite \\
+        \midrule
+        Math 20A \\
+        Math 20B & Math 20A \\
+        Math 20C & Math 20B \\
+        Math 18 \\
+        Math 109 & Math 20C, Math 18 \\
+        Math 184A & Math 109 \\
+        \bottomrule
+    \end{tabular}
 \end{center}
 We need to find an order to take the courses.
 \begin{enumerate}
