@@ -137,21 +137,22 @@ $g$ has a representation in DNF, which implies that $f$ has a representation
 in CNF.
 
 \section{Truth Tables}
-
+\label{section:truth-tables}
 \marginurl{%
   Proofs Using Truth Tables:\\\noindent
   Introduction to Mathematical Logic \#2
 }{youtu.be/DOAxnmScpPc}
 
-Let us start the discussion of mathematical logic from an example similar to
-the proof we gave in the begining of the first chapter. Assume that we know
+Let us start this section from an example similar to
+the proof we gave in the beginning of the first chapter. Assume that we know
 that if $x$ is a real number such that $x < -2$ or $x > 2$, then $x^2 > 4$. We
 can derive that if $\lnot (x^2 > 4)$, then $\lnot (x < -2)$ and $\lnot (x > 2)$.
 
-In order ot emphasize the logical structure of the argument let us denote
-$x > 2$ by $p$, $x < -2$ by $q$, and $x^2 > 4$ by $r$. In this case the
-argument is as follows. Assume that we know that $(p \lor q) \implies r$. We
-can derive that $\lnot r \implies (\lnot p \land \lnot q)$.
+In order to emphasize the logical structure of the argument let us denote
+the statement $x > 2$ by $p$, the statement $x < -2$ by $q$, and the statement
+$x^2 > 4$ by $r$. In this case the argument is as follows.
+Assume that we know that $(p \lor q) \implies r$ is true. We
+can derive that $\lnot r \implies (\lnot p \land \lnot q)$ is true as well.
 
 How can we check that this argument is correct? The simplest way is to use a
 truth table to check that whether the assumption is true, the consequence is
@@ -194,6 +195,80 @@ If we know that $p$ and $p \implies q$, we may conclude that $q$ is true.
 \end{exercise}
 Such an argument is called \emph{modus ponens}.
 
+\section{Semantic Implication}
+We say that a set of propositional formulas $\Sigma$ \emph{semantically implies}
+a propositional formula $\phi$ (we denote it by $\Sigma \models \phi$)
+iff whenever all the formulas from $\Sigma$ are true under some substitution,
+the formula $\phi$ is also true under this substitution.
+(Note that the set $\Sigma$ may be infinite.)
+
+We also say that a formula (a set of formulas) is \emph{satisfiable} iff there
+is a substitution to the variables such that the value of the formula is true
+(the values of all the formulas are true).
+
+In the previous argument we explained that if we have a finite set $\Sigma$,
+then it is possible to check whether a formula $\phi$ is semantically implied
+by $\Sigma$. Let us try to find out whether we can do the same for infinite
+sets $\Sigma$.
+
+Partial answer to this question is given by the following theorem.
+\begin{theorem}[compactness theorem]
+  A set of propositional formulas $\Sigma$ is satisfiable iff every finite
+  subset is satisfiable.
+\end{theorem}
+\begin{proof}
+  We say that a set is \emph{finitely satisfiable} if every finite subset
+  is satisfiable.
+
+
+  Let us enumerate all the propositional formulas $\alpha_1$, $\alpha_2$, \dots.
+  We define a family of sets $\Delta_1$, \dots, $\Delta_n$, \dots
+  such that $\Delta_1 = \Sigma$ and
+  \[
+    \Delta_{n + 1} =
+    \begin{cases}
+      \Delta_n \cup \set{\alpha_{n + 1}} & \text{if }
+        \Delta_n \cup \set{\alpha_{n + 1}} \text{is finitely satisfiable,} \\
+      \Delta_n \cup \set{\lnot \alpha_{n + 1}} & \text{otherwise.}
+    \end{cases}
+  \]
+  Note that all the $\Delta_n$ are finitely satisfiable.
+
+  Let $\Delta = \cup_{n \in \N} \Delta_n$. It is clear that $\Delta$ is
+  finitely satisfiable and for any propositional formula $\alpha$,
+  either $\alpha$ or $\lnot \alpha$ belongs to $\Delta$.
+
+  Let us consider a substitution $v_1$, \dots, $v_n$, \dots to the variables
+  $x_1$, \dots, $x_n$, \dots such that $v_i = \ltrue$ iff the formula $x_i$
+  belongs to $\Delta$. We may note that this substitution satisfies any
+  formula $\phi \in \Delta$.
+\end{proof}
+
+Using this theorem, we can show that any implication of an infinite set is
+actually an implication of a finite subset of it.
+\begin{corollary}
+  Let $\Sigma$ be a set of propositional formulas over the variables
+  $x_1$, $x_2$, \dots, $x_n$, \dots, and $\phi$ be a propositional formula
+  over the same set. If $\Sigma \models \phi$, then there is a finite
+  $\Sigma' \subseteq \Sigma$ such that $\Sigma' \models \phi$.
+\end{corollary}
+\begin{proof}
+  Note that $\Sigma \not\models \phi$ iff $\Sigma \cup \set{\phi}$ is
+  satisfiable.
+
+  Let us now assume that for any finite $\Sigma' \subseteq \Sigma$,
+  $\Sigma' \not\models \phi$. This implies that $\Sigma' \cup \set{\phi}$
+  is satisfiable for all finite $\Sigma'$. Therefore, $\Sigma \cup \set{\phi}$
+  is satisfiable, which is a contradiction to the assumption that
+  $\Sigma \models \phi$.
+\end{proof}
+
+Therefore if we wish to check whether a formula $\phi$ is semantically implied
+by $\Sigma$, we just need to brute-force all the finite subsets of $\Sigma$ and
+check whether they semantically imply $\phi$. By the previous argument, if
+$\phi$ is implied by $\Sigma$, this procedure reports ``yes'' at some point,
+and in the opposite case it will work infinitely long.
+
 \section{Natural Deduction}
 
 \marginurl{%
@@ -201,12 +276,13 @@ Such an argument is called \emph{modus ponens}.
   Introduction to Mathematical Logic \#3
 }{youtu.be/PfVafyptFtM}
 
-The problem of this method is that we need to consider \textbf{all} possible
-values of the variables. Let us now consider a more complicated example.
-Imagine that we know that $\lnot q$, $p \implies q$. Using the contraposition
-argument and modus ponens we may derive $\lnot p$. Indeed, by contraposition
-we may conclude that $\lnot q \implies \lnot p$ and modus ponens implies that
-$\lnot p$ is true since $\lnot q$ is true.
+The problem of the method discussed in \Cref{section:truth-tables} is that we
+need to consider \textbf{all} possible values of the variables. Let us now
+consider a more complicated example. Imagine that we know that $\lnot q$,
+$p \implies q$. Using the contraposition argument and modus ponens we may derive
+$\lnot p$. Indeed, by contraposition we may conclude that
+$\lnot q \implies \lnot p$ and modus ponens implies that $\lnot p$ is true since
+$\lnot q$ is true.
 
 In other words, we can combine several tautologies to prove another tautology.
 Apparently it is enough to fix some small number of tautologies to derive all
@@ -216,8 +292,11 @@ In this notation any proof is written in several rows, each row in a Fitch-style
 proof is either:
 \begin{itemize}
   \item an assumption or subproof assumption.
-  \item a sentence justified by the citation of (1) a rule of inference and (2)
-    the prior line or lines of the proof that license that rule.
+  \item a sentence justified by the citation of
+    \begin{enumerate*}[label=(\roman*)]
+      \item a rule of inference and
+      \item the prior line or lines of the proof that license that rule.
+    \end{enumerate*}
 \end{itemize}
 We say that there is a natural deduction derivation of $\phi$ from $\psi_1$,
 \dots, $\psi_k$. If there is a Fitch-style proof starting with the assumptions
