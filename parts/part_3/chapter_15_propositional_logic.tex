@@ -527,12 +527,16 @@ theorems.
 
 \begin{theorem}[completeness of natural deductions]
   Let $\phi$ be a propositional formula. If $\phi$ is a tautology, then
-  there is a proof of $\phi$.
+  there is a proof of $\phi$. Moreover if $\Sigma$ is a finite set of
+  propositional formulas and $\Sigma \models \phi$, then there is a
+  derivation of $\phi$ from $\Sigma$.
 \end{theorem}
 
 \begin{theorem}[soundness of natural deductions]
   Let $\phi$ be a propositional formula. If there is a proof of $\phi$, then
-  $\phi$ is a tautology.
+  $\phi$ is a tautology. Moreover if $\Sigma$ is a finite set of
+  propositional formulas and there is a derivation of $\phi$ from $\Sigma$,
+  then $\Sigma \models \phi$.
 \end{theorem}
 
 
