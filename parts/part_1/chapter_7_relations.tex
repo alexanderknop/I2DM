@@ -19,8 +19,8 @@ Note that $=$, $\le$, $\ge$, $<$, and $>$ define relations on $\R$ (or any
 subset $S$ of $\R$). For example, if $S = \set{0, 1, 2}$, then $<$ defines
 the relation $R = \set{(0, 1), (0, 2), (1, 2)}$.
 
-Probably the most popular relation in mathematics is the following relation on
-$\Z$. Let $a, b \in \Z$. If $n$ divides $a - b$ for some $n \in Z$, we say that
+Another widely used family of relations on $\Z$ can be defined as follows. Let
+$n, a, b \in \Z$. If $n$ divides $a - b$, we say that
 ``$a$ equivalent to $b$ modulo $n$'' and denote it as $a \equiv b \pmod{n}$.
 For example, $1$ and $4$ are equivalent modulo $3$ since $3$ divides
 $1 - 4 = -3$.
@@ -31,35 +31,36 @@ some types of relation. Probably the most interesting type of the relations is
 equivalence relations.
 
 \begin{definition}
-  Let $R$ be a relation on a set $X$. We say that $R$ is an \emph{equivalence
-  relation} if it satisfies the following conditions:
+  Let $R$ be a binary relation on a set $X$. We say that $R$ is an
+  \emph{equivalence relation} if it satisfies the following conditions:
   \begin{description}
-    \item[reflexivity:]  $x R x$ for any $x \in X$;
-    \item[symmetry:]  $x R y$ iff $y R x$ for any $x, y \in X$;
-    \item[transitivity:]  for any $x, y, z \in X$, if $x R y$ and $y R Z$, then
-      $x R z$;
+    \item[(reflexivity)] $x R x$ for any $x \in X$;
+    \item[(symmetry)] $x R y$ iff $y R x$ for any $x, y \in X$;
+    \item[(transitivity)] for any $x, y, z \in X$, if $x R y$ and $y R Z$,
+      then $x R z$.
   \end{description}
 \end{definition}
 One may guess that the equivalence relation are mimicking $=$, so it is not a
 surprise that $=$ is an equivalence relation.
 
 The definition seems quite bizarre, however, all of you are already familiar
-with an important example: you know that equivalent fractions represent the
-same number. For example $\frac{2}{4}$ is the same as $\frac{1}{2}$.
+with another important example: you know that equivalent fractions represent the
+same number. For example, $\frac{2}{4}$ is the same as $\frac{1}{2}$.
 Let us consider this example more thorough, let $S$ be a set of symbols of the
 form $\frac{x}{y}$ (note that it is not a set of numbers) where $x, y \in Z$
 and $y \neq 0$. We define a binary relation $R$ on $S$ such that
 $\frac{x}{y}$ and $\frac{z}{w}$ are in the relation $R$ iff $xw = zy$.
 It is easy to prove that this relation is an equivalence relation.
 \begin{description}
-  \item[reflexivity:] Let $\frac{a}{b} \in S$. Since $ab = ab$, we have that
+  \item[(reflexivity)] Let $\frac{a}{b} \in S$. Since $ab = ab$, we have that
     $\frac{a}{b} R \frac{a}{b}$.
-  \item[symmetry:] Let $\frac{a}{b}, \frac{c}{d} \in S$. Suppose that
+  \item[(symmetry)] Let $\frac{a}{b}, \frac{c}{d} \in S$. Suppose that
     $\frac{a}{b} R \frac{c}{d}$, by the definition of $R$, it implies that
     $ac = db$. As a result, $\frac{c}{d} R \frac{a}{b}$.
-  \item[transitivity:] Let $\frac{a}{b}, \frac{c}{d}, \frac{e}{f} \in S$ with
+  \item[(transitivity)] Let $\frac{a}{b}, \frac{c}{d}, \frac{e}{f} \in S$ with
     $\frac{a}{b} R \frac{c}{d}$ and $\frac{c}{d} R \frac{e}{f}$. Then
-    $ad = cb$ and $cf = ed$. The first equality can be rewritten as $c = ad / b$.
+    $ad = cb$ and $cf = ed$. The first equality can be rewritten as
+    $c = ad / b$.
     Hence, $adf / b = ed$ and $af = eb$ since $d \neq 0$. So $\frac{a}{b} R
     \frac{e}{f}$.
 \end{description}
@@ -72,17 +73,17 @@ a set into overlapping pieces.
 
 \begin{exercise}
   Let $\set{P_1, \dots, P_k}$ be a partition of a set $S$ and $R$ be a binary
-  relation of $S$ such that $a R b$ iff $a, b \in P_i$ for some $i \in \range{k}$.
-  Show that $R$ is an equivalence relation.
+  relation of $S$ such that $a R b$ iff $a, b \in P_i$ for some
+  $i \in \range{k}$. Show that $R$ is an equivalence relation.
 \end{exercise}
 
 This exercise shows that one may transform a partition of the set $S$ into an
 equivalence relation on $S$. However, it is possible to do the opposite.
 \begin{theorem}
 \label{theorem:partition}
-  Let $R$ be a binary equivalence relation on a set $S$. For any element $x \in
-  S$, define $R_x = \set[x R y]{y \in S}$ (the set of all the elements of $S$
-  related to $x$) we call such a set the equivalence class of $x$.
+  Let $R$ be a binary equivalence relation on a set $S$. For any element
+  $x \in S$, define $R_x = \set[x R y]{y \in S}$ (the set of all the elements
+  of $S$ related to $x$) we call such a set the equivalence class of $x$.
   Then $\set[x \in S]{R_x}$ is a partition of $S$.
 \end{theorem}
 
@@ -102,12 +103,12 @@ relation.
   To prove this statement we need to prove all three properties: reflexivity,
   symmetry, and transitivity.
   \begin{description}
-    \item[reflexivity:] Note that for any integer $x$, $x - x = 0$ is divisible
+    \item[(reflexivity)] Note that for any integer $x$, $x - x = 0$ is divisible
       by any integer including $n$. Hence, $x \equiv x \pmod{n}$.
-    \item[symmetry:] Let us assume that $x \equiv y \pmod{n}$; i.e. $x - y = kn$
-      for some integer $k$. Note that $y - x = (-k) n$, so
+    \item[(symmetry)] Let us assume that $x \equiv y \pmod{n}$; i.e.,
+      $x - y = kn$ for some integer $k$. Note that $y - x = (-k) n$, so
       $y \equiv x \pmod{n}$.
-    \item[transitivity:] finally, assume that $x \equiv y \pmod{n}$ and
+    \item[(transitivity)] finally, assume that $x \equiv y \pmod{n}$ and
       $y \equiv z \pmod{n}$; i.e. $x - y = k n$ and $y - z = \ell n$
       for some integers $k$ and $\ell$. It is easy to note that
       $x - z = (x - y) + (y - z) = (k + \ell) n$. As a result,
@@ -150,27 +151,26 @@ Moreover, these operations have plenty of good properties.
 \end{exercise}
 
 \section{Partial Orderings}
-In the previous section we discussed a mathematical way to express
-the property being similar. In this section we are going to give a way to
-analyze relation similar to comparisons.
+In the previous section we discussed a generalization of ``$=$''.
+In this section we are going to give a way to analyze relations similar to
+``$<$''.
 
 \begin{definition}
   A binary relation $R$ on $S$ is a partial ordering if it satisfies the
-  following
- constraints.
+  following constraints.
   \begin{description}
-    \item[reflexivity:]  $x R x$ for any $x \in S$;
-    \item[antisymmetry:] if $x R y$ and $y R x$, then $x = y$ for all $x, y \in
-      S$;
-    \item[transitivity:] for any $x, y, z \in S$, if $x R y$ and $y R Z$, then
+    \item[(reflexivity)]  $x R x$ for any $x \in S$;
+    \item[(antisymmetry)] if $x R y$ and $y R x$, then $x = y$ for all
+      $x, y \in S$;
+    \item[(transitivity)] for any $x, y, z \in S$, if $x R y$ and $y R Z$, then
       $x R z$;
   \end{description}
 
   We say that an order $R$ on a set $S$ is total iff for any $x, y \in S$,
   either $x R y$ or $y R x$.
 \end{definition}
-\noindent Note that if $S$ is a set of numbers, then $\le$ defines a partial
-ordering on $S$; moreover, it defines a total order.
+\noindent Note that $\le$ defines a partial ordering on any $S \subseteq \R$;
+moreover, it defines a total order.
 
 Typically we use symbols similar to $\preceq$ to denote partial orderings and we
 write $a \prec b$ to express that $a \preceq b$ and $a \neq b$.
@@ -185,15 +185,15 @@ divides $n$.
   To prove that this relation is a partial ordering we need to check all three
   properties.
   \begin{description}
-    \item[reflexivity:] Note that $x = 1 \cdot x$ for any integer $x$;
+    \item[(reflexivity)] Note that $x = 1 \cdot x$ for any integer $x$;
       hence, $x \divides x$ for any integer $x$.
-    \item[antisymmetry:] Assume that $x \divides y$ and $y \divides x$. Note
+    \item[(antisymmetry)] Assume that $x \divides y$ and $y \divides x$. Note
       that it means that $k x = y$ and $\ell y = x$ for some integers $k$ and
       $\ell$. Hence, $y = (k \cdot \ell) y$ which implies that
       $k \cdot \ell = 1$ and $k = \ell = 1$. Thus, $x = y$.
-    \item[transitivity:] finally, assume that $x \divides y$ and $y \divides z$;
-    i.e. $k x = y$ and $\ell y = z$. As a result, $(k \cdot \ell) x = z$ and
-    $x \divides z$.
+    \item[(transitivity)] finally, assume that $x \divides y$ and
+    $y \divides z$; i.e., $k x = y$ and $\ell y = z$. As a result,
+    $(k \cdot \ell) x = z$ and $x \divides z$.
   \end{description}
 \end{proof}
 
