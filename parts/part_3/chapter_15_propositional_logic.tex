@@ -3,7 +3,12 @@ In \Cref{part:mathematical-reasoning} we studied the most important
 mathematical notation and how to prove theorems, we gave several semi-formal
 definitions; however, our definition of the proof was not quite formal. It just
 allowed us to distinguish between good arguments and bad arguments. It is not
-enough if we wish to study proofs which is the core of mathematical logic.
+enough if we wish to study proofs mathematically which is the core of
+mathematical logic.
+
+To study proofs, we need to get a model of mathematics; i.e., we need to define formally ``statements'', ``theorems'', and ``proofs''. In all the models we are
+going to discuss, theorem consists of several statements called assumptions
+and a statement called conclusion.
 
 \section{Propositional Formulas}
 
@@ -12,46 +17,62 @@ enough if we wish to study proofs which is the core of mathematical logic.
   Introduction to Mathematical Logic \#1
 }{youtu.be/X0797bVFf3Y}
 
-First, we need to define what precisely we mean by ``mathematical statement''.
-In order to do this we define a class of formulas called propositional formulas
-(also known as sentential formulas or Boolean formulas).
+The model studied in this section is called propositional logic. Statements in propositional logic are either some independant atomic statements, or
+are formed from the atomic one using connectives.
+
+In other words, statements in propositional logic can be defined using
+propositional formulas (also known as sentential formulas or Boolean formulas).
 \begin{definition}
-  We say that $\phi$ is a propositional formula on the variables $x_1$, \dots,
-  $x_n$ if
+  We say that $\phi$ is a propositional formula on the variables from
+  $\Omega$ if
   \begin{itemize}
-    \item either $\phi$ is equal to $x_i$ for some $i \in \range{n}$,
+    \item either $\phi$ is equal to $x$ for some $x \in \Omega$,
     \item or $\phi$ is equal to $(\psi_1 \land \psi_2)$, or
       $(\psi_1 \lor \psi_2)$, or $(\psi_1 \implies \psi_2)$ ,
-      where $\psi_1$ and $\psi_2$ are propositional formulas on $x_1$, \dots
-      $x_n$,
+      where $\psi_1$ and $\psi_2$ are propositional formulas on the variables
+      from $\Omega$,
     \item or $\phi$ is equal to $\lnot \psi$, where $\psi$ is a propositional
-      formula on $x_1$, \dots $x_n$.
+      formula on the variables from $\Omega$.
   \end{itemize}
 \end{definition}
 
-We can also define the value of a formula.
-\begin{definition}
-  Let $\phi$ be a propositional formula on the variables $x_1$, \dots, $x_n$
-  and $v_1, \dots, v_n \in \set{\ltrue, \lfalse}$.
+For example, $((x_1 \lor x_2) \land x_3)$ is a propositional formula on the
+variables from $\set{x_1, x_2, x_3}$ (we also say that it is a formula on
+$x_1$, $x_2$, $x_3$).
 
-  We say that the value $\phi\big\rvert_{x_1 = v_1, \dots, x_n = v_n}$ of the
-  formula $\phi$ when $v_1$ is substituted as the value of $x_1$, \dots,
-  and $v_n$  is substituted as the value of $x_n$ is equal to
+To compute the value of a formula we need to know values of all the variables.
+\begin{definition}
+  We say that $\rho$ is a propositional assignement to $\Omega$ if $\rho$
+  is a function from $\Omega$ to $\set{\ltrue, \lfalse}$.
+
+  In addition, if $\Omega = \set{x_1, \dots, x_n}$ and
+  $v_1, \dots, v_n \in \set{\ltrue, \lfalse}$, then
+  $x_1 = v_1, \dots, x_n = v_n$ denotes the propositional assignement
+  $\rho$ such that $\rho(x_i) = v_i$ for each $i \in [n]$.
+\end{definition}
+
+Using simple recursion, we can define the value of a propositional formula.
+\begin{definition}
+  Let $\phi$ be a propositional formula on the variables $\Omega$ and
+  $\rho$ be a propositional assignement to $\Omega$.
+
+  We say that the value $\phi\big\rvert_\rho$ of the
+  formula $\phi$ with respect to $\rho$ is equal to
   \begin{itemize}
-    \item $v_i$ if $\phi$ is equal to $x_i$, and
-    \item $\psi_1\big\rvert_{x_1 = v_1, \dots, x_n = v_n} \land
-      \psi_2\big\rvert_{x_1 = v_1, \dots, x_n = v_n}$ if
-      $\phi$ is equal to $(\psi_1 \land \psi_2)$ (note that here and in the
+    \item $\rho(x)$ if $\phi = x$,
+    \item $\psi_1\big\rvert_\rho \land
+      \psi_2\big\rvert_\rho$ if
+      $\phi = (\psi_1 \land \psi_2)$ (note that here and in the
       sequel, we use connectives as symbols and as operations depending on
-      the content), and
-    \item $\psi_1\big\rvert_{x_1 = v_1, \dots, x_n = v_n} \lor
-      \psi_2\big\rvert_{x_1 = v_1, \dots, x_n = v_n}$ if
-      $\phi$ is equal to $(\psi_1 \lor \psi_2)$, and
-    \item $\psi_1\big\rvert_{x_1 = v_1, \dots, x_n = v_n} \implies
-      \psi_2\big\rvert_{x_1 = v_1, \dots, x_n = v_n}$ if
-      $\phi$ is equal to $(\psi_1 \implies \psi_2)$, and
-    \item $\lnot\psi\big\rvert_{x_1 = v_1, \dots, x_n = v_n}$
-      if $\phi$ is equal to $\lnot \psi$.
+      the content), 
+    \item $\psi_1\big\rvert_\rho \lor
+      \psi_2\big\rvert_\rho$ if
+      $\phi = (\psi_1 \lor \psi_2)$,
+    \item $\psi_1\big\rvert_\rho \implies
+      \psi_2\big\rvert_\rho$ if
+      $\phi = (\psi_1 \implies \psi_2)$, and
+    \item $\lnot\left(\psi\big\rvert_\rho\right)$
+      if $\phi = \lnot \psi$.
   \end{itemize}
 \end{definition}
 
