@@ -36,8 +36,8 @@ propositional formulas (also known as sentential formulas or Boolean formulas).
   \end{itemize}
 \end{definition}
 
-For example, $((x_1 \lor x_2) \land x_3)$ is a propositional formula on the
-variables from $\set{x_1, x_2, x_3}$ (we also say that it is a formula on
+For example, $((x_1 \lor \lnot x_2) \land x_3)$ is a propositional formula on
+the variables from $\set{x_1, x_2, x_3}$ (we also say that it is a formula on
 $x_1$, $x_2$, $x_3$).
 
 To compute the value of a formula we need to know values of all the variables.
@@ -64,7 +64,7 @@ Using simple recursion, we can define the value of a propositional formula.
       \psi_2\big\rvert_\rho$ if
       $\phi = (\psi_1 \land \psi_2)$ (note that here and in the
       sequel, we use connectives as symbols and as operations depending on
-      the content), 
+      the content),
     \item $\psi_1\big\rvert_\rho \lor
       \psi_2\big\rvert_\rho$ if
       $\phi = (\psi_1 \lor \psi_2)$,
@@ -76,21 +76,36 @@ Using simple recursion, we can define the value of a propositional formula.
   \end{itemize}
 \end{definition}
 
-For example, the value of a formula $(x_1 \land x_2) \lor x_3$ when T is
+For example, the value of a formula $(x_1 \land \lnot x_2) \lor x_3$ when T is
 substituted as the value of $x_1$, T is substituted as the value of $x_2$,
 and F is substituted as the value of $x_3$ is equal to
-$(\ltrue \land \ltrue) \lor \lfalse = \ltrue$.
+$(\ltrue \land \lfalse) \lor \lfalse = \lfalse$.
 
-Note that, by associativity of conjunction, the formulas
-$\phi_1 \land (\phi_2 \land \phi_3)$ and $(\phi_1 \land \phi_2) \land \phi_3$
-have the same values for any substitutions. Therefore we usually write them
-without parentheses: $\phi_1 \land \phi_2 \land \phi_3$. Similarly we drop the
-parentheses in the disjunctions of more than two formulas. Taking these
-observations into account we may introduce the following notation.
+\begin{exercise}
+  Let $\phi_1$, $\phi_2$, and $\phi_3$ be propositional formulas on the
+  variables from a set $\Omega$. Show that for any propositional assignement
+  $\rho$ to $\Omega$,
+  $(\phi_1 \land (\phi_2 \land \phi_3))\big\rvert_\rho =
+   ((\phi_1 \land \phi_2) \land \phi_3)\big\rvert_\rho$.
+\end{exercise}
+
+Because of this equality, instead of $\phi_1 \land (\phi_2 \land \phi_3)$ and
+$(\phi_1 \land \phi_2) \land \phi_3$ we usually write them
+as $\phi_1 \land \phi_2 \land \phi_3$. Similarly we drop the
+parentheses in the disjunctions of more than two formulas. This observation
+justifies the following notation.
 Let $\phi_1$, \dots, $\phi_n$ be some propositional formulas. Then
-$\bigland_{i = 1}^n \phi_i$ denotes the conjunction of the formulas
-$\phi_1$, \dots, $\phi_n$, and $\biglor_{i = 1}^n \phi_i$
-denotes the disjunction of them.
+\begin{itemize}
+  \item $\bigland_{i = 1}^1 \phi_i = \phi_1$ and
+    $\biglor_{i = 1}^1 \phi_i = \phi_1$, and
+  \item $\bigland_{i = 1}^{k + 1} \phi_i =
+    (\bigland_{i = 1}^{k} \phi_i) \land \phi_{k + 1}$ and
+    $\biglor_{i = 1}^{k + 1} \phi_i =
+      (\biglor_{i = 1}^{k} \phi_i) \lor \phi_{k + 1}$.
+\end{itemize}
+In other words $\bigland_{i = 1}^n \phi_i$ and $\biglor_{i = 1}^n \phi_i$
+denotes the conjunction of the formulas $\phi_1$, \dots, $\phi_n$, and
+$\biglor_{i = 1}^n \phi_i$ denotes the disjunction of them.
 
 
 Using this notation we may show that the formulas we defined are enough to
