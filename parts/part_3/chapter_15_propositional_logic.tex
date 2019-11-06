@@ -48,7 +48,7 @@ To compute the value of a formula we need to know values of all the variables.
   In addition, if $\Omega = \set{x_1, \dots, x_n}$ and
   $v_1, \dots, v_n \in \set{\ltrue, \lfalse}$, then
   $x_1 = v_1, \dots, x_n = v_n$ denotes the propositional assignement
-  $\rho$ such that $\rho(x_i) = v_i$ for each $i \in [n]$.
+  $\rho$ such that $\rho(x_i) = v_i$ for each $i \in \range{n}$.
 \end{definition}
 
 Using simple recursion, we can define the value of a propositional formula.
@@ -112,28 +112,53 @@ Using this notation we may show that the formulas we defined are enough to
 represent all the Boolean functions
 (functions from $\set{\ltrue, \lfalse}^n$ to $\set{\ltrue, \lfalse}$).
 \begin{theorem}
+\label{theorem:function-to-formula}
   For any function $f : \set{\ltrue, \lfalse}^n \to
   \set{\ltrue, \lfalse}$ there is a
   formula $\phi$ on the variables $x_1$, \dots, $x_n$ such that
-  $\phi\big\rvert_{x_1 = v_1, \dots, x_n = v_n} = f(v_1, \dots, v_n)$ for all
+  $\substitute{\phi}{x_1 = v_1, \dots, x_n = v_n} = f(v_1, \dots, v_n)$ for all
   $v_1, \dots, v_n \in \set{\ltrue, \lfalse}$.
 \end{theorem}
-\begin{proof}
-  We denote the formula $x_i$ by $x_i^1$ and the formula $\lnot x_i$ by $x_i^0$.
-  It is easy to see that $\bigland_{i = 1}^n x_i^{v_i}$ is true on the
-  substitution $u_1, \dots, u_n \in \set{\ltrue, \lfalse}$ iff $u_1 = v_1$,
-  \dots, $u_n = v_n$.
 
+Let $u \in \set{\ltrue, \lfalse}$ and $x \in \Omega$. Then $x^u$ denotes a
+formula on the variables from $\Omega$ such that $x^u = x$ if $u = \ltrue$ and
+$x^u = \lnot x$ if $u = \lfalse$. Note that $\substitute{x^u}{\rho} = \ltrue$
+iff $\rho(x) = u$, for any propositional assignement $\rho$ to $\Omega$.
+Indeed, if $u = \ltrue$, then $x^u = x$ and
+$\ltrue = \substitute{x^u}{\rho} = \substitute{x}{\rho} = \rho(x)$ so
+$\rho(x) = \ltrue = u$;
+if $u = \lfalse$, then $x^u = \lnot x$ and
+$\ltrue = \substitute{x^u}{\rho} = \substitute{\left(\lnot x\right)}{\rho} =
+\lnot \rho(x)$ so $\rho(x) = \lfalse = u$.
+
+\begin{exercise}
+  Let $\phi_1$, \dots, $\phi_k$ are propositional formulas
+  on the variables from $\Omega$.
+  \begin{itemize}
+    \item Show that
+      $\left(\biglor_{i = 1}^k \phi_i\right)\Big\rvert_\rho = \ltrue$ iff
+      $\phi\big\rvert_{\rho} = \ltrue$ for some $i \in \range{k}$.
+    \item Show that
+      $\left(\bigland_{i = 1}^k \phi_i\right)\Big\rvert_\rho = \ltrue$ iff
+      $\phi\big\rvert_{\rho} = \ltrue$ for all $i \in \range{k}$.
+  \end{itemize}
+\end{exercise}
+
+Using this observation and the exercise we can
+prove~\Cref{theorem:function-to-formula}.
+\begin{proof}
   Let $S = \set[f(u_1, \dots, u_n) = \ltrue]{(u_1, \dots, u_n) \in
     \set{\ltrue, \lfalse}^n}$.
   Assume that
   $S = \set{(u_{1, 1}, \dots, u_{1, n}), \dots, (u_{k, 1}, \dots, u_{k, n})}$.
-  It is clear that
+  By the previous observations
   \[
-    \left(
-      \bigland_{i = 1}^k
-        \biglor_{j = 1}^n x_j^{u_{i, j}}
-    \right)\Bigg\rvert_{x_1 = v_1, \dots, x_n = v_n}
+    \substitute{
+      \left(
+        \biglor_{i = 1}^k
+          \bigland_{j = 1}^n x_j^{u_{i, j}}
+      \right)
+    }{x_1 = v_1, \dots, x_n = v_n}
     =
     f(v_1, \dots, v_n)
   \]
@@ -143,32 +168,57 @@ represent all the Boolean functions
   $x_1 \land \lnot x_1$.)
 \end{proof}
 
-We say that a formula is a literal iff it is equal to $x_i$ or to $\lnot x_i$
-for some $i \in \range{n}$.
-We also say that a formula is in disjunctive normal form (DNF) iff
-it is a disjunction of one or more conjunctions of one or more literals.
-Note that the proof we just gave says that any function has a representation in
-DNF.
+One may notice that the formulas we constructed have very specific form,
+such a form is called disjunctive normal form (DNF).
+\begin{definition}
+  We say that a propositional formula $\lambda$ on the variables from $\Omega$
+  is a \emph{literal} if it is equal to $x$ or to $\lnot x$ for some
+  $x \in \Omega$.
 
-We can also define a conjunctive normal form (DNF); we say that a formula is in
-CNF if it is a conjunction of one or more disjunctions of of one or
-more literals. Using the following simple trick we can prove that any function
+  We say that a propositional formula $\psi$ on the variables from $\Omega$ is
+  a \emph{term} if $\psi$ is equal to $\bigland_{i = 1}^\ell \lambda_i$, where $\lambda_1$, \dots, $\lambda_\ell$ are literals.
+
+  Finally, we say that a propositional formula $\phi$ on the variables from
+  $\Omega$ is in \emph{disjunctive normal form} (DNF) if $\phi$ is equal to
+  $\biglor_{i = 1}^k \psi_i$, where $\psi_1$, \dots, $\psi_k$ are
+  terms.
+\end{definition}
+
+However, there is nothing special in this order of operations (disjunction of
+conjunctions). So we can define conjunctive normal form (CNF) too.
+\begin{definition}
+  We say that a propositional formula $\psi$ on the variables from $\Omega$ is
+  a \emph{clause} if $\psi$ is equal to $\biglor_{i = 1}^\ell \lambda_i$, where
+  $\lambda_1$, \dots, $\lambda_\ell$ are literals.
+
+  Finally, we say that a propositional formula $\phi$ on the variables from
+  $\Omega$ is in \emph{conjunctive normal form} (DNF) if $\phi$ is equal to
+  $\bigland_{i = 1}^k \psi_i$, where $\psi_1$, \dots, $\psi_k$ are
+  clauses.
+\end{definition}
+
+Using the following simple trick we can prove that any function
 has a representation in CNF. First, we define a function
 $g(x_1, \dots, x_n) = \lnot f(x_1, \dots, x_n)$. Secondly, we may notice that
 \[
-  \left(
-    \lnot
+  \substitute{
     \left(
-      \bigland_{i = 1}^k \biglor_{j = 1}^n \phi_{i, j}
+      \lnot
+      \left(
+        \bigland_{i = 1}^k \biglor_{j = 1}^n \phi_{i, j}
+      \right)
     \right)
-  \right) \Bigg\rvert_{x_1 = v_1, \dots, x_n = v_n}
+  }{x_1 = v_1, \dots, x_n = v_n}
   =
-  \left(
-    \biglor_{i = 1}^k \bigland_{j = 1}^n \lnot \phi_{i, j}
-  \right)\Bigg\rvert_{x_1 = v_1, \dots, x_n = v_n}
+  \substitute{
+    \left(
+      \biglor_{i = 1}^k \bigland_{j = 1}^n \lnot \phi_{i, j}
+    \right)
+  }{x_1 = v_1, \dots, x_n = v_n}
 \]
 for all $v_1, \dots, v_n \in \set{\ltrue, \lfalse}$. Therefore the negation
-of a formula in DNF is a formula in CNF. Finally, we know that the function
+of a formula in DNF can be easily tranformed into a formula in CNF.
+Finally, we know that the function
 $g$ has a representation in DNF, which implies that $f$ has a representation
 in CNF.
 
