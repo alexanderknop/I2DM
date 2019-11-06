@@ -60,18 +60,18 @@ Using simple recursion, we can define the value of a propositional formula.
   formula $\phi$ with respect to $\rho$ is equal to
   \begin{itemize}
     \item $\rho(x)$ if $\phi = x$,
-    \item $\psi_1\big\rvert_\rho \land
-      \psi_2\big\rvert_\rho$ if
+    \item $\substitute{\psi_1}{\rho} \land
+      \substitute{\psi_2}{\rho}$ if
       $\phi = (\psi_1 \land \psi_2)$ (note that here and in the
       sequel, we use connectives as symbols and as operations depending on
       the content),
-    \item $\psi_1\big\rvert_\rho \lor
-      \psi_2\big\rvert_\rho$ if
+    \item $\substitute{\psi_1}{\rho} \lor
+      \substitute{\psi_2}{\rho}$ if
       $\phi = (\psi_1 \lor \psi_2)$,
-    \item $\psi_1\big\rvert_\rho \implies
-      \psi_2\big\rvert_\rho$ if
+    \item $\substitute{\psi_1}{\rho} \implies
+      \substitute{\psi_2}{\rho}$ if
       $\phi = (\psi_1 \implies \psi_2)$, and
-    \item $\lnot\left(\psi\big\rvert_\rho\right)$
+    \item $\lnot\left(\substitute{\psi}{\rho}\right)$
       if $\phi = \lnot \psi$.
   \end{itemize}
 \end{definition}
@@ -107,6 +107,17 @@ In other words $\bigland_{i = 1}^n \phi_i$ and $\biglor_{i = 1}^n \phi_i$
 denotes the conjunction of the formulas $\phi_1$, \dots, $\phi_n$, and
 $\biglor_{i = 1}^n \phi_i$ denotes the disjunction of them.
 
+\begin{exercise}
+  Let $\phi_1$, \dots, $\phi_n$, $\psi_1$, \dots, $\psi_m$, $\chi_1$, \dots,
+  $\chi_{n + m}$ be some propositional formulas on the variables from $\Omega$
+  such that $\chi_i = \phi_i$ for $i \le n$ and $\chi_i = \psi_{i - n}$ for
+  $n < i \le m$. Show that
+  $\substitute{\left(\bigland_{i = 1}^n \phi_i\right) \land
+    \left(\bigland_{i = 1}^n \psi_i\right)}{\rho} =
+  \substitute{\left(\bigland_{i = 1}^{n + m} \chi_i\right)}{\rho}$
+  for any propositional assignement $\rho$ to $\Omega$.
+\end{exercise}
+
 
 Using this notation we may show that the formulas we defined are enough to
 represent all the Boolean functions
@@ -136,11 +147,11 @@ $\ltrue = \substitute{x^u}{\rho} = \substitute{\left(\lnot x\right)}{\rho} =
   on the variables from $\Omega$.
   \begin{itemize}
     \item Show that
-      $\left(\biglor_{i = 1}^k \phi_i\right)\Big\rvert_\rho = \ltrue$ iff
-      $\phi\big\rvert_{\rho} = \ltrue$ for some $i \in \range{k}$.
+      $\substitute{\left(\biglor_{i = 1}^k \phi_i\right)}{\rho} = \ltrue$ iff
+      $\substitute{\phi}{\rho} = \ltrue$ for some $i \in \range{k}$.
     \item Show that
-      $\left(\bigland_{i = 1}^k \phi_i\right)\Big\rvert_\rho = \ltrue$ iff
-      $\phi\big\rvert_{\rho} = \ltrue$ for all $i \in \range{k}$.
+      $\substitute{\left(\bigland_{i = 1}^k \phi_i\right)}{\rho} = \ltrue$ iff
+      $\substitute{\phi}{\rho} = \ltrue$ for all $i \in \range{k}$.
   \end{itemize}
 \end{exercise}
 
@@ -216,7 +227,9 @@ $g(x_1, \dots, x_n) = \lnot f(x_1, \dots, x_n)$. Secondly, we may notice that
     \right)
   }{x_1 = v_1, \dots, x_n = v_n}
 \]
-for all $v_1, \dots, v_n \in \set{\ltrue, \lfalse}$. Therefore the negation
+for all $v_1, \dots, v_n \in \set{\ltrue, \lfalse}$
+% THE REFERENCE TO THE EXERCISE
+(see Exercise 15.7). Therefore the negation
 of a formula in DNF can be easily tranformed into a formula in CNF.
 Finally, we know that the function
 $g$ has a representation in DNF, which implies that $f$ has a representation
@@ -808,8 +821,62 @@ $
 
 
 \begin{chapterendexercises}
-  \exercise Derive $(A \land B) \implies C$ from
-    $A \implies (B \implies C)$.
+  \exercise % CAREFUL, DONT MOVE! THERE IS A REFERENCE TO THIS NUMBER
+    Let $\phi_1$ and $\phi_2$ be some propositional formulas on
+    the variables from $\Omega$. Show that for any propositional assignement
+    $\rho$ to $\Omega$,
+    \begin{itemize}
+      \item
+        $\substitute{
+        \lnot\left(
+          \phi_1 \land \phi_2
+        \right)}{\rho} =
+        \substitute{
+          \left(
+            \lnot \phi_1 \lor \lnot \phi_2
+          \right)
+         }{\rho}$ and
+    \item
+    $\substitute{
+    \lnot\left(
+      \phi_1 \lor \phi_2
+    \right)}{\rho} =
+    \substitute{
+      \left(
+        \lnot \phi_1 \land \lnot \phi_2
+      \right)
+     }{\rho}$.
+  \end{itemize}
+  \exercise % CAREFUL, DONT MOVE! THERE IS A REFERENCE TO THIS NUMBER
+    Let $\phi_1$, \dots, $\phi_n$ be some propositional formulas on
+    the variables from $\Omega$. Show that for any propositional assignement
+    $\rho$ to $\Omega$,
+    \begin{itemize}
+      \item
+        $\substitute{
+          \left(
+            \lnot \left(
+                    \bigland_{i = 1}^n \phi_i
+                  \right)
+          \right)}{\rho} =
+          \substitute{
+            \left(
+              \biglor_{i = 1}^n \phi_i
+            \right)
+           }{\rho}$ and
+      \item
+        $\substitute{
+         \left(
+           \lnot \left(
+                   \biglor_{i = 1}^n \phi_i
+                 \right)
+         \right)}{\rho} =
+         \substitute{
+           \left(
+             \bigland_{i = 1}^n \phi_i
+           \right)
+          }{\rho}$.
+    \end{itemize}
   \exercise Derive $A \lor C$ from
     $(A \land B) \lor C$.
   \exercise Derive $B \lor C$ from

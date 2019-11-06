@@ -52,6 +52,12 @@
     \textit{Hint: #1}
 }
 
+\newcommand{\labitem}[2]{%
+\def\@itemlabel{\textbf{#1}}
+\item
+\def\@currentlabel{#1}\label{#2}}
+\makeatother
+
 \newenvironment{chapterendexercises}
 {
     \renewcommand{\exercise}[1][ ]
