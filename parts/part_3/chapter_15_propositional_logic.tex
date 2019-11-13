@@ -877,8 +877,63 @@ $
            \right)
           }{\rho}$.
     \end{itemize}
-  \exercise Derive $A \lor C$ from
-    $(A \land B) \lor C$.
-  \exercise Derive $B \lor C$ from
-    $A \implies B$ and $\lnot A \implies C$.
+  \exercise  Write a natural deduction derivation of $A \lor C$ from
+    hypothesis $(A \land B) \lor C$.
+  \exercise Write a natural deduction derivation of $B \lor C$ from
+    hypothesis $A \implies B$ and $\lnot A \implies C$.
+  \exercise Write a natural deduction derivation of
+    $(W \lor Y) \implies (X \lor Z)$ from
+    hypotheses $W \implies X$ and $Y \implies Z$.
+  \exercise Let us formulate the pigeonhole principle using propositional
+    formulas. Let
+    $\Omega = \set{x_{1, 1}, \dots, x_{n + 1, 1}, x_{1, 2} \dots, x_{n + 1, n}}$
+    (informally $x_{i, j}$ is true iff the $i$th pigeon is in the $j$th hole).
+    Consider the following propositional formulas on the variables from
+    $\Omega$.
+    \begin{itemize}
+      \item $L_i$ ($i \in [n + 1]$) is equal to $\bigvee_{j = 1}^n x_{i, j}$.
+        (Informally this formula says that the $i$th pigeon is in a hole.)
+      \item $R_j$ ($j \in [n]$) is equal to
+        $\biglor_{i_1 = 1}^{n + 1} \biglor_{i_2 = i_1 + 1}^{n + 1}
+        (x_{i_1, j} \land x_{i_2, j})$.
+        (Informally this formula says that there are two pigeons in the $j$th
+        hole.)
+      \end{itemize}
+
+      Show that there is a natural deduction derivation of
+      $\left(
+          \bigland_{i = 1}^{n + 1} L_i
+        \right)
+        \implies
+        \left(
+          \biglor_{i = 1}^{n} R_i
+        \right)$.
+    \exercise Let $\phi = \bigvee_{i = 1}^m \lambda_i$ be a clause; we say that
+      the width of the clause is equal to $m$.
+      Let $\phi = \bigwedge_{i = 1}^\ell \chi_i$ be a formula in CNF
+      ($\chi_i$'s are clauses'); we say that the width of $\phi$ is equal to
+      the maximal width of $\chi_i$ for $i \in \range{\ell}$.
+
+      Let $p_n : \set{\ltrue, \lfalse}^n \to \set{\ltrue, \lfalse}$ such that
+      $p_n(x_1, \dots, x_n) = \ltrue$
+      iff the set $\set[x_i = \ltrue]{i}$ has an odd number of elements.
+      Show that any CNF representation of $p_n$ has width $n$.
+    \exercise We say that a clause $C$ can be obtained from clauses $A$ and $B$
+      using the \emph{resolution} rule if $C = A^\prime \lor B^\prime$,
+      $A = x \lor A^\prime$, and $B = \lnot x \lor B^\prime$, for some variable
+      $x$.
+
+      We say that a clause $C$ can be derived from clauses $A_1$, \dots, $A_m$
+      using resolutions
+      if there is a sequence of clauses $D_1$, \dots, $D_\ell = C$ such that
+      each $D_i$
+      \begin{itemize}
+        \item is either obtained from clauses $D_j$ and $D_k$ for $j, k < i$ using the
+          \emph{resolution} rule, or
+        \item is equal to $A_j$ for some $j \in [m]$, or
+        \item is equal to $D_j \lor E$ for some $j < i$ and a clause $E$.
+      \end{itemize}
+
+      Show that if $C$ can be derived from clauses $A_1$, \dots, $A_m$ using
+      the resolution rule, then $A_1$, \dots, $A_m$ semantically imply $C$.
 \end{chapterendexercises}
