@@ -918,7 +918,9 @@ $
       $p_n(x_1, \dots, x_n) = \ltrue$
       iff the set $\set[x_i = \ltrue]{i}$ has an odd number of elements.
       Show that any CNF representation of $p_n$ has width $n$.
-    \exercise We say that a clause $C$ can be obtained from clauses $A$ and $B$
+    \exercise In this exercise we think about clauses as sets of literals so
+      the order of disjunctions and repetitions of literals are not important.
+      We say that a clause $C$ can be obtained from clauses $A$ and $B$
       using the \emph{resolution} rule if $C = A^\prime \lor B^\prime$,
       $A = x \lor A^\prime$, and $B = \lnot x \lor B^\prime$, for some variable
       $x$.
@@ -934,6 +936,5 @@ $
         \item is equal to $D_j \lor E$ for some $j < i$ and a clause $E$.
       \end{itemize}
 
-      Show that if $C$ can be derived from clauses $A_1$, \dots, $A_m$ using
-      the resolution rule, then $A_1$, \dots, $A_m$ semantically imply $C$.
+      Show that if an empty clause $\perp$ can be derived from clauses $A_1$, \dots, $A_m$ using the resolution rule, then $A_1$, \dots, $A_m$ semantically imply $\perp$.
 \end{chapterendexercises}
