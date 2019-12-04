@@ -24,15 +24,15 @@ In other words, statements in propositional logic can be defined using
 propositional formulas (also known as sentential formulas or Boolean formulas).
 \begin{definition}
   We say that $\phi$ is a propositional formula on the variables from
-  $\Omega$ if
+  $V$ if
   \begin{itemize}
-    \item either $\phi$ is equal to $x$ for some $x \in \Omega$,
+    \item either $\phi$ is equal to $x$ for some $x \in V$,
     \item or $\phi$ is equal to $(\psi_1 \land \psi_2)$, or
       $(\psi_1 \lor \psi_2)$, or $(\psi_1 \implies \psi_2)$ ,
       where $\psi_1$ and $\psi_2$ are propositional formulas on the variables
-      from $\Omega$,
+      from $V$,
     \item or $\phi$ is equal to $\lnot \psi$, where $\psi$ is a propositional
-      formula on the variables from $\Omega$.
+      formula on the variables from $V$.
   \end{itemize}
 \end{definition}
 
@@ -42,10 +42,10 @@ $x_1$, $x_2$, $x_3$).
 
 To compute the value of a formula we need to know values of all the variables.
 \begin{definition}
-  We say that $\rho$ is a propositional assignement to $\Omega$ if $\rho$
-  is a function from $\Omega$ to $\set{\ltrue, \lfalse}$.
+  We say that $\rho$ is a propositional assignement to $V$ if $\rho$
+  is a function from $V$ to $\set{\ltrue, \lfalse}$.
 
-  In addition, if $\Omega = \set{x_1, \dots, x_n}$ and
+  In addition, if $V = \set{x_1, \dots, x_n}$ and
   $v_1, \dots, v_n \in \set{\ltrue, \lfalse}$, then
   $x_1 = v_1, \dots, x_n = v_n$ denotes the propositional assignement
   $\rho$ such that $\rho(x_i) = v_i$ for each $i \in \range{n}$.
@@ -53,8 +53,8 @@ To compute the value of a formula we need to know values of all the variables.
 
 Using simple recursion, we can define the value of a propositional formula.
 \begin{definition}
-  Let $\phi$ be a propositional formula on the variables $\Omega$ and
-  $\rho$ be a propositional assignement to $\Omega$.
+  Let $\phi$ be a propositional formula on the variables $V$ and
+  $\rho$ be a propositional assignement to $V$.
 
   We say that the value $\phi\big\rvert_\rho$ of the
   formula $\phi$ with respect to $\rho$ is equal to
@@ -83,8 +83,8 @@ $(\ltrue \land \lfalse) \lor \lfalse = \lfalse$.
 
 \begin{exercise}
   Let $\phi_1$, $\phi_2$, and $\phi_3$ be propositional formulas on the
-  variables from a set $\Omega$. Show that for any propositional assignement
-  $\rho$ to $\Omega$,
+  variables from a set $V$. Show that for any propositional assignement
+  $\rho$ to $V$,
   $(\phi_1 \land (\phi_2 \land \phi_3))\big\rvert_\rho =
    ((\phi_1 \land \phi_2) \land \phi_3)\big\rvert_\rho$.
 \end{exercise}
@@ -109,13 +109,13 @@ $\biglor_{i = 1}^n \phi_i$ denotes the disjunction of them.
 
 \begin{exercise}
   Let $\phi_1$, \dots, $\phi_n$, $\psi_1$, \dots, $\psi_m$, $\chi_1$, \dots,
-  $\chi_{n + m}$ be some propositional formulas on the variables from $\Omega$
+  $\chi_{n + m}$ be some propositional formulas on the variables from $V$
   such that $\chi_i = \phi_i$ for $i \le n$ and $\chi_i = \psi_{i - n}$ for
   $n < i \le m$. Show that
   $\substitute{\left(\bigland_{i = 1}^n \phi_i\right) \land
     \left(\bigland_{i = 1}^n \psi_i\right)}{\rho} =
   \substitute{\left(\bigland_{i = 1}^{n + m} \chi_i\right)}{\rho}$
-  for any propositional assignement $\rho$ to $\Omega$.
+  for any propositional assignement $\rho$ to $V$.
 \end{exercise}
 
 
@@ -131,10 +131,10 @@ represent all the Boolean functions
   $v_1, \dots, v_n \in \set{\ltrue, \lfalse}$.
 \end{theorem}
 
-Let $u \in \set{\ltrue, \lfalse}$ and $x \in \Omega$. Then $x^u$ denotes a
-formula on the variables from $\Omega$ such that $x^u = x$ if $u = \ltrue$ and
+Let $u \in \set{\ltrue, \lfalse}$ and $x \in V$. Then $x^u$ denotes a
+formula on the variables from $V$ such that $x^u = x$ if $u = \ltrue$ and
 $x^u = \lnot x$ if $u = \lfalse$. Note that $\substitute{x^u}{\rho} = \ltrue$
-iff $\rho(x) = u$, for any propositional assignement $\rho$ to $\Omega$.
+iff $\rho(x) = u$, for any propositional assignement $\rho$ to $V$.
 Indeed, if $u = \ltrue$, then $x^u = x$ and
 $\ltrue = \substitute{x^u}{\rho} = \substitute{x}{\rho} = \rho(x)$ so
 $\rho(x) = \ltrue = u$;
@@ -144,7 +144,7 @@ $\ltrue = \substitute{x^u}{\rho} = \substitute{\left(\lnot x\right)}{\rho} =
 
 \begin{exercise}
   Let $\phi_1$, \dots, $\phi_k$ are propositional formulas
-  on the variables from $\Omega$.
+  on the variables from $V$.
   \begin{itemize}
     \item Show that
       $\substitute{\left(\biglor_{i = 1}^k \phi_i\right)}{\rho} = \ltrue$ iff
@@ -182,15 +182,15 @@ prove~\Cref{theorem:function-to-formula}.
 One may notice that the formulas we constructed have very specific form,
 such a form is called disjunctive normal form (DNF).
 \begin{definition}
-  We say that a propositional formula $\lambda$ on the variables from $\Omega$
+  We say that a propositional formula $\lambda$ on the variables from $V$
   is a \emph{literal} if it is equal to $x$ or to $\lnot x$ for some
-  $x \in \Omega$.
+  $x \in V$.
 
-  We say that a propositional formula $\psi$ on the variables from $\Omega$ is
+  We say that a propositional formula $\psi$ on the variables from $V$ is
   a \emph{term} if $\psi$ is equal to $\bigland_{i = 1}^\ell \lambda_i$, where $\lambda_1$, \dots, $\lambda_\ell$ are literals.
 
   Finally, we say that a propositional formula $\phi$ on the variables from
-  $\Omega$ is in \emph{disjunctive normal form} (DNF) if $\phi$ is equal to
+  $V$ is in \emph{disjunctive normal form} (DNF) if $\phi$ is equal to
   $\biglor_{i = 1}^k \psi_i$, where $\psi_1$, \dots, $\psi_k$ are
   terms.
 \end{definition}
@@ -198,12 +198,12 @@ such a form is called disjunctive normal form (DNF).
 However, there is nothing special in this order of operations (disjunction of
 conjunctions). So we can define conjunctive normal form (CNF) too.
 \begin{definition}
-  We say that a propositional formula $\psi$ on the variables from $\Omega$ is
+  We say that a propositional formula $\psi$ on the variables from $V$ is
   a \emph{clause} if $\psi$ is equal to $\biglor_{i = 1}^\ell \lambda_i$, where
   $\lambda_1$, \dots, $\lambda_\ell$ are literals.
 
   Finally, we say that a propositional formula $\phi$ on the variables from
-  $\Omega$ is in \emph{conjunctive normal form} (DNF) if $\phi$ is equal to
+  $V$ is in \emph{conjunctive normal form} (DNF) if $\phi$ is equal to
   $\bigland_{i = 1}^k \psi_i$, where $\psi_1$, \dots, $\psi_k$ are
   clauses.
 \end{definition}
@@ -292,29 +292,47 @@ conclude that Santa gives a present to Joe. We can similarly to the previous
 example write this argument using variables and connectives.
 If we know that $p$ and $p \implies q$, we may conclude that $q$ is true.
 \begin{exercise}
-  Show that this argument is correct.
+  Show that $(p \land (p \implies q)) \implies q$ is a tautology.
 \end{exercise}
 Such an argument is called \emph{modus ponens}.
 
+A notion connected to being a tautology is the notion of being satisfiable.
+We say that a formula (a set of formulas) is \emph{satisfiable} iff there
+is a substitution to the variables such that the value of the formula is true
+(the values of all the formulas are true). Note that a formula is not
+satisfiable (the formula is \emph{unsatisfiable}) iff its negation is
+a tautology. Therefore, using truth tables one may check whether a formula
+is satisfiable or not.\footnote{%
+  Note that the procedure is awfully not efficient since if the formula
+  uses $n$ variables we need to do $2^n$ operations. Unfortunately,
+  we do not know anything that always works better since
+  satisfiability problem (the problem of determining whether a given formula is
+  satisfiable or not) is NP complete.
+}
+
 \section{Semantic Implication}
-We say that a set of propositional formulas $\Sigma$ \emph{semantically implies}
-a propositional formula $\phi$ (we denote it by $\Sigma \models \phi$)
-iff whenever all the formulas from $\Sigma$ are true under some substitution,
-the formula $\phi$ is also true under this substitution.
+Note that all the arguments in the previous section were in the form
+``if \dots is true, then \dots is also true''; this type of arguments
+can be described using the notion of semantic implication.
+We say that a set $\Sigma$ of propositional formulas with variables from a set
+$V$ \emph{semantically implies} a propositional formula $\phi$ with variables
+from the set $V$ (we denote it by $\Sigma \models \phi$)
+iff whenever all the formulas from $\Sigma$ are true under some propositional
+assignement to $V$, the formula $\phi$ is also true under this propositional
+assignement; i.e.,
+$\Sigma \models \phi$ iff for any $\rho : V \to \set{\ltrue, \lfalse}$,
+$\substitute{\phi}{\rho} = \ltrue$ provided that
+$\substitute{\psi}{\rho} = \ltrue$ for all $\psi \in \Sigma$.
 (Note that the set $\Sigma$ may be infinite.)
 
-We also say that a formula (a set of formulas) is \emph{satisfiable} iff there
-is a substitution to the variables such that the value of the formula is true
-(the values of all the formulas are true).
-
-In the previous argument we explained that if we have a finite set $\Sigma$,
+In the previous section we explained that if we have a finite set $\Sigma$,
 then it is possible to check whether a formula $\phi$ is semantically implied
 by $\Sigma$. Let us try to find out whether we can do the same for infinite
 sets $\Sigma$.
 
 Partial answer to this question is given by the following theorem.
 \begin{theorem}[compactness theorem]
-  A set of propositional formulas $\Sigma$ is satisfiable iff every finite
+  A set $\Sigma$ of propositional formulas is satisfiable iff every finite
   subset is satisfiable.
 \end{theorem}
 \begin{proof}
@@ -823,8 +841,8 @@ $
 \begin{chapterendexercises}
   \exercise % CAREFUL, DONT MOVE! THERE IS A REFERENCE TO THIS NUMBER
     Let $\phi_1$ and $\phi_2$ be some propositional formulas on
-    the variables from $\Omega$. Show that for any propositional assignement
-    $\rho$ to $\Omega$,
+    the variables from $V$. Show that for any propositional assignement
+    $\rho$ to $V$,
     \begin{itemize}
       \item
         $\substitute{
@@ -849,8 +867,8 @@ $
   \end{itemize}
   \exercise % CAREFUL, DONT MOVE! THERE IS A REFERENCE TO THIS NUMBER
     Let $\phi_1$, \dots, $\phi_n$ be some propositional formulas on
-    the variables from $\Omega$. Show that for any propositional assignement
-    $\rho$ to $\Omega$,
+    the variables from $V$. Show that for any propositional assignement
+    $\rho$ to $V$,
     \begin{itemize}
       \item
         $\substitute{
@@ -886,10 +904,10 @@ $
     hypotheses $W \implies X$ and $Y \implies Z$.
   \exercise Let us formulate the pigeonhole principle using propositional
     formulas. Let
-    $\Omega = \set{x_{1, 1}, \dots, x_{n + 1, 1}, x_{1, 2} \dots, x_{n + 1, n}}$
+    $V = \set{x_{1, 1}, \dots, x_{n + 1, 1}, x_{1, 2} \dots, x_{n + 1, n}}$
     (informally $x_{i, j}$ is true iff the $i$th pigeon is in the $j$th hole).
     Consider the following propositional formulas on the variables from
-    $\Omega$.
+    $V$.
     \begin{itemize}
       \item $L_i$ ($i \in [n + 1]$) is equal to $\bigvee_{j = 1}^n x_{i, j}$.
         (Informally this formula says that the $i$th pigeon is in a hole.)
