@@ -76,11 +76,20 @@ Using simple recursion, we can define the value of a propositional formula.
   \end{itemize}
 \end{definition}
 
-For example, the value of a formula $(x_1 \land \lnot x_2) \lor x_3$ when T is
-substituted as the value of $x_1$, T is substituted as the value of $x_2$,
-and F is substituted as the value of $x_3$ is equal to
+For example, the value of a formula $(x_1 \land \lnot x_2) \lor x_3$ when
+$\ltrue$ is substituted as the value of $x_1$,
+$\ltrue$ is substituted as the value of $x_2$,
+and $\lfalse$ is substituted as the value of $x_3$ is equal to
 $(\ltrue \land \lfalse) \lor \lfalse = \lfalse$.
 
+Note that if $\phi$ is a formula on the variables from $V$ it does not mean that
+all the variables from $V$ have to be used.
+For example, $x_1$ is a formula on the variables from $\set{x_1, x_2}$; however,
+$x_2$ is not used in the formula.
+
+\section{Conjunctive and Disjuctive Normal Form}
+
+Let us start this section with an exercise.
 \begin{exercise}
   Let $\phi_1$, $\phi_2$, and $\phi_3$ be propositional formulas on the
   variables from a set $V$. Show that for any propositional assignement
@@ -234,8 +243,6 @@ of a formula in DNF can be easily tranformed into a formula in CNF.
 Finally, we know that the function
 $g$ has a representation in DNF, which implies that $f$ has a representation
 in CNF.
-
-
 
 \section{Truth Tables}
 \label{section:truth-tables}
