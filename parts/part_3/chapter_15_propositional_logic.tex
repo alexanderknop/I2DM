@@ -28,7 +28,14 @@ propositional formulas (also known as sentential formulas or Boolean formulas).
   \begin{itemize}
     \item either $\phi$ is equal to $x$ for some $x \in V$,
     \item or $\phi$ is equal to $(\psi_1 \land \psi_2)$, or
-      $(\psi_1 \lor \psi_2)$, or $(\psi_1 \implies \psi_2)$ ,
+      $(\psi_1 \lor \psi_2)$, or $(\psi_1 \limplies \psi_2)$,\footnote{%
+        The symbol $\limplies$ is used to denote the implication.
+        Due to historical reasons the standard symbol $\implies$ is rarerely
+        used as a connective in mathematical logic; hence, we will use
+        $\limplies$ instead of $\implies$ in this part of the book.
+        It is important to note that, sometimes the symbol $\supset$ is also
+        used instead of $\implies$.
+      }
       where $\psi_1$ and $\psi_2$ are propositional formulas on the variables
       from $V$,
     \item or $\phi$ is equal to $\lnot \psi$, where $\psi$ is a propositional
@@ -68,9 +75,9 @@ Using simple recursion, we can define the value of a propositional formula.
     \item $\substitute{\psi_1}{\rho} \lor
       \substitute{\psi_2}{\rho}$ if
       $\phi = (\psi_1 \lor \psi_2)$,
-    \item $\substitute{\psi_1}{\rho} \implies
+    \item $\substitute{\psi_1}{\rho} \limplies
       \substitute{\psi_2}{\rho}$ if
-      $\phi = (\psi_1 \implies \psi_2)$, and
+      $\phi = (\psi_1 \limplies \psi_2)$, and
     \item $\lnot\left(\substitute{\psi}{\rho}\right)$
       if $\phi = \lnot \psi$.
   \end{itemize}
@@ -86,6 +93,59 @@ Note that if $\phi$ is a formula on the variables from $V$ it does not mean that
 all the variables from $V$ have to be used.
 For example, $x_1$ is a formula on the variables from $\set{x_1, x_2}$; however,
 $x_2$ is not used in the formula.
+
+\begin{exercise}
+  Define (using structural induction) the set of all the variables that are
+  used in a propositional formula $\phi$ on variables from a set $V$.
+\end{exercise}
+
+Let $\phi$ be a formula $\phi$ on the variables from a set $V$. The definition
+of a value of a formula requeres us to specify all the values of all the
+variables from $V$. However, the following theorem shows that in
+fact we need to specify only the variables that are actually used in $\phi$.
+\begin{theorem}
+  Let $\phi$ be a formula $\phi$ on the variables from a set $V$,
+  and $U$ be the set of the variables used in $\phi$.
+
+  Consider $\rho_1, \rho_2 : V \to \set{\ltrue, \lfalse}$ such that
+  $\rho_1(x) = \rho_2(x)$ for any $x \in U$.
+  Then $\substitute{\phi}{\rho_1} = \substitute{\phi}{\rho_2}$.
+\end{theorem}
+\begin{proof}
+  We prove the statement using the structural induction.
+  \begin{description}
+    \item[(base case)] Let $\phi = x$ for some $x \in V$.
+      Note that $x \in U$ and $\substitute{\phi}{\rho_1} = \rho_1(x) =
+      \rho_2(x) = \substitute{\phi}{\rho_2}$.
+    \item[(induction step)] We need to consider the following three cases.
+      \begin{itemize}
+        \item Let $\phi$ be equal to $\psi_1 \land \psi_2$ such that
+          $\substitute{\psi_1}{\rho_1} = \substitute{\psi_1}{\rho_2}$ and
+          $\substitute{\psi_1}{\rho_2} = \substitute{\psi_2}{\rho_2}$.
+          In this case,
+          $\substitute{\phi}{\rho_1} =
+            (\substitute{\psi_1}{\rho_1} \land \substitute{\psi_2}{\rho_1} )=
+            (\substitute{\psi_1}{\rho_2} \land \substitute{\psi_2}{\rho_2}) =
+            \substitute{\phi}{\rho_2}$.
+        \item Let $\phi$ be equal to $\psi_1 \lor \psi_2$ such that
+          $\substitute{\psi_1}{\rho_1} = \substitute{\psi_1}{\rho_2}$ and
+          $\substitute{\psi_1}{\rho_2} = \substitute{\psi_2}{\rho_2}$.
+          In this case,
+          $\substitute{\phi}{\rho_1} =
+            (\substitute{\psi_1}{\rho_1} \lor \substitute{\psi_2}{\rho_1}) =
+            (\substitute{\psi_1}{\rho_2} \lor \substitute{\psi_2}{\rho_2}) =
+            \substitute{\phi}{\rho_2}$.
+        \item Let $\phi$ be equal to $\psi_1 \limplies \psi_2$ such that
+          $\substitute{\psi_1}{\rho_1} = \substitute{\psi_1}{\rho_2}$ and
+          $\substitute{\psi_1}{\rho_2} = \substitute{\psi_2}{\rho_2}$.
+          In this case,
+          $\substitute{\phi}{\rho_1} =
+            (\substitute{\psi_1}{\rho_1} \limplies \substitute{\psi_2}{\rho_1}) =
+            (\substitute{\psi_1}{\rho_2} \limplies \substitute{\psi_2}{\rho_2}) =
+            \substitute{\phi}{\rho_2}$.
+      \end{itemize}
+  \end{description}
+\end{proof}
 
 \section{Conjunctive and Disjuctive Normal Form}
 
@@ -259,8 +319,8 @@ can derive that if $\lnot (x^2 > 4)$, then $\lnot (x < -2)$ and $\lnot (x > 2)$.
 In order to emphasize the logical structure of the argument let us denote
 the statement $x > 2$ by $p$, the statement $x < -2$ by $q$, and the statement
 $x^2 > 4$ by $r$. In this case the argument is as follows.
-Assume that we know that $(p \lor q) \implies r$ is true. We
-can derive that $\lnot r \implies (\lnot p \land \lnot q)$ is true as well.
+Assume that we know that $(p \lor q) \limplies r$ is true. We
+can derive that $\lnot r \limplies (\lnot p \land \lnot q)$ is true as well.
 
 How can we check that this argument is correct? The simplest way is to use a
 truth table (we disucssed this approach in \Cref{chapter:predicates}) to check
@@ -268,8 +328,8 @@ that whether the assumption is true, the consequence is also true.
 \begin{center}
     \begin{tabular}{l l l l l}
         \toprule
-        $p$ & $q$ & $r$ & $(p \lor q) \implies r$ &
-        $\lnot r \implies (\lnot p \land \lnot q)$ \\
+        $p$ & $q$ & $r$ & $(p \lor q) \limplies r$ &
+        $\lnot r \limplies (\lnot p \land \lnot q)$ \\
         \midrule
         T & T & T & T & T \\
         T & T & F & F & F \\
@@ -283,25 +343,25 @@ that whether the assumption is true, the consequence is also true.
     \end{tabular}
 \end{center}
 It is easy to note that the argument is indeed correct, i.e.
-if $(p \lor q) \implies r$ is true, then
-$\lnot r \implies (\lnot p \land \lnot q)$ is also true.
+if $(p \lor q) \limplies r$ is true, then
+$\lnot r \limplies (\lnot p \land \lnot q)$ is also true.
 This statement says that
 \[
-  \bigl((p \lor q) \implies r\bigr) \iff
-  \bigl(\lnot r \implies (\lnot p \land \lnot q) \bigr)
+  \bigl((p \lor q) \limplies r\bigr) \iff
+  \bigl(\lnot r \limplies (\lnot p \land \lnot q) \bigr)
 \]
 is always true (we say that this propositional formula is a
-\emph{tautology}). A generalization of this saying the if $p \implies q$ is
-true, then $\lnot q \implies \lnot p$ is also true is called the
+\emph{tautology}). A generalization of this saying the if $p \limplies q$ is
+true, then $\lnot q \limplies \lnot p$ is also true is called the
 \emph{contraposition} argument.
 
 Let us now consider another argument. If we know that Joe was a good boy and we
 know that if Joe is a good boy, then Santa gives a present to Joe. We may
 conclude that Santa gives a present to Joe. We can similarly to the previous
 example write this argument using variables and connectives.
-If we know that $p$ and $p \implies q$, we may conclude that $q$ is true.
+If we know that $p$ and $p \limplies q$, we may conclude that $q$ is true.
 \begin{exercise}
-  Show that $(p \land (p \implies q)) \implies q$ is a tautology.
+  Show that $(p \land (p \limplies q)) \limplies q$ is a tautology.
 \end{exercise}
 Such an argument is called \emph{modus ponens}.
 
@@ -407,9 +467,9 @@ and in the opposite case it will work infinitely long.
 The problem of the method discussed in \Cref{section:truth-tables} is that we
 need to consider \textbf{all} possible values of the variables. Let us now
 consider a more complicated example. Imagine that we know that $\lnot q$,
-$p \implies q$. Using the contraposition argument and modus ponens we may derive
+$p \limplies q$. Using the contraposition argument and modus ponens we may derive
 $\lnot p$. Indeed, by contraposition we may conclude that
-$\lnot q \implies \lnot p$ and modus ponens implies that $\lnot p$ is true since
+$\lnot q \limplies \lnot p$ and modus ponens implies that $\lnot p$ is true since
 $\lnot q$ is true.
 
 In other words, we can combine several tautologies to prove another tautology.
@@ -434,8 +494,8 @@ Using this scheme we may write the argument we just mentioned as follows.
 \noindent $
   \begin{nd}
     \hypo {1} {\lnot q}
-    \hypo {2} {p \implies q}
-    \have {3} {\lnot q \implies \lnot p} \by{contraposition}{2}
+    \hypo {2} {p \limplies q}
+    \have {3} {\lnot q \limplies \lnot p} \by{contraposition}{2}
     \have {4} {\lnot p} \by{modus ponens}{1, 3}
   \end{nd}
 $
@@ -451,7 +511,7 @@ In order to introduce a conjunction we can use the following rule.
     \have [~] {5} {A \land B} \ai{1, 3}
   \end{nd}
 \]
-This rule corresponds to the tautology $(A \land B) \implies (A \land B)$.
+This rule corresponds to the tautology $(A \land B) \limplies (A \land B)$.
 
 In order to eliminate conjunctions we can use the following two rules.
 \begin{center}
@@ -467,8 +527,8 @@ In order to eliminate conjunctions we can use the following two rules.
     \end{nd}$
   \end{tabular}
 \end{center}
-These rules correspond to the tautologies $(A \land B) \implies A$ and
-$(A \land B) \implies B$.
+These rules correspond to the tautologies $(A \land B) \limplies A$ and
+$(A \land B) \limplies B$.
 
 \paragraph{Disjuctions.}
 In order to introduce a disjunction we can use the following two rules.
@@ -485,8 +545,8 @@ In order to introduce a disjunction we can use the following two rules.
     \end{nd}$
   \end{tabular}
 \end{center}
-These rules correspond to the tautologies $A \implies (A \lor B)$ and
-$A \implies (B \lor A)$.
+These rules correspond to the tautologies $A \limplies (A \lor B)$ and
+$A \limplies (B \lor A)$.
 
 In order to eliminate a disjunction we can use the following rule.
 \[
@@ -504,8 +564,8 @@ In order to eliminate a disjunction we can use the following rule.
   \end{nd}
 \]
 This rule corresponds to the tautology
-$\bigl( (A \lor B) \land (A \implies C) \land (B \implies C) \bigr)
-\implies C$.
+$\bigl( (A \lor B) \land (A \limplies C) \land (B \limplies C) \bigr)
+\limplies C$.
 
 \paragraph{Implications.}
 In order to introduce an implication we can use the following two rules.
@@ -515,23 +575,23 @@ In order to introduce an implication we can use the following two rules.
       \hypo [i] {3} {A}
       \have[j] {5} {B}
     \close
-    \have[~] {9} {A \implies B} \ii{3-5}
+    \have[~] {9} {A \limplies B} \ii{3-5}
   \end{nd}
 \]
 This rule corresponds to the tautology
-$(A \implies B) \implies (A \implies B)$.
+$(A \limplies B) \limplies (A \limplies B)$.
 
 In order to eliminate an implication we can use the following rule.
 \[
   \begin{nd}
-    \have [m] {1} {A \implies B}
+    \have [m] {1} {A \limplies B}
     \have [n] {2} {A}
     \have[~] {9} {B} \ie{1, 2}
   \end{nd}
 \]
 This rule corresponds to the tautology
-$\bigl( (A \implies B) \land A \bigr)
-\implies B$.
+$\bigl( (A \limplies B) \land A \bigr)
+\limplies B$.
 
 \paragraph{Negations.}
 In order to introduce a negation we can use the following two rules ($\perp$ is
@@ -546,8 +606,8 @@ a special symbol representing a false statement).
   \end{nd}
 \]
 This rule corresponds to the tautology
-$\bigl( A \implies \perp \bigr)
-\implies \lnot A$.
+$\bigl( A \limplies \perp \bigr)
+\limplies \lnot A$.
 
 In order to eliminate a negation we can use the following rule.
 \[
@@ -559,7 +619,7 @@ In order to eliminate a negation we can use the following rule.
 \]
 This rule corresponds to the tautology
 $\bigl( A \land \lnot A \bigr)
-\implies \perp$.
+\limplies \perp$.
 
 \paragraph{Truths and falsities.}
 Additionally, we have the following two rules.
@@ -591,12 +651,12 @@ Additionally, we have the following two rules.
 \section{Examples of Derivations}
 In this section we give several derivations using the rules we just introduced.
 
-First, we prove that if we know that $A \implies \lnot A$ we can derive that
+First, we prove that if we know that $A \limplies \lnot A$ we can derive that
 $\lnot A$.
 
 \noindent $
   \begin{nd}
-    \hypo {1} {A \implies \lnot A}
+    \hypo {1} {A \limplies \lnot A}
     \open
       \hypo {2} {A}
       \have {3} {\lnot A} \ie{1, 2}
@@ -607,11 +667,11 @@ $\lnot A$.
 $
 
 Another statement we are going to prove is that if
-$A \implies (A \land \lnot A)$ is true, then $\lnot A$ is also true.
+$A \limplies (A \land \lnot A)$ is true, then $\lnot A$ is also true.
 
 \noindent $
   \begin{nd}
-    \hypo {1} {A \implies (A \land \lnot A)}
+    \hypo {1} {A \limplies (A \land \lnot A)}
     \open
       \hypo {2} {A}
       \have {3} {A \land \lnot A} \ie{1, 2}
@@ -674,7 +734,7 @@ Proofs of this statement exploit the following idea: if a propositional formula
 is a tautology, then we can verify this statement using the truth table. So
 the proof simply brute-forces all the values of the variables of a formula and
 checks that the formula is indeed true.
-Consider a tautology $(\lnot A \land \lnot B) \implies \lnot (A \lor B)$.
+Consider a tautology $(\lnot A \land \lnot B) \limplies \lnot (A \lor B)$.
 The proof of this tautology is as follows.
 
 First we derive $A \lor \lnot A$ and $B \lor \lnot B$, and we use these two
@@ -706,7 +766,7 @@ $\lnot (A \lor B)$.
         \have {8} {\perp} \ne{4, 7}
         \have {9} {\lnot (A \lor B)} \be{8}
       \close
-      \have {10} {(\lnot A \land \lnot B) \implies \lnot (A \lor B)} \ii{6-9}
+      \have {10} {(\lnot A \land \lnot B) \limplies \lnot (A \lor B)} \ii{6-9}
     \close
 \end{ndresume}
 $
@@ -726,9 +786,9 @@ proof is the same as in the previous case.
         \have {14} {\perp} \ne{4, 13}
         \have {15} {\lnot (A \lor B)} \be{14}
       \close
-      \have {16} {(\lnot A \land \lnot B) \implies \lnot (A \lor B)} \ii{6-9}
+      \have {16} {(\lnot A \land \lnot B) \limplies \lnot (A \lor B)} \ii{6-9}
     \close
-    \have {17} {(\lnot A \land \lnot B) \implies \lnot (A \lor B)} \oe{2, 5-10, 11-16}
+    \have {17} {(\lnot A \land \lnot B) \limplies \lnot (A \lor B)} \oe{2, 5-10, 11-16}
   \close
 \end{ndresume}
 $
@@ -749,7 +809,7 @@ proof is the same as in the previous two cases.
         \have {22} {\perp} \ne{19, 22}
         \have {23} {\lnot (A \lor B)} \be{22}
       \close
-      \have {24} {(\lnot A \land \lnot B) \implies \lnot (A \lor B)} \ii{20-23}
+      \have {24} {(\lnot A \land \lnot B) \limplies \lnot (A \lor B)} \ii{20-23}
     \close
 \end{ndresume}
 $
@@ -780,9 +840,9 @@ Thus using introduction of the negation we can prove the statement.
         \close
         \have {33} {\lnot (A \lor B)} \ne{26-32}
       \close
-      \have {39} {(\lnot A \land \lnot B) \implies \lnot (A \lor B)} \ii{26-33}
+      \have {39} {(\lnot A \land \lnot B) \limplies \lnot (A \lor B)} \ii{26-33}
     \close
-    \have {40} {(\lnot A \land \lnot B) \implies \lnot (A \lor B)} \oe{1, 3-17, 18-39}
+    \have {40} {(\lnot A \land \lnot B) \limplies \lnot (A \lor B)} \oe{1, 3-17, 18-39}
   \close
 \end{ndresume}
 $
@@ -813,36 +873,36 @@ $
 
 \begin{enumerate}
   \item The second line is just an assumption, so the corresponding tautology is
-    $\lnot (A \lor \lnot A) \implies \lnot (A \lor \lnot A)$.
+    $\lnot (A \lor \lnot A) \limplies \lnot (A \lor \lnot A)$.
   \item Line~3 is also an assumption so the corresponding tautology is
-    $\lnot (A \lor \lnot A) \implies (A \implies A)$.
+    $\lnot (A \lor \lnot A) \limplies (A \limplies A)$.
   \item Line~4 is a formula $A \lor \lnot A$ which we derived under assumptions
     $\lnot (A \lor \lnot A)$ and $A$, so the corresponding tautology is
-    $\lnot (A \lor \lnot A) \implies (A \implies (A \lor \lnot A))$ (it is a
+    $\lnot (A \lor \lnot A) \limplies (A \limplies (A \lor \lnot A))$ (it is a
     tautology since we replaced $A$ by $A \lor \lnot A$ in the conclusion of
     the formula corresponding to Line~3).
   \item Line~5 is a formula $\perp$ which we derived under assumptions
     $\lnot (A \lor \lnot A)$ and $A$, so the corresponding tautology is
-    $\lnot (A \lor \lnot A) \implies (A \implies \perp)$ (it is a
+    $\lnot (A \lor \lnot A) \limplies (A \limplies \perp)$ (it is a
     tautology since on Line~4 we explained that $\lnot (A \lor \lnot A)
-    \implies (A \implies (A \lor \lnot A))$).
+    \limplies (A \limplies (A \lor \lnot A))$).
   \item Line~6 is a formula $\lnot A$ which we derived under assumptions
     $\lnot (A \lor \lnot A)$, so the corresponding tautology is
-    $\lnot (A \lor \lnot A) \implies \lnot A$ (it is a
-    tautology since on Line~5 we explained that $A \implies \perp$ under the
+    $\lnot (A \lor \lnot A) \limplies \lnot A$ (it is a
+    tautology since on Line~5 we explained that $A \limplies \perp$ under the
     assumption $\lnot (A \lor \lnot A)$).
   \item Line~7 is a formula $A \lor \lnot A$ which we derived under assumptions
     $\lnot (A \lor \lnot A)$, so the corresponding tautology is
-    $\lnot (A \lor \lnot A) \implies (A \lor \lnot A)$ (it is a
+    $\lnot (A \lor \lnot A) \limplies (A \lor \lnot A)$ (it is a
     tautology since on Line~6 we explained that $A$ under the
     assumption $\lnot (A \lor \lnot A)$).
   \item Line~8 is a formula $\perp$ which we derived under assumptions
     $\lnot (A \lor \lnot A)$, so the corresponding tautology is
-    $\lnot (A \lor \lnot A) \implies \perp$ (it is a
+    $\lnot (A \lor \lnot A) \limplies \perp$ (it is a
     tautology since on Line~6 we explained that $A \lor \lnot A$ under the
     assumption $\lnot (A \lor \lnot A)$).
   \item Finally, Line~9 is a formula $A \lor \lnot A$ (it is a tautology since
-    we proved that $\lnot (A \lor \lnot A) \implies \perp$ is a tautology)
+    we proved that $\lnot (A \lor \lnot A) \limplies \perp$ is a tautology)
 \end{enumerate}
 
 
@@ -907,10 +967,10 @@ $
   \exercise  Write a natural deduction derivation of $A \lor C$ from
     hypothesis $(A \land B) \lor C$.
   \exercise Write a natural deduction derivation of $B \lor C$ from
-    hypothesis $A \implies B$ and $\lnot A \implies C$.
+    hypothesis $A \limplies B$ and $\lnot A \limplies C$.
   \exercise Write a natural deduction derivation of
-    $(W \lor Y) \implies (X \lor Z)$ from
-    hypotheses $W \implies X$ and $Y \implies Z$.
+    $(W \lor Y) \limplies (X \lor Z)$ from
+    hypotheses $W \limplies X$ and $Y \limplies Z$.
   \exercise Let us formulate the pigeonhole principle using propositional
     formulas. Let
     $V = \set{x_{1, 1}, \dots, x_{n + 1, 1}, x_{1, 2} \dots, x_{n + 1, n}}$
@@ -931,7 +991,7 @@ $
       $\left(
           \bigland_{i = 1}^{n + 1} L_i
         \right)
-        \implies
+        \limplies
         \left(
           \biglor_{i = 1}^{n} R_i
         \right)$.
