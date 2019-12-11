@@ -47,6 +47,25 @@ For example, $((x_1 \lor \lnot x_2) \land x_3)$ is a propositional formula on
 the variables from $\set{x_1, x_2, x_3}$ (we also say that it is a formula on
 $x_1$, $x_2$, $x_3$).
 
+Hereafter when naming formulas, we will not mention explicitly all the
+parenthesis. To establish a more compact notation, we adopt the following
+conventions.
+\begin{itemize}
+  \item The outermost parentheses do not need to be explicitly mentioned; e.g.,
+    we write ``$A \land B$'' to refer to $(A \land B)$.
+  \item The negation symbol applies to as little as possible.
+    For example, $\lnot A \land B$ denotes $(\lnot A) \land B$;
+    i.e., $((\lnot A) \land B)$. Which is not the same as
+    $(\lnot (A \land B))$.
+  \item The conjunction and disjunction symbols apply to as little as possible,
+    given that convention 2 is to be observed. For example,
+    $A \land B \limplies \lnot C \lor D$ is
+    $((A \land B) \limplies ((\lnot C) \lor D))$.
+  \item Where one connective symbol is used repeatedly, grouping is to the
+    right: $A \land B \land C$ is $A \land (B \land C)$,
+    $A \limplies B \limplies C$ is $A \limplies (B \limplies C)$.
+\end{itemize}
+
 To compute the value of a formula we need to know values of all the variables.
 \begin{definition}
   We say that $\rho$ is a propositional assignement to $V$ if $\rho$
@@ -88,6 +107,7 @@ $\ltrue$ is substituted as the value of $x_1$,
 $\ltrue$ is substituted as the value of $x_2$,
 and $\lfalse$ is substituted as the value of $x_3$ is equal to
 $(\ltrue \land \lfalse) \lor \lfalse = \lfalse$.
+
 
 Note that if $\phi$ is a formula on the variables from $V$ it does not mean that
 all the variables from $V$ have to be used.
@@ -147,9 +167,6 @@ fact we need to specify only the variables that are actually used in $\phi$.
   \end{description}
 \end{proof}
 
-\section{Conjunctive and Disjuctive Normal Form}
-
-Let us start this section with an exercise.
 \begin{exercise}
   Let $\phi_1$, $\phi_2$, and $\phi_3$ be propositional formulas on the
   variables from a set $V$. Show that for any propositional assignement
@@ -158,11 +175,8 @@ Let us start this section with an exercise.
    ((\phi_1 \land \phi_2) \land \phi_3)\big\rvert_\rho$.
 \end{exercise}
 
-Because of this equality, instead of $\phi_1 \land (\phi_2 \land \phi_3)$ and
-$(\phi_1 \land \phi_2) \land \phi_3$ we usually write them
-as $\phi_1 \land \phi_2 \land \phi_3$. Similarly we drop the
-parentheses in the disjunctions of more than two formulas. This observation
-justifies the following notation.
+\section{Conjunctive and Disjuctive Normal Form}
+
 Let $\phi_1$, \dots, $\phi_n$ be some propositional formulas. Then
 \begin{itemize}
   \item $\bigland_{i = 1}^1 \phi_i = \phi_1$ and
@@ -188,9 +202,9 @@ $\biglor_{i = 1}^n \phi_i$ denotes the disjunction of them.
 \end{exercise}
 
 
-Using this notation we may show that the formulas we defined are enough to
-represent all the Boolean functions
-(functions from $\set{\ltrue, \lfalse}^n$ to $\set{\ltrue, \lfalse}$).
+Using this notation we may show that propositional formulas can represent all
+the Boolean functions (functions from $\set{\ltrue, \lfalse}^n$ to
+$\set{\ltrue, \lfalse}$).
 \begin{theorem}
 \label{theorem:function-to-formula}
   For any function $f : \set{\ltrue, \lfalse}^n \to
