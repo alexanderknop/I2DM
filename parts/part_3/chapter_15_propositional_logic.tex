@@ -325,20 +325,28 @@ in CNF.
   Introduction to Mathematical Logic \#2
 }{youtu.be/DOAxnmScpPc}
 
-Let us start this section from an example similar to
-the proof we gave in the beginning of the first chapter. Assume that we know
+Typical theorem in mathematics have the following template:
+``if some statements are true, then some statement is also true''.
+In propositional logic statements are described using propositional formulas.
+So our goal is to present a way to describe proofs of results that looks like:
+if $\phi_1$, \dots, $\phi_k$ are true, then $\psi$ is also true.
+
+This section discusses the method which is based on truth tables (we discussed
+it before in \Cref{chapter:predicates}).
+
+We start from an example similar to
+the proof gaven in the beginning of the first chapter. Assume that we know
 that if $x$ is a real number such that $x < -2$ or $x > 2$, then $x^2 > 4$. We
 can derive that if $\lnot (x^2 > 4)$, then $\lnot (x < -2)$ and $\lnot (x > 2)$.
 
 In order to emphasize the logical structure of the argument let us denote
 the statement $x > 2$ by $p$, the statement $x < -2$ by $q$, and the statement
-$x^2 > 4$ by $r$. In this case the argument is as follows.
-Assume that we know that $(p \lor q) \limplies r$ is true. We
-can derive that $\lnot r \limplies (\lnot p \land \lnot q)$ is true as well.
+$x^2 > 4$ by $r$. In this case the argument is as follows:
+if $(p \lor q) \limplies r$ is true, then
+$\lnot r \limplies (\lnot p \land \lnot q)$ is true as well.
 
-How can we check that this argument is correct? The simplest way is to use a
-truth table (we disucssed this approach in \Cref{chapter:predicates}) to check
-that whether the assumption is true, the consequence is also true.
+The simplest way to explain why this argument is true is to use
+a truth table.
 \begin{center}
     \begin{tabular}{l l l l l}
         \toprule
@@ -356,10 +364,11 @@ that whether the assumption is true, the consequence is also true.
         \bottomrule
     \end{tabular}
 \end{center}
-It is easy to note that the argument is indeed correct, i.e.
-if $(p \lor q) \limplies r$ is true, then
-$\lnot r \limplies (\lnot p \land \lnot q)$ is also true.
-This statement says that
+Note that each line where $(p \lor q) \limplies r$ is true has
+$\lnot r \limplies (\lnot p \land \lnot q)$ true as well. So we proved that
+the argument is indeed correct.
+
+We may also note that we showed that
 \[
   \bigl((p \lor q) \limplies r\bigr) \iff
   \bigl(\lnot r \limplies (\lnot p \land \lnot q) \bigr)
@@ -394,12 +403,13 @@ is satisfiable or not.\footnote{%
 }
 
 \section{Semantic Implication}
-Note that all the arguments in the previous section were in the form
-``if \dots is true, then \dots is also true''; this type of arguments
-can be described using the notion of semantic implication.
-We say that a set $\Sigma$ of propositional formulas with variables from a set
-$V$ \emph{semantically implies} a propositional formula $\phi$ with variables
-from the set $V$ (we denote it by $\Sigma \models \phi$)
+As we mentioned at the beginning of the previous section, most of the
+statements in mathematics are in the form
+``if some statements are true, then some statement is also true'';
+this type of statements can be described using the notion of semantic
+implication. We say that a set $\Sigma$ of propositional formulas with
+variables from a set $V$ \emph{semantically implies} a propositional formula
+$\phi$ with variables from the set $V$ (we denote it by $\Sigma \models \phi$)
 iff whenever all the formulas from $\Sigma$ are true under some propositional
 assignement to $V$, the formula $\phi$ is also true under this propositional
 assignement; i.e.,
