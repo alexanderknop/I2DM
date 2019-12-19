@@ -1,12 +1,12 @@
-\chapter{Take-Away Games}
+\chapter{P and N Positions}
 In this part we use our knowledge abot basics of mathematical reasoning
-to study games similar to chess, shogi, and tic tac toe. The games we are going
-to study are called combinatorial games. In these games there are two players,
-each know all the information, there are no chance moves, and there is always a
-winner\footnote{%
-  The last condition implies that the beforementioned games are not exactly
-  combinatorial since all of them allow draws; however, we may change the rules
-  to disallow the draws.
+to study games similar to chekers, chess, shogi, and tic tac toe. The games we
+are going to study are called combinatorial games. In these games there are two
+players, each know all the information, there are no chance moves, and whenthe game ends there is always a winner\footnote{%
+  The last condition implies that among the beforementioned games only chekers
+  are combinatorial since all of them allow draws; however, we may change the
+  rules to disallow the draws and this change would make all of them
+  combinatorial.
 }. Such a game is determined by a set of positions, and possible moves
 from each position for each player. Usually, players are taking turns until
 they reach a position such that no moves are possible and one of the player is
@@ -67,3 +67,32 @@ we need to prove the induction step from $n$ to $n + 1$.
     these numbers have non-zero reminders modulo $4$. So the other player
     can win in any case.
 \end{itemize}
+
+To study combinatorial games we need to give a formul definition of them.
+\begin{definition}
+  A game is combinatorial if
+  \begin{itemize}
+    \item there are two players,
+    \item there is a set of possible positions in the game,
+    \item for each position and each player, there is a fixed set of possible
+      legal moves,
+    \item players alternate moving,
+    \item the game ends when no moves are possible for the player whose
+      turn is to move.
+  \end{itemize}
+  There are possible winning conditions,
+  \begin{description}
+    \item [normal play rule:] the player that made the last move wins, and
+    \item [misere play rule:] the player that made the last move loses.
+  \end{description}
+  If the game never ends, we declare a draw. If the game always ends, we
+  say that the game satisfies \emph{the ending condition}.
+
+  If the possible moves are the same for both players the game is
+  called \emph{impartial} otherwise it is called \emph{partizan}.
+\end{definition}
+
+Note that these games do not allow random moves, hidden information,
+simultaneous moves, and a draw in a finite number of steps so
+pocker, battleships, rock-paper-scissors, and tick tack toe are not
+combinatorial games.
