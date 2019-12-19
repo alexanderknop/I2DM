@@ -1,0 +1,69 @@
+\chapter{Take-Away Games}
+In this part we use our knowledge abot basics of mathematical reasoning
+to study games similar to chess, shogi, and tic tac toe. The games we are going
+to study are called combinatorial games. In these games there are two players,
+each know all the information, there are no chance moves, and there is always a
+winner\footnote{%
+  The last condition implies that the beforementioned games are not exactly
+  combinatorial since all of them allow draws; however, we may change the rules
+  to disallow the draws.
+}. Such a game is determined by a set of positions, and possible moves
+from each position for each player. Usually, players are taking turns until
+they reach a position such that no moves are possible and one of the player is
+declared a winner.
+
+Since chess, shogi and even tic tac toe are realtively complicated,
+we are going to start from much simpler example of combinatorial games.
+\begin{game}
+  In this game there are two players I and II.\
+  \begin{itemize}
+    \item They have a pile of 21 chips.
+    \item They make moves in turns with player I starting,
+      each move consists of moving one, two or three chips out of the pile.
+    \item The player that removes the last chip wins.
+  \end{itemize}
+\end{game}
+The quesiton we would like to answer is there a strategy for one of the players
+to always win? So in the rest of this part we assume that both players are
+playing optimally; i.e., if there is a winning strtegy they follow the strategy.
+
+To analyze this game we need the following two observations:
+\begin{enumerate}
+  \item the game is symmetric and the only difference between the players is
+    who makes the first move, and
+  \item if at some point the players have $n$ chips it does not matter how they
+    achieved this, it will not affect the rest of the game.
+\end{enumerate}
+Using this remarks and induction (this style of induction is sometimes
+refered as \emph{backward induction}) we are abel to analise the game.
+
+Let us consider some certain states of the game.
+Assume that they have at most $3$ chips left, in this case the player that make
+the move wins. However, if there are $4$ chips, the
+player that makes the first move should always take at least $1$ chip so it
+loses since after its turn there are at most $3$ chip. Similarly, if there
+are $5$ chips, the first player to move wins since it can take a chip and
+make the second player to start with $4$.
+
+So twe can formulate the following conjecture.
+Assume that $n$ chips left in the pile. Let $r$ be the reminder of $n$ modulo
+$4$. Then if $r = 0$, the first player to move loses, otherwise, the other
+player loses.
+
+Let us prove this using induction. We already proved the base case so
+we need to prove the induction step from $n$ to $n + 1$.
+\begin{itemize}
+  \item If $n \equiv 0 \pmod{4}$, then the first player to move can remove one
+    chip and the other player will start with $n$ chips so by the induction
+    hypothesis he/she loses.
+  \item If $n \equiv 1 \pmod$. then the first player to move can remove two
+    chips and the other player will start with $n$ chips so by the induction
+    hypothesis he/she loses.
+  \item If $n \equiv 2 \pmod$. then the first player to move can remove three
+    chips and the other player will start with $n$ chips so by the induction
+    hypothesis he/she loses.
+  \item If $n \equiv 3 \pmod$. then after the current player move the other
+    player will start with either $n$, or $n - 1$, or $n - 2$ chips. But all
+    these numbers have non-zero reminders modulo $4$. So the other player
+    can win in any case.
+\end{itemize}
