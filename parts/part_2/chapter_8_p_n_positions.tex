@@ -1,4 +1,4 @@
-\chapter{P and N Positions}
+\chapter{P-positions and N-positions}
 In this part we use our knowledge abot basics of mathematical reasoning
 to study games similar to chekers, chess, shogi, and tic tac toe. The games we
 are going to study are called combinatorial games. In these games there are two
@@ -12,12 +12,15 @@ from each position for each player. Usually, players are taking turns until
 they reach a position such that no moves are possible and one of the player is
 declared a winner.
 
+\section{Take-Away Game}
+
 Since chess, shogi and even tic tac toe are realtively complicated,
 we are going to start from much simpler example of combinatorial games.
-\begin{game}
-  In this game there are two players I and II.\
+\begin{game}[Take-Away Game]
+\label{game:take-away-21-3-2-1}
+  In this game there are two players.
   \begin{itemize}
-    \item They have a pile of 21 chips.
+    \item They have a pile of $21$ chips.
     \item They make moves in turns with player I starting,
       each move consists of moving one, two or three chips out of the pile.
     \item The player that removes the last chip wins.
@@ -96,3 +99,108 @@ Note that these games do not allow random moves, hidden information,
 simultaneous moves, and a draw in a finite number of steps so
 pocker, battleships, rock-paper-scissors, and tick tack toe are not
 combinatorial games.
+
+Since we gave a formal definition of combinatorial games we can give a framework
+that allows to alalise these games.
+\begin{definition}
+  We say that a position in a combinatorial game is \emph{terminal} if there
+  are no legal moves.
+
+  All terminal positions are \emph{P-positions}. Every position that allows for
+  the current player to move to a P-position is an \emph{N-position}. If all
+  possible moves lead to N-positions, then the position is a P-position.
+
+  For the game using the Mis\'ere rule, the definition is the smae except the
+  terminal position is an N-position.
+\end{definition}
+
+
+\begin{table}[h!]
+  \centering
+  \begin{tabular}{l l l l l l l l l}
+      \toprule
+      0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 \\
+      \midrule
+      P & N & N & N & P & N & N & N & P \\
+      \bottomrule
+  \end{tabular}
+  \caption{P-positions and N-positions for \Cref{game:take-away-21-3-2-1}}
+  \label{table:take-away-21-3-2-1}
+\end{table}
+
+
+So in \Cref{game:take-away-21-3-2-1} the only terminal position is $0$;
+hence, $0$ is a P-position. Similarly we can go to $0$ from $1$, $2$, and
+$3$ so they are N-positions. Hence, $3$ is a P-position,
+since all the moves from $4$ lead to N-positions.
+\begin{exercise}
+  Show that a position $n$ is a P-position if $4$ divides $n$, and
+  it is an N-position otherwise.
+\end{exercise}
+
+In other words, in this game, P-positions coincide with the positions where the
+current player loses. However, it is not a coincidence.
+\begin{theorem}
+  If some position in a combinatorial game is an N-position, then the player to
+  move have a winning strategy if we start from this position. If the position
+  is a P-position, then the other player has a winning strategy.
+\end{theorem}
+
+\subsection{Subtractraction Games}
+Let us define a big class of game that generalizes the taka-away gamewe
+discussed at the begining of the chapter.
+\begin{game}
+  Let $S \subseteq \N$ be some set. The subtraction game with the subtraction
+  set $S$ is the following combinatorial game.
+  Two players start with a pile of $n$ chips.
+  On each move they remove $s \in S$ chips out of the pile.
+\end{game}
+
+So \Cref{game:take-away-21-3-2-1} is the subtraction game with the subtraction
+set $\set{1, 2, 3}$.
+
+Let us analise the subtraction game with the subtraction set $\set{1, 3, 4}$.
+\begin{table}[h!]
+  \centering
+  \begin{tabular}{l l l l l l l l l}
+      \toprule
+      0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 \\
+      \midrule
+      P & N & P & N & N & N & N & P & N \\
+      \bottomrule
+  \end{tabular}
+  \caption{P-positions and N-positions for \Cref{game:take-away-21-3-2-1}}
+  \label{table:take-away-21-3-2-1}
+\end{table}
+
+\begin{chapterendexercises}
+  \exercise
+    Two players I and II are playing the following game.
+    \begin{itemize}
+      \item Initially, there are $20$ numbers written on a blackboard:
+        $10$ numbers $1$ and $10$ numbers $2$.
+      \item On each step one of the players select two numbers;
+        and if they were the same, replace them by $2$;
+        otherwise, replace them by $1$.
+      \item Player I makes the first move and players do moves one
+        after another.
+    \end{itemize}
+    Who is the winner? (Note that the game is not a combinatorial game).
+  \exercise Consider the subtraction game where players may subtract $2$ and $3$
+    chips on their turn, is $5$ an N-position?
+  \exercise Consider the Mis\'ere subtraction game where players may subtract
+    $1$, $2$ or $5$ chips on their turn, identify N-positions and
+    P-positions.
+  \exercise Consider the Mis\'ere subtraction game where players may subtract
+    $1$, $5$ or $6$ chips on their turn, identify N-positions and
+    P-positions.
+  \exercise
+    In the subtraction game where players may subtract $1$, $2$, or $5$ chips
+    on their turn, identify N-positions and P-positions.
+  \exercise Two players one by one put bishops on the chessboard such that none
+    of the bishops attack each other. Determine the winning strategy.
+  \exercise Consider the following game: two players I and II are writing an
+    $11$-digit number from left to right, one digit after another. Player I
+    wins  if $7$ divides the number and player II wins otherwise.
+    Determine who is the winner if player I makes the first move.
+\end{chapterendexercises}
