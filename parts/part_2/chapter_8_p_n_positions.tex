@@ -170,8 +170,37 @@ Let us analise the subtraction game with the subtraction set $\set{1, 3, 4}$.
       \bottomrule
   \end{tabular}
   \caption{P-positions and N-positions for \Cref{game:take-away-21-3-2-1}}
-  \label{table:take-away-21-3-2-1}
+  \label{table:subtraction-4-3-1}
 \end{table}
+Clearly $0$ is a P-position since it is the only terminal position in the game.
+We can go to $0$ from $1$ so $1$ is an N-position. The only possible move from
+$2$ is to $1$ so $2$ is a P-position. From $3$ and $4$ we can go to $0$
+so they are N-positions. From $5$ and $6$ one may go to $2$ so they are a
+N-positions as well. Hence, $7$ is a P-position.
+
+Now we may notice the pattern: $n$ is a P-position iff $n \equiv 0 \pmod{7}$
+or $n \equiv 2 \pmod{7}$. We prove is using induction. The base case for $n < 8$
+we already proved. Let us now prove the induction step. Assume that the
+statement is true for all $k < n$. Consider the following cases.
+\begin{enumerate}
+  \item If $n \equiv 0 \pmod{7}$, the current player can move to
+    $n - 1 \equiv 5 \pmod {7}$, $n - 3 \equiv 4 \pmod {7}$, or
+    $n - 3 \equiv 5 \pmod {7}$ which are all N-positions so $n$ is a P-position.
+  \item If $n \equiv 1 \pmod{7}$, the current player can move to $n - 1$ which
+    is a P-position so $n$ is an N-position.
+  \item If $n \equiv 2 \pmod{7}$, the current player can move to
+    $n - 1 \equiv 1 \pmod {7}$, $n - 3 \equiv 6 \pmod {7}$, or
+    $n - 4 \equiv 5 \pmod {7}$ which are all N-positions so $n$ is a P-position.
+  \item If $n \equiv 3 \pmod{7}$, the current player can move to $n - 1$ which
+    is a P-position so $n$ is an N-position.
+  \item If $n \equiv 4 \pmod{7}$, the current player can move to $n - 4$ which
+    is a P-position so $n$ is an N-position.
+  \item If $n \equiv 5 \pmod{7}$, the current player can move to $n - 3$ which
+    is a P-position so $n$ is an N-position.
+  \item If $n \equiv 6 \pmod{7}$, the current player can move to $n - 4$ which
+    is a P-position so $n$ is an N-position.
+\end{enumerate}
+
 
 \begin{chapterendexercises}
   \exercise
