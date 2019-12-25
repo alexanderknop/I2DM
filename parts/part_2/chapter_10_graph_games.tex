@@ -1,0 +1,39 @@
+\chapter{Graph Games}
+This section gives an alternative definition of a combinatorial game.
+This definition allows us to study general combinatorial games.
+\begin{definition}
+  A directed graph $G$ is a pair $(V, N)$ such that $F$ is a non-empty set and
+  $F : V \to 2^V$.\footnote{We are going to have a more in-depth discussion
+  of graphs in \Cref{part:graph-theory}.}
+
+  We say that a game on $G$ is the game where elements of $V$ are positions
+  and each player can move from $x \in V$ to any $y \in N(x)$. (Elements of
+  $N(x)$ are called followers of $x$.)
+\end{definition}
+
+For example, the take-away game from \Cref{chapter:combinatorial-games}
+can be considered as a graph on a graph $G = (\N_0, N)$,
+where $N(0) = \emptyset$, $N(1) = \set{0}$, $N(2) = \set{0, 1}$, and
+$N(n + 3) = \set{n, n + 1, n + 2}$ for any $n \in \N_0$.
+
+The key ingreadient for the analisis of games based on graphs was proposed
+by Sprague and Grundy. They proposed to consider the following function:
+\begin{definition}
+  Let $G = (V, N)$ be a directed graph. A function $g : V \to \N$ is the
+  Sprague--Grundy funciton for $G$ iff
+  $g(x) = \mex\set[y \in N(x)]{g(y)}$, where
+  $\mex S = \min \set[n \notin S]{n \in \N_0}$.
+\end{definition}
+
+\begin{table}[h!]
+  \centering
+  \begin{tabular}{l l l l l l l l l}
+      \toprule
+      0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 \\
+      \midrule
+      0 & 1 & 2 & 3 & 0 & 1 & 2 & 3 & 0 \\
+      \bottomrule
+  \end{tabular}
+  \caption{The Sprague--Grundy funciton for \Cref{game:take-away-21-3-2-1}}
+  \label{table:take-away-21-3-2-1-grundy}
+\end{table}
