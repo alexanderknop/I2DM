@@ -124,8 +124,8 @@ such that
 are Sprague--Grundy functions for $G$.
 
 \begin{exercise}
-    Let $G = (\N \cup \set{-1}, F)$ such that $F(x) = \set{x - 1}$ for $x \ge 1$,
-    $F(0) = \emptyset$, and $F(-1) = \N$.
+    Let $G = (\N_0 \cup \set{-1}, F)$ where
+    $F(-1) = \N_0$, and $F(x) = \set[y < x]{y \in \N_0}$.
     Show that $G$ does not have a Sprague--Grundy function.
 \end{exercise}
 
@@ -178,7 +178,8 @@ Note that P-positions are the positions where $g$ is zero. In fact,
 this is not a coincidence.
 \begin{theorem}
 \label{theorem:grundy-to-np}
-    Let $G$ be a graph such that $g$ is the unique Sprague-Grundy function for $f$.
+    Let $G$ be a directed graph such that $g$ is the unique Sprague-Grundy
+    function for $f$.
     Then a position $x$ in the game on $G$ is a P-position iff $g(x) = 0$.
 \end{theorem}
 
