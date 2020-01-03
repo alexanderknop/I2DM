@@ -126,3 +126,29 @@ Bouton's Theorem (\Cref{theorem:bouton}).
     However, $g_1(y_1) \neq g_1(x_1)$ since there is a move from $x_1$ to $y_1$.
     Therefore $g_1(y_1) \bitwisexor g_1(x_1) \neq 0$ which is a contradiction.
 \end{proof}
+
+The simple example of an application of this theorem is the analisis of the
+following game.
+\begin{game}
+\label{game:subtraction-1-2-3-out-of-10-11}
+  Alice and Bob have two piles with $10$ and $11$ chips respectively.
+  They take turns and remove $1$, $2$, or $3$ chips from one of the piles.
+  If one of them cannot make a move he/she loses.
+\end{game}
+We need to determin who wins if both of them are playing optimally?
+
+To give an answer for this question we start with a simpler game,
+a subtraction game with a subtraction set $\set{1, 2, 3}$. It is easy to see
+that $g : \N_0 \to \set{0, 1, 2}$ such that
+\[
+  g(x) =
+  \begin{cases}
+      0 & x \equiv 0 \pmod{3} \\
+      1 & x \equiv 1 \pmod{3} \\
+      2 & x \equiv 2 \pmod{3}
+  \end{cases}
+\]
+is a Sprague--Grundy function for a subtraction game with a subtraction set
+$\set{1, 2, 3}$.
+It is also clear that \Cref{game:subtraction-1-2-3-out-of-10-11} is a sum of
+two subtraction games with a subtraction set $\set{1, 2, 3}$.
