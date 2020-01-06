@@ -13,7 +13,7 @@ and in the second case we say $\Algorithm{A}(x_1, \dots, x_n)$ never terminates.
 The first and the most basic definition in the computability theory is the
 definition of a computable function.
 \begin{definition}
-    Let $S \subseteq \N$ and $f : S \to \N$.
+    Let $S \subseteq \N^\ell$ and $f : S \to \N$.
     We say that $f$ is computable if there is an algorithm $\Algorithm{A}$
     \begin{enumerate}
         \item $\Algorithm{A}(x) = f(x)$ for any $x \in S$ and
@@ -33,3 +33,31 @@ It is also clear that using binary strings we may encode all sorts of objects
 such as pairs of integers, integers, rational numbers etc. (However, in order
 to encode real number we need more complicated definitions and we are not
 going to discuss them in here.)
+
+One may show that composition of computable functions is computable.
+Moreover, one may prove the following a bit stronger statement.
+\begin{theorem}
+\label{theorem:composition-computable}
+    Let $S \subseteq \N$, and let
+    $f_1 : S \to \N$, $f_2 : S \to \N$, and $g : \N^2 \to \N$ be computable
+    functions. Then the function $h$ such that $h(x) = g(f_1(x), f_2(x))$
+    is also computable.
+\end{theorem}
+
+Another important notion is the notion of a decidable set.
+\begin{definition}
+    We say that a set $S \subseteq \N$ is decidable iff there is
+    an algorithm $\Algorithm{A}$ such that
+    $\Algorithm{A}(x) = 1$ if $x \in S$ and $\Algorithm{A}(x) = 0$ if
+    $x \notin S$.
+\end{definition}
+It is easy to note that a set $S \subseteq \N$ is decidable iff the
+characteristic function $\chi_S$ of $S$ is computable.
+The function $\chi_S$ is defined as follows:
+\[
+    \chi_S(x) =
+    \begin{cases}
+        1 & \text{if } x \in S, \\
+        0 & \text{otherwise}.
+    \end{cases}
+\]
