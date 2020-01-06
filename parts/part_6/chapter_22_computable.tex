@@ -1,0 +1,35 @@
+\chapter{Computable Functions}
+In this part we study what computers can compute and what they cannot compute.
+Usually study of this subject starts from a formal definition of an algorithm.
+However, we believe that this is unnecessary nowadays because of rise of
+computers. One may think about algorithms as programs on some programming
+language such as C/C++, Java, Python etc.
+
+An algorithms are taking several natural numbers $x_1$, \dots, $x_n$
+as an input and either print another number $y$ as an output or never
+terminates. In the first case we say $\Algorithm{A}(x_1, \dots, x_n) = y$
+and in the second case we say $\Algorithm{A}(x_1, \dots, x_n)$ never terminates.
+
+The first and the most basic definition in the computability theory is the
+definition of a computable function.
+\begin{definition}
+    Let $S \subseteq \N$ and $f : S \to \N$.
+    We say that $f$ is computable if there is an algorithm $\Algorithm{A}$
+    \begin{enumerate}
+        \item $\Algorithm{A}(x) = f(x)$ for any $x \in S$ and
+        \item $\Algorithm{A}(x)$ never terminates for any $x \notin S$.
+    \end{enumerate}
+\end{definition}
+
+It is important to note that nonetheless that we say that the algorithms are
+said to take and print natural numbers, we could allow algorithm to work with
+strings of bits (elements of the set
+$\set{0, 1}^* = \bigcup_{n \in \N_0} \set{0, 1}^n$).
+Moreover, these two definitions are  equivalent since there is a one-to-one
+correspondence between natural numbers and strings:
+$x \mapsto 2^n + \sum_{i = 1}^\ell 2^{i - 1} x[i]$, where $x[i]$ denotes the
+$i$th symbol of the string $i$ and $n$ is the length of $x$.
+It is also clear that using binary strings we may encode all sorts of objects
+such as pairs of integers, integers, rational numbers etc. (However, in order
+to encode real number we need more complicated definitions and we are not
+going to discuss them in here.)
