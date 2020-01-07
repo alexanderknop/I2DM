@@ -338,16 +338,20 @@ We prove that number of comparisons of this algorithm is bounded by
 $6 + 2\log_2(n)$. First step of the proof is to denote the worst
 number of comparisons when we run the algorithm on the list of length $n$ by
 $C(n)$. It is easy to see that $C(n) = n$ for $n \le 5$. Additionally,
-$C(n) \le 1 + \max(C(\floor{\frac{n}{2}}), C(n - \floor{\frac{n}{2}}))$ for
-$n > 5$. As we mentioned we prove that $C(n) \le 6 + 2\log_2(n)$, we prove it
-by induction. The base case is clear; let us now prove the induction step.
+$C(n) \le 1 +
+    \max(C\left(\floor{\frac{n}{2}}\right),
+         C\left(n - \floor{\frac{n}{2}})\right)$
+for $n > 5$. As we mentioned we prove that $C(n) \le 6 + 2\log_2(n)$, we prove
+it by induction. The base case is clear; let us now prove the induction step.
 By the induction hypothesis,
 \[
-    C(\floor{\frac{n}{2}}) \le 6 + 2\log_2(\floor{\frac{n}{2}})
+    C\left(\floor{\frac{n}{2}}\right) \le
+        6 + 2\log_2\left(\floor{\frac{n}{2}}\right)
 \]
 and
 \[
-    C(n - \floor{\frac{n}{2}}) \le 6 + 2\log_2(n - \floor{\frac{n}{2}}),
+    C\left(n - \floor{\frac{n}{2}}\right) \le
+        6 + 2\log_2\left(n - \floor{\frac{n}{2}}\right),
 \]
 where $\floor{\alpha}$ denotes the integer part of a real number $\alpha$.
 \nomenclature[C]{$\floor{\alpha}$}{denotes the greatest integer less than or
