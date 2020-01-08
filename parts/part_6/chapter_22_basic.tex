@@ -21,12 +21,14 @@ definition of a computable function.
         \item $\Algorithm{A}(x) = f(x)$ for any $x \in S$ and
         \item $\Algorithm{A}(x)$ never terminates for any $x \notin S$.
     \end{enumerate}
+
+    We say that $\Algorithm{A}$ \emph{computes} $f$.
 \end{definition}
 
 It is important to note that nonetheless that we say that the algorithms are
 said to take and print natural numbers, we could allow algorithm to work with
 strings of bits (elements of the set
-$\set{0, 1}^* = \bigcup_{n \in \N_0} \set{0, 1}^n$).
+$\strings = \bigcup_{n \in \N_0} \set{0, 1}^n$).
 Moreover, these two definitions are  equivalent since there is a one-to-one
 correspondence between natural numbers and strings:
 $x \mapsto 2^n + \sum_{i = 1}^\ell 2^{i - 1} x[i]$, where $x[i]$ denotes the
@@ -36,15 +38,37 @@ such as pairs of integers, integers, rational numbers etc. (However, in order
 to encode real number we need more complicated definitions and we are not
 going to discuss them in here.)
 
+\begin{exercise}
+  Let $f : \strings \to \strings$ be the function such that $f(x)$ is
+  reversed $x$. Show that $f$ is computable.
+\end{exercise}
+
 One may show that composition of computable functions is computable.
 Moreover, one may prove the following a bit stronger statement.
 \begin{theorem}
 \label{theorem:composition-computable}
     Let $S \subseteq \N$, and let
-    $f_1 : S \to \N$, $f_2 : S \to \N$, and $g : \N^2 \to \N$ be computable
-    functions. Then the function $h$ such that $h(x) = g(f_1(x), f_2(x))$
-    is also computable.
+    $f : \N \to \N$, and $g : S \to \N$ be computable
+    functions. Then $f \circ g$ is also computable.
 \end{theorem}
+\begin{proof}
+  Since $f$ and $g$ are computable, there are algorightms $\Algorithm{F}$ and
+  $\Algorithm{G}$ computing f and g respectively.
+
+  Let us consider the following algorithm.
+  \begin{algorithm}
+      \begin{algorithmic}[1]
+          \Function{$\Algorithm{A}$}{$x$}
+              \State{$y \gets \Algorithm{G(x)}$}
+              \State \Call{Print}{$\Algorithm{F}(y)$}
+          \EndFunction
+      \end{algorithmic}
+  \end{algorithm}
+  It is clear that if $x \notin S$, then $\Algorithm{A}(x)$ never terminates.
+
+  However, if $x \in S$, then $y = g(x)$ and therefore the algorithm prints
+  $\Algorithm{F}(g(x)) = f(g(x)) = (f \circ g)(x)$.
+\end{proof}
 
 \section{Decidable Sets}
 Another important notion is the notion of a decidable set.
