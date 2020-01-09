@@ -90,7 +90,7 @@ The function $\chi_S$ is defined as follows:
 \]
 Similarly we may define decidable sets of strings, pairs of integers etc.
 
-Let us illustrate this concept by proving that the set
+We illustrate this concept by proving that
 $U_e = \set[q > e]{q \in \Q}$. It is known that
 \begin{enumerate}
     \item $(1 + \frac{1}{n})^n < e$ and
@@ -114,6 +114,42 @@ expansion of $\pi$ has $n$ consecutive $9$s. It is possible to show that $S$ is
 decidable. Indeed, it is easy to see that either $S = \N$ or $S = [k]$ for some
 $k \in \N$, however, in both cases the set is decidable.
 
+
+It is easy to show that decidable sets have several good properties.
+\begin{theorem}
+\label{theorem:operations-decidable}
+  Let $S_1, S_2 \subseteq \N^\ell$ be decidable sets. Then $S_1 \cup S_2$,
+  $S_1 \cap S_2$, and $S_1 \setminus S_2$ are all decidable.
+\end{theorem}
+
+To prove the theorem, we generalize \Cref{theorem:composition-computable}.
+\begin{theorem}
+\label{theorem:composition-computable-generalization}
+  Let $S \subseteq \N^\ell$ and let $f_1, f_2 : S \to \N$ and $g : \N^2 \to \N$
+  be computable functions. Then the function $h : S \to \N$ such that
+  $h(x) = g(f_1(x), f_2(x))$ is computable.
+\end{theorem}
+
+\begin{proof}[Proof of \Cref{theorem:operations-decidable}]
+  Let us prove that $S_1 \cup S_2$ is decidable. Since $S_1$ and $S_2$ are
+  decidable, there are algorithms $\Algorithm{A}_1$ and $\Algorithm{A}_2$
+  computing characteristic functions $\chi_{S_1}$ and $\chi_{S_2}$
+  for the sets $S_1$ and $S_2$, respectively.
+  Consider the function $g : \N^2 \to \N$ such that
+  \[
+    g(x, y) = \begin{cases}
+      0 & \text{if } x = 1 \text{ or } y = 1 \\
+      1 & \text{otherwise}
+    \end{cases}.
+  \]
+  It is clear that $h : \N \to \N$ such that
+  $h(x) = g(\chi_{S_1}(x), \chi_{S_2}(x))$ is a characteristic function for
+  $S_1 \cup S_2$. Hence, $S_1 \cup S_2$ is decidable by
+  \Cref{theorem:composition-computable-generalization}.
+
+  The proof of decidability of $S_1 \cap S_2$, and $S_1 \setminus S_2$
+  is essentially the same.
+\end{proof}
 
 \section{Enumeratable Sets}
 The algorithm constructed in the proof of decidability of $U_e$ consisted of
