@@ -166,6 +166,8 @@ This observation leads to the following definition.
     \item either $\Algorithm{A}(x) = 0$ or $\Algorithm{A}$ never terminates for
       any $x \notin S$.
   \end{enumerate}
+
+  We say that $S$ is \emph{semidecided} by $\Algorithm{A}$.
 \end{definition}
 
 We can easily show that both sets $L_e = \set[q < e]{q \in \Q}$ and
@@ -176,10 +178,28 @@ $q > (1 + \frac{1}{n})^{n + 1}$ and if we find such $n$, then $q \in U_e$.
 The following allows us to show that the fact that $L_e$ is decidable is not
 a coincedence.
 \begin{theorem}
+\label{theorem:enumeratable-to-decidable}
   Let $S \subseteq \N$. If $S$ is decidable, then $S$ is enumeratable.
   Moreover, if $S$ and $\N \setminus S$ are enumeratable, then $S$ is
   decidable.
 \end{theorem}
+\begin{proof}
+  The first part is obvious. Let us prove the ``moreover'' part.
+  Let $\Algorithm{A}_1$ and $\Algorithm{A}_2$ be the algorithms deciding
+  $S$ and $\N \setminus S$ respectively. Then the algorithm $\Algorithm{A}$
+  deciding $S$ is the following: on onput $x$ it runs $\Algorithm{A}_1(x)$ and
+  $\Algorithm{A}_2(x)$ in parallel and if the first one prints $1$,
+  $\Algorithm{A}$ prints $1$ as well;
+  however, if the second prints $1$, $\Algorithm{A}$ prints $0$.
+
+  We need to prove that the algorithm works correctly.
+  \begin{itemize}
+    \item If $x \in S$, then $\Algorithm{A}_1(x) = 1$ and $\Algorithm{A}_2(x)$
+      never terminates. So $\Algorithm{A}(x)$ prints $1$.
+    \item If $x \notin S$, then $\Algorithm{A}_1(x)$ never terminates and
+      $\Algorithm{A}_2(x) = 1$. So $\Algorithm{A}(x)$ prints $0$.
+  \end{itemize}
+\end{proof}
 
 The given definition of enumeratable set does not explain the name. However,
 there is an alternative definition that explains it.
@@ -191,6 +211,30 @@ there is an alternative definition that explains it.
     \item $\set[n \in  \N]{\Algorithm{A}(n)} = S$.
   \end{enumerate}
 \end{theorem}
+\begin{proof}
+  To prove this theorem, we generalize the idea of
+  \Cref{theorem:enumeratable-to-decidable}.
+  Let $\Algorithm{A}'$ be the algorithm semideciding $S$ and
+  let $\Algorithm{A}$ be the following algorithm.
+  \begin{algorithm}
+      \begin{algorithmic}[1]
+          \Function{$\Algorithm{A}$}{$n$}
+              \State{$i \gets 1$}
+              \State{Let $V$ be a map from integers to $\set{0, 1}$}
+              \While{$V$ has less than $n$ keys with the value $1$}
+                \Parallel
+                  \State{Let $y = \Algorithm{A}'(i)$}
+                  \State{Put $(i, y)$ into $V$}
+                \EndParallel
+                \State{$i \gets (i + 1)$}
+              \EndWhile
+              \State{\Return{the $i$th key in $V$ with the value $1$}}
+          \EndFunction
+      \end{algorithmic}
+  \end{algorithm}
+
+  It is clear that $\Algorithm{A}$ satisfies the constraints of the theorem.
+\end{proof}
 Informally, the algorithm $\Algorithm{A}$, from this theorem, enumerates
 all the elements of $S$.
 
@@ -205,3 +249,11 @@ enumeratable sets.
       $f : \N \to S$.
   \end{enumerate}
 \end{theorem}
+
+\begin{chapterendexercises}
+  \exercise Let $S \subseteq \N$ be a nonempty set.
+    Show that $S$ is decidable iff there is a funciton $f : \N \to \N$ such
+    that $f$ is computable and $f$ is nondecreasing.
+  \exercise Let $A, B \subseteq \mathbb{N}$ be enumeratable sets. Show that
+    $A \times B$ is enumeratable.
+\end{chapterendexercises}

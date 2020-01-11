@@ -33,6 +33,13 @@
 \newcommand{\Algorithm}[1]{\mathcal{#1}}
 \newcommand{\strings}{\set{0, 1}^*}
 
+\algblock{Parallel}{EndParallel}
+% customising the new block
+\algnewcommand\algorithmicparallel{\textbf{run in parallel}}
+\algnewcommand\algorithmicendparallel{\textbf{end in parallel}}
+\algrenewtext{Parallel}{\algorithmicparallel}
+\algrenewtext{EndParallel}{\algorithmicendparallel}
+
 % Combinatorial games
 \newcommand{\bitwisexor}{\oplus}
 
