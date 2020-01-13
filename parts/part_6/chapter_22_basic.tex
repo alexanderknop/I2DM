@@ -59,10 +59,12 @@ Moreover, one may prove the following a bit stronger statement.
   \begin{algorithm}
       \begin{algorithmic}[1]
           \Function{$\Algorithm{A}$}{$x$}
-              \State{$y \gets \Algorithm{G(x)}$}
+              \State{$y \gets \Algorithm{G}(x)$}
               \State \Call{Print}{$\Algorithm{F}(y)$}
           \EndFunction
       \end{algorithmic}
+      \caption{The algorithm computing the composition of the functions
+        computed by $\Algorithm{F}$ and $\Algorithm{G}$}
   \end{algorithm}
   It is clear that if $x \notin S$, then $\Algorithm{A}(x)$ never terminates.
 
@@ -210,12 +212,14 @@ there is an alternative definition that explains it.
     \item $\Algorithm{A}(n)$ terminates for any $n \in \N$ and
     \item $\set[n \in  \N]{\Algorithm{A}(n)} = S$.
   \end{enumerate}
+
+  We say that this $\Algorithm{A}$ is enumerating $S$.
 \end{theorem}
 \begin{proof}
   To prove this theorem, we generalize the idea of
   \Cref{theorem:enumeratable-to-decidable}.
   Let $\Algorithm{A}'$ be the algorithm semideciding $S$ and
-  let $\Algorithm{A}$ be the following algorithm.
+  let $\Algorithm{A}$ be \Cref{algorithm:enumerating-from-semidecidable}.
   \begin{algorithm}
       \begin{algorithmic}[1]
           \Function{$\Algorithm{A}$}{$n$}
@@ -231,8 +235,10 @@ there is an alternative definition that explains it.
               \State{\Return{the $i$th key in $V$ with the value $1$}}
           \EndFunction
       \end{algorithmic}
+      \caption{The algorithm enumerating the set that is semidecided by
+        $\Algorithm{A}'$.}
+      \label{algorithm:enumerating-from-semidecidable}
   \end{algorithm}
-
   It is clear that $\Algorithm{A}$ satisfies the constraints of the theorem.
 \end{proof}
 Informally, the algorithm $\Algorithm{A}$, from this theorem, enumerates
@@ -253,7 +259,7 @@ enumeratable sets.
 \begin{chapterendexercises}
   \exercise Let $S \subseteq \N$ be a nonempty set.
     Show that $S$ is decidable iff there is a funciton $f : \N \to \N$ such
-    that $f$ is computable and $f$ is nondecreasing.
+    that $f$ is computable, $f$ is nondecreasing, and $\Im{f} = S$.
   \exercise Let $A, B \subseteq \mathbb{N}$ be enumeratable sets. Show that
     $A \times B$ is enumeratable.
 \end{chapterendexercises}
