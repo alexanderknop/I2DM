@@ -1,4 +1,9 @@
 \chapter{Decidable Sets}
+\marginpar{%
+  This part is mainly based on the amazing book
+  ``Computable Functions''
+  by Shen and Vereshchagin.
+}
 In this part we study what computers can compute and what they cannot compute.
 Usually study of this subject starts from a formal definition of an algorithm.
 However, we believe that this is unnecessary nowadays because of rise of
@@ -297,9 +302,18 @@ enumeratable sets.
 \end{proof}
 
 \begin{chapterendexercises}
-  \exercise Let $S \subseteq \N$ be a nonempty set.
+  \exercise[recommended] Let $S \subseteq \N$ be a nonempty set.
     Show that $S$ is decidable iff there is a funciton $f : \N \to \N$ such
     that $f$ is computable, $f$ is nondecreasing, and $\Im{f} = S$.
-  \exercise Let $A, B \subseteq \mathbb{N}$ be enumeratable sets. Show that
+  \exercise Let $A, B \subseteq \N$ be enumeratable sets. Show that
     $A \times B$ is enumeratable.
+  \exercise Let $F \subseteq \N^2$ be enumeratable. Prove that exists a
+    set $S \subseteq \N$ and a computable function $f: S \to \N$ such that
+    $S = \set[(x, y) \in F]{x \in \N}$ and $(x, f(x)) \in F$ for any $x \in S$.
+  \exercise
+    Let $S =
+      \set[
+        \text{the equation } x^n + y^n = z^n \text{has an integer solution}
+      ]{n \in \N}$. Show that $S$ is decidable.
+      (You should not use Fermat's Last Theorem.)
 \end{chapterendexercises}
