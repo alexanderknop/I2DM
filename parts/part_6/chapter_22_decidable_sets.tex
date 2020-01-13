@@ -60,7 +60,7 @@ Moreover, one may prove the following a bit stronger statement.
       \begin{algorithmic}[1]
           \Function{$\Algorithm{A}$}{$x$}
               \State{$y \gets \Algorithm{G}(x)$}
-              \State \Call{Print}{$\Algorithm{F}(y)$}
+              \State{\Return{$\Algorithm{F}(y)$}}
           \EndFunction
       \end{algorithmic}
       \caption{The algorithm computing the composition of the functions
@@ -206,6 +206,7 @@ a coincedence.
 The given definition of enumeratable set does not explain the name. However,
 there is an alternative definition that explains it.
 \begin{theorem}
+\label{theorem:enumeratable-semidecidable}
   Let $S \subseteq \N$. The set $S$ is decidable iff there is an algorithm
   $\Algorithm{A}$ such that
   \begin{enumerate}
@@ -219,7 +220,7 @@ there is an alternative definition that explains it.
   To prove this theorem, we generalize the idea of
   \Cref{theorem:enumeratable-to-decidable}.
   Let $\Algorithm{A}'$ be the algorithm semideciding $S$ and
-  let $\Algorithm{A}$ be \Cref{algorithm:enumerating-from-semidecidable}.
+  let $\Algorithm{A}$ be \Cref{algorithm:enumerating-from-semideciding}.
   \begin{algorithm}
       \begin{algorithmic}[1]
           \Function{$\Algorithm{A}$}{$n$}
@@ -237,12 +238,41 @@ there is an alternative definition that explains it.
       \end{algorithmic}
       \caption{The algorithm enumerating the set that is semidecided by
         $\Algorithm{A}'$.}
-      \label{algorithm:enumerating-from-semidecidable}
+      \label{algorithm:enumerating-from-semideciding}
   \end{algorithm}
   It is clear that $\Algorithm{A}$ satisfies the constraints of the theorem.
+
+  Let us prove the statement in the opposite direction. Let us assume that
+  there is an algorithm $\Algorithm{A}'$ enumerating $S$. Let $\Algorithm{A}$
+  be \Cref{algorithm:semideciding-from-enumerating}.
+  \begin{algorithm}
+      \begin{algorithmic}[1]
+          \Function{$\Algorithm{A}$}{$x$}
+              \State{$n \gets 1$}
+              \While{$\Algorithm{A}'(n) \neq x$}
+              \label{line:while-semideciding-from-enumerating}
+                \State{$n \gets n + 1$}
+              \EndWhile
+              \State{\Return{$1$}}
+          \EndFunction
+      \end{algorithmic}
+      \caption{The algorithm semideciding the set that is enumerated by
+        $\Algorithm{A}'$.}
+      \label{algorithm:semideciding-from-enumerating}
+  \end{algorithm}
+  We need to prove that $\Algorithm{A}$ semidecide the set $S$.
+  \begin{enumerate}
+    \item Let us consider some $x \notin S$. In this case,
+      $\Algorithm{A}'(n) \neq x$ for any $n \in \N$. Hence, $\Algorithm{A}$
+      never terminates.
+    \item Let $x \in S$. Then there is $n \in \N$ such that
+      $\Algorithm{A}(n) \neq x$.
+      Therefore, the number of iterations of
+      \Cref{line:while-semideciding-from-enumerating} in
+      \Cref{algorithm:semideciding-from-enumerating} is finite and the
+      algorithm returns $1$.
+  \end{enumerate}
 \end{proof}
-Informally, the algorithm $\Algorithm{A}$, from this theorem, enumerates
-all the elements of $S$.
 
 One may also esteblish a connection between computable functions and
 enumeratable sets.
@@ -255,6 +285,16 @@ enumeratable sets.
       $f : \N \to S$.
   \end{enumerate}
 \end{theorem}
+\begin{proof}
+  \begin{enumerate}
+    \item In order to prove this part of the statemejt it is enough to note that
+      the function $f : S \to \N$ such that $f(x) = 1$ is computable iff
+      $S$ is enumerable. Indeed, if $\Algorithm{A}$ enumerates $S$, then
+      it computes $f$; if $\Algorithm{A}$ computes $f$ it enumerates $S$.
+    \item This part directly follows from
+      \Cref{theorem:enumeratable-semidecidable}.
+  \end{enumerate}
+\end{proof}
 
 \begin{chapterendexercises}
   \exercise Let $S \subseteq \N$ be a nonempty set.
