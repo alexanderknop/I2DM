@@ -1,1 +1,17 @@
 \chapter{Universal Functions}
+It is known that we may write a program that gets another program as an argument
+and run it. (Such programs are known as interpreters.) To use this observation
+we give the following definition.
+\begin{definition}
+  Let $U$ be an algorithm. We say that $\Algorithm{U}$ simulates an
+  algorithm $\Algorithm{A}$ on an argument $x$ iff
+  \[
+    \Algorithm{U}(x, y) = \Algorithm{A}(y)
+  \]
+  for any $y \in \N$. (The equality means that if one of the algorithms
+  terminates the other terminates as well, and they return the same number.)
+\end{definition}
+\begin{theorem}
+  There is an algorithm $\Algorithm{U}$ such that for any $x \in \N$
+  and algorithm $\Algorithm{A}$
+\end{theorem}
