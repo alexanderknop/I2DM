@@ -1,17 +1,41 @@
 \chapter{Universal Functions}
 It is known that we may write a program that gets another program as an argument
 and run it. (Such programs are known as interpreters.) To use this observation
-we give the following definition.
+we give the following definition and theorem.
 \begin{definition}
-  Let $U$ be an algorithm. We say that $\Algorithm{U}$ simulates an
-  algorithm $\Algorithm{A}$ on an argument $x$ iff
+  We say that a function $U$ is \emph{universal function} (for the set of univariate
+  computable functions) iff for each $n \in \N$,
   \[
-    \Algorithm{U}(x, y) = \Algorithm{A}(y)
+    U_n : x \mapsto U(n, x)
   \]
-  for any $y \in \N$. (The equality means that if one of the algorithms
-  terminates the other terminates as well, and they return the same number.)
+  (we say that $U_n$ is a section of $U$)
+  is computable and any univariate computable function is among $U_n$'s.
 \end{definition}
+
 \begin{theorem}
-  There is an algorithm $\Algorithm{U}$ such that for any $x \in \N$
-  and algorithm $\Algorithm{A}$
+\label{theorem:universal-function-computable}
+  There is a computable universal function $U$.
 \end{theorem}
+
+\begin{exercise}
+  Assume that every section of a function $U$ is computable.
+  Is it necessary true that $U$ is computable?
+\end{exercise}
+
+Similarly to the notion of universal function we may define the notion
+of universal sets.
+\begin{definition}
+  Let $F \subseteq 2^\N$. We say that $W \subseteq \N^2$ is universal for $F$
+  if $F = \set[n \in \N]{\set[(n, x) \in F]{x}}$.
+\end{definition}
+
+\begin{theorem}
+  There is a enumeratable set $W$ such that it is universal for the set of
+  all enumeratable subsets of $\N$.
+\end{theorem}
+%
+% \section{Enumeratable but Notdecidable Set}
+%
+% \section{Total Functions}
+% \Cref{theorem:universal-function-computable} says that there is a universal
+% function for the set of computable functions.
