@@ -3,8 +3,8 @@ It is known that we may write a program that gets another program as an argument
 and run it. (Such programs are known as interpreters.) To use this observation
 we give the following definition and theorem.
 \begin{definition}
-  We say that a function $U$ is \emph{universal function} (for the set of univariate
-  computable functions) iff for each $n \in \N$,
+  We say that a function $U$ is \emph{universal function} (for the set of
+  univariate computable functions) iff for each $n \in \N$,
   \[
     U_n : x \mapsto U(n, x)
   \]
@@ -34,7 +34,59 @@ of universal sets.
   all enumeratable subsets of $\N$.
 \end{theorem}
 %
-% \section{Enumeratable but Notdecidable Set}
+\section{Enumeratable but Not Decidable Set}
+\begin{theorem}
+  There is a set $S \subseteq \N$ such that $S$ is enumeratable but it is not
+  decidable.
+\end{theorem}
+\begin{proof}
+  Let $U$ be be a universal computable function, it exists by
+  \Cref{theorem:universal-function-computable}.
+  To prove the statement we are going to use the diagonalization method.
+  Let us consider $S = \set[u_n(n) = U(n, n) \neq 1]{n \in \N}$.
+
+  It is easy to see that $S$ is enumeratable. Assume for the sake of
+  contradiction that $S$ is decidable. Let $\Algorithm{A}$ be the algorithm
+  deciding $S$. There is $n \in \N$ such that $\Algorithm{A}$ computes $U_n$
+  since $U$ is universal. Let us now consider two following cases.
+  \begin{enumerate}
+    \item Assume that $n \in S$. In this case $\Algorithm{A}(n) = 1$ since
+      $\Algorithm{A}$ decides $S$. However, $U_n(n) \neq 1$ by the definition of
+      $S$. These two equalities together leads us to a contradiction since
+      $\Algorithm{A}$ computes $U_n$.
+    \item Assume that $n \notin S$. In this case $\Algorithm{A}(n) = 0$ since
+      $\Algorithm{A}$ decides $S$. However, $U_n(n) = 1$ by the definition of
+      $S$. These two equalities together leads us to a contradiction since
+      $\Algorithm{A}$ computes $U_n$.
+  \end{enumerate}
+\end{proof}
+
+Using the proof of thie result we can make several surprising observations.
+
+First observation states that there is no way to determine if a given
+algorithm terminates or not.
+\begin{theorem}
+  Let $U$ be a universal function.
+  Let $\Halting : \N^2 \to \set{0, 1}$ be the function such that
+  $\Halting(n, x) = 1$ iff $U_n(x)$ is defined. Then $\Halting$ is not
+  computable.
+\end{theorem}
+
+Another observation is that constructing the shortest program solving a given
+problem is not feasible.
+In other words let us consider the problem of producing the shortest algorithm
+$\Algorithm{A}$ by a given $\Algorithm{B}$ such that
+$\Algorithm{A}(x) = \Algorithm{B}(x)$ for any $x \in \N$. Apparently there is
+no algorithm that can find such $\Algorithm{A}$.
+
+To prove this we need to formalize what we mean by the shortest algorithm and
+how we encode $\Algorithm{A}$.
+\begin{theorem}
+  Let $O : \N \to \N$ be the function such that
+  $U_{O(n)}$ is the same as $U_n$ and $U_m$ and $U_n$ are different
+  for any $m < O(n)$. Then $O$ is not computable.
+\end{theorem}
+
 %
 % \section{Total Functions}
 % \Cref{theorem:universal-function-computable} says that there is a universal
