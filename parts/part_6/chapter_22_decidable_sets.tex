@@ -165,7 +165,7 @@ set $U_e$ and the second part allowed to show that $q$ is defenetely in the set.
 
 This observation leads to the following definition.
 \begin{definition}
-  We say that a set $S \subseteq \N$ is \emph{(computably) enumeratable},
+  We say that a set $S \subseteq \N$ is \emph{(computably) enumerable},
   we also say that it is \emph{recursively enumerable} and \emph{semidecidable},
   iff there is an algorithm $\Algorithm{A}$ such that
   \begin{enumerate}
@@ -178,16 +178,16 @@ This observation leads to the following definition.
 \end{definition}
 
 We can easily show that both sets $L_e = \set[q < e]{q \in \Q}$ and
-$U_e = \set[q > e]{q \in \Q}$ are enumeratable. Indeed, we can try all possible
+$U_e = \set[q > e]{q \in \Q}$ are enumerable. Indeed, we can try all possible
 $n \in n$ until $q < (1 + \frac{1}{n})^n$ if we find such $n$, we know that
 $q \in L_e$. Similarly, we can try all possible $n$ until
 $q > (1 + \frac{1}{n})^{n + 1}$ and if we find such $n$, then $q \in U_e$.
 The following allows us to show that the fact that $L_e$ is decidable is not
 a coincedence.
 \begin{theorem}
-\label{theorem:enumeratable-to-decidable}
-  Let $S \subseteq \N$. If $S$ is decidable, then $S$ is enumeratable.
-  Moreover, if $S$ and $\N \setminus S$ are enumeratable, then $S$ is
+\label{theorem:enumerable-to-decidable}
+  Let $S \subseteq \N$. If $S$ is decidable, then $S$ is enumerable.
+  Moreover, if $S$ and $\N \setminus S$ are enumerable, then $S$ is
   decidable.
 \end{theorem}
 \begin{proof}
@@ -208,10 +208,10 @@ a coincedence.
   \end{itemize}
 \end{proof}
 
-The given definition of enumeratable set does not explain the name. However,
+The given definition of enumerable set does not explain the name. However,
 there is an alternative definition that explains it.
 \begin{theorem}
-\label{theorem:enumeratable-semidecidable}
+\label{theorem:enumerable-semidecidable}
   Let $S \subseteq \N$. The set $S$ is decidable iff there is an algorithm
   $\Algorithm{A}$ such that
   \begin{enumerate}
@@ -280,11 +280,11 @@ there is an alternative definition that explains it.
 \end{proof}
 
 One may also esteblish a connection between computable functions and
-enumeratable sets.
+enumerable sets.
 \begin{theorem}
   Let $S \subseteq \N$.
   \begin{enumerate}
-    \item The set $S$ is enumeratable iff there is a computable function
+    \item The set $S$ is enumerable iff there is a computable function
       $f : S \to \N$.
     \item The set $S$ is enumeratable iff there is a computable function
       $f : \N \to \N$ so that $\Im{f} = S$.
@@ -297,7 +297,7 @@ enumeratable sets.
       $S$ is enumerable. Indeed, if $\Algorithm{A}$ enumerates $S$, then
       it computes $f$; if $\Algorithm{A}$ computes $f$ it enumerates $S$.
     \item This part directly follows from
-      \Cref{theorem:enumeratable-semidecidable}.
+      \Cref{theorem:enumerable-semidecidable}.
   \end{enumerate}
 \end{proof}
 
@@ -305,9 +305,9 @@ enumeratable sets.
   \exercise[recommended] Let $S \subseteq \N$ be a nonempty set.
     Show that $S$ is decidable iff there is a funciton $f : \N \to \N$ such
     that $f$ is computable, $f$ is nondecreasing, and $\Im{f} = S$.
-  \exercise Let $A, B \subseteq \N$ be enumeratable sets. Show that
-    $A \times B$ is enumeratable.
-  \exercise Let $F \subseteq \N^2$ be enumeratable. Prove that exists a
+  \exercise Let $A, B \subseteq \N$ be enumerable sets. Show that
+    $A \times B$ is enumerable.
+  \exercise Let $F \subseteq \N^2$ be enumerable. Prove that exists a
     set $S \subseteq \N$ and a computable function $f: S \to \N$ such that
     $S = \set[(x, y) \in F]{x \in \N}$ and $(x, f(x)) \in F$ for any $x \in S$.
   \exercise
