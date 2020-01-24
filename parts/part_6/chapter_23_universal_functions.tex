@@ -3,7 +3,7 @@ It is known that we may write a program that gets another program as an argument
 and run it. (Such programs are known as interpreters.) To use this observation
 we give the following definition and theorem.
 \begin{definition}
-  We say that a function $U$ is \emph{universal function} (for the set of
+  We say that a function $U$ is a \emph{universal function} (for the set of
   univariate computable functions) iff for each $n \in \N$,
   \[
     U_n : x \mapsto U(n, x)
@@ -19,22 +19,22 @@ we give the following definition and theorem.
 
 \begin{exercise}
   Assume that every section of a function $U$ is computable.
-  Is it necessary true that $U$ is computable?
+  Is it necessarily true that $U$ is computable?
 \end{exercise}
 
 Similarly to the notion of universal function we may define the notion
 of universal sets.
 \begin{definition}
-  Let $F \subseteq 2^\N$. We say that $W \subseteq \N^2$ is universal for $F$
+  Let $F \subseteq \N^2$. We say that $W \subseteq \N^2$ is universal for $F$
   if $F = \set[n \in \N]{\set[(n, x) \in F]{x}}$.
 \end{definition}
 
 \begin{theorem}
-  There is a enumerable set $W$ such that it is universal for the set of
+  There is an enumerable set $W$ such that it is universal for the set of
   all enumerable subsets of $\N$.
 \end{theorem}
 
-\section{Enumeratable but Not Decidable Set}
+\section{Enumerable but Not Decidable Set}
 \begin{theorem}
   There is a set $S \subseteq \N$ such that $S$ is enumerable but it is not
   decidable.
