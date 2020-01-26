@@ -36,6 +36,7 @@ of universal sets.
 
 \section{Enumeratable but Not Decidable Set}
 \begin{theorem}
+\label{theorem:enumerable-not-decidable}
   There is a set $S \subseteq \N$ such that $S$ is enumerable but it is not
   decidable.
 \end{theorem}
@@ -98,3 +99,53 @@ it is impossible for total functions.
     There is no computable universal total function for
     the set of computable total functions of one variable.
 \end{theorem}
+
+\begin{theorem}
+    There is a computable function $f : \N \to \N$ such that
+    no computable function $g : \N \to \N$ can differ from $f$
+    everywhere; i.e., for any computable function $g : \N \to \N$
+    there is $n \in \N$ such that $f(n) = g(n)$.
+    (The last equality says that the values are either equal or
+    both values are not defined for $n$.)
+\end{theorem}
+
+\begin{theorem}
+    There is a computable function that does not admit a total computable
+    extension.
+\end{theorem}
+
+Note that the last theorem gives another proof of
+\Cref{theorem:enumerable-not-decidable}. Indeed, let $f$ be the function
+without total computable extension. Let $S = \Im{f}$.
+By \Cref{theorem:enumerable-via-computable-funcitons},
+$S$ is enumerable. Assume for the sake of contradiction, that $S$ is decidable.
+Then the total function $g : \N \to \N$ such that
+\[
+    g(x) =
+    \begin{cases}
+        f(x) & \text{if } x \in S \\
+        0 & \text{if } x \notin S
+    \end{cases}
+\]
+is computable. Moreover, $g$ is an extension of $f$ which leads to a
+contradiction.
+
+\begin{chapterendexercises}
+    \exercise Let $U \subseteq \N^2$ be any enumerable set of pairs of
+        natural numbers that is universal for the set of all
+        enumerable sets of natural numbers.
+        Prove that its ``diagonal section''
+        $K = \set[(x, x) \in U]{x}$ is an enumerable undecidable set.
+    \exercise Let $S \subseteq \N$ be decidable and let
+        \[
+            D =
+            \set[
+                p \text{ is prime and }
+                p \text{ divides some } n \in S
+            ]{p \in \N}.
+        \]
+        Is the set $D$ always decidable?
+    \exercise Show that there exist countably many disjoint
+        enumerable sets such that any two of them are inseparable
+        (cannot be separated by a decidable set).
+\end{chapterendexercises}
