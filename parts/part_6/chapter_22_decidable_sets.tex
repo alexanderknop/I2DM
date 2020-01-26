@@ -184,7 +184,7 @@ $q \in L_e$. Similarly, we can try all possible $n$ until
 $q > (1 + \frac{1}{n})^{n + 1}$ and if we find such $n$, then $q \in U_e$.
 The following allows us to show that the fact that $L_e$ is decidable is not
 a coincedence.
-\begin{theorem}
+\begin{theorem}[Post's Theorem]
 \label{theorem:enumerable-to-decidable}
   Let $S \subseteq \N$. If $S$ is decidable, then $S$ is enumerable.
   Moreover, if $S$ and $\N \setminus S$ are enumerable, then $S$ is
@@ -279,31 +279,43 @@ there is an alternative definition that explains it.
   \end{enumerate}
 \end{proof}
 
-One may also esteblish a connection between computable functions and
+One may also establish a connection between computable functions and
 enumerable sets.
 \begin{theorem}
   Let $S \subseteq \N$.
   \begin{enumerate}
     \item The set $S$ is enumerable iff there is a computable function
       $f : S \to \N$.
-    \item The set $S$ is enumeratable iff there is a computable function
+    \item The set $S$ is enumerable iff there is a computable function
       $f : \N \to \N$ so that $\Im{f} = S$.
   \end{enumerate}
 \end{theorem}
 \begin{proof}
   \begin{enumerate}
-    \item In order to prove this part of the statemejt it is enough to note that
-      the function $f : S \to \N$ such that $f(x) = 1$ is computable iff
-      $S$ is enumerable. Indeed, if $\Algorithm{A}$ enumerates $S$, then
-      it computes $f$; if $\Algorithm{A}$ computes $f$ it enumerates $S$.
+    \item To prove this part of the statement from right to left
+        it is enough to note that
+        the function $f : S \to \N$ such that $f(x) = 1$ is computable iff
+        $S$ is enumerable. Indeed, if $\Algorithm{A}$ enumerates $S$, then
+        it computes $f$; if $\Algorithm{A}$ computes $f$ it enumerates $S$.
+
+        To prove it from left to right, we may notice that $g : \N \to \N$
+        such that $g(x) = 1$ is computable.
+        Therefore $(g \circ f) : S \to \N$ is
+        computable. This implies that $S$ is enumerable since
+        $(g \circ f)(x) = 1$ for all $x \in S$.
     \item This part directly follows from
-      \Cref{theorem:enumerable-semidecidable}.
+        \Cref{theorem:enumerable-semidecidable}.
   \end{enumerate}
 \end{proof}
 
+In the rest of this part we call functions $f : S \to \N$,
+where $S \subseteq \N$ as partial functions from $\N$ to $\N$. We say
+that $S$ is preimage of $f$. We say that a partial function from
+$\N$ to $\N$ is total iff the preimage of the function is equal to $\N$.
+
 \begin{chapterendexercises}
   \exercise[recommended] Let $S \subseteq \N$ be a nonempty set.
-    Show that $S$ is decidable iff there is a funciton $f : \N \to \N$ such
+    Show that $S$ is decidable iff there is a function $f : \N \to \N$ such
     that $f$ is computable, $f$ is nondecreasing, and $\Im{f} = S$.
   \exercise Let $A, B \subseteq \N$ be enumerable sets. Show that
     $A \times B$ is enumerable.
