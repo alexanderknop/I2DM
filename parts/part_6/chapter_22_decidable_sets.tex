@@ -309,10 +309,23 @@ enumerable sets.
   \end{enumerate}
 \end{proof}
 
-In the rest of this part we call functions $f : S \to \N$,
-where $S \subseteq \N$ as partial functions from $\N$ to $\N$. We say
-that $S$ is preimage of $f$. We say that a partial function from
-$\N$ to $\N$ is total iff the preimage of the function is equal to $\N$.
+In the rest of this part we refer to functions $f : S \to B$,
+where $S \subseteq A$ as partial functions from $\N$ to $\N$. We say
+that $S$ is preimage of $f$. Moreover, when we say that a function
+from $\N$ to $\N$ is computable we mean that it is a partial computable
+function. Using this notation \Cref{theorem:enumerable-via-computable-funcitons}
+can be rephrased as follows.
+\begin{corollary}
+  \begin{enumerate}
+    \item The set $S$ is enumerable iff there is a computable function
+      $f : \N \to \N$ such that the preimmage of $f$ is equal to $S$.
+    \item The set $S$ is enumerable iff there is a computable function
+      $f : \N \to \N$ such that the immage of $f$ is equal to $S$.
+  \end{enumerate}
+\end{corollary}
+Since the notation between functions and partial functions is that similar,
+in the rest of this part we say that a partial function from $A$ to $B$ is
+total iff the preimage of the function is equal to $A$.
 
 \begin{chapterendexercises}
   \exercise[recommended] Let $S \subseteq \N$ be a nonempty set.
