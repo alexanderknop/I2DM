@@ -251,7 +251,7 @@ to introduce the notion of structural induction.
     Assume that $S' \subseteq U$ is a set such that the following constraints
     are true.
     \begin{description}
-        \item [(base case)] $B \subseteq S'$
+        \item [(base case)] $U_0 \subseteq S'$
         \item[(induction step)]
           $F_i(u_1, \dots, u_{\ell_i}) \in S'$ for any
           $u_1, \dots, u_{\ell_i} \in S'$ and $i \in \N$.
@@ -285,8 +285,14 @@ Using this result, we may prove \Cref{theorem:guess-the-number}.
       $T_0, T_1 \in S'$. We know that the size of $V(T_0)$ is at most
       $2^{h(T_0)}$ and the size of $V(T_0)$ is at most $2^{h(T_1)}$. In 
       addtion, it is clear that $V(T) \subseteq V(T_0) \cup V(T_1)$. Therefore,
-      the size of $V(T)$ is at most 
-      $2^{h(T_0)} + 2^{h(T_1)} \le 2^{\max(h(T_0), h(T_1)) + 1} = 2^{h(T)}$.
+      the size of $V(T)$ is at most\footnote{%
+        Formally speaking, we use \Cref{theorem:additive-principle} to prove
+        this; i.e. we use the fact that the size of a set $A \cup B$ is at most
+        the size of $A$ plus the size of $B$.
+      }
+      \[
+        2^{h(T_0)} + 2^{h(T_1)} \le 2^{\max(h(T_0), h(T_1)) + 1} = 2^{h(T)}.
+      \]
   \end{description}
   Hence, by \Cref{theorem:structural-induction}, $S'$ is equal to the set of all
   $B$-decision trees.
@@ -297,10 +303,10 @@ Now we are ready to prove \Cref{theorem:structural-induction}.
     We prove the statement using induction. More precisely, we prove using
     induction by $m$ that if there is a sequence
     $u_1$, \dots, $u_m$ such that
-    for each $i \in \range{m}$, $u_i \in B$ or $u_i = F(u_{k_1}, \dots, u_{k_\ell})$
+    for each $i \in \range{m}$, $u_i \in U_0$ or $u_i = F(u_{k_1}, \dots, u_{k_\ell})$
     for $F \in \mathcal{F}$ and $k_1, \dots, k_\ell < i$, then $u_m \in S'$.
 
-    The case when $m = 1$ is clear since in this case $u_1 \in B$ which implies
+    The case when $m = 1$ is clear since in this case $u_1 \in U_0$ which implies
     that it is in $S'$.
 
     Let us now prove the induction step. Assume that the statement is true for any
