@@ -26,7 +26,8 @@ Similarly to the notion of universal function we may define the notion
 of universal sets.
 \begin{definition}
   Let $F \subseteq 2^\N$. We say that $W \subseteq \N^2$ is universal for $F$
-  if $F = \set[n \in \N]{\set[(n, x) \in F]{x}}$.
+  if $W_n = \set[(n, x) \in F]{x \in \N}$ is an element of $F$ for all
+  $n \in \N$ and any set $S \in F$ is among $W_n$'s.
 \end{definition}
 
 \begin{theorem}
@@ -44,7 +45,7 @@ of universal sets.
   Let $U$ be be a universal computable function, it exists by
   \Cref{theorem:universal-function-computable}.
   To prove the statement we are going to use the diagonalization method.
-  Let us consider $S = \set[u_n(n) = U(n, n) \neq 1]{n \in \N}$.
+  Let us consider $S = \set[U(n, n) = 0]{n \in \N}$.
 
   It is easy to see that $S$ is enumerable. Assume for the sake of
   contradiction that $S$ is decidable. Let $\Algorithm{A}$ be the algorithm
