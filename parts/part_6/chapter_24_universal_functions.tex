@@ -99,7 +99,18 @@ it is impossible for total functions.
     There is no computable universal total function for
     the set of computable total functions of one variable.
 \end{theorem}
-
+\begin{proof}
+  Assume that such a function $U$ exists. Let us consider the total computable
+  function $d : \N \to \N$ such that $d(n) = U(n, n) + 1$. Since $U$ is a
+  computable universal total function for the set of computable total functions
+  of one variable, there is $m \in \N$ such that $d(n) = U(m, n)$ for any
+  $n \in \N$. Note that this implies that $U(m, m) = d(m) = U(m, m) + 1$,
+  which is a contradiction.
+\end{proof}
+Note that the crucial point in this argument is that $U(m, m)$ is different
+from $U(m, m) + 1$; however, if the functions are not total it is possible
+that $U(m, m)$ is simply not defined. However, a part of the argument can be
+used, nonetheless.
 \begin{theorem}
     There is a computable function $f : \N \to \N$ such that
     no computable function $g : \N \to \N$ can differ from $f$
@@ -108,11 +119,25 @@ it is impossible for total functions.
     (The last equality says that the values are either equal or
     both values are not defined for $n$.)
 \end{theorem}
+\begin{proof}
+  Let $U$ be a universal function for computable functions, and
+  let $d : \N \to \N$ be a partial function such that $d(n) = U(n, n)$.
+  It is clear that $d$ satisfies the statement of the theorem. Indeed,
+  any computable function $f$ is equal to $U_n$  for some $n$. Hence,
+  $d(n) = U(n, n) = f(n)$.
+\end{proof}
 
 \begin{theorem}
     There is a computable function that does not admit a total computable
     extension.
 \end{theorem}
+\begin{proof}
+  Let $d$ be the function from the previous theorem. Let us consider the
+  partial function $e : \N \to \N$ such that $e(n) = d(n) + 1$.
+  We wish to prove that $e$ does not have a total extension. Let us assume
+  the opposite, let $e'$ be a computable total extension of $e$. Then $e'$
+  differs from $d$ everywhere, therefore $e'$ is not computable.
+\end{proof}
 
 Note that the last theorem gives another proof of
 \Cref{theorem:enumerable-not-decidable}. Indeed, let $f$ be the function
