@@ -1,0 +1,381 @@
+\chapter{Structural Induction}
+To illustrate this chapter let us consider the following game:
+Alice have chosen a number from $1$ to $1000$. Bob want to guess the number
+so he can ask ``yes'' or ``no'' questions to Alice.
+How many questions Bob needs to ask to guess the number?
+
+The following simple algorithm allows Bob to guess the number using $10$
+questions.
+\begin{enumerate}
+  \item Bob start with two numbers $\ell = 1$ and $u = 1000$.
+  \item \label{algorithm-step:binary-search-decision-guess-number}
+    Bob asks whether the Alice's number is smaller than $(\ell + u) / 2$.
+    If the answer is yes, then Bob replace $u$ by $(\ell + u) / 2$;
+    otherwise Bob replace $\ell$ by $(\ell + u) / 2$.
+  \item \label{algorithm-step:binary-search-result-guess-number}
+    If there is only one integer $x$ between $\ell$ and $u$, Bob
+    says that Alice's number is $x$. Otherwise go to
+    step~\ref{algorithm-step:binary-search-decision-guess-number}
+\end{enumerate}
+
+Now we have two problems:
+\begin{enumerate}
+  \item we need to prove that the algorithm is correct and
+  \item we would like to prove that it is impossible to guess the number
+    using less questions.
+\end{enumerate}
+
+To study both these problems we need a formal definition of an algorithm that
+Bob may use. However, the first problem is somewhat less demading and
+the solution can be explained without a precise definition.
+
+First note that the Alice's number always between $\ell$ and $u$. Hence,
+the answer given at step~\ref{algorithm-step:binary-search-result-guess-number}
+is always correct. You may also notice that on each step $u - \ell$
+decreases by $2$, hence, after $\ceil{\log 1000} = 10$ questions $u - \ell < 1$.
+As a result, after $10$ questions, there is only one integer between $\ell$ and
+$u$.
+
+\begin{exercise}
+  Give a nonadaptive algorithm for Bob that allows him to guess the number
+  using $10$ queries. In other words, write $10$ questions such that
+  answers to these questions allow Bob to guess the number.
+\end{exercise}
+
+\section{Recursive Definitions}
+First note that any question for Alice can be formulated as follows:
+``Is the value of a function $f$ at your number equal to $\ltrue$?'', where
+$f$ is a function from $\Z$ to $\set{0, 1}$ (here and in the sequel
+we interpret $1$ as ``yes'' and $0$ as ``no'').
+
+Hence, there are two possible behaviours of any algorithm for Bob.
+\begin{itemize}
+  \item The algorithm prescribe Bob to just say that the answer is some
+    number $x \in \Z$, or
+  \item The algorithm prescribe Bob to ask whether $f$ at Alice's number is
+    equal to $\ltrue$. If the answer is yes, then prescribe Bob to proceed
+    according to an algorithm $A_1$, otherwise it prescribe Bob to proceed
+    according to an algorithm $A_0$.
+\end{itemize}
+
+Hence, any algorithm for Bob can be described using the following object.
+\begin{definition}
+  We say that $T$ is a $B$-decision tree if
+  \begin{description}
+    \item [(base case)] either $T$ is equal to an integer, or
+    \item [(recursion step)] $T$ is equal to $(f, T_0, T_1)$,
+      where $f : \Z \to \set{0, 1}$, and $T_0$ and $T_1$
+      are $B$-decision trees.
+  \end{description}
+\end{definition}
+Note that this definition is not quite formal since it is recursive and
+we usually do not allow recursive definitions. So we will need to give a more
+formal way to define $B$-decision trees. However, this definition allows us to
+prove that $(f_1, (f_2, 1, 2), (f_3, 3, 4))$
+is a $B$-decision tree, where
+\begin{gather*}
+  f_1(x) =
+    \begin{cases}
+      1 & \text{if } x \le 2 \\
+      0 & \text{otherwise}
+    \end{cases}, \\
+  f_2(x) =
+    \begin{cases}
+      1 & \text{if } x = 1 \\
+      0 & \text{otherwise}
+    \end{cases}, \\
+  \text{and} \\
+  f_3(x) =
+    \begin{cases}
+      1 & \text{if } x = 3 \\
+      0 & \text{otherwise}
+    \end{cases}.
+\end{gather*}
+This can be explained as follows.
+\begin{itemize}
+  \item It is clear that $1$, $2$, $3$, and $4$ are $B$-decision trees by the
+    base case.
+  \item Hence, by the recurstion step case, $(f_2, 1, 2)$ and $(f_3, 3, 4)$
+    are $B$-decision trees.
+  \item Finally, by the recurstion step case, $(f_1, (f_2, 1, 2), (f_3, 3, 4))$
+    is a $B$-decision tree.
+\end{itemize}
+In other words we proved that $(f_1, (f_2, 1, 2), (f_3, 3, 4))$
+is a $B$-decision tree by providing $T_1$, \dots, $T_7$ such that
+$T_7 = (f_1, (f_2, 1, 2), (f_3, 3, 4))$ and for each $i \in [7]$,
+$T_i$ is a number from $\Z$ or $T_i = (f, T_j, T_k)$ for $j, k < i$ and
+$f : \Z \to \set{0, 1}$.
+
+This idea leads to the framework that would allows us to give a formal
+definition of $B$-decision trees.
+\begin{definition}
+  Let $U$ be a set, let $U_0 \subseteq U$, and let
+  \[
+    \mathcal{F} =
+    \set{F_1 : U^{\ell_1} \to U, \dots, F_n : U^{\ell_n} \to U, \dots}.
+  \]
+  The we say that the set $S$ generate by $\mathcal{F}$ from $U_0$ is
+  the set of all $u \in U$ such that there is a sequence
+  $u_1$, \dots, $u_m$ satisfying the following constraints: $u_m = u$ and
+  for each $i \in \range{m}$,
+  \begin{itemize}
+    \item either $u_i \in U_0$, or
+    \item $u_i = F(u_{k_1}, \dots, u_{k_\ell})$
+      for $F \in \mathcal{F}$ and $k_1, \dots, k_\ell < i$.
+  \end{itemize}
+\end{definition}
+In case of $B$-decision trees $U$ is the set of all sequences of numbers,
+parentheses, commas, and functions from $\Z$ to $\set{0, 1}$,
+$U_0$ is the set of all sequences consisting of one number, and
+\[
+  \mathcal{F} =
+  \set[
+    {
+      f \text{ is a function from } \Z
+        \text{ to } \set{0, 1}
+    }
+  ]{F_f},
+\]
+where $F_f(T_0, T_1) = (f, T_0, T_1)$.
+
+Using similar ideas we may define some functions on the objects defined
+recursively.
+\begin{definition}
+  Let $T$ be a $B$-decision tree. Then the height $h(T)$ of $T$ can be
+  defined as follows.
+  \begin{description}
+      \item [(base case)] If $T$ is equal to a number $x \in \Z$,
+        then $h(T) = 0$.
+      \item[(recursion step)] If $T_1$ and $T_2$ are $B$-decision trees, then
+        $h\big((f, T_1, T_2)\big) = \max(h(T_1), h(T_2)) + 1$.
+  \end{description}
+\end{definition}
+Note that $h(T)$ correpsonds to the worst-case number of queries made by Bob if
+we interpret $T$ as a description of an algorithm.
+
+However, before we explain how to formalize such a definition, we need to note
+that in the general case such definition may be contradictory. Consider
+$U = \R$, $U_0 = \set{0}$, and $\mathcal{F} = \set{f, g}$, where $f(x, y) = xy$
+and $g(x) = x + 1$. We define $v : U \to \R$ as follows.
+\begin{description}
+    \item [(base case)] $v(0) = 0$.
+    \item[(recursion step)] $v(f(x, y)) = f(v(x), v(y))$ and
+      $v(g(x)) = v(x) + 1$.
+\end{description}
+Note that $v(f(g(0), g(0))) = f(v(g(0)), v(g(0))) = \big(v(g(0))\big)^2 = 4$
+and $v(g(0)) = v(0) + 2 = 2$.
+However, $g(0) = 1$ and $f(g(0), g(0)) = 1$.
+
+Therefore handle such an issue, we consider $S$ that is \emph{freely} generated
+from $U_0$ by by $\mathcal{F}$.
+\begin{definition}
+  The set $S$ is freely generated from $U_0$ by by $\mathcal{F}$ iff it is
+  generated by $\mathcal{F}$ from $B$,
+  $U_0 \cap \Im F = \emptyset$, and $\Im F \cap \Im G = \emptyset$ for any
+  $F, G \in \mathcal{F}$.
+\end{definition}
+
+The following theorem claims existence of functions defined recursively.
+\begin{theorem}
+\label{theorem:recursion-principle}
+    Let $S \subseteq U$ be the set freely generated from $U_0 \subseteq U$ by
+    $\mathcal{F} =
+      \set{F_1 : U^{\ell_1} \to U, \dots, F_n : U^{\ell_n} \to U, \dots}$.
+    In addition, let $G_0 : U_0 \to V$ and
+    $G_1 : V^{\ell_1} \to V, \dots, G_n : V^{\ell_n} \to V$, \dots
+    be some functions.
+
+    Then there is a function $h : S \to V$ such that
+    \begin{description}
+        \item [(base case)] $h(u) = G_0(u)$ for any $u \in U_0$.
+        \item[(recursion step)] $h(F_i(u_1, \dots, u_{\ell_i})) =
+            G_i(h(u_1), \dots, h(u_{\ell_i}))$ for any $i$ and
+            $u_1, \dots, u_{\ell_i} \in S$.
+    \end{description}
+\end{theorem}
+
+\begin{exercise}
+    Prove \Cref{theorem:recursion-principle}.
+\end{exercise}
+
+$B$-decision tree are used in this chapter to represent Bob's algorithms;
+hence, we need to define values of $B$-decision trees.
+\begin{definition}
+  The value
+  $\mathrm{val}(T, n)$ of a $B$-decision tree $T$ at an integer $n$ can
+  be defined as follows.
+  \begin{description}
+      \item [(base case)] If $T$ is just an number $x \in \range{1000}$,
+        then the number the result $\mathrm{val}(T, n)$ is equal to $x$.
+      \item[(recursion step)] If $T_1$ and $T_2$ are two representations of
+        Bob's algorithms, then
+        \[
+          \mathrm{val}\big((f, T_0, T_1), n\big) =
+          \begin{cases}
+            \mathrm{val}(T_0, n) & \text{if } f(x) = 0 \\
+            \mathrm{val}(T_1, n) & \text{otherwise}
+          \end{cases}.
+        \]
+  \end{description}
+\end{definition}
+
+Using all these notions we can reformulate the results about Alice and Bob's
+game.
+\begin{theorem}
+\label{theorem:guess-the-number}
+  \begin{enumerate}
+    \item There is a $B$-decision tree $T$ such that
+      \begin{itemize}
+        \item $h(T) \le 10$ and
+        \item $\mathrm{val}(T, n) = n$ for any $n \in \range{1000}$.
+      \end{itemize}
+    \item Let $T$ be a $B$-decision tree such that $\mathrm{val}(T, n) = n$ for
+      any $n \in \range{1000}$. Then $h(T) \ge 10$.
+  \end{enumerate}
+\end{theorem}
+
+\begin{exercise}
+  Prove the first part of \Cref{theorem:guess-the-number}.
+\end{exercise}
+
+\section{Structural Induction Theorem}
+To prove the second part of \Cref{theorem:guess-the-number} we need
+to introduce the notion of structural induction.
+
+\begin{theorem}[The Structural Induction Principle]
+\label{theorem:structural-induction}
+    Let $S \subseteq U$ be the set freely generated from $U_0 \subseteq U$ by
+    $\mathcal{F} =
+      \set{F_1 : U^{\ell_1} \to U, \dots, F_n : U^{\ell_n} \to U, \dots }$.
+
+    Assume that $S' \subseteq U$ is a set such that the following constraints
+    are true.
+    \begin{description}
+        \item [(base case)] $B \subseteq S'$
+        \item[(induction step)]
+          $F_i(u_1, \dots, u_{\ell_i}) \in S'$ for any
+          $u_1, \dots, u_{\ell_i} \in S'$ and $i \in \N$.
+    \end{description}
+    Then $S \subseteq S'$.
+\end{theorem}
+
+Using this result, we may prove \Cref{theorem:guess-the-number}.
+\begin{proof}[Proof of \Cref{theorem:guess-the-number}]
+  We need to prove only the second part of the statement.
+  Let $V(T) = \set[n \in \Z]{\mathrm{val}(T, n)}$, where $T$ is a $B$-decision
+  tree. This proof is based on the following observation.
+  \begin{claim}
+  \label{claim:guess-the-number}
+    For any $B$-decision tree $T$, size of $V(T)$ is at most $2^{h(T)}$.
+  \end{claim}
+
+  Assume that $T$ is a $B$-decision tree such that $\mathrm{val}(T, n) = n$ for
+  any $n \in \range{1000}$. Whence $\range{1000} \subseteq V(T)$. Therefore 
+  $V(T)$ has at least $1000$ elements. As a result, $2^{h(T)} \ge 1000$;
+  which implies that $h(T) \ge 10$.
+
+  So we just need to prove \Cref{claim:guess-the-number}. We prove it using
+  structural induction. Let $S'$ be the set of decision trees $T$ such that size
+  of $V(T)$ is at most $2^{h(T)}$.
+  \begin{description}
+    \item[(base case)] If $T$ is equal to an integer $x$, then 
+      $\mathrm{val}(T, n) = x$ for any $n \in \Z$. Hence, the size of $V(T)$ is
+      equal to $1 = 2^0 = 2^{h(T)}$.
+    \item[(induction step)] Assume that $T = (f, T_0, T_1)$ for some 
+      $T_0, T_1 \in S'$. We know that the size of $V(T_0)$ is at most
+      $2^{h(T_0)}$ and the size of $V(T_0)$ is at most $2^{h(T_1)}$. In 
+      addtion, it is clear that $V(T) \subseteq V(T_0) \cup V(T_1)$. Therefore,
+      the size of $V(T)$ is at most 
+      $2^{h(T_0)} + 2^{h(T_1)} \le 2^{\max(h(T_0), h(T_1)) + 1} = 2^{h(T)}$.
+  \end{description}
+  Hence, by \Cref{theorem:structural-induction}, $S'$ is equal to the set of all
+  $B$-decision trees.
+\end{proof}
+
+Now we are ready to prove \Cref{theorem:structural-induction}.
+\begin{proof}[Proof of \Cref{theorem:structural-induction}]
+    We prove the statement using induction. More precisely, we prove using
+    induction by $m$ that if there is a sequence
+    $u_1$, \dots, $u_m$ such that
+    for each $i \in \range{m}$, $u_i \in B$ or $u_i = F(u_{k_1}, \dots, u_{k_\ell})$
+    for $F \in \mathcal{F}$ and $k_1, \dots, k_\ell < i$, then $u_m \in S'$.
+
+    The case when $m = 1$ is clear since in this case $u_1 \in B$ which implies
+    that it is in $S'$.
+
+    Let us now prove the induction step. Assume that the statement is true for any
+    $k \le m$. Consider a sequence $u_1$, \dots, $u_{m + 1}$ such that
+    for each $i \in [m + 1]$,
+    $u_i \in U_0$ or $u_i = F(u_{k_1}, \dots, u_{k_\ell})$
+    for $F \in \mathcal{F}$ and $k_1, \dots, k_\ell < i$. Let us consider
+    $F \in \mathcal{F}$ and $k_1, \dots, k_\ell < m + 1$ such that
+    $u_{m + 1} = f(u_{k_1}, \dots, u_{k_\ell})$. By the induction hypothesis,
+    $u_{k_1}, \dots, u_{k_\ell} \in S'$. Therefore, by the properties of $S'$,
+    $u_{m + 1} \in S'$.
+\end{proof}
+
+\begin{chapterendexercises}
+    \exercise[recommended]
+        Using recursive definition we can define an arithmetic formula on the
+        variables $x_1$, \dots, $x_n$.
+        \begin{description}
+            \item [(base case)] $x_i$ is an arithmetic formula on the variables $x_1$,
+                \dots, $x_n$ for all $i$; if $c$ is a real number, then $c$ is also
+                an arithmetic formula on the variables $x_1$, \dots, $x_n$.
+            \item[(recursion step)] If $P$ and $Q$ are arithmetic formulas on the variables
+                $x_1$, \dots, $x_n$, then $(P + Q)$ and $P \cdot Q$ are arithmetic formulas
+                on the variables $x_1$, \dots, $x_n$.
+        \end{description}
+
+        We can also define recursively the value of such a formula.
+        Let $v_1$, \dots, $v_n$ be some integers.
+        \begin{description}
+            \item[(base cases)] $x_i\big\rvert_{x_1 = v_1, \dots, x_n = v_n} = v_i$; in
+                other words, the value of the arithmetic formula $x_i$ is equal to $v_i$
+                when $x_1 = v_1$, \dots, $x_n = v_n$; if $c$ is a real number, then
+                $c\rvert_{x_1 = v_1, \dots, x_n = v_n} = c$.
+            \item[(recursion steps)] If $P$ and $Q$ are arithmetic formulas on the
+            variables $x_1$, \dots, $x_n$, then
+            \[
+                (P + Q)\big\rvert_{x_1 = v_1, \dots, x_n = v_n} =
+                P\big\rvert_{x_1 = v_1, \dots, x_n = v_n} +
+                Q\big\rvert_{x_1 = v_1, \dots, x_n = v_n}
+            \]
+            and
+            \[
+                (P \cdot Q)\big\rvert_{x_1 = v_1, \dots, x_n = v_n} =
+                P\big\rvert_{x_1 = v_1, \dots, x_n = v_n} \cdot
+                Q\big\rvert_{x_1 = v_1, \dots, x_n = v_n}.
+            \]
+        \end{description}
+
+        Prove that for any arithmetic formula $A$ on $x$, there is a polynomial
+        $p$ such that $p(v) = A\big\rvert_{x = v}$ for any $v \in \R$.
+    \exercise We say that $L$ is a list of powers of $x$ iff
+        \begin{itemize}
+            \item either $L = x^k$ for some positive integer $k$ or
+            \item $L = (x^k, L')$ where $L'$ is a list of powers of $x$ and
+                $k$ is a positive integer.
+        \end{itemize}
+
+        Let $L$ be a list of powers of $x$. We say that the sum of $L$
+        with $x = v$ denoted by $\sum L\big\rvert_{x = v}$
+        \begin{itemize}
+            \item is equal to $x^k$ whether $L = x^k$ and
+            \item is equal to $x^k + \sum L'\big\rvert_{x = v}$ whether
+                $L = (x^k, L')$.
+        \end{itemize}
+
+        Prove that for any list $L$ of powers of $x$ there is a polynomial such that
+        $\sum L\big\rvert_{x = v} = p(v)$ for all real numbers $v$.
+    \exercise
+        \begin{itemize}
+            \item Define arithmetic formulas with division and define their value (make
+                sure that you handled divisions by $0$).
+
+            \item Show that for any arithmetic formula with division $A$ on $x$,
+                there are polynomials $p$ and $q$ such that $\frac{p(v)}{q(v)} =
+                A\big\rvert_{x = v}$ or $A\big\rvert_{x = v}$ is not defined for
+                any real value $v$.
+        \end{itemize}
+\end{chapterendexercises}
