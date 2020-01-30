@@ -63,31 +63,16 @@ of universal sets.
   \end{enumerate}
 \end{proof}
 
-Using the proof of this result we can make several surprising observations.
-
-First observation states that there is no way to determine if a given
-algorithm terminates or not.
+Using the proof of this result we can prove the following surprising
+observation.
 \begin{theorem}
   Let $U$ be a universal function.
   Let $\Halting : \N^2 \to \set{0, 1}$ be the function such that
   $\Halting(n, x) = 1$ iff $U_n(x)$ is defined. Then $\Halting$ is not
   computable.
 \end{theorem}
-
-Another observation is that constructing the shortest program solving a given
-problem is not feasible.
-In other words let us consider the problem of producing the shortest algorithm
-$\Algorithm{A}$ by a given $\Algorithm{B}$ such that
-$\Algorithm{A}(x) = \Algorithm{B}(x)$ for any $x \in \N$. Apparently there is
-no algorithm that can find such $\Algorithm{A}$.
-
-To prove this we need to formalize what we mean by the shortest algorithm and
-how we encode $\Algorithm{A}$.
-\begin{theorem}
-  Let $\Optimize : \N \to \N$ be the function such that
-  $U_{\Optimize(n)}$ is the same as $U_n$ and $U_m$ and $U_n$ are different
-  for any $m < \Optimize(n)$. Then $O$ is not computable.
-\end{theorem}
+Informally, this theorem says that it is impossible to check whether a given
+algorithm terminates or not on some input.
 
 
 \section{Diagonalization Method}

@@ -1,0 +1,91 @@
+\chapter{G\"odel Universal Functions}
+\Cref{theorem:composition} proved that composition of two computable functions
+is computbale. Moreover, it is easy to see that given the programs computing
+funcitons $f$ and $g$ we can automatically obtain the function $g \circ f$.
+
+However, we would like to avoid specifics of programin languages in our study of
+computability theory. Our tool to do so is the notion of a universal function.
+In this chapter we give a formulation and a proof of the statement saying that
+there is an algorithm that assigns to numbers of any two computable functions a
+number of their composition.
+
+To do this we need a new class of universal functions.
+\begin{definition}
+  Let $U : \N^2 \to \N$ be a computable universal function for the class of
+  univariate computable functions. We say that $U$ is \emph{G\"odel univeral
+  function} if for any computable function $V : \N^2 \to \N$, there is a
+  computable function $s : \N \to \N$ such that 
+  \[
+    V(n, x) = U(s(n), x)
+  \]
+  for all $n, x \in \N$.
+\end{definition}
+
+\begin{theorem}
+  There is a G\"odel univeral function.
+\end{theorem}
+
+\begin{proof}
+  We start the proof of the theorem from proving that there is a computable
+  function $T : \N^3 \to \N$ that is universal for the set of bivariate
+  computable functions. Let us fix a computable bijection 
+  $\pair{\cdot}{\cdot} : \N^2 \to \N$. Let $R$ be a universal function for the set of
+  univariate computable functions, and let $T(n, u, v) = R(n, \pair{u}{v})$.
+  it is easy to see that $T$ is indeed a universal function for the set of
+  bivariate computable functions.
+
+  Let $U : \N^2 \to \N$ be the function such that $U(\pair{n}{u}, v) = 
+  T(n, u, v)$. We need to show that $U$ is G\"odel univeral function.
+  Let us consider some computable function $V : \N^2 \to \N$. There is $n \in
+  \N$ such that $V(u, v) = T(n, u, v)$ for all $u, v \in \N$ since $T$ is
+  universal. Therefore $U(\pair{n}{u}, v) = V(u, v)$ for all $u, v \in \N$.
+  As a result, we can define $s(u)$ to be equal to $\pair{n}{u}$.
+\end{proof}
+
+\begin{exercise}
+  Show that there is a computable bijection $\pair{\cdot}{\cdot} : \N^2 \to \N$.
+\end{exercise}
+
+\begin{theorem}
+  Let $U$ be a G\"odel universal function for the set of univariate computable
+  functions. Then there is a total computble function $c : \N^2 \to \N$ such
+  that $U(c(p, q), x) = U(p, U(q, x))$ for any $p, q, x \in \N$.
+\end{theorem}
+
+Using the notion of G\"odel universal function we can prove that constructing
+the shortest program solving a given problem is not feasible.
+In other words let us consider the problem of producing the shortest algorithm
+$\Algorithm{A}$ by a given $\Algorithm{B}$ such that
+$\Algorithm{A}(x) = \Algorithm{B}(x)$ for any $x \in \N$. Apparently there is
+no algorithm that can find such $\Algorithm{A}$.
+
+To prove this we need to formalize what we mean by the shortest algorithm and
+how we encode $\Algorithm{A}$.
+\begin{theorem}
+  Let $U$ be a G\"odel universal function, and let $\Optimize : \N \to \N$ be
+  the function such that $U_{\Optimize(n)}$ is the same as $U_n$ and $U_m$ and
+  $U_n$ are different for any $m < \Optimize(n)$. Then $O$ is not computable.
+\end{theorem}
+
+To prove this statement we need the following auxilary result.
+\begin{theorem}
+  Let $U$ be a G\"odel universal function. 
+  Then the set 
+  $S = \set[U(n, x) \text{ is not defined for all } x \in \N]{n \in \N}$ is
+  not decidable.
+\end{theorem}
+\begin{proof}
+  Let $K$ be a enumerable but undecidable set.
+  Consider the partial function $V : \N^2 \to \N$ such that 
+  \[
+    V(n, x) = 
+    \begin{cases}
+      0 & \text{if } n \in K \\
+      \text{undefined} & \text{otherwise}
+    \end{cases}.
+  \]
+  Note that $V(n, x)$ terminates for some $x \in \N$ iff $n \in K$. 
+  Since $U$ is G\"odel universal function there is a computable function $s$
+  such that $V(n, x) = U(s(n), x)$. Hence, $s(n) \in S$ iff $n \in K$.
+  As a result, $S$ is undecidable.
+\end{proof}
