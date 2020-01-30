@@ -51,6 +51,13 @@ To do this we need a new class of universal functions.
   functions. Then there is a total computble function $c : \N^2 \to \N$ such
   that $U(c(p, q), x) = U(p, U(q, x))$ for any $p, q, x \in \N$.
 \end{theorem}
+\begin{proof}
+  Let us consider a computable function $V : \N^2 \to \N$ such that
+  $V(\pair{p}{q}, x) = U(p, U(q, x))$.There is a total computable function $s :
+  \N \to \N$ such that $U(s(\pair{p}{q}), x) = V(\pair{p}{q}, x)$ since $U$ is a
+  G\"odel universal function. Hence, if we define $c(p, q)$ to be equal to
+  $s(\pair{p}{q})$, we get that $U(c(p, q), x) = U(p, U(q, x))$.
+\end{proof}
 
 Using the notion of G\"odel universal function we can prove that constructing
 the shortest program solving a given problem is not feasible.
