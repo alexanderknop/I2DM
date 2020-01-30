@@ -62,6 +62,7 @@ no algorithm that can find such $\Algorithm{A}$.
 To prove this we need to formalize what we mean by the shortest algorithm and
 how we encode $\Algorithm{A}$.
 \begin{theorem}
+\label{theorem:program-optimization}
   Let $U$ be a G\"odel universal function, and let $\Optimize : \N \to \N$ be
   the function such that $U_{\Optimize(n)}$ is the same as $U_n$ and $U_m$ and
   $U_n$ are different for any $m < \Optimize(n)$. Then $O$ is not computable.
@@ -88,4 +89,12 @@ To prove this statement we need the following auxilary result.
   Since $U$ is G\"odel universal function there is a computable function $s$
   such that $V(n, x) = U(s(n), x)$. Hence, $s(n) \in S$ iff $n \in K$.
   As a result, $S$ is undecidable.
+\end{proof}
+
+\begin{proof}[Proof of \Cref{theorem:program-optimization}]
+  Let $S$ be the set from the previous theorem.
+  Assume, for the sake of contradiction, that $\Optimize$ is computable. Let
+  $n_0$ be the smallest natural number $n$ such that $U(n, x)$ is not defined
+  for all $x \in \N$. It is clear that $n \in S$ iff $\Optimize(n) = n_0$.
+  Therefore $S$ is decidable, which is a contradiction.
 \end{proof}
