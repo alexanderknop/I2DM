@@ -357,23 +357,6 @@ Now we are ready to prove \Cref{theorem:structural-induction}.
 
         Prove that for any arithmetic formula $A$ on $x$, there is a polynomial
         $p$ such that $p(v) = A\big\rvert_{x = v}$ for any $v \in \R$.
-    \exercise We say that $L$ is a list of powers of $x$ iff
-        \begin{itemize}
-            \item either $L = x^k$ for some positive integer $k$ or
-            \item $L = (x^k, L')$ where $L'$ is a list of powers of $x$ and
-                $k$ is a positive integer.
-        \end{itemize}
-
-        Let $L$ be a list of powers of $x$. We say that the sum of $L$
-        with $x = v$ denoted by $\sum L\big\rvert_{x = v}$
-        \begin{itemize}
-            \item is equal to $x^k$ whether $L = x^k$ and
-            \item is equal to $x^k + \sum L'\big\rvert_{x = v}$ whether
-                $L = (x^k, L')$.
-        \end{itemize}
-
-        Prove that for any list $L$ of powers of $x$ there is a polynomial such that
-        $\sum L\big\rvert_{x = v} = p(v)$ for all real numbers $v$.
     \exercise
         \begin{itemize}
             \item Define arithmetic formulas with division and define their value (make
