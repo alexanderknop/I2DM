@@ -1,15 +1,16 @@
 \chapter{G\"odel Universal Functions}
-\Cref{theorem:composition-computable} proved that composition of two computable functions
-is computbale. Moreover, it is easy to see that given the programs computing
-funcitons $f$ and $g$ we can automatically obtain the function $g \circ f$.
-
-However, we would like to avoid specifics of programin languages in our study of
-computability theory. Our tool to do so is the notion of a universal function.
-In this chapter we give a formulation and a proof of the statement saying that
-there is an algorithm that assigns to numbers of any two computable functions a
-number of their composition.
-
-To do this we need a new class of universal functions.
+It is known that there are algorithms that given a program in one programming
+language can produce a program in another programming language.
+\marginurl{%
+  You can read more about such translators on Wikipedia.
+}{en.wikipedia.org/wiki/Source-to-source_compiler}
+However, in this book we are talking about universal functions instead of
+programming languages. Hence, we may be interested to study the following
+problem. Let $U$ and $V$ be (computable) universal functions for the set of all
+univariate computable functions. Given $n \in \N$ find $m \in M$ such that $U_m$
+and $V_m$ are equal. Unfortunately, not for every pair of universal sets such
+$m$ can be found efficiently. However, there is a special class of universal
+functions that allow to find such $m$'s efficiently for any computable $V$.
 \begin{definition}
   Let $U : \N^2 \to \N$ be a computable universal function for the class of
   univariate computable functions. We say that $U$ is \emph{G\"odel univeral
@@ -46,6 +47,17 @@ To do this we need a new class of universal functions.
   Show that there is a computable bijection $\pair{\cdot}{\cdot} : \N^2 \to \N$.
 \end{exercise}
 
+G\"odel universal funcitons allow us to efficiently operate with numbers of
+computable functions.
+For example, \Cref{theorem:composition-computable} proved that composition of
+two computable functions is computbale. Moreover, it is easy to see that given
+the programs computing funcitons $f$ and $g$ we can automatically obtain the
+function $g \circ f$.
+
+However, we would like to avoid specifics of programin languages in our study of
+computability theory. Our tool to do so is the notion of a universal function so
+we need to prove that there is an algorithm that given numbers of any two
+computable functions a computes a number of their composition.
 \begin{theorem}
   Let $U$ be a G\"odel universal function for the set of univariate computable
   functions. Then there is a total computble function $c : \N^2 \to \N$ such
@@ -59,9 +71,9 @@ To do this we need a new class of universal functions.
   $s(\pair{p}{q})$, we get that $U(c(p, q), x) = U(p, U(q, x))$.
 \end{proof}
 
-Using the notion of G\"odel universal function we can prove that constructing
-the shortest program solving a given problem is not feasible.
-In other words let us consider the problem of producing the shortest algorithm
+Using the notion of G\"odel universal function we can also prove that
+constructing the shortest program solving a given problem is not feasible. In
+other words let us consider the problem of producing the shortest algorithm
 $\Algorithm{A}$ by a given $\Algorithm{B}$ such that
 $\Algorithm{A}(x) = \Algorithm{B}(x)$ for any $x \in \N$. Apparently there is
 no algorithm that can find such $\Algorithm{A}$.
@@ -77,6 +89,7 @@ how we encode $\Algorithm{A}$.
 
 To prove this statement we need the following auxilary result.
 \begin{theorem}
+\label{theorem:undefined-functions}
   Let $U$ be a G\"odel universal function. 
   Then the set 
   $S = \set[U(n, x) \text{ is not defined for all } x \in \N]{n \in \N}$ is
@@ -104,4 +117,38 @@ To prove this statement we need the following auxilary result.
   $n_0$ be the smallest natural number $n$ such that $U(n, x)$ is not defined
   for all $x \in \N$. It is clear that $n \in S$ iff $\Optimize(n) = n_0$.
   Therefore $S$ is decidable, which is a contradiction.
+\end{proof}
+
+\Cref{theorem:undefined-functions,theorem:halting,theorem:program-optimization}
+proved that several properties of algorithms cannot be computed or verified.
+The following theorem says that this is not a coincidence, and essentially any 
+nontrivial property of algorithms cannot be verified efficiently.
+\begin{theorem}[Rice -- Uspensky]
+  Let $\Computable$ be the set of all computable functions, and let
+  $\mathcal{P} \subseteq \Computable$ be some nontrivial set of computable
+  funcitons ($\mathcal{P} \neq \emptyset$ and $\mathcal{P} \neq \Computable$).
+  Let $U : \N^2 \to \N$ be a universal G\"odel function. Then the set 
+  $S = \set[U_n \in \mathcal{P}]{n \in \N}$ is undecidable.
+\end{theorem}
+\begin{proof}
+  This theorem can be proved using almost the same method as
+  \Cref{theorem:undefined-functions}.
+
+  Let $f : \N \to \N$ be a partial function that is not defined at all $x \in
+  \N$. Without loss of generality we may assume that $f \in \mathcal{P}$.
+  Let $g : \N \to \N$ be a function from $\Computable \setminus \mathcal{P}$.
+
+  Let $K$ be a enumerable but undecidable set.
+  Consider the partial function $V : \N^2 \to \N$ such that 
+  \[
+    V(n, x) = 
+    \begin{cases}
+      g(x) & \text{if } n \in K \\
+      \text{undefined} & \text{if } n \not\in K 
+    \end{cases}.
+  \]
+  Note that $V_n \not\in \mathcal{P}$ iff $n \in K$. 
+  Since $U$ is G\"odel universal function there is a computable function $s$
+  such that $V(n, x) = U(s(n), x)$. Hence, $s(n) \not\in S$ iff $n \in K$.
+  As a result, $S$ is undecidable.
 \end{proof}
