@@ -52,15 +52,15 @@
 
 \newcommand{\fpm}{\mathcal{G}}
 
-\newcommand{\marginurl}[2]{
-    \begin{marginfigure}
-        {\scriptsize {#1}}
+\newcommand{\marginurl}[3][0pt]{
+    \begin{marginfigure}[{#1}]
+        {\scriptsize {#2}}
         \vskip 0.25cm
         \noindent
         \qrset{link, height=3cm}
-        \qrcode{https://#2}
+        \qrcode{https://#3}
         \vskip 0.25cm
         \noindent
-        \url{https://#2}
+        \url{https://#3}
     \end{marginfigure}
 }

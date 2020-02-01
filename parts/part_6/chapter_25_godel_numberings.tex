@@ -9,8 +9,9 @@ programming languages. Hence, we may be interested to study the following
 problem. Let $U$ and $V$ be (computable) universal functions for the set of all
 univariate computable functions. Given $n \in \N$ find $m \in M$ such that $U_m$
 and $V_m$ are equal. Unfortunately, not for every pair of universal sets such
-$m$ can be found efficiently. However, there is a special class of universal
-functions that allow to find such $m$'s efficiently for any computable $V$.
+$m$ can be found efficiently (see \Cref{theorem:universal-not-godel}). 
+However, there is a special class of universal functions that allow to find such
+$m$'s efficiently for any computable $V$.
 \begin{definition}
   Let $U : \N^2 \to \N$ be a computable universal function for the class of
   univariate computable functions. We say that $U$ is \emph{G\"odel univeral
@@ -152,3 +153,49 @@ nontrivial property of algorithms cannot be verified efficiently.
   such that $V(n, x) = U(s(n), x)$. Hence, $s(n) \not\in S$ iff $n \in K$.
   As a result, $S$ is undecidable.
 \end{proof}
+
+Let $U$ be a G\"odel universal funciton.
+A simple corollary of the \Cref{theorem:undefined-functions} is that the set 
+$\set[U(n, x) \text{ is not defined for all } x \in \N]{n \in \N}$ has
+infinitely many elements but it is not equal to the set of natural numbers. This
+simple observation allows us to prove that not all universal functions are
+G\"odel universal functions.
+\begin{theorem}
+\label{theorem:universal-not-godel}
+  There is a universal function $U : \N^2 \to \N$ such that $U$ is not  G\"odel
+  universal function.
+\end{theorem}
+\begin{proof}
+  Let $U$ be a G\"odel universal function. Note that the set 
+  $S = \set[U(n, x) \text{ is defined for some } x \in \N]{n \in \N}$ is
+  enumerable. Hence, there is a computable bijection $d : \N \to S$.
+
+  Let us consider $V : \N^2 \to \N$ such that $V(i + 1, x) = U(d(i), x)$ for 
+  $i, x \in \N$ and $V(1, x)$ undefined for all $x \in \N$. It is clear that $V$
+  is computable universal function. However, the set 
+  \[  
+    \set[V(n, x) \text{ is not defined for all } x \in \N]{n \in \N} = \set{1}
+  \]
+  cannot be undecidable. As a result, $V$ is not G\"odel universal
+  function.\marginurl[3cm]{%
+    In fact, Friedberg (Journal of Symbolic Logic 23 (1958), 309-318)
+    constructed a universal function such that any computable function has only
+    one number; i.e., it is possible to create a programming language such that
+    each programming problem has a unique solution in it.
+  }{doi.org/10.2307/2964290}
+\end{proof}
+
+\begin{chapterendexercises}
+  \exercise Let $U : \N^2 \to \N$ be a computable universal function for the
+    class of univariate computable functions. Assume that for any universal
+    computable function $V : \N^2 \to \N$, there is a computable function 
+    $s : \N \to \N$ such that
+    \[
+      V(n, x) = U(s(n), x)
+    \]
+    for all $n, x \in \N$.
+  \exercise Let $U$ be a G\"odel universal function. Show that for any
+    computable function $V : \N^3 \to \N$, there is a total computable function
+    $s : \N^2 \to \N$ such that $U(s(m, n), x) = V(m, n, x)$ for all $m, n, x
+    \in \N$.
+\end{chapterendexercises}
