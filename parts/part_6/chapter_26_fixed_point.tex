@@ -1,0 +1,35 @@
+\chapter{Fixed Point Theorem}
+Probbaly one of the most surprinsg phenomenon in the world of esoteric 
+programming is existence of quines, the programs that print themself.\marginurl{%
+  Probably the most impresive example of a quine is Quine Relay, a Ruby program
+  that generates Rust program that generates Scala program that generates
+  \dots (through 128 languages in total)\dots REXX program that generates the
+  original Ruby code again.
+}{github.com/mame/quine-relay}
+This chapter proves existence of such programs in almost all programming
+languages.
+
+\begin{theorem}[Kleene 's Fixed Point Theorem]
+  Let $h : \N \to \N$ be a total computbale function, and let $U : \N^2 \to \N$
+  be a G\"odel universal function. Then there is $n \in \N$ such that $U_n$ is
+  equal to $U_{h(n)}$.
+\end{theorem}
+\begin{proof}
+  Let $\sim$ be an equivalence relation on $\N$.
+\end{proof}
+
+\begin{corollary}
+  Let $U : \N^2 \to \N$ be a G\"odel universal function. Then there is $n \in
+  \N$ such that $U(n, x) = n$ for all $x \in \N$.
+\end{corollary}
+\begin{proof}
+  Let $q : \N \to \N$ be a computable total function such that $U(q(n), x) = n$
+  for all $x \in \N$ (such a function exists since $U$ is a G\"odel universal
+  function). Note that there is $n$ such that $U_n$ is equal to $U_{q(n)}$ which
+  implies that $U(n, x) = U(q(n), x) = n$ for all $x \in \N$.
+\end{proof}
+
+\begin{exercise}
+  Prove that there is a program on the programing of your choice that prints its
+  text backwards.
+\end{exercise}
