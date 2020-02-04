@@ -1,0 +1,49 @@
+\chapter{m-Reductions}
+In the proofs of \Cref{theorem:halting,theorem:undefined-functions}, to prove
+that a set $S$ is undecidable we proved that $S$ is decidable iff an undecidable
+set $K$ should be also decidable, which lead to the conclusion that $S$ is
+undecidable. This was done using ``reduction'' argument. We constructed a total
+computable function $f : \N \to \N$ such that $f(x) \in S$ iff $x \in K$ for all
+$x \in \N$. In
+this chapter we will study this method in more details.
+
+\begin{definition}
+  Let $A, B \subseteq \N$. We say that $A$ is \emph{$m$-reducible} to
+  $B$\footnote{%
+    The letter ``m'' here stands for ``many-to-one''; however, Sipser's
+    ``Introduction to the Theory of Computation'' suggests to use call such
+    reductions ``mapping reductions'' giving another life for the letter $m$ in
+    this notation.
+  }
+  ($A \le_m B$) if there is a total computable function $f : \N \to \N$ such
+  that $x \in A$ iff $f(x) \in B$ for all $x \in \N$. We say that $f$
+  \emph{$m$-reduces} $A$ to $B$.
+\end{definition}
+
+This notion allows us to translate properties from one set to another.
+\begin{theorem}
+  Let $A, B \subseteq \N$ such that $A \le_m B$.
+  \begin{itemize}
+    \item If $B$ is decidable, then $A$ is decidable.
+    \item If $B$ is enumerable, then $A$ is enumerable.
+  \end{itemize}
+\end{theorem}
+
+\begin{exercise}
+  Let $A, B, C \subseteq \N$. Show that
+  \begin{itemize}
+    \item $A \le_m A$, and 
+    \item if $A \le_m B$ and $B \le_m C$, then $A \le_m C$.
+  \end{itemize}
+\end{exercise}
+
+\begin{theorem}
+  In the class of enumerable sets, there are sets maximal with respect to
+  $m$-reducibility; i.e., there is a set enumerable set $B$ sucht that $A \le_m
+  B$ for any enumerable set $A$.
+\end{theorem}
+
+\begin{definition}
+  A set $B$ maximal with respect to $m$-reducibility is called
+  \emph{$m$-complete for the set of enumerable sets}.
+\end{definition}
