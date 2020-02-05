@@ -341,6 +341,13 @@ Now we are ready to prove \Cref{theorem:structural-induction}.
   \exercise[recommended] Let $S \subseteq \Z$ be a set of size at least $2^k$,
     and let $T$ be a decision tree such that $\mathrm{val}(T, n) = n$ for any $n
     \in S$. Show that $h(T) \ge k$.
+  \exercise[recommended] Let $S$ be a set of integers defined recursively such
+    that
+    \begin{itemize}
+      \item $3 \in S$, and 
+      \item if $x, y \in S$, then $x + y \in S$.
+    \end{itemize}
+    Show that $S = \set[k \in \N]{3k}$.
   \exercise[recommended]
     Using recursive definition we can define an arithmetic formula on the
     variables $x_1$, \dots, $x_n$,
@@ -375,17 +382,64 @@ Now we are ready to prove \Cref{theorem:structural-induction}.
 
     Prove that for any arithmetic formula $A$ on $x$, there is a polynomial
     $p$ such that $p(v) = A\big\rvert_{x = v}$ for any $v \in \R$.
-  \exercise Let us define the set $S$ defined as follows: $3 \in S$ and 
-    if $x \in S$ and $y \in S$, then $(x + y) \in S$. 
-    Show that $S = \set[k \in \N]{3k}$.
   \exercise
-        \begin{itemize}
-            \item Define arithmetic formulas with division and define their value (make
-                sure that you handled divisions by $0$).
+    \begin{itemize}           
+      \item Define arithmetic formulas with division and define their value (make
+        sure that you handled divisions by $0$).
+      \item Show that for any arithmetic formula with division $A$ on $x$,
+        there are polynomials $p$ and $q$ such that $\frac{p(v)}{q(v)} =
+        A\big\rvert_{x = v}$ or $A\big\rvert_{x = v}$ is not defined for
+        any real value $v$.
+    \end{itemize}
+  \exercise[recommended]
+    We say that $L$ is a $B$-decision list 
+    \begin{description}
+      \item[(base case)] if either $L$ is a number $y \in \Z$, or
+      \item[(recursion step)] $L$ is equal to $(f, v, L')$ where $f : \Z \to
+        \set{0, 1}$, $v \in \Z$, and $L$ is a $B$-decision list.
+    \end{description}
 
-            \item Show that for any arithmetic formula with division $A$ on $x$,
-                there are polynomials $p$ and $q$ such that $\frac{p(v)}{q(v)} =
-                A\big\rvert_{x = v}$ or $A\big\rvert_{x = v}$ is not defined for
-                any real value $v$.
-        \end{itemize}
+    We can also define the value $\mathrm{val}(L, x)$ of a $B$-decision list $L$ at
+    $x \in \mathbb{Z}$.
+    \begin{description}
+      \item[(base case)] If $L$ is a number $y$, then $\mathrm{val}(L, x) = y$, and
+      \item[(recursion step)] if $L = (f, v, L')$, then
+        \[
+          \mathrm{val}(L, x) = 
+          \begin{cases}
+            v & \text{if } f(x) = 1 \\
+            \mathrm{val}(L', x) & \text{otherwise}
+          \end{cases}.
+        \]
+    \end{description}
+
+    Similarly one may define the length $\ell(L)$ of a $B$-decition list $L$.
+    \begin{description}
+      \item[(base case)] If $L$ is a number $y$, then $\ell(L) = 1$, and
+      \item[(recursion step)] if $L = (f, v, L')$, then $\ell(L) = \ell(L') + 1$.
+    \end{description}
+
+    Assume that $\mathrm{val}(L, x) = x$ for any $x \in [1000]$ show that 
+    $\ell(L) \ge 1000$.
+  \exercise
+    Let us consider the following game modification of the game studied in this
+    chapter. Alice have chosen a number from $1$ to $1000$. Bob wants to
+    guess the number so he is asking Alice ``yes'' or ``no'' questions.
+    However, he cannot get more than $\ell$ ``yes'' answers; i.e., as soon as Alice
+    says $\ell$th ``yes'', Bob is supposed to be able to guess her number.
+    \begin{enumerate} 
+      \item Show that if $\ell = 1$, then Bob needs at least $1000$ quesitons.
+      \item Show that if $\ell = 2$, then Bob needs at least $\sqrt{1000}$
+        quesions.
+      \item Show that if Bob needs at least $\sqrt[\ell]{1000}$ questions.
+      \item Show that if $\ell = 2$, there is an algorithm for Bob such that he
+        is able to guess the number using $2\ceil{\sqrt{1000}}$ questions.
+    \end{enumerate}
+  \exercise You have a $100$-story building and two eggs. When you drop an egg
+    from any floor of the building, the egg will either break or survive the
+    fall. If the egg survives, then it would have survived any lesser fall. If
+    the egg breaks, then any greater fall would have broken it as well. The eggs
+    are all identical and interchangeable. You’d like to find the minimum height
+    that will break an egg. What is the fewest number of drops in which you are
+    guaranteed to find the right floor?
 \end{chapterendexercises}
