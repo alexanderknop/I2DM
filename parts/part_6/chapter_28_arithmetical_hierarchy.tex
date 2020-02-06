@@ -1,0 +1,49 @@
+\chapter{Arithmetical Hierarchy}
+
+\Cref{theorem:enumerable-via-computable-funcitons} proves that any decidable set
+is the image of some total computable function from $\N$. Identifying sets and
+predicates we can prove the following theorem.
+\begin{theorem}
+  A predicate$A(x)$ of natural numbers is enumerable iff there is a decidable
+  predicate $B(x, y)$ such that the following formula is always true:
+  \[
+    A(x) \iff \exists y \  B(x, y).
+  \]
+  (Here and in the sequel, we are going to write $\exists x \  P(x)$ denotes the
+  statement ``there is an $x$ from the domain of $P$ such that $P(x)$ is true.)
+\end{theorem}
+
+A natural questions can be asked: ``What can be said about other combinations of
+quantifiers?''.
+
+It is easy to see that if $A(x)$ is a predicate such that 
+\[
+  A(x) \iff \exists y \  \exists z \  C(x, y, z),
+\]
+where $C(x, y, z)$ is decidable, then $A(x)$ is enumerable.
+Indeed, let $B(x, \pair{y}{z}) = C(x, y, z)$; then $B(x, w)$ is decidable and 
+\[
+  A(x) \iff \exists y \  \exists z \  B(x, \pair{y}{z}) \iff 
+    \exists w \  B(x, w).
+\]
+If $A(x)$ is a predicate such that 
+\[
+  A(x) \iff \forall y \  B(x, y),
+\]
+where $B(x, y)$ is decidable, then the negation of $A(x)$ is enumerable (we call
+such sets and predicates \emph{coenumerable}). Indeed, 
+\[
+  \lnot A(x) \iff \exists y \  \lnot B(x, y),
+\]
+and $\lnot B(x, y)$ is decidable since the compliment of a decidable set is
+decidable.
+
+This question gives rise to the following definition.
+\begin{definition}
+  We say that a predicate $A$ on $\N$ belongs to the class $\Sigma_n$ iff there
+  is a deciable predicate $B$ on $\N^{n + 1}$ such that 
+  \[
+    A(x) \iff 
+    \exists y_1 \  \forall y_2 \  \exists y_3 \  \dots B(x, y_1, \dots, y_n).
+  \]
+\end{definition}
