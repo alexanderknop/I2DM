@@ -4,7 +4,7 @@
   ``Game Theory''
   by Ferguson.
 }
-In this part we use our knowledge abot basics of mathematical reasoning
+In this part we use our knowledge about basics of mathematical reasoning
 to study games similar to chekers, chess, shogi, and tic tac toe. The games we
 are going to study are called combinatorial games. In these games there are two
 players, each know all the information, there are no chance moves, and when the
@@ -44,7 +44,7 @@ To analyze this game we need the following two observations:
     achieved this, it will not affect the rest of the game.
 \end{enumerate}
 Using this remarks and induction (this style of induction is sometimes
-refered as \emph{backward induction}) we are abel to analise the game.
+referred as \emph{backward induction}) we are able to analyze the game.
 
 Let us consider some certain states of the game.
 Assume that they have at most $3$ chips left, in this case the player that make
@@ -54,7 +54,7 @@ loses since after its turn there are at most $3$ chip. Similarly, if there
 are $5$ chips, the first player to move wins since it can take a chip and
 make the second player to start with $4$.
 
-So twe can formulate the following conjecture.
+So we can formulate the following conjecture.
 Assume that $n$ chips left in the pile. Let $r$ be the reminder of $n$ modulo
 $4$. Then if $r = 0$, the first player to move loses, otherwise, the other
 player loses.
@@ -92,7 +92,7 @@ To study combinatorial games we need to give a formul definition of them.
   There are possible winning conditions,
   \begin{description}
     \item [normal play rule:] the player that made the last move wins, and
-    \item [misere play rule:] the player that made the last move loses.
+    \item [mis\`ere play rule:] the player that made the last move loses.
   \end{description}
   If the game never ends, we declare a draw. If the game always ends, we
   say that the game satisfies \emph{the ending condition}.
@@ -107,7 +107,7 @@ pocker, battleships, rock-paper-scissors, and tick tack toe are not
 combinatorial games.
 
 Since we gave a formal definition of combinatorial games we can give a framework
-that allows to alalise these games.
+that allows to analyze these games.
 \begin{definition}
   We say that a position in a combinatorial game is \emph{terminal} if there
   are no legal moves.
@@ -116,7 +116,7 @@ that allows to alalise these games.
   the current player to move to a P-position is an \emph{N-position}. If all
   possible moves lead to N-positions, then the position is a P-position.
 
-  For the game using the Mis\'ere rule, the definition is the smae except the
+  For the game using the Mis\`ere rule, the definition is the same except the
   terminal position is an N-position.
 \end{definition}
 
@@ -165,7 +165,7 @@ discussed at the begining of the chapter.
 So \Cref{game:take-away-21-3-2-1} is the subtraction game with the subtraction
 set $\set{1, 2, 3}$.
 
-Let us analise the subtraction game with the subtraction set $\set{1, 3, 4}$.
+Let us analyze the subtraction game with the subtraction set $\set{1, 3, 4}$.
 \begin{table}[h!]
   \centering
   \begin{tabular}{l l l l l l l l l}
@@ -235,10 +235,10 @@ statement is true for all $k < n$. Consider the following cases.
     Who is the winner? (Note that the game is not a combinatorial game).
   \exercise Consider the subtraction game where players may subtract $2$ and $3$
     chips on their turn, is $5$ an N-position?
-  \exercise Consider the Mis\'ere subtraction game where players may subtract
+  \exercise Consider the Mis\`ere subtraction game where players may subtract
     $1$, $2$ or $5$ chips on their turn, identify N-positions and
     P-positions.
-  \exercise Consider the Mis\'ere subtraction game where players may subtract
+  \exercise Consider the Mis\`ere subtraction game where players may subtract
     $1$, $5$ or $6$ chips on their turn, identify N-positions and
     P-positions.
   \exercise
