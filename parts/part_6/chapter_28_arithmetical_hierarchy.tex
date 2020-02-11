@@ -46,4 +46,28 @@ This question gives rise to the following definition.
     A(x) \iff 
     \exists y_1 \  \forall y_2 \  \exists y_3 \  \dots B(x, y_1, \dots, y_n).
   \]
+  Similarly, a predicate $A$ on $\N$ belongs to the class $\Sigma_n$ iff there
+  is a deciable predicate $B$ on $\N^{n + 1}$ such that 
+  \[
+    A(x) \iff 
+    \forall y_1 \  \exists y_2 \  \forall y_3 \  \dots B(x, y_1, \dots, y_n).
+  \]
 \end{definition}
+
+Previous observations can be generalized as follows.
+\begin{theorem}
+  \begin{enumerate}
+    \item The set $\Sigma_1$ consists of enumerable sets.
+    \item If a predicate belongs to $\Sigma_n$, then its negation belongs to
+      $\Pi_n$.
+    \item The set $\Sigma_n$ does not change if we allow groups of quantifiers
+      of the same type instead of single quantifiers.
+  \end{enumerate}
+\end{theorem}
+
+Like enumerable and decidable sets, $\Sigma_n$ and $\Pi_n$ sets have several
+good properties.
+\begin{theorem}
+  Union and intersection of two $\Sigma_n$ ($\Pi_n$) sets are also $\Sigma_n$
+  ($\Pi_n$) sets.
+\end{theorem}
