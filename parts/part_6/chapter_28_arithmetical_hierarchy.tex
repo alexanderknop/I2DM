@@ -71,3 +71,45 @@ good properties.
   Union and intersection of two $\Sigma_n$ ($\Pi_n$) sets are also $\Sigma_n$
   ($\Pi_n$) sets.
 \end{theorem}
+
+\begin{exercise}
+  Prove that $\Sigma_n \cup \Pi_n \subseteq \Sigma_{n + 1} \cup \Pi_{n + 1}$ for
+  any $n \in \N_0$.
+\end{exercise}
+
+We can also prove an extension of
+\Cref{theorem:m-reduction-complexity-preservation}.
+\begin{theorem}
+  Let $n \in \N$, and let $A, B \subseteq \N$ such that $A \le_m B$.
+  If $B \in \Sigma_n$, then $A \in \Sigma_n$.
+\end{theorem}
+
+
+\begin{exercise}
+  Prove that if a set $A \in \Sigma_n$, then $A \times A \in \Sigma_n$.
+\end{exercise}
+
+We defined infinitely many classes of sets; however, we have not shown that all
+these sets are different (except $\Sigma_0$ and $\Pi_0$ which are equal to the
+class of all decidable sets). Like in the case of enumebrable sets, to prove
+this we need to use universal sets.
+\begin{theorem}
+  For any $n \in \N$, there is a set $U \in \Sigma_n$ universal for $\Sigma_n$.
+\end{theorem}
+
+We proved that the compliment of an enumerable universal set for the class of
+enumerable sets is not enumerable. Similar result can be shown for $\Sigma_n$.
+\begin{theorem}
+  Let $n \in \N$ and let $W \subseteq \N^2$ be universal for $\Sigma_n$. Then 
+  $W \not\in \Pi_n$.
+\end{theorem}
+
+\begin{corollary}
+  For any $n \in \N$, $\Sigma_n \cup \Pi_n \subsetneq 
+    \Sigma_{n + 1} \cup \Pi_{n + 1}$.
+\end{corollary}
+
+\begin{chapterendexercises}
+  \exercise Prove that if $A, B \in \Sigma_n$, then 
+    $A \setminus B \in \Sigma_{n + 1} \cap \Pi_{n + 1}$.
+\end{chapterendexercises}
