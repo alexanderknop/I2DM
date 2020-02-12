@@ -34,21 +34,24 @@ $\lxor : \set{0, 1} \times \set{0, 1} \to \set{0, 1}$,
 also known as ``exclusive or''), this operation is defined as follows:
 $a \lxor b = 1$ iff $a \neq b$.
 
-It is well-known that any number can be represented as a binary number;
+It is well-known that any number $n \in \N_0$
+can be represented as a binary number ($\N_0$ denotes nonnegative integers);
+\nomenclature[S]{$\N_0$}{denotes the set of nonnegative integers}
 we write $n = (a_\ell, \dots, a_0)_2$ if $n = \sum_{i = 0}^\ell a_i 2^i$.
 For example,
 $5 = 4 + 1 = 1 \cdot 2^2 + 0 \cdot 2^1 + 1 \cdot 2^0 = (1, 0, 1)_2$ and
 $6 = 4 + 2 = 1 \cdot 2^2 + 1 \cdot 2^1 + 0 \cdot 2^0 = (1, 1, 0)_2$.
-So we can define the Nim sum $\bitwisexor : \N \times \N \to \N$, aslo
+So we can define the Nim sum $\bitwisexor : \N_0 \times \N_0 \to \N_0$, aslo
 known as bitwise xor, as follows:
 $(a_\ell, \dots, a_0)_2 \bitwisexor (b_\ell, \dots, b_0)_2 =
     (a_\ell \lxor b_\ell, \dots, a_0 \lxor b_0)_2$.
 For example, $5 \bitwisexor 6 = (1, 0, 1)_2 \bitwisexor (1, 1, 0)_2 =
 (1 \lxor 1, 0 \lxor 1, 1 \lxor 0)_2 = (0, 1, 1)_2$.
+\nomenclature[N]{$\bitwisexor$}{denotes the Nim sum}
 
 \begin{exercise}
   Show that $a \bitwisexor (b \bitwisexor c) = (a \bitwisexor b) \bitwisexor c$
-  for any $a, b, c \in \N$.
+  for any $a, b, c \in \N_0$.
 \end{exercise}
 Hence, we are going to write $a \bitwisexor b \bitwisexor c$ instead of
 $a \bitwisexor (b \bitwisexor c)$ and $(a \bitwisexor b) \bitwisexor c$.

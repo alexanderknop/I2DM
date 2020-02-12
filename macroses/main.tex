@@ -116,7 +116,8 @@
         \ifthenelse{\equal{#1}{R}}{Relations}{%
         \ifthenelse{\equal{#1}{F}}{Functions}{%
         \ifthenelse{\equal{#1}{G}}{Graphs}{%
-        }}}}}}%
+        \ifthenelse{\equal{#1}{N}}{Combinatorial Games}{%
+        }}}}}}}%
 ]}
 
 \def\pagedeclaration#1{, \hyperlink{page.#1}{page\nobreakspace#1}}
