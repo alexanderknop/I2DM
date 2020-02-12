@@ -66,13 +66,13 @@ we need to prove the induction step from $n$ to $n + 1$.
   \item If $n \equiv 0 \pmod{4}$, then the first player to move can remove one
     chip and the other player will start with $n$ chips so by the induction
     hypothesis he/she loses.
-  \item If $n \equiv 1 \pmod$. then the first player to move can remove two
+  \item If $n \equiv 1 \pmod{4}$. then the first player to move can remove two
     chips and the other player will start with $n$ chips so by the induction
     hypothesis he/she loses.
-  \item If $n \equiv 2 \pmod$. then the first player to move can remove three
+  \item If $n \equiv 2 \pmod{4}$. then the first player to move can remove three
     chips and the other player will start with $n$ chips so by the induction
     hypothesis he/she loses.
-  \item If $n \equiv 3 \pmod$. then after the current player move the other
+  \item If $n \equiv 3 \pmod{4}$. then after the current player move the other
     player will start with either $n$, or $n - 1$, or $n - 2$ chips. But all
     these numbers have non-zero reminders modulo $4$. So the other player
     can win in any case.
