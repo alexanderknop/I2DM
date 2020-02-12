@@ -5,12 +5,12 @@ of \emph{Nim}.
 In this game there are several piles of chips on the table. On each turn
 the current player may remove some number of chips from \emph{one} of the piles;
 however, the player should remove \emph{at least one chip}.
-We say that a game if Nim is a $k$-pile game of Nim if there are $k$ piles.
+We say that a game of Nim is a $k$-pile game of Nim if there are $k$ piles.
 \marginurl{%
   You can play Nim on this website
 }{dotsphinx.com/games/nim/}
 
-We start from analisis of the game when we have one pile of chips. It is clear
+We start from analysis of the game when we have one pile of chips. It is clear
 that the first player to move wins since he/she may remove all the chips.
 
 Consider a more complicated case when we have two piles of size $n$ and $m$
@@ -34,21 +34,24 @@ $\lxor : \set{0, 1} \times \set{0, 1} \to \set{0, 1}$,
 also known as ``exclusive or''), this operation is defined as follows:
 $a \lxor b = 1$ iff $a \neq b$.
 
-It is well-known that any number can be represented as a binary number;
+It is well-known that any number $n \in \N_0$
+can be represented as a binary number ($\N_0$ denotes nonnegative integers);
+\nomenclature[S]{$\N_0$}{denotes the set of nonnegative integers}
 we write $n = (a_\ell, \dots, a_0)_2$ if $n = \sum_{i = 0}^\ell a_i 2^i$.
-For exaple,
+For example,
 $5 = 4 + 1 = 1 \cdot 2^2 + 0 \cdot 2^1 + 1 \cdot 2^0 = (1, 0, 1)_2$ and
 $6 = 4 + 2 = 1 \cdot 2^2 + 1 \cdot 2^1 + 0 \cdot 2^0 = (1, 1, 0)_2$.
-So we can define the Nim sum $\bitwisexor : \N \times \N \to \N$, aslo
+So we can define the Nim sum $\bitwisexor : \N_0 \times \N_0 \to \N_0$, aslo
 known as bitwise xor, as follows:
 $(a_\ell, \dots, a_0)_2 \bitwisexor (b_\ell, \dots, b_0)_2 =
     (a_\ell \lxor b_\ell, \dots, a_0 \lxor b_0)_2$.
 For example, $5 \bitwisexor 6 = (1, 0, 1)_2 \bitwisexor (1, 1, 0)_2 =
 (1 \lxor 1, 0 \lxor 1, 1 \lxor 0)_2 = (0, 1, 1)_2$.
+\nomenclature[N]{$\bitwisexor$}{denotes the Nim sum}
 
 \begin{exercise}
   Show that $a \bitwisexor (b \bitwisexor c) = (a \bitwisexor b) \bitwisexor c$
-  for any $a, b, c \in \N$.
+  for any $a, b, c \in \N_0$.
 \end{exercise}
 Hence, we are going to write $a \bitwisexor b \bitwisexor c$ instead of
 $a \bitwisexor (b \bitwisexor c)$ and $(a \bitwisexor b) \bitwisexor c$.
@@ -56,7 +59,7 @@ $a \bitwisexor (b \bitwisexor c)$ and $(a \bitwisexor b) \bitwisexor c$.
 \section{Bouton's Theorem}
 
 Now we may notice that $a \bitwisexor b = 0$ iff $a = b$. So
-our result about $2$-pile Nim can be refrased:
+our result about $2$-pile Nim can be rephrased:
 a position $(a, b)$ in the $2$-pile Nim is a P-position iff
 $a \bitwisexor b = 0$. Which leads us to the next theorem.
 \begin{theorem}

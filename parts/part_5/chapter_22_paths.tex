@@ -1,13 +1,13 @@
 \chapter{Paths in Graphs}
 \label{chapter:paths}
 \section{Connectivity}
-Imagine you are developing a game, where the map is generated automatocally.
+Imagine you are developing a game, where the map is generated automatically.
 In this gate there are several areas connected by portals. So you need to check
 that all the areas in your map are reachable from one another.
 
 First we need to somehow understand what we mean by ``reachable'', we say that
 an area $A$ is reachable from an area $B$ if there is a path from $A$ to
-$B$. To formalize this notion using graphs we need to intrduce a graph
+$B$. To formalize this notion using graphs we need to introduce a graph
 corresponding to the map, consider a graph $G = (V, E)$ such that vertices of
 the graph are areas in your map and $(A, B) \in E$ iff the areas $A$ and $B$
 are connected by a portal. So a path from $A$ to $B$ is a sequence of areas
@@ -34,10 +34,9 @@ a portal (i.e. $(C_i, C_{i + 1}) \in E$).
   Is $G$ connected?
 \end{exercise}
 
-So, using this notatation, we need to check whether the graph corresponding to
-the map is connected.
-There are numerous ways to do it, we consider a simple algorithm just to see how
-it works.
+So, using this notation, we need to check whether the graph corresponding to
+the map is connected. There are numerous ways to do it, we consider a simple
+algorithm just to see how it works.
 \begin{algorithm}
   \begin{algorithmic}[1]
     \Function{Connected}{$n$, $E$}
@@ -98,7 +97,7 @@ it works.
   and by the induction hypothesis there is a path from $1$ to $v$.
   We add it to $S$ and the statement about $S$ holds, afterwards we
   add all the neighbours of $v$ to $Q$. So the statement about $Q$ is
-  also stay true.
+  also true.
 \end{proof}
 
 Not all the graphs are connected, but it is always possible to split the
@@ -132,7 +131,8 @@ graph into connected parts, such parts are called connected components.
 
 Graph theory originated from a simple question asked by Leonard Euler:
 ``Is it possible to walk through the town of K\"{o}nigsberg, starting and
-ending at the same place, so that we use each bridge exactly once?'' (the map of K\"{o}nigsberg is depicted on Figure~\ref{figure:konigsberg}).
+ending at the same place, so that we use each bridge exactly once?'' (the map of
+K\"{o}nigsberg is depicted on Figure~\ref{figure:konigsberg}).
 \begin{figure}
   \begin{center}
     \begin{tikzpicture}[thick]
@@ -155,7 +155,7 @@ ending at the same place, so that we use each bridge exactly once?'' (the map of
   \caption{K\"{o}nigsberg's map}
   \label{figure:konigsberg}
 \end{figure}
-It is possible to see that the geometry of the islands is not inportant for
+It is possible to see that the geometry of the islands is not important for
 this problem, the only important property is the number of bridges between
 islands.
 
@@ -190,8 +190,8 @@ Hence, to formalize the problem we need to give the following definition.
 
   An Eulerian path is called an Eulerian cycle if $v_1 = v_k$.
 \end{definition}
-Using this definition the question is whether exists an Eulerian cycle in the
-graph of K\"{o}nigsberg's bridges.
+Using this definition the question is whether there exists an Eulerian cycle in
+the graph of K\"{o}nigsberg's bridges.
 
 \begin{exercise}
   Check whether the graph of K\"{o}nigsberg's bridges has an Eulerian cycle or
@@ -216,7 +216,7 @@ problem in the general case.
   even degree. This shows that if a connected graph contains an Eulerian cycle,
   then every vertex has even degree.
 
-  To prove ths statement in the other direction, we will prove by induction a
+  To prove this statement in the other direction, we will prove by induction a
   stronger statement, we will prove that if $G$ is a graph in which every
   vertex has even degree, then every connected non-trivial connected
   component of $G$ (a connected component is trivial if it contains only an
@@ -274,7 +274,8 @@ problem in the general case.
 
 \section{Hamiltonian Paths}
 
-Another example of a path that mathematicians are intrested is Hamiltonian path.
+Another example of a path that mathematicians are interested in is Hamiltonian
+path.
 \begin{definition}
   Let $G$ be a graph. We say that a path in $G$ is Hamilton
   if it visits every vertex in $G$ exactly once. We say that such a path is a
@@ -291,7 +292,7 @@ there is a fast (polynomial-time) algorithm that allows to find the Hamiltonian
 cycles in a graph.\footnote{%
   Proving or disproving that there is a polynomial-time algorithm allowing to
   check whether a graph $G$ has a Hamiltonian path is one of the Millennium
-  Problems. Clay Mathematics Institute offers a prise of \$1 million to a person
+  Problems. Clay Mathematics Institute offers a prize of \$1 million to a person
   who solves the problem.
 }
 
@@ -346,8 +347,8 @@ then the graph has a Hamiltonian cycle.
   degree at least $n / 2$, then there is a Hamiltonian cycle in $G$.
 \end{theorem}
 \begin{proof}
-  For the sake of contradiction, let us assume that $G$ has not Hamiltonian
-  cycle bu all the vertices have degree at least $n / 2$, where $n$ is
+  For the sake of contradiction, let us assume that $G$ has no Hamiltonian
+  cycle but all the vertices have degree at least degree $n / 2$, where $n$ is
   the number of vertices in $G$.
 
   Let us start adding edges to $G$ as long as we are not creating a
@@ -364,7 +365,7 @@ then the graph has a Hamiltonian cycle.
   Therefore by the pigeonhole principle, there is $2 \le i \le n - 1$
   such that $(x, v_i) \in E$ and $(v_{i - 1}, y) \in E$. As a result,
   $x$, $v_2$, \dots, $v_{i - 1}$, $y$, $v_{n - 1}$, \dots, $v_i$
-  is a Hamiltonian path in $H$.
+  is a Hamiltonian cycle in $H$.
 \end{proof}
 
 There are plenty of different applications of Hamiltonian paths. Here we describe
@@ -389,7 +390,7 @@ The method works as follows.
     composition.
 \end{itemize}
 
-In other words, we need to recunstruct a string $s$ from all $n - k + 1$
+In other words, we need to reconstruct a string $s$ from all $n - k + 1$
 substrings of length $k$; e.g, we need to reconstruct the string TATGGTGC
 from the strings ATG, GGT, GTG, TAT, TGC, TGG (in this example $k = 3$).
 (Note that different strings may have the same sets of substrings.
