@@ -47,7 +47,9 @@ Since from $1$ and $2$ there are only moves to $3$, it is clear that
 $g(1) = g(2) = \mex \set{0} = 1$. Finally, $g(4) = \mex \set{0, 1} = 2$.
 
 Note that the Sprague--Grundy function is recursively defined so it may
-not exist or not to be unique if graph has cycles; i.e. $x \in F^k(x)$.
+not exist or not to be unique if graph has cycles; i.e. if there are $x_1,
+\dots, x_n$ such that $x_2 \in N(x_1)$, \dots, $x_n \in N(x_{n - 1})$, and 
+$x_1 \in N(x_1)$.
 For example, the graph depicted on \Cref{figure:sprague-grundy-not-exists}
 does not have a Sprague--Grundy function.
 Indeed, assume that such a function $g$ exists. Consider two following cases.
@@ -64,50 +66,52 @@ Note that the graph depicted on \Cref{figure:sprague-grundy-not-unique} has
 several Sprague--Grundy functions. We may consider functions $g_1$ and $g_2$
 such that $g_1(1) = g_1(3) = g_2(2) = g_2(4) = 0$ and
 $g_2(1) = g_2(3) = g_1(2) = g_1(4) = 1$. It is clear that they are
-Sprague--Grundy functions for the graph from \Cref{figure:sprague-grundy-not-unique}.
-\begin{figure}
-    \begin{center}
-    \begin{tikzpicture}[thick]
-      \node[circle, draw, minimum size=6pt] (v1) at (0,0) {$1$};
-      \node[circle, draw, minimum size=6pt] (v2) at (1,1) {$2$};
-      \node[circle, draw, minimum size=6pt] (v3) at (-1,1) {$3$};
-
-
-      \draw[->] (v1) -- (v2);
-      \draw[->] (v2) -- (v3);
-      \draw[->] (v3) -- (v1);
-    \end{tikzpicture}
-    \end{center}
-
-    \caption{A graph without a Sprague--Grundy function}
-    \label{figure:sprague-grundy-not-exists}
-\end{figure}
+Sprague--Grundy functions for the graph from
+\Cref{figure:sprague-grundy-not-unique}.
 
 \begin{figure}
-    \begin{center}
-    \begin{tikzpicture}[thick]
-      \node[circle, draw, minimum size=6pt] (v1) at (1,1) {$1$};
-      \node[circle, draw, minimum size=6pt] (v2) at (0,0) {$2$};
-      \node[circle, draw, minimum size=6pt] (v3) at (-1,1) {$3$};
-      \node[circle, draw, minimum size=6pt] (v4) at (0,2) {$4$};
+    \centering
+    \subfloat[A graph without a Sprague--Grundy function
+              \label{figure:sprague-grundy-not-exists}]{
+      \begin{tikzpicture}[thick]
+        \node[circle, draw, minimum size=6pt] (v1) at (0,0) {$1$};
+        \node[circle, draw, minimum size=6pt] (v2) at (1,1) {$2$};
+        \node[circle, draw, minimum size=6pt] (v3) at (-1,1) {$3$};
+        \node[] (dummy) at (2.25,1) {};
+        \node[] (dummy) at (-2.25,1) {};
+
+        \draw[->] (v1) -- (v2);
+        \draw[->] (v2) -- (v3);
+        \draw[->] (v3) -- (v1);
+      \end{tikzpicture}
+    }
+    \qquad
+    \subfloat[A graph with several Sprague--Grundy functions
+              \label{figure:sprague-grundy-not-unique}] {
+      \begin{tikzpicture}[thick]
+        \node[circle, draw, minimum size=6pt] (v1) at (1,1) {$1$};
+        \node[circle, draw, minimum size=6pt] (v2) at (0,0) {$2$};
+        \node[circle, draw, minimum size=6pt] (v3) at (-1,1) {$3$};
+        \node[circle, draw, minimum size=6pt] (v4) at (0,2) {$4$};
+        \node[] (dummy) at (2.25,1) {};
+        \node[] (dummy) at (-2.25,1) {};
 
 
-      \draw[->] (v1) -- (v2);
-      \draw[->] (v2) -- (v3);
-      \draw[->] (v3) -- (v4);
-      \draw[->] (v4) -- (v1);
-    \end{tikzpicture}
-    \end{center}
-
-    \caption{A graph with several Sprague--Grundy functions}
-    \label{figure:sprague-grundy-not-unique}
+        \draw[->] (v1) -- (v2);
+        \draw[->] (v2) -- (v3);
+        \draw[->] (v3) -- (v4);
+        \draw[->] (v4) -- (v1);
+      \end{tikzpicture}
+    }
+    \caption{Graphs where Sprague--Grundy function is either not unique or does
+      not exist.}
+    \vskip 10pt
 \end{figure}
 
 Unfortunately, even if there are no cycles, a graph my not have a
-Sprague--Grundy function or have several
-Sprague--Grundy functions. Indeed, consider the graph $G = (\Z, F)$ such
-that $F(x) = \set{x - 1}$. It is clear that the functions $g_1$ and $g_2$
-such that
+Sprague--Grundy function or have several Sprague--Grundy functions. Indeed,
+consider the graph $G = (\Z, N)$ such that $N(x) = \set{x - 1}$. It is clear
+that the functions $g_1$ and $g_2$ such that
 \begin{gather*}
     g_1(x) =
     \begin{cases}
@@ -124,8 +128,8 @@ such that
 are Sprague--Grundy functions for $G$.
 
 \begin{exercise}
-    Let $G = (\N \cup \set{-1}, F)$ such that $F(x) = \set{x - 1}$ for $x \ge 1$,
-    $F(0) = \emptyset$, and $F(-1) = \N$.
+    Let $G = (\N \cup \set{-1}, N)$ such that $F(x) = \set{x - 1}$ for $x \ge 1$,
+    $N(0) = \emptyset$, and $N(-1) = \N$.
     Show that $G$ does not have a Sprague--Grundy function.
 \end{exercise}
 
@@ -178,20 +182,22 @@ Note that P-positions are the positions where $g$ is zero. In fact,
 this is not a coincidence.
 \begin{theorem}
 \label{theorem:grundy-to-np}
-    Let $G$ be a graph such that $g$ is the unique Sprague-Grundy function for $f$.
-    Then a position $x$ in the game on $G$ is a P-position iff $g(x) = 0$.
+    Let $G$ be a graph such that there is a unique Sprague-Grundy function for
+    $G$. Then a position $x$ in the game on $G$ is a P-position iff $g(x) = 0$.
 \end{theorem}
 
 
 \begin{chapterendexercises}
     \exercise Prove \Cref{theorem:grundy-to-np}.
-    \exercise Prove that there is unique Sprague-Grundy function for the one pile
+    \exercise Show that there are only two Sprague--Grundy functions for the
+    graph depicted on \Cref{figure:sprague-grundy-not-unique}.
+    \exercise Prove that there is unique Sprague--Grundy function for the one pile
         Nim game.
-    \exercise Prove that there is unique Sprague-Grundy function for the
+    \exercise Prove that there is unique Sprague--Grundy function for the
         subtraction game where players may subtract $2$ and $3$ chips on their
         turn.
     \exercise
-       Prove that there is unique Sprague-Grundy function for the subtraction
+       Prove that there is unique Sprague--Grundy function for the subtraction
        game where players may subtract $1$, $2$, or $5$ chips
        on their turn.
 \end{chapterendexercises}
