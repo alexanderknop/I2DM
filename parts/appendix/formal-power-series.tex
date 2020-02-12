@@ -1,6 +1,6 @@
 \chapter{Formal Power Series}
 \label{chapter:formal-power-series}
-Formal power series is an algebraic analogy of power series form analysis.
+Formal power series is an algebraic analogy of power series from analysis.
 A formal power series is something like
 $a_0 + x a_1 + x^2 a_2 + \dots a_n x^n + \dots$; to describe such an object it
 is enough to define the sequence $\set{a_n}_{n \ge 0}$ since $x$ is a variable.
@@ -56,7 +56,7 @@ series $(1 - x)$ has an inverse, and that inverse is equal to $1 + x + x^2 +
 \begin{proof}
   Assume that a power series $F(x) = \sum_{n \ge 0} f_n x^n$ has an inverse
   $G(x) = \sum_{n \ge 0} g_n x^n$. In this case $F \cdot G = 1$ i.e.
-  $f_0 g_0 = 1$ and $f_0 \neq 0$. Morevover,
+  $f_0 g_0 = 1$ and $f_0 \neq 0$. Moreover,
   $\sum_{k = 0}^n f_k g_{n - k} = 0$; from which we can conclude that
   \begin{equation}
     \label{equation:inverse-of-formal-power-series}
@@ -69,8 +69,8 @@ series $(1 - x)$ has an inverse, and that inverse is equal to $1 + x + x^2 +
 \end{proof}
 
 \section{Composition}
-Another operations we may need to perform is the composition; a composition of
-a power series $F(x)$ and $G(x)$ is a power series $F(G(x))$; i.e.
+Another operation we may need to perform is composition; a composition of
+the power series $F(x)$ and $G(x)$ is a power series $F(G(x))$; i.e.
 $F(G(x)) = \sum_{n \ge 0} a_n G^n(x)$, where $F(x) = \sum_{n \ge 0} a_n x^n$
 Note that the composition is well-defined iff the coefficient of $x^0$ in $G(x)$
 is $0$ or if $F(x)$ is a polynomial.
@@ -81,13 +81,13 @@ derivative $F'(x)$ (we also denote it as $\frac{d}{dx} F(x)$) of $F(x)$ is
 equal to
 $\sum_{n \ge 1} n f_n x^{n - 1} = \sum_{n \ge 0} (n + 1) f_{n + 1} x^n$.
 
-Th derivatives of formal power series are satisfying the same properties as
+The derivatives of formal power series satisfy the same properties as
 derivatives of functions.
 \begin{theorem}
   Let $F(x)$, $G(x)$, and $H(x)$ be some formal power series. Then the following
   equalities hold:
   \begin{itemize}
-    \item $\frac{d}{dx}(F(x) + G(x)) = F'(x) + G(x)$, and
+    \item $\frac{d}{dx}(F(x) + G(x)) = F'(x) + G'(x)$, and
     \item $\frac{d}{dx}(F(x) G(x)) = F'(x)G(x) + F(x)G'(x)$.
   \end{itemize}
 \end{theorem}
