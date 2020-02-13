@@ -62,7 +62,7 @@ Now we may notice that $a \bitwisexor b = 0$ iff $a = b$. So
 our result about $2$-pile Nim can be rephrased:
 a position $(a, b)$ in the $2$-pile Nim is a P-position iff
 $a \bitwisexor b = 0$. Which leads us to the next theorem.
-\begin{theorem}
+\begin{theorem}[Bouton]
   A position $(a, b, c)$ in the $3$-pile Nim is a P-position iff
   $a \bitwisexor b \bitwisexor c = 0$
 \end{theorem}
@@ -87,7 +87,7 @@ $a \bitwisexor b = 0$. Which leads us to the next theorem.
 
   Finally, let us consider $(a, b, c)$ such that
   $a \bitwisexor b \bitwisexor c = 0$. Assume that there is a move to a
-  position $(a', b, c)$ such that $a \bitwisexor b \bitwisexor c = 0$.
+  position $(a', b, c)$ such that $a' \bitwisexor b \bitwisexor c = 0$.
   This implies that
   $(a' \bitwisexor b \bitwisexor c) \bitwisexor
       (a \bitwisexor b \bitwisexor c) =  a \bitwisexor a' = 0$, whence $a = a'$.
