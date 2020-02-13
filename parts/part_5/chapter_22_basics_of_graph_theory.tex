@@ -20,7 +20,7 @@ it is unoriented.
 From now on we will follow a standard convention and think about the set of
 edges of unoriented graphs as sets of \emph{unordered} pairs.
 
-It is very convinient to draw graphs using pictures like this.
+It is very convenient to draw graphs using pictures like this.
 \begin{center}
   \begin{tikzpicture}
     \node[shape=circle,draw=black] (v1) at (0,0) {\tiny A};
@@ -41,8 +41,8 @@ to a an edge; i.e. this diagram describes the graph
   (\underbrace{\set{A, B, C, D}}_V,
   \underbrace{\set{(A, B), (A, C), (B, C), (B, D)}}_E).
 \]
-Note that we already use the convention that in unoriented grpah the pairs are
-unordered and we have not listed $(B, A)$, $(C, A)$ etc.
+Note that we already use the convention that in an unoriented graph the pairs
+are unordered and we have not listed $(B, A)$, $(C, A)$ etc.
 
 To talk about graphs we need to fix the vocubulary.
 An edge is said to \emph{connect} its endpoints; two vertices that are
@@ -50,7 +50,7 @@ connected by an edge are called \emph{adjacent}; and a vertex that is an
 endpoint of a loop is said to be \emph{adjacent to itself}. An edge is said to
 be \emph{incident} on each of its endpoints, and two edges incident
 on the same end point are called \emph{adjacent}. A vertex on which no edges
-are incident iscalled \emph{isolated}.
+are incident is called \emph{isolated}.
 
 One of the most important examples of graphs are complete graphs defined as
 follows.
@@ -61,7 +61,8 @@ follows.
     word komplett, but the German name for a complete graph, vollst\"{a}ndiger
     Graph, does not contain the letter K, and other sources state that the
     notation honors the contributions of Kazimierz Kuratowski to graph theory.
-  } is a simple graph with $n$ vertices and exactly one edge connecting
+  } 
+  is a simple graph with $in$ vertices and exactly one edge connecting
   each pair of distinct vertices.
 \end{definition}
 \nomenclature[G]{$K_n$}{denotes the complete graph on $n$ vertices}
@@ -90,13 +91,13 @@ $e \in E$ be an edge, and $v \in V$ be a vertex.
     \nomenclature[G]{$G - e$}{denotes the graph $(V, E \setminus \set{e})$}
   \item $G - v$ denotes the graph
     $(V \setminus \set{v}, E \cap (V \setminus \set{v})^2)$, i.e., the graph $G$
-    without the vertix $v$.
+    without the vertex $v$.
     \nomenclature[G]{$G - v$}{denotes the graph
       $(V \setminus \set{v}, E \cap (V \setminus \set{v})^2)$}
 \end{enumerate}
 
 Note that we used the word ``subgraph'', in fact we can define formally the
-meaning fo this word.
+meaning of this word.
 \begin{definition}
   We say that a graph $H = (U, F)$ is a \emph{subgraph} of $G = (V, E)$ iff
   $U \subseteq V$ and $F \subseteq E$.

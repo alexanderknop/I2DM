@@ -9,14 +9,14 @@
 \newcommand{\notdivides}{\nmid}
 
 % set theory
-\renewcommand{\Im}{\mathrm{Im}}
+\renewcommand{\Im}{\operatorname{Im}}
 \newcommand{\set}[2][ ]{\left\{#2 \ifthenelse{\equal{#1}{ }}{ }{~:~#1}\right\}}
-\newcommand{\N}{\mathbb{N}}
-\newcommand{\Z}{\mathbb{Z}}
-\newcommand{\Q}{\mathbb{Q}}
-\newcommand{\R}{\mathbb{R}}
-\newcommand{\C}{\mathbb{C}}
-\newcommand{\range}[1]{[{#1}]}
+\newcommand{\N}{{\mathbb{N}}}
+\newcommand{\Z}{{\mathbb{Z}}}
+\newcommand{\Q}{{\mathbb{Q}}}
+\newcommand{\R}{{\mathbb{R}}}
+\newcommand{\C}{{\mathbb{C}}}
+\newcommand{\range}[1]{{[{#1}]}}
 
 \newcommand{\substitute}[2]{\left\llbracket {#1} \right\rrbracket_{#2}}
 
@@ -29,6 +29,22 @@
 \newcommand{\lfalse}{\text{F}}
 \newcommand{\prop}[1]{\mathrm{PROP}_{#1}}
 
+% computability theory
+\newcommand{\Algorithm}[1]{\mathcal{#1}}
+\newcommand{\strings}{\set{0, 1}^*}
+\newcommand{\Halting}{\mathrm{HALT}}
+\newcommand{\Optimize}{\mathrm{Opt}}
+\newcommand{\pair}[2]{\langle {#1}, {#2} \rangle}
+\newcommand{\Computable}{\mathrm{FC}}
+
+
+\algblock{Parallel}{EndParallel}
+% customising the new block
+\algnewcommand\algorithmicparallel{\textbf{run in parallel}}
+\algnewcommand\algorithmicendparallel{\textbf{end in parallel}}
+\algrenewtext{Parallel}{\algorithmicparallel}
+\algrenewtext{EndParallel}{\algorithmicendparallel}
+
 % Combinatorial games
 \newcommand{\bitwisexor}{\oplus}
 \newcommand{\mex}{\mathrm{mex}~}
@@ -37,15 +53,15 @@
 
 \newcommand{\fpm}{\mathcal{G}}
 
-\newcommand{\marginurl}[2]{
-    \begin{marginfigure}
-        {\scriptsize {#1}}
+\newcommand{\marginurl}[3][0pt]{
+    \begin{marginfigure}[{#1}]
+        {\scriptsize {#2}}
         \vskip 0.25cm
         \noindent
         \qrset{link, height=3cm}
-        \qrcode{https://#2}
+        \qrcode{https://#3}
         \vskip 0.25cm
         \noindent
-        \url{https://#2}
+        \url{https://#3}
     \end{marginfigure}
 }

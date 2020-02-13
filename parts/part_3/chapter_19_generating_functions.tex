@@ -7,12 +7,12 @@ combinatorics.
 
 \section{Easy Two Term Recurrences}
 Let us start from the following problem.
-Sasha took an insane credit in a bank: he took $100$\$ at the begining and
-his debt is growing twofold every year. At the begining of each year John is
-paing $100$\$ to the bank. How big will be his debt in 5 years?
+Sasha took an insane credit in a bank: he took $100$\$ at the beginning and
+his debt is growing twofold every year. At the beginning of each year John is
+paying $100$\$ to the bank. How big will be his debt in 5 years?
 
-It is easy to see that the answer for this and simialr questions can be answered
-using a recurrent formula. Indeed, if $a_i$ denotes his debt on $i$th year,
+It is easy to see that the answer for this and similar questions can be answered
+using a recurrence relation. Indeed, if $a_i$ denotes his debt on $i$th year,
 then $a_0 = 100$, and $a_{n + 1} = 2 a_n - 100$. Using this, one may compute
 all the values of $a_i$. However, the question became tricky if we want to
 find an explicit formula for $a_i$.
@@ -78,19 +78,19 @@ Let us try to find a formula in the form
   \frac{1 - 2x + 2x^2}{(1 - x)^2 (1 - 2x)} =
     \frac{A}{(1 - x)^2} + \frac{B}{1 - x} + \frac{C}{1 - 2x}.
 \]
-To find $A$, $B$, and $C$ we mutliply both sides by $(1 - x)^2$ and set $x = 1$.
+To find $A$, $B$, and $C$ we multiply both sides by $(1 - x)^2$ and set $x = 1$.
 We get that $A = -1$. We can also multiply by $1 - 2x$ and substitute
-$x = 1 / 2$ and derive that $C = 2$. Now we need to find $C$, we substitute $0$
-to the equation and get $B = 0$. As a result,
+$x = 1 / 2$ and derive that $C = 2$. Now we need to find $B$, we substitute $x =
+0$ to the equation and get $B = 0$. As a result,
 $G(x) = \frac{-1}{(1 - x)^2} + \frac{2}{1 - 2x}$. Using simple equalities from
 calculus we can derive $G(x) = \sum_{n \ge 0} -(n + 1) + 2^{n + 1} x^n$.
 So $a_n = -(n + 1) 2^{n + 1}$.
 
 \section{Recurrences With Two Variables}
-Two illustrate how to deal with recurrent relation in cases when we have
-more than one variable, we prove a verstion of the binomial theorem and
+To illustrate how to deal with recurrence relations in cases when we have
+more than one variable, we prove a version of the binomial theorem and
 derive a formula for binomial coefficients. In order to do it,
-we consider the reccurent relation
+we consider the recurrence relation
 \[
   \binom{n + 1}{k} = \binom{n}{k} + \binom{n}{k - 1}.
 \]
@@ -149,7 +149,7 @@ Using this example, we can formulate a general rule.
 
 To illustrate this theorem, let us solve another problem. A company
 ``bolshoy brat'' needs to finish two projects. To do this, a manager of the
-company splits all the emploes into two projects and in each project she selects
+company splits all the employees into two projects and in each project she selects
 product team and marketing team. How many ways to do this.
 Let $c_n$ be the number of ways the manager can complete this task. Again, let
 us split the problem into two parts. Let $A(x)$ be the generating function for
@@ -172,7 +172,7 @@ and $c_n = (n + 1) 2^{n + 1}$.
 \end{exercise}
 
 \section{Compositions of Generating Functions}
-As ususal, we start the section from a problem.
+As usual, we start the section from a problem.
 All $n$ soldiers of a military squadron stand in a line. The officer in charge
 splits the line at several places, forming (non-empty) squads. Then she names
 one person in each unit to be the commander of that unit. Let $c_n$ be the
@@ -183,7 +183,7 @@ are
 \[
   \sum_{n_1, \dots, n_k : n = n_1 + \dots + n_k} n_1 \cdot n_2 \dots n_2
 \]
-ways to do this. Hence, the generating function for spliting into squads and
+ways to do this. Hence, the generating function for splitting into squads and
 selecting commanders in all $k$ squads is equal to $A^k(x)$, where
 $A(x) = \sum_{n \ge 0} n x^n = \frac{x}{(1 - x)^2}$. Therefore,
 the generating function $C(x)$ for $\set{c_n}_{n \ge 0}$ is equal to
@@ -210,7 +210,7 @@ $C(x) = 1 + \frac{1}{\sqrt{5}}
   \sum_{n \ge 0} (\alpha^{n + 1} - \beta^{n + 1}) x^{n + 1}$.
 Hence, $c_0 = 1$ and $c_n = \frac{1}{\sqrt{5}}(\alpha^n - \beta^n)$ for $n > 0$.
 
-The following theorem generalises this obeservation.
+The following theorem generalises this observation.
 \begin{theorem}
   Let $a_n$ be the number of ways to build a certain structure on an $n$-element
   set, and let us assume that $a_0 = 0$. Let $c_n$ be the number of ways to
@@ -255,7 +255,7 @@ The following theorem generalises this obeservation.
     function for $a_n$.
   \exercise[recommended] Let $x_1$ and $x_2$ be two different solutions of the equation
     $1 - bx - cx^2 = 0$. Show that a sequence $\set{f_n}_{n \ge}$ satisfies the
-    recurrent relation $f_{n + 2} = b f_{n + 1} + c f_n$ iff
+    recurrence relation $f_{n + 2} = b f_{n + 1} + c f_n$ iff
     $t_n = \alpha x_1^{-n} + \beta x_2^{-n}$ for some $\alpha, \beta \in \R$.
   \exercise[recommended] Let $\set{a_n}_{n \ge 0}$, $\set{b_n}_{n \ge 0}$ be two sequences
     such that $b_n = \sum_{k = 0}^n a_n$ and $F(x)$ be the generating function

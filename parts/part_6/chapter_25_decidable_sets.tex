@@ -1,0 +1,345 @@
+\chapter{Decidable Sets}
+\marginpar{%
+  This part is mainly based on the amazing book
+  ``Computable Functions''
+  by Shen and Vereshchagin.
+}
+In this part we study what computers can compute and what they cannot compute.
+Usually study of this subject starts from a formal definition of an algorithm.
+However, we believe that this is unnecessary nowadays because of rise of
+computers. One may think about algorithms as programs on some programming
+language such as C/C++, Java, Python etc.
+
+An algorithms are taking several natural numbers $x_1$, \dots, $x_n$
+as an input and either print another number $y$ as an output or never
+terminates. In the first case we say $\Algorithm{A}(x_1, \dots, x_n) = y$
+and in the second case we say $\Algorithm{A}(x_1, \dots, x_n)$ never terminates.
+
+\section{Computable Functions}
+The first and the most basic definition in the computability theory is the
+definition of a computable function.
+\begin{definition}
+    Let $S \subseteq \N^\ell$ and $f : S \to \N$.
+    We say that $f$ is \emph{computable} if there is an algorithm
+    $\Algorithm{A}$ such that
+    \begin{enumerate}
+        \item $\Algorithm{A}(x) = f(x)$ for any $x \in S$ and
+        \item $\Algorithm{A}(x)$ never terminates for any $x \notin S$.
+    \end{enumerate}
+
+    We say that $\Algorithm{A}$ \emph{computes} $f$.
+\end{definition}
+
+It is important to note that nonetheless that we say that the algorithms are
+said to take and print natural numbers, we could allow algorithm to work with
+strings of bits (elements of the set
+$\strings = \bigcup_{n \in \N_0} \set{0, 1}^n$).
+Moreover, these two definitions are  equivalent since there is a one-to-one
+correspondence between natural numbers and strings:
+$x \mapsto 2^n + \sum_{i = 1}^\ell 2^{i - 1} x[i]$, where $x[i]$ denotes the
+$i$th symbol of the string $i$ and $n$ is the length of $x$.
+It is also clear that using binary strings we may encode all sorts of objects
+such as pairs of integers, integers, rational numbers etc. (However, in order
+to encode real number we need more complicated definitions and we are not
+going to discuss them in here.)
+
+\begin{exercise}
+  Let $f : \strings \to \strings$ be the function such that $f(x)$ is
+  reversed $x$. Show that $f$ is computable.
+\end{exercise}
+
+One may show that composition of computable functions is computable.
+Moreover, one may prove the following a bit stronger statement.
+\begin{theorem}
+\label{theorem:composition-computable}
+    Let $S \subseteq \N$, and let
+    $f : \N \to \N$, and $g : S \to \N$ be computable
+    functions. Then $f \circ g$ is also computable.
+\end{theorem}
+\begin{proof}
+  Since $f$ and $g$ are computable, there are algorightms $\Algorithm{F}$ and
+  $\Algorithm{G}$ computing f and g respectively.
+
+  Let us consider the following algorithm.
+  \begin{algorithm}
+      \begin{algorithmic}[1]
+          \Function{$\Algorithm{A}$}{$x$}
+              \State{$y \gets \Algorithm{G}(x)$}
+              \State{\Return{$\Algorithm{F}(y)$}}
+          \EndFunction
+      \end{algorithmic}
+      \caption{The algorithm computing the composition of the functions
+        computed by $\Algorithm{F}$ and $\Algorithm{G}$}
+  \end{algorithm}
+  It is clear that if $x \notin S$, then $\Algorithm{A}(x)$ never terminates.
+
+  However, if $x \in S$, then $y = g(x)$ and therefore the algorithm prints
+  $\Algorithm{F}(g(x)) = f(g(x)) = (f \circ g)(x)$.
+\end{proof}
+
+\section{Decidable Sets}
+Another important notion is the notion of a decidable set.
+\begin{definition}
+    We say that a set $S \subseteq \N$ is \emph{decidable} iff there is
+    an algorithm $\Algorithm{A}$ such that
+    $\Algorithm{A}(x) = 1$ if $x \in S$ and $\Algorithm{A}(x) = 0$ if
+    $x \notin S$.
+\end{definition}
+It is easy to note that a set $S \subseteq \N$ is decidable iff the
+characteristic function $\chi_S$ of $S$ is computable.
+The function $\chi_S$ is defined as follows:
+\[
+    \chi_S(x) =
+    \begin{cases}
+        1 & \text{if } x \in S, \\
+        0 & \text{otherwise}.
+    \end{cases}
+\]
+Similarly we may define decidable sets of strings, pairs of integers etc.
+
+We illustrate this concept by proving that
+$U_e = \set[q > e]{q \in \Q}$. It is known that
+\begin{enumerate}
+    \item $(1 + \frac{1}{n})^n < e$ and
+        $\lim\limits_{n \to \infty} (1 + \frac{1}{n})^n = e$ and
+    \item $(1 + \frac{1}{n})^{n + 1} > e$ and
+        $\lim\limits_{n \to \infty} (1 + \frac{1}{n})^{n + 1} = e$.
+\end{enumerate}
+Hence, in order to check whether $q \in U_e$ or not, it is enough to either find
+$n$ such that $(1 + \frac{1}{n})^{n + 1} < q$ or $(1 + \frac{1}{n})^n > q$.
+In order to do this we can check all positive integers one after another
+and at some point one of the inequalities became true.
+
+\begin{exercise}
+  Let $k \in \N$. Show that $[k]$ is decidable.
+\end{exercise}
+
+However, sometimes it is possible to show that some set is decidable without
+presenting the algorithm explicitly.
+For example, consider the $S \subseteq \N$ such that $n \in S$ iff base $10$
+expansion of $\pi$ has $n$ consecutive $9$s. It is possible to show that $S$ is
+decidable. Indeed, it is easy to see that either $S = \N$ or $S = [k]$ for some
+$k \in \N$, however, in both cases the set is decidable.
+
+
+It is easy to show that decidable sets have several good properties.
+\begin{theorem}
+\label{theorem:operations-decidable}
+  Let $S_1, S_2 \subseteq \N^\ell$ be decidable sets. Then $S_1 \cup S_2$,
+  $S_1 \cap S_2$, and $S_1 \setminus S_2$ are all decidable.
+\end{theorem}
+
+To prove the theorem, we generalize \Cref{theorem:composition-computable}.
+\begin{theorem}
+\label{theorem:composition-computable-generalization}
+  Let $S \subseteq \N^\ell$ and let $f_1, f_2 : S \to \N$ and $g : \N^2 \to \N$
+  be computable functions. Then the function $h : S \to \N$ such that
+  $h(x) = g(f_1(x), f_2(x))$ is computable.
+\end{theorem}
+
+\begin{proof}[Proof of \Cref{theorem:operations-decidable}]
+  Let us prove that $S_1 \cup S_2$ is decidable. Since $S_1$ and $S_2$ are
+  decidable, there are algorithms $\Algorithm{A}_1$ and $\Algorithm{A}_2$
+  computing characteristic functions $\chi_{S_1}$ and $\chi_{S_2}$
+  for the sets $S_1$ and $S_2$, respectively.
+  Consider the function $g : \N^2 \to \N$ such that
+  \[
+    g(x, y) = \begin{cases}
+      0 & \text{if } x = 1 \text{ or } y = 1 \\
+      1 & \text{otherwise}
+    \end{cases}.
+  \]
+  It is clear that $h : \N \to \N$ such that
+  $h(x) = g(\chi_{S_1}(x), \chi_{S_2}(x))$ is a characteristic function for
+  $S_1 \cup S_2$. Hence, $S_1 \cup S_2$ is decidable by
+  \Cref{theorem:composition-computable-generalization}.
+
+  The proof of decidability of $S_1 \cap S_2$, and $S_1 \setminus S_2$
+  is essentially the same.
+\end{proof}
+
+\section{Enumeratable Sets}
+The algorithm constructed in the proof of decidability of $U_e$ consisted of
+two important parts: first one allowed to show that $q$ is defenetely not in the
+set $U_e$ and the second part allowed to show that $q$ is defenetely in the set.
+
+This observation leads to the following definition.
+\begin{definition}
+  We say that a set $S \subseteq \N$ is \emph{(computably) enumerable},
+  we also say that it is \emph{recursively enumerable} and \emph{semidecidable},
+  iff there is an algorithm $\Algorithm{A}$ such that
+  \begin{enumerate}
+    \item $\Algorithm{A}(x) = 1$ for any $x \in S$ and
+    \item either $\Algorithm{A}(x) = 0$ or $\Algorithm{A}$ never terminates for
+      any $x \notin S$.
+  \end{enumerate}
+
+  We say that $S$ is \emph{semidecided} by $\Algorithm{A}$.
+\end{definition}
+
+We can easily show that both sets $L_e = \set[q < e]{q \in \Q}$ and
+$U_e = \set[q > e]{q \in \Q}$ are enumerable. Indeed, we can try all possible
+$n \in n$ until $q < (1 + \frac{1}{n})^n$ if we find such $n$, we know that
+$q \in L_e$. Similarly, we can try all possible $n$ until
+$q > (1 + \frac{1}{n})^{n + 1}$ and if we find such $n$, then $q \in U_e$.
+The following allows us to show that the fact that $L_e$ is decidable is not
+a coincedence.
+\begin{theorem}[Post's Theorem]
+\label{theorem:enumerable-to-decidable}
+  Let $S \subseteq \N$. If $S$ is decidable, then $S$ is enumerable.
+  Moreover, if $S$ and $\N \setminus S$ are enumerable, then $S$ is
+  decidable.
+\end{theorem}
+\begin{proof}
+  The first part is obvious. Let us prove the ``moreover'' part.
+  Let $\Algorithm{A}_1$ and $\Algorithm{A}_2$ be the algorithms deciding
+  $S$ and $\N \setminus S$ respectively. Then the algorithm $\Algorithm{A}$
+  deciding $S$ is the following: on onput $x$ it runs $\Algorithm{A}_1(x)$ and
+  $\Algorithm{A}_2(x)$ in parallel and if the first one prints $1$,
+  $\Algorithm{A}$ prints $1$ as well;
+  however, if the second prints $1$, $\Algorithm{A}$ prints $0$.
+
+  We need to prove that the algorithm works correctly.
+  \begin{itemize}
+    \item If $x \in S$, then $\Algorithm{A}_1(x) = 1$ and $\Algorithm{A}_2(x)$
+      never terminates. So $\Algorithm{A}(x)$ prints $1$.
+    \item If $x \notin S$, then $\Algorithm{A}_1(x)$ never terminates and
+      $\Algorithm{A}_2(x) = 1$. So $\Algorithm{A}(x)$ prints $0$.
+  \end{itemize}
+\end{proof}
+
+The given definition of enumerable set does not explain the name. However,
+there is an alternative definition that explains it.
+\begin{theorem}
+\label{theorem:enumerable-semidecidable}
+  Let $S \subseteq \N$. The set $S$ is decidable iff there is an algorithm
+  $\Algorithm{A}$ such that
+  \begin{enumerate}
+    \item $\Algorithm{A}(n)$ terminates for any $n \in \N$ and
+    \item $\set[n \in  \N]{\Algorithm{A}(n)} = S$.
+  \end{enumerate}
+
+  We say that this $\Algorithm{A}$ is enumerating $S$.
+\end{theorem}
+\begin{proof}
+  To prove this theorem, we generalize the idea of
+  \Cref{theorem:enumeratable-to-decidable}. Assume that $S$ is infinite.
+  Let $\Algorithm{A}'$ be the algorithm semideciding $S$ and
+  let $\Algorithm{A}$ be \Cref{algorithm:enumerating-from-semideciding}.
+  \begin{algorithm}
+      \begin{algorithmic}[1]
+          \Function{$\Algorithm{A}$}{$n$}
+              \State{$i \gets 1$}
+              \State{Let $V$ be a map from integers to $\set{0, 1}$}
+              \While{$V$ has less than $n$ keys with the value $1$}
+                \Parallel
+                  \State{Let $y = \Algorithm{A}'(i)$}
+                  \State{Put $(i, y)$ into $V$}
+                \EndParallel
+                \State{$i \gets (i + 1)$}
+              \EndWhile
+              \State{\Return{the $i$th key in $V$ with the value $1$}}
+          \EndFunction
+      \end{algorithmic}
+      \caption{The algorithm enumerating the set that is semidecided by
+        $\Algorithm{A}'$.}
+      \label{algorithm:enumerating-from-semideciding}
+  \end{algorithm}
+  It is clear that $\Algorithm{A}$ satisfies the constraints of the theorem.
+
+  Let us prove the statement in the opposite direction. Let us assume that
+  there is an algorithm $\Algorithm{A}'$ enumerating $S$. Let $\Algorithm{A}$
+  be \Cref{algorithm:semideciding-from-enumerating}.
+  \begin{algorithm}
+      \begin{algorithmic}[1]
+          \Function{$\Algorithm{A}$}{$x$}
+              \State{$n \gets 1$}
+              \While{$\Algorithm{A}'(n) \neq x$}
+              \label{line:while-semideciding-from-enumerating}
+                \State{$n \gets n + 1$}
+              \EndWhile
+              \State{\Return{$1$}}
+          \EndFunction
+      \end{algorithmic}
+      \caption{The algorithm semideciding the set that is enumerated by
+        $\Algorithm{A}'$.}
+      \label{algorithm:semideciding-from-enumerating}
+  \end{algorithm}
+  We need to prove that $\Algorithm{A}$ semidecide the set $S$.
+  \begin{enumerate}
+    \item Let us consider some $x \notin S$. In this case,
+      $\Algorithm{A}'(n) \neq x$ for any $n \in \N$. Hence, $\Algorithm{A}$
+      never terminates.
+    \item Let $x \in S$. Then there is $n \in \N$ such that
+      $\Algorithm{A}(n) \neq x$.
+      Therefore, the number of iterations of
+      \Cref{line:while-semideciding-from-enumerating} in
+      \Cref{algorithm:semideciding-from-enumerating} is finite and the
+      algorithm returns $1$.
+  \end{enumerate}
+\end{proof}
+
+One may also establish a connection between computable functions and
+enumerable sets.
+\begin{theorem}
+\label{theorem:enumerable-via-computable-funcitons}
+  Let $S \subseteq \N$.
+  \begin{enumerate}
+    \item The set $S$ is enumerable iff there is a computable function
+      $f : S \to \N$.
+    \item The set $S$ is enumerable iff there is a computable function
+      $f : \N \to \N$ so that $\Im{f} = S$.
+  \end{enumerate}
+\end{theorem}
+\begin{proof}
+  \begin{enumerate}
+    \item To prove this part of the statement from right to left
+        it is enough to note that
+        the function $f : S \to \N$ such that $f(x) = 1$ is computable iff
+        $S$ is enumerable. Indeed, if $\Algorithm{A}$ enumerates $S$, then
+        it computes $f$; if $\Algorithm{A}$ computes $f$ it enumerates $S$.
+
+        To prove it from left to right, we may notice that $g : \N \to \N$
+        such that $g(x) = 1$ is computable.
+        Therefore $(g \circ f) : S \to \N$ is
+        computable. This implies that $S$ is enumerable since
+        $(g \circ f)(x) = 1$ for all $x \in S$.
+    \item This part directly follows from
+        \Cref{theorem:enumerable-semidecidable}.
+  \end{enumerate}
+\end{proof}
+
+In the rest of this part we refer to functions $f : S \to B$,
+where $S \subseteq A$ as partial functions from $\N$ to $\N$. We say
+that $S$ is preimage of $f$. Moreover, when we say that a function
+from $\N$ to $\N$ is computable we mean that it is a partial computable
+function. Using this notation \Cref{theorem:enumerable-via-computable-funcitons}
+can be rephrased as follows.
+\begin{corollary}
+  \begin{enumerate}
+    \item The set $S$ is enumerable iff there is a computable function
+      $f : \N \to \N$ such that the preimmage of $f$ is equal to $S$.
+    \item The set $S$ is enumerable iff there is a computable function
+      $f : \N \to \N$ such that the immage of $f$ is equal to $S$.
+  \end{enumerate}
+\end{corollary}
+Since the notation between functions and partial functions is that similar,
+in the rest of this part we say that a partial function from $A$ to $B$ is
+total iff the preimage of the function is equal to $A$.
+
+\begin{chapterendexercises}
+  \exercise[recommended] Let $S \subseteq \N$ be a nonempty set.
+    Show that $S$ is decidable iff there is a function $f : \N \to \N$ such
+    that $f$ is computable, $f$ is nondecreasing, and $\Im{f} = S$.
+  \exercise Let $A, B \subseteq \N$ be enumerable sets. Show that
+    $A \times B$ is enumerable.
+  \exercise Let $F \subseteq \N^2$ be enumerable. Prove that exists a
+    set $S \subseteq \N$ and a computable function $f: S \to \N$ such that
+    $S = \set[(x, y) \in F]{x \in \N}$ and $(x, f(x)) \in F$ for any $x \in S$.
+  \exercise
+    Let $S =
+      \set[
+        x^n + y^n = z^n \text{ has an integer solution}
+      ]{n \in \N}$. Show that $S$ is decidable.
+      (You should not use Fermat's Last Theorem.)
+\end{chapterendexercises}
