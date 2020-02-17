@@ -220,11 +220,25 @@ that we will leave without proof.
 \end{lemma}
 
 \begin{proof}[Proof of \Cref{theorem:ending-condiction-sg-function}]
-  Note that \Cref{lemma:konig} claims that $V = \bigcup_{n \in \N_0} V_n$, where
-  $V_n = \set[d(v) = n]{v \in V}$. For each $n \in \N_0$, we define 
-  $g_n : V_n \to \N_0$ such that $g_{n + 1}(v) = \mex \set[u \in N(v)]{g_n(u)}$
-  for $v \in V_{n + 1}$ and $g_0(v) = 0$ for $v \in V_0$. This definition is
-  correct since $N(v) \subseteq V_n$ for $v \in V_{n + 1}$. It is easy to see
+  Let $d$ be the function from \Cref{lemma:konig}. \Cref{lemma:konig} claims
+  that $V = \bigcup_{n \in \N_0} V_n$, where $V_n = \set[d(v) = n]{v \in V}$.
+  Let $V_{\le n} = \bigcup_{m \le n} V_m$.
+  Note that $N(v) \subseteq V_{\le n}$ for $v \in V_{n + 1}$. Indeed, assume
+  there are $v \in V_{n + 1}$ such that for some $u \in N(v)$, 
+  $u \not\in V_{\le n}$. Then there is a path $u = u_1, \dots, u_{n + 1}$ in
+  $G$. Therefore $v, u_1, \dots, u_{n + 1}$ is a path in $G$ which contradicts
+  to the assumption that $v \in V_{n + 1}$. It is also clear that elements of
+  $V_0$ are terminal vertices.
+
+  For each $n \in \N_0$, we define $g_n : V_{\le n} \to \N_0$ such that 
+  \[
+    g_{n + 1}(v) = 
+    \begin{cases}
+      \mex \set[u \in N(v)]{g_n(u)} & \text{if } v \in V_{n + 1} \\
+      g_n(v) & \text{if } v \in V_{\le n}
+    \end{cases}
+  \]
+  for $v \in V_{n + 1}$ and $g_0(v) = 0$ for $v \in V_0$. It is easy to see
   that the function $g : V \to \N_0$ such that $g(v) = g_n(v)$ for $v \in V_n$
   is a Sprague--Grundy function for $G$. 
 
