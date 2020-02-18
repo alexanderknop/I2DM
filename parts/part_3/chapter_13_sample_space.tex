@@ -1,1 +1,89 @@
 \chapter{Sample Spaces and Events}
+In the previous chapter we discussed games that do not involve move by chance.
+A theory that studies experiments, processes and interactions that are subject
+to chance is called \emph{probability theory}; we are going to study this theory
+in this part.
+
+The most important assumption of probability theory is that nonetheless the
+outcome of an experiment is not knonw in advance --- the set of all possible
+outcomes is known. This set is called the \emph{sample space} or the
+\emph{probability space}.
+
+For example, if our experiment consists of tossing a coin, then the sample space
+consists of two outcomes $\set{H, T}$, where $H$ stands for heads and $T$ stands
+for tails.
+\begin{exercise}
+  Write the sample space for the experiment consisting of tossing two coins.
+\end{exercise}
+Each element of the sample space is called an \emph{outcome} or an
+\emph{elementary event}. Typically, we are interested in observing several
+outcomes; e.g., in the experiment consisting of tossing five coins, the set
+$\set{HTTTT, THTTT, TTHTT, TTTHT, TTTTH}$ describe all possible outcomes when
+exactly one coin shows heads. We say that a set of outcomes is an \emph{event}.
+
+Another assumption of probability theory is that every outcome $\omega$ of a
+sample space $\Omega$ is assigned some probability $\Pr(\omega)$; intuitively,
+$\Pr(\omega)$ is the liklehood that the outcome $\omega$ occur in the
+experiment. It is convinient to normalize probabilities, so we require that 
+$0 \le \Pr(\omega) \le 1$ for all $\omega \in \Omega$ and 
+$\sum_{\omega \in \Omega} \Pr(\omega) = 1$. The function $\Pr$ is called
+a \emph{probability distribution} on $\Omega$.
+
+The pair of a sample space and a probability distribution on the space is called
+a \emph{finite discrete peobability space}.
+
+
+We can extend the notion of probability from elementary events to all events as
+follows. Let $E \subseteq \Omega$ be an event in the finite discrete peobability
+space $(\Omega, \Pr)$. Then $\Pr(E)$ denote the sum of all $\Pr(\omega)$ for
+$\omega \in \Omega$. In the sequel, we use $\sum_{\omega \in E} \Pr(\omega)$ to
+describe similar sums (see \Cref{section:generalized-sum} for a formal
+definition).
+\nomenclature[C]{$\sum_{i \in S ~:~ P(i)} \alpha_i$}{denotes $\alpha_{i_1} +
+\dots + \alpha_{i_k}$, where $\set[P(i)]{i \in S} = \set{i_1, \dots, i_k}$}
+
+
+\begin{exercise}
+  In many cases we consider \emph{uniform distribution} on a set $\Omega$, the
+  distibution $\Pr$ such that all the outcomes are equally likely.
+  Let $\Omega = \set{HH, HT, TH, TT}$ and $\Pr$ be the uniform distribution on
+  $\Omega$. Find the probability of the event $\set{HT, TH, TT}$, and give an
+  informal interpretation of the answer.
+\end{exercise}
+
+Events are subsets of the sample space; hence, they can be combined using the
+standard set operations. So it is natural to ask whether the probabilities
+$\Pr(A \cup B)$ and $\Pr(A \cap B)$ can be expressed in terms of $\Pr(A)$ and
+$\Pr(B)$.
+
+\begin{theorem}[The Additive Principle]
+  Let $(\Omega, \Pr)$ be a finite discrete peobability space, and let $A, B
+  \subseteq \Omega$ be two disjoint events. Then 
+  $\Pr(A \cup B) = \Pr(A) + \Pr(B)$.
+\end{theorem}
+\begin{proof}[Proof Sketch, see \Cref{theorem:additive-principle}]
+  Let $A = \set{\omega_{1, 1}, \dots, \omega_{1, k}}$ and 
+  let $B = \set{\omega_{2, 1}, \dots, \omega_{2, \ell}}$. 
+  Then $A \cup B = \set{\omega_{1, 1}, \dots, \omega_{1, k}, 
+    \omega_{2, 1}, \dots, \omega_{2, \ell}}$.
+  Therefore $\Pr(A \cup B) = 
+    \Pr(\omega_{1, 1}) + \dots + \Pr(\omega_{2, k}) +
+    \Pr(\omega_{2, 1}) + \dots + \Pr(\omega_{2, \ell}) = \Pr(A) + \Pr(B)$.
+\end{proof}
+
+This result can be easily extended to the cases when $A$ and $B$ are not
+disjoint.
+\begin{corollary}
+   Let $(\Omega, \Pr)$ be a finite discrete peobability space, and let $A, B
+  \subseteq \Omega$ be two events. Then 
+  $\Pr(A \cup B) = \Pr(A) + \Pr(B) - \Pr(A \cap B)$.
+\end{corollary}
+\begin{proof}
+  Let $A' = A \setminus B$ and $B' = B \setminus A$. It is clear that the set
+  $A'$, $B'$, $A \cap B$ are disjoint and $A' \cup B' \cup (A \cap B) = 
+  A \cup B$. Therefore, $\Pr(A \cup B) = \Pr(A') + \Pr(B') + \Pr(A \cup B)$.
+  In addition, $A' \cup (A \cup B) = A$ and $B' \cup (A \cup B) = B$, so
+  $\Pr(A') + \Pr(A \cup B) = \Pr(A)$ and $\Pr(B') + \Pr(A \cup B) = \Pr(B)$.
+  As a result, $\Pr(A \cup B) = \Pr(A) - \Pr(A \cup B) + \Pr(B) - \Pr(A \cup B)
+  + \Pr(A \cup B)$.
+\end{proof}
