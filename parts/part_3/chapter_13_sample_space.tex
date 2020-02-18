@@ -73,17 +73,13 @@ $\Pr(B)$.
 
 This result can be easily extended to the cases when $A$ and $B$ are not
 disjoint.
-\begin{corollary}
-   Let $(\Omega, \Pr)$ be a finite discrete peobability space, and let $A, B
+\begin{corollary}[The Inclusion-exclusion Principle]
+\label{corollary:inclusion-exclustion-probability}
+  Let $(\Omega, \Pr)$ be a finite discrete peobability space, and let $A, B
   \subseteq \Omega$ be two events. Then 
   $\Pr(A \cup B) = \Pr(A) + \Pr(B) - \Pr(A \cap B)$.
 \end{corollary}
-\begin{proof}
-  Let $A' = A \setminus B$ and $B' = B \setminus A$. It is clear that the set
-  $A'$, $B'$, $A \cap B$ are disjoint and $A' \cup B' \cup (A \cap B) = 
-  A \cup B$. Therefore, $\Pr(A \cup B) = \Pr(A') + \Pr(B') + \Pr(A \cup B)$.
-  In addition, $A' \cup (A \cup B) = A$ and $B' \cup (A \cup B) = B$, so
-  $\Pr(A') + \Pr(A \cup B) = \Pr(A)$ and $\Pr(B') + \Pr(A \cup B) = \Pr(B)$.
-  As a result, $\Pr(A \cup B) = \Pr(A) - \Pr(A \cup B) + \Pr(B) - \Pr(A \cup B)
-  + \Pr(A \cup B)$.
-\end{proof}
+
+\begin{chapterendexercises}
+  \exercise Prove \Cref{corollary:inclusion-exclustion-probability}.
+\end{chapterendexercises}
