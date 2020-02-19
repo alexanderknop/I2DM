@@ -71,6 +71,11 @@ $\Pr(B)$.
     \Pr(\omega_{2, 1}) + \dots + \Pr(\omega_{2, \ell}) = \Pr(A) + \Pr(B)$.
 \end{proof}
 
+\begin{exercise}
+  Let $(\Omega, \Pr)$ be a finite discrete peobability space, and let $A
+  \subseteq A$ be an event. Show that $\Pr(A) = 1 - \Pr(A)$.
+\end{exercise}
+
 This result can be easily extended to the cases when $A$ and $B$ are not
 disjoint.
 \begin{corollary}[The Inclusion-exclusion Principle]
@@ -80,6 +85,19 @@ disjoint.
   $\Pr(A \cup B) = \Pr(A) + \Pr(B) - \Pr(A \cap B)$.
 \end{corollary}
 
+Unfortunately, $\Pr(A \cap B)$ cannot be expressed via $\Pr(A)$ and $\Pr(B)$.
+However, in many cases $\Pr(A \cap B) = \Pr(A) \Pr(B)$; if this equality holds,
+we say that $A$ and $B$ are \emph{independent}.
+
+For example, let us consider an experiment where we toss two fair coins; i.e.,
+let us consider $\Omega = \set{HH, HT, TH, TT}$ and let $\Pr$ be a uniform
+distribution on $\Omega$. It is easy to see that $\Pr(\set{HH, HT}) = 1 / 2$,
+$\Pr(\set{HH, TH}) = 1 / 2$, and $\Pr(\set{HH, HT} \cap \set{HH, TH}) =
+\Pr(\set{HH}) =  1 / 4$. Hence, these two events are independent.
+
 \begin{chapterendexercises}
   \exercise Prove \Cref{corollary:inclusion-exclustion-probability}.
+  \exercise Let $\Omega = \set{HH, HT, TH, TT}$ and let $\Pr$ be a uniform
+    distribution on $\Omega$. Show that $\set{HH}$ and $\set{TT}$ are not
+    independent.
 \end{chapterendexercises}
