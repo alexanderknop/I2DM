@@ -23,7 +23,7 @@ can be considered as a graph on a graph $G = (\N_0, N)$,
 where $N(0) = \emptyset$, $N(1) = \set{0}$, $N(2) = \set{0, 1}$, and
 $N(n + 3) = \set{n, n + 1, n + 2}$ for any $n \in \N_0$.
 
-The key ingredient for the analysis of games based on graphs was proposed
+The key ingreadient for the analisis of games based on graphs was proposed
 by Sprague and Grundy. They proposed to consider the following function:
 \begin{definition}
   Let $G = (V, N)$ be a directed graph. A function $g : V \to \N$ is a
@@ -48,13 +48,13 @@ Consider the following graph (arrows depict possible moves).
   \draw[->] (v4) -- (v2);
 \end{tikzpicture}
 \end{center}
-Let us assume that $g$ is a Sprague--Grundy function for this graph.
+Let us assume that $g$ is a Sprague--Grundy funciton for this graph.
 Note that $3$ is a terminal position so $g(3) = \mex \emptyset = 0$.
 Since from $1$ and $2$ there are only moves to $3$, it is clear that
 $g(1) = g(2) = \mex \set{0} = 1$. Finally, $g(4) = \mex \set{0, 1} = 2$.
 
 Note that the Sprague--Grundy function is recursively defined so it may
-not exist or not to be unique if graph violets the ending condition.
+not exist or not to be unique if graph vioalates the ending condition.
 For example, the graph depicted on \Cref{figure:sprague-grundy-not-exists}
 does not have a Sprague--Grundy function.
 Indeed, assume that such a function $g$ exists. Consider two following cases.
@@ -149,7 +149,7 @@ the Sprague--Grundy function exists and is unique.
 
 Before we prove this theorem, let us illustrate by proving that the
 Sprague--Grundy function for \Cref{game:take-away-21-3-2-1} is unique.
-Assume that a Sprague--Grundy function $g$ for \Cref{game:take-away-21-3-2-1}
+Assume that a Sprague--Grundy funciton $g$ for \Cref{game:take-away-21-3-2-1}
 exists. We are going to show that it is unique.
 Note that if $x$ is a terminal position, then $g(x) = 0$. Hence, $g(0) = 0$.
 There is only one move from $1$ so $g(1) = \mex \set{0} = 1$. Similarly
@@ -188,19 +188,19 @@ existence and uniqueness.
       0 & 1 & 2 & 3 & 0 & 1 & 2 & 3 & 0 \\
       \bottomrule
   \end{tabular}
-  \caption{The Sprague--Grundy function for \Cref{game:take-away-21-3-2-1}}
+  \caption{The Sprague--Grundy funciton for \Cref{game:take-away-21-3-2-1}}
   \label{table:take-away-21-3-2-1-grundy}
   \vskip 10pt
 \end{table}
 
-To prove \Cref{theorem:ending-condition-sg-function} we need an alternative
+To prove \Cref{theorem:ending-condiction-sg-function} we need an alternative
 formulation of the ending condition. 
 \begin{definition}
   Let $G = (V, N)$ be a graph. We say that $v_1, \dots, v_n \in V$ form a
   \emph{path} in $G$ iff $v_2 \in N(v_1)$, \dots, $v_n \in N(v_{n - 1})$.
   We say that this path starts at $v_1$ and its length is $n$.
 
-  We also say that $v_1, \dots, v_n, \dots \in V$ form an \emph{infinite path}
+  We also say that $v_1, \dots, v_n, \dots \in V$ forma an \emph{infinite path}
   in $G$ iff $v_2 \in N(v_1)$, \dots, $v_n \in N(v_{n - 1})$, \dots.
 \end{definition}
 
@@ -219,7 +219,7 @@ that we will leave without proof.
   most $d(v)$ and there is a path starting at $v$ of length $d(v)$.
 \end{lemma}
 
-\begin{proof}[Proof of \Cref{theorem:ending-condition-sg-function}]
+\begin{proof}[Proof of \Cref{theorem:ending-condiction-sg-function}]
   Note that \Cref{lemma:konig} claims that $V = \bigcup_{n \in \N_0} V_n$, where
   $V_n = \set[d(v) = n]{v \in V}$. For each $n \in \N_0$, we define 
   $g_n : V_n \to \N_0$ such that $g_{n + 1}(v) = \mex \set[u \in N(v)]{g_n(u)}$

@@ -6,11 +6,11 @@
   by Ferguson.
 }
 In this part we use our knowledge about basics of mathematical reasoning
-to study games similar to checkers, chess, shogi, and tic tac toe. The games we
+to study games similar to chekers, chess, shogi, and tic tac toe. The games we
 are going to study are called combinatorial games. In these games there are two
 players, each know all the information, there are no chance moves, and when the
 game ends there is always a winner\footnote{%
-  The last condition implies that among the beforementioned games only checkers
+  The last condition implies that among the beforementioned games only chekers
   are combinatorial since all of them allow draws; however, we may change the
   rules to disallow the draws and this change would make all of them
   combinatorial.
@@ -33,9 +33,9 @@ we are going to start from much simpler example of combinatorial games.
     \item The player that removes the last chip wins.
   \end{itemize}
 \end{game}
-The question we would like to answer is there a strategy for one of the players
+The quesiton we would like to answer is there a strategy for one of the players
 to always win? So in the rest of this part we assume that both players are
-playing optimally; i.e., if there is a winning strategy they follow the strategy.
+playing optimally; i.e., if there is a winning strtegy they follow the strategy.
 
 To analyze this game we need the following two observations:
 \begin{enumerate}
@@ -99,12 +99,12 @@ To study combinatorial games we need to give a formal definition of them.
   say that the game satisfies \emph{the ending condition}.
 
   If the possible moves are the same for both players the game is
-  called \emph{impartial} otherwise it is called \emph{partisan}.
+  called \emph{impartial} otherwise it is called \emph{partizan}.
 \end{definition}
 
 Note that these games do not allow random moves, hidden information,
 simultaneous moves, and a draw in a finite number of steps so
-poker, battleships, rock-paper-scissors, and tick tack toe are not
+pocker, battleships, rock-paper-scissors, and tick tack toe are not
 combinatorial games.
 
 Since we gave a formal definition of combinatorial games we can give a framework
@@ -121,9 +121,9 @@ that allows to analyze these games.
   terminal position is an N-position.
 \end{definition}
 
-Note that P- and N-positions are defined recursively so in some games not all
+Note that P- and N-positions are definited recursively so in some games not all
 the positions are either P- or N-positions. However, \Cref{theorem:grundy-to-np}
-proves that if the game satisfies the ending condition, then all the positions
+proves that if the game satisfies the ending condiction, then all the positions
 are either P- or N-positions.
 
 
@@ -159,8 +159,8 @@ current player loses. However, it is not a coincidence.
 \end{theorem}
 
 \subsection{Subtractraction Games}
-Let us define a big class of game that generalizes the take-away game we
-discussed at the beginning of the chapter.
+Let us define a big class of game that generalizes the taka-away gamewe
+discussed at the begining of the chapter.
 \begin{game}
   Let $S \subseteq \N$ be some set. The subtraction game with the subtraction
   set $S$ is the following combinatorial game.
