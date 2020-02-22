@@ -100,11 +100,29 @@ to study profucts of finite discrete probability spaces.
 \begin{theorem}[The Multiplicative Principle]
   Let $\Omega = \Omega_1 \times \Omega_2$ and let $(\Omega_1, \Pr_1)$ and
   $(\Omega_2, \Pr_2)$ be finite discrete peobability spaces. Then $\Pr : \Omega
-  \to \R$ such that $\Pr(\omega_1, \omega_2) = \Pr(\omega_1) \cdot
-  \Pr(\omega_2)$ is a probability distribution on $\Omega$.
-
-  Moreover, if $\Pr_1$ and $\Pr_2$ are uniform, then $\Pr$ is also uniform.
+  \to \R$ such that $\Pr(\omega_1, \omega_2) = \Pr_1(\omega_1) \cdot
+  \Pr_2(\omega_2)$ is a probability distribution on $\Omega$.
+  Moreover, $\Pr_1$ and $\Pr_2$ are uniform iff $\Pr$ is also uniform.
 \end{theorem}
+
+\begin{corollary}
+\label{corollary:multiplicative-principle-probability}
+   Let $(\Omega, \Pr)$, $(\Omega_1, \Pr_1)$, and $(\Omega_2, \Pr_2)$ be finite
+   discrete peobability spaces such that $\Pr(\omega_1, \omega_2) = 
+   \Pr_1(\omega_1) \cdot \Pr_2(\omega_2)$. Then for any $A \subseteq \Omega_1$, 
+   $\Pr(A \times \Omega_2) = \Pr_1(A)$.
+\end{corollary}
+
+Using this principle we can show that in the experiment consisting of tossing
+five coins, the event where the first flip is $H$ and the event where the second
+flip is $H$ are independant. Indeed, let $\Omega = \set{H, T}^5$; $\Pr$
+be the uniform distribution on $\Omega$; and 
+$E_1 = \set[t_1 = H]{t \in \set{H, T}^5}$ and
+$E_2 = \set[t_2 = H]{t \in \set{H, T}^5}$. By
+\Cref{corollary:multiplicative-principle-probability},
+$\Pr(E_1) = \Pr(E_2) = 1 / 2$. Moreover, 
+$E_1 \cap E_2 = \set[t_1 = H \text{ and } t_2 = H]{t \in \set{H, T}^5}$;
+therefore, $\Pr(E_1 \cap E_2) = \frac{1}{4}$.
 
 \begin{chapterendexercises}
   \exercise Prove \Cref{corollary:inclusion-exclustion-probability}.
