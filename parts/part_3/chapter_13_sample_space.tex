@@ -79,7 +79,7 @@ $\Pr(B)$.
 This result can be easily extended to the cases when $A$ and $B$ are not
 disjoint.
 \begin{corollary}[The Inclusion-exclusion Principle]
-\label{corollary:inclusion-exclustion-probability}
+\label{corollary:inclusion-exclusion-probability}
   Let $(\Omega, \Pr)$ be a finite discrete probability space, and let $A, B
   \subseteq \Omega$ be two events. Then 
   $\Pr(A \cup B) = \Pr(A) + \Pr(B) - \Pr(A \cap B)$.
@@ -98,28 +98,22 @@ $\Pr(\set{HH, TH}) = 1 / 2$, and $\Pr(\set{HH, HT} \cap \set{HH, TH}) =
 To analyze experiments consisting of tossing several coins, we need to be able
 to study products of finite discrete probability spaces.
 \begin{theorem}[The Multiplicative Principle]
+\label{theorem:multiplicative-principle-probability}
   Let $\Omega = \Omega_1 \times \Omega_2$ and let $(\Omega_1, \Pr_1)$ and
   $(\Omega_2, \Pr_2)$ be finite discrete probability spaces. Then $\Pr : \Omega
   \to \R$ such that $\Pr(\omega_1, \omega_2) = \Pr_1(\omega_1) \cdot
   \Pr_2(\omega_2)$ is a probability distribution on $\Omega$.
-  Moreover, $\Pr_1$ and $\Pr_2$ are uniform iff $\Pr$ is also uniform.
+  Moreover, $\Pr(E_1 \times E_2) = \Pr_1(E_1) \cdot \Pr_2(E_2)$ for all 
+  $E_1 \subseteq \Omega_1$ and $E_2 \subseteq \Omega_2$.
 \end{theorem}
-
-\begin{corollary}
-\label{corollary:multiplicative-principle-probability}
-   Let $(\Omega, \Pr)$, $(\Omega_1, \Pr_1)$, and $(\Omega_2, \Pr_2)$ be finite
-   discrete probability spaces such that $\Pr(\omega_1, \omega_2) = 
-   \Pr_1(\omega_1) \cdot \Pr_2(\omega_2)$. Then for any $A \subseteq \Omega_1$, 
-   $\Pr(A \times \Omega_2) = \Pr_1(A)$.
-\end{corollary}
 
 Using this principle we can show that in the experiment consisting of tossing
 five coins, the event where the first flip is $H$ and the event where the second
-flip is $H$ are independent. Indeed, let $\Omega = \set{H, T}^5$; $\Pr$
-be the uniform distribution on $\Omega$; and 
+flip is $H$ are independent. Indeed, let $\Omega = \set{H, T}^5$; 
+$\Pr$ be the uniform distribution on $\Omega$; and 
 $E_1 = \set[t_1 = H]{t \in \set{H, T}^5}$ and
 $E_2 = \set[t_2 = H]{t \in \set{H, T}^5}$. By
-\Cref{corollary:multiplicative-principle-probability},
+\Cref{theorem:multiplicative-principle-probability},
 $\Pr(E_1) = \Pr(E_2) = 1 / 2$. Moreover, 
 $E_1 \cap E_2 = \set[t_1 = H \text{ and } t_2 = H]{t \in \set{H, T}^5}$;
 therefore, $\Pr(E_1 \cap E_2) = \frac{1}{4}$.
@@ -129,4 +123,8 @@ therefore, $\Pr(E_1 \cap E_2) = \frac{1}{4}$.
   \exercise Let $\Omega = \set{HH, HT, TH, TT}$ and let $\Pr$ be a uniform
     distribution on $\Omega$. Show that $\set{HH}$ and $\set{TT}$ are not
     independent.
+  \exercise Alice is rolling a dice $n$ times, compute the probability
+    that Alice sees $6$, $6$, and $6$ in three consecutive rolls.
+  \exercise Alice is rolling a dice $n$ times, compute the probability
+    that Alice sees $4$, $5$, and $6$ in three consecutive rolls.
 \end{chapterendexercises}
