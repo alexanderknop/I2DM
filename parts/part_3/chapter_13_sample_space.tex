@@ -51,6 +51,8 @@ definition).
   informal interpretation of the answer.
 \end{exercise}
 
+\section{Basic Principles}
+
 Events are subsets of the sample space; hence, they can be combined using the
 standard set operations. So it is natural to ask whether the probabilities
 $\Pr(A \cup B)$ and $\Pr(A \cap B)$ can be expressed in terms of $\Pr(A)$ and
@@ -117,6 +119,34 @@ $E_2 = \set[t_2 = H]{t \in \set{H, T}^5}$. By
 $\Pr(E_1) = \Pr(E_2) = 1 / 2$. Moreover, 
 $E_1 \cap E_2 = \set[t_1 = H \text{ and } t_2 = H]{t \in \set{H, T}^5}$;
 therefore, $\Pr(E_1 \cap E_2) = \frac{1}{4}$.
+
+\section{Random Variables}
+Sometimes we are more interested in some function of the result of the
+experiment rather than the result itself. For example, Sasha may play Dungeons
+and Dragons and be interested in his chances to roill $7$ on two dices together.
+Let us formalize the question. Let $\Omega = \range{6}^2$ and $\Pr$ be a the
+uniform distribution on $\Omega$. Sasha is iterested in the probability of the
+event $\set[x + y = 7]{(x, y) \in \range{6}^2}$.
+
+More generally, let $(\Omega, \Pr)$ be a finite discrete probability space. Then
+a function $\chi : \Omega \to \R$ is called a \emph{random variable} and 
+$\Pr(\chi = a)$ denotes $\Pr(\set[\chi(\omega) = a]{\omega \in \Omega})$. 
+
+In the example about Dangeons and Dragons, $\chi(x, y) = x + y$ and 
+we are interested in $\Pr(\chi = 7) = \Pr(\set{(1, 6), (2, 5), \dots, (6, 1)} =
+1/ 6$.
+\begin{exercise}
+  Let $\Omega = \range{6}^2$ and $\Pr$ be a the uniform distribution on
+  $\Omega$. Let $\chi : \Omega \to \R$ be the random variable such that 
+  $\chi(x, y) = x + y$. Find $\Pr(\chi = 1)$, \dots, $\Pr(\chi = 12)$.
+\end{exercise}
+
+We are going to adopt some simple additional notation, if 
+$\chi_1, \chi_2 : \Omega \to \R$ are random variables then 
+$(\chi_1 + \chi_2), (\chi_1 \cdot \chi_2) : \Omega \to \R$ are the random
+variables such that $(\chi_1 + \chi_2)(\omega) = \chi_1(\omega) +
+\chi_2(\omega)$ and $(\chi_1 \cdot \chi_2)(\omega) = \chi_1(\omega) \cdot
+\chi_2(\omega)$.
 
 \begin{chapterendexercises}
   \exercise Prove \Cref{corollary:inclusion-exclusion-probability}.
