@@ -1,4 +1,44 @@
 \chapter{Sums of Combinatorial Games}
+
+Let us consider the following game.
+\begin{game}[Take-Away Game]
+\label{game:two-pile-take-away-n-m-2-1}
+  In this game there are two players.
+  \begin{itemize}
+    \item They have two piles of $n$ and $m$ chips, respectively.
+    \item They make moves in turns with player I starting,
+      each move consists of moving one or two chips out of the pile.
+    \item The player that removes the last chip wins.
+  \end{itemize}
+\end{game}
+It is not hard to draw the graph corresponding to the game for small $n$ and
+$m$.
+\begin{figure}
+  \centering
+  \begin{tikzpicture}[thick]
+    \node[circle, draw, minimum size=6pt] (v1) at (0,0) {$(0, 0)$};
+    \node[circle, draw, minimum size=6pt] (v2) at (1.5,1.5) {$(0, 1)$};
+    \node[circle, draw, minimum size=6pt] (v3) at (-1.5,1.5) {$(1, 0)$};
+    \node[circle, draw, minimum size=6pt] (v4) at (0,3) {$(1, 1)$};
+    \node[circle, draw, minimum size=6pt] (v5) at (3,3) {$(0, 2)$};
+    \node[circle, draw, minimum size=6pt] (v6) at (-3,3) {$(2, 0)$};
+
+
+    \draw[->] (v2) -- (v1);
+    \draw[->] (v3) -- (v1);
+    \draw[->] (v4) -- (v2);
+    \draw[->] (v4) -- (v3);
+    \draw[->] (v5) to[out=-90, in=0] (v1);
+    \draw[->] (v6) to[out=-90, in=180] (v1);
+    \draw[->] (v6) -- (v3);
+    \draw[->] (v5) -- (v2);
+  \end{tikzpicture}
+  \caption{Part of the graph of \Cref{game:two-pile-take-away-n-m-2-1}}
+\end{figure}
+Using this graph it is easy to see that all drawn positions, except $(1, 1)$ and
+$(0, 0)$ are N-positions.
+
+In the rest of the chapter we will discuss a method to study similar games.
 Assume we have two combinatorial games $\mathcal{G}_1$ and $\mathcal{G}_2$.
 One may form another game played as follows: the initial position of the new game
 consists of the pair of initial positions of $\mathcal{G}_1$ and $\mathcal{G}_2$,
@@ -87,9 +127,9 @@ Let us give a formal definition.
 
 
 Another example is given by the game of Nim; it is easy to see that
-$2$-pile Nim is a sum of two $1$-pile Nims. This observation allows to generalize
-Bouton's Theorem (\Cref{theorem:bouton}).
-\begin{theorem}[Sprague--Grundy Theorem]
+$2$-pile Nim is a sum of two $1$-pile Nims. This observation leads to a
+generalization of Bouton's Theorem (\Cref{theorem:bouton}).
+\begin{theorem}[The Sprague--Grundy Theorem]
     Let $G_1$ and $G_2$ be some graphs and $g_1$ and $g_2$ be corresponding
     Sprague--Grundy functions. Then the graph $G_1$ and $G_2$ has a
     Sprague--Grundy function $g$ such that
@@ -126,6 +166,11 @@ Bouton's Theorem (\Cref{theorem:bouton}).
     However, $g_1(y_1) \neq g_1(x_1)$ since there is a move from $x_1$ to $y_1$.
     Therefore $g_1(y_1) \bitwisexor g_1(x_1) \neq 0$ which is a contradiction.
 \end{proof}
+It is also easy to see that if $G_1$ and $G_2$ satisfy the ending condition,
+then $G_1 + G_2$ also satisfies the ending condition. Therefore, if $G_1$ and
+$G_2$ satisfy the ending condition and $g_1$, $g_2$ are Sprague--Grundy
+functions of them, $G_1 + G_2$ has unique Sprague--Grundy function $g$ such that
+$g(x_1, x_2) = g_1(x_1) \bitwisexor g_2(x_2)$.
 
 The simple example of an application of this theorem is the analysis of the
 following game.
@@ -135,20 +180,100 @@ following game.
   They take turns and remove $1$, $2$, or $3$ chips from one of the piles.
   If one of them cannot make a move he/she loses.
 \end{game}
-We need to determine who wins if both of them are playing optimally?
 
-To give an answer for this question we start with a simpler game,
-a subtraction game with a subtraction set $\set{1, 2, 3}$. It is easy to see
-that $g : \N_0 \to \set{0, 1, 2}$ such that
+To determine who is the winner in this game, we start with a subtraction game
+$G$ with the subtraction set $\set{1, 2, 3}$. It is easy to see that 
+$g : \N_0 \to \N_0$ such that
 \[
   g(x) =
   \begin{cases}
-      0 & x \equiv 0 \pmod{3} \\
-      1 & x \equiv 1 \pmod{3} \\
-      2 & x \equiv 2 \pmod{3}
+    0 & \text{if } x \equiv 0 \pmod{3} \\
+    1 & \text{if } x \equiv 1 \pmod{3} \\
+    2 & x \text{if } \equiv 2 \pmod{3}
   \end{cases}
 \]
-is a Sprague--Grundy function for a subtraction game with a subtraction set
-$\set{1, 2, 3}$.
-It is also clear that \Cref{game:subtraction-1-2-3-out-of-10-11} is a sum of
-two subtraction games with a subtraction set $\set{1, 2, 3}$.
+is the Sprague--Grundy function for $G$. 
+It is also clear that \Cref{game:subtraction-1-2-3-out-of-10-11} is equal to 
+$G + G$. Therefore the function $g' : \N_0^2 \to \N_0$ such that 
+\[
+  g(x, y) =
+  \begin{cases}
+    0 & \text{if } x \equiv 0 \pmod{3} \text{ and } y \equiv 0 \pmod{3}\\
+    1 & \text{if } x \equiv 0 \pmod{3} \text{ and } y \equiv 1 \pmod{3}\\
+    2 & \text{if } x \equiv 0 \pmod{3} \text{ and } y \equiv 2 \pmod{3}\\
+    1 & \text{if } x \equiv 1 \pmod{3} \text{ and } y \equiv 0 \pmod{3}\\
+    0 & \text{if } x \equiv 1 \pmod{3} \text{ and } y \equiv 1 \pmod{3}\\
+    3 & \text{if } x \equiv 1 \pmod{3} \text{ and } y \equiv 2 \pmod{3}\\
+    2 & \text{if } x \equiv 2 \pmod{3} \text{ and } y \equiv 0 \pmod{3}\\
+    3 & \text{if } x \equiv 2 \pmod{3} \text{ and } y \equiv 1 \pmod{3}\\
+    0 & \text{if } x \equiv 2 \pmod{3} \text{ and } y \equiv 2 \pmod{3}
+  \end{cases}
+\]
+
+A surprising example of the application of this theorem is the following game.
+\begin{game}
+\label{game:polygon}
+  In this game position is described by a polygon with several diagonals. 
+  The game starts with a polygon with $n$ sides. On each turn a player draw a
+  new diagonal so that it does not intersect with previously drawn diagonals.
+  Players take turns and the one who cannot make a move loses.
+\end{game}
+It is easy to see that we do not care about the shape of the polygon and
+diagonals, the only important information is the number of nodes and which nodes
+are connected by a diagonal. 
+
+Let $g(n)$ be the value of the Sprague--Grundy function at the polygon with $n$
+sides. It is easy to see that if we split the polygon, by a diagonal, into two
+parts with $\ell$ and $m$ sides, then the resulting position is essentially a
+position in the sum of two games; 
+hence, 
+$g(n) = 
+  \mex \set[
+    \ell, m \ge 3 \text{ and } \ell + m = n + 2
+  ]{g(\ell) \bitwisexor g(m)}$.
+Using this observation it is easy to compute the value of $g(n)$ for small $n$.
+\begin{table}[h!]
+  \centering
+  \begin{tabular}{l l l l l l l l l}
+      \toprule
+      3 & 4 & 5 & 6 & 7 & 8 \\
+      \midrule
+      0 & 1 & 0 & 1 & 0 & 1 \\
+      \bottomrule
+  \end{tabular}
+  \caption{Sprague--Grundy function for \Cref{game:polygon}}
+\end{table}
+It is easy to see to make a conjecture that $g(n) = 0$ for odd $n$ and $g(n) =
+1$ for even $n$. Let us prove this using induction. The base case follows from
+the computation necessary to write the table. Let us prove the induction step
+from $1, \dots, n$ to $n + 1$.
+\begin{itemize}
+  \item Let $n$ be odd. It is clear that if $\ell + m = n + 3$, then $\ell$ and
+    $m$ have the same reminder modulo $2$. Therefore, $g(m) = g(\ell)$ by the
+    induction hypothesis. As a result, 
+    \[
+      \set[
+        \ell, m \ge 3 \text{ and } \ell + m = n + 2
+      ]{g(\ell) \bitwisexor g(m)} = \set{0}
+    \] and $g(n + 1) = 1$.
+    
+  \item Let $n$ be even. It is clear that if $\ell + m = n + 3$, then $\ell$ and
+    $m$ have different reminders modulo $2$. Therefore, $g(m) \neq g(\ell)$ by the
+    induction hypothesis. As a result, 
+    \[
+      \set[
+        \ell, m \ge 3 \text{ and } \ell + m = n + 2
+      ]{g(\ell) \bitwisexor g(m)} = \set{1}
+    \] 
+    and $g(n + 1) = 0$.
+\end{itemize}
+\begin{chapterendexercises}
+    \exercise Compute the Sprague--Grundy function for states of the subtraction
+      game with two piles of chips where players and the subtraction set 
+      $\set{1, 2, 5}$.
+    \exercise Let $G_1$ be the subtraction game with the subtraction set
+      $\set{1, 2}$
+      Let $G_2$ be the game of Nim with three piles.
+      Find all the moves from $(11, (1, 6, 7))$ to P-positions in 
+      $G1 + G2$.
+\end{chapterendexercises}
