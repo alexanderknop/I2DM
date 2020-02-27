@@ -125,11 +125,28 @@ that allows to analyze these games.
   possible moves lead to N-positions, then the position is a P-position.
 
   For the game using the Mis\`ere rule, the definition is the same except the
-  terminal position is an N-position.
+  terminal positions are N-positions.
 \end{definition}
 
+Using this definition, one may create the following procedure that would allow
+to determine which positions are P-positions and which are N-positions.
+\begin{template}
+  \textbf{Steps necessary to find P- and N-positions} \\
+
+  \begin{enumerate}
+    \item Label all terminal positions as P-positions.
+    \item If some position is not labeled but all the moves lead to labeled
+      positions, then label the position using the definition; i.e., if there
+      are moves leading to P-position, it is an N-position, otherwise it is a
+      P-position.
+    \item If not all the positions are labeled, go to Step~2.
+  \end{enumerate}
+\end{template}
+
+
 Note that P- and N-positions are defined recursively so in some games not all
-the positions are either P- or N-positions. However, \Cref{theorem:grundy-to-np}
+the positions are either P- or N-positions. (For example, if there are no
+terminal positions.) However, \Cref{theorem:grundy-to-np}
 proves that if the game satisfies the ending condition, then all the positions
 are either P- or N-positions.
 
