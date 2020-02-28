@@ -22,6 +22,7 @@ this chapter we will study this method in more details.
 
 This notion allows us to translate properties from one set to another.
 \begin{theorem}
+\label{theorem:m-reduction-complexity-preservation}
   Let $A, B \subseteq \N$ such that $A \le_m B$.
   \begin{itemize}
     \item If $B$ is decidable, then $A$ is decidable.
@@ -73,28 +74,28 @@ following theorem give an affirmative answer to this question.
 \end{proof}
 
 \begin{definition}
-  A set $B$ maximal with respect to $m$-reducibility is called
-  \emph{$m$-complete for the set of enumerable sets}.
+  An enumerable set $B$ maximal with respect to $m$-reducibility is called
+  \emph{$m$-complete for the class of enumerable sets}.
 \end{definition}
 
 \begin{theorem}
+\label{theorem:m-complete-enumerable}
   Let $U$ be a G\"odel universal function. 
-  Then \[
-    \set[U(x, x) \text{ terminates}]{x \in \N}
-  \]
-  is complete for the set of enumerable sets.
+  Then $\set[U(x, x) \text{ terminates}]{x \in \N}$ is $m$-complete for the
+  class of enumerable sets.
 \end{theorem}
 \begin{proof}
-  Let $K$ be a enumerable set. Let us consider a computable function $V : \N^2
-  \to \N$s such that $V(n, x) = 1$ if $n \in K$ and undefined otherwise.
-  Since $U$ is G\"odel universal function, there is a total computable $s : \N
-  \to \N$ such that $V_n = U_{s(n)}$. Hence,  $U_{s(n)}$ decides $\N$ if 
-  $n \in K$ and $U_{s(n)}$ decides $\emptyset$ if $K \not\in K$. 
+  Let $K \subseteq \N$ be a enumerable set. Let us consider a computable
+  function $V : \N^2 \to \N$s such that $V(n, x) = 1$ if $n \in K$ and undefined
+  otherwise. Since $U$ is G\"odel universal function, there is a total
+  computable $s : \N \to \N$ such that $V_n = U_{s(n)}$. Hence,  $U_{s(n)}$
+  decides $\N$ if $n \in K$ and $U_{s(n)}$ decides $\emptyset$ if $K \not\in K$.
   Therefore $s(n) \in D$ iff $n \in K$.
 \end{proof}
 
 \begin{chapterendexercises}
   \exercise Prove that the set of all programs that halt on the input $0$ is
-    $m$-complete. Prove that the set of all programs that halt on at least one
-    input is $m$-complete.
+    $m$-complete for the class of enumerable sets.
+  \exercise Prove that the set of all programs that halt on at least one input
+  is $m$-complete for the class of enumerable sets.
 \end{chapterendexercises}
