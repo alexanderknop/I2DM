@@ -1,8 +1,8 @@
 \chapter{Arithmetical Hierarchy}
 
 \Cref{theorem:enumerable-via-computable-funcitons} proves that any decidable set
-is the image of some total computable function from $\N$. Identifying sets and
-predicates we can prove the following theorem.
+is the image of some total computable function from $\N$; identifying sets and
+predicates we give the following reformulation.
 \begin{theorem}
   A predicate$A(x)$ of natural numbers is enumerable iff there is a decidable
   predicate $B(x, y)$ such that the following formula is always true:
@@ -56,6 +56,7 @@ This question gives rise to the following definition.
 
 Previous observations can be generalized as follows.
 \begin{theorem}
+\label{theorem:arythmetic-hierarchy-basics}
   \begin{enumerate}
     \item The set $\Sigma_1$ consists of enumerable sets.
     \item If a predicate belongs to $\Sigma_n$, then its negation belongs to
@@ -71,6 +72,24 @@ good properties.
   Union and intersection of two $\Sigma_n$ ($\Pi_n$) sets are also $\Sigma_n$
   ($\Pi_n$) sets.
 \end{theorem}
+\begin{proof}
+  We prove the statement for the union of two $\Sigma_n$ sets, all other cases
+  have similar proofs. Let $A_1, A_2 \in \Sigma_n$. By the definition of
+  $\Sigma_n$, there are decidable $B_1$ and $B_2$ such that 
+  \begin{gather*}
+    A_1(x) \iff \exists y_1 \  \forall y_2 \  \dots B_1(x, y_1, \dots, y_n) \\
+    \text{and} \\
+    A_2(x) \iff \exists z_1 \  \forall z_2 \  \dots B_2(x, z_1, \dots, z_n).
+  \end{gather*}
+  Therefore 
+  \begin{multline*}
+      A_1(x) \land A_2(x) \iff \\
+      \exists y_1, z_1 \  \forall y_2, z_2 \  \dots 
+        B_1(x, y_1, \dots, y_n) \land B_2(x, z_1, \dots, z_n);
+  \end{multline*}
+  which implies that $A_1 \land A_2$ is a $\Sigma_n$ predicate
+  (\Cref{theorem:arythmetic-hierarchy-basics}).
+\end{proof}
 
 \begin{exercise}
   Prove that $\Sigma_n \cup \Pi_n \subseteq \Sigma_{n + 1} \cup \Pi_{n + 1}$ for
@@ -83,6 +102,18 @@ We can also prove an extension of
   Let $n \in \N$, and let $A, B \subseteq \N$ such that $A \le_m B$.
   If $B \in \Sigma_n$, then $A \in \Sigma_n$.
 \end{theorem}
+\begin{proof}
+  Let $f$ be the reduction from $A$ to $B$. Let $C$ be a decidable predicate
+  such that
+  \[
+    B(x) \iff \exists y_1 \  \forall y_2 \  \dots C(x, y_1, \dots, y_n).
+  \]
+  Note that, by the definition of the reduction, 
+  \[
+    A(x) \iff \exists y_1 \  \forall y_2 \  \dots C(f(x), y_1, \dots, y_n);
+  \]
+  hence, $A(x) \in \Sigma_n$ since $C(f(x), y_1, \dots, y_n)$ is decidable.
+\end{proof}
 
 
 \begin{exercise}
@@ -94,8 +125,38 @@ these sets are different (except $\Sigma_0$ and $\Pi_0$ which are equal to the
 class of all decidable sets). Like in the case of enumebrable sets, to prove
 this we need to use universal sets.
 \begin{theorem}
-  For any $n \in \N$, there is a set $U \in \Sigma_n$ universal for $\Sigma_n$.
+  For any $n \in \N$, there is a set $U \in \Sigma_n$ universal for $\Sigma_n$
+  subsets of $\N$.
 \end{theorem}
+\begin{proof}
+  We prove the statement using induction by $n$. The base case for $n = 1$ is
+  true by
+  \Cref{theorem:arythmetic-hierarchy-basics,theorem:universal-set-enumerable}.
+
+  Let us prove the induction step. Assume $V \in \Sigma_n$ is a universal set
+  for $\Sigma_n$ subsets of $\N$. First we show that $(\N \setminus V) \in \Pi_n$
+  is a universal set for $\Pi_n$.
+  
+  
+  Note that there is $W' \in \Pi_n$ that is universal for $\Pi_n$ subsets
+  of $\N^2$. Indeeed, let $W' = \set[(n, \pair{x}{y}) \in W]{(n, x, y) \in \N^3}
+  \in \Sigma_n$.
+  Let $A' \in \Pi_n$ and $B'$ be decidable set such that
+  \[
+    A'(x, y) \iff \exists z_1 \  \forall z_2 \  \dots B'(x, y, z_1, \dots, z_n).
+  \]
+  Consider $A \subseteq \N$ such that 
+  \[
+    A(\pair{x}{y}) \iff \exists z_1 \  \forall z_2 \  \dots 
+      B'(x, y, z_1, \dots, z_n);
+  \]
+  it is clear that $A \in \Pi_n$. Hence, there is $k \in \N$ such that 
+  $W_k = A$, which implies that $W'_n = A'$. Therefore $W'$ is universal for
+  $\Pi_n$ subsets of $\N^2$.
+
+  Let us consider the set 
+  $U = \set[\exists y \  (k, x, y) \in W]{(k, x) \in \N^2}$.
+\end{proof}
 
 We proved that the compliment of an enumerable universal set for the class of
 enumerable sets is not enumerable. Similar result can be shown for $\Sigma_n$.
@@ -105,8 +166,8 @@ enumerable sets is not enumerable. Similar result can be shown for $\Sigma_n$.
 \end{theorem}
 
 \begin{corollary}
-  For any $n \in \N$, $\Sigma_n \cup \Pi_n \subsetneq 
-    \Sigma_{n + 1} \cup \Pi_{n + 1}$.
+  For any $n \in \N$, $\Pi_n \not\subseteq \Sigma_{n + 1}$ and 
+  $\Sigma_n \not\subseteq \Pi_{n + 1}$.
 \end{corollary}
 
 \begin{chapterendexercises}
