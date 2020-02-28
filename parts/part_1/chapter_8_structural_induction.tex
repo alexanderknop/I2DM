@@ -217,14 +217,12 @@ The following theorem claims existence of functions defined recursively.
 $B$-decision tree are used in this chapter to represent Bob's algorithms;
 hence, we need to define values of $B$-decision trees.
 \begin{definition}
-  The value
-  $\mathrm{val}(T, n)$ of a $B$-decision tree $T$ at an integer $n$ can
-  be defined as follows.
+  The value $\mathrm{val}(T, n)$ of a $B$-decision tree $T$ at an integer $n$
+  can be defined as follows.
   \begin{description}
-      \item [(base case)] If $T$ is just an number $x \in \range{1000}$,
-        then the number the result $\mathrm{val}(T, n)$ is equal to $x$.
-      \item[(recursion step)] If $T_1$ and $T_2$ are two representations of
-        Bob's algorithms, then
+      \item [(base case)] If $T$ is just a number $x \in \range{1000}$,
+        then the result $\mathrm{val}(T, n)$ is equal to $x$.
+      \item[(recursion step)] If $T_1$ and $T_2$ are $B$-decision trees, then
         \[
           \mathrm{val}\Big((f, T_0, T_1), n\Big) =
           \begin{cases}
