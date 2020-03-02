@@ -1,1 +1,21 @@
 \chapter{Conditional Probability}
+In general, the occurrence of an event $B$ changes the probability that another
+event $A$ occurs, $\Pr(A \cond B)$ denotes the latter probability. More
+formally, $\Pr(A \cond B) = \Pr(A \cap B) / \Pr(B)$, where $(\Omega, \Pr)$ is
+finite discrete probability space, $A, B \subseteq \Omega$, and $\Pr(B) \neq 0$. 
+We say that $\Pr(A \cond B)$ is the conditional probability that $A$ occurs
+given that $B$ occurs.
+
+For example, let us consider $\Omega = [6]^2$ and uniform distribution $\Pr$ on
+$\Omega$; i.e., we consider an experiment consisting of rolling two dices. Let
+us compute the probability that the sum of numbers on the dices exceeds $6$
+given that the first dice's number is $3$. In other words we need to compute
+$\Pr(A \cond B)$, where $A = \set[i + j > 6]{(i, j) \in [6]^2}$ and 
+$B = \set[{j \in [6]}]{(3, j)}$. It is clear that $\Pr(B) = 1 / 6$ and 
+$\Pr(A \cap B) = \set{(3, 4), (3, 5), (3, 6)} = 1 / 12$. Hence, $\Pr(A \cond B)
+= 1 / 2$.
+
+\begin{exercise}
+  A family has two children. What is the probability that both are boys, given
+  at least one is a boy?
+\end{exercise}
