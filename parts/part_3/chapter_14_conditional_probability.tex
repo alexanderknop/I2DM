@@ -17,5 +17,52 @@ $\Pr(A \cap B) = \set{(3, 4), (3, 5), (3, 6)} = 1 / 12$. Hence, $\Pr(A \cond B)
 
 \begin{exercise}
   A family has two children. What is the probability that both are boys, given
-  at least one is a boy?
+  at least one is a boy? What if it is given that \emph{the first child} is a
+  boy. (You assume that the probability distribution of families is uniform.)
 \end{exercise}
+
+Let us consider another example known as ``Monty Hall Problem''. On the
+television game \emph{Let’s make a deal}, a contestant is presented with a
+choice of three closed doors. Behind exactly one door is a prize; the other
+doors conceal cheap items. First, the contestant is asked to choose a door. Then
+Monty Hall, the host of the show,  shows the contestant one of the worthless
+prizes behind one of the other doors. At this point, there are two closed
+doors, and the contestant is given the opportunity to switch from his original
+choice to the other closed door. The question is, is it better for the
+contestant to stick to his original choice or to switch doors?
+
+
+Let us analyze this question using the conditional probabilities. Without loss
+of generality, we may assume that the contestant chooses door $1$.
+Note that the sample space is equal to $\set{(1, 2), (1, 3), (2, 3), (3, 2)}$,
+where the first numbder denotes the door with the prize and the second number
+denotes the door opened by the host. The probability distribution is equal to 
+\[
+  \Pr(x) = 
+  \begin{cases}
+    1 / 6 & x = (1, 2) \\
+    1 / 6 & x = (1, 3) \\
+    1 / 3 & x = (2, 3) \\
+    1 / 3 & x = (3, 2)
+  \end{cases}
+\]
+since in the first two cases Monty has two possible choices to show a door
+without the prize.
+Suppose the host reveiled the door number $2$ (the probability of this is
+$3 / 6$). Then the probability that we win the price if we stick to the original
+choice is $(1 / 6) / (3 / 6) = 1 / 3$. However, the probability to win the prize
+in case of us swithcing the door is $(1 / 3) / (3 / 6) = 2 / 3$. Which implies,
+paradozicaly, that it is beneficial to switch the door!
+
+\begin{theorem}[Bayes’ Rules]
+  Let $(\Omega, \Pr)$ be a finite discrete probability space. 
+  \begin{itemize}
+    \item Let $A, B \subseteq \Omega$ be two events such that $\Pr(A) > 0$ and
+      $\Pr(B) > 0$. Then $\Pr(A \cond B) = \frac{\Pr(B \cond A) \Pr(B)}{\Pr(A)}$.
+    \item Let $A, B \subseteq \Omega$ be two events such that $\Pr(A) < 1$ and
+      $\Pr(B) < 1$; i.e., $\Pr(\bar{A}) > 0$ and $\Pr(\bar{A}) > 0$, where
+      $\bar{A} = \Omega \setminus A$ and $\bar{B} = \Omega \setminus B$.
+      Then $\Pr(A) = \Pr(A \cond B)\Pr(B) + \Pr(A \cond \bar{B})\Pr(\bar{B})$.
+  \end{itemize}
+\end{theorem}
+
