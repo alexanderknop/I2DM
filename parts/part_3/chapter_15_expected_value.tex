@@ -1,0 +1,130 @@
+\chapter{Expectation of a Random Variable}
+To understand the behaviour of a random variable one may try to use the average
+value; there are several ways to define the average value, but we are going to
+concentrate on the definition based on the mean. Given a random variable $X$
+in the finite discrete probability space $(\Omega, \Pr)$, the expected value of
+$\expectation{X}$ of $\chi$ is equal to $\sum_{\omega \in \Omega}
+\Pr(\omega) X(\omega)$.
+
+Note that it is possible that there are several $\omega$'s with the same
+$X(\omega)$. Hence, one may give an alternative defenition of the expectation.
+\begin{theorem}
+  Let $(\Omega, \Pr)$ be a finite discrete probability space, and let $X$ be a
+  random variable in the probability space. Then $\expectation{X} = 
+  \sum_{a \in \Im X} a\Pr(X = a)$.
+\end{theorem}
+
+An important property of expectation that often allows simplifications in
+computing the expected value of a random variable is its linearity.
+\begin{theorem}
+  Let $(\Omega, \Pr)$ be a finite discrete probability space; $X$ and
+  $Y$ be random variables; and let $\lambda \in \R$.
+  Then $\expectation{X + Y} = \expectation{X} + \expectation{Y}$ and
+  $\expectation{\lambda X} = \lambda \expectation{X}$.
+\end{theorem}
+Let su give a simple example showing that this theorem can help to compute the
+expected value of a random variable. Consider an experiment consisting of
+tossing $n$ standard coins; i.e. consider the finite discrete probability space
+$(\Omega, \Pr)$ such that $\Omega = \set{H, T}^n$ and $\Pr$ is the uniform
+distribution on $\Omega$. We would like to find the expected number $X$ of heads
+in the experiment. Let $X_i$ be a random variable that is equal to $1$ if the
+$i$th flip yields heads, otherwise it is equal to $0$. It is clear that $X =
+\sum_{i = 1}^n X_i$. Hence, $\expectation{X} = \sum_{i = 1}^n \expectation{X_i}$.
+However, $\expectation{X_i} = 1 / 2$ which implies that $\expectation{X} = n / 2$.
+
+Let us use this knowledge to study a game similar to the game discussed in
+\Cref{chapter:structural-induciton}. Alice selected $500$ numbers from $1$ to
+$1000$ and Bob would like to guess at least one of them. How many questions Bob
+need to ask to do this?
+
+Apparently, the situation is drastically different if Bob's algorithm can be
+randomized and if it cannot be randomized.
+To show this we need to extend the definition of $B$-decision trees so that they
+can operate not only with integers.
+\begin{definition}
+  Let $X$ and $Y$ be some sets. We say that $T$ is a $B$-decision tree if
+  \begin{description}
+    \item [(base case)] either $T$ is equal to $y \in Y$, or
+    \item [(recursion step)] $T$ is equal to $(f, T_0, T_1)$,
+      where $f : X \to \set{0, 1}$, and $T_0$ and $T_1$
+      are $B$-decision trees.
+  \end{description}
+
+  The numbder of queries $h(T, x)$ of $T$ at $x \in X$ can be defined as follows.
+  \begin{description}
+    \item [(base case)] If $T$ is equal to $y \in Y$, then $h(T) = 0$.
+    \item[(recursion step)] If $T = (f, T_0, T_1)$, then
+      \[
+          h(T, x) = 
+          \begin{cases}
+            h(T_0, x) + 1 & \text{if } f(x) = 0 \\
+            h(T_1, x) + 1 & \text{otherwise}
+          \end{cases}
+      \]
+  \end{description}
+
+  The value $\mathrm{val}(T, x)$ of a $B$-decision tree $T$ at $x \in X$
+  can be defined as follows.
+  \begin{description}
+      \item [(base case)] If $T$ is equal to $y \in Y$,
+        then the result $\mathrm{val}(T, x)$ is equal to $y$.
+      \item[(recursion step)] If $T_1$ and $T_2$ are $B$-decision trees, then
+        \[
+          \mathrm{val}\Big((f, T_0, T_1), n\Big) =
+          \begin{cases}
+            \mathrm{val}(T_0, n) & \text{if } f(x) = 0 \\
+            \mathrm{val}(T_1, n) & \text{otherwise}
+          \end{cases}.
+        \]
+  \end{description}
+\end{definition}
+
+\begin{theorem}
+\label{theorem:guess-one-out-of-many}
+  Let $\binom{\range{1000}}{500}$ denote the set of subsets of $\range{1000}$ with $500$
+  elements.
+  \begin{itemize}
+    \item Let $T$ be a $B$-decision tree such that $\mathrm{val}(T, S) \in S$
+      for all $S \in \binom{\range{1000}}{500}$. Then $h(T) \ge 9$.
+    \item There are a set $\Omega$ of $B$-decision trees and a probability
+      distribution $\Pr$ on $\Omega$ such that $\mathrm{val}(T, S) \in S$ for
+      all $S \in \binom{\range{1000}}{500}$ and $T \in \Omega$, but
+      $\expectation{h(T, S)} \le 3$ for all $S \in \binom{\range{1000}}{500}$.
+  \end{itemize}
+\end{theorem}
+\begin{proof}
+  We prove only the second part of the statement, the first part can be proven
+  similarly to \Cref{theorem:guess-the-number}.
+  To prove this statement let us consider the following algorithm.
+  \begin{itemize}
+    \item Choose $x_1, \dots, x_n \in [1000]$ unifromly at random;
+    \item Set $i = i$;
+    \item Query whether $x_i \in S$ or not.
+    \item If yes, the output is $x_i$, otherwise increase $i$.
+    \item If $i \le n$ go to step $3$, otherwise go to step $6$.
+    \item Bruteforce all the numbers from $[1000]$ and check whether they belong
+      to $S$ or not.
+  \end{itemize}
+  Let us compute the expected number of queries made by this algorithm. It is
+  clear that the probability that the algorithm gets yes for $i = k$ is equal to
+  $\left(\frac{1}{2}\right)^k$. Hence, the expected number of queries is equal
+  to 
+  \[
+    \left(\frac{1}{2}\right)^n 1000 + 
+    \sum_{k = 1}^n \left(\frac{1}{2}\right)^k k.
+  \]
+
+  \begin{claim}
+      For any $k \in \N$, $\sum_{k = 1}^n \left(\frac{1}{2}\right)^k k = 
+      2^{-n} (-n + 2^{n + 1} - 2)$.
+  \end{claim}
+
+  Therefore, the average number of queries is at most 
+  $2^{-n} (-n + 2^{n + 1} - 998) \le 3$ for $n \ge 10$.
+
+  It is also clear that the result of this algorithm is always correct.
+\end{proof}
+
+\begin{chapterendexercises}
+  \exercise Prove the first part of \Cref{theorem:guess-one-out-of-many}.
+\end{chapterendexercises}
