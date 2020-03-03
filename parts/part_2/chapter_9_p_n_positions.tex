@@ -5,19 +5,22 @@
   ``Game Theory''
   by Ferguson.
 }
+\marginurl{%
+    Combinatorial Games:\\\noindent
+    Introduction to Combinatorial Game Theory \#1
+}{youtu.be/DbCKHPlMN2c}
 In this part we use our knowledge about basics of mathematical reasoning
-to study games similar to chekers, chess, shogi, and tic tac toe. The games we
+to study games similar to checkers, chess, shogi, and tic tac toe. The games we
 are going to study are called combinatorial games. In these games there are two
 players, each know all the information, there are no chance moves, and when the
-game ends there is always a winner\footnote{%
-  The last condition implies that among the beforementioned games only chekers
-  are combinatorial since all of them allow draws; however, we may change the
-  rules to disallow the draws and this change would make all of them
-  combinatorial.
-}. Such a game is determined by a set of positions, and possible moves
-from each position for each player. Usually, players are taking turns until
-they reach a position such that no moves are possible and one of the player is
-declared a winner.
+game ends there is always a winner.
+(The last condition implies that among the beforementioned games only checkers
+are combinatorial since all of them allow draws; however, we may change the
+rules to disallow the draws and this change would make all of them
+combinatorial.) Such a game is determined by a set of positions, and possible
+moves from each position for each player. Usually, players are taking turns
+until they reach a position such that no moves are possible and one of the
+player is declared a winner.
 
 \section{Take-Away Game}
 
@@ -33,9 +36,9 @@ we are going to start from much simpler example of combinatorial games.
     \item The player that removes the last chip wins.
   \end{itemize}
 \end{game}
-The quesiton we would like to answer is there a strategy for one of the players
+The question we would like to answer is there a strategy for one of the players
 to always win? So in the rest of this part we assume that both players are
-playing optimally; i.e., if there is a winning strtegy they follow the strategy.
+playing optimally; i.e., if there is a winning strategy they follow the strategy.
 
 To analyze this game we need the following two observations:
 \begin{enumerate}
@@ -50,9 +53,9 @@ referred as \emph{backward induction}) we are able to analyze the game.
 Let us consider some certain states of the game.
 Assume that they have at most $3$ chips left, in this case the player that make
 the move wins. However, if there are $4$ chips, the
-player that makes the first move should always take at least $1$ chip so it
-loses since after its turn there are at most $3$ chip. Similarly, if there
-are $5$ chips, the first player to move wins since it can take a chip and
+player that makes the first move should always take at least $1$ chip so she
+loses since after her turn there are at most $3$ chip. Similarly, if there
+are $5$ chips, the first player to move wins since she can take a chip and
 make the second player to start with $4$.
 
 So we can formulate the following conjecture.
@@ -99,16 +102,20 @@ To study combinatorial games we need to give a formal definition of them.
   say that the game satisfies \emph{the ending condition}.
 
   If the possible moves are the same for both players the game is
-  called \emph{impartial} otherwise it is called \emph{partizan}.
+  called \emph{impartial} otherwise it is called \emph{partisan}.
 \end{definition}
 
 Note that these games do not allow random moves, hidden information,
 simultaneous moves, and a draw in a finite number of steps so
-pocker, battleships, rock-paper-scissors, and tick tack toe are not
+poker, battleships, rock-paper-scissors, and tick tack toe are not
 combinatorial games.
 
 Since we gave a formal definition of combinatorial games we can give a framework
 that allows to analyze these games.
+\marginurl{%
+    P-positions and N-positions:\\\noindent
+    Introduction to Combinatorial Game Theory \#2
+}{youtu.be/YV_oWBi1_ck}
 \begin{definition}
   We say that a position in a combinatorial game is \emph{terminal} if there
   are no legal moves.
@@ -118,12 +125,29 @@ that allows to analyze these games.
   possible moves lead to N-positions, then the position is a P-position.
 
   For the game using the Mis\`ere rule, the definition is the same except the
-  terminal position is an N-position.
+  terminal positions are N-positions.
 \end{definition}
 
-Note that P- and N-positions are definited recursively so in some games not all
-the positions are either P- or N-positions. However, \Cref{theorem:grundy-to-np}
-proves that if the game satisfies the ending condiction, then all the positions
+Using this definition, one may create the following procedure that would allow
+to determine which positions are P-positions and which are N-positions.
+\begin{template}
+  \textbf{Steps necessary to find P- and N-positions} \\
+
+  \begin{enumerate}
+    \item Label all terminal positions as P-positions.
+    \item If some position is not labeled but all the moves lead to labeled
+      positions, then label the position using the definition; i.e., if there
+      are moves leading to P-position, it is an N-position, otherwise it is a
+      P-position.
+    \item If not all the positions are labeled, go to Step~2.
+  \end{enumerate}
+\end{template}
+
+
+Note that P- and N-positions are defined recursively so in some games not all
+the positions are either P- or N-positions. (For example, if there are no
+terminal positions.) However, \Cref{theorem:grundy-to-np}
+proves that if the game satisfies the ending condition, then all the positions
 are either P- or N-positions.
 
 
@@ -154,13 +178,13 @@ In other words, in this game, P-positions coincide with the positions where the
 current player loses. However, it is not a coincidence.
 \begin{theorem}
   If some position in a combinatorial game is an N-position, then the player to
-  move have a winning strategy if we start from this position. If the position
+  move has a winning strategy if we start from this position. If the position
   is a P-position, then the other player has a winning strategy.
 \end{theorem}
 
 \subsection{Subtractraction Games}
-Let us define a big class of game that generalizes the taka-away gamewe
-discussed at the begining of the chapter.
+Let us define a big class of games that generalizes the take-away game we
+discussed at the beginning of the chapter.
 \begin{game}
   Let $S \subseteq \N$ be some set. The subtraction game with the subtraction
   set $S$ is the following combinatorial game.

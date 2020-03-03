@@ -2,8 +2,8 @@
 This section gives an alternative definition of a combinatorial game.
 This definition allows us to study general combinatorial games.
 \begin{definition}
-  A \emph{directed graph} $G$ is a pair $(V, N)$ such that $F$ is a non-empty
-  set and $F : V \to 2^V$.\footnote{%
+  A \emph{directed graph} $G$ is a pair $(V, N)$ such that $V$ is a non-empty
+  set and $N : V \to 2^V$.\footnote{%
     We are going to have a more in-depth
     discussion of graphs in \Cref{part:graph-theory}.
   }
@@ -23,7 +23,7 @@ can be considered as a graph on a graph $G = (\N_0, N)$,
 where $N(0) = \emptyset$, $N(1) = \set{0}$, $N(2) = \set{0, 1}$, and
 $N(n + 3) = \set{n, n + 1, n + 2}$ for any $n \in \N_0$.
 
-The key ingreadient for the analisis of games based on graphs was proposed
+The key ingredient for the analysis of games based on graphs was proposed
 by Sprague and Grundy. They proposed to consider the following function:
 \begin{definition}
   Let $G = (V, N)$ be a directed graph. A function $g : V \to \N$ is a
@@ -48,21 +48,21 @@ Consider the following graph (arrows depict possible moves).
   \draw[->] (v4) -- (v2);
 \end{tikzpicture}
 \end{center}
-Let us assume that $g$ is a Sprague--Grundy funciton for this graph.
+Let us assume that $g$ is a Sprague--Grundy function for this graph.
 Note that $3$ is a terminal position so $g(3) = \mex \emptyset = 0$.
 Since from $1$ and $2$ there are only moves to $3$, it is clear that
 $g(1) = g(2) = \mex \set{0} = 1$. Finally, $g(4) = \mex \set{0, 1} = 2$.
 
 Note that the Sprague--Grundy function is recursively defined so it may
-not exist or not to be unique if graph vioalates the ending condition.
+not exist or not to be unique if graph violets the ending condition.
 For example, the graph depicted on \Cref{figure:sprague-grundy-not-exists}
 does not have a Sprague--Grundy function.
 Indeed, assume that such a function $g$ exists. Consider two following cases.
 \begin{itemize}
-    \item Firs case is when $g(3) = 0$. Note that $g(2) = \mex \set{0} = 1$.
-        Hence, $g(1) = \mex \set{1} = 0$ which contradicts to the assumption
+    \item First case is when $g(3) = 0$. Note that $g(2) = \mex \set{0} = 1$.
+        Hence, $g(1) = \mex \set{1} = 0$ which contradicts the assumption
         that $g(3) = 0$ since $g(3) = \mex \set{g(0)} = 1$.
-    \item Firs case is when $g(3) \neq 0$. Note that $g(2) = \mex \set{g(3)} = 0$.
+    \item Second case is when $g(3) \neq 0$. Note that $g(2) = \mex \set{g(3)} = 0$.
         Therefore $g(1) = \mex \set{0} = 1$ and $g(3) = \mex \set{1} = 0$ which
         is a contradiction.
 \end{itemize}
@@ -141,7 +141,7 @@ are Sprague--Grundy functions for $G$.
 However, all the combinatorial games we are going to consider
 the Sprague--Grundy function exists and is unique.
 \begin{theorem}
-\label{theorem:ending-condiction-sg-function}
+\label{theorem:ending-condition-sg-function}
   Let $G = (V, N)$ be a graph such that $N(v)$ is finite and $G$ satisfies the
   ending condition. Then Sprague--Grundy function for $G$ exists and it is
   unique.
@@ -149,7 +149,7 @@ the Sprague--Grundy function exists and is unique.
 
 Before we prove this theorem, let us illustrate by proving that the
 Sprague--Grundy function for \Cref{game:take-away-21-3-2-1} is unique.
-Assume that a Sprague--Grundy funciton $g$ for \Cref{game:take-away-21-3-2-1}
+Assume that a Sprague--Grundy function $g$ for \Cref{game:take-away-21-3-2-1}
 exists. We are going to show that it is unique.
 Note that if $x$ is a terminal position, then $g(x) = 0$. Hence, $g(0) = 0$.
 There is only one move from $1$ so $g(1) = \mex \set{0} = 1$. Similarly
@@ -188,43 +188,46 @@ existence and uniqueness.
       0 & 1 & 2 & 3 & 0 & 1 & 2 & 3 & 0 \\
       \bottomrule
   \end{tabular}
-  \caption{The Sprague--Grundy funciton for \Cref{game:take-away-21-3-2-1}}
+  \caption{The Sprague--Grundy function for \Cref{game:take-away-21-3-2-1}}
   \label{table:take-away-21-3-2-1-grundy}
   \vskip 10pt
 \end{table}
 
-To prove \Cref{theorem:ending-condiction-sg-function} we need an alternative
-formulation of the ending condition. 
-\begin{definition}
-  Let $G = (V, N)$ be a graph. We say that $v_1, \dots, v_n \in V$ form a
-  \emph{path} in $G$ iff $v_2 \in N(v_1)$, \dots, $v_n \in N(v_{n - 1})$.
-  We say that this path starts at $v_1$ and its length is $n$.
+Note that in this proof we used a procedure very similar to the one we used to
+find P- and N-positions.
+\begin{template}
+  \textbf{Steps necessary to find a Sparague--Grundy function} \\
 
-  We also say that $v_1, \dots, v_n, \dots \in V$ forma an \emph{infinite path}
-  in $G$ iff $v_2 \in N(v_1)$, \dots, $v_n \in N(v_{n - 1})$, \dots.
-\end{definition}
+  Assume we are trying to construct a a Sparague--Grundy function $g$.
+  \begin{enumerate}
+    \item Set $g(x) = 0$ for all terminal positions $x$.
+    \item If $g(x)$ is not defined but $g(y)$ is defined for all $y \in N(x)$,
+      then set $g(x) = \mex \set[y \in N(x)]{g(y)}$.
+    \item If $g(x)$ is not defined for some $x$, go to Step~2.
+  \end{enumerate}
+\end{template}
 
-\begin{remark}
-  The game on a graph $G$ satisfies the ending condition iff there are no
-  infinite paths in $G$.
-\end{remark}
-
-To use this formulation of the ending condition we also need the following lemma
-that we will leave without proof.
+Let $V_0$ be the set of terminal positions, and let $V_i$ be the set of $x$ such
+that we define $g(x)$ on the $i$th iteration of the procedure.
+The following lemma eseentially says that this procedure defines $g$ everywhere.
 \begin{lemma}[K\H{o}nig]
 \label{lemma:konig}
   Let $G = (V, N)$ be a graph such that $N(v)$ is finite for all $v \in V$ and
-  $G$ satisfies the ending condition. Then there is $d : V \to \N_0$ such that
-  for any $v \in V$ and any path starting at $v$, length of this path is at
-  most $d(v)$ and there is a path starting at $v$ of length $d(v)$.
+  $G$ satisfies the ending condition.
+  Let $V_0$ be the set of terminal positions, and let $V_{n + 1} = 
+  \set[N(v) \subseteq V_n]{v \in V}$. Then $V = \bigcup_{n \in \N_0} V_n$.
 \end{lemma}
 
-\begin{proof}[Proof of \Cref{theorem:ending-condiction-sg-function}]
-  Note that \Cref{lemma:konig} claims that $V = \bigcup_{n \in \N_0} V_n$, where
-  $V_n = \set[d(v) = n]{v \in V}$. For each $n \in \N_0$, we define 
-  $g_n : V_n \to \N_0$ such that $g_{n + 1}(v) = \mex \set[u \in N(v)]{g_n(u)}$
-  for $v \in V_{n + 1}$ and $g_0(v) = 0$ for $v \in V_0$. This definition is
-  correct since $N(v) \subseteq V_n$ for $v \in V_{n + 1}$. It is easy to see
+\begin{proof}[Proof of \Cref{theorem:ending-condition-sg-function}]
+  Let $V_0$ be the set of terminal positions, and let $V_{n + 1} = 
+  \set[N(v) \subseteq V_n]{v \in V}$.
+  \Cref{lemma:konig} claims that $V = \bigcup_{n \in \N_0} V_n$.
+
+  For each $n \in \N_0$, we define $g_n : V_n \to \N_0$ such that 
+  $
+    g_{n + 1}(v) = \mex \set[u \in N(v)]{g_n(u)}
+  $
+  for $v \in V_{n + 1}$ and $g_0(v) = 0$ for $v \in V_0$. It is easy to see
   that the function $g : V \to \N_0$ such that $g(v) = g_n(v)$ for $v \in V_n$
   is a Sprague--Grundy function for $G$. 
 
