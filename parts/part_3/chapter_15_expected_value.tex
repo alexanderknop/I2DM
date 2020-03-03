@@ -1,0 +1,25 @@
+\chapter{Expectation of a Random Variable}
+To understand the behaviour of a random variable one may try to use the average
+value; there are several ways to define the average value, but we are going to
+concentrate on the definition based on the mean. Given a random variable $X$
+in the finite discrete probability space $(\Omega, \Pr)$, the expected value of
+$\expectation{X}$ of $\chi$ is equal to $\sum_{\omega \in \Omega}
+\Pr(\omega) X(\omega)$.
+
+An important property of expectation that often allows simplifications in
+computing the expected value of a random variable is its linearity.
+\begin{theorem}
+  Let $(\Omega, \Pr)$ be a finite discrete probability space; $X$ and
+  $Y$ be random variables; and let $\lambda \in \R$.
+  Then $\expectation{X + Y} = \expectation{X} + \expectation{Y}$ and
+  $\expectation{\lambda X} = \lambda \expectation{X}$.
+\end{theorem}
+Let su give a simple example showing that this theorem can help to compute the
+expected value of a random variable. Consider an experiment consisting of
+tossing $n$ standard coins; i.e. consider the finite discrete probability space
+$(\Omega, \Pr)$ such that $\Omega = \set{H, T}^n$ and $\Pr$ is the uniform
+distribution on $\Omega$. We would like to find the expected number $X$ of heads
+in the experiment. Let $X_i$ be a random variable that is equal to $1$ if the
+$i$th flip yields heads, otherwise it is equal to $0$. It is clear that $X =
+\sum_{i = 1}^n X_i$. Hence, $\expectation{X} = \sum_{i = 1}^n \expectation{X_i}$.
+However, $\expectation{X_i} = 1 / 2$ which implies that $\expectation{X} = n / 2$.
