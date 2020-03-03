@@ -66,3 +66,19 @@ paradozicaly, that it is beneficial to switch the door!
   \end{itemize}
 \end{theorem}
 
+
+Usefulness of this result can be illustrated with the following example. Assume
+that there is a rare disease that has the property that if a patient is affected
+by the desease, then the test is positive in $99\%$ of the cases. However, it
+happens in $2\%$ of the cases that a healthy patient tests positive. Statistical
+data shows that one person out of $1000$ has the desease. What is the
+probability for a patient with a positive test to be affected by the desease?
+
+Let $S$ be the event that the patient has the desease, and $P$ and $N$ the
+events that the test is positive or negative. We know that $\Pr(S) = 0.001$,
+$\Pr(P \cond S) = 0.99$, and $\Pr(P \cond S) = 0.02$, where $\bar{S}$ is the
+event that the patient does not have the desease. Therefore $\Pr(S \cond P) =
+\frac{\Pr(P \cond S) \Pr(S)}{\Pr(P)}$ and $\Pr(P) = \Pr(P \cond S) \Pr(S) +
+\Pr(P \cond \bar{S}) \Pr(\bar{S})$. As a result $\Pr(S \cond P) = 
+\frac{0.99 \cdot 0.001}{0.99 \cdot 0.001 + 0.02 \cdot 0.999} \approx
+\frac{1}{20}$.
