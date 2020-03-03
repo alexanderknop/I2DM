@@ -10,7 +10,6 @@
 
   \tableofcontents
 
-  \clearpage
   \markboth{\nomname}{\nomname}
   \printnomenclature
 
@@ -18,6 +17,7 @@
   \input{parts/preface}
 
   \mainmatter
+  \pagenumbering{arabic}
 
   \part{Introduction to Mathematical Reasoning}
   \label{part:mathematical-reasoning}
@@ -40,36 +40,37 @@
   \part{Introduction to Discrete Probability}
   \label{part:probability}
   \input{parts/part_3/chapter_13_sample_space}
+  \input{parts/part_3/chapter_14_conditional_probability}
 
   \part{Introduction to Combinatorics}
   \label{part:combinatorics}
-  \input{parts/part_4/chapter_14_bijections}
-  \input{parts/part_4/chapter_15_principles}
-  \input{parts/part_4/chapter_16_pigeonhole_principle}
-  \input{parts/part_4/chapter_17_binomial_coefficients}
-  \input{parts/part_4/chapter_18_partitions}
-  \input{parts/part_4/chapter_19_permutations}
-  \input{parts/part_4/chapter_20_generating_functions}
+  \input{parts/part_4/chapter_15_bijections}
+  \input{parts/part_4/chapter_16_principles}
+  \input{parts/part_4/chapter_17_pigeonhole_principle}
+  \input{parts/part_4/chapter_18_binomial_coefficients}
+  \input{parts/part_4/chapter_19_partitions}
+  \input{parts/part_4/chapter_20_permutations}
+  \input{parts/part_4/chapter_21_generating_functions}
 
   \part{Introduction to Mathematical Logic}
   \label{part:logic}
-  \input{parts/part_5/chapter_21_propositional_logic}
-  \input{parts/part_5/chapter_22_predicate_logic}
+  \input{parts/part_5/chapter_22_propositional_logic}
+  \input{parts/part_5/chapter_23_predicate_logic}
 
   \part{Introduction to Graph Theory}
   \label{part:graph-theory}
-  \input{parts/part_6/chapter_23_basics_of_graph_theory}
-  \input{parts/part_6/chapter_24_paths}
-  \input{parts/part_6/chapter_25_trees}
+  \input{parts/part_6/chapter_24_basics_of_graph_theory}
+  \input{parts/part_6/chapter_25_paths}
+  \input{parts/part_6/chapter_26_trees}
 
   \part{Introduction to Computability Theory}
   \label{part:computability}
-  \input{parts/part_7/chapter_26_decidable_sets}
-  \input{parts/part_7/chapter_27_universal_functions}
-  \input{parts/part_7/chapter_28_godel_numberings}
-  \input{parts/part_7/chapter_29_fixed_point}
-  \input{parts/part_7/chapter_30_m_reductions}
-  \input{parts/part_7/chapter_31_arithmetical_hierarchy}
+  \input{parts/part_7/chapter_27_decidable_sets}
+  \input{parts/part_7/chapter_28_universal_functions}
+  \input{parts/part_7/chapter_29_godel_numberings}
+  \input{parts/part_7/chapter_30_fixed_point}
+  \input{parts/part_7/chapter_31_m_reductions}
+  \input{parts/part_7/chapter_32_arithmetical_hierarchy}
 
   \appendix
   \part{Appendices}
