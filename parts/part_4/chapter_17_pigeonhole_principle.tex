@@ -74,6 +74,20 @@ We need to consider two cases.
   decreasing sequence of length at least $s$.
 \end{proof}
 
+We can also use the pigeonhole principle to show that the lower bound from
+\Cref{theorem:guess-one-out-of-many} is precise.
+\begin{theorem}
+  There is a $B$-decision tree $T$ such that $h(T) \le 9$ and 
+  $\mathrm{val}(T, S) \in S$ for all $S \in \binom{\range{1000}}{500}$.
+\end{theorem}
+\begin{proof}
+  Let us fix some set $S \in \binom{\range{1000}}{500}$. Note that $S \cap
+  \range{501} \neq \emptyset$. Therefore, the minimal element of $S$ belongs to
+  $\range{501}$. Hence, using an algorithm similar to the algorithm from
+  \Cref{chapter:structural-induciton}, we can find the minimal element of $S$
+  using at most $\ceil{\log{501}} = 9$ questions.
+\end{proof}
+
 \section{The Generalized Pigeonhole Principle}
 One may generalize the pigeonhole principle in the following way.
 If $N$ objects are placed into $k$ boxes, then there is at least one box
