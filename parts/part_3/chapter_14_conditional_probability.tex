@@ -7,8 +7,8 @@ We say that $\Pr(A \cond B)$ is the conditional probability that $A$ occurs
 given that $B$ occurs.
 
 For example, let us consider $\Omega = [6]^2$ and uniform distribution $\Pr$ on
-$\Omega$; i.e., we consider an experiment consisting of rolling two dices. Let
-us compute the probability that the sum of numbers on the dices exceeds $6$
+$\Omega$; i.e., we consider an experiment consisting of rolling two dice. Let
+us compute the probability that the sum of numbers on the dice exceeds $6$
 given that the first dice's number is $3$. In other words we need to compute
 $\Pr(A \cond B)$, where $A = \set[i + j > 6]{(i, j) \in [6]^2}$ and 
 $B = \set[{j \in [6]}]{(3, j)}$. It is clear that $\Pr(B) = 1 / 6$ and 
@@ -35,7 +35,7 @@ contestant to stick to his original choice or to switch doors?
 Let us analyze this question using the conditional probabilities. Without loss
 of generality, we may assume that the contestant chooses door $1$.
 Note that the sample space is equal to $\set{(1, 2), (1, 3), (2, 3), (3, 2)}$,
-where the first numbder denotes the door with the prize and the second number
+where the first number denotes the door with the prize and the second number
 denotes the door opened by the host. The probability distribution is equal to 
 \[
   \Pr(x) = 
@@ -48,11 +48,11 @@ denotes the door opened by the host. The probability distribution is equal to
 \]
 since in the first two cases Monty has two possible choices to show a door
 without the prize.
-Suppose the host reveiled the door number $2$ (the probability of this is
+Suppose the host revealed the door number $2$ (the probability of this is
 $3 / 6$). Then the probability that we win the price if we stick to the original
 choice is $(1 / 6) / (3 / 6) = 1 / 3$. However, the probability to win the prize
 in case of us swithcing the door is $(1 / 3) / (3 / 6) = 2 / 3$. Which implies,
-paradozicaly, that it is beneficial to switch the door!
+paradoxically, that it is beneficial to switch the door!
 
 \begin{theorem}[Bayes’ Rules]
   Let $(\Omega, \Pr)$ be a finite discrete probability space. 
@@ -69,12 +69,12 @@ paradozicaly, that it is beneficial to switch the door!
 
 Usefulness of this result can be illustrated with the following example. Assume
 that there is a rare disease that has the property that if a patient is affected
-by the desease, then the test is positive in $99\%$ of the cases. However, it
+by the disease, then the test is positive in $99\%$ of the cases. However, it
 happens in $2\%$ of the cases that a healthy patient tests positive. Statistical
-data shows that one person out of $1000$ has the desease. What is the
-probability for a patient with a positive test to be affected by the desease?
+data shows that one person out of $1000$ has the disease. What is the
+probability for a patient with a positive test to be affected by the disease?
 
-Let $S$ be the event that the patient has the desease, and $P$ and $N$ the
+Let $S$ be the event that the patient has the disease, and $P$ and $N$ the
 events that the test is positive or negative. We know that $\Pr(S) = 0.001$,
 $\Pr(P \cond S) = 0.99$, and $\Pr(P \cond S) = 0.02$, where $\bar{S}$ is the
 event that the patient does not have the desease. Therefore $\Pr(S \cond P) =

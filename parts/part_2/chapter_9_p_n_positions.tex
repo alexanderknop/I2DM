@@ -14,7 +14,7 @@ to study games similar to checkers, chess, shogi, and tic tac toe. The games we
 are going to study are called combinatorial games. In these games there are two
 players, each know all the information, there are no chance moves, and when the
 game ends there is always a winner.
-(The last condition implies that among the beforementioned games only checkers
+(The last condition implies that among the aforementioned games only checkers
 are combinatorial since all of them allow draws; however, we may change the
 rules to disallow the draws and this change would make all of them
 combinatorial.) Such a game is determined by a set of positions, and possible
@@ -36,9 +36,10 @@ we are going to start from much simpler example of combinatorial games.
     \item The player that removes the last chip wins.
   \end{itemize}
 \end{game}
-The question we would like to answer is there a strategy for one of the players
-to always win? So in the rest of this part we assume that both players are
-playing optimally; i.e., if there is a winning strategy they follow the strategy.
+The question we would like to answer is whether there is a strategy for one of
+the players to always win. So in the rest of this part we assume that both
+players are playing optimally; i.e., if there is a winning strategy they follow
+the strategy.
 
 To analyze this game we need the following two observations:
 \begin{enumerate}
@@ -47,7 +48,7 @@ To analyze this game we need the following two observations:
   \item if at some point the players have $n$ chips it does not matter how they
     achieved this, it will not affect the rest of the game.
 \end{enumerate}
-Using this remarks and induction (this style of induction is sometimes
+Using these remarks and induction (this style of induction is sometimes
 referred as \emph{backward induction}) we are able to analyze the game.
 
 Let us consider some certain states of the game.
@@ -69,13 +70,13 @@ we need to prove the induction step from $n$ to $n + 1$.
   \item If $n \equiv 0 \pmod{4}$, then the first player to move can remove one
     chip and the other player will start with $n$ chips so by the induction
     hypothesis he/she loses.
-  \item If $n \equiv 1 \pmod{4}$. then the first player to move can remove two
+  \item If $n \equiv 1 \pmod{4}$, then the first player to move can remove two
     chips and the other player will start with $n$ chips so by the induction
     hypothesis he/she loses.
-  \item If $n \equiv 2 \pmod{4}$. then the first player to move can remove three
+  \item If $n \equiv 2 \pmod{4}$, then the first player to move can remove three
     chips and the other player will start with $n$ chips so by the induction
     hypothesis he/she loses.
-  \item If $n \equiv 3 \pmod{4}$. then after the current player move the other
+  \item If $n \equiv 3 \pmod{4}$, then after the current player moves the other
     player will start with either $n$, or $n - 1$, or $n - 2$ chips. But all
     these numbers have non-zero reminders modulo $4$. So the other player
     can win in any case.
@@ -107,7 +108,7 @@ To study combinatorial games we need to give a formal definition of them.
 
 Note that these games do not allow random moves, hidden information,
 simultaneous moves, and a draw in a finite number of steps so
-poker, battleships, rock-paper-scissors, and tick tack toe are not
+poker, battleships, rock-paper-scissors, and tic tac toe are not
 combinatorial games.
 
 Since we gave a formal definition of combinatorial games we can give a framework

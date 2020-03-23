@@ -1,4 +1,9 @@
 \chapter{Graph Games}
+\marginurl{%
+    Graph Games:\\\noindent
+    Introduction to Combinatorial Game Theory \#4
+}{youtu.be/71fSkXp4DJc}
+
 This section gives an alternative definition of a combinatorial game.
 This definition allows us to study general combinatorial games.
 \begin{definition}
@@ -54,7 +59,7 @@ Since from $1$ and $2$ there are only moves to $3$, it is clear that
 $g(1) = g(2) = \mex \set{0} = 1$. Finally, $g(4) = \mex \set{0, 1} = 2$.
 
 Note that the Sprague--Grundy function is recursively defined so it may
-not exist or not to be unique if graph violets the ending condition.
+not exist or not to be unique if graph violates the ending condition.
 For example, the graph depicted on \Cref{figure:sprague-grundy-not-exists}
 does not have a Sprague--Grundy function.
 Indeed, assume that such a function $g$ exists. Consider two following cases.
@@ -138,7 +143,7 @@ are Sprague--Grundy functions for $G$.
     Show that $G$ does not have a Sprague--Grundy function.
 \end{exercise}
 
-However, all the combinatorial games we are going to consider
+However, for all the combinatorial games we are going to consider
 the Sprague--Grundy function exists and is unique.
 \begin{theorem}
 \label{theorem:ending-condition-sg-function}
@@ -177,7 +182,7 @@ Assume the equality is true for all $y < x$ and consider the following cases.
     \item If $x \equiv 3 \pmod{4}$, $g(x) = \mex \set{0, 1, 2} = 3$.
 \end{itemize}
 It is also clear that the constructed function is indeed a Sprague--Grundy
-function for \Cref{game:take-away-21-3-2-1}. Therefore we proved that
+function for \Cref{game:take-away-21-3-2-1}. Therefore, we proved its
 existence and uniqueness.
 \begin{table}
   \centering
@@ -209,7 +214,7 @@ find P- and N-positions.
 
 Let $V_0$ be the set of terminal positions, and let $V_i$ be the set of $x$ such
 that we define $g(x)$ on the $i$th iteration of the procedure.
-The following lemma eseentially says that this procedure defines $g$ everywhere.
+The following lemma essentially says that this procedure defines $g$ everywhere.
 \begin{lemma}[K\H{o}nig]
 \label{lemma:konig}
   Let $G = (V, N)$ be a graph such that $N(v)$ is finite for all $v \in V$ and

@@ -1,4 +1,9 @@
 \chapter{Sums of Combinatorial Games}
+\marginurl{%
+    Sum of Games:\\\noindent
+    Introduction to Combinatorial Game Theory \#5
+}{youtu.be/dRaqJKZh3y0}
+
 
 Let us consider the following game.
 \begin{game}[Take-Away Game]
@@ -211,6 +216,11 @@ $G + G$. Therefore the function $g' : \N_0^2 \to \N_0$ such that
 \]
 Therefore, the position $(10, 11)$ is an N-position.
 
+
+\marginurl{%
+    Applications of the Sprague-Grundy Theorem:\\\noindent
+    Introduction to Combinatorial Game Theory \#6
+}{youtu.be/V4yI_1P1Jcc}
 A surprising example of the application of this theorem is the following game.
 \begin{game}
 \label{game:polygon}
@@ -250,7 +260,7 @@ the computation necessary to write the table. Let us prove the induction step
 from $1, \dots, n$ to $n + 1$.
 \begin{itemize}
   \item Let $n$ be odd. It is clear that if $\ell + m = n + 3$, then $\ell$ and
-    $m$ have the same reminder modulo $2$. Therefore, $g(m) = g(\ell)$ by the
+    $m$ have the same remainder modulo $2$. Therefore, $g(m) = g(\ell)$ by the
     induction hypothesis. As a result, 
     \[
       \set[
@@ -259,7 +269,7 @@ from $1, \dots, n$ to $n + 1$.
     \] and $g(n + 1) = 1$.
     
   \item Let $n$ be even. It is clear that if $\ell + m = n + 3$, then $\ell$ and
-    $m$ have different reminders modulo $2$. Therefore, $g(m) \neq g(\ell)$ by the
+    $m$ have different remainders modulo $2$. Therefore, $g(m) \neq g(\ell)$ by the
     induction hypothesis. As a result, 
     \[
       \set[
