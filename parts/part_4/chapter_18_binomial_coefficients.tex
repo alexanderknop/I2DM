@@ -11,11 +11,11 @@ for this question.
 \begin{enumerate}
   \item we return objects to the box after we take them and the order in which
     we take them matters,
-  \item we are \emph{do not} return the obejcts and the order in which
+  \item we are \emph{do not} return the objects and the order in which
     we take them matters,
   \item we return objects to the box after we take them and the order in which
     we take them \emph{does not} matter,
-  \item we are \emph{do not} return the obejcts and the order in which
+  \item we are \emph{do not} return the objects and the order in which
     we take them \emph{does not} matter.
 \end{enumerate}
 
@@ -44,7 +44,7 @@ to prove.
 
 \section{Counting Functions}
 Note that if we number objects using numbers from $1$ to $n$, then in the first
-mode the asnwer is the same as the number of functions from $[n]$ to $[k]$ since
+mode the answer is the same as the number of functions from $[n]$ to $[k]$ since
 we need to just choose which objects is selected on the $i$th step for
 $i \in \range{k}$.
 
@@ -272,9 +272,11 @@ of the two entries to the left and right on the row above.
 \end{exercise}
 
 
+\subsection{Binomial Theorem}
 Now we are ready to prove the theorem which gave the name to binomial
 coefficients.
 \begin{theorem}[Binomial theorem]
+\label{theorem:binomial}
   For any real numbers $x$ and $y$,
     \[
       \sum_{k = 0}^n \binom{n}{k} x^k y^{n - k} = (x + y)^n.
@@ -330,9 +332,53 @@ is clearly equal to the number of multisets of $[n]$ containing $k$ objects.
   $\binom{n + k - 1}{k}$.
 \end{theorem}
 
-\begin{theorem}
+\begin{exercise}
   Prove Theorem~\ref{theorem:multisets}
-\end{theorem}
+\end{exercise}
+
+Using \Cref{theorem:binomial} one may prove several important equalities of sums
+of binomial coefficients.
+\begin{corollary}
+  Let $n \in \N$. Then
+  \begin{enumerate}
+    \item $\sum_{k = 0}^n (-1)^k \binom{n}{k} = 0$ and
+    \item $\sum_{k = 0}^n (k + 1) \binom{n}{k} = n 2^{n - 1}$.
+  \end{enumerate}
+\end{corollary}
+\begin{proof}
+  \begin{enumerate}
+    \item Let $x = -1$. We may notice that, by \Cref{theorem:binomial}, 
+      \[
+        \sum_{k = 0}^n (-1)^k \binom{n}{k} = 
+        \sum_{k = 0}^n 1^{n - k} x^k \binom{n}{k} = (1 - 1)^n = 0.
+      \]
+    \item This equality is a bit more tricky. Let $x = 1$. Note that
+      \begin{multline*}
+        \sum_{k = 0}^n (k + 1) \binom{n}{k} = 
+        \sum_{k = 0}^n (k + 1) x^k 1^{n - k} \binom{n}{k} = \\
+        \frac{d \sum_{k = 0}^n x^k \binom{n}{k}}{dx} = n (1 + x)^{n - 1}.
+      \end{multline*}
+      As a result, $\sum_{k = 0}^n (k + 1) \binom{n}{k} = n 2^n$.
+  \end{enumerate}
+\end{proof}
+
+
+Using the idea of the second equality, we can give an alternative --- more
+explicit --- proof of \Cref{claim:guess-one-out-of-many}.
+\begin{proof}[Proof of \Cref{claim:guess-one-out-of-many}]
+\label{proof-claim:guess-one-out-of-many}
+  Let $x = 1 / 2$. Then the value we would like to compute is 
+  $\sum_{k = 1}^n k x^k$. Note that
+  \begin{multline*}
+    \sum_{k = 1}^n k x^k = x \sum_{k = 1}^n k x^{k - 1} =
+    x \frac{d \sum_{k = 0}^n x^k}{dx} = \\
+    x \frac{d}{dx} \frac{1 - x^{n + 1}}{1 - x} = 
+    x \frac{-(n + 1) x^n (1 - x) + (1 - x^{n + 1})}{(1 - x)^2} =  \\
+    2\left(
+      1 - \frac{1}{2^{n + 1}} - (n + 1) \frac{1}{2^{n + 1}}
+    \right) = 2 - \frac{n + 2}{2^n}.
+  \end{multline*}
+\end{proof}
 
 \subsection{Counting Groups of Subsets}
 In this section we study a generalization of the question we study in the

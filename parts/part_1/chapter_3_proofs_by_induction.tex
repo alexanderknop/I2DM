@@ -276,16 +276,17 @@ $f_{k - 1}$ to define $f_k$).
 Another example of an application of the strong induction is the proof that
 any number can be written in digital numeral systems with any base.
 \begin{theorem}
-  Let $b > 1$ be an integer. Then there is a unique representation of any
-  positive number in the base-$b$ digital numeral system. In other words, for
-  any positive integer $n$, there are unique $0 \le c_0, \dots, c_\ell < b$
-  such that $n = \sum_{i = 0}^\ell b^i c_i$.
+  Let $b > 1$ be an integer. Then there is a unique representation 
+  $(c_0, \dots, c_\ell)_b$ of any positive number $n$ in the base-$b$ digital
+  numeral system. 
+  In other words, for any positive integer $n$, there are unique 
+  $0 \le c_0, \dots, c_\ell < b$ such that $n = \sum_{i = 0}^\ell b^i c_i$.
 \end{theorem}
 \begin{proof}
   We prove the statement using strong induction by $n$. The base case for
-  $n < b$ is clear (we can choose $\ell = 1$ and $c_0 = n$).
+  $n < b$ is clear (we can choose $\ell = 0$ and $c_0 = n$).
   Let us now prove the induction step. Assume the statement is true for all
-  $k < n$. Let $n$ divided by $b$ be equal to $q$ with the reminder $c_0$.
+  $k < n$. Let $n$ divided by $b$ be equal to $q$ with the remainder $c_0$.
   Note that $(n - c_0) / b < n$ is a positive integer. Hence,
   by the induction hypothesis, there are
   $0 \le c_1, \dots, c_\ell < b$
@@ -296,15 +297,15 @@ any number can be written in digital numeral systems with any base.
 
 Now we are ready to prove the strong induction principle.
 \begin{proof}[Proof of Theorem~\ref{theorem:strong-induction}]
-    It is easy to see that if $P(n)$ is true for all $n > n_0$, then the base
-    case and the induction steps are true. Let us prove that if the base case and
-    the induction step are true, then $P(n)$ is true for all $n > n_0$.
+  It is easy to see that if $P(n)$ is true for all $n > n_0$, then the base
+  case and the induction steps are true. Let us prove that if the base case and
+  the induction step are true, then $P(n)$ is true for all $n > n_0$.
 
-    Let $Q(k)$ be the statement that $P(n_0 + 1)$, \dots, $P(n_0 + k)$ are true.
-    Note that $Q(1)$ is true by the base case for $P$. Additionally, note that if
-    $Q(k)$ is true, then $Q(k + 1)$ is also true, by the induction step for $P$.
-    Hence, by the induction principle, $Q(k)$ is true for all positive integers
-    $k$. Which implies that $P(n_0 + k)$ is true for all positive integers $k$.
+  Let $Q(k)$ be the statement that $P(n_0 + 1)$, \dots, $P(n_0 + k)$ are true.
+  Note that $Q(1)$ is true by the base case for $P$. Additionally, note that if
+  $Q(k)$ is true, then $Q(k + 1)$ is also true, by the induction step for $P$.
+  Hence, by the induction principle, $Q(k)$ is true for all positive integers
+  $k$. Which implies that $P(n_0 + k)$ is true for all positive integers $k$.
 \end{proof}
 
 
@@ -312,46 +313,46 @@ Now we are ready to prove the strong induction principle.
 To illustrate the power of recursive definitions and strong induction, let us
 analyze Algorithm~\ref{algorithm:binary-search}.
 \begin{algorithm}
-    \begin{algorithmic}[1]
-        \Function{BinarySearch}{$e$, $a_1$, \dots, $a_n$}
-            \If{$n \le 5$}
-                \For{$i$ from $1$ to $n$}
-                    \If{$a_i = e$}
-                        \State\Return{i}
-                    \EndIf
-                \EndFor
-            \Else
-                \State{$\ell \gets \floor{\frac{n}{2}}$}
-                \If{$a_\ell \le e$}
-                    \State\Call{BinarySearch}{$e$, $a_1$, \dots, $a_\ell$}
-                \Else
-                    \State\Call{BinarySearch}{$e$, $a_{\ell + 1}$, \dots, $a_n$}
-                \EndIf
-            \EndIf
-        \EndFunction
-    \end{algorithmic}
-    \caption{The binary search algorithm that finds an element $e$ in the sorted
-        list $a_1$, \dots, $a_n$.}
-    \label{algorithm:binary-search}
+  \begin{algorithmic}[1]
+    \Function{BinarySearch}{$e$, $a_1$, \dots, $a_n$}
+      \If{$n \le 5$}
+        \For{$i$ from $1$ to $n$}
+          \If{$a_i = e$}
+            \State\Return{i}
+           \EndIf
+        \EndFor
+      \Else
+        \State{$\ell \gets \floor{\frac{n}{2}}$}
+        \If{$a_\ell \le e$}
+          \State\Call{BinarySearch}{$e$, $a_1$, \dots, $a_\ell$}
+        \Else
+          \State\Call{BinarySearch}{$e$, $a_{\ell + 1}$, \dots, $a_n$}
+        \EndIf
+      \EndIf
+    \EndFunction
+  \end{algorithmic}
+  \caption{The binary search algorithm that finds an element $e$ in the sorted
+    list $a_1$, \dots, $a_n$.}
+  \label{algorithm:binary-search}
 \end{algorithm}
 We prove that number of comparisons of this algorithm is bounded by
 $6 + 2\log_2(n)$. First step of the proof is to denote the worst
 number of comparisons when we run the algorithm on the list of length $n$ by
 $C(n)$. It is easy to see that $C(n) = n$ for $n \le 5$. Additionally,
 $C(n) \le 1 +
-    \max(C\left(\floor{\frac{n}{2}}\right),
-         C\left(n - \floor{\frac{n}{2}})\right)$
+  \max(C\left(\floor{\frac{n}{2}}\right),
+        C\left(n - \floor{\frac{n}{2}})\right)$
 for $n > 5$. As we mentioned we prove that $C(n) \le 6 + 2\log_2(n)$, we prove
 it by induction. The base case is clear; let us now prove the induction step.
 By the induction hypothesis,
 \[
-    C\left(\floor{\frac{n}{2}}\right) \le
-        6 + 2\log_2\left(\floor{\frac{n}{2}}\right)
+  C\left(\floor{\frac{n}{2}}\right) \le
+    6 + 2\log_2\left(\floor{\frac{n}{2}}\right)
 \]
 and
 \[
-    C\left(n - \floor{\frac{n}{2}}\right) \le
-        6 + 2\log_2\left(n - \floor{\frac{n}{2}}\right),
+  C\left(n - \floor{\frac{n}{2}}\right) \le
+    6 + 2\log_2\left(n - \floor{\frac{n}{2}}\right),
 \]
 where $\floor{\alpha}$ denotes the integer part of a real number $\alpha$.
 \nomenclature[C]{$\floor{\alpha}$}{denotes the greatest integer less than or

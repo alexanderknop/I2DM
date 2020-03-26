@@ -1,0 +1,15 @@
+\newcommand{\Algorithm}[1]{\mathcal{#1}}
+\newcommand{\strings}{\set{0, 1}^*}
+\newcommand{\Halting}{\mathrm{HALT}}
+\newcommand{\Optimize}{\mathrm{Opt}}
+\newcommand{\pair}[2]{\langle {#1}, {#2} \rangle}
+\newcommand{\Computable}{\mathrm{FC}}
+
+
+\algblock{Parallel}{EndParallel}
+% customising the new block
+\algnewcommand\algorithmicparallel{\textbf{run in parallel}}
+\algnewcommand\algorithmicendparallel{\textbf{end in parallel}}
+\algrenewtext{Parallel}{\algorithmicparallel}
+\algrenewtext{EndParallel}{\algorithmicendparallel}
+
