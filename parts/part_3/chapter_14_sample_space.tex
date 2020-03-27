@@ -22,60 +22,67 @@ $\set{HTTTT, THTTT, TTHTT, TTTHT, TTTTH}$ describe all possible outcomes when
 exactly one coin shows heads. We say that a set of outcomes is an \emph{event}.
 
 Another assumption of probability theory is that every outcome $\omega$ of a
-sample space $\Omega$ is assigned some probability $\Pr(\omega)$; intuitively,
-$\Pr(\omega)$ is the likelihood that the outcome $\omega$ occurs in the
-experiment. It is convenient to normalize probabilities, so we require that 
-$0 \le \Pr(\omega) \le 1$ for all $\omega \in \Omega$ and 
-$\sum_{\omega \in \Omega} \Pr(\omega) = 1$. The function $\Pr$ is called
-a \emph{probability distribution} on $\Omega$.
+sample space $\Omega$ is assigned some probability $\Distribution{D}(\omega)$;
+intuitively, $\Distribution{D}(\omega)$ is the likelihood that the outcome
+$\omega$ occurs in the experiment. It is convenient to normalize probabilities,
+so we require that $0 \le \Distribution{D}(\omega) \le 1$ for all $\omega \in
+\Omega$ and the sum of $\Distribution{D}(\omega)$ for $\omega \in \Omega$ is
+equal to $1$. 
+(In the sequel, we use $\sum_{x \in X} f(x)$ to describe the sum of $f(x)$ for
+$x \in X$; see \Cref{section:generalized-sum} for the formal definition.)
+\nomenclature[C]{$\sum_{i \in S ~:~ P(i)} \alpha_i$}{denotes $\alpha_{i_1} +
+\dots + \alpha_{i_k}$, where $\set[P(i)]{i \in S} = \set{i_1, \dots, i_k}$}
+The function $\Distribution{D}$ is called a \emph{probability distribution} on
+$\Omega$.
 
 The pair of a sample space and a probability distribution on the space is called
 a \emph{finite discrete probability space}.
 
-
 We can extend the notion of probability from elementary events to all events as
 follows. Let $E \subseteq \Omega$ be an event in the finite discrete probability
-space $(\Omega, \Pr)$. Then $\Pr(E)$ denote the sum of all $\Pr(\omega)$ for
-$\omega \in \Omega$. In the sequel, we use $\sum_{\omega \in E} \Pr(\omega)$ to
-describe similar sums (see \Cref{section:generalized-sum} for a formal
-definition).
-\nomenclature[C]{$\sum_{i \in S ~:~ P(i)} \alpha_i$}{denotes $\alpha_{i_1} +
-\dots + \alpha_{i_k}$, where $\set[P(i)]{i \in S} = \set{i_1, \dots, i_k}$}
-
+space $(\Omega, \Distribution{D})$. Then $\Pr_{\Distribution{D}}(E)$ denotes
+$\sum_{\omega \in E} \Distribution{D}(\omega)$. 
 
 \begin{exercise}
   In many cases we consider \emph{uniform distribution} on a set $\Omega$, the
-  distribution $\Pr$ such that all the outcomes are equally likely.
-  Let $\Omega = \set{HH, HT, TH, TT}$ and $\Pr$ be the uniform distribution on
-  $\Omega$. Find the probability of the event $\set{HT, TH, TT}$, and give an
-  informal interpretation of the answer.
+  distribution $\Uniform{\Omega}$ such that all the outcomes are equally
+  likely.
+  Let $\Omega = \set{HH, HT, TH, TT}$ and $\Uniform{\Omega}$ be the
+  uniform distribution on $\Omega$. Find the probability of the event 
+  $\set{HT, TH, TT}$, and give an informal interpretation of the answer.
 \end{exercise}
 
 \section{Basic Principles}
 
 Events are subsets of the sample space; hence, they can be combined using the
 standard set operations. So it is natural to ask whether the probabilities
-$\Pr(A \cup B)$ and $\Pr(A \cap B)$ can be expressed in terms of $\Pr(A)$ and
-$\Pr(B)$.
+$\Pr_{\Distribution{D}}(A \cup B)$ and $\Pr_{\Distribution{D}}(A \cap B)$ can be
+expressed in terms of $\Pr_{\Distribution{D}}(A)$ and $\Pr_{\Distribution{D}}(B)$.
 
 \begin{theorem}[The Additive Principle]
-  Let $(\Omega, \Pr)$ be a finite discrete probability space, and let $A, B
+  Let $(\Omega, \Distribution{D})$ be a finite discrete probability space, and let $A, B
   \subseteq \Omega$ be two disjoint events. Then 
-  $\Pr(A \cup B) = \Pr(A) + \Pr(B)$.
+  $\Pr_{\Distribution{D}}(A \cup B) = \Pr_{\Distribution{D}}(A) +
+  \Pr_{\Distribution{D}}(B)$.
 \end{theorem}
 \begin{proof}[Proof Sketch, see \Cref{theorem:additive-principle}]
   Let $A = \set{\omega_{1, 1}, \dots, \omega_{1, k}}$ and 
   let $B = \set{\omega_{2, 1}, \dots, \omega_{2, \ell}}$. 
   Then $A \cup B = \set{\omega_{1, 1}, \dots, \omega_{1, k}, 
     \omega_{2, 1}, \dots, \omega_{2, \ell}}$.
-  Therefore $\Pr(A \cup B) = 
-    \Pr(\omega_{1, 1}) + \dots + \Pr(\omega_{2, k}) +
-    \Pr(\omega_{2, 1}) + \dots + \Pr(\omega_{2, \ell}) = \Pr(A) + \Pr(B)$.
+  Therefore $\Pr_{\Distribution{D}}(A \cup B) = 
+    \Pr_{\Distribution{D}}(\omega_{1, 1}) + \dots +
+    \Pr_{\Distribution{D}}(\omega_{2, k}) +
+    \Pr_{\Distribution{D}}(\omega_{2, 1}) + \dots +
+    \Pr_{\Distribution{D}}(\omega_{2, \ell}) = 
+    \Pr_{\Distribution{D}}(A) +
+    \Pr_{\Distribution{D}}(B)$.
 \end{proof}
 
 \begin{exercise}
-  Let $(\Omega, \Pr)$ be a finite discrete probability space, and let $A
-  \subseteq \Omega$ be an event. Show that $\Pr(\Omega \setminus A) = 1 - \Pr(A)$.
+  Let $(\Omega, \Distribution{D})$ be a finite discrete probability space, and let $A
+  \subseteq \Omega$ be an event. Show that 
+  $\Pr_{\Distribution{D}}(\Omega \setminus A) = 1 - \Pr_{\Distribution{D}}(A)$.
 \end{exercise}
 
 This result can be easily extended to the cases when $A$ and $B$ are not
@@ -84,28 +91,39 @@ disjoint.
 \label{corollary:inclusion-exclusion-probability}
   Let $(\Omega, \Pr)$ be a finite discrete probability space, and let $A, B
   \subseteq \Omega$ be two events. Then 
-  $\Pr(A \cup B) = \Pr(A) + \Pr(B) - \Pr(A \cap B)$.
+  $\Pr_{\Distribution{D}}(A \cup B) = \Pr_{\Distribution{D}}(A) +
+   \Pr_{\Distribution{D}}(B) -
+   \Pr_{\Distribution{D}}(A \cap B)$.
 \end{corollary}
 
-Unfortunately, $\Pr(A \cap B)$ cannot be expressed via $\Pr(A)$ and $\Pr(B)$.
-However, in many cases $\Pr(A \cap B) = \Pr(A) \Pr(B)$; if this equality holds,
+Unfortunately, $\Pr_{\Distribution{D}}(A \cap B)$ cannot be expressed via
+$\Pr_{\Distribution{D}}(A)$ and $\Pr_{\Distribution{D}}(B)$.
+However, in many cases $\Pr_{\Distribution{D}}(A \cap B) =
+\Pr_{\Distribution{D}}(A) \Pr_{\Distribution{D}}(B)$; if this equality holds,
 we say that $A$ and $B$ are \emph{independent}.
 
 For example, let us consider an experiment where we toss two fair coins; i.e.,
-let us consider $\Omega = \set{HH, HT, TH, TT}$ and let $\Pr$ be a uniform
-distribution on $\Omega$. It is easy to see that $\Pr(\set{HH, HT}) = 1 / 2$,
-$\Pr(\set{HH, TH}) = 1 / 2$, and $\Pr(\set{HH, HT} \cap \set{HH, TH}) =
-\Pr(\set{HH}) =  1 / 4$. Hence, these two events are independent.
+let us consider $\Omega = \set{HH, HT, TH, TT}$ and let
+$\Uniform{\Omega}$ be the uniform distribution on $\Omega$. It is easy to
+see that $\Pr_{\Uniform{\Omega}}(\set{HH, HT}) = 1 / 2$,
+$\Pr_{\Uniform{\Omega}}(\set{HH, TH}) = 1 / 2$, and
+$\Pr_{\Uniform{\Omega}}(\set{HH, HT} \cap \set{HH, TH}) =
+\Pr_{\Uniform{\Omega}}(\set{HH}) =  1 / 4$. Hence, these two events are
+independent.
 
 To analyze experiments consisting of tossing several coins, we need to be able
 to study products of finite discrete probability spaces.
 \begin{theorem}[The Multiplicative Principle]
 \label{theorem:multiplicative-principle-probability}
-  Let $\Omega = \Omega_1 \times \Omega_2$ and let $(\Omega_1, \Pr_1)$ and
-  $(\Omega_2, \Pr_2)$ be finite discrete probability spaces. Then $\Pr : \Omega
-  \to \R$ such that $\Pr(\omega_1, \omega_2) = \Pr_1(\omega_1) \cdot
-  \Pr_2(\omega_2)$ is a probability distribution on $\Omega$.
-  Moreover, $\Pr(E_1 \times E_2) = \Pr_1(E_1) \cdot \Pr_2(E_2)$ for all 
+  Let $\Omega = \Omega_1 \times \Omega_2$ and 
+  let $(\Omega_1, \Distribution{D}_1)$ and
+  $(\Omega_2, \Distribution{D}_2)$ be finite discrete probability spaces. Then 
+  $\Distribution{D} : \Omega \to \R$ such that 
+  $\Distribution{D}(\omega_1, \omega_2) = 
+  \Pr_{\Distribution{D}_1}(\omega_1) \cdot \Pr_{\Distribution{D}_2}(\omega_2)$
+  is a probability distribution on $\Omega$.
+  Moreover, $\Pr_{\Distribution{D}}(E_1 \times E_2) = 
+  \Pr_{\Distribution{D}_1}(E_1) \cdot \Pr_{\Distribution{D}_2}(E_2)$ for all 
   $E_1 \subseteq \Omega_1$ and $E_2 \subseteq \Omega_2$.
 \end{theorem}
 
@@ -118,7 +136,7 @@ $E_2 = \set[t_2 = H]{t \in \set{H, T}^5}$. By
 \Cref{theorem:multiplicative-principle-probability},
 $\Pr(E_1) = \Pr(E_2) = 1 / 2$. Moreover, 
 $E_1 \cap E_2 = \set[t_1 = H \text{ and } t_2 = H]{t \in \set{H, T}^5}$;
-therefore, $\Pr(E_1 \cap E_2) = \frac{1}{4}$.
+therefore, $\Pr_{\Distribution{D}}(E_1 \cap E_2) = \frac{1}{4}$.
 
 \section{Random Variables}
 Sometimes we are more interested in some function of the result of the
@@ -128,17 +146,20 @@ Let us formalize the question. Let $\Omega = \range{6}^2$ and $\Pr$ be a the
 uniform distribution on $\Omega$. Sasha is interested in the probability of the
 event $\set[x + y = 7]{(x, y) \in \range{6}^2}$.
 
-More generally, let $(\Omega, \Pr)$ be a finite discrete probability space. Then
-a function $\chi : \Omega \to \R$ is called a \emph{random variable} and 
-$\Pr(\chi = a)$ denotes $\Pr(\set[\chi(\omega) = a]{\omega \in \Omega})$. 
+More generally, let $(\Omega, \Distribution{D})$ be a finite discrete
+probability space. Then a function $\chi : \Omega \to \R$ is called a
+\emph{random variable} and
+$\Pr_{\Distribution{D}}(\chi = a)$ denotes 
+$\Pr_{\Distribution{D}}(\set[\chi(\omega) = a]{\omega \in \Omega})$. 
 
 In the example about Dungeons and Dragons, $\chi(x, y) = x + y$ and 
-we are interested in $\Pr(\chi = 7) = \Pr(\set{(1, 6), (2, 5), \dots, (6, 1)} =
-1/ 6$.
+we are interested in $\Pr_{\Distribution{D}}(\chi = 7) = 
+\Pr_{\Distribution{D}}(\set{(1, 6), (2, 5), \dots, (6, 1)} = 1 / 6$.
 \begin{exercise}
-  Let $\Omega = \range{6}^2$ and $\Pr$ be a the uniform distribution on
-  $\Omega$. Let $\chi : \Omega \to \R$ be the random variable such that 
-  $\chi(x, y) = x + y$. Find $\Pr(\chi = 1)$, \dots, $\Pr(\chi = 12)$.
+  Let $\Omega = \range{6}^2$ and $\Uniform{\Omega}$ be the uniform distribution
+  on $\Omega$. Let $\chi : \Omega \to \R$ be the random variable such that 
+  $\chi(x, y) = x + y$. Find $\Pr_{\Uniform{\Omega}}(\chi = 1)$, \dots,
+  $\Pr_{\Uniform{\Omega}}(\chi = 12)$.
 \end{exercise}
 
 We are going to adopt some simple additional notation, if 
@@ -150,9 +171,9 @@ variables such that $(\chi_1 + \chi_2)(\omega) = \chi_1(\omega) +
 
 \begin{chapterendexercises}
   \exercise Prove \Cref{corollary:inclusion-exclusion-probability}.
-  \exercise Let $\Omega = \set{HH, HT, TH, TT}$ and let $\Pr$ be a uniform
-    distribution on $\Omega$. Show that $\set{HH}$ and $\set{TT}$ are not
-    independent.
+  \exercise Let $\Omega = \set{HH, HT, TH, TT}$ and let $\Uniform{\Omega}$ be
+    the uniform distribution on $\Omega$. Show that $\set{HH}$ and $\set{TT}$
+    are not independent.
   \exercise Alice is rolling a dice $n$ times, compute the probability
     that Alice sees $6$, $6$, and $6$ in three consecutive rolls.
   \exercise Alice is rolling a dice $n$ times, compute the probability
