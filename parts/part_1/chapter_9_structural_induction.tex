@@ -1,50 +1,11 @@
 \chapter{Structural Induction}
 \label{chapter:structural-induciton}
-To illustrate the notions we introduce in this chapter let us consider the
-following game: Alice have chosen a number from $1$ to $1000$. Bob wants to
-guess the number so he is asking Alice ``yes'' or ``no'' questions.
-How many questions does Bob need to ask to determine the number in the
-worst-case scenario?
+To illustrate the notions we introduce in this chapter we are going to prove
+that in the game from \Cref{section:strong-induction-recursive} it is impossible
+to guess the number correctly using less than $10$ questions.
 
-The following simple algorithm allows Bob to learn the number using $10$
-questions.\footnote{%
-  This algorithm is based on the same ideas as \Cref{algorithm:binary-search}.
-}
-\begin{enumerate}
-  \item Bob start with two numbers $\ell = 0$ and $u = 1000$.
-  \item \label{algorithm-step:binary-search-decision-guess-number}
-    Bob asks whether the Alice's number is at most $(\ell + u) / 2$.
-    If the answer is yes, then Bob replace $u$ by $(\ell + u) / 2$;
-    otherwise Bob replace $\ell$ by $(\ell + u) / 2$.
-  \item \label{algorithm-step:binary-search-result-guess-number}
-    If there is only one integer $x$ between $\ell$ and $u$, Bob
-    says that Alice's number is $x$. Otherwise Bob goes to
-    step~\ref{algorithm-step:binary-search-decision-guess-number}
-\end{enumerate}
-
-Now we have two problems:
-\begin{itemize}
-  \item we need to prove that the algorithm is correct and
-  \item we would like to prove that it is impossible to guess the number
-    using less questions.
-\end{itemize}
-
-To study both these problems we need a formal definition of an algorithm that
-Bob may use. However, the first problem is somewhat less demanding and
-the solution can be explained without a precise definition.
-
-First note that the Alice's number is always between $\ell$ and $u$. Hence,
-the answer given at step~\ref{algorithm-step:binary-search-result-guess-number}
-is always correct. You may also notice that on each step $u - \ell$
-decreases by $2$; hence, after $\ceil{\log_2 1000} = 10$ questions $u - \ell < 1$.
-As a result, after $10$ questions, there is only one integer between $\ell$ and
-$u$.
-
-\begin{exercise}
-  Give a nonadaptive algorithm for Bob that allows him to guess the number
-  using $10$ queries. In other words, write $10$ questions such that
-  answers to these questions allow Bob to guess the number.
-\end{exercise}
+To prove such a statement we need a formal definition of an algorithm that
+Bob may use.
 
 \section{Recursive Definitions}
 First note that any question for Alice can be formulated as follows:
@@ -66,8 +27,9 @@ Hence, any algorithm for Bob can be described using the following object.
 \begin{definition}
   We say that $T$ is a $B$-decision tree if
   \begin{description}
-    \item [(base case)] either $T$ is equal to an integer, or
-    \item [(recursion step)] $T$ is equal to $(f, T_0, T_1)$,
+    \item [(base case)] either $T$ is equal to $\DTReturn{y}$, where $y \in \Z$;
+      or
+    \item [(recursion step)] $T$ is equal to $\DTIf{f}{T_0}{T_1}$,
       where $f : \Z \to \set{0, 1}$, and $T_0$ and $T_1$
       are $B$-decision trees.
   \end{description}
@@ -75,7 +37,19 @@ Hence, any algorithm for Bob can be described using the following object.
 Note that this definition is not quite formal since it is recursive and
 we usually do not allow recursive definitions. So we will need to give a more
 formal way to define $B$-decision trees. However, this definition allows us to
-prove that $(f_1, (f_2, 1, 2), (f_3, 3, 4))$
+prove that 
+\[
+  T = 
+  \DTIf{f_1}{
+    \DTIf{f_2}{
+      \DTReturn{1}
+     }{
+      \DTReturn{2}
+     }
+  }{
+    \DTReturn{3}
+  }
+\]
 is a $B$-decision tree, where
 \begin{gather*}
   f_1(x) =
@@ -83,32 +57,27 @@ is a $B$-decision tree, where
       1 & \text{if } x \le 2 \\
       0 & \text{otherwise}
     \end{cases}, \\
+  \text{and} \\
   f_2(x) =
     \begin{cases}
       1 & \text{if } x = 1 \\
-      0 & \text{otherwise}
-    \end{cases}, \\
-  \text{and} \\
-  f_3(x) =
-    \begin{cases}
-      1 & \text{if } x = 3 \\
       0 & \text{otherwise}
     \end{cases}.
 \end{gather*}
 This can be explained as follows.
 \begin{itemize}
-  \item It is clear that $1$, $2$, $3$, and $4$ are $B$-decision trees by the
-    base case.
-  \item Hence, by the recursion step case, $(f_2, 1, 2)$ and $(f_3, 3, 4)$
-    are $B$-decision trees.
-  \item Finally, by the recursion step case, $(f_1, (f_2, 1, 2), (f_3, 3, 4))$
-    is a $B$-decision tree.
+  \item It is clear that $\DTReturn{1}$, $\DTReturn{2}$, and $\DTReturn{3}$ are
+    $B$-decision trees by the base case.
+  \item Hence, by the recursion step case,
+    $\DTIf{f_2}{\DTReturn{1}}{\DTReturn{2}}$ is a $B$-decision tree.
+  \item Finally, by the recursion step case, $T$ is a $B$-decision tree.
 \end{itemize}
-In other words we proved that $(f_1, (f_2, 1, 2), (f_3, 3, 4))$
-is a $B$-decision tree by providing $T_1$, \dots, $T_7$ such that
-$T_7 = (f_1, (f_2, 1, 2), (f_3, 3, 4))$ and for each $i \in [7]$,
-$T_i$ is a number from $\Z$ or $T_i = (f, T_j, T_k)$ for $j, k < i$ and
-$f : \Z \to \set{0, 1}$.
+
+In other words we proved that $T$ is a $B$-decision tree by providing $T_1$,
+\dots, $T_5$ such that $T_5 = T$ and for each $i \in [5]$,
+$T_i$ is either equal to $\DTReturn{y}$ (for $y \in \Z$) or 
+$T_i$ is equal to $\DTIf{f}{T_j}{T_k}$ (for $j, k < i$ and 
+$f : \Z \to \set{0, 1}$).
 
 This idea leads to the framework that would allows us to give a formal
 definition of $B$-decision trees.
@@ -129,8 +98,8 @@ definition of $B$-decision trees.
   \end{itemize}
 \end{definition}
 In case of $B$-decision trees $U$ is the set of all sequences of numbers,
-parentheses, commas, and functions from $\Z$ to $\set{0, 1}$,
-$S_0$ is the set of all sequences consisting of one number, and
+$\mathbf{if}$, $\mathbf{then}$, $\mathbf{else}$, and functions from $\Z$ to $\set{0, 1}$,
+$S_0$ is the set of all sequences $\DTReturn{y}$ for $y \in \Z$, and
 \[
   \mathcal{F} =
   \set[
@@ -140,7 +109,7 @@ $S_0$ is the set of all sequences consisting of one number, and
     }
   ]{F_f},
 \]
-where $F_f(T_0, T_1) = (f, T_0, T_1)$.
+where $F_f(T_0, T_1)$ is equal to $\DTIf{f}{T_0}{T_1}$.
 
 \begin{remark}
   Let $U$ be a set, let $S_0 \subseteq U$, and let
@@ -160,16 +129,18 @@ where $F_f(T_0, T_1) = (f, T_0, T_1)$.
 Using similar ideas we may define some functions on the objects defined
 recursively.
 \begin{definition}
-  Let $T$ be a $B$-decision tree. Then the height $h(T)$ of $T$ can be
+  Let $T$ be a $B$-decision tree. Then the height $\DTHeight{T}$ of $T$ can be
   defined as follows.
   \begin{description}
-    \item [(base case)] If $T$ is equal to a number $x \in \Z$, then $h(T) = 0$.
-    \item[(recursion step)] If $T_1$ and $T_2$ are $B$-decision trees, then
-      $h\big((f, T_1, T_2)\big) = \max(h(T_1), h(T_2)) + 1$.
+    \item [(base case)] If $T$ is equal to $\DTReturn{y}$ for $y \in \Z$, 
+      then $\DTHeight{T} = 0$.
+    \item[(recursion step)] Let $T$ be equal to $\DTIf{f}{T_0}{T_1}$, where
+      $T_0$ and $T_1$ are $B$-decision trees. 
+      Then $\DTHeight{T} = \max(\DTHeight{T_0}, \DTHeight{T_1}) + 1$.
   \end{description}
 \end{definition}
-Note that $h(T)$ correpsonds to the worst-case number of queries made by Bob if
-we interpret $T$ as a description of an algorithm.
+Note that $\DTHeight{T}$ correpsonds to the worst-case number of queries made by
+Bob if we interpret $T$ as a description of Bob's algorithm.
 
 However, before we explain how to formalize such a definition, we need to note
 that in the general case such definition may be contradictory. Consider
@@ -218,14 +189,16 @@ The following theorem claims existence of functions defined recursively.
 $B$-decision tree are used in this chapter to represent Bob's algorithms;
 hence, we need to define values of $B$-decision trees.
 \begin{definition}
-  The value $\mathrm{val}(T, n)$ of a $B$-decision tree $T$ at an integer $n$
+  The value $\DTValue{T}{n}$ of a $B$-decision tree $T$ at an integer $n$
   can be defined as follows.
   \begin{description}
-      \item [(base case)] If $T$ is just a number $x \in \range{1000}$,
-        then the result $\mathrm{val}(T, n)$ is equal to $x$.
-      \item[(recursion step)] If $T_1$ and $T_2$ are $B$-decision trees, then
+      \item [(base case)] If $T$ is equal to $\DTReturn{y}$ for $y \in \Z$,
+        then $\DTValue{T}{n} = y$.
+      \item[(recursion step)] Let $T$ be equal to $\DTIf{f}{T_0}{T_1}$, where
+        $T_0$ and $T_1$ are $B$-decision trees, and $f : \Z \to \set{0, 1}$.
+        Then
         \[
-          \mathrm{val}\Big((f, T_0, T_1), n\Big) =
+          \DTValue{T}{n} =
           \begin{cases}
             \mathrm{val}(T_0, n) & \text{if } f(x) = 0 \\
             \mathrm{val}(T_1, n) & \text{otherwise}
@@ -241,11 +214,11 @@ game.
   \begin{enumerate}
     \item There is a $B$-decision tree $T$ such that
       \begin{itemize}
-        \item $h(T) \le 10$ and
-        \item $\mathrm{val}(T, n) = n$ for any $n \in \range{1000}$.
+        \item $\DTHeight(T) \le 10$ and
+        \item $\DTValue{T}{n} = n$ for all $n \in \range{1000}$.
       \end{itemize}
-    \item Let $T$ be a $B$-decision tree such that $\mathrm{val}(T, n) = n$ for
-      any $n \in \range{1000}$. Then $h(T) \ge 10$.
+    \item Let $T$ be a $B$-decision tree such that $\DTValue{T}{n} = n$ for
+      all $n \in \range{1000}$. Then $\DTHeight{T} \ge 10$.
   \end{enumerate}
 \end{theorem}
 
@@ -277,36 +250,38 @@ to introduce the notion of structural induction.
 Using this result, we may prove \Cref{theorem:guess-the-number}.
 \begin{proof}[Proof of \Cref{theorem:guess-the-number}]
   We need to prove only the second part of the statement.
-  Let $V(T) = \set[n \in \Z]{\mathrm{val}(T, n)}$, where $T$ is a $B$-decision
+  Let $V(T) = \set[n \in \Z]{\DTValue{T}{n}}$, where $T$ is a $B$-decision
   tree. This proof is based on the following observation.
   \begin{claim}
   \label{claim:guess-the-number}
-    For any $B$-decision tree $T$, size of $V(T)$ is at most $2^{h(T)}$.
+    For any $B$-decision tree $T$, size of $V(T)$ is at most $2^{\DTHeight{T}}$.
   \end{claim}
 
-  Assume that $T$ is a $B$-decision tree such that $\mathrm{val}(T, n) = n$ for
+  Assume that $T$ is a $B$-decision tree such that $\DTValue{T}{n} = n$ for
   any $n \in \range{1000}$. Whence $\range{1000} \subseteq V(T)$. Therefore 
-  $V(T)$ has at least $1000$ elements. As a result, $2^{h(T)} \ge 1000$;
-  which implies that $h(T) \ge 10$.
+  $V(T)$ has at least $1000$ elements. As a result, $2^{\DTHeight{T}} \ge 1000$;
+  which implies that $\DTHeight{T} \ge 10$ since $\DTHeight{T}$ is an integer.
 
   So we just need to prove \Cref{claim:guess-the-number}. We prove it using
   structural induction. Let $S'$ be the set of decision trees $T$ such that size
   of $V(T)$ is at most $2^{h(T)}$.
   \begin{description}
-    \item[(base case)] If $T$ is equal to an integer $x$, then 
-      $\mathrm{val}(T, n) = x$ for any $n \in \Z$. Hence, the size of $V(T)$ is
-      equal to $1 = 2^0 = 2^{h(T)}$.
-    \item[(induction step)] Assume that $T = (f, T_0, T_1)$ for some 
-      $T_0, T_1 \in S'$. We know that the size of $V(T_0)$ is at most
-      $2^{h(T_0)}$ and the size of $V(T_0)$ is at most $2^{h(T_1)}$. In 
-      addtion, it is clear that $V(T) \subseteq V(T_0) \cup V(T_1)$. Therefore,
+    \item[(base case)] Let $T$ be equal to $\DTReturn{y}$, where $y \in Z$, then 
+      $\DTValue{T}{n} = n$ for any $n \in \Z$. Hence, the size of $V(T)$ is
+      equal to $1 = 2^0 = 2^{\DTHeight{T}}$.
+    \item[(induction step)] Assume that $T$ is equal to $\DTIf{f}{T_0}{T_1}$ for
+      some $T_0, T_1 \in S'$. We know that the size of $V(T_0)$ is at most
+      $2^{\DTHeight{T_0}}$ and the size of $V(T_0)$ is at most
+      $2^{\DTHeight{T_1}}$. In addtion, it is clear that 
+      $V(T) \subseteq V(T_0) \cup V(T_1)$. Therefore,
       the size of $V(T)$ is at most\footnote{%
         Formally speaking, we use \Cref{theorem:additive-principle} to prove
         this; i.e. we use the fact that the size of a set $A \cup B$ is at most
         the size of $A$ plus the size of $B$.
       }
       \[
-        2^{h(T_0)} + 2^{h(T_1)} \le 2^{\max(h(T_0), h(T_1)) + 1} = 2^{h(T)}.
+        2^{\DTHeight{T_0}} + 2^{\DTHeight{T_1}} \le 
+          2^{\max(\DTHeight{T_0}, \DTHeight{T_1}) + 1} = 2^{\DTHeight{T}}.
       \]
   \end{description}
   Hence, by \Cref{theorem:structural-induction}, $S'$ is equal to the set of all
@@ -337,8 +312,8 @@ Now we are ready to prove \Cref{theorem:structural-induction}.
 
 \begin{chapterendexercises}
   \exercise[recommended] Let $S \subseteq \Z$ be a set of size at least $2^k$,
-    and let $T$ be a decision tree such that $\mathrm{val}(T, n) = n$ for any $n
-    \in S$. Show that $h(T) \ge k$.
+    and let $T$ be a decision tree such that $\DTValue{T}{n} = n$ for any $n
+    \in S$. Show that $\DTHeight{T} \ge k$.
   \exercise[recommended] Let $S$ be a set of integers defined recursively such
     that
     \begin{itemize}
@@ -392,33 +367,37 @@ Now we are ready to prove \Cref{theorem:structural-induction}.
   \exercise[recommended]
     We say that $L$ is a $B$-decision list 
     \begin{description}
-      \item[(base case)] if either $L$ is a number $y \in \Z$, or
-      \item[(recursion step)] $L$ is equal to $(f, v, L')$ where $f : \Z \to
-        \set{0, 1}$, $v \in \Z$, and $L$ is a $B$-decision list.
+      \item[(base case)] if either $L$ is equal to $\DLReturn{y}$, where 
+        $y \in \Z$; or
+      \item[(recursion step)] $L$ is equal to $\DLIf{f}{v}{L'}$, where 
+        $f : \Z \to \set{0, 1}$, $v \in \Z$, and $L$ is a $B$-decision list.
     \end{description}
 
-    We can also define the value $\mathrm{val}(L, x)$ of a $B$-decision list $L$ at
+    We can also define the value $\DLValue{L}{x}$ of a $B$-decision list $L$ at
     $x \in \mathbb{Z}$.
     \begin{description}
-      \item[(base case)] If $L$ is a number $y$, then $\mathrm{val}(L, x) = y$, and
-      \item[(recursion step)] if $L = (f, v, L')$, then
+      \item[(base case)] Let $L$ be equal to $\DLReturn{y}$, where $y \in \Z$.
+        Then $\DLValue{L}{x} = y$.
+      \item[(recursion step)] Let $L$ be equal to $\DLIf{f}{v}{L'}$, then
         \[
-          \mathrm{val}(L, x) = 
+          \DLValue{L}{x} = 
           \begin{cases}
             v & \text{if } f(x) = 1 \\
-            \mathrm{val}(L', x) & \text{otherwise}
+            \DLValue{L'}{x} & \text{otherwise}
           \end{cases}.
         \]
     \end{description}
 
-    Similarly one may define the length $\ell(L)$ of a $B$-decition list $L$.
+    Similarly one may define the length $\DLLength{L}$ of a $B$-decition list $L$.
     \begin{description}
-      \item[(base case)] If $L$ is a number $y$, then $\ell(L) = 1$, and
-      \item[(recursion step)] if $L = (f, v, L')$, then $\ell(L) = \ell(L') + 1$.
+      \item[(base case)] If $L$ is equal to $\DLReturn{y}$, then 
+        $\DLLength{L} = 1$; and
+      \item[(recursion step)] if $L$ is equal to 
+        $\DLIf{f}{v}{L'}$, then $\DLLength{L} = \DLLength{L'} + 1$.
     \end{description}
 
-    Assume that $\mathrm{val}(L, x) = x$ for any $x \in [1000]$ show that 
-    $\ell(L) \ge 1000$.
+    Assume that $\DLValue{L}{x} = x$ for any $x \in [1000]$; show that 
+    $\DLLength{L} \ge 1000$.
   \exercise
     Let us consider the following game modification of the game studied in this
     chapter. Alice have chosen a number from $1$ to $1000$. Bob wants to

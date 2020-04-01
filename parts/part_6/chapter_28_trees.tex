@@ -1,0 +1,236 @@
+\chapter{Trees}
+\label{chapter:trees}
+Let us consider the following problem. Given a network of several computers,
+in this network if a computer $A$ receives some message from a computer $B$,
+it broadcasts it to all the connected computers except $B$.
+However, in such setting there is an issue known as broadcast radiation.
+Assume we have three computers $A$, $B$, and $C$ such that they form a cycle.
+If $A$ sends something to $B$ and $C$ both of them send received information to
+$C$ and $B$, respectively; after that $B$ and $C$ send this information to $A$
+and $A$ start sending this information again, which leads to an infinite
+cycle.\footnote{%
+  This problem is a simplified version of a problem that is solved by STP
+  protocols in the modern networks.
+}
+
+Therefore to avoid such problem we need to disable some connecion so that the
+graph of this network does not have cycles.
+In this chapter we are going to study properties of the graphs without cycles.
+\begin{definition}
+  We say that a connected graph $G$ is a \emph{tree} iff $G$ does not have cycles.
+\end{definition}
+
+\section{Minimally Connected Graphs}
+First we may make the following observation.
+\begin{theorem}
+  Let $G = (V, E)$ be a connected graph. Then the following statements are
+  equivalent.
+  \begin{itemize}
+    \item $G$ is a tree.
+    \item $G$ is minimally connected, that is, $G - e$ is not connected for any
+      $e \in E$.
+  \end{itemize}
+\end{theorem}
+\begin{proof}
+  Assume that $G$ is minimally connected but $G$ has a cycle
+  $v_1$, \dots, $v_k$. Consider $G' = G - (v_1, v_k)$, we claim that $G'$
+  is still connected. Indeed, let $x$ and $y$ be some vertices of $G'$.
+  Since $G$ is connected, there is a path $p$ from $x$ to $y$. If $p$ does not
+  contain the edge $(v_1, v_k)$, then $x$ and $y$ are connected in $G'$. If
+  $p$ contains $(v_1, v_k)$, then we replace this edge by the path $v_1$, \dots,
+  $v_k$, so $x$ and $y$ are connected in $G'$. Therefore $G$ is not a minimally
+  connected graph, which is a contradiction.
+
+  Let us now assume that $G$ is not minimally connected, we wish to prove that
+  it implies that $G$ is not a tree. Since $G$ is not minimally connected, there
+  is an edge $(x, y) \in E$ such that $G - e$ is connected. Since $G - (x, y)$
+  is connected, there is a path $x = v_1, \dots, v_k = y$ in $G - (x, y)$.
+  Therefore $v_1, \dots, v_k$ is a cycle in $G$, which is a contradiction.
+ \end{proof}
+
+Therefore in order to get a tree from a graph, we just need to delete edges
+in an arbitrary way until the moment when we cannot delete them anymore.
+\begin{corollary}
+  For any connected graph $G = (V, E)$, there is a tree $T = (V, E')$ such
+  that $T$ is a subgraph of $G$. Such a tree is called a spanning tree of $G$.
+\end{corollary}
+
+Another question we may ask is how many edges we need to delete in this process.
+Apparenly, the answer is always $m - n + 1$, where $m$ is the number of edges in
+the initial graph and $n$ is the number of vertices.
+\begin{theorem}
+\label{theorem:tree-is-minimally-connected}
+  Let $G$ be a connected graph on $n$ vertices.
+  If $G$ is a tree, then it has $n - 1$ edges. Moreover, if $G$ has $n - 1$
+  edge, then it is a tree.
+\end{theorem}
+
+Before we prove the theorem, let us prove the following lemma.
+\begin{lemma}
+  If a tree $T$ has at least $2$ vertices, then it has at least two
+  vertices whose degree is $1$.
+\end{lemma}
+\begin{proof}
+  Let us choose a vertex $v$ of $T$ such that its degree is not $1$ (if such a
+  vertex does not exist, then we found at least $2$ vertices whose degree is
+  $1$). Let us start walking from $v$ to its neighbour, then to a new neighbor
+  of this neighbor, and so on, never revisiting a vertex. As $T$ has finite
+  number of vertices, we will eventually have to stop at a vertex $u$. We claim
+  that the only reason for us to stop at $u$ could be that $u$ is of degree $1$.
+  Indeed, the only possible other reason would be that $u$ has neighbors other
+  than the neighbor $u'$ we reached $u$ from, but they have all been visited
+  already. However, that would mean that there are at least two paths from $v$
+  to $u$, and that cannot happen in a tree. So $u$ is of degree $1$. To get
+  another vertex of degree $1$, remember that $v$ is of degree more than $1$.
+  So take another neighbor of $v$, and repeat this argument. This will result in
+  another vertex $w$ of degree $1$, and $u \neq w$ as that would again yield two
+  paths from $v$ to $u$.
+\end{proof}
+The vertices of a tree that have degree $1$ are called \emph{leaves}.
+
+\begin{proof}[Proof of Theorem~\ref{theorem:tree-is-minimally-connected}]
+  We prove the statement using induction by $n$. If $n = 1$, the statement is
+  clearly true.
+  Assume that the statement is true for trees on $n$ vertices. Consider a tree
+  $T$ on $n + 1$ vertices. Consider a leaf $\ell$ of $T$. Note that $T - \ell$
+  is a tree as well, therefore by the induction hypothesis, it has $n - 2$
+  edges. Hence, $T$ has $n - 1$ edges.
+
+  Let us now prove that if a graph $G$ has $n - 1$ edges and is connected,
+  then $G$ is a tree. Assume that it is not a tree, we start deleting edges as
+  long as the graph is connected, we call the resulting graph $T$. Note that
+  $T$ is minimally connected, so $T$ is a tree. Note that $T$ has $n$ vertices.
+  Therefore, it has $n - 1$ eges, which implies that we removed $0$ edges and
+  $T = G$. As a result, $G$ is a tree.
+\end{proof}
+
+\begin{exercise}
+  A graph such that every connected component of this graph is a tree is called
+  a \emph{forest}.
+  Show that a forest with $k$ connected components has $n - k$ edges.
+\end{exercise}
+
+\section{Minimum-weight Spanning Trees}
+In the initial example about the network, we missed an important detail: not
+all the connections are equally fast. Let us label each connection
+(edge in our graph) with the weight (the number that represents how slow is this
+connection). So now we need to choose a spanning tree of
+the graph of the network so that it has the minimal possible sum of weights.
+\begin{definition}
+  Let $G = (V, E)$ be a connected graph, and $w : E \to \R$ be weights of edges.
+  Then we say that a spanning tree $T = (V, E')$ of $G$ is a
+  \emph{minimum-weight spanning tree} of $G$ if
+  $\sum_{e \in E'} w(e) \le \sum_{e \in E''} w(e)$ for any spanning tree
+  $T' = (V, E'')$ of $G$.
+
+  The number $\sum_{e \in E'} w(e)$ is called the \emph{weight} of $T$.
+\end{definition}
+
+It is obvious that such a tree exists. The question is
+``how to find efficiently the minimum-weight spanning tree''.
+\begin{exercise}
+  Let $G = (V, E)$ be some graph and $w : E \to \R$ be a weight function such
+  that $w(e) = 1$. How to to find efficiently the minimum-weight spanning tree
+  of $G$?
+\end{exercise}
+
+
+Surprisingly, one may find such a minimum-weight spanning tree using a simple
+greedy algorithm (Algorithm~\ref{algorithm:kruskal}).
+\begin{algorithm}
+  \begin{algorithmic}[1]
+    \Function{MinimumSpanningTree}{$n$, $E$, $w$}
+      \State Let $e_1$, \dots, $e_m$ be the edges from $E$ sorted in the
+        ascending order with respect to $w$.
+      \State $i \gets 1$
+      \State Set $T$ to be an empty graph on $[n]$.
+      \label{line:kruskal-while}
+      \While{$i \le n$}
+        \If{$T + e_i$ does not have cycles}
+          \State $T \gets T + e_i$
+        \EndIf
+        \State Increase $i$ by $1$.
+      \EndWhile
+      \State \Return{$T$}
+    \EndFunction
+  \end{algorithmic}
+  \caption{Kruskal's algorithm, the algorithm that returns a minimum-weight
+  spanning tree of the graph on $[n]$ with the set of edges $E$.}
+  \label{algorithm:kruskal}
+\end{algorithm}
+
+\begin{theorem}
+\label{theorem:kruskal}
+  If the graph $([n], E)$ is connected, then Algorithm~\ref{algorithm:kruskal}
+  returns a minimum-weight spanning tree of the graph $([n], E)$.
+\end{theorem}
+
+To prove this statement we need a technical lemma.
+\begin{lemma}
+  Let $F_1$ and $F_2$ be forests on the same vertex set $V$. If $F_1$ has less
+  edges than $F_2$, then $F_2$ has an edge $e$ not in $F_1$ so
+  that the graph $F_1 + e$ is still a forest.
+\end{lemma}
+\begin{proof}
+  Let $E_i$ be the set of edges of $F_i$.
+  Assume that there such edge does not exist; i.e., $F_1 + e$ has a cycle for
+  any edge $e \in E_2 \setminus E_1$.
+
+  Therefore any edge of $F_2$ is between two vertices in the same component of
+  $F_1$. Hence, $F_2$ has at least as many connected components as $F_1$.
+  Indeed, consider two connected components $U_1$ and $U_2$ of $F_1$ we claim
+  that they any $x \in U_1$ and $y \in U_2$ are not connected in $F_2$ since
+  there are no edges going outside of $U_1$ and $U_2$ in $F_2$.
+
+  However, $F_i$ has $n - |E_i|$ connected components, which contradicts to the
+  fact that $|E_1| < |E_2|$.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{theorem:kruskal}]
+  Let $T_1$, \dots, $T_m$ be the states of $T$ after iterations of
+  line~\ref{line:kruskal-while} of Algorithm~\ref{algorithm:kruskal}.
+  Note that $T_i$ does not have cycles for $i \in \range{m}$. Therefore $T_i$ is a
+  forest for $i \in \range{m}$.
+
+  First we need to prove that Algorithm~\ref{algorithm:kruskal} returns a
+  spanning tree; i.e. that $T_m$ is connected.
+  Assume the opposite. Consider two vertices $x, y \in \range{n}$ such that
+  they are not connected in $T$. Since $G = ([n], E)$ is connected there is a
+  path $x = v_1, \dots, v_k = y$ in $G$. Consider the minimal $i \in [k - 1]$
+  such that $(v_i, v_{i + 1})$ is not an edge of $T_m$. Let
+  $e_j = (v_i, v_{i + 1})$. It is easy to see that $T_m + (v_i, v_{i + 1})$ does
+  not have cycles so $T_{j - 1} + e_j$ does not have cycles as well and $T_j =
+  T_{j - 1} + e_j$ which implies that $T_m$ has the edge $(v_i, v_{i + 1})$
+  which is a contradiction.
+
+  Before we start the second part of the proof note that if $w(e) < w(e_i)$,
+  then $T_{i - 1} + e_i$ has a cycle.
+
+  Now we need to prove that $T_m$ is a minimum-weight spanning tree. Assume
+  that there is a spanning tree $H$ such that the weight of $H$ is less than
+  the weight of $T_m$. Consider the edges $t_1$, \dots, $t_{n - 1}$ of $T_m$
+  and the edges $h_1$, \dots, $h_{n - 1}$ of $H$ such that
+  $w(t_1) \le w(t_2) \le \dots \le w(t_{n - 1})$ and
+  $w(h_1) \le w(h_2) \le \dots \le w(h_{n - 1})$.
+  Let us consider the first step when $H$ is better than $T_m$; i.e., the
+  minimal $i$ so that $\sum_{j = 1}^i w(h_j) < \sum_{j = 1}^i w(t_j)$
+  (obviously $i > 1$).
+
+  It is easy to see that $h_i < t_i$. Let $e_j = t_i$ and
+  $H_i = H[h_1, \dots, h_i]$. Since $H_i$ has more edges than $T_j$ there is an
+  edge $h_{i'}$ ($i' < i$) such that $T_{j - 1} + h_{i'}$ does not have cycles.
+  Wich is a contradiction since $h_{i'} < h_i < t_i$.
+\end{proof}
+
+
+\begin{chapterendexercises}
+  \exercise[recommended] Let $G$ be a graph with $k$ connected components and
+    $n - k$ edges. Show that $G$ is a forest.
+  \exercise Prove that if $G$ is a simple graph on $[n]$, then at least one of
+    $G$ and its complement is connected. Show an example when they are both
+    connected. The complement $\bar{G}$ of $G$ has the same vertex set as $G$
+    and $(x, y)$ is an edge in $\bar{G}$ if and only if it is not an edge in
+    $G$.
+  \exercise Let $H$ be a simple graph on $n$ vertices that has $m$ edges. Prove
+    that $H$ contains at least $m - n - 1$ cycles.
+\end{chapterendexercises}

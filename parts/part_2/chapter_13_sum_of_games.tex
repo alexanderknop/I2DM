@@ -1,4 +1,9 @@
 \chapter{Sums of Combinatorial Games}
+\marginurl{%
+    Sum of Games:\\\noindent
+    Introduction to Combinatorial Game Theory \#5
+}{youtu.be/dRaqJKZh3y0}
+
 
 Let us consider the following game.
 \begin{game}[Take-Away Game]
@@ -177,19 +182,19 @@ following game.
 \begin{game}
 \label{game:subtraction-1-2-3-out-of-10-11}
   Alice and Bob have two piles with $10$ and $11$ chips respectively.
-  They take turns and remove $1$, $2$, or $3$ chips from one of the piles.
+  They take turns and remove $1$ or $2$ chips from one of the piles.
   If one of them cannot make a move he/she loses.
 \end{game}
 
 To determine who is the winner in this game, we start with a subtraction game
-$G$ with the subtraction set $\set{1, 2, 3}$. It is easy to see that 
+$G$ with the subtraction set $\set{1, 2}$. It is easy to see that 
 $g : \N_0 \to \N_0$ such that
 \[
   g(x) =
   \begin{cases}
     0 & \text{if } x \equiv 0 \pmod{3} \\
     1 & \text{if } x \equiv 1 \pmod{3} \\
-    2 & x \text{if } \equiv 2 \pmod{3}
+    2 & \text{if } x \equiv 2 \pmod{3}
   \end{cases}
 \]
 is the Sprague--Grundy function for $G$. 
@@ -209,7 +214,13 @@ $G + G$. Therefore the function $g' : \N_0^2 \to \N_0$ such that
     0 & \text{if } x \equiv 2 \pmod{3} \text{ and } y \equiv 2 \pmod{3}
   \end{cases}
 \]
+Therefore, the position $(10, 11)$ is an N-position.
 
+
+\marginurl{%
+    Applications of the Sprague-Grundy Theorem:\\\noindent
+    Introduction to Combinatorial Game Theory \#6
+}{youtu.be/V4yI_1P1Jcc}
 A surprising example of the application of this theorem is the following game.
 \begin{game}
 \label{game:polygon}
@@ -248,18 +259,18 @@ It is easy to see to make a conjecture that $g(n) = 0$ for odd $n$ and $g(n) =
 the computation necessary to write the table. Let us prove the induction step
 from $1, \dots, n$ to $n + 1$.
 \begin{itemize}
-  \item Let $n$ be odd. It is clear that if $\ell + m = n + 3$, then $\ell$ and
-    $m$ have the same reminder modulo $2$. Therefore, $g(m) = g(\ell)$ by the
-    induction hypothesis. As a result, 
+  \item Let $n + 1$ be even. It is clear that if $\ell + m = (n + 1) + 2$, then
+    $\ell$ and $m$ have the same remainder modulo $2$. Therefore, $g(m) =
+    g(\ell)$ by the induction hypothesis. As a result, 
     \[
       \set[
         \ell, m \ge 3 \text{ and } \ell + m = n + 2
       ]{g(\ell) \bitwisexor g(m)} = \set{0}
-    \] and $g(n + 1) = 1$.
-    
-  \item Let $n$ be even. It is clear that if $\ell + m = n + 3$, then $\ell$ and
-    $m$ have different reminders modulo $2$. Therefore, $g(m) \neq g(\ell)$ by the
-    induction hypothesis. As a result, 
+    \] 
+    and $g(n + 1) = 1$.    
+  \item Let $n + 1$ be odd. It is clear that if $\ell + m = (n + 1) + 2$, then
+    $\ell$ and $m$ have different remainders modulo $2$. Therefore, $g(m) \neq
+    g(\ell)$ by the induction hypothesis. As a result, 
     \[
       \set[
         \ell, m \ge 3 \text{ and } \ell + m = n + 2

@@ -1,6 +1,6 @@
-\chapter{Proofs by Induction}
-\label{chapter:induction}
-\section{Simple Induction}
+\chapter{Simple Induction}
+\label{chapter:simple-induction}
+\section{Proofs by Induction}
 \marginurl{%
   The Induction Principle:\\\noindent
   Introduction to Mathematical Reasoning \#4
@@ -181,191 +181,8 @@ is the maximum of $a_1$, \dots, $a_k$. We may consider two following cases.
 \label{exercise:selection-sort}
     Show that line~6 in the following sorting algorithm executes
     $\frac{n (n + 1)}{2}$ times.
-    \begin{algorithm}
-        \begin{algorithmic}[1]
-            \Function{SelectionSort}{$a_1$, \dots, $a_n$}
-                \For{$i$ from $1$ to $n$}
-                    \State{$r \gets a_i$}
-                    \State{$\ell \gets i$}
-                    \For{$j$ from $i$ to $n$}
-                        \If{$a_j > r$}
-                            \State $r \gets a_j$
-                            \State $\ell \gets j$
-                        \EndIf
-                    \EndFor
-                    \State{Swap $a_i$ and $a_\ell$.}
-                \EndFor
-            \EndFunction
-    \end{algorithmic}
-    \caption{The algorithm is selection sort, it sorts $a_1$, \dots, $a_n$.}
-  \end{algorithm}
+
 \end{exercise}
-
-
-
-\section{Strong Induction}
-
-Sometimes $P(k)$ is not enough to prove $P(k + 1)$ and we need all the
-statements $P(1)$, \dots, $P(k)$. In this case we may use the following
-induction  principle.
-
-\begin{theorem}[The Strong Induction Principle]
-\label{theorem:strong-induction}
-    Let $P(n)$ be some statement about positive integer $n$.
-    Hence, $P(n)$ is true for every integer $n > n_0$ iff
-    \begin{description}
-        \item [(the base case)] $P(n_0 + 1)$ is true and
-        \item [(the induction step)] If $P(n_0 + 1)$, \dots, $P(n_0 + k)$ are true,
-            then $P(n_0 + k + 1)$ is also true for all positive integers $k$.
-  \end{description}
-\end{theorem}
-
-Before we prove this theorem let us present some applications of this
-principle.
-
-The Fibonacci numbers are defined as follows:
-$f_0 = 0$, $f_1 = 1$, and $f_k = f_{k - 1} + f_{k - 2}$ for $k \ge 2$ (note
-that they are also defined using strong induction since we use not only
-$f_{k - 1}$ to define $f_k$).
-\begin{theorem}[The Binet formula]
-    The Fibonacci numbers are given by the following formula
-    \[
-        f_n = \frac{\alpha^n - \beta^n}{\sqrt{5}},
-    \]
-    where $\alpha = \frac{1 + \sqrt{5}}{2}$ and
-    $\beta = \frac{1 - \sqrt{5}}{2}$.
-\end{theorem}
-\begin{proof}
-    We use the strong induction principle to prove this statement with $n_0 = -1$.
-    Let us first prove the base case,
-    $\frac{(\alpha^0 - \beta^0)}{\sqrt{5}} = 0 = f_0$.
-    We also need to prove the induction step.
-    \begin{itemize}
-        \item If $k = 1$, then $\frac{(\alpha^1 - \beta^1)}{\sqrt{5}} = 1 = f_1$.
-        \item Otherwise, by the induction hypothesis,
-            $f_k = \frac{\alpha^k - \beta^k}{\sqrt{5}}$ and
-            $f_{k - 1} = \frac{\alpha^{k - 1} - \beta^{k - 1}}{\sqrt{5}}$.
-            By the definition of the Fibonacci numbers $f_{k + 1} = f_k + f_{k - 1}$.
-            Hence,
-            \[
-                f_{k + 1} = \frac{\alpha^k - \beta^k}{\sqrt{5}} +
-                \frac{\alpha^{k - 1} - \beta^{k - 1}}{\sqrt{5}}.
-            \]
-            Note that it is enough to show that
-            \begin{equation}
-            \label{equation:binet}
-                \frac{\alpha^{k + 1} - \beta^{k + 1}}{\sqrt{5}} =
-                \frac{\alpha^k - \beta^k}{\sqrt{5}} +
-                \frac{\alpha^{k - 1} - \beta^{k - 1}}{\sqrt{5}}.
-            \end{equation}
-            Note that it is the same as
-            \[
-                \frac{\alpha^{k + 1} - \alpha^k - \alpha^{k - 1}}{\sqrt{5}} =
-                \frac{\beta^{k + 1} - \beta^k - \beta^{k - 1}}{\sqrt{5}}.
-            \]
-            Additionally, note that $\alpha$ and $\beta$ are roots of the equation
-            $x^2 - x - 1 = 0$. Hence,
-            $\alpha^{k + 1} - \alpha^k - \alpha^{k - 1} = \alpha^{k - 1}(\alpha^2 -
-            \alpha - 1) = 0$ and
-            $\beta^{k + 1} - \beta^k - \beta^{k - 1} =
-            \beta^{k - 1}(\beta^2 - \beta - 1) = 0$. Which implies
-            equality~(\ref{equation:binet}).
-    \end{itemize}
-\end{proof}
-
-Another example of an application of the strong induction is the proof that
-any number can be written in digital numeral systems with any base.
-\begin{theorem}
-  Let $b > 1$ be an integer. Then there is a unique representation of any
-  positive number in the base-$b$ digital numeral system. In other words, for
-  any positive integer $n$, there are unique $0 \le c_0, \dots, c_\ell < b$
-  such that $n = \sum_{i = 0}^\ell b^i c_i$.
-\end{theorem}
-\begin{proof}
-  We prove the statement using strong induction by $n$. The base case for
-  $n < b$ is clear (we can choose $\ell = 1$ and $c_0 = n$).
-  Let us now prove the induction step. Assume the statement is true for all
-  $k < n$. Let $n$ divided by $b$ be equal to $q$ with the reminder $c_0$.
-  Note that $(n - c_0) / b < n$ is a positive integer. Hence,
-  by the induction hypothesis, there are
-  $0 \le c_1, \dots, c_\ell < b$
-  such that $(n - c_0) / b = \sum_{i = 1}^\ell b^{i - 1} c_i$. Hence,
-  $n = \sum_{i = 0}^\ell b^i c_i$.
-\end{proof}
-
-
-Now we are ready to prove the strong induction principle.
-\begin{proof}[Proof of Theorem~\ref{theorem:strong-induction}]
-    It is easy to see that if $P(n)$ is true for all $n > n_0$, then the base
-    case and the induction steps are true. Let us prove that if the base case and
-    the induction step are true, then $P(n)$ is true for all $n > n_0$.
-
-    Let $Q(k)$ be the statement that $P(n_0 + 1)$, \dots, $P(n_0 + k)$ are true.
-    Note that $Q(1)$ is true by the base case for $P$. Additionally, note that if
-    $Q(k)$ is true, then $Q(k + 1)$ is also true, by the induction step for $P$.
-    Hence, by the induction principle, $Q(k)$ is true for all positive integers
-    $k$. Which implies that $P(n_0 + k)$ is true for all positive integers $k$.
-\end{proof}
-
-
-\section{Analysis of Recursive Algorithms}
-To illustrate the power of recursive definitions and strong induction, let us
-analyze Algorithm~\ref{algorithm:binary-search}.
-\begin{algorithm}
-    \begin{algorithmic}[1]
-        \Function{BinarySearch}{$e$, $a_1$, \dots, $a_n$}
-            \If{$n \le 5$}
-                \For{$i$ from $1$ to $n$}
-                    \If{$a_i = e$}
-                        \State\Return{i}
-                    \EndIf
-                \EndFor
-            \Else
-                \State{$\ell \gets \floor{\frac{n}{2}}$}
-                \If{$a_\ell \le e$}
-                    \State\Call{BinarySearch}{$e$, $a_1$, \dots, $a_\ell$}
-                \Else
-                    \State\Call{BinarySearch}{$e$, $a_{\ell + 1}$, \dots, $a_n$}
-                \EndIf
-            \EndIf
-        \EndFunction
-    \end{algorithmic}
-    \caption{The binary search algorithm that finds an element $e$ in the sorted
-        list $a_1$, \dots, $a_n$.}
-    \label{algorithm:binary-search}
-\end{algorithm}
-We prove that number of comparisons of this algorithm is bounded by
-$6 + 2\log_2(n)$. First step of the proof is to denote the worst
-number of comparisons when we run the algorithm on the list of length $n$ by
-$C(n)$. It is easy to see that $C(n) = n$ for $n \le 5$. Additionally,
-$C(n) \le 1 +
-    \max(C\left(\floor{\frac{n}{2}}\right),
-         C\left(n - \floor{\frac{n}{2}})\right)$
-for $n > 5$. As we mentioned we prove that $C(n) \le 6 + 2\log_2(n)$, we prove
-it by induction. The base case is clear; let us now prove the induction step.
-By the induction hypothesis,
-\[
-    C\left(\floor{\frac{n}{2}}\right) \le
-        6 + 2\log_2\left(\floor{\frac{n}{2}}\right)
-\]
-and
-\[
-    C\left(n - \floor{\frac{n}{2}}\right) \le
-        6 + 2\log_2\left(n - \floor{\frac{n}{2}}\right),
-\]
-where $\floor{\alpha}$ denotes the integer part of a real number $\alpha$.
-\nomenclature[C]{$\floor{\alpha}$}{denotes the greatest integer less than or
-equal to $\alpha$}
-Since $\floor{\frac{n}{2}} \le \frac{n}{2}$ and $n - \floor{\frac{n}{2}} \le
-\frac{n}{2} + 1$, $C(n) \le 1 + 2\log_2(\frac{n}{2} + 1)$.
-However,
-\[
-    1 + 6 + 2\log_2\left(\frac{n}{2} + 1\right) \le
-    6 + 2\log_2\left(\frac{n}{\sqrt{2}} + \sqrt{2}\right) \le 6 + 2 \log_2(n)
-\]
-for $n \ge 5$. As a result, we proved the induction step.
-
-
 \begin{chapterendexercises}
     \exercise Show that there does not exist the largest integer.
     \exercise[recommended] Show that for any positive integer $n$, $n^2 + n$ is even.
@@ -375,23 +192,6 @@ for $n \ge 5$. As a result, we proved the induction step.
         $n^3 \le 2^n$.
     \exercise Show that for any positive integer $n$,
         $\sum_{i = 0}^n x^i = \frac{1 - x^{n + 1}}{1 - x}$.
-    \exercise Let $a_0 = 2$, $a_1 = 5$, and $a_n = 5a_{n - 1} - 6 a_{n - 2}$
-        for all integers $n \ge 2$. Show that $a_n = 3^n + 2^n$ for all integers
-        $n \ge 0$.
-        \begin{solution}
-            We prove this using induction by $n$. The base case for $n \le 1$ is clear
-            since $3^0 + 2^0 = 2$ and $3^1 + 2^1 = 5$.
-
-            Let us prove the induction step. Assume that $a_n = 3^n + 2^n$ and
-            $a_{n - 1} = 3^{n - 1} + 2^{n - 1}$, we need to prove that
-            $a_{n + 1} = 3^{n + 1} + 2^{n + 1}$. Note that
-            \begin{multline*}
-                a_{n + 1} = 5a_n - 6 a_{n - 1} =
-                5 \cdot 3^n + 5 \cdot 2^n - 6 \cdot 3^{n - 1} -
-                6 \cdot 2^{n - 1} = \\
-                3^{n - 1} \cdot 9 + 2^{n - 1} 4 = 3^{n + 1} + 2^{n + 1}.
-            \end{multline*}
-        \end{solution}
     \exercise[recommended] Show that $\sum_{i = 1}^n i^2 =
         \frac{n (n + 1)(2n + 1)}{6}$ for all integers $n \ge 1$.
     \exercise Show that $\sum_{i = 1}^n \frac{1}{i (i + 1)} =
@@ -418,26 +218,36 @@ for $n \ge 5$. As a result, we proved the induction step.
         Prove that
         $\prod_{i = 1}^{n - 1} \left(1 - \frac{1}{(i + 1)^2} \right) =
         \frac{n + 1}{2n}$ for all integers $n > 1$.
-
-    \exercise Let $f_0 = 1$, $f_1 = 1$, and $f_{n + 2} = f_{n + 1} + f_n$ for
-        all integers $n \ge 0$. Show that
-        $f_n \ge \left(\frac{3}{2}\right)^{n - 2}$.
-    \exercise Show that $f_{n + m} = f_{n - 1} f_{m - 1} + f_n f_m$.
-    \exercise Show that two arithmetic formulas $(x_1 + x_2) \cdot x_3$ and
-        $x_1 \cdot x_3 + x_2 \cdot x_3$ on the variables $x_1$, $x_2$, and $x_3$
-        have the same values.
     \exercise Let us define $n!$ as follows: $1! = 1$ and
       $n! = (n - 1)! \cdot n$. Show that $n! \ge 2^n$ for any $n \ge 4$.
       \nomenclature[C]{$\factorial{n}$}{denotes $n \cdot (n - 1) \cdot (n - 2) \cdot \ldots
         \cdot 1$}
-    \exercise[open] Fins all the natural numbers $n$ such that $n! = m^2$ for
+    \exercise[open] Find all the natural numbers $n$ such that $n! = m^2$ for
       some integer $m$.
     \exercise Show that
         $\int\limits_0^{+\infty} x^n e^{- x} ~ \mathrm{d}x = n!$
         for all $n \ge 0$.
-    \exercise Prove that $\sum_{i = 1}^n (i + 1) 2^i = n 2^{n + 1}$
-        for all integers $n \ge 1$.
     \exercise Show that $\sum_{k = 1}^n k \cdot k! = (n + 1)! - 1$.
-    \exercise Show that the algorithm from \Cref{exercise:selection-sort}
-      sorts the array.
+    \exercise Show that \Cref{algorithm:selection-sort} executes line~6 exactly
+      $\frac{n (n + 1)}{2}$ times.
+      \begin{algorithm}
+        \begin{algorithmic}[1]
+          \Function{SelectionSort}{$a_1$, \dots, $a_n$}
+            \For{$i$ from $1$ to $n$}
+              \State{$r \gets a_i$}
+              \State{$\ell \gets i$}
+              \For{$j$ from $i$ to $n$}
+                \If{$a_j > r$}
+                  \State $r \gets a_j$
+                  \State $\ell \gets j$
+                \EndIf
+              \EndFor
+              \State{Swap $a_i$ and $a_\ell$.}
+            \EndFor
+          \EndFunction
+        \end{algorithmic}
+        \caption{The algorithm is selection sort, it sorts $a_1$, \dots, $a_n$.}
+        \label{algorithm:selection-sort}
+      \end{algorithm}
+    \exercise Show that \Cref{algorithm:selection-sort} sorts the array.
 \end{chapterendexercises}
