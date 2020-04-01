@@ -1,1 +1,140 @@
 \chapter{Matrix Games}
+In this chapter we are going to use mathematical methods to model interactions
+and conflicts between different actors. To simplify the analisis we are going to
+consider interactions between \emph{two} actors that are trying to maximize
+their payoffs.
+
+\begin{definition}
+  The \emph{strategic form}, or \emph{normal form}, of a two-person game is
+  a tuple $(X, Y, A, B)$ such that $X$ and $Y$ are some nonempty sets, and 
+  $A, B  : X \times Y \to \R$.
+\end{definition}
+The interpretation is as follows. Simultaneously, the first player chooses 
+a strategy $x \in X$ and the second player choses a strategy $y \in Y$ , each
+unaware of the choice of the other. Then their choices are made known and the
+first player wins $A(x, y)$ and the second player wins $B(x, y)$. (Depending on
+the monetary unit involved, $A(x, y)$ and $B(x, y)$ will be dollars, rubles,
+euros, etc.) If $A(x, y)$ or $B(x, y)$ is negative, the corresponding player
+loses the absolute value of this amount.
+
+It is importnat to note that the notion of a strategy is very broad; e.g., a
+strategy for a game of chess, is a complete description of how to play the game,
+of what move to make in every possible situation that could occur. We are going
+to ignore the fact that in the game of chess it is physically impossible to
+describe all possible strategies since there are too many of them (in fact,
+there are more strategies than there are atoms in the known universe). On the
+other hand, the number of games of tic tac toe is rather small, so that it is
+possible to study all strategies and find an optimal strategy for each player.
+
+In cases when $X$ and $Y$ are small sets it is convinient to describy such games
+using tables. Let us consider the game described by the following table.
+\begin{center}
+  \begin{tabular}{l l l  l  l  l  l  l  l}
+    \toprule
+          & heads  & tales   \\
+    \midrule
+    heads & 1, -1 & -1, 1   \\
+    tales & -1, 1 & 1, -1   \\
+    \bottomrule
+  \end{tabular}
+\end{center}
+In this game two players put one coin each on the table: if the the coins have
+the same side up, then the second player pays $1$ dollar to the first player,
+otherwise the first player pays $1$ dollar to the second player. In other words,
+the firs number denotes the payoff of the first player and the second denotes
+the payoff of the second player.
+
+\begin{exercise}
+  Describe the game in normal form corresponding to rock paper scissors.
+\end{exercise}
+
+An important class of games is zero-sum games.
+\begin{definition}
+  A game $(X, Y, A, B)$ is \emph{zero-sum} if $A(x, y) = -B(x, y)$ for all 
+  $x \in X$ and $y \in Y$.
+\end{definition}
+It is clear that the game we described is a zero-sum game.
+
+\section{Domination and Pareto Optimal Strategies}
+In \Cref{part:combinatorial-games} we studies optimal strategies; however, in
+case of games in the normal form it is not clear what does it mean optimal. To
+illustrate this difficulty, let us discuss the most famous game, the prisoner's
+dilemma:
+\begin{game}
+  Two members of a criminal gang are arrested and imprisoned. Each prisoner is in
+  solitary confinement with no means of communicating with the other. The
+  prosecutors lack sufficient evidence to convict the pair on the principal
+  charge, but they have enough to convict both on a lesser charge. Simultaneously,
+  the prosecutors offer each prisoner a bargain. Each prisoner is given the
+  opportunity either to betray the other by testifying that the other committed
+  the crime, or to cooperate with the other by remaining silent. The possible
+  outcomes are:
+  \begin{itemize}
+    \item If A and B each betray the other, each of them serves two years in
+      prison.
+    \item If A betrays B but B remains silent, A will be set free and B will serve
+      three years in prison (and vice versa).
+    \item If A and B both remain silent, both of them will serve only one year in
+      prison (on the lesser charge).
+  \end{itemize}
+\end{game}
+
+It is clear that this game can be described using the following table.
+\begin{center}
+  \begin{tabular}{l l l  l  l  l  l  l  l}
+    \toprule
+               & cooperates  & defects   \\
+    \midrule
+    cooperates & -1, -1      & -3, 0    \\
+    defects    & 0, -3       & -2, -2   \\
+    \bottomrule
+  \end{tabular}
+\end{center}
+
+
+Let us try to put ourself into these prisoners shoes. If our parter is silent,
+then it is better for us to defect (in this case we are free immidiately); if
+our partner defects, then is is also better for us to defect (we'll get two
+years instead of three). Therefore, no matter what our partner does it is always
+better to defect. Since the game is symmetric both players come to this
+conclusion and get two years each; however, if both of them cooperates they
+would serve only one year\footnote{%
+  In 1993 Frank, Gilovich, and Regan conducted an experimental study of the
+  prisoner's dilemma. The subjects were students in their first and final years
+  of undergraduate economics, and undergraduates in other disciplines. Subjects
+  were paired, placed in a typical game scenario, then asked to choose either to
+  ``cooperate'' or to ``defect''. 
+
+  First year economics students, and students doing disciplines other than
+  economics, overwhelmingly chose to cooperate. But 4th year students in
+  economics tended to not cooperate. Therefore, the authors concluded that
+  that the study of economics reduces cooperation in games. The idea is
+  that much of the time cooperation and consideration of other's perspective are
+  irrational in the narrow sense of the word. Thus, learning that cooperation is
+  irrational in some situations is influencing the behavior of the students
+  towards less cooperation, presumably to the negative.
+}.
+
+Let us generalise the argument we used to justify why defecting is better thatn
+cooperating.
+\begin{definition}
+  Let $(X, Y, A, B)$ be a game in normal form. We say that $x_1 \in X$
+  \emph{dominates} $x_2 \in X$ iff $A(x_1, y) \ge A(x_2, y)$ for all $y \in Y$.
+  We also say that $x_1$ \emph{strictly dominates} $x_2$ if $A(x_1, y) > A(x_2,
+  y)$ for all $y \in Y$.
+
+  Similarly we may define domination of strategies for the second player.
+\end{definition}
+It seems reasonable to never choose $x_2$ provided that $x_1$ dominates $x_2$; in
+the prisoners dilemma ``defects'' dominates ``cooperates''; hence, it seems
+choosing ``defects'' is the best behaviour for rational agents.
+
+However, it also obvious that if both players cooperate is way better than if
+both of them defects; this observation leads to the following observation.
+\begin{exercise}
+  Let $(X, Y, A, B)$  be a game in the normal form. We say that $(x, y) \in X
+  \times Y$ is Pareto optimal pair of strategies if either $A(x', y') < A(x, y)$
+  or $B(x', y') < B(x, y)$ for any $(x', y') \in X \times Y$.
+\end{exercise}
+In other words, a pair of strategies is Pareto optimal if any other choice would
+decrease the payoff for at least one of the players.
