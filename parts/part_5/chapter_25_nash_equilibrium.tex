@@ -1,0 +1,139 @@
+\chapter{Nash Equilibrium}
+In the previous chapter we discussed several ways to find optimal behaviour for
+players. However, there is a big class of games where these method do not work;
+e.g. the game corresponding to \Cref{table:heads-and-tales-game}.
+
+
+\section{No Regrets Strategies}
+The core ideas leading to understanding of the optimal behaviour are Nash
+equilibria and the notion of mixed strategies.
+
+To understand the equilibria, consider the pair of strategies ``cooperates'',
+``cooperates'' in prisoner's dilemma. This situation is bad because each player
+can change their behaviour and improve his/her situation; i.e., this situation
+is not stable.
+\begin{definition}
+  Let $(X, Y, A, B)$ be a game in normal form. We say that a pair of strategies
+  $x \in X$ and $y \in Y$ are in \emph{Nash equilibrium} if 
+  \begin{gather*}
+    A(x, y) \ge A(x', y) \\
+    \text{and} \\
+    B(x, y) \ge B(x, y')
+  \end{gather*}
+  for all $x' \in X$ and $y' \in Y$.
+\end{definition}
+In other words, if two players decided to stick to $x$ and $y$ that are in Nash
+equilibrium, they do not regret not vialating their agreement.
+\begin{exercise}
+  \begin{itemize}
+    \item Check that the pair of strategies ``defects'', ``defects'' are in Nash
+      equilibrium in the prisoner's dilemma.
+    \item Check that there are no Nash equilibrium in the game corresponding to
+      \Cref{table:heads-and-tales-game}.
+  \end{itemize}
+\end{exercise}
+
+Note that some games may have several Nash equilibria. For example, let us
+consider the following game.
+\begin{game}
+  Two people are leaving in a flat. They need to call a plumber and stay in the
+  flat while the plumber works.
+  \begin{itemize}
+    \item If none of them call the plumber, the water leaks and each of them
+      will need to spend $1$ hours cleaning the appartement.
+    \item If one of them calls the plumber, he/she will spend $1$ hour waiting
+      pipes to be fixed.
+    \item Alternatively they can call together and wait for one our together.
+  \end{itemize}
+  This game is a version of \emph{volunteer's dilemma}.
+\end{game}
+It is clear that this game can be described using the following table.
+\begin{center}
+  \begin{tabular}{l l l  l  l  l  l  l  l}
+    \toprule
+                       & do nothing  & call the plumber   \\
+    \midrule
+    do nothing         & -1, -1    & 0, -1    \\
+    call the plumber   & -1, 0       & -1, -1   \\
+    \bottomrule
+  \end{tabular}
+\end{center}
+We may notice that in this game all pairs except ``call the plumber'', ``call the
+plumber'' are in Nash equilibrium. However, the pair of strategies ``do
+nothing'', ``do nothing'' is not efficient since one may improve the situation
+for one of the players without harming the other. Moreover, if the players know
+that this situation is going to repeat it self they may agree to call the
+plamber in turns and reduce the total time they wasted. 
+
+\section{Mixed Strategies}
+Recall that we still do not have any optimal behaviour in the game corresponding
+to \Cref{table:heads-and-tales-game}; however, it seems clear that in real life
+the best behaviour would be to flip coins and choose strategies accordingly.
+
+This observation leads to the notion of mixed strategies.
+\begin{definition}
+  Let $(X, Y, A, B)$ be a game in normal form. We say that a probability
+  distribution $\bar{x}$ over $X$ is a mixed strategy for the first player.
+  Similarly we say that a probability distribution $\bar{y}$ over $Y$ is a mixed
+  strategy for the second player.
+
+
+  We say that the payoffs of the players if they choose mixed strategies
+  $\bar{x}$ and $\bar{y}$ are $A(\bar{x}, \bar{y})$ and $B(\bar{x}, \bar{y})$ 
+  such that
+  \begin{gather*}
+    A(\bar{x}, \bar{y}) = 
+      \expectation[x \gets \bar{x}]{\expectation[y \gets \bar{y}]{A(x, y)}} \\ 
+    \text{and} \\
+    B(\bar{x}, \bar{y}) = 
+      \expectation[x \gets \bar{x}]{\expectation[y \gets \bar{y}]{B(x, y)}}.
+  \end{gather*}
+\end{definition}
+
+\begin{exercise}
+  Let $f : \Omega_1 \times \Omega_2 \to \R$ and let $\Distribution{D}_1$ and
+  $\Distribution{D}_2$ be probability distributions on $\Omega_1$ and
+  $\Omega_2$, respectively. Show that 
+  \[
+  \expectation[\omega_1 \gets \Distribution{D}_1]{
+    \expectation[\omega_2 \gets \Distribution{D}_2]{f(\omega_1, \omega_2)}
+  } = 
+  \expectation[\omega_2 \gets \Distribution{D}_2]{
+    \expectation[\omega_1 \gets \Distribution{D}_1]{f(\omega_1, \omega_2)}}.
+  \]
+\end{exercise}
+
+Let us find the payoffs in the game corresponding  to
+\Cref{table:heads-and-tales-game} if the players choose heads with the
+probability $1 / 2$; i.e., for the strategies $\bar{x}$ and $\bar{y}$ such that
+$\bar{x}(x) = \bar{y}(y) = 1 / 2$ for all $x \in X$ and $y \in Y$. It is clear
+that 
+\begin{multline*}
+  A(\bar{x}, \bar{y}) = 
+  \frac{1}{4} A(\text{heads}, \text{heads}) + 
+  \frac{1}{4} A(\text{heads}, \text{tails}) + \\
+  \frac{1}{4} A(\text{tails}, \text{heads}) +
+  \frac{1}{4} A(\text{tails}, \text{tails}) = 0.
+\end{multline*}
+
+It is clear that a mixed strategy $\bar{x}$ such that $\bar{x}(x) = 1$ is
+essentialy the same as $x$ so we call such a strategy a \emph{pure strategy}.
+
+The most importnat result about the connection between mixed strategies and Nash
+equilibrium is von Neumann's minimax theorem.
+\begin{theorem}[von Neumann's minimax theorem]
+  Let $(X, Y, A, B)$ be a zero-sum game in normal form. Then there are mixed
+  strategies $\bar{x}$ and $\bar{y}$ that are in Nash equilibrium; i.e., 
+  \begin{gather*}
+    A(\bar{x}, \bar{y}) \ge A(\bar{x}', \bar{y}) \\
+    \text{and} \\
+    A(\bar{x}, \bar{y}) \le A(\bar{x}, \bar{y}')
+  \end{gather*}
+  for all mixed strategies $\bar{x}'$ and $\bar{y}'$
+\end{theorem}
+Note that this theorem can be interpreted as the following equality 
+\[
+  \max_{\bar{x}} \min_{\bar{y}} A(\bar{x}, \bar{y}) = 
+  \min_{\bar{y}} \max_{\bar{x}} A(\bar{x}, \bar{y}),
+\]
+which give this theorem its name.

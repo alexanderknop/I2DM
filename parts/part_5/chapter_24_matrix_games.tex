@@ -27,17 +27,22 @@ other hand, the number of games of tic tac toe is rather small, so that it is
 possible to study all strategies and find an optimal strategy for each player.
 
 In cases when $X$ and $Y$ are small sets it is convinient to describy such games
-using tables. Let us consider the game described by the following table.
-\begin{center}
-  \begin{tabular}{l l l  l  l  l  l  l  l}
-    \toprule
-          & heads  & tales   \\
-    \midrule
-    heads & 1, -1 & -1, 1   \\
-    tales & -1, 1 & 1, -1   \\
-    \bottomrule
-  \end{tabular}
-\end{center}
+using tables. Let us consider the game described by
+\Cref{table:heads-and-tales-game}.
+\begin{table}
+  \begin{center}
+    \begin{tabular}{l l l  l  l  l  l  l  l}
+      \toprule
+            & heads  & tales   \\
+      \midrule
+      heads & 1, -1 & -1, 1   \\
+      tales & -1, 1 & 1, -1   \\
+      \bottomrule
+    \end{tabular}
+  \end{center}
+  \caption{Heads and tales game}
+  \label{table:heads-and-tales-game}
+\end{table}
 In this game two players put one coin each on the table: if the the coins have
 the same side up, then the second player pays $1$ dollar to the first player,
 otherwise the first player pays $1$ dollar to the second player. In other words,
