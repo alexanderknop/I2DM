@@ -122,7 +122,7 @@ essentially the same as $x$ so we call such a strategy a \emph{pure strategy}.
 The most important result about the connection between mixed strategies and Nash
 equilibrium is von Neumann's minimax theorem.
 \begin{theorem}[von Neumann's minimax theorem]
-  Let $(X, Y, A, B)$ be a zero-sum game in normal form. Then there are mixed
+  Let $(X, Y, A, B)$ be a zero-sum matrix game. Then there are mixed
   strategies $\bar{x}$ and $\bar{y}$ that are in Nash equilibrium; i.e., 
   \begin{gather*}
     A(\bar{x}, \bar{y}) \ge A(\bar{x}', \bar{y}) \\
@@ -137,3 +137,37 @@ Note that this theorem can be interpreted as the following equality
   \min_{\bar{y}} \max_{\bar{x}} A(\bar{x}, \bar{y}),
 \]
 which give this theorem its name.
+
+\section{Solution of All $2 \times 2$ Matrix Games.}
+To better understand the notion of Nash equilibrium, let us devise a method to
+find it for games defined by $2 \times 2$ matrices.
+
+Let $X = Y = 0, 1$ and let $A$ be defined by the matrix 
+\[
+  \begin{pmatrix}
+    a & b \\
+    d & c
+  \end{pmatrix}.
+\]
+
+We need to consider two options: either there is an equilibrium in pure
+strategies, or there is no equilibrium in pure strategies.
+In the first case, there are $x$ and $y$ such that 
+\begin{gather*}
+  A(x, y) \ge A(x', y) \\
+  \text{and} \\
+  A(x, y) \le A(x, y') 
+\end{gather*}
+for all $x'$ and $y'$ (such a point is also called a saddle point).
+
+Assume that the game does not have a saddle point; without loss of generality we
+may also assume that $a \ge b$. Since $0, 1$ is not a saddle point $b < c$.
+The pair $1, 1$ is also not a saddle point so $d < c$. Finally, $d < a$ and $a >
+b$ since $1, 0$ and $0, 0$ are not saddle points either. Consider $\bar{x}$ such
+that $\bar{x}(0) = p$. Note that $A(\bar{x}, 0) =  p a + (1 - p) d = 
+d + p (a - d)$ which is increasing when $p$ is increasing and 
+$A(\bar{x}, 1) =  p b + (1 - p) c = c + p (b - c)$ which is decreasing when $p$
+is increasing. Hence, the maximum is achieved when 
+$p = (c - d) / (a - b + c - d)$. Similarly we may consider $\bar{y}$ such that
+$\bar{y}(0) = q$, and show that $q$ should be equal to 
+$(c - b) / (a - b + c - d)$.
