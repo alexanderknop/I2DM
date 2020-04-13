@@ -54,6 +54,7 @@ easier to prove lower bounds on heuristic complexity. Yao's principle (also
 called Yao's minimax principle or Yao's lemma) gives a connection between these
 measures.
 \begin{theorem}[Yao's principle]
+\label{theorem:yaos-principle}
   Let $f : [1000] \to \Z$ be a function. Then $\RandCBDT{f} = 
   \HeurCBDT{f}$.
 \end{theorem}
@@ -67,9 +68,8 @@ Using this principle is easy to prove the lower bound.
   there is a $B$-decision tree $T$ such that $\DTValue{T}{x} = x$ for all $x \in
   \range{1000}$ and $\expectation[x \gets \Distribution{X}]{\DTHeight[x]{T}} <
   9$.
-
   This implies that there is a $B$-decision tree $T$ such that 
-  $\sum_{x \in \range{1000}} \DTHeight[x]{T} < 9000$; we are going to prove that
+  $\frac{1}{1000} \sum_{x \in \range{1000}} \DTHeight[x]{T} < 9$; we are going to prove that
   this is impossible. Let us fix such a $T$.
 
   We prove, using induction by $|S|$ that $\sum_{x \in S} \DTHeight[x]{T} \ge
@@ -86,4 +86,57 @@ Using this principle is easy to prove the lower bound.
 
   Therefore, $\frac{1}{1000} \sum_{x \in \range{1000}} \DTHeight[x]{T} \ge
   \log_2 1000 > 9$, which contradicts the assumption.
+\end{proof}
+
+Now we are ready to prove Yao's principle.
+\begin{proof}[Proof of \Cref{theorem:yaos-principle}]
+  We start from proving that $\RandCBDT{f} \ge \HeurCBDT{f}$. Assume the
+  opposite; i.e., that $\RandCBDT{f} < \HeurCBDT{f}$. 
+  
+  
+  Let $\bar{T} = (\Omega, \Distribution{T})$ be a randomized $B$-decision tree
+  for $f$ of cost $C < \HeurCBDT{f}$. Note that 
+  $\expectation[T \gets \Distribution{T}]{\DTHeight[x]{T}} \le C$ for all $x \in
+  \range{1000}$. Hence, 
+  $\expectation[x \gets \Distribution{X}]{
+    \expectation[T \gets \Distribution{T}]{\DTHeight[x]{T}}
+  } \le C$. However, 
+  \begin{multline*}
+    C \ge 
+    \expectation[x \gets \Distribution{X}]{
+      \expectation[T \gets \Distribution{T}]{\DTHeight[x]{T}}
+    } = \\
+    \expectation[T \gets \Distribution{T}]{
+      \expectation[x \gets \Distribution{X}]{\DTHeight[x]{T}}
+    } \ge
+    \expectation[T \gets \Distribution{T}]{
+      \HeurCBDT[\Distribution{X}]{f}
+    } = \HeurCBDT[\Distribution{X}]{f}.
+  \end{multline*}
+  As a result, $C \ge \HeurCBDT{f}$, which is a contradiction to the assumption.
+
+
+  Let us prove that $\RandCBDT{f} \le \HeurCBDT{f}$. To prove this inequality we
+  are going to use von Neumann's minimax theorem (\Cref{theorem:von-neumanns-minimax}).
+  Let $X = \range{1000}$, $Y$ be a set of all $B$-decision trees $T$ such that
+  $\DTHeight{T} \le 1000$ and $\DTValue{T}{x} = f(x)$ for all $x \in
+  \range{1000}$, and $A(x, T) = - B(x, T) = \DTHeight[x]{T}$.
+
+  \Cref{theorem:von-neumanns-minimax} implies that there are distributions
+  $\Distribution{X}$ and $\Distribution{T}$ over $X$ and $Y$ respectively such
+  that 
+  \[
+    \expectation[x \gets \Distribution{X}]{\DTHeight[x]{T'}} \ge 
+    \expectation[x \gets \Distribution{X}]{
+      \expectation[T \gets \Distribution{T}]{\DTHeight[x]{T}}
+    } \ge 
+    \expectation[T \gets \Distribution{T}]{\DTHeight[x']{T}}
+  \]
+  for all $x' \in X$ and $T' \in Y$. Which implies that 
+  \[
+    \HeurCBDT[\Distribution{X}]{f} \ge 
+    \expectation[x \gets \Distribution{X}]{
+      \expectation[T \gets \Distribution{T}]{\DTHeight[x]{T}}
+    } \ge \RandCBDT{f}.
+  \]
 \end{proof}
