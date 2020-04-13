@@ -1,0 +1,89 @@
+\chapter{Yao's Principle}
+Using game theory we may develop a method for proving lower bounds on complexity
+of randomized algorithms. To illustrate this method we will study the problem we
+duscussed in \Cref{chapter:expectation,chapter:structural-induciton}: Alice
+choose a number from $\range{1000}$, Bob can flip a coin and ask yes/no
+questions; Bob would like to guess it using, on average, as few questions as
+possible. We claim that Bob needs at least $9$ questions.
+\begin{theorem}
+\label{theorem:randomized-dts-lower-bound}
+  Let $\Omega$ be a set of $B$-decision trees and $\Distribution{D}$ be a
+  probability distribution on $\Omega$. If $\DTValue{T}{x} = x$ for all 
+  $x \in \range{1000}$ and $T \in \Omega$, then
+  $\expectation[\Distribution{D}]{\DTValue{T}{x}} \ge 9$ for some $x \in
+  \range{1000}$.
+\end{theorem}
+
+To prove this statement we would need to give formal notions of randmoized
+$B$-decision tree complexity and heuristic $B$-decision tree cmplexity.
+\begin{definition}
+  Let $f : [1000] \to \Z$ be a function. We say that $\bar{T} = 
+  (\Omega, \Distribution{T})$ is a \emph{randomized}\footnote{%
+    In fact, there are many notions of randomized computation; the algorithms
+    discussed in this chapter are usually called zero-error randomized
+    algorithms.
+  }
+  \emph{$B$-decision tree for $f$ of cost $C$}
+  if $\Omega$ is a set of $B$-decision trees, $\Distribution{T}$ is a
+  probability distribution on $\Omega$, $\DTValue{T}{x} = f(x)$ for all $x \in
+  \range{1000}$, and 
+  $\expectation[T \gets \Distribution{T}]{\DTHeight[x]{T}} = C$.
+
+  We also say that $T$ is a \emph{heuristic $B$-decision tree for $f$ of
+  expected cost $C$ with respect to a distribution $\Distribution{X}$} if 
+  $\DTValue{T}{x} = f(x)$ for all $x \in \range{1000}$ and
+  $\expectation[x \gets \Distribution{X}]{\DTHeight[x]{T}} = C$.
+
+  The \emph{randmoized $B$-decision tree complexity $\RandCBDT{f}$ of $f$}
+  is equal to the minimal $C$ such that there is a randomized $B$-decision tree
+  for $f$ of cost $C$.
+
+  The \emph{heuristic $B$-decision tree complexity
+  $\HeurCBDT[\Distribution{X}]{f}$ of $f$ with respect to $\Distribution{X}$} is
+  equal to the minimal $C$ such that there is a $B$-decision tree for $f$ of
+  expected cost $C$ with respect to $\Distribution{X}$. Finally, \emph{the
+  heuristic $B$-decision tree complexity $\HeurCBDT{f}$ of $f$} is equal to the
+  maximum of $\HeurCBDT[\Distribution{X}]{f}$ over all distributions
+  $\Distribution{X}$.
+\end{definition}
+
+Nonetheless that we have not had the notion of randomized complexity before, we
+proved upper bounds in \Cref{chapter:expectation}. Unfortunately, proving lower
+bounds directly for randomized complexity is not easy, but it is usually way
+easier to prove lower bounds on heuristic complexity. Yao's principle (also
+called Yao's minimax principle or Yao's lemma) gives a connection between these
+measures.
+\begin{theorem}[Yao's principle]
+  Let $f : [1000] \to \Z$ be a function. Then $\RandCBDT{f} = 
+  \HeurCBDT{f}$.
+\end{theorem}
+
+
+Using this principle is easy to prove the lower bound.
+\begin{proof}[Proof of \Cref{theorem:randomized-dts-lower-bound}]
+  Note that the theorem says that $\RandCBDT{\identity{\range{1000}}} \ge 9$;
+  hence, it is enough to prove that $\HeurCBDT{\identity{\range{1000}}} \ge 9$.
+  Let us assume the opposite; i.e., that for any distribution $\Distribution{X}$
+  there is a $B$-decision tree $T$ such that $\DTValue{T}{x} = x$ for all $x \in
+  \range{1000}$ and $\expectation[x \gets \Distribution{X}]{\DTHeight[x]{T}} <
+  9$.
+
+  This implies that there is a $B$-decision tree $T$ such that 
+  $\sum_{x \in \range{1000}} \DTHeight[x]{T} < 9000$; we are going to prove that
+  this is impossible. Let us fix such a $T$.
+
+  We prove, using induction by $|S|$ that $\sum_{x \in S} \DTHeight[x]{T} \ge
+  |S| \log_2 |S|$. The base case for $|S| = 1$ is clear since 
+  $\DTHeight[x]{T} \ge 1$ for all $x \in \range{1000}$. 
+  
+  Let us prove the induction step. Let $T = \DTIf{f}{T_0}{T_1}$, and let 
+  $S_0 = \set[f(x) = 0]{x \in S}$ and $S_1 = \set[f(x) = 1]{x \in S}$.
+  It is clear that $\sum_{x \in S} \DTHeight[x]{T} = |S| + 
+  \sum_{x \in S_0} \DTHeight[x]{T} + \sum_{x \in S_1} \DTHeight[x]{T}$. By the
+  induction hypothesis, this implies that $\sum_{x \in S} \DTHeight[x]{T} = |S|
+  + |S_0| \log_2 |S_0| + |S_1| \log_2 |S_1| \ge |S| + |S| \log_2 (|S| / 2) =
+  |S| \log_2 |S|$.
+
+  Therefore, $\frac{1}{1000} \sum_{x \in \range{1000}} \DTHeight[x]{T} \ge
+  \log_2 1000 > 9$, which contradicts the assumption.
+\end{proof}
