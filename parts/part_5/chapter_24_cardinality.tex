@@ -1,0 +1,206 @@
+\chapter{Cardinalities of Sets}
+\Cref{part:combinatorics} discusses sizes of sets; however, this notion was
+never defined formally. This part is going to close this gap and study
+properties of sizes of sets.
+
+
+\section{Definition}
+One may notice that if we have a bijection $f$ from $\range{n}$ to a set $S$ we
+enumerate all the elements of $S$: $f(1)$, \dots, $f(n)$.
+This observation allows us to define the cardinality of a set.
+\begin{definition}
+  Let $S$ be a set, we say that cardinality of $S$ is equal to $n$ (we write
+  that $|S| = n$) iff there is a bijection from $\range{n}$ to $S$.
+
+  We also say that a set $T$ is finite if there is an integer $n$ such that
+  $|T| = n$.
+\end{definition}
+
+Note that this definition does not guarantee that cardinality is unique so
+we need the following theorem.
+\begin{theorem}
+\label{theorem:correctness-of-cardinality}
+    For any set $S$, if there are bijections $f : \range{n} \to S$ and
+    $g : \range{m} \to S$, then $n = m$.
+\end{theorem}
+\begin{proof}[Proof of Theorem~\ref{theorem:correctness-of-cardinality}]
+    Let us consider the inverse $g^{-1}$ of $g$ (it exists by
+    Theorem~\ref{theorem:inverse-of-bijections} since $g$ is a
+    bijection). Note that $h = g^{-1} \circ f$
+    is a bijection from $\range{n}$ to $\range{m}$.
+
+    We prove using induction by $n$ that for any $n, m \in \N$,
+    if there is a bijection $h'$ from $\range{n}$ to $\range{m}$, then $n = m$.
+    The base case is for $n = 1$; if $m \ge 2$,
+    then there are $x, y \in [1]$ such that $h'(x) = 1$ and $h'(y) = 2$, but
+    $x \neq y$ and we have only one element in $[1]$.
+
+    The induction step is also simple. Assume that there is a bijection $h'$ from
+    $[n + 1]$ to $\range{m}$. We define a function
+    $h'' : \range{n} \to \range{m - 1}$ as follows:
+    \[
+        h''(i) =
+        \begin{cases}
+            h'(i) & \text{if } h'(i) < h'(n + 1) \\
+            h'(i) - 1 & \text{otherwise}
+        \end{cases}.
+    \]
+    We prove that $h''$ is a bijection.
+    \begin{itemize}
+        \item Let $i_1 \neq i_2 \in \range{n}$. If
+            $h'(i_1), h'(i_2) < h'(n + 1)$ or $h'(i_1), h'(i_2) \ge h'(n + 1)$,
+            then $h''(i_1) \neq h''(i_2)$ since $h'(i_1) \neq h'(i_2)$.
+            Otherwise, without loss of generality we may assume that
+            $h'(i_1) < h'(n + 1) < h'(i_2)$ but it implies that
+            $h''(i_1) = h'(i_1) < h'(n + 1) \le h'(i_2) - 1 = h''(i_2)$.
+        \item Let $j \in [m - 1]$. We need to consider two cases.
+            \begin{enumerate}
+                \item Let $j < h(n + 1)$. There is $i \in [n + 1]$ such that
+                    $h'(i) = j$ since $h'$ is a bijection
+                    (note that $i \neq n + 1$). Thus $h''(i) = j$.
+                \item Otherwise, there is $i \in [n + 1]$ such that
+                    $h'(i) = j + 1$ since $h'$ is a bijection
+                    (note that $i \neq n + 1$). Thus $h''(i) = j$.
+            \end{enumerate}
+    \end{itemize}
+    Since $h''$ is a bijection, the induction hypothesis implies that
+    $n = m - 1$. As a result, $n + 1 = m$.
+\end{proof}
+
+
+Also, using this definition we may finally prove
+\Cref{theorem:bijection-to-equality}.
+\begin{proof}[Proof of \Cref{theorem:bijection-to-equality}]
+    Let $|X| = n$, and $g : \range{n} \to X$ be a bijection.
+    Note that $f \circ g : \range{n} \to Y$ is a bijection, hence $|Y| = n$.
+\end{proof}
+
+
+\section{Generalized Commutative Operations}
+\label{section:generalized-sum}
+Using the notation of cardinality we can formalize the summation operation over
+sets:
+\[
+    \sum_{i \in S ~:~ P(i)} f(i) = \sum_{j = 1}^k f(i_j),
+\]
+where $\set[P(i)]{i \in S} = \set{i_1, \dots, i_k}$. More formally,
+\[
+    \sum_{i \in S ~:~ P(i)} f(i) = \sum_{j = 1}^k f(g(j)),
+\]
+where $k = |\set[P(i)]{i \in S}|$ and $g : \set[P(i)]{i \in S} \to \range{k}$ is
+a bijection.
+
+\begin{theorem}
+\label{theorem:sum-correctness}
+    The definition of $\sum_{i \in S : P(i)} f(i)$ does not depend on the choice
+    of $g$;
+    i.e. $\sum_{i = 1}^k f(g_1(i)) = \sum_{i = 1}^k f(g_2(i))$
+    for any two bijections $g_1, g_2 : \set[P(i)]{i \in S} \to \range{k}$.
+\end{theorem}
+Before we prove this statement we need to give a couple of definitions.
+We say that a function $h : \range{n} \to \range{n}$ is a \emph{permutation} of
+$\range{n}$ iff $h$ is a bijection. We also say that
+$i, j \in \range{k}$ form the inversion in $h$ iff $h(i) > h(j)$ and $i < j$.
+We denote by $I(h)$ the number of inversions in $h$; i.e. $I(h) =
+|\set[i, j \text{ form an inversion in } h]{(i, j)}|$.
+\nomenclature[C]{$I(h)$}{denotes the number of inversions in $h$}
+
+Important examples of permutations are transposition: for any
+$i, j \in \range{n}$, $\tau_{i, j} : \range{n} \to \range{n}$ such that
+\[
+    \tau_{i, j}(x) =
+    \begin{cases}
+        j & \text{if } x = i \\
+        i & \text{if } x = j \\
+        x & \text{otherwise}
+    \end{cases}.
+\]
+is called a transposition of $i$ and $j$.
+\nomenclature[F]{$\tau_{i, j}$}{denotes the transposition of $i$ and $j$}
+
+It is easy to see that $I(h) = 0$ iff $h(i) = i$ for any $i \in \range{k}$.
+It is also clear that if $i, j$ form an inversion in $h$, then $I(h) > I(h')$,
+where $h' = h \circ \tau_{i, j}$, i.e.
+\[
+    h'(x) =
+    \begin{cases}
+        h(j) & \text{if } x = i \\
+        h(i) & \text{if } x = j \\
+        h(x) & \text{otherwise}
+    \end{cases}.
+\]
+
+
+\begin{proof}[Proof of Theorem~\ref{theorem:sum-correctness}]
+    Proof of this theorem consists of two parts.
+    First, we prove that
+    \begin{equation}
+        \label{equation:summation-with-respect-to_bijection}
+        \sum_{i = 1}^k f(g(i)) = \sum_{i = 1}^k f(g(h(i)))
+    \end{equation}
+    for any bijections $g : \set[P(i)]{i \in S} \to \range{k}$ and
+    $h : \range{k} \to \range{k}$.
+
+    We prove Equation~\ref{equation:summation-with-respect-to_bijection} using the
+    induction by $I(h)$.
+    \begin{description}
+        \item[(the base case)] If $I(h) = 0$, then $h$ is the identity function and
+            $g(i) = g(h(i))$. Hence,
+            Equation~\ref{equation:summation-with-respect-to_bijection} is true.
+        \item[(the induction step)] By the induction hypothesis, for any permutation
+            $h' : \range{k} \to \range{k}$,
+            if $I(h') < \ell$, then
+            \[
+                \sum_{i = 1}^k f(g(i)) = \sum_{i = 1}^k f(g(h'(i))).
+            \]
+            Let us consider a permutation $h : \range{k} \to \range{k}$ such that
+            $I(h) = \ell$. Let $i$ and $j$ form an inversion in $h$ (such $i$ and $j$
+            exist since $I(h) \neq 0$). Let $h' = h \circ \tau_{i, j}$.
+            Note that by the induction hypothesis,
+            \[
+                \sum_{i = 1}^k f(g(i)) = \sum_{i = 1}^k f(g(h'(i)))
+            \]
+            since $I(h') < I(h) = \ell$ and it is clear that
+            \[
+                \sum_{i = 1}^k f(g(h'(i))) = \sum_{i = 1}^k f(g(h(i))).
+            \]
+            As a result,
+            Equation~\ref{equation:summation-with-respect-to_bijection} is true.
+    \end{description}
+
+    Now we are ready to finish proof of the theorem.
+    Consider $g_1, g_2 : \set[P(i)]{i \in S} \to \range{k}$ and define
+    $h = g_1^{-1} \circ g_2$. Note that $h : \range{k} \to \range{k}$ is a
+    permutation and $g_1(h(i)) = g_2(i)$. Thus we proved that
+    \[
+        \sum_{i = 1}^k f(g_1(i)) = \sum_{i = 1}^k f(g(h(i))) =
+        \sum_{i = 1}^k f(g_2(i)).
+    \]
+\end{proof}
+
+Similarly one may define a generalized union and intersection of sets.
+Let $\Omega$ and $S$ be some sets, $X : S \to 2^\Omega$ and $P(i)$ be a
+predicate. Then
+\begin{gather*}
+    \bigcup_{i \in S ~:~ P(i)} X(i) = \bigcup_{i = 1}^k X(g(i)) \\
+    \text{and}\\
+    \bigcap_{i \in S ~:~ P(i)} X(i) = \bigcap_{i = 1}^k X(g(i)),
+\end{gather*}
+where $k = |\set[P(i)]{i \in S}|$ and $g : \set[P(i)]{i \in S} \to \range{k}$ is
+a bijection.
+\nomenclature[S]{$\bigcup_{i \in S ~:~ P(i)} A_i$}{denotes $A_{i_1} \cup \dots
+\cup A_{i_k}$, where $\set[P(i)]{i \in S} = \set{i_1, \dots, i_k}$}
+\nomenclature[S]{$\bigcap_{i \in S ~:~ P(i)} A_i$}{denotes $A_{i_1} \cap \dots
+\cap A_{i_k}$, where $\set[P(i)]{i \in S} = \set{i_1, \dots, i_k}$}
+
+\begin{exercise}
+    Show that the definitions of $\bigcup_{i \in S : P(i)} X(i)$ and
+    $\bigcap_{i \in S : P(i)} X(i)$ are correct,
+    i.e. that they do not depend on the choice of $g$.
+\end{exercise}
+
+
+
+\begin{chapterendexercises}
+    \exercise Prove Theorem~\ref{theorem:injections-surjections-inequalities}.
+\end{chapterendexercises}
