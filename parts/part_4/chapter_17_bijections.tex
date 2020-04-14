@@ -5,11 +5,10 @@
   Introduction to Combinatorics \#1
 }{youtu.be/fW5Zxg0TMDc}
 
-In the previous chapters we used the property that the set is finite. However,
-we have never defined formally what it means. In this chapter we define
-cardinality which is a formalization of the notion size of the set and explain
-how to compare sizes of two sets.
-
+Combinatorics is an area of mathematics primarily concerned with counting;
+hence, the questions studied in combinatorics are usually forulated as results
+about the sizes of sets. This chapter uses informal notion of size of a set, for
+the formal definition see \Cref{chapter:cardinality}.
 \section{Bijections}
 The simplest way to explain that one set has the same number of elements as
 another is to show a correspondence between elements of these sets. For example,
@@ -41,7 +40,6 @@ function such that $f(x) = x + 1$; Note that it is a bijection:
     \item If $f(x_1) = f(x_2)$, then $x_1 + 1 = x_2 + 1$ i.e. $x_1 = x_2$.
 \end{itemize}
 
-
 \begin{exercise}
     Show that $x^3$ is a bijection.
 \end{exercise}
@@ -67,7 +65,7 @@ is a bijection.
     \end{itemize}
 \end{proof}
 
-Probably the most important property of a bijection is that we may invert it.
+Another important property of bijections is that they can be inverted.
 \begin{theorem}
 \label{theorem:inverse-of-bijections}
     Let $f : X \to Y$ be a function. $f$ is invertible (i.e. there is a function
@@ -104,26 +102,6 @@ defined only when $f$ is a bijection)}
 it denotes the set $\set[f(x) = y]{x \in X}$ and it denotes the value of
 $f^{-1}$ at $y$ if $f$ is a bijection}
 
-Using Theorem~\ref{theorem:inverse-of-bijections} we may notice that
-nonetheless that $X \times (Y \times Z)$ is not the same as
-$(X \times Y) \times Z$, there is a natural correspondence between the elements
-of these sets.
-\begin{theorem}
-    Let $X$, $Y$, $Z$ be some sets.
-    There are bijections from $X \times (Y \times Z)$ and
-    $(X \times Y) \times Z$ to $\set[x \in X, y \in Y, z \in Z]{(x, y, z)}$.
-\end{theorem}
-\begin{proof}
-    Since the statement is symmetric, it is enough to prove that there is
-    a bijection $f : X \times (Y \times Z) \to
-    \set[x \in X, y \in Y, z \in Z]{(x, y, z)}$. Define $f$ such that
-    $f(x, (y, z)) = (x, y, z)$.
-    Clearly, $f^{-1}(x, y, z) = (x, (y, z))$ is the inverse of $f$, so $f$ is
-    indeed a bijection.
-\end{proof}
-Due to this correspondence we will think about elements $(x, (y, z))$,
-$((x, y), z)$, and $(x, y, z)$ as they are equal to each other.
-
 Because of the following therem, bijections are very useful in combinatorics.
 \begin{theorem}
 \label{theorem:bijection-to-equality}
@@ -138,27 +116,13 @@ Using this result we can make prove the following equality.
     cardinality as $\set{0, 1}^{|X|}$.
 \end{corollary}
 \begin{proof}
-    To prove this statement we need to construct a bijection from $2^X$ to
-    $\set{0, 1}^{|X|}$. Let $|X| = n$ and $f : X \to \range{n}$ be a bijection.
+  We are going to prove this statement for $X = \range{n}$ since for the full
+  proof we would need a formal definition a finite set.
 
-    First we construct a bijection $g_1 : 2^X \to 2^{\range{n}}$:
-    \[
-        g_1(Y) = \set[x \in Y]{f(x)}.
-    \]
-    It is easy to see that the function
-    \[
-        g^{-1}_1(Y) = \set[{x \in \range{n}}]{f^{-1}(x)}
-    \]
-    is an inverse of $g_1$, so $g_1$ is indeed a bijection.
-
-    Now we need to construct a bijection $g_2$ from $2^{\range{n}}$ to
-    $\set{0, 1}^n$:
-    $g_2(Y) = (u_1, \dots, u_n)$, where $u_i = 1$ iff $i \in Y$. It is clear
-    that $g^{-1}_2(u_1, \dots, u_n) = \set[u_i = 1]{i \in \range{n}}$ is an
-    inverse of $g_2$ so $g_2$ is indeed a bijection.
-
-    As a result, by Theorem~\ref{theorem:bijections-composition}, the function
-    $(g_2 \circ g_1) : 2^X \to \set{0, 1}^{|X|}$ is a bijection.
+  Now we need to construct a bijection $g$ from $2^{\range{n}}$ to
+  $\set{0, 1}^n$ such that $g(Y) = (u_1, \dots, u_n)$, where $u_i = 1$ iff $i \in Y$.
+  It is clear that $g^{-1}(u_1, \dots, u_n) = \set[u_i = 1]{i \in \range{n}}$ is an
+  inverse of $g$ so $g$ is indeed a bijection.
 \end{proof}
 
 \section{Surjections and Injections}
