@@ -76,10 +76,107 @@ Also, using this definition we may finally prove
     Note that $f \circ g : \range{n} \to Y$ is a bijection, hence $|Y| = n$.
 \end{proof}
 
+\section{Proofs of Combinatorial Principles}
+We start from proving the additive principle. Recall that it says that if two
+finite sets $X = \set{x_1, \dots, x_n}$ and $Y = \set{y_1, \dots, y_m}$ are
+disjoint, then their union contains $n + m$ elements. Informally this statement
+is very easy since we can simply enumerate elements of the set $X$ first and
+after that enumerate elements of $Y$:
+\[
+  \begin{matrix}
+    x_1 & x_2 & \dots & x_n & y_1    & y_2   & \dots & y_m \\
+    1   & 2   & \dots & n   & n + 1  & n + 2 & \dots & n + m.
+  \end{matrix}
+\]
+Using the definition of cardinality, this informal proof can be formalized as
+follows. 
+\begin{proof}[Proof of \Cref{theorem:additive-principle}]
+  Let $|X| = n$, $|Y| = m$ and $g : \range{n} \to X$ and $h : \range{m} \to Y$ be
+  bijections. In order to prove it we just construct a bijection
+  $f : [n + m] \to (X \cup Y)$.
+
+  \[
+    f(i) =
+    \begin{cases}
+        g(i) & i < n \\
+        h(i  - n) & i > n
+    \end{cases}.
+  \]
+
+  It's easy to see that $f$ is an injection. Let us start by assuming the opposite i.e.
+  that $i_0 \neq i_1 \in X \cup Y$ such that $f(i_0) = f(i_1)$.
+  There are three cases.
+  \begin{itemize}
+    \item The first is when $i_0, i_1 \in \range{n}$. In this case $g(i_0) = g(i_1)$
+      which contradicts the assumption that $g$ is a bijection.
+    \item The second is when $i_0, i_1 \in \set{n + 1, n + 2, \dots, m}$.
+      In this case $h(i_0 - n) = h(i_1 - n)$ which contradicts the assumption
+      that $h$ is a bijection.
+    \item Finally, the last case is when $i_0 \in \range{n}$ and
+      $i_1 \in \set{n + 1, n + 2, \dots, m}$. It is easy to see that this
+      implies that $g(i_0) = h(i_1 - n)$. However, it
+      means that $g(i_0) = h(i_1 - n) \in (X \cap Y)$, which contradicts the
+      assumption that $X \cap Y = \emptyset$.
+  \end{itemize}
+
+  To finish the proof we need to show that $f$ is a surjection. Let
+  $w \in (X \cup Y)$. Consider the following two cases.
+  \begin{itemize}
+    \item Let $w \in X$. There is $i \in \range{n}$ such that $f(i) = g(i) = w$ since
+      $g$ is a bijection.
+    \item Otherwise, $w \in Y$. In this case, there is $i \in \range{m}$ such that
+      $f(i + n) = h(i) = w$ since $h$ is a bijection.
+  \end{itemize}
+\end{proof}
+
+Using the additive principle it is pretty easy to prove the multiplicative
+principle. Recall that the multiplicative principle says that the Cartesian
+product of two finite sets $X = \set{x_1, \dots, x_n}$ and 
+$Y = \set{y_1, \dots, y_m}$ has size $nm$. It is easy to justify this statement
+informally; indeed, note that $X \times Y$ has the following elements:
+\[
+  \begin{matrix}
+    (x_1, y_1) & (x_1, y_2) & \dots & (x_1, y_m) \\
+    (x_2, y_1) & (x_2, y_2) & \dots & (x_2, y_m) \\
+    \dots \\
+    (x_n, y_1) & (x_n, y_2) & \dots & (x_n, y_m);
+  \end{matrix}
+\]
+each line has $m$ elements and there are $n$ lines, so there are $nm$ elements
+altogether that can be enumerated as follows:
+\[
+  \begin{matrix}
+    (x_1, y_1) & (x_1, y_2) & \dots & (x_1, y_m) \\
+    1          & 2          & \dots & m \\
+    (x_2, y_1) & (x_2, y_2) & \dots & (x_2, y_m) \\
+    m + 1      & m + 2      & \dots & m + m \\
+    \dots \\
+    (x_n, y_1) & (x_n, y_2) & \dots & (x_n, y_m) \\
+    (n - 1) m + 1 & (n - 1) m + 2 & \dots & (n - 1) m + m
+  \end{matrix}
+\]
+The definition of cardinality gives us a simple formalization of this argument.
+\begin{proof}[Proof of \Cref{theorem:multiplicative-principle}]
+  If one of the sets $X$ and $Y$ is empty, then $X \times Y$ is empty as well
+  and the statement is as follows.
+
+  Assume that none of the sets are empty. Let $|X| = n$, $|Y| = m$, and
+  $f : \range{n} \to X$ and $g : \range{m} \to Y$ be bijections.
+  Note that
+  \[
+    \bigcup_{i = 1}^n (\set{f(i)} \times Y) = X \times Y.
+  \]
+  Additionally, note that $(\set{f(i)} \times Y) \cap (\set{f(j)} \times Y) =
+  \emptyset$ for $i \neq j$. Finally, it is easy to see that $g_i : \range{m} \to
+  (\set{f(i)} \times Y)$ such that $g_i(j) = (f(i), g(j))$ is a bijection.
+  Hence,
+  $|X \times Y| = \sum_{i = 1}^n |\set{f(i)} \times Y| = n \cdot m$.
+\end{proof}
+
 
 \section{Generalized Commutative Operations}
 \label{section:generalized-sum}
-Using the notation of cardinality we can formalize the summation operation over
+Using the notion of cardinality we can formalize the summation operation over
 sets:
 \[
     \sum_{i \in S ~:~ P(i)} f(i) = \sum_{j = 1}^k f(i_j),
@@ -199,7 +296,6 @@ a bijection.
     $\bigcap_{i \in S : P(i)} X(i)$ are correct,
     i.e. that they do not depend on the choice of $g$.
 \end{exercise}
-
 
 
 \begin{chapterendexercises}
