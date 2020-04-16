@@ -1,0 +1,78 @@
+\chapter{Uncountable Sets}
+
+In the previous chapter we proved that many sets are countable; moreover, we
+proved that standard operations such as union, intersection, and product of
+countable sets is also countable. This chapter shows that we know at least one
+uncountable set. Moreover, this chapter gives tools to compare cardinalities of
+sets.
+
+\section{Cardinality of Reals}
+\begin{theorem}[Cantor]
+\label{theorem:reals-are-uncountable}
+  The set of real number $\R$ is uncountable.
+\end{theorem}
+
+To prove this theorem we need the following two lemmas.
+\begin{lemma}
+\label{lemma:segment-is-uncountable}
+  The set $\set[0 < x < 1]{x \in \R}$ of real numbers between $0$ and $1$ is
+  uncountable.
+\end{lemma}
+
+\begin{lemma}
+\label{lemma:segment-equipotent-to-reals}
+  The set $\R$ is equipotent to $\set[0 < x < 1]{x \in \R}$.
+\end{lemma}
+
+\begin{proof}[Proof of \Cref{theorem:reals-are-uncountable}]
+  Assume that $\R$ is denumerable. Then by
+  \Cref{remark:denumerable-equipotent-to-denumerable,lemma:segment-equipotent-to-reals},
+  $\set[0 \le x \le 1]{x \in \R}$ is also denumerable, which contradicts
+  \Cref{lemma:segment-is-uncountable}.
+\end{proof}
+
+To complete the proof of \Cref{theorem:reals-are-uncountable} we need to prove
+these two lemmas.
+\begin{proof}[Proof of \Cref{lemma:segment-is-uncountable}]
+  Assume $\set[0 < x < 1]{x \in \R}$ is countable; this implies that 
+  $S = \set[0 \le x \le 1]{x \in \R}$ is also countable. 
+
+  Note that each number $x \in S$ can be represented as an infinite decimal 
+  \[
+    x = 0.a_1 a_2 a_3 \dots
+  \]
+  where $0 \le a_i \le 9$ for all $i \in \N$ (the number $1$ can be represented
+  as $0.\dot{9}$).
+
+  Let $f : \N \to S$ be a bijection, and let $f(n) = .a_{n, 1} a_{n, 2} \dots$.
+  Consider the sequence $b_1$, $b_2$, \dots such that 
+  \[
+    b_i = 
+    \begin{cases}
+      0 & \text{if } a_{i, i} \neq 0 \\
+      1 & \text{otherwise}
+    \end{cases}.
+  \]
+  Let $y = 0.b_1 b_2 \dots$ and let $m \in \N$ be an integer such that $f(m) =
+  y$. Note that 
+  \[
+    .a_{m, 1} a_{m, 2} \dots = f(m) =  0.b_1 b_2 \dots
+  \]
+  However, $a_{m, m} \neq b_m$ which is a contradiction.
+\end{proof}
+
+\begin{proof}[Proof of \Cref{lemma:segment-equipotent-to-reals}]
+  To prove this lemma we start from proving that $\R$ is equipotent to 
+  $\set[-\pi / 2 < x < \pi / 2]{x \in \R}$; indeed, we may consider the tangent
+  function which is a bijection between these two sets.
+
+  The next step is to note that the sets $\set[-\pi / 2 < x < \pi / 2]{x \in \R}$ and 
+  $\set[0 < x < 1]{x \in \R}$ are also equipotent. Consider the function 
+  $f : \set[0 < x < 1]{x \in \R} \to \set[-\pi / 2 < x < \pi / 2]{x \in \R}$
+  such that $f(x) = \pi (x - 1 / 2)$. It is clear that $f$ is a bijection, which
+  finishes the proof.
+\end{proof}
+
+\begin{chapterendexercises}
+    \exercise[recommended] TBA
+\end{chapterendexercises}

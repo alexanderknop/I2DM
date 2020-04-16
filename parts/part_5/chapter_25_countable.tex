@@ -1,4 +1,4 @@
-\chapter{Cardinalities of Infinite Sets}
+\chapter{Countable Sets}
 In the previous section we studied properties of finite sets; this section
 uses developed methods to study of infinite sets.
 
@@ -58,6 +58,7 @@ It is clear that $f(-1) = 1$, $f(-2) = 3$, \dots, $f(0) = 2$, $f(1) = 4$, $f(2)
 For finite sets, their cardinality determine if they are equipotent or not; the
 same property can be proven for denumerable sets.
 \begin{remark}
+\label{remark:denumerable-equipotent-to-denumerable}
   Let $X$ and $Y$ be sets such that $X$ is denumerable. Then $Y$ is denumerable
   iff $X$ and $Y$ are equipotent.
 \end{remark}
@@ -75,7 +76,7 @@ part is true.
 \end{exercise}
 
 
-We can also prove an anologue of the multiplicative principle.
+We can also prove an analogue of the multiplicative principle.
 \begin{theorem}
   Let $X$ and $Y$ be denumerable sets. Then $X \times Y$ is also denumerable.
 \end{theorem}
@@ -90,7 +91,7 @@ We can also prove an anologue of the multiplicative principle.
       \dots \\
     \end{matrix}.
   \]
-  We cannot enumerate elements of this table columnwise or rowwise since they
+  We cannot enumerate elements of this table column-wise or row-wise since they
   are infinite. However, we can enumerate them along the diagonals, as follows:
   \[
     \begin{matrix}
@@ -105,7 +106,7 @@ We can also prove an anologue of the multiplicative principle.
   $1 + 2 + \dots + (m + n - 2) + n = (m + n - 1) (m + n - 2) / 2 + n$.
 \end{proof}
 
-In addtion we may prove the following.
+In addition we may prove the following.
 \begin{theorem}
   Let $X$ and $Y$ be two sets such that $X$ is denumerable and $Y \subseteq X$.
   Then $Y$ is countable.
@@ -113,7 +114,7 @@ In addtion we may prove the following.
 \begin{proof}
   It is clear that the statement is true if $Y$ is finite and $X = \N$. 
   Hence, let us assume that $Y \subseteq \N$ is infinite. So we need to
-  construct a bijection $f : Y \to \N$; ww are going to do it inductively.
+  construct a bijection $f : Y \to \N$; we are going to do it inductively.
 
   We start with the base case.
   Let $f(1)$ be the smallest element of $Y$; it exists by the well-ordering
