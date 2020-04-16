@@ -1,0 +1,147 @@
+\chapter{Cardinalities of Infinite Sets}
+In the previous section we studied properties of finite sets; this section
+uses developed methods to study of infinite sets.
+
+\section{Equipotent Sets}
+
+\Cref{theorem:bijection-to-equality} says that there is a bijection between
+finite sets $X$ to $Y$ iff they have equal cardinalities. In this case we say
+that $X$ and $Y$ equipotent.
+This idea can be extended to infinite sets.
+\begin{definition}
+  Let $X$ and $Y$ be sets. We say that $X$ and $Y$ are \emph{equipotent} (this
+  is written $|X| = |Y|$) if there is a bijection from $X$ to $Y$.
+
+  We say that a set $X$ is \emph{denumerable} if $X$ and $\N$ are equipotent.
+  If the set $X$ is denumerable, then it is said to have cardinality $\aleph_0$
+  (this is written $|X| = \aleph_0$ and read `aleph null').
+
+  We also say that the set is \emph{countable} if it is finite or denumerable;
+  otherwise the set is \emph{uncountable}.\footnote{%
+    This notation may vary from book to book and in some of them countable is
+    used where this book uses denumerable.
+  }
+\end{definition}
+
+It is possible to show that $\Z$ is denumerable. Indeed, we may consider $f :
+\Z$ to $\N$ such that 
+\[
+  f(x) = 
+  \begin{cases}
+    2x + 2 & \text{if } x \ge 0 \\
+    -2x - 1 & \text{if } x < 0
+  \end{cases}.
+\]
+It is clear that $f(-1) = 1$, $f(-2) = 3$, \dots, $f(0) = 2$, $f(1) = 4$, $f(2)
+= 6$, \dots, so $f$ is a bijection.
+\begin{itemize}
+  \item More formally $f$ is a surjection since $f(k / 2 - 1) = k$ for any even
+    $k$ and $f(-(k + 1) / 2) = k$ for all odd $k$.
+  \item Assume $f(x) = f(y)$ for some $x$ and $y$. Note that if $x$ and
+    $y$ have different signs, one of $f(x)$ and $f(y)$ is even and another is
+    odd so they cannot be equal to each other.
+    \begin{itemize}
+      \item If $x, y \ge 0$, then $f(x) = 2x + 2 = f(y) = 2y + 2$ implies that
+        $x = y$.
+      \item If $x, y < 0$, then $f(x) = -2x - 1= f(y) = -2y - 1$ also implies
+        that $x = y$.
+    \end{itemize}
+    Hence, $f$ is an injection.
+\end{itemize}
+
+\begin{exercise}
+  Show that $\N_0$ and $\Z$ are equipotent.
+\end{exercise}
+
+\section{Properties of Denumerable Sets}
+
+For finite sets, their cardinality determine if they are equipotent or not; the
+same property can be proven for denumerable sets.
+\begin{remark}
+  Let $X$ and $Y$ be sets such that $X$ is denumerable. Then $Y$ is denumerable
+  iff $X$ and $Y$ are equipotent.
+\end{remark}
+
+The additive principle states that union of two finite sets is also finite
+though normally it is bigger; however, in case of denumerable sets only first
+part is true.
+\begin{theorem}
+\label{theorem:union-denumerable-sets}
+  Let $X$ and $Y$ be denumerable sets. Then $X \cup Y$ is also denumerable.
+\end{theorem}
+
+\begin{exercise}
+  Prove \Cref{theorem:union-denumerable-sets}.
+\end{exercise}
+
+
+We can also prove an anologue of the multiplicative principle.
+\begin{theorem}
+  Let $X$ and $Y$ be denumerable sets. Then $X \times Y$ is also denumerable.
+\end{theorem}
+\begin{proof}
+  It is clear that it is enough to prove the statement for $X = \N$ and $Y =
+  \N$. The set $\N^2$ can be represented as an infinite grid:
+  \[
+    \begin{matrix}
+      (1, 1) & (2, 1) & (3, 1) & \dots \\
+      (1, 2) & (2, 2) & \dots \\
+      (1, 3) & \dots \\
+      \dots \\
+    \end{matrix}.
+  \]
+  We cannot enumerate elements of this table columnwise or rowwise since they
+  are infinite. However, we can enumerate them along the diagonals, as follows:
+  \[
+    \begin{matrix}
+      1 & 3 & 6 & \dots \\
+      2 & 5 & \dots \\
+      4 & \dots \\
+      \dots \\
+    \end{matrix}.
+  \]
+  Note $n$th diagonal contains $n$ elements so the element $(m, n)$ appears as
+  the $m$th element of the $(m + n - 1)$th diagonal and has the number 
+  $1 + 2 + \dots + (m + n - 2) + n = (m + n - 1) (m + n - 2) / 2 + n$.
+\end{proof}
+
+In addtion we may prove the following.
+\begin{theorem}
+  Let $X$ and $Y$ be two sets such that $X$ is denumerable and $Y \subseteq X$.
+  Then $Y$ is countable.
+\end{theorem}
+\begin{proof}
+  It is clear that the statement is true if $Y$ is finite and $X = \N$. 
+  Hence, let us assume that $Y \subseteq \N$ is infinite. So we need to
+  construct a bijection $f : Y \to \N$; ww are going to do it inductively.
+
+  We start with the base case.
+  Let $f(1)$ be the smallest element of $Y$; it exists by the well-ordering
+  principle (\Cref{theorem:well-ordering}). 
+
+  For the induction step from $k$ to $k + 1$, assume that $f(k)$ is defined.
+  Let $f(k + 1)$ be the minimal element of $\set[y > f(k)]{y \in Y}$ (this set
+  is not empty since $Y$ is infinite).
+
+  This process clearly defines an increasing function from $\N$ to $Y$. So to
+  finish the proof we need to prove that it is a surjection.
+  Let $y \in Y$ and let $n$ be the minimal number such that $f(n) \ge y$ (such a
+  number exists since it can be proven that $f(n) \ge n$). Then by the
+  definition of $f$, $f(n) = y$.
+\end{proof}
+
+Using the last two results we can make the following observation.
+\begin{theorem}
+  The set of rationals $\Q$ is denumerable.
+\end{theorem}
+
+\begin{chapterendexercises}
+    \exercise[recommended] Show that $\set[n \in \Z]{2n}$ is denumerable.
+    \exercise Show that $\set[n \in \Z]{n^2}$ is denumerable.
+    \exercise Let $X$ be a countable set and $n$ be a positive integer. Prove
+      that $X^n$ is countable.
+    \exercise[recommended] Let $X_1$, \dots, $X_n$, \dots be finite sets. Show that
+      $\bigcup_{i \in \N} X_i$ is countable.
+    \exercise Let $X_1$, \dots, $X_n$, \dots be denumerable sets. Show that
+      $\bigcup_{i \in \N} X_i$ is denumerable.
+\end{chapterendexercises}
