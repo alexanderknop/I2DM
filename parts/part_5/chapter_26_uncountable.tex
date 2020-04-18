@@ -73,6 +73,145 @@ these two lemmas.
   finishes the proof.
 \end{proof}
 
+\begin{exercise}
+  Show that $(\set[0 < x < 1]{x \in \R})^2$ and $\set[0 < x < 1]{x \in \R}$ are equipotent.
+\end{exercise}
+
+\section{Inequalities Between Cardinalities}
+Since $\N \subseteq \R$ the statement that $\R$ is uncountable can be
+interpreted as `the set of reals is larger than the set of integers (or the set
+of rationals)'. The following definition allows to make this reformulation
+precise.
+\begin{definition}
+  Let $X$ and $Y$ be two sets. 
+  \begin{itemize}
+    \item We say that $X$ and $Y$ have the same cardinality if they are
+      equipotent; i.e., if $|X| = |Y|$.
+    \item We write that $|X| \ge |Y|$ and say that the cardinality of $X$ is at
+      most the cardinality of $Y$ if there is an injection from $X$ to $Y$.
+    \item We also write $|X| < |Y|$ and say that the cardinality of $X$ is less
+      than the cardinality of $Y$ if $|X| \neq |Y|$ and $X \le |Y|$.
+  \end{itemize}
+\end{definition}
+Cantor's theorem says that $|\R| > |\N|$ or $|\R| > \aleph_0$.\footnote{%
+  A quesiotn that immidiately come in mind after lookin at this reformulation is
+  whether exists something in between; i.e., whether exists a set $S$ such that
+  $\aleph_0 < |S| < |\R|$. The hypothesis that such a set exists is called
+  \emph{the continuum hypothesis}. In 1963, Paul Cohen proved that it is not
+  possible to prove or disprove thus hypothesis starting from axioms of the set
+  theory.
+}
+
+Moreover, Cantor proved that there are even bigger sets
+\begin{theorem}
+  For any set $X$, $|2^X| > |X|$.
+\end{theorem}
+\begin{proof}
+  The idea of this proof is simialr to the proof of Cantor's theorem
+  (\Cref{theorem:reals-are-uncountable}). 
+  
+  Firs of all we may notice that $|2^X| \ge |X|$ since $f : X \to 2^X$ such that
+  $f(x) = \set{x}$ is an injection.
+  
+  It is also clear that the set $2^X$ is equipotent to the set $\set{0, 1}^X$
+  (this can be proven similarly to \Cref{corollary:power-set-and-set-of-binary-strings}).
+
+  Let us now prove that $|\set{0, 1}^X| \neq |X|$. Assume this is not true and
+  there is a bijection $F : X \to \set{0, 1}^X$. Let $f_x = F(x)$.
+  Consider $g : X \to \set{0, 1}$ such that 
+  \[
+    g(x) = 
+    \begin{cases}
+      0 & \text{if } f_x(x) = 1 \\
+      1 & \text{if } f_x(x) = 0 \\
+    \end{cases}
+  \]
+  (note that for any $x$, $g(x) \neq f_x(x)$). It is clear that
+  $g \in \set{0, 1}^X$; however, if $g = F(y) = f_y$, then $g(y) = f_y(y) \neq
+  f_y(y)$, which is a contradiction. Therefore $F$ is not a bijection.
+\end{proof}
+
+We devoted the whole chapter to the pigeonhole principle, unsurprisengly one may
+prove a similar theorem for infinite sets.\footnote{%
+  This theorem is often called Schr\"{o}der--Bernstein theorem since Schr\"{o}der
+  and Bernstein published independently proofs of this theorem in 1898. Cantor
+  is often added because he first stated the result in 1887, while
+  Schr\"{o}der's name is often omitted because his proof turned out to be
+  flawed. Howerver, the name of Dedekind, who first proved it is not mentioned
+  at all.
+}
+\begin{theorem}[Schr\"{o}der--Bernstein]
+  Let $X$ and $Y$ be two nonempty sets such that $|X| > |Y|$. Then any function
+  $f : X \to Y$ is not an injection; i.e., there are $x_1, x_2 \in X$ such that
+  $f(x_1) = f(x_2)$.
+\end{theorem}
+
+
+We are not going to prove this theorem; however, let us formulate a very
+important corollary of this theorem.
+\begin{corollary}
+\label{corollary:schroder-bernstein}
+  Let $X$ and $Y$ be two nonempty sets. If $|X| \le |Y|$ and $|Y| \ge |X|$, then
+  $|X| = |Y|$.
+\end{corollary}
+
+Using this theorem we may prove that 
+\[
+  \left|
+    \set[x, y \in \R, x^2 + y^2 = 1]{(x, y)}
+  \right| = |\set[-1 \le x \le 1]{x \in \R}|.
+\]
+First of all note that 
+\[
+  \set[x, y \in \R, x^2 + y^2 = 1]{(x, y)}
+  \subseteq \set[-1 \le x \le 1]{x \in \R};
+\]
+hence
+\[
+  \left|
+    \set[x, y \in \R, x^2 + y^2 = 1]{(x, y)}
+  \right| \le |\set[-1 \le x \le 1]{x \in \R}|.
+\]
+In addition, one may prove using scaling and shift that
+\[
+  |\set[-1 \le x \le 1]{x \in \R}| = 
+  \left|
+    \set[-\frac{1}{\sqrt{2}} \le x \le \frac{1}{\sqrt{2}}]{x \in \R}
+  \right|.
+\]
+Finally, 
+\[
+  \set[-\frac{1}{\sqrt{2}} \le x \le \frac{1}{\sqrt{2}}]{x \in \R}
+  \subseteq 
+  \set[x, y \in \R, x^2 + y^2 = 1]{(x, y)}
+\]
+hence
+\[
+  \left|
+    \set[-\frac{1}{\sqrt{2}} \le x \le \frac{1}{\sqrt{2}}]{x \in \R}
+  \right|
+  \le
+  \left|
+    \set[x, y \in \R, x^2 + y^2 = 1]{(x, y)}
+  \right|.
+\]
+Combining all this together we can obtain that
+\begin{gather*}
+  \left|
+    \set[x, y \in \R, x^2 + y^2 = 1]{(x, y)}
+  \right| \le |\set[-1 \le x \le 1]{x \in \R}| \\
+  \text{and}\\
+  |\set[-1 \le x \le 1]{x \in \R}| \le
+  \left|
+    \set[x, y \in \R, x^2 + y^2 = 1]{(x, y)}
+  \right|.
+\end{gather*}
+Hence, using the Schr\"{o}der–Bernstein theorem we can prove the equality.
+
 \begin{chapterendexercises}
-    \exercise[recommended] TBA
+    \exercise[recommended] Prove that $|\set{0, 1}^X| = |2^X|$.
+    \exercise[recommended] Prove \Cref{corollary:schroder-bernstein}
+    \exercise Show that $\set{0, 1}^\N$ is equipotent to $\set{0, 1, 2}^\N$.
+    \exercise Show that if a set $A \subseteq \R^2$ contains a line, then $A$
+      and $\R$ are equipotent.
 \end{chapterendexercises}
