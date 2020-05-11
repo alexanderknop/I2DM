@@ -41,10 +41,11 @@ $2 \cdot 3 = 6$.
 \end{theorem}
 
 \begin{exercise}
-  Find the cardinality of the set
-  \[
-    \set[{x, y \in [9] \text{ and } x \neq y}]{(x, y)}.
-  \]
+  Assume you have $5$ types of envelopes and $6$ types of postal stamps.
+  \begin{enumerate}
+    \item How many ways to put one stamp on one envelope?
+    \item How many ways to put two stamps on one envelope?
+  \end{enumerate}
 \end{exercise}
 
 By analogy with unions and intersections of many sets we can define the cross
@@ -175,12 +176,27 @@ of sets when they are not disjoint.
 
 
 \begin{chapterendexercises}
+  \exercise
+    Find the cardinality of the set
+    \[
+      \set[{x, y \in [9] \text{ and } x \neq y}]{(x, y)}.
+    \]
+  \exercise Find the number of ordered pairs $(A, B)$ of subsets of $\range{n}$
+    such that $A \cap B = \emptyset$ (the answer is not supposed to contain the
+    summation sign).
+  \exercise How many functions from $\set{0, 1}^n$ to $\set{0, 1}$?
   \exercise[recommended] How many numbers from $[999]$ are not divisible neither by $3$,
     nor by $5$, nor by $7$.
   \exercise How many numbers $x$ from $1$ to $999$ such that at least one
     of the digits of $x$ is $7$?
-  \exercise Let $A, B$ be some finite sets such that $A \subseteq B$.
+  \exercise How many numbers $x$ from $1$ to $999$ such that exactly one
+    of the digits of $x$ is $7$?
+  \exercise Let $A$, $B$ be some finite sets such that $A \subseteq B$.
     Show that $|B \setminus A| = |B| - |A|$.
+  \exercise King Athur invited $n$ knights for a feast. Each knight has an enemy
+    (being an enemy is a mutual relation; i.e., if $A$ is an enemy of $B$, then
+    $B$ is an enemy of $A$). How many wasy for knights to seat around the Round
+    Table so that enemies are not sitting together?
   \exercise[recommended] Let $n$ be some positive integer.
     Find the cardinality of the set
     \[

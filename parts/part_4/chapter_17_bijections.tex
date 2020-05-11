@@ -168,10 +168,15 @@ compare sizes of sets.
 \end{theorem}
 
 \begin{chapterendexercises}
-    \exercise Construct a bijection from $\set{0, 1, 2}^n$ to
-        \[
-          \set[{A, B \subseteq \range{n} \text{ and } A, B \text{ are disjoint}}]{(A, B)}.
-        \]
-    \exercise[recommended] Construct a bijection from
-        $\set{0, 1} \times \range{n}$ to $\range{2n}$.
+  \exercise Construct a bijection from $\set{0, 1, 2}^n$ to
+    \[
+      \set[{A, B \subseteq \range{n} \text{ and } A, B \text{ are disjoint}}]{(A, B)}.
+    \]
+  \exercise[recommended] Construct a bijection from
+    $\set{0, 1} \times \range{n}$ to $\range{2n}$.
+  \exercise We say that $u, v \in \set{0, 1}^n$ are orthogonal over $\F_2$ iff
+    $\sum_{i = 1}^n u_i v_i$ is even. Let $v \in \set{0, 1}^n$ be a tuple such
+    that $v_i \neq 0$ for some $i \in \range[n]$. Show that if we choose a
+    tuple $u \in \set{0, 1}^n$ uniformly at random, then $u$ and $v$ are
+    orthogonal over $\F_2$ with probability $1 / 2$.
 \end{chapterendexercises}

@@ -37,6 +37,11 @@ $i$th person was born in $j$th month. Note that $f$ is not an injection since
 $n > 12$ i.e. there are $i_0 \neq i_1$ such that $i_0$th and $i_1$th person are
 born in the same month.
 
+\begin{exercise}
+  Show that among any group of five (not necessarily consecutive)
+  integers, there are two with the same remainder when divided by $4$.
+\end{exercise}
+
 We may also prove that in any group of people there are two people who are
 friends with the same number of people in the group.
 
@@ -208,8 +213,10 @@ using the induction by $n$.
 
 
 \begin{chapterendexercises}
-  \exercise Show that among any group of five (not necessarily consecutive)
-    integers, there are two with the same remainder when divided by $4$.
+  \exercise Let $ABC$ be an equilateral triangle such that the length of $AB$ is
+    equal to $1$, and let $p_1$, \dots, $p_5$ be points inside of $ABC$.
+    Show that there are $i \neq j \in \range{5}$ such that the distance between 
+    $p_i$ and $p_j$ is at most $0.5$.
   \exercise Show that if there are 30 students in a class, then at least
     two have last names that begin with the same letter.
   \exercise Let $n$ be a positive integer. Show that in any set of $n$
@@ -219,6 +226,8 @@ using the induction by $n$.
     $\sum_{i = k}^{k + \ell} a_i$ is divisible by $n$.
   \exercise[recommended] Let $S \subseteq [20]$ be a set. Show that if
     $|S| \ge 13$, then there are $a, b \in S$ such that $a - b = 6$.
+  \exercise Let $S \subseteq [20]$ be a set. Show that if $|S| \ge 11$, then
+    there are $a \neq b \in S$ such that $a + b = 21$.
   \exercise How many numbers must be selected from the set $[6]$ to
     guarantee that at least one pair of these numbers add up to $7$?
   \exercise Sasha is training for a triathlon. Over a $30$ day period, he
@@ -228,6 +237,8 @@ using the induction by $n$.
     there must be an integer that divides one of the other integers.
     \hint{Consider the set of holes equal to the set of odd numbers
     from $1$ to $2n$.}
+  \exercise Let $A_1, \dots, A_k \subseteq \range{n}$ be some sets such that
+    $A_i \cap A_j \neq \emptyset$. Show that $k \le 2^{n - 1}$.
   \exercise[recommended] Let $a_1$, $a_2$, \dots, $a_t$ be positive integers. Show that
     if $a_1 + a_2 + \dots + a_t - t + 1$ objects are placed into $t$ boxes,
     then for some $i \in \range{t}$, the $i$th box contains at least $a_i$ objects.
@@ -237,4 +248,14 @@ using the induction by $n$.
     set of five distinct points with integer coordinates in the xy plane. Show
     that the midpoint of the line joining at least one pair of these points has
     integer coordinates.
+  \exercise Let $S \subseteq \range{2n}$ be a set such that $|S| = n + 1$. Show
+    that there are $x \neq y \in S$ such that $x$ and $y$ are coprime.
+  \exercise[recommended] In some school there are three clubs. For each two
+    students there is a club such that these students are  members of this club.
+    Show that there is a club that at least $2 / 3$ of all students are members
+    of this club.
+  \exercise Show that the set $\set{7, 77, 777, \dots}$ contains a number
+    divisible by $2019$.
+  \exercise What is the maximal number of chess knights one may put on a
+    chessboard so that they would not attack each other?
 \end{chapterendexercises}
