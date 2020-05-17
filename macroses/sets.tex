@@ -7,3 +7,18 @@
 \newcommand{\F}{{\mathbb{F}}}
 \newcommand{\range}[1]{{[{#1}]}}
 
+\newcommand{\functions}[2]{{#2}^{#1}}
+\newcommand{\injections}[2]{\left({#2}\right)_{#1}}
+\newcommand{\subsets}[2][ ]{\ifthenelse{\equal{#1}{ }}{2^{#2}}{\binom{#2}{#1}}}
+
+\newcommand{\cardinality}[1]{\left|{#1}\right|}
+
+\newcommand{\numberOfPermutations}[2][ ]{
+  \ifthenelse{\equal{#1}{ }}{
+    {#2}!
+  }{
+    \left({#2}\right)_{#1}
+  }
+}
+\newcommand{\stirlingTwo}[2]{S({#1}, {#2})}
+

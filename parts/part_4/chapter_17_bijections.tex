@@ -106,14 +106,14 @@ Because of the following therem, bijections are very useful in combinatorics.
 \begin{theorem}
 \label{theorem:bijection-to-equality}
     Let $X$ and $Y$ be two finite sets such that there is a bijection $f$ from
-    $X$ to $Y$. Then $|X| = |Y|$.
+    $X$ to $Y$. Then $\cardinality{X} = \cardinality{Y}$.
 \end{theorem}
 
 Using this result we can make prove the following equality.
 \begin{corollary}
 \label{corollary:power-set-and-set-of-binary-strings}
     Let $X$ be a finite set of cardinality $n$. Then $2^X$ has the same
-    cardinality as $\set{0, 1}^{|X|}$.
+    cardinality as $\set{0, 1}^{\cardinality{X}}$.
 \end{corollary}
 \begin{proof}
   We are going to prove this statement for $X = \range{n}$ since for the full
@@ -162,8 +162,10 @@ compare sizes of sets.
 \label{theorem:injections-surjections-inequalities}
     Let $X$ and $Y$ be finite sets.
     \begin{itemize}
-        \item If there is an injection from $X$ to $Y$, then $|X| \le |Y|$.
-        \item If there is a surjection from $X$ to $Y$, then $|X| \ge |Y|$.
+        \item If there is an injection from $X$ to $Y$, then $\cardinality{X}
+          \le \cardinality{Y}$.
+        \item If there is a surjection from $X$ to $Y$, then $\cardinality{X}
+          \ge \cardinality{Y}$.
     \end{itemize}
 \end{theorem}
 
@@ -172,11 +174,54 @@ compare sizes of sets.
     \[
       \set[{A, B \subseteq \range{n} \text{ and } A, B \text{ are disjoint}}]{(A, B)}.
     \]
-  \exercise[recommended] Construct a bijection from
-    $\set{0, 1} \times \range{n}$ to $\range{2n}$.
+  \exercise[recommended] Construct a bijection from  $\range{2n}$ to 
+    $\set{0, 1} \times \range{n}$.
+    \begin{solution}
+      Consider the function
+      \[
+        f(i) =
+        \begin{cases}
+          (0, i) & i \le n \\
+          (1, i - n) & n < i \le 2n
+        \end{cases}.
+      \]
+      Note that the function is defined correctly since the first coordinate is
+      always $0$ or $1$ and the second coordinate is always from $\range{n}$ due to the
+      fact that if $i \le n$, then $i \in \range{n}$ and if $i > n$, then 
+      $(i - n) \in \range{n}$.
+      We are going to prove now that it is a bijection.
+      \begin{description}
+        \item[injection:]
+          Assume the opposite i.e. that there are $i_0 \neq i_1$ such that
+          $f(i_0) = f(i_1)$. Without loss of generality we may assume that $i_0
+          < i_1$.
+          Consider three cases:
+          \begin{enumerate}
+            \item ($i_0, i_1 \le n$) Note that $(0, i_0) = f(i_0)$ and
+              $f(i_1) = (0, i_1)$. So $i_0 = i_1$ since $f(i_0) = f(i_1)$, which
+              is a contradiction.
+            \item ($i_0, i_1 > n$) Note that $(1, i_0 - n) = f(i_0)$ and
+              $f(i_1) = (1, i_1 - n)$. So $i_0 = i_1$ since $f(i_0) = f(i_1)$, which
+              is a contradiction.
+            \item ($i_0 \le n < i_1$) Note that $(0, i_0) = f(i_0)$ and
+              $f(i_1) = (1, i_1 - n)$. So $0 = 1$ since $f(i_0) = f(i_1)$, which
+              is a contradiction.
+          \end{enumerate}
+        \item[surjection:]
+          Let us fix some $(a, b) \in \set{0, 1} \times \range{n}$. We need to show that
+          it belongs to $\Im f$.
+          \begin{enumerate}
+            \item ($a = 0$) Note that $b \le n$, hence, $f(b) = (0, b) = 
+              (a, b)$. So $(a, b) \in \Im f$.
+            \item ($a = 1$) Note that $2n \ge n + b > n$, hence,
+              $f(n + b) = (1, (n + b) - b) = (1, b) = (a, b)$.
+              So $(a, b) \in \Im f$.
+          \end{enumerate}
+      \end{description}
+    \end{solution}
   \exercise We say that $u, v \in \set{0, 1}^n$ are orthogonal over $\F_2$ iff
     $\sum_{i = 1}^n u_i v_i$ is even. Let $v \in \set{0, 1}^n$ be a tuple such
-    that $v_i \neq 0$ for some $i \in \range[n]$. Show that if we choose a
+    that $v_i \neq 0$ for some $i \in \range{n}$. Show that if we choose a
     tuple $u \in \set{0, 1}^n$ uniformly at random, then $u$ and $v$ are
     orthogonal over $\F_2$ with probability $1 / 2$.
 \end{chapterendexercises}

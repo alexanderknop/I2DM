@@ -44,6 +44,15 @@ irreducible fraction.
   Show that $\sqrt{3}$ is irrational.
 \end{exercise}
 
+\begin{exercise}
+  Let $a$ and $b$ be some integers. Show that $a^2 - 4b - 2 \neq 0$.
+\end{exercise}
+\begin{solution}
+  Assume, for the sake of contradiction, that such $a$ and $b$ exist. Note that
+  $a^2 = 4b + 2$, hence, $a$ is even but $a^2$ is not divisible for $4$ which is a
+  contradiction.
+\end{solution}
+
 \section{Proving Implications by Contradiction}
 This method works especially well when we need to prove an implication.
 Since the implication $A \implies B$ is false only when $A$ is true but $B$ is
@@ -78,6 +87,17 @@ hence $b = 0$ which is a contradiction to the assumption.
     \exercise[recommended] Prove that if $n^2$ is odd, then $n$ is odd.
     \exercise  In Euclidean (standard) geometry, prove: If two lines share a
         common perpendicular, then the lines are parallel.
+        \begin{solution}
+          Let us denote by $AB$ the common perpendicular. Assume that the lines
+          are not parallel (note that these lines are different) i.e. that there
+          is an intersection $C$ of these lines.
+
+          Note that the angles $CAB$ and $CBA$ are right, hence, the angle $ACB$
+          is equal to $0$ degrees. So the lines are the same, which is a
+          contradiction. 
+
+          Hence, the assumption was incorrect i.e. the lines are parallel.
+        \end{solution}
     \exercise[recommended] Let us consider four-lines geometry, it is a theory with
         undefined terms: point, line, is on, and axioms:
         \begin{enumerate}
@@ -144,6 +164,15 @@ hence $b = 0$ which is a contradiction to the assumption.
         \end{solution}
     \exercise Show that there are irrational numbers $a$ and $b$ such that
         $a^b$ is rational.
+        \begin{solution}
+          Assume that $a^b$ is irrational for all irrationals $a$ and $b$. Since
+          $\sqrt{2}$ is irrational $\sqrt{2}^{\sqrt{2}}$ is also irrational.
+          However, $(\sqrt{2}^{\sqrt{2}})^{\sqrt{2}} = \sqrt{2}^2 = 2$, which
+          contradicts to the assumption.
+
+          As a result, there are irrational $a$ and $b$ such that $a^b$ is
+          rational.
+        \end{solution}
     \exercise[recommended] Show that there does not exist the largest integer.
 
     \exercise Let us consider Young's geometry, it is a theory with undefined

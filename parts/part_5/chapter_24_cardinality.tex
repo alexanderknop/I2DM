@@ -11,10 +11,10 @@ enumerate all the elements of $S$: $f(1)$, \dots, $f(n)$.
 This observation allows us to define the cardinality of a set.
 \begin{definition}
   Let $S$ be a set, we say that cardinality of $S$ is equal to $n$ (we write
-  that $|S| = n$) iff there is a bijection from $\range{n}$ to $S$.
+  that $\cardinality{S} = n$) iff there is a bijection from $\range{n}$ to $S$.
 
   We also say that a set $T$ is finite if there is an integer $n$ such that
-  $|T| = n$.
+  $\cardinality{T} = n$.
 \end{definition}
 
 Note that this definition does not guarantee that cardinality is unique so
@@ -72,8 +72,9 @@ we need the following theorem.
 Also, using this definition we may finally prove
 \Cref{theorem:bijection-to-equality}.
 \begin{proof}[Proof of \Cref{theorem:bijection-to-equality}]
-    Let $|X| = n$, and $g : \range{n} \to X$ be a bijection.
-    Note that $f \circ g : \range{n} \to Y$ is a bijection, hence $|Y| = n$.
+    Let $\cardinality{X} = n$, and $g : \range{n} \to X$ be a bijection.
+    Note that $f \circ g : \range{n} \to Y$ is a bijection, hence
+    $\cardinality{Y} = n$.
 \end{proof}
 
 \section{Proofs of Combinatorial Principles}
@@ -91,7 +92,7 @@ after that enumerate elements of $Y$:
 Using the definition of cardinality, this informal proof can be formalized as
 follows. 
 \begin{proof}[Proof of \Cref{theorem:additive-principle}]
-  Let $|X| = n$, $|Y| = m$ and $g : \range{n} \to X$ and $h : \range{m} \to Y$ be
+  Let $\cardinality{X} = n$, $\cardinality{Y} = m$ and $g : \range{n} \to X$ and $h : \range{m} \to Y$ be
   bijections. In order to prove it we just construct a bijection
   $f : [n + m] \to (X \cup Y)$.
 
@@ -160,7 +161,8 @@ The definition of cardinality gives us a simple formalization of this argument.
   If one of the sets $X$ and $Y$ is empty, then $X \times Y$ is empty as well
   and the statement is as follows.
 
-  Assume that none of the sets are empty. Let $|X| = n$, $|Y| = m$, and
+  Assume that none of the sets are empty. Let $\cardinality{X} = n$,
+  $\cardinality{Y} = m$, and
   $f : \range{n} \to X$ and $g : \range{m} \to Y$ be bijections.
   Note that
   \[
@@ -170,7 +172,7 @@ The definition of cardinality gives us a simple formalization of this argument.
   \emptyset$ for $i \neq j$. Finally, it is easy to see that $g_i : \range{m} \to
   (\set{f(i)} \times Y)$ such that $g_i(j) = (f(i), g(j))$ is a bijection.
   Hence,
-  $|X \times Y| = \sum_{i = 1}^n |\set{f(i)} \times Y| = n \cdot m$.
+  $\cardinality{X \times Y} = \sum_{i = 1}^n \cardinality{\set{f(i)} \times Y} = n \cdot m$.
 \end{proof}
 
 
@@ -185,7 +187,7 @@ where $\set[P(i)]{i \in S} = \set{i_1, \dots, i_k}$. More formally,
 \[
     \sum_{i \in S ~:~ P(i)} f(i) = \sum_{j = 1}^k f(g(j)),
 \]
-where $k = |\set[P(i)]{i \in S}|$ and $g : \set[P(i)]{i \in S} \to \range{k}$ is
+where $k = \cardinality{\set[P(i)]{i \in S}}$ and $g : \set[P(i)]{i \in S} \to \range{k}$ is
 a bijection.
 
 \begin{theorem}
@@ -200,7 +202,7 @@ We say that a function $h : \range{n} \to \range{n}$ is a \emph{permutation} of
 $\range{n}$ iff $h$ is a bijection. We also say that
 $i, j \in \range{k}$ form the inversion in $h$ iff $h(i) > h(j)$ and $i < j$.
 We denote by $I(h)$ the number of inversions in $h$; i.e. $I(h) =
-|\set[i, j \text{ form an inversion in } h]{(i, j)}|$.
+\cardinality{\set[i, j \text{ form an inversion in } h]{(i, j)}}$.
 \nomenclature[C]{$I(h)$}{denotes the number of inversions in $h$}
 
 Important examples of permutations are transposition: for any
@@ -284,7 +286,7 @@ predicate. Then
     \text{and}\\
     \bigcap_{i \in S ~:~ P(i)} X(i) = \bigcap_{i = 1}^k X(g(i)),
 \end{gather*}
-where $k = |\set[P(i)]{i \in S}|$ and $g : \set[P(i)]{i \in S} \to \range{k}$ is
+where $k = \cardinality{\set[P(i)]{i \in S}}$ and $g : \set[P(i)]{i \in S} \to \range{k}$ is
 a bijection.
 \nomenclature[S]{$\bigcup_{i \in S ~:~ P(i)} A_i$}{denotes $A_{i_1} \cup \dots
 \cup A_{i_k}$, where $\set[P(i)]{i \in S} = \set{i_1, \dots, i_k}$}

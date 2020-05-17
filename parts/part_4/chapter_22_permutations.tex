@@ -1,13 +1,13 @@
 \chapter{Permutations}
 \label{chapter:permutations}
-Recall that a permutation is a bijection from $[n]$ to $[n]$. We already
+Recall that a permutation is a bijection from $\range{n}$ to $\range{n}$. We already
 discussed several properties of them. In this chapter we will discuss some
 combinatorial properties of them. We denote by $S_n$ the set of all
-permutations of $[n]$.\footnote{%
+permutations of $\range{n}$.\footnote{%
   Letter $S$ is used since in the group theory this set is called
   the symmetric group.
 }
-\nomenclature[S]{$S_n$}{denotes the set of all permutations of $[n]$}
+\nomenclature[S]{$S_n$}{denotes the set of all permutations of $\range{n}$}
 
 
 The main operation over permutations is composition, for two permutations $p$
@@ -20,7 +20,8 @@ necessarily equal to $q \circ p$.
 Every permutation $p$ can be uniquely determined by the values $p(1)$, \dots,
 $p(n)$, thus sometimes we denote the permutation $f$ by a sequence
 $p(1) p(2) \dots p(n)$ (we call it \emph{one-line notation}).
-For example, the permutation $3 1 2$ is equal to the function $p : [3] \to [3]$
+For example, the permutation $3 1 2$ is equal to the function $p : \range{3} \to
+\range{3}$
 such that
 \[
   p(x) =
@@ -60,7 +61,7 @@ we prove that this is not a coincidence and we also study some properties of
 permutations with respect to the structure of these cycles.
 
 \begin{definition}
-  Let $p$ be a permutation of $[n]$, $x \in \range{n}$, and $i$ be the smallest
+  Let $p$ be a permutation of $\range{n}$, $x \in \range{n}$, and $i$ be the smallest
   integer such that
   $p^i(x) = \underbrace{p(p(\dots p(}_{i \text{ times}} x) \dots )) = x$.
   The we say that the entries $x$, $p(x)$, \dots, $p^{i - 1}(x)$ form an
@@ -112,9 +113,9 @@ In the previous chapter we defined Stirling numbers of the second kind; in this
 section we define their first kind counterpart.
 
 \begin{definition}
-  Let $n > k$ be some integers. We denote the number of permutations of $[n]$
-  with $k$ cycles by $c(n, k)$. The number $s(n, k) = (-1)^{n - k} c(n, k)$ is
-  called a \emph{Stirling number of the first kind}.
+  Let $n > k$ be some integers. We denote the number of permutations of
+  $\range{n}$ with $k$ cycles by $c(n, k)$. The number $s(n, k) = (-1)^{n - k}
+  c(n, k)$ is called a \emph{Stirling number of the first kind}.
 \end{definition}
 The multiplier $(-1)^{n - k}$ seems a bit strange, but we will explain it
 in Theorem~\ref{theorem:connection-between-stirling-numbers}.
@@ -137,14 +138,14 @@ formula.
 \label{theorem:connection-between-stirling-numbers}
   For any real $x$ and positive integer $n$,
   \[
-    (x)_n = \sum_{k = 0}^n s(n, k) x^k.
+    \numberOfPermutations[n]{x} = \sum_{k = 0}^n s(n, k) x^k.
   \]
 \end{theorem}
 Now one may see why the multiplier $(-1)^{n - k}$ was necessary by comparing
 this equality with the equality from
 Theorem~\ref{theorem:stirling-numbers-and-polynomials} stating that
 \[
-  x^n = \sum_{k = 0}^n S(n, k) (x)_k.
+  x^n = \sum_{k = 0}^n S(n, k) \numberOfPermutations[k]{x}.
 \]
 In other words, Stirling numbers of the second kind are ``inverse'' to the
 Stirling numbers of the first kind.
@@ -152,9 +153,10 @@ Stirling numbers of the first kind.
 We can interpret this result in terms of linear algebra. Consider the vector
 space $\mathbb{P}_n$ of real polynomials of degree at most $n$. It is well
 known that $1$, $x$, \dots, $x^n$ is the basis of this space; additionally,
-it is easy to see that $1$, $(x)_1$, \dots, $(x)_n$ is also a basis. Then
-the matrices $\mathcal{S}$ and $\mathcal{s}$ such that
-$\mathcal{S}_{i, j} = S(i, j)$ and $\mathcal{s}_{i, j} = s(i, j)$ are
+it is easy to see that $1$, $\numberOfPermutations[1]{x}$, \dots,
+$\numberOfPermutations[n]{x}$ is also a basis. Then
+the matrices $M^{(S)}$ and $M^{(s)}$ such that
+$M^{(S)}_{i, j} = S(i, j)$ and $M^{(s)}_{i, j} = s(i, j)$ are
 change of basis matrices between these two bases.
 
 \section{Permutations with Restricted Cycle Structure}
@@ -181,7 +183,7 @@ Using this transformation we may prove the following result, which is very
 technical without this transformation.
 \begin{theorem}
   Let $n$ be a positive integer and $x_1, \dots, x_k \in \range{n}$ be $k$ different
-  numbers. There are $n! / k$ permutations of $[n]$ such that $x_1$, \dots,
+  numbers. There are $n! / k$ permutations of $\range{n}$ such that $x_1$, \dots,
   $x_k$ are in the same cycle.
 \end{theorem}
 \begin{proof}
@@ -202,7 +204,7 @@ Another nice result states that for any $i \in \range{n}$, the probability that
 $i$ is in a cycle of length $k$ does not depend on $k$ and is equal to $1 / n$.
 \begin{theorem}
   Let $i \in \range{n}$. Then for all $k \in \range{n}$, there are exactly $(n - 1)!$
-  permutations of $[n]$ in which the cycle containing $i$ is of length $k$.
+  permutations of $\range{n}$ in which the cycle containing $i$ is of length $k$.
 \end{theorem}
 \begin{proof}
   Again, it is sufficient to prove the statement for $i = n$. Let
@@ -315,9 +317,9 @@ theorem.
       we prove that any $n$-superpermutation has length at least $n! - 1 + n$.
     \item ($n! + (n - 1)! + (n - 2)$)
       To prove this lower bound we need to introduce the notion of a $1$-cycle
-      class. A $1$-cycle class of permutations of $[n]$ is a
+      class. A $1$-cycle class of permutations of $\range{n}$ is a
       subset $\set{p_1, \dots, p_n} \subseteq S_n$ such that $p_{k + 1}(n) =
-      p_k(1)$, and $p_{k + 1}(i) = p_k(i + 1)$ for $i \in [n - 1]$. For
+      p_k(1)$, and $p_{k + 1}(i) = p_k(i + 1)$ for $i \in \range{n - 1}$. For
       example,
       \[
         \set{12345, 23451, 34512, 45123, 51234}
@@ -457,7 +459,7 @@ episodes which takes around $3572462$ years.
   \exercise[recommended] Find an explicit formula for $c(n, n - 2)$.
   \exercise Prove that for any fixed $k$, the function $c(n, n - k)$ is a
     polynomial function of $n$. Find the degree of that polynomial.
-  \exercise Let $p$ be a permutation of $[n]$. We associate a permutation matrix
+  \exercise Let $p$ be a permutation of $\range{n}$. We associate a permutation matrix
     $M^{(p)}$ to $p$ as follows. Let $M^{(p)}_{i, j} = 1$ if $p(i) = j$, and let
     $M^{(p)}_{i, j} = 0$ otherwise. Prove that $|\det M^{(p)}| = 1$.
   \exercise Prove that if $p$ and $q$ are two permutations, then

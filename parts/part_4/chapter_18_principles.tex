@@ -14,15 +14,15 @@ pencils and two pens; how many ways to choose a writing accessory. According to
 this principle the answer is $2 + 3 = 5$.
 \begin{theorem}[The Additive Principle]
 \label{theorem:additive-principle}
-  Let $X$ and $Y$ be finite sets. If $X \cap Y = \emptyset$, then $|X \cup Y| =
-  |X| + |Y|$.
+  Let $X$ and $Y$ be finite sets. If $X \cap Y = \emptyset$, then
+  $\cardinality{X \cup Y} = \cardinality{X} + \cardinality{Y}$.
 \end{theorem}
 
 
 \begin{corollary}
 \label{corollary:additive-principle}
   Let $X_1, \dots, X_n$ be some pairwise disjoint sets. Then
-  $\left|\bigcup_{i = 1}^n X_i\right| = \sum_{i = 1}^n |X_i|$.
+  $\cardinality{\bigcup_{i = 1}^n X_i} = \sum_{i = 1}^n \cardinality{X_i}$.
 \end{corollary}
 
 \begin{exercise}
@@ -37,7 +37,8 @@ three envelopes, how many ways are there to pack the letters? The answer is obvi
 $2 \cdot 3 = 6$.
 \begin{theorem}[The Multiplicative Principle]
 \label{theorem:multiplicative-principle}
-  Let $X$ and $Y$ be finite sets. Then $|X \times Y| = |X| \times |Y|$.
+  Let $X$ and $Y$ be finite sets. Then $\cardinality{X \times Y} =
+  \cardinality{X} \times \cardinality{Y}$.
 \end{theorem}
 
 \begin{exercise}
@@ -62,7 +63,7 @@ $\bigtimes_{i = 1}^{k + 1} X_i =
 \begin{corollary}
 \label{corollary:multiplicative-principle}
   Let $X_1, \dots, X_n$ be some finite sets. Then
-  $\left|\bigtimes_{i = 1}^n X_i\right| = \prod_{i = 1}^n |X_i|$.
+  $\cardinality{\bigtimes_{i = 1}^n X_i} = \prod_{i = 1}^n \cardinality{X_i}$.
 \end{corollary}
 
 \begin{exercise}
@@ -71,14 +72,17 @@ $\bigtimes_{i = 1}^{k + 1} X_i =
 
 \begin{theorem}
 \label{theorem:cardinality-of-power-set}
-  For any set $X$, $|2^X| = 2^{|X|}$.
+  For any set $X$, $\cardinality{\subsets{X}} = 2^{\cardinality{X}}$.
 \end{theorem}
 \begin{proof}
-  By Corollary~\ref{corollary:power-set-and-set-of-binary-strings}, $|2^X| =
-  \left|\set{0, 1}^{|X|}\right|$, so it is enough to prove that
-  $|\set{0, 1}^{|X|}| = 2^{|X|}$. This statement is true by
-  Corollary~\ref{corollary:multiplicative-principle} since $|\set{0, 1}^{|X|}| =
-  \prod_{i = 1}^{|X|} |\set{0, 1}| = 2^{|X|}$.
+  By Corollary~\ref{corollary:power-set-and-set-of-binary-strings},
+  $\cardinality{\subsets{X}} =
+  \cardinality{\functions{\cardinality{X}}{\set{0, 1}}}$, so it is enough to
+  prove that $\cardinality{\set{0, 1}^{\cardinality{X}}} = \subsets{\cardinality{X}}$. 
+  This statement is true by \Cref{corollary:multiplicative-principle} since 
+  $\cardinality{\set{0, 1}^{\cardinality{X}}} =
+  \prod_{i = 1}^{\cardinality{X}} \cardinality{\set{0, 1}} = 
+    2^{\cardinality{X}}$.
 \end{proof}
 
 \section{The Inclusion-exclusion Principle}
@@ -88,22 +92,25 @@ inclusion-exclusion principle which helps us to find the size of the union
 of sets when they are not disjoint.
 \begin{theorem}[The Inclusion-exclusion Principle]
 \label{theorem:inclusion-exclusion-principle}
-  Let $X$ and $Y$ be finite sets. Then $|X \cup Y| = |X| + |Y| - |X \cap Y|$.
+  Let $X$ and $Y$ be finite sets. Then $\cardinality{X \cup Y} = \cardinality{X}
+  + \cardinality{Y} - \cardinality{X \cap Y}$.
 \end{theorem}
 \begin{proof}
   Note that $X \cup Y = (X \setminus Y) \cup (Y \setminus X) \cup (X \cap Y)$.
-  Hence, $|X \cup Y| = |X \setminus Y| + |Y \setminus X| + |X \cap Y|$. But it
-  is possible to note that $|Y \setminus X| + |X \cap Y| = |Y|$ and
-  $|X \setminus Y| + |X \cap Y| = |X|$.
+  Hence, $\cardinality{X \cup Y} = \cardinality{X \setminus Y} + 
+  \cardinality{Y \setminus X} + \cardinality{X \cap Y}$. But it
+  is possible to note that $\cardinality{Y \setminus X} + \cardinality{X \cap Y}
+  = \cardinality{Y}$ and $\cardinality{X \setminus Y} + \cardinality{X \cap Y} =
+  \cardinality{X}$.
 \end{proof}
 
 \begin{corollary}
 \label{corollary:inclusion-exclusion-principle}
   Let $X_1, \dots, X_n$ be some finite sets. Then
   \[
-    \left|\bigcup_{i = 1}^n X_i\right| =
-    \sum_{S \subseteq \range{n} ~:~ S \neq \emptyset} (-1)^{|S| + 1}
-      \left|\bigcap_{i \in S} X_i\right|.
+    \cardinality{\bigcup_{i = 1}^n X_i} =
+    \sum_{S \subseteq \range{n} ~:~ S \neq \emptyset} 
+      (-1)^{\cardinality{S} + 1} \cardinality{\bigcap_{i \in S} X_i}.
   \]
 \end{corollary}
 \begin{proof}
@@ -112,64 +119,52 @@ of sets when they are not disjoint.
 
   By the induction hypothesis,
   \[
-    \left|\bigcup_{i = 1}^k X_i\right| =
-    \sum_{S \subseteq \range{k} ~:~ S \neq \emptyset} (-1)^{|S| + 1}
-      \left|\bigcap_{i \in S} X_i\right|.
+    \cardinality{\bigcup_{i = 1}^k X_i} =
+    \sum_{S \subseteq \range{k} ~:~ S \neq \emptyset} 
+      (-1)^{\cardinality{S} + 1} \cardinality{\bigcap_{i \in S} X_i}.
   \]
   In addition, by Theorem~\ref{theorem:inclusion-exclusion-principle},
   \[
-    \left|\bigcup_{i = 1}^{k + 1} X_i\right| =
-    \left|\bigcup_{i = 1}^k X_i\right| + |X_{k + 1}| -
-      \left|\left(\bigcup_{i = 1}^k X_i\right) \cap X_{k + 1}\right|.
+    \cardinality{\bigcup_{i = 1}^{k + 1} X_i} =
+    \cardinality{\bigcup_{i = 1}^k X_i} + \cardinality{X_{k + 1}} -
+      \cardinality{\left(\bigcup_{i = 1}^k X_i\right) \cap X_{k + 1}}.
   \]
   We need to simplify two elements of the sum on the right of the equality.
   By the induction hypothesis,
   \[
-    \left|\bigcup_{i = 1}^k X_i\right| =
-      \sum_{S \subseteq \range{k} ~:~ S \neq \emptyset}
-        (-1)^{|S| + 1}
-        \left|
-          \bigcap_{i \in S} X_i
-        \right|.
+    \cardinality{\bigcup_{i = 1}^k X_i} =
+    \sum_{S \subseteq \range{k} ~:~ S \neq \emptyset}
+        (-1)^{\cardinality{S} + 1} \cardinality{\bigcap_{i \in S} X_i}.
   \]
   In addition, it is easy to note that
   \[
-    \left|\left(\bigcup_{i = 1}^k X_i\right) \cap X_{k + 1}\right| =
-    \left|\bigcup_{i = 1}^k \left(X_i \cap X_{k + 1}\right)\right|.
+    \cardinality{\left(\bigcup_{i = 1}^k X_i\right) \cap X_{k + 1}} =
+    \cardinality{\bigcup_{i = 1}^k \left(X_i \cap X_{k + 1}\right)}.
   \]
   Thus using the induction hypothesis,
   \begin{multline*}
-    \left|\left(\bigcup_{i = 1}^k X_i\right) \cap X_{k + 1}\right| = \\
+    \cardinality{\left(\bigcup_{i = 1}^k X_i\right) \cap X_{k + 1}} = \\
     \sum_{S \subseteq \range{k} ~:~ S \neq \emptyset}
-          (-1)^{|S| + 1}
-          \left|
-            \bigcap_{i \in S} (X_i \cap X_{k + 1})
-          \right| = \\
-    \sum_{S \subseteq [k + 1] ~:~ (k + 1) \in S \text{ and } S \neq \set{k + 1}}
-          (-1)^{|S|} \left|\bigcap_{i \in S} X_i \right|.
+      (-1)^{\cardinality{S} + 1} \cardinality{\bigcap_{i \in S} (X_i \cap X_{k + 1})} = \\
+    \sum_{S \subseteq \range{k + 1} ~:~ (k + 1) \in S \text{ and } S \neq \set{k + 1}}
+          (-1)^{\cardinality{S}} \cardinality{\bigcap_{i \in S} X_i}.
   \end{multline*}
   As a result,
   \[
-    |X_{k + 1}| -
-      \left|\left(\bigcup_{i = 1}^k X_i\right) \cap X_{k + 1}\right| =
-    \sum_{S \subseteq [k + 1] ~:~ (k + 1) \in S}
-          (-1)^{|S| + 1} \left|\bigcap_{i \in S} X_i \right|.
+    \cardinality{X_{k + 1}} -
+      \cardinality{\left(\bigcup_{i = 1}^k X_i\right) \cap X_{k + 1}} =
+    \sum_{S \subseteq \range{k + 1} ~:~ (k + 1) \in S}
+          (-1)^{\cardinality{S} + 1} \cardinality{\bigcap_{i \in S} X_i}.
   \]
   Which implies that
   \begin{multline*}
-    \left|\bigcup_{i = 1}^{k + 1} X_i\right| =
+    \cardinality{\bigcup_{i = 1}^{k + 1} X_i} =
     \sum_{S \subseteq \range{k} ~:~ S \neq \emptyset}
-      (-1)^{|S| + 1}
-      \left|
-        \bigcap_{i \in S} X_i
-      \right| + \\
-    \sum_{S \subseteq [k + 1] ~:~ (k + 1) \in S}
-          (-1)^{|S| + 1} \left|\bigcap_{i \in S} X_i \right| = \\
-    \sum_{S \subseteq [k + 1] ~:~ S \neq \emptyset}
-      (-1)^{|S| + 1}
-      \left|
-        \bigcap_{i \in S} X_i
-      \right|.
+      (-1)^{\cardinality{S} + 1}\cardinality{\bigcap_{i \in S} X_i} + \\
+    \sum_{S \subseteq \range{k + 1} ~:~ (k + 1) \in S}
+          (-1)^{\cardinality{S} + 1} \cardinality{\bigcap_{i \in S} X_i} = \\
+    \sum_{S \subseteq \range{k + 1} ~:~ S \neq \emptyset}
+      (-1)^{\cardinality{S} + 1} \cardinality{\bigcap_{i \in S} X_i}.
   \end{multline*}
 \end{proof}
 
@@ -179,20 +174,34 @@ of sets when they are not disjoint.
   \exercise
     Find the cardinality of the set
     \[
-      \set[{x, y \in [9] \text{ and } x \neq y}]{(x, y)}.
+      \set[{x, y \in \range{9} \text{ and } x \neq y}]{(x, y)}.
     \]
   \exercise Find the number of ordered pairs $(A, B)$ of subsets of $\range{n}$
     such that $A \cap B = \emptyset$ (the answer is not supposed to contain the
     summation sign).
   \exercise How many functions from $\set{0, 1}^n$ to $\set{0, 1}$?
-  \exercise[recommended] How many numbers from $[999]$ are not divisible neither by $3$,
+  \exercise[recommended] How many numbers from $\range{999}$ are not divisible neither by $3$,
     nor by $5$, nor by $7$.
+    \begin{solution}
+      Let $D_n = \set[i \text{is divisible by n}]{i \in \range{999}}$.
+      Note that $D_3 \cap D_5 = D_{15}$, $D_3 \cap D_7 = D_{21}$, $D_5 \cap D_7
+      = D_{35}$, and finally, $D_3 \cap D_5 \cap D_7 = D_{105}$. Additinally,
+      $\cardinality{D_3} = 999 / 3 = 333$,
+      $\cardinality{D_5} = \floor{999 / 5} = 199$,
+      $\cardinality{D_7} = \floor{999 / 7} = 142$,
+      $\cardinality{D_{15}} = \floor{999 / 15} = 66$,
+      $\cardinality{D_{21}} = \floor{999 / 21} = 47$,
+      $\cardinality{D_{35}} = \floor{999 / 35} = 28$, and
+      $\cardinality{D_{105}} = \floor{999 / 105} = 9$.
+      As a result, by the inclusion-exclusion principle, the answer is
+      $999 - 333 - 199 - 142 + 66 + 47 + 28 - 9 = 457$.
+    \end{solution}
   \exercise How many numbers $x$ from $1$ to $999$ such that at least one
     of the digits of $x$ is $7$?
   \exercise How many numbers $x$ from $1$ to $999$ such that exactly one
     of the digits of $x$ is $7$?
   \exercise Let $A$, $B$ be some finite sets such that $A \subseteq B$.
-    Show that $|B \setminus A| = |B| - |A|$.
+    Show that $\cardinality{B \setminus A} = \cardinality{B} - \cardinality{A}$.
   \exercise King Athur invited $n$ knights for a feast. Each knight has an enemy
     (being an enemy is a mutual relation; i.e., if $A$ is an enemy of $B$, then
     $B$ is an enemy of $A$). How many wasy for knights to seat around the Round
@@ -203,13 +212,14 @@ of sets when they are not disjoint.
       \set[{A, B \subseteq \range{n} \text{ and } A \cap B \neq \emptyset}]{(A, B)}?
     \]
   \exercise Let $X$ and $Y$ be some finite sets, and $f : X \to Y$ be a function
-    such that $|f^{-1}(y)| = k$ for all $y \in Y$. Prove that $|X| = k|Y|$.
+    such that $\cardinality{f^{-1}(y)} = k$ for all $y \in Y$. Prove that
+    $\cardinality{X} = k\cardinality{Y}$.
   \exercise[recommended] Show that if $U$ and $X_1, \dots, X_n \subseteq U$ are
     some finite sets, then
     \[
-      \left| \bigcap_{i = 1}^n X_i \right| =
-      \sum_{S \subseteq \range{n}} (-1)^{|S|}
-        \left| \bigcap_{i \in S} \overline{X}_i \right|,
+      \cardinality{\bigcap_{i = 1}^n X_i} =
+      \sum_{S \subseteq \range{n}} (-1)^{\cardinality{S}}
+        \cardinality{\bigcap_{i \in S} \overline{X}_i},
     \]
     where $\overline{X}_i = U \setminus X_i$ and
     $\bigcap_{i \in \emptyset} \overline{X}_i = U$.

@@ -10,8 +10,9 @@ that if you have more objects than boxes, then you cannot put all the objects in
 boxes without putting two objects into the same box.
 
 More formally the principle can be formulated as follows: if $n > m$, then any
-function from $[n]$ to $[m]$ is not an injection. This simple statement is
-famous in mathematics and called \emph{the pigeonhole principle}\footnote{%
+function from $\range{n}$ to $\range{m}$ is not an injection. This simple
+statement is famous in mathematics and called 
+\emph{the pigeonhole principle}\footnote{%
   The pigeonhole principle is also called the Dirichlet principle, after the
   German mathematician G. Lejeune Dirichlet, who demonstrated, using this
   principle, that there were at least two Parisians with the same number of
@@ -19,8 +20,9 @@ famous in mathematics and called \emph{the pigeonhole principle}\footnote{%
 }.
 
 \begin{theorem}[the pigeonhole principle]
-  Let $X$ and $Y$ be some sets such that $|X| > |Y|$. Then for any function
-  $f : X \to Y$ there are $x_0 \neq x_1 \in X$ such that $f(x_0) = f(x_1)$.
+  Let $X$ and $Y$ be some sets such that $\cardinality{X} > \cardinality{Y}$.
+  Then for any function $f : X \to Y$ there are $x_0 \neq x_1 \in X$ such that
+  $f(x_0) = f(x_1)$.
 \end{theorem}
 \begin{proof}
   The statement follows from
@@ -32,7 +34,7 @@ statement one may prove that in any group of more than $12$ people there are
 two people who were born in the same month.
 
 Assume that there are $n$ people in the group and $n > 12$.
-Consider the following function $f : \range{n} \to [12]$ such that $f(i) = j$ if the
+Consider the following function $f : \range{n} \to \range{12}$ such that $f(i) = j$ if the
 $i$th person was born in $j$th month. Note that $f$ is not an injection since
 $n > 12$ i.e. there are $i_0 \neq i_1$ such that $i_0$th and $i_1$th person are
 born in the same month.
@@ -51,8 +53,8 @@ have at most $n - 1$ friends. Hence, we may define a function $f: \range{n} \to
 this group of the $i$th person in this group.
 We need to consider two cases.
 \begin{itemize}
-  \item If $\Im f \subseteq [n - 1]$, then
-    $|[n]| > |\Im f|$ and $f$ is not an injection.
+  \item If $\Im f \subseteq \range{n - 1}$, then
+    $\cardinality{\range{n}} > \cardinality{\Im f}$ and $f$ is not an injection.
   \item Otherwise, note that it is not possible that $(n - 1) \in \Im f$
     because if there is a friend with no friends it is not possible that there
     is a friend who is friends with everyone. Hence,
@@ -101,13 +103,14 @@ If $N$ objects are placed into $k$ boxes, then there is at least one box
 containing at least $\ceil{N / k}$ objects.
 \begin{theorem}[the generalized pigeonhole principle]
 \label{theorem:generalized-pigeonhole-principle}
-  Let $X$ and $Y$ be some sets. Then for any function $f : |X| \to |Y|$ there
-  are $x_1, \dots, x_\ell \in X$ such that
+  Let $X$ and $Y$ be some sets. Then for any function $f : \cardinality{X} \to
+  \cardinality{Y}$ there are $x_1, \dots, x_\ell \in X$ such that
   \begin{itemize}
     \item $f(x_i) = f(x_j)$,
-    \item $x_i \neq x_j$ for any $i \neq j \in [\ell]$, and
-    \item $\ell \ge \ceil{|X| / |Y|}$, where $\ceil{\alpha}$ denotes the least
-      integer greater than or equal to $\alpha$.
+    \item $x_i \neq x_j$ for any $i \neq j \in \range{\ell}$, and
+    \item $\ell \ge \ceil{\cardinality{X} / \cardinality{Y}}$, where
+      $\ceil{\alpha}$ denotes the least integer greater than or equal to
+      $\alpha$.
   \end{itemize}
 \end{theorem}
 
@@ -172,15 +175,15 @@ applications of it are surprisingly interesting.
 First, it allows to prove the generalized pigeonhole principle.
 \begin{proof}[Proof of Theorem~\ref{theorem:generalized-pigeonhole-principle}]
   Let $Y = \range{m}$ (it is easy to see that the proof works for any other finite
-  $Y$). Define the sequence $a_i = |f^{-1}(i)|$.
-  Note that we need to prove that $a_i \ge \ceil{|X| / m}$ for some
+  $Y$). Define the sequence $a_i = \cardinality{f^{-1}(i)}$.
+  Note that we need to prove that $a_i \ge \ceil{\cardinality{X} / m}$ for some
   $i \in \range{m}$
 
   It is clear that $\bigcup_{i = 1}^m f^{-1}(i) = X$ and that $f^{-1}(i) \cap
   f^{-1}(j) = \emptyset$ for any $i \neq j \in \range{m}$. Thus, by the additive
-  principle, $\sum_{i = 1}^m a_i = |X|$. Hence, by the averaging principle,
-  $a_i \ge |X| / m$ for some $i \in \range{m}$. However, $a_i$ is an integer, thus
-  $a_i \ge \ceil{|X| / m}$.
+  principle, $\sum_{i = 1}^m a_i = \cardinality{X}$. Hence, by the averaging
+  principle, $a_i \ge \cardinality{X} / m$ for some $i \in \range{m}$. However,
+  $a_i$ is an integer, thus $a_i \ge \ceil{\cardinality{X} / m}$.
 \end{proof}
 
 Another nice application of the averaging principle allows us to prove that if
@@ -224,11 +227,11 @@ using the induction by $n$.
   \exercise[recommended] Prove that for every sequence of integers $a_1$, \dots,
     $a_n$ there are $k > 0$ and $\ell \ge 0$ such that $k + \ell \le n$ and
     $\sum_{i = k}^{k + \ell} a_i$ is divisible by $n$.
-  \exercise[recommended] Let $S \subseteq [20]$ be a set. Show that if
-    $|S| \ge 13$, then there are $a, b \in S$ such that $a - b = 6$.
-  \exercise Let $S \subseteq [20]$ be a set. Show that if $|S| \ge 11$, then
-    there are $a \neq b \in S$ such that $a + b = 21$.
-  \exercise How many numbers must be selected from the set $[6]$ to
+  \exercise[recommended] Let $S \subseteq \range{20}$ be a set. Show that if
+    $\cardinality{S} \ge 13$, then there are $a, b \in S$ such that $a - b = 6$.
+  \exercise Let $S \subseteq \range{20}$ be a set. Show that if $\cardinality{S}
+    \ge 11$, then there are $a \neq b \in S$ such that $a + b = 21$.
+  \exercise How many numbers must be selected from the set $\range{6}$ to
     guarantee that at least one pair of these numbers add up to $7$?
   \exercise Sasha is training for a triathlon. Over a $30$ day period, he
     pledges to train at least once per day, and $45$ times in all. Then there
@@ -237,8 +240,26 @@ using the induction by $n$.
     there must be an integer that divides one of the other integers.
     \hint{Consider the set of holes equal to the set of odd numbers
     from $1$ to $2n$.}
-  \exercise Let $A_1, \dots, A_k \subseteq \range{n}$ be some sets such that
-    $A_i \cap A_j \neq \emptyset$. Show that $k \le 2^{n - 1}$.
+  \exercise Let $A_1, \dots, A_\ell \subseteq \range{n}$ be some sets such that
+    $A_i \cap A_j \neq \emptyset$. Show that $\ell \le 2^{n - 1}$.
+    \begin{solution}
+      We are going to prove this statement using the pigeonhole principle. The
+      main component of the proof is the fact that $A \cap \bar{A} = \emptyset$
+      for any set $A \subseteq \range{n}$, where $\bar{A} = \range{n} \setminus A$.
+
+      Let $L = \{A_1, \dots, A_\ell\}$ and
+      $R = \set[A \subseteq \range{n}]{\set{A, \bar{A}}}$. It is easy to see
+      that $\cardinality{R} = 2^{n - 1}$. Define the function $f : L \to R$ such that 
+      $f(A_i) = \set{A_i, \bar{A_i}}$. Let us prove that $f$ is an injection; 
+      assume the opposite i.e. that there are $i \neq j$ such that 
+      $f(A_i) = f(A_j)$. Since $f(A_i) = f(A_j)$ it implies that $A_i =
+      \bar{A_j}$ but it contradicts to the statement that $A_i \cap A_j =
+      \bar{A_j} \cap A_j = \emptyset$.
+
+      Hence, there is an injection from $L$ to $R$ which implies that
+      $\cardinality{L} \le \cardinality{R}$.
+      As a result, we proved that $\ell \le 2^{n - 1}$.
+    \end{solution}
   \exercise[recommended] Let $a_1$, $a_2$, \dots, $a_t$ be positive integers. Show that
     if $a_1 + a_2 + \dots + a_t - t + 1$ objects are placed into $t$ boxes,
     then for some $i \in \range{t}$, the $i$th box contains at least $a_i$ objects.
@@ -248,7 +269,8 @@ using the induction by $n$.
     set of five distinct points with integer coordinates in the xy plane. Show
     that the midpoint of the line joining at least one pair of these points has
     integer coordinates.
-  \exercise Let $S \subseteq \range{2n}$ be a set such that $|S| = n + 1$. Show
+  \exercise Let $S \subseteq \range{2n}$ be a set such that 
+    $\cardinality{S} = n + 1$. Show
     that there are $x \neq y \in S$ such that $x$ and $y$ are coprime.
   \exercise[recommended] In some school there are three clubs. For each two
     students there is a club such that these students are  members of this club.

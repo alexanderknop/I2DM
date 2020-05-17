@@ -19,10 +19,12 @@ to prove for the cases when all the boxes are not empty.
     Object's name & Parameters & Formula \\
     \midrule
     \multirow{4}{*}{Surjections}
-                       & $n$ distinct objects & \multirow{2}{*}{$S(n, k) k!$} \\
+                       & $n$ distinct objects &
+                       \multirow{2}{*}{$\stirlingTwo{n}{k} k!$} \\
                        & $k$ distinct boxes   &  \\
     \rule{0pt}{2ex}
-                       & $n$ distinct objects & \multirow{2}{*}{$\sum_{k = i}^n S(n, k) k!$} \\
+                       & $n$ distinct objects & \multirow{2}{*}{$\sum_{k = i}^n
+                       \stirlingTwo{n}{k} k!$} \\
                        & any number of boxes  & \\
     \rule{0pt}{4ex}
     \multirow{4}{*}{Compositions}
@@ -33,7 +35,8 @@ to prove for the cases when all the boxes are not empty.
                        & any number of boxes  & \\
    \rule{0pt}{4ex}
    \multirow{4}{*}{Set partitions}
-                      & $n$ distinct objects & \multirow{2}{*}{$S(n, k)$} \\
+                      & $n$ distinct objects &
+                      \multirow{2}{*}{$\stirlingTwo{n}{k}$} \\
                       & $k$ identical boxes   &  \\
     \rule{0pt}{2ex}
                       & $n$ distinct objects & \multirow{2}{*}{$B(n)$} \\
@@ -60,19 +63,19 @@ all the boxes are the same.
   A partition of the set $[n]$ is a collection of non-empty
   blocks so that each element of $[n]$ belongs to exactly
   one of these blocks. The number of partitions of $[n]$
-  into $k$ nonempty blocks is denoted by $S(n, k)$.
-  The numbers $S(n, k)$ are called the \emph{Stirling numbers
+  into $k$ nonempty blocks is denoted by $\stirlingTwo{n}{k}$.
+  The numbers $\stirlingTwo{n}{k}$ are called the \emph{Stirling numbers
   of the second kind}.
 \end{definition}
-\nomenclature[C]{$S(n, k)$}{denotes the Stirling number
+\nomenclature[C]{$\stirlingTwo{n}{k}$}{denotes the Stirling number
 of the second kind; i.e. the number of partitions
 of $[n]$ into $k$ nonempty blocks}
 
-It is easy to see that $S(n, 1) = 1$ and $S(n, n) = 1$.
-Moreover, $S(n, k) = 0$ if $k > n$ or $k \le 0$.
+It is easy to see that $\stirlingTwo{n}{1} = 1$ and $\stirlingTwo{n}{n} = 1$.
+Moreover, $\stirlingTwo{n}{k} = 0$ if $k > n$ or $k \le 0$.
 
 Let us find the value in a more complicated setting, we
-claim that $S(n, n - 1) = \binom{n}{2}$. Indeed, any
+claim that $\stirlingTwo{n}{n - 1} = \binom{n}{2}$. Indeed, any
 partition of $[n]$ into $n - 1$ blocks consists of
 $n - 1$ singletons and one set with two elements, thus we
 just need to select these two elements.
@@ -82,35 +85,35 @@ for Stirling numbers of the second kind.
 \begin{theorem}
   For any $n > k > 0$,
   \[
-    S(n, k) = S(n - 1, k - 1) + k \cdot S(n - 1, k).
+    \stirlingTwo{n}{k} = \stirlingTwo{n - 1}{k - 1} + k \cdot \stirlingTwo{n - 1}{k}.
   \]
 \end{theorem}
 \begin{proof}
   Let us consider $n$, note that there are two cases either $n$ forms a
   singleton in a partition or it is not the only element in the part.
 
-  It is easy to see that there are $S(n - 1, k - 1)$ partitions where $n$ is
-  a singleton and $k \cdot S(n - 1, k)$ partitions where $n$ is not a singleton
+  It is easy to see that there are $\stirlingTwo{n - 1}{k - 1}$ partitions where $n$ is
+  a singleton and $k \cdot \stirlingTwo{n - 1}{k}$ partitions where $n$ is not a singleton
   (we multiply by $k$ since there are $k$ possible ways to add $n$ to a
-  partition of $[n - 1]$).
+  partition of $\range{n - 1}$).
 \end{proof}
 
 Using this notation, we can express the number of surjections.
 \begin{lemma}
-  There are exactly $k! S(n, k)$ surjective functions from
-  $[n]$ to $[k]$.
+  There are exactly $k! \stirlingTwo{n}{k}$ surjective functions from
+  $\range{n}$ to $\range{k}$.
 \end{lemma}
 \begin{proof}
-  Let $\mathcal{S}(n, k)$ be the set of surjections from $[n]$ to $[k]$,
+  Let $\mathcal{S}(n, k)$ be the set of surjections from $\range{n}$ to $\range{k}$,
   $\mathcal{P}(n, k)$ be the set of partitions with non-empty blocks, and
   $F : \mathcal{S}(n, k) \to \mathcal{P}(n, k)$ such that
   $F(f) = \set{f^{-1}(1), \dots, f^{-1}(k)}$.
 
-  It is easy to see that $F(f) = F(g)$ iff there is $h : \range{k} \to \range{k}$ such that
-  $f \circ h = g$. Hence, $F^{-1}(f) = k!$ for any $f \in \mathcal{S}(n, k)$.
-  Thus $|\mathcal{S}(n, k)| = k! |\mathcal{P}(n, k)|$.
+  It is easy to see that $F(f) = F(g)$ iff there is $h : \range{k} \to \range{k}$ 
+  such that $f \circ h = g$. Hence, $F^{-1}(f) = k!$ for any $f \in \mathcal{S}(n, k)$.
+  Thus $\cardinality{\mathcal{S}(n, k)} = k! \cardinality{\mathcal{P}(n, k)}$.
 \end{proof}
-Note that the number of surjections from $[n]$ to $[k]$ is equal to the
+Note that the number of surjections from $\range{n}$ to $\range{k}$ is equal to the
 number of ways to put $n$ different objects into $k$ different boxes.
 
 Using this equality, we can prove a surprising result.
@@ -118,9 +121,9 @@ Using this equality, we can prove a surprising result.
 \label{theorem:stirling-numbers-and-polynomials}
   For any real $x$ and positive integer $n$,
   \[
-    x^n = \sum_{k = 0}^n S(n, k) (x)_k,
+    x^n = \sum_{k = 0}^n \stirlingTwo{n}{k} \numberOfPermutations[k]{x},
   \]
-  where $(x)_k = \prod_{i = 0}^{k - 1} (x - i)$.
+  where $\numberOfPermutations[k]{x} = \prod_{i = 0}^{k - 1} (x - i)$.
 \end{theorem}
 
 To prove the statement we need the following statement.
@@ -133,30 +136,30 @@ To prove the statement we need the following statement.
   Using the previous result, it is enough to prove that
   for any integer $\ell > 0$,
   \[
-    \ell^n = \sum_{k = 0}^n S(\ell, k) (\ell)_k.
+    \ell^n = \sum_{k = 0}^n \stirlingTwo{\ell}{k} \numberOfPermutations[k]{\ell}.
   \]
 
   Clearly $\ell^n$ denotes the number of ways to put $n$ different
   objects into $\ell$ different boxes. Note that if we have $k$ nonempty
   boxes, then there are $\binom{n}{k}$ ways to select these boxes and
-  $k! S(\ell, k)$ ways to put objects in these $k$ boxes. Thus formula in
+  $k! \stirlingTwo{\ell}{k}$ ways to put objects in these $k$ boxes. Thus formula in
   the left is equal to the formula on the right.
 \end{proof}
 
 \begin{definition}
-  The number of all set partitions of $[n]$ into nonempty parts
+  The number of all set partitions of $\range{n}$ into nonempty parts
   is denoted by $B(n)$, and is called the \emph{$n$th Bell number}.
   (We define $B(0) = 0$).
 \end{definition}
 \nomenclature[C]{$B(n)$}{denotes the $n$th Bell number; i.e.
-the number of partitions of $[n]$ into nonempty blocks}
+the number of partitions of $\range{n}$ into nonempty blocks}
 
 
 It is easy to see that the following theorem holds.
 \begin{theorem}
   For any $n \ge 0$,
   \[
-    B(n) = \sum_{k = 0}^n S(n, k).
+    B(n) = \sum_{k = 0}^n \stirlingTwo{n}{k}.
   \]
 \end{theorem}
 
@@ -169,12 +172,12 @@ of themselves.
   \]
 \end{theorem}
 \begin{proof}
-  Note that there are $B(n + 1)$ ways to split $[n + 1]$ into
+  Note that there are $B(n + 1)$ ways to split $\range{n + 1}$ into
   non-empty blocks. At the same time there are $\binom{n}{n - i}$
   ways to select elements to put with $n + 1$ in the same block
   (if we know that there are $n - i$ elements with $n + 1$ in the block)
   and $B(i)$ ways to split the rest into blocks. As a result,
-  there are $\sum_{i = 0}^n \binom{n}{i} B(i)$ to split $[n + 1]$
+  there are $\sum_{i = 0}^n \binom{n}{i} B(i)$ to split $\range{n + 1}$
   into nonempty blocks.
 \end{proof}
 
@@ -293,20 +296,20 @@ Using these diagrams, it is easy to show the following theorem.
 \begin{chapterendexercises}
   \exercise How many sets $S \subseteq \range{n}$ such that $S$ does not contain
     two sucsesive integers (i.e., if $x \in S$, then $x + 1 \not\in S$)?
-  \exercise How many numbers in $[999999]$ have the sum of digits at most $47$?
+  \exercise How many numbers in $\range{999999}$ have the sum of digits at most $47$?
   \exercise Let $k \in \N$. How many sets $S \subseteq \range{n}$ of size $k$
     such that $S$ does not contain two sucsesive integers (i.e., if $x \in S$,
     then $x + 1 \not\in S$)?
   \exercise
     Let $q(n)$ be the number of partitions of $n$ in which each part is at least
     two. Then $q(n) = p(n) - p(n - 1)$, for all positive integers $n \ge 2$.
-  \exercise[recommended] Find a formula for $S(n, 2)$.
-  \exercise Find a formula for $S(n, 3)$.
-  \exercise Find a formula for $S(n, n - 2)$.
+  \exercise[recommended] Find a formula for $\stirlingTwo{n}{2}$.
+  \exercise Find a formula for $\stirlingTwo{n}{3}$.
+  \exercise Find a formula for $\stirlingTwo{n}{n - 2}$.
   \exercise[recommended] Show that $B(n) \le n!$.
   \exercise Let $m \ge n$ be positive integers. Show that
     \[
-      S(m, n) = \sum_{i = 1}^m S(m - i, n - 1) n^{i - 1}.
+      \stirlingTwo{m}{n} = \sum_{i = 1}^m \stirlingTwo{m - i}{n - 1} n^{i - 1}.
     \]
   \exercise Prove that the number of partitions of $n$ into exactly $k$
     parts is equal to the number of partitions of $n$ in which the

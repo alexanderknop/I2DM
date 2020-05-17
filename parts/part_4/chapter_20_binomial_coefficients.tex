@@ -29,7 +29,8 @@ to prove.
     \midrule
     \multirow{2}{*}{Functions} & we return objects and & \multirow{2}{*}{$n^k$} \\
                                & the order \emph{is} important & \\
-    \multirow{2}{*}{Injections} & we \emph{do not} return objects and & \multirow{2}{*}{$(n)_k$} \\
+    \multirow{2}{*}{Injections} & we \emph{do not} return objects and &
+      \multirow{2}{*}{$\numberOfPermutations[k]{n}$} \\
                                 & the order \emph{is} important & \\
     \multirow{2}{*}{Subsets} & we \emph{do not} return objects and & \multirow{2}{*}{$\binom{n}{k}$} \\
                              & the order \emph{is not} important & \\
@@ -54,19 +55,24 @@ $Y$: how many functions exist from $X$ to $Y$?
 
 \begin{theorem}
 \label{theorem:number-of-functions}
-  Let $X$ and $Y$ be some finite sets. $Y^X$ represents the set of all
-  functions from $X$ to $Y$. Then $|Y^X| = |Y|^{|X|}$.
+  Let $X$ and $Y$ be some finite sets. $\functions{X}{Y}$ represents the set of all
+  functions from $X$ to $Y$. Then $\cardinality{\functions{X}{Y}} =
+  \cardinality{Y}^{\cardinality{X}}$.
 \end{theorem}
-\nomenclature[S]{$B^A$}{denotes the set of functions from $A$ to $B$}
+\nomenclature[S]{$\functions{A}{B}$}{denotes the set of functions from $A$ to $B$}
 \begin{proof}
   For simplicity we prove the statement in the case when $X = \range{n}$. Fix some
   finite set $Y$. We prove the statement using induction by $n$. The base case
-  for $n = 1$ is obvious, since there are $|Y|$ different functions from $[1]$
-  to $Y$. Let us prove the induction step, by the induction hypothesis,
-  $|Y^{[n - 1]}| = |Y|^{n - 1}$. Note that
+  for $n = 1$ is obvious, since there are $\cardinality{Y}$ different functions
+  from $\range{1}$ to $Y$. Let us prove the induction step, by the induction
+  hypothesis, $\cardinality{\functions{\range{n - 1}}{Y}} = 
+  \cardinality{Y}^{n - 1}$. Note that
   \begin{multline*}
-    |Y^{[n]}| = \left| \set[f \in Y^{[ n - 1]}, y \in Y]{(f, y)} \right| = \\
-    |Y^{[n - 1]} \times Y| = |Y^{[n - 1]}| \cdot |Y| = |Y|^n.
+    \cardinality{\functions{\range{n}}{Y}} = 
+      \cardinality{\set[f \in Y^{[ n - 1]}, y \in Y]{(f, y)}} = \\
+    \cardinality{\functions{\range{n - 1}}{Y} \times Y} = 
+      \cardinality{\functions{\range{n - 1}}{Y}} \cdot \cardinality{Y} =
+      \cardinality{Y}^n.
   \end{multline*}
 \end{proof}
 
@@ -83,52 +89,69 @@ $Y$: how many functions exist from $X$ to $Y$?
 However, what if we need to find size of a subset of $Y^X$ satisfying some
 constraint? For example, we may try to find the size of the set
 \[
-  (Y)_X = \set[f\text{ is an injection}]{f \in Y^X}.
+  \injections{X}{Y} = \set[f\text{ is an injection}]{f \in \functions{X}{Y}}.
 \]
-\nomenclature[S]{$(B)_A$}{denotes the set of injections from $A$ to $B$}
-First, let us try to do this informally. Assume that $X = \range{n}$ and $|Y| = m$,
-to define $f \in (Y)_X$ we need to choose images of $1$, $2$, \dots, $n$. There
-are $m$ possible ways to select an image of $1$, $m - 1$ ways to define $f(2)$
-since we cannot use the value selected for $1$ etc. Hence,
-$|(Y)_X| = m (m - 1) \dots (m - n + 1)$ (we denote this number as $(m)_n$).
-\nomenclature[C]{$(m)_n$}{denotes the number of ways to choose a
+\nomenclature[S]{$\injections{A}{B}$}{denotes the set of injections from $A$ to $B$}
+First, let us try to do this informally. Assume that $X = \range{n}$ and
+$\cardinality{Y} = m$,
+to define $f \in \injections{X}{Y}$ we need to choose images of $1$, $2$, \dots,
+$n$. There are $m$ possible ways to select an image of $1$, $m - 1$ ways to
+define $f(2)$ since we cannot use the value selected for $1$ etc. Hence,
+$\cardinality{\injections{X}{Y}} = m (m - 1) \dots (m - n + 1)$ (we denote this
+number as $\numberOfPermutations[n]{m}$\footnote{%
+  In combinatorics the notation $\numberOfPermutations[n]{m}$ is widely used and
+  is also called the Pochhammer symbol. However, Knuth's $m^{\underline{n}}$
+  notation is increasingly popular. It is also important to note that sometimes 
+  $\numberOfPermutations[n]{m}$ denotes $m (m + 1) \dots (m + n - 1)$. Moreover,
+  Leo August Pochhammer, the author of the Pochhammer symbol, used the
+  Pochhammer symbol to denote the binomial coefficients.
+}).
+\nomenclature[C]{$\numberOfPermutations[n]{m}$}{denotes the number of ways to choose a
 subset of $n$ elements from a fixed set of $m$ elements}
 
 \begin{theorem}
 \label{theorem:number-of-injections}
-  Let $X$ and $Y$ be some sets. Then $|(Y)_X| = (|Y|)_{|X|}$.
+  Let $X$ and $Y$ be some finite sets. Then $\cardinality{\injections{X}{Y}} =
+  \numberOfPermutations[\cardinality{X}]{\cardinality{Y}}$.
 \end{theorem}
 \begin{proof}
   Let us prove this statement for $X = \range{n}$. We prove this using induction by
   $n$. The base case, for $n = 1$, is clear. Now we need to prove the induction
   step from $n$ to $n + 1$. By the induction hypothesis, for any $m$, the
-  number of injections from $[n]$ to $Y$ is equal to $(|Y|)_n$.
+  number of injections from $\range{n}$ to $Y$ is equal to
+  $\numberOfPermutations[n]{\cardinality{Y}}$.
 
   Fix some $m$ and some set $Y$ of cardinality $m$. Note that
   \[
-    |(Y)_X| =
-    |\set[v \not\in \Im f]{(f, v) \in (Y)_{[n - 1]} \times \range{m}}|.
+    \cardinality{\injections{X}{Y}} =
+    \cardinality{
+      \set[v \not\in \Im f]{(f, v) \in \injections{\range{n - 1}}{Y} \times \range{m}}
+    }.
   \]
-  It is easy to see that $|\set[v \not\in \Im f]{(f, v)}| = m - n + 1$
-  for any $f \in (Y)_{[n - 1]}$ and
+  It is easy to see that $\cardinality{\set[v \not\in \Im f]{(f, v)}} = m - n + 1$
+  for any $f \in \injections{\range{n - 1}}{Y}$ and
   \[
-    \set[v \not\in \Im f]{(f, v) \in (Y)_{[n - 1]} \times \range{m}} =
-    \bigcup_{f \in (Y)_{[n - 1]}} \set[v \not\in \Im f]{(f, v)}.
+    \set[v \not\in \Im f]{(f, v) \in \injections{\range{n - 1}}{Y} \times
+      \range{m}} =
+    \bigcup_{f \in \injections{\range{n - 1}}{Y}} \set[v \not\in \Im f]{(f, v)}.
   \]
-  As a result, $|(Y)_X| = (m)_{n - 1} \cdot (m - n + 1) = (m)_n$.
+  As a result, $\cardinality{\injections{X}{Y}} = 
+    \numberOfPermutations[n - 1]{m} \cdot (m - n + 1) =
+    \numberOfPermutations[n]{m}$.
 \end{proof}
 
 The special case of this result is that there are
-$n \cdot (n - 1) \cdot  \ldots \cdot  1$ different
-permutations of $[n]$ (recall that the number is denoted by $n!$).
+$n \cdot (n - 1) \cdot  \dots \cdot  1$ different
+permutations of $\range{n}$ (recall that the number is denoted by
+$\numberOfPermutations{n}$).
 
 \begin{exercise}
   Finish the proof of Theorem~\ref{theorem:number-of-injections} by proving that
-  the statement holds for any set $X$.
+  the statement holds for any finite set $X$.
 \end{exercise}
 
 \begin{corollary}
-  There are $(n)_k$ ways to select $k$ objects out of $n$ if the order matters
+  There are $\numberOfPermutations[k]{n}$ ways to select $k$ objects out of $n$ if the order matters
   and we do not return objects to the box after we pick them.
 \end{corollary}
 
@@ -137,21 +160,22 @@ In this section we study the version of the question when we do not return the
 objects back to the box; i.e., we cannot select an object twice.
 
 Recall that we denoted the set of all subsets of $X$ by $2^X$. The reason for
-this notation is that $|2^X| = 2^{|X|}$. A quite famous example of a subset of
-this set is the set
+this notation is that $\cardinality{\subsets{X}} = 2^{\cardinality{X}}$. A quite
+famous example of a subset of this set is the set
 \[
-  \binom{X}{n} = \set[|A| = n]{A \subseteq X}.
+  \subsets[n]{X} = \set[\cardinality{A} = n]{A \subseteq X}.
 \]
-\nomenclature[S]{$\binom{A}{k}$}{denotes the set of subsets of $A$ of
+\nomenclature[S]{$\subsets[k]{A}$}{denotes the set of subsets of $A$ of
 cardinality $k$}
 In other words, it is the set of all possible ways to select $n$ elements from
-$X$. Size of the set $\binom{[m]}{n}$ we denote by $\binom{m}{n}$ and call it a
-binomial coefficient.
+$X$. Size of the set $\subsets[n]{\range{m}}$ we denote by $\binom{m}{n}$ and
+call it a binomial coefficient.
 \nomenclature[C]{$\binom{m}{n}$}{denotes the number of ways to choose an
 unordered subset of $n$ elements from a fixed set of $m$ elements}
 \begin{exercise}
-  Show that for any two finite sets $X$ and $Y$, if $|X| = |Y|$, then
-  $\left|\binom{X}{k}\right| = \left|\binom{Y}{k}\right|$.
+  Show that for any two finite sets $X$ and $Y$, if $\cardinality{X} =
+  \cardinality{Y}$, then
+  $\cardinality{\subsets[k]{X}} = \cardinality{\subsets[k]{Y}}$.
 \end{exercise}
 
 Note that by any ordered selection of $n$ object out of $m$, one may construct
@@ -160,7 +184,7 @@ is counted $n!$.
 \begin{theorem}
 \label{theorem:binomial-coefficients-explicit}
   For any $n > k \ge 0$,
-  $\binom{n}{k} = \frac{(n)_k}{k!} = \frac{n!}{k!  (n - k)!}$.
+  $\binom{n}{k} = \frac{\numberOfPermutations[k]{n}}{k!} = \frac{n!}{k!  (n - k)!}$.
 \end{theorem}
 
 \begin{exercise}
@@ -201,25 +225,28 @@ efficient way to compute the values of binomial coefficients.
 
   Let us prove the statement a bit more formally. Note that
   \begin{multline*}
-    \binom{[n]}{k} = \set[|A| = k \text{ and } n \in A]{A \subseteq \range{n}} \cup \\
-    \set[|A| = k \text{ and } n \notin A]{A \subseteq \range{n}}.
+    \subsets[k]{\range{n}} = 
+      \set[\cardinality{A} = k \text{ and } n \in A]{A \subseteq \range{n}} \cup \\
+    \set[\cardinality{A} = k \text{ and } n \notin A]{A \subseteq \range{n}}.
   \end{multline*}
-  Since these sets are disjoint and $\set[|A| = k \text{ and } n \notin A]{A
-  \subseteq \range{n}} = \binom{[n - 1]}{k}$, we get the following equality
+  Since these sets are disjoint and 
+  $\set[\cardinality{A} = k \text{ and } n \notin A]{A \subseteq \range{n}} = 
+  \subsets[k]{\range{n - 1]}}$, we get the following equality
   \[
-    \binom{n}{k} = |\set[|A| = k \text{ and } n \in A]{A \subseteq \range{n}}| +
+    \binom{n}{k} = 
+    \cardinality{\set[\cardinality{A} = k \text{ and } n \in A]{A \subseteq \range{n}}} +
     \binom{n - 1}{k}.
   \]
 
   Hence, to finish the proof we need to explain that
   \[
-    |\set[|A| = k \text{ and } n \in A]{A \subseteq \range{n}}| =
+    \cardinality{\set[\cardinality{A} = k \text{ and } n \in A]{A \subseteq \range{n}}} =
     \binom{n - 1}{k - 1}.
   \]
   To prove this statement we construct a bijection
   \[
-    f : \set[|A| = k \text{ and } n \in A]{A \subseteq \range{n}} \to
-      \binom{[n - 1]}{k}
+    f : \set[\cardinality{A} = k \text{ and } n \in A]{A \subseteq \range{n}} \to
+      \subsets[k]{\range{n - 1}}
   \]
   such that $f(A) = A \setminus \set{n}$.
   It is clear that this is a bijection. Thus, we prove the statement.
@@ -325,10 +352,11 @@ coefficients.
 
 Finally, we need to answer the question in the mode, when the order does not
 matter and we do not return the objects to the box. The answer to this question
-is clearly equal to the number of multisets of $[n]$ containing $k$ objects.
+is clearly equal to the number of multisets of $\range{n}$ containing $k$
+objects.
 \begin{theorem}
 \label{theorem:multisets}
-  The number of $k$-element multisets whose elements all belong to $[n]$ is
+  The number of $k$-element multisets whose elements all belong to $\range{n}$ is
   $\binom{n + k - 1}{k}$.
 \end{theorem}
 
@@ -465,8 +493,18 @@ However, the method can be used in a more sophisticated way.
 
 
 \begin{chapterendexercises}
+  \exercise Let $m$ be some integer. Show that product of $m$ consecutive
+    integers is divisible by $m!$.
+    \begin{solution}
+     In other words we need to show that for any integer $n$, 
+     $\frac{n \cdot (n + 1) \cdot \dots \cdot (n + m - 1)}{m!}$ is an integer. 
+     But one may notice that 
+     $\frac{n \cdot (n + 1) \cdot \dots \cdot (n + m - 1)}{m!} = 
+      \binom{n + m - 1}{m}$ which is an integer.
+    \end{solution}
   \exercise Show that
-    $(x + y)_n = \sum_{k = 0}^n \binom{n}{k} (x)_k (y)_{n - k}$.
+    $\numberOfPermutations[n]{x + y} = \sum_{k = 0}^n \binom{n}{k}
+      \numberOfPermutations[k]{x} \numberOfPermutations[n - k]{y}$.
   \exercise Show that
     $\sum_{k = 0}^n \binom{n}{k}^2 = \binom{2n}{n}$.
   \exercise Show that $\sum_{m = k}^n \binom{m}{k} =
