@@ -6,7 +6,7 @@
 }{youtu.be/fW5Zxg0TMDc}
 
 Combinatorics is an area of mathematics primarily concerned with counting;
-hence, the questions studied in combinatorics are usually forulated as results
+hence, the questions studied in combinatorics are usually formulated as results
 about the sizes of sets. This chapter uses informal notion of size of a set, for
 the formal definition see \Cref{chapter:cardinality}.
 \section{Bijections}
@@ -102,7 +102,7 @@ defined only when $f$ is a bijection)}
 it denotes the set $\set[f(x) = y]{x \in X}$ and it denotes the value of
 $f^{-1}$ at $y$ if $f$ is a bijection}
 
-Because of the following therem, bijections are very useful in combinatorics.
+Because of the following theorem, bijections are very useful in combinatorics.
 \begin{theorem}
 \label{theorem:bijection-to-equality}
     Let $X$ and $Y$ be two finite sets such that there is a bijection $f$ from
@@ -170,10 +170,52 @@ compare sizes of sets.
 \end{theorem}
 
 \begin{chapterendexercises}
-  \exercise Construct a bijection from $\set{0, 1, 2}^n$ to
+  \exercise Let $p$ be a polynomial of even degree. Is it possible that $p$ is a
+    bijection from $\R$ to $\R$?
+  \exercise[recommended] Construct a bijection from
     \[
       \set[{A, B \subseteq \range{n} \text{ and } A, B \text{ are disjoint}}]{(A, B)}.
     \]
+    to $\set{0, 1, 2}^n$.
+    \begin{solution}
+      Let us start from an informal proof. For each $i \in \range{n}$ there are
+      three ways to put or not put it into sets $A$ and $B$ such that $A \cap B
+      = \emptyset$:
+      \begin{enumerate}
+        \item we may not put $i$ to both of them,
+        \item we may put $i$ only to $A$,
+        \item we may put $i$ only to $B$.
+      \end{enumerate}
+      Which defines a bijection from 
+      $\set[{A, B \subseteq [n] \text{ and } A \cap B = \emptyset}]{(A, B)}$ to
+      $\set{0, 1, 2}^n$.
+
+      Now we are ready give a more formal construction of the bijection from
+      $\set[{A, B \subseteq [n] \text{ and } A \cap B = \emptyset}]{(A, B)}$ to
+      $\set{0, 1, 2}^n$.
+
+      Consider 
+      $f : \set[{A, B \subseteq [n] \text{ and } A \cap B = \emptyset}]{(A, B)} \to
+        \set{0, 1, 2}^n$ such that
+      $f(A, B) = (x_1, \dots, x_n)$, where
+      \[
+        x_i =
+        \begin{cases}
+          0 & \text{if } i \in A \text{ and } i \not\in B \\
+          1 & \text{if } i \not\in A \text{ and } i \in B \\
+          2 & \text{if } i \not\in A \text{ and } i \not\in B
+        \end{cases}.
+      \]
+      Note that the function is well defined due to the fact that $A \cap B =
+      \emptyset$.
+      We need to prove now that it is a bijection. To do this we can simply
+      construct the inverse function $e$; $e : \set{0, 1, 2}^n \to 
+      \set[{A, B \subseteq [n] \text{ and } A \cap B = \emptyset}]{(A, B)}$ such
+      that $e(x_1, \dots, x_n) = (A, B)$, where
+      $A = \set[x_i = 1]{i \in \range{n}}$ and 
+      $B = \set[x_i = 2]{i \in \range{n}}$.
+      Obviously $e$ is the inverse of $f$, hence, $f$ is a bijection.
+    \end{solution}
   \exercise[recommended] Construct a bijection from  $\range{2n}$ to 
     $\set{0, 1} \times \range{n}$.
     \begin{solution}

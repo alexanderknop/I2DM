@@ -384,9 +384,97 @@ Finally, we prove Theorem~\ref{theorem:well-ordering}.
     \nomenclature[S]{$\bigcap_{i = 1}^k A_i$}{denotes $A_1 \cap \dots \cap
     A_k$}
 
-    Show that $\bigcap_{i = 1}^n \set[i \le x \le n]{x \in \mathbb{N}} =
+    Show that $\bigcap_{i = 1}^n \set[i \le x \le n]{x \in \N} =
     \set{n}$ for all integers $n > 0$.
-    \exercise Let us define a union of more than two sets as follows.
+    \begin{solution}
+      There are two solutions for this problem which provide two important
+      points of view.
+
+      \begin{enumerate}
+        \item We may prove the statement using induction by $k$. Note that the
+          statement does not involve $k$ so we need to prove a bit different
+          statement, we prove 
+          $\bigcap_{i = 1}^k \set[i \le x \le n]{x \in \N} =
+            \set{k, k + 1, \dots, n}$.
+          The base case for $k = 1$ is clear since 
+          $\bigcap_{i = 1}^1 \set[i \le x \le n]{x \in \N} =
+            \set[1 \le x \le n]{x \in \N} = \set{1, 2, \dots, n}$.
+
+          The induction step is also easy to see. By the induction hypothesis
+          $\bigcap_{i = 1}^k \set[i \le x \le n]{x \in \N} = 
+            \set{k, k + 1, \dots, n}$.
+          Note that
+          \begin{multline*}
+            \bigcap_{i = 1}^{k + 1} \set[i \le x \le n]{x \in \N} = \\
+            \left(
+              \bigcap_{i = 1}^k \set[i \le x \le n]{x \in \N} 
+            \right) \cap
+            \set[k + 1 \le x \le n]{x \in \N} =  \\
+            \set{k, k + 1, \dots, n} \cap \set{k + 1, \dots, n} =
+            \set{k + 1, \dots, n}.
+          \end{multline*}
+          Thus for $k = n$,
+          $\bigcap_{i = 1}^n \set[i \le x \le n]{x \in \N} = \set{n}$.
+        \item Another approach is to prove the statement using induction by $n$.
+          The base case is also clear,
+          $\bigcap_{i = 1}^1 \set[i \le x \le n]{x \in \N} = \set{1}$.
+
+          Let us now prove the induction step. By the induction hypothesis
+          $\bigcap_{i = 1}^k \set[i \le x \le k]{x \in \N} = \set{k}$.
+          Hence,
+          \begin{multline*}
+            \bigcap_{i = 1}^k \set[i \le x \le k + 1]{x \in \N} = \\
+            \bigcap_{i = 1}^k 
+              \left(
+                \set[i \le x \le k]{x \in \N} \cup \set{k + 1}
+              \right)
+            \stackrel{*}{=} \\
+            \left(\bigcap_{i = 1}^k \set[i \le x \le k]{x \in \N} \right) \cup
+            \set{k + 1} =
+            \set{k, k + 1};
+          \end{multline*}
+          note that all these equalities are clear except the equiality marked
+          by $*$, we prove it later.
+
+          Thus by the definition of the union
+          \begin{multline*}
+            \bigcap_{i = 1}^{k + 1} \set[i \le x \le k + 1]{x \in \N} = \\
+            \left(
+              \bigcap_{i = 1}^k \set[i \le x \le k + 1]{x \in \N}
+            \right) \cap \\
+            \set[k + 1 \le x \le k + 1]{x \in \N}= \\
+            \left(
+              \bigcap_{i = 1}^k \set[i \le x \le k + 1]{x \in \N}
+            \right) \cap
+            \set{k + 1} = \\
+            \set{k, k + 1} \cap \set{k + 1} =
+            \set{k + 1}.
+          \end{multline*}
+
+          Now we need to prove that if $A_1, \dots, A_\ell$, and $B$ are some sets,
+          then $\bigcap_{i = 1}^\ell (A_i \cup B) =
+          \left(\bigcap_{i = 1}^\ell A_i\right) \cup B$.
+          We prove it also using induction by $\ell$. For $\ell = 1$, the
+          statement is clear since $\bigcap_{i = 1}^1 (A_i \cup B) = A_1 \cup B
+          = \left(\bigcap_{i = 1}^\ell A_i\right) \cup B$.
+          Now we need to check the induction step. By the induction hypothesis
+          $\bigcap_{i = 1}^k (A_i \cup B) =
+            \left(\bigcap_{i = 1}^k A_i\right) \cup B$. Note that
+          \begin{multline*}
+            \bigcap_{i = 1}^{k + 1} (A_i \cup B) =
+            \bigcap_{i = 1}^k (A_i \cup B) \cap (A_{k + 1} \cup B) = \\
+            \left(\left(\bigcap_{i = 1}^k A_i\right) \cup B\right) \cap
+              (A_{k + 1} \cup B) =  \\
+            \left(
+              \left(
+                \bigcap_{i = 1}^k A_i
+              \right) \cap A_{k + 1} 
+            \right) \cup B =
+            \left(\bigcap_{i = 1}^{k + 1} A_i\right) \cup B.
+          \end{multline*}
+      \end{enumerate}
+    \end{solution}
+  \exercise Let us define a union of more than two sets as follows.
       Let $A_1$, \dots, $A_n$ be some sets. Then
       \begin{itemize}
         \item $\bigcup_{i = 1}^1 A_i = A_1$ and
@@ -396,7 +484,23 @@ Finally, we prove Theorem~\ref{theorem:well-ordering}.
       \nomenclature[S]{$\bigcup_{i = 1}^k A_i$}{denotes $A_1 \cup \dots \cup
       A_k$}
 
-      Show that $\bigcup_{i = 1}^n \range{i} = \range{n}$ for all integers $n > 0$.
+      Show that $\bigcup_{i = 1}^n \range{i} = \range{n}$ for all integers 
+      $n > 0$.
+      \begin{solution}
+        First, note that $\range{k - 1} \cup \range{k} = \range{k}$ for any 
+        $k > 1$.
+
+        Now we are ready to prove the statement, we prove it using induction by
+        $n$. The base case is true since $\bigcup_{i = 1}^1 \range{i} =
+        \range{1}$ by the definition. The induction step is also true since by
+        the induction hypothesis $\bigcup_{i = 1}^{k - 1} \range{i} = 
+        \range{k - 1}$ and by the definition of the union 
+        $\bigcup_{i = 1}^k \range{i} = 
+        \left(\bigcup_{i = 1}^{k - 1} \range{i}\right) \cup \range{k}$.
+        Hence, $\bigcup_{i = 1}^k \range{i} = 
+          \left( \bigcup_{i = 1}^{k - 1} \range{i} \right) \cup \range{k} = 
+          \range{k - 1} \cup \range{k} = \range{k}$.
+      \end{solution}
   \exercise[recommended] Let $\Omega$ be some set and $A_1, \dots, A_n \subseteq \Omega$.
     Show that $\bigcup_{i = 1}^n A_i =
       \set[{\exists i \in \range{n}\ x \in A_i}]{x \in \Omega}$.

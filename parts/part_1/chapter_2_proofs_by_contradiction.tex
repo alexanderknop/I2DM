@@ -107,6 +107,14 @@ hence $b = 0$ which is a contradiction to the assumption.
         \end{enumerate}
 
         Show that every line has exactly three points on it.
+        \begin{solution}
+          Let us assume the opposite; i.e. there is a line $\ell$ with four
+          points $p_1, \dots, p_4$ on it. By axiom~3, for each of these points
+          $p_i$ there is a line $\ell_i \neq \ell$ such that $p_i$ is on $\ell$.
+          Since we have only $4$ lines and $\ell_i \neq \ell$, then there are $i
+          \neq j$ such that $\ell_i = \ell_j$. As a result, $p_i$ and $p_j$ are
+          on $\ell$ and $\ell_i$, it is contradicting to axiom~2.
+        \end{solution}
     \exercise Let us consider group theory, it is a theory with undefined
         terms: group-element and times (if $a$ and $b$ are group elements,
         we denote $a$ times $b$ by $a \cdot b$), and axioms:
@@ -188,5 +196,49 @@ hence $b = 0$ which is a contradiction to the assumption.
         \end{enumerate}
 
         Show that for every point, there are exactly four lines on that point.
+        \begin{solution}
+          First, we prove that for every point, there is a line not on that
+          point. Let $p$ be some point. By the first axiom, there is a line
+          $\ell$. Assume that $p$ is on $\ell$ (otherwise we proved the
+          statement). By axiom 2, there are two other points $p_1$ and $p_2$ on
+          this line. By axiom 3, there is a point $q$ not on $\ell$. Finally, by
+          axiom 4, there is a line $\ell'$ on $p_1$ and $q$. Note that $\ell'
+          \neq \ell$, thus $p$ is not on $\ell'$.
+          
+          Now we are ready to prove that there are at least four lines. Let $p$
+          be a point and $\ell$ be a line such that $p$ is not on $\ell$. By
+          axiom 2, there are three points $p_1$, $p_2$, and $p_3$ on $\ell$. By
+          axiom 4, there are lines $\ell_1$, $\ell_2$, and $\ell_3$ such that
+          $p$ is on all of them and $p_i$ is on $\ell_i$ for $i \in \range{3}$.
+          By axiom 5, there is a line $\ell_4$ contain $p$ but $p_1$, $p_2$,
+          and $p_3$  are not on $\ell_4$. Thus, there are at least four lines
+          through $p$.
 
+
+          Let us now prove that there is no other line $\ell_5$ such that $p$ is
+          on $\ell_5$. By axiom 5, there is a point $p_i$ such that $p_i$ is on
+          both $\ell_5$ and $\ell$. But this contradicts to axiom 4, since $p_i$
+          is also on $\ell_i$.
+        \end{solution}
+    \exercise Let us consider five-point geometry, it is a theory with undefined
+      terms: point, line, is on, and axioms:
+      \begin{enumerate}
+        \item there exist exactly five points,
+        \item each two distinct points have exactly one line on both of them, and
+        \item each line has exactly two points.
+      \end{enumerate}
+
+      Show that each point has exactly four lines on it.
+      \begin{solution}
+        Let us consider some point $p$ and let $p_1$, \dots, $p_4$ be all other
+        points (they exist by axiom~1). Note that there are lines $l_1$, \dots,
+        $l_4$ such that $l_i$ goes throw $p$ and $p_i$. Note that $l_i \neq l_j$
+        for $i \neq j$ by axiom~3 since $p_i$ is not on $l_j$ and there are
+        already two points on $l_i$. Thus we proved that any point is on at
+        least $4$ lines.
+
+        Let us now prove that there are no other lines. Assume that $p$ is on a
+        line $l$ and $l$ is not equal to $l_i$ for all $i$. However, by axiom 2,
+        there is a point $p_j$ on $\ell$. Thus $l = l_j$ which is a contradiction.
+      \end{solution}
 \end{chapterendexercises}

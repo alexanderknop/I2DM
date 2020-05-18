@@ -367,6 +367,7 @@ objects.
 Using \Cref{theorem:binomial} one may prove several important equalities of sums
 of binomial coefficients.
 \begin{corollary}
+\label{corollary:binommials-equality}
   Let $n \in \N$. Then
   \begin{enumerate}
     \item $\sum_{k = 0}^n (-1)^k \binom{n}{k} = 0$ and
@@ -496,9 +497,9 @@ However, the method can be used in a more sophisticated way.
   \exercise Let $m$ be some integer. Show that product of $m$ consecutive
     integers is divisible by $m!$.
     \begin{solution}
-     In other words we need to show that for any integer $n$, 
-     $\frac{n \cdot (n + 1) \cdot \dots \cdot (n + m - 1)}{m!}$ is an integer. 
-     But one may notice that 
+     In other words we need to show that 
+     $\frac{n \cdot (n + 1) \cdot \dots \cdot (n + m - 1)}{m!}$ is an integer,
+     for any integer $n$. But one may notice that 
      $\frac{n \cdot (n + 1) \cdot \dots \cdot (n + m - 1)}{m!} = 
       \binom{n + m - 1}{m}$ which is an integer.
     \end{solution}
@@ -510,7 +511,8 @@ However, the method can be used in a more sophisticated way.
   \exercise Show that $\sum_{m = k}^n \binom{m}{k} =
     \binom{n + 1}{k + 1}$.
     \hint{Note that the formula on the right corresponds to the number of ways
-      to select $k + 1$ elements out of $n + 1$; $m$ in the summation on the left denotes the maximum of this selected set minus one.}
+      to select $k + 1$ elements out of $n + 1$; $m$ in the summation on the
+      left denotes the maximum of this selected set minus one.}
   \exercise Using the previous formula, find the formulas for the following
     expressions:
     \begin{enumerate*}
@@ -518,6 +520,40 @@ However, the method can be used in a more sophisticated way.
       \item $\sum_{k = 0}^n k^2$, and
       \item $\sum_{k = 0}^n k^3$.
     \end{enumerate*}
+
+  \exercise Show that 
+    $\sum_{k = 2}^n k (k - 1) \binom{n}{k} = n (n - 1) 2^{n - 2}$ for any
+    positive integer $n > 2$.
+    \begin{solution}
+      There are several possible solutions. We present two of them: the first
+      one is similar to \Cref{corollary:binommials-equality}, and the second is
+      based on the combinatorual meaning of the equality.
+      \begin{enumerate}
+        \item Note that $k (k - 1) \binom{n}{k} = 
+          k (k - 1) \frac{n!}{k! (n - k)!} = n (n - 1) \binom{n - 2}{k - 2}$.
+          Thus
+          \begin{multline*}
+            \sum_{k = 2}^n k (k - 1) \binom{n}{k} =
+            \sum_{k = 2}^n n (n - 1) \binom{n - 2}{k - 2} =  \\
+              n (n - 1) \sum_{k = 0}^{n - 2} \binom{n - 2}{k} = 
+              n (n - 1) 2^{n - 2}.
+          \end{multline*}
+        \item Another solution is the following. Imagine that we have $n$ people in a
+          group and we need to choose a subgroup of them, a head of this subgroup, and
+          a vice-head of this group.
+
+          It is easy to see that we have $n$ ways to select the head, $n - 1$
+          ways to select the vice-head, and $2^{n - 2}$ ways
+          to select the rest of the subgroup. On the other hand, if we know that the
+          subgroup has $i$ members, then there are $\binom{n}{i}$ ways to select the
+          subgroup, $i$ ways to select the head, and $i - 1$ ways to select the
+          vice-head, thus there are $\sum_{k = 2}^n k (k - 1) \binom{n}{k}$ ways to
+          select the subgroup, its leader, and its vice-leader. As a result,
+          $n (n - 1) 2^{n - 2} = \sum_{k = 2}^n k (k - 1) \binom{n}{k}$.
+      \end{enumerate}
+    \end{solution}
+
+
   \exercise Using the binomial theorem, explain the following equalities:
     \begin{enumerate*}
       \item $\sum_{k = 0}^{n} \binom{2n}{2k} =
@@ -536,8 +572,8 @@ However, the method can be used in a more sophisticated way.
   \exercise[recommended] Show that
     $(a + 1)^p \equiv a^p + 1 \pmod{p}$.
     \hint{Use the binomial theorem.}
-  \exercise[recommended] We say that a function $f : \{0, 1\}^n \to \{0, 1\}$ depends on the
-    $i$th argument iff for some
+  \exercise[recommended] We say that a function 
+    $f : \set{0, 1}^n \to \set{0, 1}$ depends on the $i$th argument iff for some
     $a_1, \dots, a_{i - 1}, a_{i + 1}, \dots, a_n \in \set{0, 1}$
     \[
       f(a_1, \dots, a_{i - 1}, 0, a_{i + 1}, \dots, a_n) \neq
@@ -546,8 +582,24 @@ However, the method can be used in a more sophisticated way.
     We also say that the function $f$ depends on all the arguments iff for all
     $i \in \range{n}$ it depends on $i$th argument.
 
-    Find the number of functions $f : \{0, 1\}^n \to \{0, 1\}$ depending on all
+    Find the number of functions $f : \set{0, 1}^n \to \set{0, 1}$ depending on all
     arguments.
+
+    \begin{solution}
+      Let $S \subseteq \range{n}$ and $F_i$ be the set of function from $\set{0,
+      1}^n$ to $\set{0, 1}$ not depending on the $i$th input. It is easy to see
+      that there are $2^{2^{n - 1}}$ elements in $F_i$ and moreover, there are
+      $2^{2^{n - \cardinality{S}}}$ elements in the set $\cap_{i \in S} F_i$.
+      Thus by the inclusion-exclusion principle, there are
+      \[
+        \sum_{S \subseteq [n] ~:~ S \neq \emptyset} 
+          (-1)^{\cardinality{S} + 1} 2^{2^{n - \cardinality{S}}} =
+        \sum_{k = 1}^n (-1)^k 2^{2^{n - k}} \binom{n}{k}
+      \]
+      functions not depending on at least one argument.
+      As a result, the answer is $2^{2^n} -
+      \sum_{k = 1}^n (-1)^k 2^{2^{n - k}} \binom{n}{k}$.
+    \end{solution}
   \exercise Find the largest coefficient of $(x_1 + x_2 + \dots + x_k)^k$.
   \exercise Prove that,
     without using Theorem~\ref{theorem:multinomial-coefficients},

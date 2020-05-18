@@ -176,16 +176,16 @@ of sets when they are not disjoint.
     \[
       \set[{x, y \in \range{9} \text{ and } x \neq y}]{(x, y)}.
     \]
-  \exercise Find the number of ordered pairs $(A, B)$ of subsets of $\range{n}$
-    such that $A \cap B = \emptyset$ (the answer is not supposed to contain the
-    summation sign).
+  \exercise[recommended] Find the number of ordered pairs $(A, B)$ of subsets of
+    $\range{n}$ such that $A \cap B = \emptyset$ (the answer is not supposed to
+    contain the summation sign).
   \exercise How many functions from $\set{0, 1}^n$ to $\set{0, 1}$?
-  \exercise[recommended] How many numbers from $\range{999}$ are not divisible neither by $3$,
-    nor by $5$, nor by $7$.
+  \exercise[recommended] How many numbers from $\range{999}$ are not divisible
+    neither by $3$, nor by $5$, nor by $7$.
     \begin{solution}
       Let $D_n = \set[i \text{is divisible by n}]{i \in \range{999}}$.
       Note that $D_3 \cap D_5 = D_{15}$, $D_3 \cap D_7 = D_{21}$, $D_5 \cap D_7
-      = D_{35}$, and finally, $D_3 \cap D_5 \cap D_7 = D_{105}$. Additinally,
+      = D_{35}$, and finally, $D_3 \cap D_5 \cap D_7 = D_{105}$. Additionally,
       $\cardinality{D_3} = 999 / 3 = 333$,
       $\cardinality{D_5} = \floor{999 / 5} = 199$,
       $\cardinality{D_7} = \floor{999 / 7} = 142$,
@@ -198,13 +198,39 @@ of sets when they are not disjoint.
     \end{solution}
   \exercise How many numbers $x$ from $1$ to $999$ such that at least one
     of the digits of $x$ is $7$?
+    \begin{solution}
+      First note that any number from $0$ to $999$ may be expressed using $3$
+      digits (we allow to use leading $0$s to express the numbers like $1$).
+      Thus we need to find the size of the set
+      \[
+        \set[{ 
+          7 \in \{a_1, a_2, a_3\}
+        }]{(a_1, a_2, a_3) \in \set{0, \dots, 9}^3}.
+      \]
+
+      Let $S \subseteq [3]$, it is easy to see that 
+      \[
+        \bigcap_{i \in S}
+          \set[{ 
+            7 \in \{a_1, a_2, a_3\}
+          }]{(a_1, a_2, a_3) \in \set{0, \dots, 9}^3}
+      \]
+      has $10^{\cardinality{S}}$ elements. As a result, the answer is 
+      $1000 - 3 \cdot 10^2 + 3 \cdot 10 - 1$.
+    \end{solution}
   \exercise How many numbers $x$ from $1$ to $999$ such that exactly one
     of the digits of $x$ is $7$?
+    \begin{solution}
+      Note that any number from $0$ to $999$ can be described by three digits.
+      It is easy to see that there are $9^2$ number with one digit equal to $7$
+      and all others being not equal to $7$. Hence, the answer is $3 \cdot
+      9^2$.
+    \end{solution}
   \exercise Let $A$, $B$ be some finite sets such that $A \subseteq B$.
     Show that $\cardinality{B \setminus A} = \cardinality{B} - \cardinality{A}$.
-  \exercise King Athur invited $n$ knights for a feast. Each knight has an enemy
+  \exercise King Arthur invited $n$ knights for a feast. Each knight has an enemy
     (being an enemy is a mutual relation; i.e., if $A$ is an enemy of $B$, then
-    $B$ is an enemy of $A$). How many wasy for knights to seat around the Round
+    $B$ is an enemy of $A$). How many ways for knights to seat around the Round
     Table so that enemies are not sitting together?
   \exercise[recommended] Let $n$ be some positive integer.
     Find the cardinality of the set

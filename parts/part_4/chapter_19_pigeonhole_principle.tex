@@ -222,11 +222,49 @@ using the induction by $n$.
     $p_i$ and $p_j$ is at most $0.5$.
   \exercise Show that if there are 30 students in a class, then at least
     two have last names that begin with the same letter.
-  \exercise Let $n$ be a positive integer. Show that in any set of $n$
-    consecutive integers there is exactly one divisible by $n$.
+  \exercise[recommended] Let $n$ be a positive integer. Show that in any set of
+    $n$ consecutive integers there is exactly one divisible by $n$.
+    \begin{solution}
+      Let the numbers be $k$, $k + 1$, \dots, $k + n - 1$. Assume that all the
+      numbers are not divisible by $n$. Consider the function 
+      $f: \set{k, k + 1, \dots, k + n - 1} \to \set{1, \dots, n - 1}$ such that
+      $f(k + i) \equiv k + i \pmod{n}$. Note that the set on the left has more
+      elements than the set on the right, so there are $i_1 < i_2$ such that 
+      $k + i_1$ has the same reminder as $k + i_2$.
+      Thus $n$ divides $0 < i_2 - i_1 < n$, which is a contradiction.
+    \end{solution}
   \exercise[recommended] Prove that for every sequence of integers $a_1$, \dots,
     $a_n$ there are $k > 0$ and $\ell \ge 0$ such that $k + \ell \le n$ and
     $\sum_{i = k}^{k + \ell} a_i$ is divisible by $n$.
+    \begin{solution}
+      We consider the $n$ sums modulo $n$ of the form $a_1$, $a_1 + a_2$,
+      \dots, $a_1 + a_2 + \dots + a_n$. First, we note that if any of these sums
+      $a_1 + \cdots + a_\ell \equiv 0 \pmod{n}$, then we are done by picking $k
+      = 1$ and $\ell$ accordingly since being equivalent to $0$ modulo $n$ is
+      the same as being divisible by $n$. As a result, it suffices to show the
+      result when none of the sums are equivalent to $0$ modulo $n$.
+
+      In this case, each of these sums modulo $n$ necessarily must be one of
+      $1$, $2$, \dots, $(n - 1)$. That is, there are $n - 1$ possible values for
+      each of these $n$ sums. Therefore, by the pigeonhole principle, we must
+      have that two of these sums are equivalent modulo $n$. Thus there exists
+      $m > 0 $ and $j > 0$ (and without loss of generality may assume that $j >
+      m$ ) so that 
+      \[
+        a_1 + a_2 + \dots + a_m \equiv a_1 + a_2 + \cdots + a_j \pmod{n}.
+      \]
+      Note that subtracting $ a_1 + a_2 + \cdots + a_m$ from both sides yields
+      that 
+      \[
+        0 \equiv
+        a_{m + 1} + \cdots + a_{j} \pmod{n},
+      \]
+      and hence by taking $k = m + 1$ and $\ell = j - m - 1 = j - k $ we prove that 
+      \[
+        0 \equiv a_k + a_{k + 1} + \dots + a_{k + \ell} \pmod{n};
+      \] 
+      in other words, $\sum\limits_{i = 0}^\ell a_{k + i}$ is divisible by $n$.
+    \end{solution}
   \exercise[recommended] Let $S \subseteq \range{20}$ be a set. Show that if
     $\cardinality{S} \ge 13$, then there are $a, b \in S$ such that $a - b = 6$.
   \exercise Let $S \subseteq \range{20}$ be a set. Show that if $\cardinality{S}
@@ -280,4 +318,17 @@ using the induction by $n$.
     divisible by $2019$.
   \exercise What is the maximal number of chess knights one may put on a
     chessboard so that they would not attack each other?
+  \exercise[recommended] Let us assume that we are given $\ell$ lines that are
+    not parallel to each other. Prove that there are at least two of them such
+    that angle between them is at most $\pi / \ell$.
+    \begin{solution}
+      Proof of this statement is very similar to the proof of the averaging
+      principle.
+      Let us move all the lines (using parallel shift) such that all of them are
+      going through $(0, 0)$. Let us denote angles between lines (in clockwise
+      order) $\alpha_1$, \dots, $\alpha_{2\ell}$ respectively and assume that
+      all of them are greater than $\pi / \ell$. In this case we may note that
+      $\sum\limits_{i = 1}^{2\ell} \alpha_i > 2\ell \cdot \pi / \ell = 2\pi$,
+      but we know that $\sum\limits_{i = 1}^{2\ell} \alpha_i  = 2\pi$.
+    \end{solution}
 \end{chapterendexercises}
