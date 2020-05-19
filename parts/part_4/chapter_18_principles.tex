@@ -196,6 +196,45 @@ of sets when they are not disjoint.
       As a result, by the inclusion-exclusion principle, the answer is
       $999 - 333 - 199 - 142 + 66 + 47 + 28 - 9 = 457$.
     \end{solution}
+  \exercise How many numbers from $1$ to $1000$ are neither square numbers nor
+    cubic numbers?
+    \begin{solution}
+      Let us define 
+      $
+        A_i =  \set[{\sqrt[i]{x} \in \Z}]{x \in \range{1000}}.
+      $
+      We need to find the value of $1000 - |A_2 \cup A_3|$. Note that 
+      $\cardinality{A_i} = \floor{\sqrt[i]{1000}}$. Hence,
+      \begin{multline*}
+        \cardinality{A_2 \cup A_3} = \cardinality{A_2} + \cardinality{A_3} -
+        \cardinality{A_2 \cap A_3} = \cardinality{A_2} + \cardinality{A_3} -
+        \cardinality{A_6} = \\
+        \floor{\sqrt{1000}} + \floor{\sqrt[3]{1000}} - \floor{\sqrt[6]{1000}} =
+        31 + 10 - 3 = 38.
+      \end{multline*}
+      Therefore the answer is equal to $1000 - 38 = 962$.
+    \end{solution}
+  \exercise How many $6$-digit numbers are there that have the same reminder
+    modulo $2$ of all the digits?
+    \begin{solution}
+      We will give two solutions depending on one's interpretation of $6$-digit
+      numbers (i.e whether or not the leading coefficient can be $0$).
+
+      First, in the case where the leading coefficient may be $0$, there are
+      $10$ choices for the first digit. Upon picking the first digit, we now
+      must picks digits that have the same parity (i.e even or odd) as the first
+      digit. Thus, there are $5$ choices for digits two through six, and we get
+      \[
+        10\cdot 5 \cdot 5 \cdot 5 \cdot 5\cdot 5 = 31250 \text{ total digits. }
+      \]
+
+      However, if you interpreted the problem as the leading coefficient cannot
+      be $0$, then there would be $9$ options for the first digit and then $5$
+      for each of the remaining. We would then get
+      \[
+        9 \cdot 5 \cdot 5 \cdot 5 \cdot 5\cdot 5 = 28125 \text{ total digits. }
+      \]
+    \end{solution}
   \exercise How many numbers $x$ from $1$ to $999$ such that at least one
     of the digits of $x$ is $7$?
     \begin{solution}

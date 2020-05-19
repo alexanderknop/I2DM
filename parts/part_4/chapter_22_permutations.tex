@@ -219,7 +219,8 @@ $i$ is in a cycle of length $k$ does not depend on $k$ and is equal to $1 / n$.
 
 \section{Superpermutations}
 In this section we consider the following problem. In the TV series ``The
-Melancholy of Haruhi Suzumiya'' there are $14$ episodes. The episodes feature time travel and are chronologically challenging for the viewer. Moreover,
+Melancholy of Haruhi Suzumiya'' there are $14$ episodes. The episodes feature
+time travel and are chronologically challenging for the viewer. Moreover,
 they were originally aired in a nonlinear order. When the series went to DVD,
 the episodes were rearranged. Thus, it is something of an obsession for fans to
 rewatch the series over and over again, going through in many different
@@ -457,8 +458,33 @@ episodes which takes around $3572462$ years.
   \exercise Let $n$, $b_1$, \dots, and $b_k$ be positive integers such that 
     $b_1 + \dots + b_k \le n$. Show that $b_1! b_2! \dots b_n! \le n!$.
   \exercise[recommended] Find an explicit formula for $c(n, n - 2)$.
+    \begin{solution}
+      The solution of this problem is similar to the solution of the problem for
+      $S(n, n - 2)$.
+
+      Note that there are two types of permutations with $n - 2$ cycles.
+      \begin{enumerate}
+        \item The first type consists of permutations with one cycle of length
+          $3$ and $n - 3$ cycles of length $1$. Note that there are $\binom{n}{3}$
+          ways to choose elements of the cycle of length $3$ and there are $2$
+          ways to form a cycle from these elements. Hence, there are $2 \cdot
+          \binom{n}{3}$ permutations of this type.
+        \item The second type consists of permutations with two cycles of length $2$
+          and $n - 4$ cycles of length $1$. Note that there are $\binom{n}{2}$
+          ways to select elements of the first cycle and $\binom{n - 2}{2}$ ways
+          to select the second cycle. Hence, there are $\frac{\binom{n}{2} \cdot
+          \binom{n - 2}{2}}{2}$ permutations of this type (we divide by $2$ since
+          we may reorder the cycles).
+      \end{enumerate}
+
+      As a result, the final answer is $2 \cdot \binom{n}{3} + \frac{\binom{n}{2}
+      \cdot \binom{n - 2}{2}}{2}$.
+    \end{solution}
   \exercise Prove that for any fixed $k$, the function $c(n, n - k)$ is a
     polynomial function of $n$. Find the degree of that polynomial.
+  \exercise Find a reccurent relation for the number of permutations $\pi \in
+    S_n$ such that $\pi^3(x) = x$ for all $x \in \range{n}$.
+
   \exercise Let $p$ be a permutation of $\range{n}$. We associate a permutation matrix
     $M^{(p)}$ to $p$ as follows. Let $M^{(p)}_{i, j} = 1$ if $p(i) = j$, and let
     $M^{(p)}_{i, j} = 0$ otherwise. Prove that $|\det M^{(p)}| = 1$.

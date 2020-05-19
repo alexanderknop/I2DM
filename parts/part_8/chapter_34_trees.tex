@@ -231,6 +231,25 @@ To prove this statement we need a technical lemma.
     connected. The complement $\bar{G}$ of $G$ has the same vertex set as $G$
     and $(x, y)$ is an edge in $\bar{G}$ if and only if it is not an edge in
     $G$.
-  \exercise Let $H$ be a simple graph on $n$ vertices that has $m$ edges. Prove
-    that $H$ contains at least $m - n - 1$ cycles.
+  \exercise[recommended] Let $H$ be a simple graph on $n$ vertices that has $m$
+    edges. Prove that $H$ contains at least $m - n - 1$ cycles.
+    \begin{solution}
+      First of all, let us consider the case when $G$ is connected. We prove
+      this statement using induction by $d = m - n + 1$. Note that if $d = 0$,
+      then the statement is obviously true (since number of cycles should be at
+      least $0$).
+
+      Let us prove now the induction step: let $G$ be a graph having $m > n - 1$
+      edges. It is not a tree, hence there is a cycle. Let $e$ be any edge of this
+      cycle. Note that $G - e$ has $m - 1$ edges, hence, there are at least $m -
+      1 - n + 1$ cycles, additionally, note that number of cycles in $G$ is at
+      least number of cycles in $g - e$ plus one. As a result, there are at
+      least $m - 1 - n + 1$ cycles in $G$.
+
+      If $G$ is not connected, we denote connected component of $G$ by $G_1$,
+      \dots, $G_\ell$ with number of vertices $n_1$, \dots, $n_\ell$ and number
+      of edges $m_1$, \dots, $m_\ell$. We prove that there are 
+      $\sum_{i = 1}^\ell m_i - n_i + 1 = m - n + \ell \ge m - n + 1$ cycles in
+      $G$.
+    \end{solution}
 \end{chapterendexercises}

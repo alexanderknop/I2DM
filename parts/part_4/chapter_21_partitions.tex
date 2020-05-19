@@ -307,6 +307,17 @@ Using these diagrams, it is easy to show the following theorem.
   \exercise[recommended] Find a formula for $\stirlingTwo{n}{2}$.
   \exercise Find a formula for $\stirlingTwo{n}{3}$.
   \exercise Find a formula for $\stirlingTwo{n}{n - 2}$.
+    \begin{solution}
+      Note that there two variants how we can split $n$ elements into $n - 2$ subsets: 
+      \begin{enumerate}
+        \item all subsets except one are singletons, there are $\binom{n}{3}$
+          ways to do this;
+        \item all subsets except two are singletons, there are $\binom{n}{4} \cdot
+          \binom{4}{2} \frac{1}{2}$ (we divide by two since the order ot these two
+          sets of size $2$ is not important).
+      \end{enumerate}
+      Hence, the answer is $\binom{n}{3} + \binom{n}{4} \cdot \binom{4}{2} \frac{1}{2}$.
+    \end{solution}
   \exercise[recommended] Show that $B(n) \le n!$.
   \exercise Let $m \ge n$ be positive integers. Show that
     \[
@@ -317,4 +328,47 @@ Using these diagrams, it is easy to show the following theorem.
     largest part is exactly $k$.
   \exercise[recommended] Prove that the number of partitions of $n$ into at most
     $k$ parts is equal to that of partitions of $n + k$ into exactly $k$ parts.
+  \exercise[recommended] We call a partition $\set{P_1, \dots, P_k}$ of
+    $\range{n}$ nice iff $(j + 1) \not\in P_i$ for every $i \in \range{k}$ and
+    $j \in P_i$.
+    Prove that number of nice partitions is equal to $B(n - 1)$.
+    \begin{solution}
+      Let $\mathcal{P}_n$ be the set of all partitions of $\range{n}$ and let
+      $\mathcal{M}_n$ be the set of all nice partitions of $\range{n}$. We are
+      going to construct a bijection
+      \[
+        f : \mathcal{P}_{n - 1} \to \mathcal{M}_n.
+      \]
+
+      Notice that we can obtain every nice partition of $\range{n}$ by:
+      \begin{enumerate}
+        \item First adding a singleton block $\set{n}$ to any partition of
+          $\range{n}$.
+        \item Then, in each block of that partition of $\range{n - 1}$, we locate
+          consecutive integers $i, i + 1, \dots, i + j$ and if $j$ is odd place
+          every other integer, i.e $i, i + 2, i + 4, \dots, i + j - 1$, into
+          the block with $n$, if $j$ is even we put $i + 1, \dots, i + j - 1$ into
+          the block with $n$. We do this for each consecutive sequence of each
+          block of each partition of $\range{n - 1}$ to obtain all possible nice
+          partitions of $\range{n}$.
+      \end{enumerate}
+      Note that the resulting partition is nice, since $i + j \le n - 1$, hence
+      $i + j - 1 < n - 1$.
+
+      For each nice partition of $\range{n}$ obtained this way we can have an
+      inverse transformation $f^{-1}$ that takes every nice partition of
+      $\range{n}$ and gives the corresponding original partition of 
+      $\range{n - 1}$ by:
+      \begin{enumerate}
+        \item Taking every element except $n$ in the block that contains
+          $n$ and placing each element $i$, in order, into a block that contains
+          $i - 1$.
+        \item We then remove the block of $n$ from our partition resulting in a
+          partition of $\range{n - 1}$.
+      \end{enumerate}
+
+      It can be seen that applying $f^{-1}$ to every partition of $\mathcal{M}_n$ gives us
+      every partition of $\mathcal{P}_n$. Thus $f$ forms a bijection between
+      $\mathcal{M}_n$ and $\mathcal{P}_{n - 1}$.
+    \end{solution}
 \end{chapterendexercises}

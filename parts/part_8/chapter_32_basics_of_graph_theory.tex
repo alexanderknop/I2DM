@@ -62,12 +62,13 @@ follows.
     Graph, does not contain the letter K, and other sources state that the
     notation honors the contributions of Kazimierz Kuratowski to graph theory.
   } 
-  is a simple graph with $in$ vertices and exactly one edge connecting
+  is a simple graph with $n$ vertices and exactly one edge connecting
   each pair of distinct vertices.
 \end{definition}
 \nomenclature[G]{$K_n$}{denotes the complete graph on $n$ vertices}
 
 \begin{exercise}
+\label{exercise:maximal-number-of-edges}
   Show that for all natural numbers $n$, the number of edges of $K_n$
   is $\frac{n(n - 1)}{2}$.
 \end{exercise}
@@ -120,6 +121,7 @@ Note that Lemma~\ref{lemma:handshaking} shows that in any simple graph the
 number of vertices with an odd degree is even.
 The essence of the proof of this lemma is the following statement.
 \begin{theorem}
+\label{theorem:handshaking-graphs}
   Let $G = (V, E)$ be a simple graph. Then $\sum_{v \in V} \deg_G(v) = 2|E|$.
 \end{theorem}
 
@@ -134,6 +136,35 @@ The essence of the proof of this lemma is the following statement.
       \item simple graph with four vertices of degrees $1$, $2$, $3$, and $4$;
       \item simple graph with four vertices of degrees $1$, $2$, $3$, and $5$.
     \end{enumerate}
+  \exercise Let $G$ be a \emph{simple} graph. Show that there are two different
+    vertices $u$ and $v$ such that they have the same degree.
+    \begin{solution}
+      Assume $G$ is a simple graph with $n$ vertices. Suppose all vertices in
+      $G$ have different degrees. The set of degrees of the vertices is then
+      $\set{0, 1, \dots, n - 1}$. However this means that one vertex is
+      connected to all other vertices and another vertex is connected to no
+      other vertices, it is a contradiction. Therefore there are at least two
+      different vertices $u$ and $v$ such that they have the same degree.
+    \end{solution}
+  \exercise Let $G$ be a graph on $n$ vertices such that every vertex has odd
+    degree. Show that $n$ is even.
+    \begin{solution}
+      One may notice that for any odd and even numbers the following identities
+      hold:
+      $\mathrm{odd} + \mathrm{odd} = \mathrm{even}$ and $\mathrm{even} +
+      \mathrm{odd} = \mathrm{odd}$.
+
+      Assume there are $k$ edges in $G$ where $k \in \Z$ and let $v_i$ denote
+      the $i$th vertex of $G$ and $d_i$ denote degree of $v_i$, where $i \in
+      \range{n}$. Then the total degree of $G$ (i.e. $\sum_{i = 1}^n d_i$)
+      is $2k$ by \Cref{theorem:handshaking-graphs}. Since every vertex has odd
+      degree $2k = \sum_{i = 1}^{n} d_i = \mathrm{odd} + \mathrm{odd} + \dots +
+      \mathrm{odd}$.
+
+      Notice if $n$ is odd then there is an odd number of vertices and
+      $\sum_{i = 1}^n d(v_i) = \mathrm{odd} \neq 2k$ as $2k$ is even. Thus $n$
+      must be even.
+    \end{solution}
   \exercise In a group of $25$ people, is it possible for each to shake hands
     with exactly $3$ other people?
   \exercise Suppose that $G$ is a graph with $v$ vertices and $e$ edges and

@@ -408,6 +408,22 @@ $p_1$, \dots, $p_\ell$ if we have a Hamiltonian path in the graph.
 \begin{chapterendexercises}
   \exercise Is it true that if a graph has a closed Eulerian walk, then it has
     an even number of edges?
+  \exercise Let $G$ be a graph such that every vertex has degree $4$. Show that
+    it is possible to color edges of the graph into two colors, red and blue,
+    such that every vertex has exactly two red edges and two blue edges.
+    \begin{solution}
+      Without loss of generality the graph is connected. Since all the vertices
+      of $G$ have even degree, there is an Euler cycle $e_1$, \dots, $e_m$ in
+      $G$. We color $e_{2k}$ in red and $e_{2k + 1}$ in blue, for all possible
+      $k$. Note that for every vertex $v$ (except the first in the path) there
+      are $j_1 \neq j_2$ such that $e_{j_1}$, $e_{j_1 + 1}$, $e_{j_2}$, $e_{j_2
+      + 1}$ are going from $v$. Hence, $v$ has exactly two red edges and two
+      blue edges. As about the first vertex, note that number of edges in the
+      graph is equal to $m = 2n$, hence, $e_m$ is colored on red and $e_1$ is
+      colored in blue. Additionally, there is $j_1$ sucht that $e_{j}$ and $e_{j
+      + 1}$ are going from the first vertex. Hence, the first vertex has exactly
+      two red edges and two blue edges.
+    \end{solution}
   \exercise[recommended] Let $G$ be a graph such that there are only $2$
     vertices with odd degree. Prove that they belong to the same connected
     component.
@@ -423,6 +439,24 @@ $p_1$, \dots, $p_\ell$ if we have a Hamiltonian path in the graph.
         such that $\sum_{(u, v) \in E} s(u, v)$ is odd iff $c(v)$ is odd
         for all $v \in V$.
     \end{enumerate}
-  \exercise What is the maximal number of edges of a simple graph $G$ on $[n]$
-    if it is not connected?
+  \exercise Find a minimal $k(n)$ such that for any graph $G$ on $n$ vertices,
+    if $G$ has at least $k(n)$ edges, then $G$ is connected.
+    \begin{solution}
+      Let $G$ be some graph. The graph $G$ has at most $\binom{n}{2}$ many edges
+      by \Cref{exercise:maximal-number-of-edges}.
+
+      Let us assume that $G$ is not connected i.e. we may split $G$ into two
+      disjoint subgraphs $G_1$ and $G_2$ of $G$ such that vertices of $G_1$ are
+      not connected with vertices of $G_2$. Let $n_1$ and $n_2$ denote the
+      number of vertices in $G_1$ and $G_2$ respectively. Note that $G_i$ has at
+      most $\binom{n_i}{2}$ edges for every $i \in \range{2}$. Hence, $G$ has at
+      most $\binom{n_1}{2} + \binom{n_2}{2}$ edges.
+
+      However, $f(n_1) = \binom{n_1}{2} + \binom{n - n_1}{2}$ reaches the minimum for 
+      $1 \le n_1 \le n - 1$ at $n_1 = 1$. As a result, $k(n) \le \binom{n - 1}{2} + 1$.
+
+      Additionally, note that there is a not connected graph $G$ with $\binom{n
+      - 1}{2}$ edges (it is a complete graph on $n - 1$ vertices and one
+      additional vertex). Thus $k(n) = \binom{n-1}{2} + 1$.
+    \end{solution}
 \end{chapterendexercises}

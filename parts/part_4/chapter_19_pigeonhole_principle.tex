@@ -220,6 +220,45 @@ using the induction by $n$.
     equal to $1$, and let $p_1$, \dots, $p_5$ be points inside of $ABC$.
     Show that there are $i \neq j \in \range{5}$ such that the distance between 
     $p_i$ and $p_j$ is at most $0.5$.
+  \exercise We are given $17$ points inside a regular triangle of side of
+    length $1$. Prove that two of these points have distance at most $1 / 4$.
+    \begin{solution}
+      In order to do it let us consider the following partition of the triangle.
+
+      \begin{center}
+        \begin{tikzpicture}[thick, scale=0.3]
+          \draw (-5,0) 
+            -- (5,0)
+            -- (0, 8.660) 
+            -- cycle;
+          \draw (0,0) 
+            -- (-2.5,4.330)
+            -- (2.5,4.330)
+            -- cycle;
+          \draw (-2.5,0) 
+             -- (-3.75,2.165)
+             -- (-1.25,2.165)
+             -- cycle;
+          \draw (2.5,0) 
+             -- (3.75,2.165)
+             -- (1.25,2.165)
+             -- cycle;
+          \draw (0,4.330) 
+             -- (-1.25,6.495)
+             -- (1.25,6.495)
+             -- cycle;
+          \draw (0,4.330) 
+             -- (-1.25,2.165)
+             -- (1.25,2.165)
+             -- cycle;
+        \end{tikzpicture}
+      \end{center}
+
+      Note that there are 16 small triangles inside, hence by pigeonhole
+      principle there are at least two points in the same small triangle.
+      Additionally, distance between any two points inside the regular triangle
+      with side $1 / 4$ is at most $1 / 4$.
+    \end{solution}
   \exercise Show that if there are 30 students in a class, then at least
     two have last names that begin with the same letter.
   \exercise[recommended] Let $n$ be a positive integer. Show that in any set of
@@ -269,6 +308,12 @@ using the induction by $n$.
     $\cardinality{S} \ge 13$, then there are $a, b \in S$ such that $a - b = 6$.
   \exercise Let $S \subseteq \range{20}$ be a set. Show that if $\cardinality{S}
     \ge 11$, then there are $a \neq b \in S$ such that $a + b = 21$.
+    \begin{solution}
+      Note that there are $10$ pairs $(1, 20)$, \dots, $(10, 11)$ such that their
+      sum is equal to $21$. Hence, by the pigeonhole principle, there are two
+      elements of $S$ such that they belong to the same pair; i.e. their sum is
+      equal to $21$.
+    \end{solution}
   \exercise How many numbers must be selected from the set $\range{6}$ to
     guarantee that at least one pair of these numbers add up to $7$?
   \exercise Sasha is training for a triathlon. Over a $30$ day period, he
