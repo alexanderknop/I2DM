@@ -607,4 +607,15 @@ However, the method can be used in a more sophisticated way.
       \sum_{k_1, k_2, k_3 ~:~ k_1 + k_2 + k_3 = n} \binom{n}{k_1 \ k_2 \ k_3} =
       3^n.
     \]
+  \exercise How many different words one can get by reordering the letters of
+    the word ``combinatorics'' (these words may be meaningless)?
+    \begin{solution}
+      Note that the word ``combinatorics'' has $13$ letters, two of them are
+      ``o'', two of them are ``c'', two of them are ``i'', and all other are
+      different. Hence, if we assume for a second that all the letters are
+      different, we can get $13!$ different words. But note that we can exchange
+      ``o''s and it does not change the word, we can also exchange ``c''s etc.
+      Hence, we need to divide $13!$ by $2 \cdot 2 \cdot 2$. As a result, the
+      answer is $\frac{13!}{8}$.
+    \end{solution}
 \end{chapterendexercises}

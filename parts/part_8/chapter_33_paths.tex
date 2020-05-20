@@ -459,4 +459,45 @@ $p_1$, \dots, $p_\ell$ if we have a Hamiltonian path in the graph.
       - 1}{2}$ edges (it is a complete graph on $n - 1$ vertices and one
       additional vertex). Thus $k(n) = \binom{n-1}{2} + 1$.
     \end{solution}
+  \exercise Show that the following graph has no Hamiltonian cycle.
+    \begin{center}
+    	\begin{tikzpicture}[scale=0.5, thick]
+		    % Draw a 7,11 network
+    		% First we draw the vertices
+		    \foreach \pos/\name in {{(0,0)/1}, {(3,0)/2}, {(5,0)/3},
+        	                    {(7,0)/4}, {(10,0)/5}, {(4,2)/6}, {(6,2)/7},
+			  	    {(5,4)/8}, {(4,-2)/9}, {(6,-2)/10}, {(5,-4)/11}}
+			    \node[circle, draw, inner sep=0pt, minimum size=6pt] (\name) at \pos {};
+    		\foreach \source/ \dest in {1/2, 4/5, 2/6, 2/9, 3/6, 3/9, 3/7,
+		  		    3/10, 4/7, 4/10, 8/6, 8/7, 11/9, 11/10, 1/8, 1/11, 5/8, 5/11}
+			    \draw (\source) -- (\dest);
+        \end{tikzpicture}
+  	\end{center}
+    \begin{solution}
+      Note that we can color all the vertices in black and yellow so that
+      vertices of the same color are not adjacent.
+      \begin{center}
+        \begin{tikzpicture}[scale=0.5, auto,swap]
+        	% Draw a 7,11 network
+        	% First we draw the vertices
+      	  \foreach \pos/\name in {{(3,0)/2}, {(5,0)/3},	{(7,0)/4}, 
+              {(5,4)/8}, {(5,-4)/11}}
+            \node[circle, fill=black, draw, inner sep=0pt, minimum size=6pt] 
+              (\name) at \pos {};
+          \foreach \pos/\name in {{(0,0)/1}, {(10,0)/5}, {(4,2)/6}, 
+              {(6,2)/7}, {(4,-2)/9}, {(6,-2)/10}}
+      		  \node[circle, fill=yellow, draw, inner sep=0pt, minimum size=6pt]
+              (\name) at \pos {};
+      	  \foreach \source/ \dest in {1/2, 4/5, 2/6, 2/9, 3/6, 3/9, 3/7, 
+              3/10, 4/7, 4/10, 8/6, 8/7, 11/9, 11/10, 1/8, 1/11, 5/8, 5/11}
+      		  \draw (\source) -- (\dest);
+        \end{tikzpicture}
+      \end{center}
+      Note that there are $11$ vertices in total, there are $6$ yellow vertices
+      and $5$ black. Assume that there is a Hamiltonian path $v_1$, \dots,
+      $v_11$. Without loss of generality $v_1$ is yellow. This implies that
+      $v_1$, $v_3$, $v_5$, $v_7$, $v_9$, and $v_11$ are also yellow since
+      vertices of the same color are not adjacent. However, it also mean that
+      $v_1$ and $v_11$ are adjacent and of the same color, which is a contradiction.
+    \end{solution}
 \end{chapterendexercises}

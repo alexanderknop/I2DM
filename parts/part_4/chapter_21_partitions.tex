@@ -306,6 +306,16 @@ Using these diagrams, it is easy to show the following theorem.
     two. Then $q(n) = p(n) - p(n - 1)$, for all positive integers $n \ge 2$.
   \exercise[recommended] Find a formula for $\stirlingTwo{n}{2}$.
   \exercise Find a formula for $\stirlingTwo{n}{3}$.
+    \begin{solution}
+      In this problem it is easier to find the number of surjections from 
+      $\range{n}$ to $\range{3}$. There are $3^n$ functions from $\range{n}$ to
+      $\range{3}$, there are $3 \cdot 2^n$ functions from $\range{n}$ to
+      $\range{3}$ such that the image has $2$ elements, and there are $3$
+      functions such that their image has $1$ element. Therefore, by the
+      inclusion-exclusion principle, there are $3^n - 3 \cdot 2^n + 3$
+      surjections from $\range{n}$ to $\range{3}$. As a result, 
+      $\stirlingTwo{n}{3} = \frac{1}{6}(3^n - 3 \cdot 2^n + 3)$.
+    \end{solution}
   \exercise Find a formula for $\stirlingTwo{n}{n - 2}$.
     \begin{solution}
       Note that there two variants how we can split $n$ elements into $n - 2$ subsets: 

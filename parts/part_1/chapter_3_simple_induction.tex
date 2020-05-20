@@ -281,8 +281,23 @@ is the maximum of $a_1$, \dots, $a_k$. We may consider two following cases.
     \exercise[open] Find all the natural numbers $n$ such that $n! = m^2$ for
       some integer $m$.
     \exercise Show that
-        $\int\limits_0^{+\infty} x^n e^{- x} ~ \mathrm{d}x = n!$
-        for all $n \ge 0$.
+      $\int\limits_0^{+\infty} x^n e^{- x} ~ \mathrm{d}x = n!$
+      for all $n \ge 0$.
+      \begin{solution}
+        We prove the statement using induction by $n$. The base case is for $n =
+        0$. It is easy to see that $\int\limits_0^{+\infty} e^{-x} ~ \mathrm{d}x
+        = (-e^{-x})\big\rvert_0^\infty = 1$.
+ 
+        Let us prove the induction step from $k$ to $k + 1$. By the induction
+        hypothesis, $\int\limits_0^{+\infty} x^k e^{- x} ~ \mathrm{d}x = k!$.
+        Note that
+        \[
+          \int_0^{+\infty} x^{k + 1} e^{- x} ~ \mathrm{d}x =
+          -x^{k + 1} e^{- x}\big\rvert_0^\infty +
+            \int_0^{+\infty} (k + 1) x^k e^{- x} ~ \mathrm{d}x =
+          \int_0^{+\infty} (k + 1) x^k e^{- x} ~ \mathrm{d}x = (k + 1)!.
+        \]
+      \end{solution}
     \exercise Show that $\sum_{k = 1}^n k \cdot k! = (n + 1)! - 1$.
     \exercise Show that \Cref{algorithm:selection-sort} executes line~6 exactly
       $\frac{n (n + 1)}{2}$ times.

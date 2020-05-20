@@ -316,6 +316,17 @@ using the induction by $n$.
     \end{solution}
   \exercise How many numbers must be selected from the set $\range{6}$ to
     guarantee that at least one pair of these numbers add up to $7$?
+    \begin{solution}
+      Let us split the numbers from $\range{6}$ into $3$ pairs:
+      $(1, 6)$, $(2, 5)$, and $(3, 4)$. Note that the sum within the pair is
+      $7$. Is is also easy to see that, by the pigeonhole principle, if we pick
+      $4$ numbers out of $[6]$, two of them are in the same pair. Therefore
+      whenever we choose $4$ numbers two of them sum up to $7$.
+
+      It is also easy to see that we may select $3$ numbers so that the sum of
+      any two of them is not equal to $7$. For example, we may select $1$, $2$,
+      and $3$.
+    \end{solution}
   \exercise Sasha is training for a triathlon. Over a $30$ day period, he
     pledges to train at least once per day, and $45$ times in all. Then there
     will be a period of consecutive days where he trains exactly $14$ times.
@@ -323,6 +334,15 @@ using the induction by $n$.
     there must be an integer that divides one of the other integers.
     \hint{Consider the set of holes equal to the set of odd numbers
     from $1$ to $2n$.}
+    \begin{solution}
+      Let $R = \set{1, 3, \dots, 2n - 1}$ (note that $\cardinality{R} = n$).
+      Assume that there is a set $L$ that contradicts to the statement of the
+      problem ($\cardinality{L} = n + 1$). It is easy to see that any number 
+      $x \in \range{2n}$ is equal to $2^k \ell$, where $\ell$ is odd. We define
+      the function $f : L \to R$ such that $f(2^k \ell) = \ell$. By the
+      pigeonhole principle, there are $x < y$ such that $f(x) = f(y)$. But it
+      implies that $x$ divides $y$.
+    \end{solution}
   \exercise Let $A_1, \dots, A_\ell \subseteq \range{n}$ be some sets such that
     $A_i \cap A_j \neq \emptyset$. Show that $\ell \le 2^{n - 1}$.
     \begin{solution}

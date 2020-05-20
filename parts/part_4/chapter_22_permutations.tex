@@ -484,19 +484,76 @@ episodes which takes around $3572462$ years.
     polynomial function of $n$. Find the degree of that polynomial.
   \exercise Find a reccurent relation for the number of permutations $\pi \in
     S_n$ such that $\pi^3(x) = x$ for all $x \in \range{n}$.
-
   \exercise Let $p$ be a permutation of $\range{n}$. We associate a permutation matrix
     $M^{(p)}$ to $p$ as follows. Let $M^{(p)}_{i, j} = 1$ if $p(i) = j$, and let
     $M^{(p)}_{i, j} = 0$ otherwise. Prove that $|\det M^{(p)}| = 1$.
   \exercise Prove that if $p$ and $q$ are two permutations, then
     $M^{(p)} M^{(q)} = M^{(pq)}$.
-  \exercise[recommended] Prove that permutations $p$ and $p^{-1}$ are of the
-    same cycle type for any permutation $p$.
-  \exercise A permutation $p$ is called a nontrivial involution if
-    $p^2 = 1 2 \dots n$, but $p \neq 1 2 \dots n$. Prove that if $n > 1$, the
-    number of nontrivial involutions in $S_n$ is odd.
+  \exercise Let $p$ be a permutation of the cyclic type $(c_1, \dots, c_n)$.
+    Show that $p^\ell = 1 2 3 \dots n$, where
+    \[
+      \ell = \prod_{i ~:~ c_i \neq 0} i.
+    \]
+    \begin{solution}
+      First we prove the following statement, if $p \in S_n$ is a cycle of
+      length $\ell$, then $p^\ell = 12 \dots n$. Indeed, assume $p = (i_0,
+      \dots, i_{\ell - 1})$;note that $p(i_j) = i_{(j + 1) \mod \ell}$,
+      therefore, $p^\ell(i_j) = i_{(j + \ell) \mod \ell} = i_j$. It is also
+      clear that if $p$ is a cycle of length $\ell$, then $p^{d\ell} = 
+      12 \dots n$ for any $d \in \N$.
+
+      Another part of the argument is the following let $p$ and $q$ be two
+      disjoint cycles, then $pq = qp$ (this can be easily derived from the
+      definition of the composition).
+
+      As a result, if a permutation $p = q_1 q_2 \dots q_k$, where $q_i$s are
+      disjoint cycles, then $p^\ell = q^\ell_1 q^\ell_2 \dots q^\ell_k$. Hence,
+      if $\ell = \prod_{i ~:~ c_i \neq 0} i$, $p^\ell = 1 2 \dots n$.
+    \end{solution}
   \exercise Show that any permutation can be obtained as a product of some
     transpositions; i.e., cycles of length $2$.
+    \begin{solution}
+      It is easy to see that it is enough to prove the statement for the cycles.
+      Consider a permuatation $(i_1, \dots, i_k)$. It is clear that $(i_1, i_2)
+      (i_2, i_3)$ is equal to $(i_1, i_2, i_3)$ and moreover $(i_1, i_2) (i_2,
+      i_3) \dots (i_{k - 1}, i_k)$ is equal to $(i_1, \dots, i_k)$. Therefore we
+      proved the statement.
+    \end{solution}
+  \exercise Show that any permuation from $S_n$ can be expressed as a product of 
+    $(1, 2)$, \dots, $(n - 1, n)$ (each permuation can be used multiple times).
+  \exercise Show that for any $n \in \N$, there are two permuations $p, q \in
+    S_n$ such that any permuation from $S_n$ can be expressed as their product
+    (each permuation can be used multiple times).
+    \begin{solution}
+      First, let us note that any permuation can be obtained as a product of the
+      permuations $(1, 2)$, \dots, $(n - 1, n)$. It is enough to prove that any
+      permutation $(i ,j)$ ($i < j$) can be obtained from them. Note that 
+      $(i + 1, j) \dots (j - 2, j)(j - 1, j)(i, i + 1) \dots (j - 1, j) = 
+        (i, j)$.
+
+      So to prove the statement we need to came up with two permutations such
+      that we can obtain $(i, i + 1)$ as their product for any $i \in [n - 1]$.
+      Consider $(1, 2)$ and $(1, 2, \dots, n)$. Note that $(1, 2, \dots, n)^n =
+      1 2 \dots n$. Hence, $(1, 2, \dots, n)^{n - 1} = (1, 2, \dots, n)^{-1}$.
+      It is also easy to see that 
+      $(i, i + 1) = (1, 2, \dots, n)^{-i} (1, 2) (1, 2, \dots, n)^i$.
+    \end{solution}
+  \exercise[recommended] Prove that permutations $p$ and $p^{-1}$ are of the
+    same cycle type for any permutation $p$.
+  \exercise[recommended] A permutation $p$ is called a nontrivial involution if
+    $p^2 = 1 2 \dots n$, but $p \neq 1 2 \dots n$. Prove that if $n > 1$, the
+    number of nontrivial involutions in $S_n$ is odd.
+    \begin{solution}
+      Let $p \in S_n$ and $p^2 \neq \identity{\range{n}}$; it is easy to see
+      that $(p^{-1})^2 \neq \identity{\range{n}}$. Therefore it is possible to
+      split all the permutations from the set
+      $\set[p^2 \neq \identity{\range{n}}]{p \in S_n}$ into pairs $p$ and
+      $p^{-1}$. Hence, the size of the set
+      $\set[p^2 \neq \identity{\range{n}}]{p \in S_n}$ is even; we may also note
+      that the size of $S_n$ is also even. As a result, the size of 
+      $\set[p^2 = I]{p \in S_n}$ is even as well, but it implies that 
+      $\set[{p^2 = I \text{ and } p \neq I}]{p \in S_n}$ is odd.
+    \end{solution}
   \exercise There are $n$ seats in a bus; $n - 1$ people are assigned seats in
     this bus. However, a dog came to the bus and took one of the seats uniformly
     at random. So each next passenger either takes his or her seat if it is

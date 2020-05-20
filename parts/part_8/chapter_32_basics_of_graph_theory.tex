@@ -146,6 +146,21 @@ The essence of the proof of this lemma is the following statement.
       other vertices, it is a contradiction. Therefore there are at least two
       different vertices $u$ and $v$ such that they have the same degree.
     \end{solution}
+  \exercise Let $G = ([5] \times [5], E)$ be a graph such that 
+    $((x_1, y_1), (x_2, y_2)) \in E$ iff
+    \begin{itemize}
+      \item either $x_1 = x_2$ and $|y_1 - y_2| = 1$, or
+      \item $|x_1 - x_2| = 1$ and $y_1 = y_2$.
+    \end{itemize}
+
+    \begin{enumerate}
+      \item Is it possible to cover the graph $G$ with $8$ paths of length $5$
+        (these paths should not visit any vertex twice)? Note that by covering we
+        mean that every edge of $G$ is an edge of one of the paths.
+      \item Is it possible to cover the graph $G$ with $5$ paths of length $8$
+        (these paths should not visit any vertex twice)? Note that by covering
+        we mean that every edge of $G$ is an edge of one of the paths.
+    \end{enumerate}
   \exercise Let $G$ be a graph on $n$ vertices such that every vertex has odd
     degree. Show that $n$ is even.
     \begin{solution}

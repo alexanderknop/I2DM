@@ -245,7 +245,16 @@ The following theorem generalises this observation.
         \item $\set{a_{n + m}}_{n \ge 0}$ ($m$ is a constant).
       \end{multicols}
     \end{enumerate}
-  \exercise Let $f(n)$ be the number of subsets of $[n]$ that contain no two
+  \exercise Let $k$ be a positive integer. Find an explicit formula for the
+    generating function for the sequence $\set{\binom{n}{k}}_{n \ge 0}$.
+    \begin{solution}
+      Let us consider a generating function $F(x) = \sum_{n \ge 0} x^n$. Note that
+      $F^{(k)}(x) = \sum_{n \ge k} n (n - 1) (n - 2) \dots (n - k + 1) x^{n - k}$.
+      Therefore, $\frac{x^k}{k!} F^{(k)}(x) = \sum_{n \ge 0} \binom{n}{k} x^n$. It
+      is also easy to see that $F^{(k)}(x) = \frac{k!}{(1 - x)^{k + 1}}$. As a
+      result, $\sum_{n \ge 0} \binom{n}{k} x^n = \frac{x^k}{(1 - x)^{k + 1}}$.
+    \end{solution}
+  \exercise Let $f(n)$ be the number of subsets of $\range{n}$ that contain no two
     consecutive elements, for integer $n$. Find the recurrence that is satisfied
     by these numbers, and then find an explicit formula for these numbers.
   \exercise Find an explicit formula for $a_n$ if $a_0 = 0$ and for any
