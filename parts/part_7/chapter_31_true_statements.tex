@@ -1,0 +1,173 @@
+\chapter{True Statements in Propositional Logic}
+\label{chapter:propositional-truth}
+\marginurl{%
+  Proofs Using Truth Tables:\\\noindent
+  Introduction to Mathematical Logic \#2
+}{youtu.be/DOAxnmScpPc}
+
+
+Typical theorem in mathematics have the following template:
+``if some statements are true, then some statement is also true''.
+In propositional logic statements are described using propositional formulas.
+So our goal is to present a way to describe proofs of results that looks like:
+if $\phi_1$, \dots, $\phi_k$ are true, then $\psi$ is also true.
+
+This section discusses the method which is based on truth tables (we discussed
+it before in \Cref{chapter:predicates}).
+
+We start from an example similar to
+the proof gaven in the beginning of the first chapter. Assume that we know
+that if $x$ is a real number such that $x < -2$ or $x > 2$, then $x^2 > 4$. We
+can derive that if $\lnot (x^2 > 4)$, then $\lnot (x < -2)$ and $\lnot (x > 2)$.
+
+In order to emphasize the logical structure of the argument let us denote
+the statement $x > 2$ by $p$, the statement $x < -2$ by $q$, and the statement
+$x^2 > 4$ by $r$. In this case the argument is as follows:
+if $(p \lor q) \limplies r$ is true, then
+$\lnot r \limplies (\lnot p \land \lnot q)$ is true as well.
+
+The simplest way to explain why this argument is true is to use
+a truth table.
+\begin{center}
+  \begin{tabular}{l l l l l}
+    \toprule
+    $p$ & $q$ & $r$ & $(p \lor q) \limplies r$ &
+    $\lnot r \limplies (\lnot p \land \lnot q)$ \\
+    \midrule
+    T & T & T & T & T \\
+    T & T & F & F & F \\
+    T & F & T & T & T \\
+    T & F & F & F & F \\
+    F & T & T & T & T \\
+    F & T & F & F & F \\
+    F & F & T & T & T \\
+    F & F & F & T & T \\
+    \bottomrule
+  \end{tabular}
+\end{center}
+Note that each line where $(p \lor q) \limplies r$ is true has
+$\lnot r \limplies (\lnot p \land \lnot q)$ true as well. So we proved that
+the argument is indeed correct.
+
+We may also note that we showed that
+\[
+  \bigl((p \lor q) \limplies r\bigr) \iff
+  \bigl(\lnot r \limplies (\lnot p \land \lnot q) \bigr)
+\]
+is always true (we say that this propositional formula is a
+\emph{tautology}). A generalization of this saying the if $p \limplies q$ is
+true, then $\lnot q \limplies \lnot p$ is also true is called the
+\emph{contraposition} argument.
+
+Let us now consider another argument. If we know that Joe was a good boy and we
+know that if Joe is a good boy, then Santa gives a present to Joe. We may
+conclude that Santa gives a present to Joe. We can similarly to the previous
+example write this argument using variables and connectives.
+If we know that $p$ and $p \limplies q$, we may conclude that $q$ is true.
+\begin{exercise}
+  Show that $(p \land (p \limplies q)) \limplies q$ is a tautology.
+\end{exercise}
+Such an argument is called \emph{modus ponens}.
+
+A notion connected to being a tautology is the notion of being satisfiable.
+We say that a formula (a set of formulas) is \emph{satisfiable} iff there
+is a substitution to the variables such that the value of the formula is true
+(the values of all the formulas are true). Note that a formula is not
+satisfiable (the formula is \emph{unsatisfiable}) iff its negation is
+a tautology. Therefore, using truth tables one may check whether a formula
+is satisfiable or not.\footnote{%
+  Note that the procedure is awfully not efficient since if the formula
+  uses $n$ variables we need to do $2^n$ operations. Unfortunately,
+  we do not know anything that always works better since
+  satisfiability problem (the problem of determining whether a given formula is
+  satisfiable or not) is NP complete.
+}
+
+\section{Semantic Implication}
+As we mentioned at the beginning of the previous section, most of the
+statements in mathematics are in the form
+``if some statements are true, then some statement is also true'';
+this type of statements can be described using the notion of semantic
+implication. We say that a set $\Sigma$ of propositional formulas with
+variables from a set $V$ \emph{semantically implies} a propositional formula
+$\phi$ with variables from the set $V$ (we denote it by $\Sigma \models \phi$)
+iff whenever all the formulas from $\Sigma$ are true under some propositional
+assignement to $V$, the formula $\phi$ is also true under this propositional
+assignement; i.e.,
+$\Sigma \models \phi$ iff for any $\rho : V \to \set{\ltrue, \lfalse}$,
+$\substitute{\phi}{\rho} = \ltrue$ provided that
+$\substitute{\psi}{\rho} = \ltrue$ for all $\psi \in \Sigma$.
+(Note that the set $\Sigma$ may be infinite.)
+
+In the previous section we explained that if we have a finite set $\Sigma$,
+then it is possible to check whether a formula $\phi$ is semantically implied
+by $\Sigma$. Let us try to find out whether we can do the same for infinite
+sets $\Sigma$.
+
+Partial answer to this question is given by the following theorem.
+\begin{theorem}[compactness theorem]
+  A set $\Sigma$ of propositional formulas is satisfiable iff every finite
+  subset is satisfiable.
+\end{theorem}
+\begin{proof}
+  We say that a set is \emph{finitely satisfiable} if every finite subset
+  is satisfiable.
+
+  Let us enumerate all the propositional formulas $\alpha_1$, $\alpha_2$, \dots.
+  We define a family of sets $\Delta_1$, \dots, $\Delta_n$, \dots
+  such that $\Delta_1 = \Sigma$ and
+  \[
+    \Delta_{n + 1} =
+    \begin{cases}
+      \Delta_n \cup \set{\alpha_{n + 1}} & \text{if }
+        \Delta_n \cup \set{\alpha_{n + 1}} \text{is finitely satisfiable,} \\
+      \Delta_n \cup \set{\lnot \alpha_{n + 1}} & \text{otherwise.}
+    \end{cases}
+  \]
+  Note that all the $\Delta_n$ are finitely satisfiable.
+
+  Let $\Delta = \cup_{n \in \N} \Delta_n$. It is clear that $\Delta$ is
+  finitely satisfiable and for any propositional formula $\alpha$,
+  either $\alpha$ or $\lnot \alpha$ belongs to $\Delta$.
+
+  Let us consider a substitution $v_1$, \dots, $v_n$, \dots to the variables
+  $x_1$, \dots, $x_n$, \dots such that $v_i = \ltrue$ iff the formula $x_i$
+  belongs to $\Delta$. We may note that this substitution satisfies any
+  formula $\phi \in \Delta$.
+\end{proof}
+
+Using this theorem, we can show that any implication of an infinite set is
+actually an implication of a finite subset of it.
+\begin{corollary}
+  Let $\Sigma$ be a set of propositional formulas over the variables
+  $x_1$, $x_2$, \dots, $x_n$, \dots, and $\phi$ be a propositional formula
+  over the same set. If $\Sigma \models \phi$, then there is a finite
+  $\Sigma' \subseteq \Sigma$ such that $\Sigma' \models \phi$.
+\end{corollary}
+\begin{proof}
+  Note that $\Sigma \not\models \phi$ iff $\Sigma \cup \set{\phi}$ is
+  satisfiable.
+
+  Let us now assume that for any finite $\Sigma' \subseteq \Sigma$,
+  $\Sigma' \not\models \phi$. This implies that $\Sigma' \cup \set{\phi}$
+  is satisfiable for all finite $\Sigma'$. Therefore, $\Sigma \cup \set{\phi}$
+  is satisfiable, which is a contradiction to the assumption that
+  $\Sigma \models \phi$.
+\end{proof}
+
+Therefore if we wish to check whether a formula $\phi$ is semantically implied
+by $\Sigma$, we just need to brute-force all the finite subsets of $\Sigma$ and
+check whether they semantically imply $\phi$. By the previous argument, if
+$\phi$ is implied by $\Sigma$, this procedure reports ``yes'' at some point,
+and in the opposite case it will work infinitely long.
+
+\begin{chapterendexercises}
+  \exercise Show that $((A \land B) \lor C) \limplies (A \lor C)$ is a
+    tautology.
+  \exercise Show that $((A \limplies B) \land (\lnot A \limplies C)) \limplies
+    (B \lor C)$ is a tautology.
+  \exercise Show that 
+    $((W \limplies X) \land (Y \limplies Z)) \limplies 
+      ((W \lor Y) \limplies (X \lor Z))$
+     is a tautology.
+\end{chapterendexercises}

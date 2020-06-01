@@ -1,0 +1,503 @@
+\chapter{Natural Deduction For Propositional Logic}
+\marginurl{%
+  Natural Deduction:\\\noindent
+  Introduction to Mathematical Logic \#3
+}{youtu.be/PfVafyptFtM}
+
+The problem of the method discussed in \Cref{chapter:propositional-truth} is that we
+need to consider \textbf{all} possible values of the variables. Let us now
+consider a more complicated example. Imagine that we know that $\lnot q$,
+$p \limplies q$. Using the contraposition argument and modus ponens we may derive
+$\lnot p$. Indeed, by contraposition we may conclude that
+$\lnot q \limplies \lnot p$ and modus ponens implies that $\lnot p$ is true since
+$\lnot q$ is true.
+
+In other words, we can combine several tautologies to prove another tautology.
+Apparently it is enough to fix some small number of tautologies to derive all
+other tautologies, we call these tautologies ``rules''. There are several ways
+to write such proofs, we are going to use Fitch notation for natural deduction.
+In this notation any proof is written in several rows, each row in a Fitch-style
+proof is either:
+\begin{itemize}
+  \item an assumption or subproof assumption.
+  \item a sentence justified by the citation of
+    \begin{enumerate*}[label=(\roman*)]
+      \item a rule of inference and
+      \item the prior line or lines of the proof that license that rule.
+    \end{enumerate*}
+\end{itemize}
+We say that there is a natural deduction derivation of $\phi$ from $\psi_1$,
+\dots, $\psi_k$. If there is a Fitch-style proof starting with the assumptions
+$\psi_1$, \dots, $\psi_k$, and finishes with the formula $\phi$.
+Using this scheme we may write the argument we just mentioned as follows.
+
+\noindent $
+  \begin{nd}
+    \hypo {1} {\lnot q}
+    \hypo {2} {p \limplies q}
+    \have {3} {\lnot q \limplies \lnot p} \by{contraposition}{2}
+    \have {4} {\lnot p} \by{modus ponens}{1, 3}
+  \end{nd}
+$
+
+\noindent In the rest of the section we are going to list all the rules we use.
+
+\paragraph{Conjunctions.}
+In order to introduce a conjunction we can use the following rule.
+\[
+  \begin{nd}
+    \have [m] {1} {A}
+    \have [n] {3} {B}
+    \have [~] {5} {A \land B} \ai{1, 3}
+  \end{nd}
+\]
+This rule corresponds to the tautology $(A \land B) \limplies (A \land B)$.
+
+In order to eliminate conjunctions we can use the following two rules.
+\begin{center}
+  \begin{tabular}{c c}
+    $\begin{nd}
+      \have [m] {1} {A \land B}
+      \have [~] {3} {A} \ae{1}
+    \end{nd}$
+    &
+    $\begin{nd}
+      \have [m] {1} {A \land B}
+      \have [~] {3} {B} \ae{1}
+    \end{nd}$
+  \end{tabular}
+\end{center}
+These rules correspond to the tautologies $(A \land B) \limplies A$ and
+$(A \land B) \limplies B$.
+
+\paragraph{Disjuctions.}
+In order to introduce a disjunction we can use the following two rules.
+\begin{center}
+  \begin{tabular}{c c}
+    $\begin{nd}
+      \have [m] {1} {A}
+      \have [~] {3} {A \lor B} \oi{1}
+    \end{nd}$
+    &
+    $\begin{nd}
+      \have [m] {1} {A}
+      \have [~] {3} {B \lor A} \oi{1}
+    \end{nd}$
+  \end{tabular}
+\end{center}
+These rules correspond to the tautologies $A \limplies (A \lor B)$ and
+$A \limplies (B \lor A)$.
+
+In order to eliminate a disjunction we can use the following rule.
+\[
+  \begin{nd}
+    \have [m] {1} {A \lor B}
+    \open
+      \hypo [i] {3} {A}
+      \have[j] {5} {C}
+    \close
+    \open
+      \hypo [k] {6} {B}
+      \have[l] {8} {C}
+    \close
+    \have[~] {9} {C} \oe{1, 3-5, 6-8}
+  \end{nd}
+\]
+This rule corresponds to the tautology
+$\bigl( (A \lor B) \land (A \limplies C) \land (B \limplies C) \bigr)
+\limplies C$.
+
+\paragraph{Implications.}
+In order to introduce an implication we can use the following two rules.
+\[
+  \begin{nd}
+    \open
+      \hypo [i] {3} {A}
+      \have[j] {5} {B}
+    \close
+    \have[~] {9} {A \limplies B} \ii{3-5}
+  \end{nd}
+\]
+This rule corresponds to the tautology
+$(A \limplies B) \limplies (A \limplies B)$.
+
+In order to eliminate an implication we can use the following rule.
+\[
+  \begin{nd}
+    \have [m] {1} {A \limplies B}
+    \have [n] {2} {A}
+    \have[~] {9} {B} \ie{1, 2}
+  \end{nd}
+\]
+This rule corresponds to the tautology
+$\bigl( (A \limplies B) \land A \bigr)
+\limplies B$.
+
+\paragraph{Negations.}
+In order to introduce a negation we can use the following two rules ($\perp$ is
+a special symbol representing a false statement).
+\[
+  \begin{nd}
+    \open
+      \hypo [i] {3} {A}
+      \have[j] {5} {\perp}
+    \close
+    \have[~] {9} {\lnot A} \ni{3-5}
+  \end{nd}
+\]
+This rule corresponds to the tautology
+$\bigl( A \limplies \perp \bigr)
+\limplies \lnot A$.
+
+In order to eliminate a negation we can use the following rule.
+\[
+  \begin{nd}
+    \have [m] {1} {A}
+    \have [n] {2} {\lnot A}
+    \have[~] {9} {\perp} \ne{1, 2}
+  \end{nd}
+\]
+This rule corresponds to the tautology
+$\bigl( A \land \lnot A \bigr)
+\limplies \perp$.
+
+\paragraph{Truths and falsities.}
+Additionally, we have the following two rules.
+\begin{center}
+  \begin{tabular}{c c}
+    $\begin{nd}
+      \have [m] {1} {\perp}
+      \have [~] {3} {A} \be{1}
+    \end{nd}$
+    &
+    $\begin{nd}
+      \open
+        \hypo [i] {3} {\lnot A}
+        \have[j] {5} {\perp}
+      \close
+      \have[~] {9} {A} \by{IP}{3, 5}
+    \end{nd}$
+  \end{tabular}
+\end{center}
+
+\marginurl{%
+  An online tool to check natural deduction proofs
+}{proofs.openlogicproject.org/}
+
+\begin{exercise}
+  Check that all the tautologies we mentioned are indeed tautologies.
+\end{exercise}
+
+\section{Examples of Derivations}
+In this section we give several derivations using the rules we just introduced.
+
+First, we prove that if we know that $A \limplies \lnot A$ we can derive that
+$\lnot A$.
+
+\noindent $
+  \begin{nd}
+    \hypo {1} {A \limplies \lnot A}
+    \open
+      \hypo {2} {A}
+      \have {3} {\lnot A} \ie{1, 2}
+      \have {4} {\perp} \ne{2, 3}
+    \close
+    \have {5} {\lnot A} \ni{2-4}
+  \end{nd}
+$
+
+Another statement we are going to prove is that if
+$A \limplies (A \land \lnot A)$ is true, then $\lnot A$ is also true.
+
+\noindent $
+  \begin{nd}
+    \hypo {1} {A \limplies (A \land \lnot A)}
+    \open
+      \hypo {2} {A}
+      \have {3} {A \land \lnot A} \ie{1, 2}
+      \have {4} {\lnot A} \ae{3}
+      \have {5} {\perp} \ne{2, 4}
+    \close
+    \have {6} {\lnot A} \ni{2-5}
+  \end{nd}
+$
+
+A bit more complicated is the proof of the law of excluded middle:
+$A \lor \lnot A$.
+
+\noindent $
+  \begin{nd}
+    \hypo {1} {}
+    \open
+      \hypo {2} {\lnot (A \lor \lnot A)}
+      \open
+        \hypo {3} {A}
+        \have {4} {A \lor \lnot A} \oi{3}
+        \have {5} {\perp} \ne{2, 4}
+      \close
+      \have {6} {\lnot A} \ni{3-5}
+      \have {7} {A \lor \lnot A} \oi{6}
+      \have {8} {\perp} \ne{2, 8}
+    \close
+    \have {9} {A \lor \lnot A} \by{IP}{2-8}
+  \end{nd}
+$
+
+\section{Soundness and Completeness}
+\marginurl{%
+  Soundness and Completeness:\\\noindent
+  Introduction to Mathematical Logic \#4
+}{youtu.be/9Utsppn-M_I}
+The most important properties of the natural deduction are the following two
+theorems.
+
+\begin{theorem}[completeness of natural deductions]
+  Let $\phi$ be a propositional formula. If $\phi$ is a tautology, then
+  there is a proof of $\phi$. Moreover if $\Sigma$ is a finite set of
+  propositional formulas and $\Sigma \models \phi$, then there is a
+  derivation of $\phi$ from $\Sigma$.
+\end{theorem}
+
+\begin{theorem}[soundness of natural deductions]
+  Let $\phi$ be a propositional formula. If there is a proof of $\phi$, then
+  $\phi$ is a tautology. Moreover if $\Sigma$ is a finite set of
+  propositional formulas and there is a derivation of $\phi$ from $\Sigma$,
+  then $\Sigma \models \phi$.
+\end{theorem}
+
+
+Proofs of these two theorems are not that difficult but very technical. So
+prove these statements on examples to at least illustrate them.
+
+\paragraph{Completeness of natural deductions.}
+Proofs of this statement exploit the following idea: if a propositional formula
+is a tautology, then we can verify this statement using the truth table. So
+the proof simply brute-forces all the values of the variables of a formula and
+checks that the formula is indeed true.
+Consider a tautology $(\lnot A \land \lnot B) \limplies \lnot (A \lor B)$.
+The proof of this tautology is as follows.
+
+First we derive $A \lor \lnot A$ and $B \lor \lnot B$, and we use these two
+formulas to consider cases using the elimination of disjunction.
+
+\noindent$
+\begin{nd}
+  \hypo {1} {}
+  \have {2} {A \lor \lnot A} \by{the law of excluded middle}{}
+  \have {3} {B \lor \lnot B} \by{the law of excluded middle}{}
+\end{nd}
+$
+
+
+\noindent After that, we consider the case when $A$ and $B$ are both true. Note
+that the assumption of the implication is false in this case. Thus, we just need
+to assume $\lnot A \land \lnot B$, derive the contradiction, and derive
+$\lnot (A \lor B)$.
+
+\noindent$
+\begin{ndresume}
+  \open
+    \hypo {4} {A}
+    \open
+      \hypo {5} {B}
+      \open
+        \hypo {6} {\lnot A \land \lnot B}
+        \have {7} {\lnot A} \ae{6}
+        \have {8} {\perp} \ne{4, 7}
+        \have {9} {\lnot (A \lor B)} \be{8}
+      \close
+      \have {10} {(\lnot A \land \lnot B) \limplies \lnot (A \lor B)} \ii{6-9}
+    \close
+\end{ndresume}
+$
+
+
+\noindent After that, we consider the case when $A$ is true but and $B$ is
+false. In this case, the assumption of the implication is also false; thus, the
+proof is the same as in the previous case.
+
+\noindent$
+\begin{ndresume}
+    \open
+      \hypo {11} {\lnot B}
+      \open
+        \hypo {12} {\lnot A \land \lnot B}
+        \have {13} {\lnot A} \ae{12}
+        \have {14} {\perp} \ne{4, 13}
+        \have {15} {\lnot (A \lor B)} \be{14}
+      \close
+      \have {16} {(\lnot A \land \lnot B) \limplies \lnot (A \lor B)} \ii{6-9}
+    \close
+    \have {17} {(\lnot A \land \lnot B) \limplies \lnot (A \lor B)} \oe{2, 5-10, 11-16}
+  \close
+\end{ndresume}
+$
+
+\noindent The third case is when $A$ is false and $B$ is
+true. In this case the assumption of the implication is false again, thus the
+proof is the same as in the previous two cases.
+
+\noindent$
+\begin{ndresume}
+  \open
+    \hypo {18} {\lnot A}
+    \open
+      \hypo {19} {B}
+      \open
+        \hypo {20} {\lnot A \land \lnot B}
+        \have {21} {\lnot B} \ae{20}
+        \have {22} {\perp} \ne{19, 22}
+        \have {23} {\lnot (A \lor B)} \be{22}
+      \close
+      \have {24} {(\lnot A \land \lnot B) \limplies \lnot (A \lor B)} \ii{20-23}
+    \close
+\end{ndresume}
+$
+
+\noindent Finally, we consider the case when $A$ and $B$ are false. In this
+case the assumption of the implication is true, and since the formula is a
+tautology and $\lnot A \land \lnot B$ is true, we know that $\lnot (A \lor B)$
+is also true. Assume that $A \lor B$ is true and note that this is impossible.
+Thus using introduction of the negation we can prove the statement.
+
+\noindent$
+\begin{ndresume}
+    \open
+      \hypo {25} {\lnot B}
+      \open
+        \hypo {26} {\lnot A \land \lnot B}
+        \open
+          \hypo {27} {A \lor B}
+          \open
+            \hypo {28} {A}
+            \have {29} {\perp} \ne{18, 28}
+          \close
+          \open
+            \hypo {30} {B}
+            \have {31} {\perp} \ne{25, 30}
+          \close
+          \have {32} {\perp} \oe{27, 28-29, 30-31}
+        \close
+        \have {33} {\lnot (A \lor B)} \ne{26-32}
+      \close
+      \have {39} {(\lnot A \land \lnot B) \limplies \lnot (A \lor B)} \ii{26-33}
+    \close
+    \have {40} {(\lnot A \land \lnot B) \limplies \lnot (A \lor B)} \oe{1, 3-17, 18-39}
+  \close
+\end{ndresume}
+$
+
+\paragraph{Soundness of natural deductions.}
+Idea behind the soundness is also simple. We just explain that every line of
+the proof represent a tautology, including the last one. We illustrate this on
+the exaple of the proof of $A \lor \lnot A$. Recall that the proof of this
+tautology is the following.
+
+\noindent $
+  \begin{nd}
+    \hypo {1} {}
+    \open
+      \hypo {2} {\lnot (A \lor \lnot A)}
+      \open
+        \hypo {3} {A}
+        \have {4} {A \lor \lnot A}
+        \have {5} {\perp}
+      \close
+      \have {6} {\lnot A}
+      \have {7} {A \lor \lnot A}
+      \have {8} {\perp}
+    \close
+    \have {9} {A \lor \lnot A}
+  \end{nd}
+$
+
+\begin{enumerate}
+  \item The second line is just an assumption, so the corresponding tautology is
+    $\lnot (A \lor \lnot A) \limplies \lnot (A \lor \lnot A)$.
+  \item Line~3 is also an assumption so the corresponding tautology is
+    $\lnot (A \lor \lnot A) \limplies (A \limplies A)$.
+  \item Line~4 is a formula $A \lor \lnot A$ which we derived under assumptions
+    $\lnot (A \lor \lnot A)$ and $A$, so the corresponding tautology is
+    $\lnot (A \lor \lnot A) \limplies (A \limplies (A \lor \lnot A))$ (it is a
+    tautology since we replaced $A$ by $A \lor \lnot A$ in the conclusion of
+    the formula corresponding to Line~3).
+  \item Line~5 is a formula $\perp$ which we derived under assumptions
+    $\lnot (A \lor \lnot A)$ and $A$, so the corresponding tautology is
+    $\lnot (A \lor \lnot A) \limplies (A \limplies \perp)$ (it is a
+    tautology since on Line~4 we explained that $\lnot (A \lor \lnot A)
+    \limplies (A \limplies (A \lor \lnot A))$).
+  \item Line~6 is a formula $\lnot A$ which we derived under assumptions
+    $\lnot (A \lor \lnot A)$, so the corresponding tautology is
+    $\lnot (A \lor \lnot A) \limplies \lnot A$ (it is a
+    tautology since on Line~5 we explained that $A \limplies \perp$ under the
+    assumption $\lnot (A \lor \lnot A)$).
+  \item Line~7 is a formula $A \lor \lnot A$ which we derived under assumptions
+    $\lnot (A \lor \lnot A)$, so the corresponding tautology is
+    $\lnot (A \lor \lnot A) \limplies (A \lor \lnot A)$ (it is a
+    tautology since on Line~6 we explained that $A$ under the
+    assumption $\lnot (A \lor \lnot A)$).
+  \item Line~8 is a formula $\perp$ which we derived under assumptions
+    $\lnot (A \lor \lnot A)$, so the corresponding tautology is
+    $\lnot (A \lor \lnot A) \limplies \perp$ (it is a
+    tautology since on Line~6 we explained that $A \lor \lnot A$ under the
+    assumption $\lnot (A \lor \lnot A)$).
+  \item Finally, Line~9 is a formula $A \lor \lnot A$ (it is a tautology since
+    we proved that $\lnot (A \lor \lnot A) \limplies \perp$ is a tautology)
+\end{enumerate}
+
+
+
+\begin{chapterendexercises}
+  \exercise  Write a natural deduction derivation of $A \lor C$ from
+    hypothesis $(A \land B) \lor C$.
+  \exercise Write a natural deduction derivation of $B \lor C$ from
+    hypothesis $A \limplies B$ and $\lnot A \limplies C$.
+  \exercise Write a natural deduction derivation of
+    $(W \lor Y) \limplies (X \lor Z)$ from
+    hypotheses $W \limplies X$ and $Y \limplies Z$.
+  \exercise Let us formulate the pigeonhole principle using propositional
+    formulas. Let
+    $V = \set{x_{1, 1}, \dots, x_{n + 1, 1}, x_{1, 2} \dots, x_{n + 1, n}}$
+    (informally $x_{i, j}$ is true iff the $i$th pigeon is in the $j$th hole).
+    Consider the following propositional formulas on the variables from
+    $V$.
+    \begin{itemize}
+      \item $L_i$ ($i \in [n + 1]$) is equal to $\bigvee_{j = 1}^n x_{i, j}$.
+        (Informally this formula says that the $i$th pigeon is in a hole.)
+      \item $R_j$ ($j \in [n]$) is equal to
+        $\biglor_{i_1 = 1}^{n + 1} \biglor_{i_2 = i_1 + 1}^{n + 1}
+        (x_{i_1, j} \land x_{i_2, j})$.
+        (Informally this formula says that there are two pigeons in the $j$th
+        hole.)
+      \end{itemize}
+
+      Show that there is a natural deduction derivation of
+      $\left(
+          \bigland_{i = 1}^{n + 1} L_i
+        \right)
+        \limplies
+        \left(
+          \biglor_{i = 1}^{n} R_i
+        \right)$.
+    \exercise In this exercise we think about clauses as sets of literals so
+      the order of disjunctions and repetitions of literals are not important.
+      We say that a clause $C$ can be obtained from clauses $A$ and $B$
+      using the \emph{resolution} rule if $C = A^\prime \lor B^\prime$,
+      $A = x \lor A^\prime$, and $B = \lnot x \lor B^\prime$, for some variable
+      $x$.
+
+      We say that a clause $C$ can be derived from clauses $A_1$, \dots, $A_m$
+      using resolutions
+      if there is a sequence of clauses $D_1$, \dots, $D_\ell = C$ such that
+      each $D_i$
+      \begin{itemize}
+        \item is either obtained from clauses $D_j$ and $D_k$ for $j, k < i$ using the
+          \emph{resolution} rule, or
+        \item is equal to $A_j$ for some $j \in [m]$, or
+        \item is equal to $D_j \lor E$ for some $j < i$ and a clause $E$.
+      \end{itemize}
+
+      Show that if an empty clause $\perp$ can be derived from clauses $A_1$,
+      \dots, $A_m$ using the resolution rule, then $A_1$, \dots, $A_m$
+      semantically imply $\perp$.
+\end{chapterendexercises}
