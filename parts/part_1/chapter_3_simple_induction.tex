@@ -38,6 +38,21 @@ We define $P(n)$ be the statement that ``$2^n > n$''.
 $P(1)$ is true since $2^1 > 1$. Let us assume now that $2^n > n$. Note that
 $2^{n + 1} = 2 \cdot 2^n > 2n \ge n + 1$. Hence, we proved the induction step.
 
+
+\begin{template}
+  \textbf{Template for proving a statement using simple induction.} \\
+
+  We use induction by $n$. Base case for $n = 1$: \emph{present some argument 
+  that proves the statement with $n$ replaced by $1$}. 
+
+  Now we need to prove the induction step from $k - 1$ to $k$. Let us assume now
+  that the statement is true for $n = k - 1$ for some $k$. \emph{Present some
+  argument of the statement with $n$ replaced by $k$ assuming the statement is
+  true if we replace $n$ by $k - 1$}. Hence, the statement is true for all $n$
+  by the induction principle.
+\end{template}
+
+
 \begin{exercise}
   Prove that $(1 + x)^n \ge 1 + nx$ for all positive integers $n$ and real
   numbers $x \ge -1$.
@@ -291,12 +306,12 @@ is the maximum of $a_1$, \dots, $a_k$. We may consider two following cases.
         Let us prove the induction step from $k$ to $k + 1$. By the induction
         hypothesis, $\int\limits_0^{+\infty} x^k e^{- x} ~ \mathrm{d}x = k!$.
         Note that
-        \[
+        \begin{multline*}
           \int_0^{+\infty} x^{k + 1} e^{- x} ~ \mathrm{d}x =
           -x^{k + 1} e^{- x}\big\rvert_0^\infty +
-            \int_0^{+\infty} (k + 1) x^k e^{- x} ~ \mathrm{d}x =
+            \int_0^{+\infty} (k + 1) x^k e^{- x} ~ \mathrm{d}x = \\
           \int_0^{+\infty} (k + 1) x^k e^{- x} ~ \mathrm{d}x = (k + 1)!.
-        \]
+        \end{multline*}
       \end{solution}
     \exercise Show that $\sum_{k = 1}^n k \cdot k! = (n + 1)! - 1$.
     \exercise Show that \Cref{algorithm:selection-sort} executes line~6 exactly

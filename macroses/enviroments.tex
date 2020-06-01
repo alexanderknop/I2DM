@@ -11,13 +11,16 @@
 \newsavebox{\mybox}
 \newenvironment{warning}
 {
-    \vskip 5pt
-    \begin{lrbox}{\mybox}\begin{minipage}{0.9\textwidth}
-        \textbf{Warning:}
+    \vskip 20pt
+    \begin{minipage}{0.9\textwidth}
+    \hrulefill
+    \textbf{Warning.} \\
 }
 {
-    \end{minipage}\end{lrbox}\fbox{\usebox{\mybox}}
-    \vskip 5pt
+    \par
+    \hrulefill
+    \end{minipage}
+    \vskip 20pt
 }
 
 \newenvironment{template}

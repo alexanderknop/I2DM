@@ -82,6 +82,22 @@ $f_{k - 1}$ to define $f_k$).\footnote{%
     \end{itemize}
 \end{proof}
 
+\begin{template}
+  \textbf{Template for proving a statement using strong induction.} \\
+
+  We use induction by $n$. Base case for $n = n_0 + 1$: \emph{present some
+  argument that proves the statement with $n$ replaced by $1$}. 
+
+  Now we need to prove the induction step from $n_0 + 1$, \dots, $n_0 + k - 1$
+  to $k$. Let us assume now that the statement is true for any $n$ from $n_0 +
+  1$ to $n_0 + k - 1$ for some $k$. \emph{Present some argument of the statement
+  with $n$ replaced by $n_0 + k$ assuming the statement is true if we replace
+  $n$ by $n_0 + \ell$ for $1 \le \ell < k - 1$}. Hence,
+  the statement is true for all $n$ by the induction principle.
+\end{template}
+
+
+
 Another example of an application of the strong induction is the proof that
 any number can be written in digital numeral systems with any base.
 \begin{theorem}
