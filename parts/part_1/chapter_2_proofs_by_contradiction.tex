@@ -11,15 +11,17 @@ some statement.
 For example, we may try to prove that $78 n + 102 m = 11$ does not have integer
 solutions. It is not clear how to prove it directly since we can not consider
 all possible $n$ and $m$. Hence, we need another approach. Let us assume that
-such a solution $n, m$ exists. Note that $78 n + 102 m$ is even, but $11$ is
+such a solution $n$, $m$ exists. Note that $78 n + 102 m$ is even, but $11$ is
 odd. In other words, an odd number is equal to an even number, which is impossible.
 Thus, the assumption was false.
 
 Let us consider a more useful example, let us prove that if $p^2$ is even, then
 $p$ is also even ($p$ is an integer). Assume the opposite i.e. that $p^2$ is
-even but $p$ is not. Let $p = 2b + 1$\footnote{Note that we use here the
-statement that an integer $n$ is not even iff it is odd, which, formally
-speaking, should be proven.}. Note that $p^2 = (2b + 1)^2 = 2(2b^2 + 2b) + 1$.
+even but $p$ is not.\footnote{%
+  Note that we use here the statement that an integer $n$ is not even iff it is
+  odd, which, formally speaking, should be proven.
+}
+Let $p = 2b + 1$. Note that $p^2 = (2b + 1)^2 = 2(2b^2 + 2b) + 1$.
 Hence, $p^2$ is odd which contradicts to the assumption that $p^2$ is even.
 
 Using this idea we may prove much more complicated results e.g. one may show
