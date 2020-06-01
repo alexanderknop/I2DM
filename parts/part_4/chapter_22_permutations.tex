@@ -1,13 +1,13 @@
 \chapter{Permutations}
 \label{chapter:permutations}
-Recall that a permutation is a bijection from $\range{n}$ to $\range{n}$. We already
-discussed several properties of them. In this chapter we will discuss some
-combinatorial properties of them. We denote by $S_n$ the set of all
-permutations of $\range{n}$.\footnote{%
+Recall that a permutation is a bijection from $\range{n}$ to $\range{n}$. We
+already discussed several properties of them. In this chapter we will discuss
+some combinatorial properties of them. We denote by $\permutations{n}$ the set
+of all permutations of $\range{n}$.\footnote{%
   Letter $S$ is used since in the group theory this set is called
   the symmetric group.
 }
-\nomenclature[S]{$S_n$}{denotes the set of all permutations of $\range{n}$}
+\nomenclature[S]{$\permutations{n}$}{denotes the set of all permutations of $\range{n}$}
 
 
 The main operation over permutations is composition, for two permutations $p$
@@ -174,7 +174,7 @@ of permutations.
   Let $p : \range{n} \to \range{n}$ be a permutation written in canonical cycle notation.
   Let $\fpm(p)$ be the permutation obtained from $p$ by omitting the
   parentheses and reading the entries as a permutation in the one-line notation.
-  Then $\fpm$ is a bijection from $S_n$ to $S_n$.
+  Then $\fpm$ is a bijection from $\permutations{n}$ to $\permutations{n}$.
 \end{lemma}
 For example, $\fpm(2 3 1 5 4) = 31254$ and
 $\fpm^{-1}(2 3 1 5 4) = (2) (3, 1) (5, 4) = 32154$.
@@ -231,7 +231,7 @@ episodes you need to watch?
 Let us first formulate a more formal question.
 \begin{definition}
   A sequence $w_1, \dots, w_\ell \in \range{n}$ is called an $n$-superpermutation iff
-  for any $p \in S_n$ there is $0 \le i \le \ell - n$ such that
+  for any $p \in \permutations{n}$ there is $0 \le i \le \ell - n$ such that
   $w_{i + 1} = p(1)$, $w_{i + 2} = p(2)$, \dots, and $w_{i + n} = p(n)$.
 \end{definition}
 In other words, the question we wish to study can be formulated in the
@@ -263,7 +263,7 @@ theorem.
 \end{theorem}
 \begin{proof}
   First we need to define the notion of length between two permutations
-  $p, q \in S_n$. We say that the distance between $p$ and $q$ is equal to
+  $p, q \in \permutations{n}$. We say that the distance between $p$ and $q$ is equal to
   $\mathcal{D} = k$
   iff there is a word $u$ of length $k$ such that the last $n$ letters of the
   concatenation of  $w = p(1) p(2) \dots p(n)$ and $u$ encodes the permutation
@@ -302,7 +302,7 @@ theorem.
 
       It is easy to see that $C_0(p_1) = 1$ and $\mathcal{D}(p_1) = 0$ so
       $\mathcal{D}(p_1) = 0 \ge 1 - 1 = C_0(p_1) - 1$. We may also
-      note that for any $p_{k + 1} \in S_n$,
+      note that for any $p_{k + 1} \in \permutations{n}$,
       $C_0(p_1, \dots, p_{k + 1}) \le C_0(p_1, \dots, p_k) + 1$ and
       $\mathcal{D}(p_k, p_{k + 1}) \ge 1$. Therefore
       \begin{multline*}
@@ -319,7 +319,7 @@ theorem.
     \item ($n! + (n - 1)! + (n - 2)$)
       To prove this lower bound we need to introduce the notion of a $1$-cycle
       class. A $1$-cycle class of permutations of $\range{n}$ is a
-      subset $\set{p_1, \dots, p_n} \subseteq S_n$ such that $p_{k + 1}(n) =
+      subset $\set{p_1, \dots, p_n} \subseteq \permutations{n}$ such that $p_{k + 1}(n) =
       p_k(1)$, and $p_{k + 1}(i) = p_k(i + 1)$ for $i \in \range{n - 1}$. For
       example,
       \[
@@ -342,7 +342,7 @@ theorem.
       $\mathcal{D}(p_1) = 0$ so
       $\mathcal{D}(p_1) = 0 \ge 1 + 0 - 1 = C_0(p_1) + C_1(p_1) - 1$.
 
-      It is easy to see that for any $p_{k + 1} \in S_n$,
+      It is easy to see that for any $p_{k + 1} \in \permutations{n}$,
       \begin{gather*}
         C_0(p_1, \dots, p_{k + 1}) \le C_0(p_1, \dots, p_k) + 1  \\
         C_1(p_1, \dots, p_{k + 1}) \le C_1(p_1, \dots, p_k) + 1.
@@ -411,7 +411,7 @@ theorem.
       $\mathcal{D}(p_1) = 0 \ge 1 + 0 + 1 - 2 =
       C_0(p_1) + C_1(p_1) + C_2(p_1)- 2$.
 
-      It is easy to see that for any $p_{k + 1} \in S_n$,
+      It is easy to see that for any $p_{k + 1} \in \permutations{n}$,
       \begin{gather*}
         C_0(p_1, \dots, p_{k + 1}) \le C_0(p_1, \dots, p_k) + 1  \\
         C_1(p_1, \dots, p_{k + 1}) \le C_1(p_1, \dots, p_k) + 1 \\
@@ -452,7 +452,7 @@ episodes which takes around $3572462$ years.
 
 \begin{chapterendexercises}
   \exercise[recommended] Recall that the number of inverses in a permutation 
-    $p \in S_n$ is the number of pairs $i, j$ such that $i < j$ and 
+    $p \in \permutations{n}$ is the number of pairs $i, j$ such that $i < j$ and 
     $p(i) > p(j)$. Let $I(n, k)$ denotes the number of permutations with $k$
     inversions. Prove that $I(n, k) = I(n, \binom{n}{2} - k)$.
   \exercise Let $n$, $b_1$, \dots, and $b_k$ be positive integers such that 
@@ -483,7 +483,7 @@ episodes which takes around $3572462$ years.
   \exercise Prove that for any fixed $k$, the function $c(n, n - k)$ is a
     polynomial function of $n$. Find the degree of that polynomial.
   \exercise Find a reccurent relation for the number of permutations $\pi \in
-    S_n$ such that $\pi^3(x) = x$ for all $x \in \range{n}$.
+    \permutations{n}$ such that $\pi^3(x) = x$ for all $x \in \range{n}$.
   \exercise Let $p$ be a permutation of $\range{n}$. We associate a permutation matrix
     $M^{(p)}$ to $p$ as follows. Let $M^{(p)}_{i, j} = 1$ if $p(i) = j$, and let
     $M^{(p)}_{i, j} = 0$ otherwise. Prove that $|\det M^{(p)}| = 1$.
@@ -495,7 +495,7 @@ episodes which takes around $3572462$ years.
       \ell = \prod_{i ~:~ c_i \neq 0} i.
     \]
     \begin{solution}
-      First we prove the following statement, if $p \in S_n$ is a cycle of
+      First we prove the following statement, if $p \in \permutations{n}$ is a cycle of
       length $\ell$, then $p^\ell = 12 \dots n$. Indeed, assume $p = (i_0,
       \dots, i_{\ell - 1})$;note that $p(i_j) = i_{(j + 1) \mod \ell}$,
       therefore, $p^\ell(i_j) = i_{(j + \ell) \mod \ell} = i_j$. It is also
@@ -519,11 +519,12 @@ episodes which takes around $3572462$ years.
       i_3) \dots (i_{k - 1}, i_k)$ is equal to $(i_1, \dots, i_k)$. Therefore we
       proved the statement.
     \end{solution}
-  \exercise Show that any permuation from $S_n$ can be expressed as a product of 
-    $(1, 2)$, \dots, $(n - 1, n)$ (each permuation can be used multiple times).
+  \exercise Show that any permuation from $\permutations{n}$ can be expressed as
+    a product of $(1, 2)$, \dots, $(n - 1, n)$ (each permuation can be used
+    multiple times).
   \exercise Show that for any $n \in \N$, there are two permuations $p, q \in
-    S_n$ such that any permuation from $S_n$ can be expressed as their product
-    (each permuation can be used multiple times).
+    \permutations{n}$ such that any permuation from $\permutations{n}$ can be expressed as
+    their product (each permuation can be used multiple times).
     \begin{solution}
       First, let us note that any permuation can be obtained as a product of the
       permuations $(1, 2)$, \dots, $(n - 1, n)$. It is enough to prove that any
@@ -542,17 +543,18 @@ episodes which takes around $3572462$ years.
     same cycle type for any permutation $p$.
   \exercise[recommended] A permutation $p$ is called a nontrivial involution if
     $p^2 = 1 2 \dots n$, but $p \neq 1 2 \dots n$. Prove that if $n > 1$, the
-    number of nontrivial involutions in $S_n$ is odd.
+    number of nontrivial involutions in $\permutations{n}$ is odd.
     \begin{solution}
-      Let $p \in S_n$ and $p^2 \neq \identity{\range{n}}$; it is easy to see
+      Let $p \in \permutations{n}$ and $p^2 \neq \identity{\range{n}}$; it is easy to see
       that $(p^{-1})^2 \neq \identity{\range{n}}$. Therefore it is possible to
       split all the permutations from the set
-      $\set[p^2 \neq \identity{\range{n}}]{p \in S_n}$ into pairs $p$ and
+      $\set[p^2 \neq \identity{\range{n}}]{p \in \permutations{n}}$ into pairs $p$ and
       $p^{-1}$. Hence, the size of the set
-      $\set[p^2 \neq \identity{\range{n}}]{p \in S_n}$ is even; we may also note
-      that the size of $S_n$ is also even. As a result, the size of 
-      $\set[p^2 = I]{p \in S_n}$ is even as well, but it implies that 
-      $\set[{p^2 = I \text{ and } p \neq I}]{p \in S_n}$ is odd.
+      $\set[p^2 \neq \identity{\range{n}}]{p \in \permutations{n}}$ is even; we
+      may also note that the size of $\permutations{n}$ is also even. As a
+      result, the size of $\set[p^2 = I]{p \in \permutations{n}}$ is even as well, but it
+      implies that $\set[{p^2 = I \text{ and } p \neq I}]{p \in
+      \permutations{n}}$ is odd.
     \end{solution}
   \exercise There are $n$ seats in a bus; $n - 1$ people are assigned seats in
     this bus. However, a dog came to the bus and took one of the seats uniformly
