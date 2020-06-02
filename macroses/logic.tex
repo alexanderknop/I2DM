@@ -1,4 +1,5 @@
 \newcommand{\substitute}[2]{\left\llbracket {#1} \right\rrbracket_{#2}}
+\newcommand{\assign}[3]{#1\left[{#3} / {#2}\right]}
 
 % math logic
 \newcommand{\bigland}{\bigwedge}
@@ -7,5 +8,12 @@
 \newcommand{\lxor}{\oplus}
 \newcommand{\ltrue}{\text{T}}
 \newcommand{\lfalse}{\text{F}}
-\newcommand{\prop}[1]{\mathrm{PROP}_{#1}}
 
+\newcommand{\prop}[1]{\mathrm{PROP}_{#1}}
+\newcommand{\pred}[2]{\mathrm{PRED}_{{#1}, {#2}}}
+\newcommand{\term}[2]{\mathrm{TERM}_{{#1}, {#2}}}
+
+\newcommand{\structure}[1]{\mathfrak{#1}}
+\newcommand{\signature}[1]{\mathcal{#1}}
+
+\newcommand{\domain}[1]{\mathrm{dom}\left({#1}\right)}

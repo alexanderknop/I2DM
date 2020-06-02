@@ -6,7 +6,7 @@
 }{youtu.be/X0797bVFf3Y}
 
 
-This part, as it follows fromt the title, is devoted to mathematical logic,
+This part, as it follows from the title, is devoted to mathematical logic,
 a mathematical approach to a branch of philosophy called logic. Logic studies
 reasoning and mathematical logic studies mathematical reasoning. As we have
 mentioned in \Cref{chapter:proofs} proofs in mathematics consists of
@@ -19,11 +19,11 @@ ambiguous and therefore hard for analysis.
 So to create a formal description of mathematics we need to create an
 artificial formal language for mathematics.
 
-First (\Cref{chapter:propositional-logic}) we will define a language for
-propositional (sentential) logic; i.e. the logic which deals only with
-propositions. Later (\Cref{chapter:predicate-logic}) we extend it to a logic
-which also takes properties of individuals into account.
-
+First
+(\Cref{chapter:propositional-formulas,chapter:propositional-truth,chapter:propositional-deduction}) 
+we will define a language for propositional (sentential) logic; i.e. the logic
+which deals only with propositions. Later (\Cref{chapter:predicate-formulas}) we
+extend it to a logic which also takes properties of individuals into account.
 
 The process of formalization of propositional logic consists of two main parts:
 \begin{itemize}
@@ -33,7 +33,7 @@ The process of formalization of propositional logic consists of two main parts:
 
 \section{Definition of Formulas}
 
-Statements in  propositional logic are either some independant atomic
+Statements in  propositional logic are either some independent atomic
 statements, or are formed from the atomic one using connectives.
 
 In other words, statements in propositional logic can be defined using
@@ -47,7 +47,7 @@ propositional formulas (also known as sentential formulas or Boolean formulas).
     \item or $\phi$ is equal to $(\psi_1 \land \psi_2)$, or
       $(\psi_1 \lor \psi_2)$, or $(\psi_1 \limplies \psi_2)$,\footnote{%
         The symbol $\limplies$ is used to denote the implication.
-        Due to historical reasons the standard symbol $\implies$ is rarerely
+        Due to historical reasons the standard symbol $\implies$ is rarely
         used as a connective in mathematical logic; hence, we will use
         $\limplies$ instead of $\implies$ in this part of the book.
         It is important to note that, sometimes the symbol $\supset$ is also
@@ -55,14 +55,14 @@ propositional formulas (also known as sentential formulas or Boolean formulas).
       }
       where $\psi_1$ and $\psi_2$ are propositional formulas on the variables
       from $V$,
-    \item or $\phi$ is equal to $\lnot \psi$, where $\psi$ is a propositional
+    \item or $\phi$ is equal to $(\lnot \psi)$, where $\psi$ is a propositional
       formula on the variables from $V$.
   \end{itemize}
 
   We denote the set of all propositional formulas by $\prop{V}$.
 \end{definition}
 
-For example, $((x_1 \lor \lnot x_2) \land x_3)$ is a propositional formula on
+For example, $((x_1 \lor (\lnot x_2)) \land x_3)$ is a propositional formula on
 the variables from $\set{x_1, x_2, x_3}$ (we also say that it is a formula on
 $x_1$, $x_2$, $x_3$).
 
@@ -107,7 +107,7 @@ reflection on the meaning of the logical connectives.
   \end{itemize}
 \end{definition}
 
-We may note that all the valuations are actualy can be defined by the values
+We may note that all the valuations are actually can be defined by the values
 of variables.
 \begin{theorem}
   Let $\rho : V \to \set{\ltrue, \lfalse}$ be a function (we say that $\rho$ is
@@ -135,12 +135,13 @@ For example, $x_1$ is a formula on the variables from $\set{x_1, x_2}$; however,
 $x_2$ is not used in the formula.
 
 \begin{exercise}
-  Define (using structural induction) the set of all the variables that are
-  used in a propositional formula $\phi$ on variables from a set $V$.
+  Give a formal definition (using structural induction) of the set of all the
+  variables that are used in a propositional formula $\phi$ on variables from a
+  set $V$.
 \end{exercise}
 
-Let $\phi$ be a formula $\phi$ on the variables from a set $V$. The definition
-of a value of a formula requeres us to specify all the values of all the
+Let $\phi$ be a formula on the variables from a set $V$. The definition
+of a value of a formula requires us to specify all the values of all the
 variables from $V$. However, the following theorem shows that in
 fact we need to specify only the variables that are actually used in $\phi$.
 \begin{theorem}
@@ -163,26 +164,32 @@ fact we need to specify only the variables that are actually used in $\phi$.
           $\substitute{\psi_1}{\rho_1} = \substitute{\psi_1}{\rho_2}$ and
           $\substitute{\psi_1}{\rho_2} = \substitute{\psi_2}{\rho_2}$.
           In this case,
-          $\substitute{\phi}{\rho_1} =
+          \[
+            \substitute{\phi}{\rho_1} =
             (\substitute{\psi_1}{\rho_1} \land \substitute{\psi_2}{\rho_1} )=
             (\substitute{\psi_1}{\rho_2} \land \substitute{\psi_2}{\rho_2}) =
-            \substitute{\phi}{\rho_2}$.
+            \substitute{\phi}{\rho_2}.
+          \]
         \item Let $\phi$ be equal to $\psi_1 \lor \psi_2$ such that
           $\substitute{\psi_1}{\rho_1} = \substitute{\psi_1}{\rho_2}$ and
           $\substitute{\psi_1}{\rho_2} = \substitute{\psi_2}{\rho_2}$.
           In this case,
-          $\substitute{\phi}{\rho_1} =
+          \[
+            \substitute{\phi}{\rho_1} =
             (\substitute{\psi_1}{\rho_1} \lor \substitute{\psi_2}{\rho_1}) =
             (\substitute{\psi_1}{\rho_2} \lor \substitute{\psi_2}{\rho_2}) =
-            \substitute{\phi}{\rho_2}$.
+            \substitute{\phi}{\rho_2}.
+          \]
         \item Let $\phi$ be equal to $\psi_1 \limplies \psi_2$ such that
           $\substitute{\psi_1}{\rho_1} = \substitute{\psi_1}{\rho_2}$ and
           $\substitute{\psi_1}{\rho_2} = \substitute{\psi_2}{\rho_2}$.
           In this case,
-          $\substitute{\phi}{\rho_1} =
+          \[
+            \substitute{\phi}{\rho_1} =
             (\substitute{\psi_1}{\rho_1} \limplies \substitute{\psi_2}{\rho_1}) =
             (\substitute{\psi_1}{\rho_2} \limplies \substitute{\psi_2}{\rho_2}) =
-            \substitute{\phi}{\rho_2}$.
+            \substitute{\phi}{\rho_2}.
+          \]
       \end{itemize}
   \end{description}
 \end{proof}
@@ -333,7 +340,7 @@ $g(x_1, \dots, x_n) = \lnot f(x_1, \dots, x_n)$. Secondly, we may notice that
 for all $v_1, \dots, v_n \in \set{\ltrue, \lfalse}$
 % THE REFERENCE TO THE EXERCISE
 (see Exercise 15.7). Therefore the negation
-of a formula in DNF can be easily tranformed into a formula in CNF.
+of a formula in DNF can be easily transformed into a formula in CNF.
 Finally, we know that the function
 $g$ has a representation in DNF, which implies that $f$ has a representation
 in CNF.

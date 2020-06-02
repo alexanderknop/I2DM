@@ -1,0 +1,292 @@
+\chapter{Predicate Formulas}
+\label{chapter:predicate-formulas}
+In the previous chapters we studied propositional logic. But in real mathematics
+there are many non propositional formulas. For example, we may wish to prove
+that if a relation $R$ on $M$ is transitive, then
+\[
+  (R(w, x) \land R(x, y) \land R(y, z)) \implies R(w, z)
+\]
+is true for any $w, x, y, z \in M$. This chapter defines a logical
+system that allows us to formally prove such statements.
+
+\section{Predicate Formulas}
+\marginurl{%
+  Predicate Formulas:\\\noindent
+  Introduction to Mathematical Logic \#5
+}{youtu.be/yb9NvmXyFfg}
+Let us write the previous statement in a formula-like form:
+\begin{multline*}
+    \overbrace{
+        \left(
+          \forall x, y, z \in M ~ (R(x, y) \land R(y, z)) \implies R(x, z)
+         \right)
+    }^{R \text{ is transitive}} \implies \\
+    \underbrace{(
+        \forall w, x, y, z \in M ~ (R(w, x) \land R(x, y) \land R(y, z))
+        \implies
+        R(x, z)
+    )}_\text{the desired conclusion}.
+\end{multline*}
+Note that there are several things we need to explain if we wish to define
+formally formulas like this:
+\begin{itemize}
+    \item we need to explain what kind of sets we can use (in this case we need
+        to define $M$),
+    \item we need to explain what kind of relations we can use (in this case we
+        need to define $R$),
+\end{itemize}
+
+Another example of a statement we may wish to prove is saying that if
+$f : M \to M$ is an inverse of itself (i.e. $f(f(x)) = f(x)$ for any $x \in M$),
+then $f(f(f(x))) = f(x)$ for any $x \in M$; more formally, we may wish to prove
+the statement
+\[
+    \underbrace{
+        (\forall x \in M ~ f(f(x)) = x)}_{f \text{is an inverse of itself}}
+    \implies
+    \underbrace{
+        (\forall x \in M ~ f(f(f(x))) = f(x))
+    }_\text{the desired conclusion}.
+\]
+In order to explain what we mean by such formulas
+\begin{itemize}
+  \item we need to explain what kind functions we can use (in this case we need
+    to define $f$).
+\end{itemize}
+
+\paragraph{Signature.}
+In predicate logic, formula uses just symbols for all these objects. We specify
+these symbols only when we wish to compute actual truth value of the formula.
+We also assume that all the quantifiers are over the same set so we do not need
+a symbol for the set $M$.
+
+Signature is the way to define the list of all these symbols, it consists of
+three objects:
+\begin{itemize}
+  \item a set (possibly empty) of symbols for relations,
+  \item a set (possibly empty) of symbols for functions,
+  \item arities of these functions and relations (i.e. how many arguments they
+    may take).
+\end{itemize}
+An example of a signature is a triple $(\set{\text{``R''}}, \set{\text{``f''}},
+a)$, where
+\[
+  a(s) = \begin{cases}
+    2 & \text{if } s =  \text{``R''} \\
+    1 & \text{if } s =  \text{``f''}
+  \end{cases}.
+\]
+This signature is enough to define the formulas we discussed. Now we are ready
+to define the predicate formulas.
+
+\begin{definition}
+  Let $\signature{S} = (S_\mathrm{rel}, S_\mathrm{fun}, a)$ be a signature and $V$
+  be some set.
+
+  We say that $t$ is a \emph{term} in the signature $\signature{S}$ over the variables
+  from $V$ if
+  \begin{itemize}
+    \item either $t$ is equal to $x$ for $x \in V$,
+    \item or $t$ is equal to $f(t_1, \dots, t_{a(f)})$, where
+      $f \in S_\mathrm{fun}$ and $t_1$, \dots, $t_{a(f)}$ are terms in the
+      signature $\mathcal{S}$ over the variables from $V$.
+  \end{itemize}
+
+  We say that $\phi$ is a \emph{predicate formula} in the signature
+  $\signature{S}$ over the variables from $V$ if
+  \begin{itemize}
+    \item either $\phi$ is equal to $R(t_1, \dots, t_{a(R)})$, where
+      $R \in S_\mathrm{rel}$ and $t_1$, \dots, $t_{a(R)}$ are terms in the
+      signature $\signature{S}$ over the variables from $V$,
+    \item or $\phi$ is equal to $(\psi_1 \land \psi_2)$, or
+      $(\psi_1 \lor \psi_2)$, or $(\psi_1 \limplies \psi_2)$, where $\psi_1$ and
+      $\psi_2$ are predicate formulas in the signature $\signature{S}$ over the
+      variables from $V$,
+    \item or $\phi$ is equal to $(\lnot \psi)$, where $\psi$ is a predicate
+      formula in the signature $\signature{S}$ over the variables from $V$,
+    \item or $\phi$ is equal to $\left( \exists x_i~\psi \right)$ or 
+      $\left( \forall x_i~\psi \right)$ where
+      $\psi$ is a predicate formula in the signature $\signature{S}$ over the
+      variables from $V$.
+  \end{itemize}
+
+  We denote by $\pred{V}{\signature{S}}$ the set of all predicate formulas in
+  $\signature{S}$ over the variables from $V$; we also denote by
+  $\term{V}{\signature{S}}$ the set of all terms in $\signature{S}$ over the
+  variables from $V$.
+\end{definition}
+
+In order to compute the truth value of a predicate formula, we need to specify
+the values of all the free variables and all the symbols from the signature.
+The specification of the symbols from the signature is called structure; i.e.
+a structure for a signature 
+$\signature{S} = (S_\mathrm{rel}, S_\mathrm{fun}, a)$
+is a triple $\structure{M} = (M, F_\mathrm{rel}, F_\mathrm{fun})$ such that
+\begin{itemize}
+  \item $F_\mathrm{rel}$ assigns a relation to every relation symbol in
+    $\signature{S}$; i.e., 
+    $F_\mathrm{rel} : S_\mathrm{rel} \to \bigcup_{i = 0}^\infty 2^{M^i}$
+    such that $F_\mathrm{rel}(R) \in 2^{M^{a(R)}}$ and
+  \item $F_\mathrm{fun}$ assignes a function to every function symbol in
+    $\signature{S}$; i.e.,
+    $F_\mathrm{fun} : S_\mathrm{fun} \to \bigcup_{i = 0}^\infty M^{M^i}$
+    such that $F_\mathrm{fun}(f) \in M^{M^{a(f)}}$.
+\end{itemize}
+The set $M$ in the structure is called the \emph{domain} of the structure and
+denoted by $\domain{\structure{M}}$. We also denote $F_\mathrm{rel}(R)$ by
+$R^{\structure{M}}$ and $F_\mathrm{fun}(f)$ by $f^{\structure{M}}$.
+
+
+\begin{definition}
+  Let $\signature{S} = (S_\mathrm{rel}, S_\mathrm{fun}, a)$ be a signature and
+  $\structure{M}$ be a structure for $\signature{S}$.
+
+  Let $\rho : V \to \domain{\structure{M}}$.
+  The valuation of terms in $\signature{S}$ over the variables from $V$
+  corresponding to the assignement $\rho$ is the function 
+  $\substitute{\cdot}{\rho, \structure{M}} : 
+    \term{V}{\signature{S}} \to \domain{\structure{M}}$ such that
+  \begin{itemize}
+    \item $\substitute{x}{\rho, \structure{M}} = \rho(x)$ for any $x \in V$,
+    \item $\substitute{f(t_1, \dots, t_\ell)}{\rho, \structure{M}} = 
+      f^{\structure{M}}(
+        \substitute{t_1}{\rho, \structure{M}},
+        \dots,
+        \substitute{t_\ell}{\rho, \structure{M}}
+      )$ \,
+      for any function symbol $f \in S_\mathrm{fun}$ and 
+      terms $t_1, \dots, t_\ell \in \term{V}{\signature{S}}$.
+  \end{itemize}
+
+  Similarly we may define valuations of predicate formulas (we will abuse the
+  notation and denote them by $\substitute{\cdot}{\rho, \structure{M}}$ too).
+  The valuation of predicate formulas in $\signature{S}$ over the variables from
+  $V$ corresponding to the assignement $\rho$ is the function
+  $\substitute{\cdot}{\rho, \structure{M}} :
+    \pred{V}{\signature{S}} \to \domain{\structure{M}}$ such that
+  \begin{itemize}
+    \item $\substitute{R(t_1, \dots, t_\ell)}{\rho, \structure{M}} = 
+      R^{\structure{M}}(
+        \substitute{t_1}{\rho, \structure{M}}),
+        \dots,
+        \substitute{t_\ell}{\rho, \structure{M}})
+      $\,
+      for any relation symbol $R \in S_\mathrm{rel}$ 
+      and terms $t_1, \dots, t_\ell \in \term{V}{\signature{S}}$,
+    \item 
+      $
+        \substitute{\psi_1 \land \psi_2}{\rho, \structure{M}} = 
+        \substitute{\psi_1}{\rho, \structure{M}} \land
+        \substitute{\psi_2}{\rho, \structure{M}}
+      $\,
+      for any $\psi_1, \psi_2 \in \pred{V}{\signature{S}}$,
+    \item 
+      $
+        \substitute{\psi_1 \lor \psi_2}{\rho, \structure{M}} = 
+        \substitute{\psi_1}{\rho, \structure{M}} \lor
+        \substitute{\psi_2}{\rho, \structure{M}}
+      $\,
+      for any $\psi_1, \psi_2 \in \pred{V}{\signature{S}}$,
+    \item 
+      $
+        \substitute{\psi_1 \limplies \psi_2}{\rho, \structure{M}} = 
+        \substitute{\psi_1}{\rho, \structure{M}} \limplies
+        \substitute{\psi_2}{\rho, \structure{M}}
+      $\,
+      for any $\psi_1, \psi_2 \in \pred{V}{\signature{S}}$,
+    \item 
+      $
+        \substitute{\lnot \psi}{\rho, \structure{M}} = 
+        \lnot \substitute{\psi_1}{\rho, \structure{M}}
+      $\,
+      for any $\psi \in \pred{V}{\signature{S}}$,
+    \item for $\psi \in \pred{V}{\signature{S}}$,
+      $
+        \substitute{\exists x \  \psi}{\rho, \structure{M}} = 
+        \ltrue  
+      $ iff 
+      $\substitute{\psi}{\assign{\rho}{x}{v}, \structure{M}} = \ltrue$
+      for some $v \in \domain{\structure{M}}$, and
+    \item for $\psi \in \pred{V}{\signature{S}}$,
+      $
+        \substitute{\forall x \  \psi}{\rho, \structure{M}} = 
+        \ltrue  
+      $ iff 
+      $\substitute{\psi}{\assign{\rho}{x}{v}, \structure{M}} = \ltrue$
+      for all $v \in \domain{\structure{M}}$.
+  \end{itemize}
+
+  Let $V = \set{x_1, \dots, x_n}$ then we denote the assignement $\rho : V \to
+  \domain{\structure{M}}$ such that $\rho(x_i) = v_i$ by 
+  $x_1 = v_1, \dots, x_n = v_n$.
+\end{definition}
+
+We say that $\structure{M}$ is a model of a formula $\phi$
+(written $\structure{M} \models \phi$)\footnote{
+  Sometimes ``$\structure{M}$ is a model of $\phi$'' is written
+  as $\models_{\structure{M}} \phi$.
+} over the variables
+from $V$ iff $\substitute{\psi}{\rho, \structure{M}} = \ltrue$ for all $\rho : V
+\to \domain{\structure{M}}$.
+
+We also say that $\phi$ is true in $\structure{M}$ if $\structure{M} \models \phi$,
+and we say that $\phi$ is false in $\structure{M}$ if $\structure{M} \not\models \phi$.
+
+Let us consider an example:
+\begin{itemize}
+  \item First, we define a signature
+    $\signature{S} = (\set{=, <}, \set{+, \cdot}, a)$ (we write 
+    $S = (=, <; +, \cdot)$ when arities of the functions and relations are clear
+    from the context),
+    where $a(x) = 2$ for any $x \in \set{<, =, +, \cdot}$.
+  \item After this we define the structure $\structure{M}$ in signature
+    $\signature{S}$ such that
+    \begin{gather*}
+      f^{\structure{M}}(x, y) = \begin{cases}
+        x \cdot y & \text{if } f \text{ is } \cdot \\
+        x + y & \text{if } f \text{ is } +
+      \end{cases} \\
+      \text{and} \\
+      R^{\structure{M}}(x, y) \begin{cases}
+        x = y & \text{if } R \text{ is } = \\
+        x < y & \text{if } R \text{ is } <
+      \end{cases}
+    \end{gather*}
+    Note that such a definition is pretty cumbersome, especially considering the
+    fact that we use standard $+$ instead of the symbol $+$,
+    standard $=$ instead of the symbol $=$ etc. So in similar cases we
+    write $\structure{M} = (\R; =, <; +, \cdot)$.
+  \item Finally, we consider the formulas in $\signature{S}$ over the set of
+    variables $\set{x, y, z}$:
+    \begin{gather*}
+      \forall x \ \forall y \ x + y = y + x \\
+      \text{and} \\
+      \forall x \ \forall y \ \forall z \ (x < y \implies x + z < y + z).
+    \end{gather*}
+    (Note that we write $a = b$ instead of $=(a, b)$ and $a + b$ instead of
+    $a + b$, this is a common notation when the standard mathematical
+    operations and relations are used in the signature.)
+\end{itemize}
+The first formula says that addition is commutative, which is true in $\R$, so
+the value of the formula is true in $\structure{M}$. 
+(Note that we do not mention the values of the variables $x$ and $y$
+since both of them are not free.) Indeed, consider $a, b \in \R$, note that
+$\substitute{x + y}{x = a, y = b, \structure{M}} = a + b = b + a = 
+  \substitute{y + x}{x = a, y = b, \structure{M}}$. Hence, 
+$\substitute{\forall x \ \forall y \ x + y = y + x}{\rho, \structure{M}} = \ltrue$
+for all $\rho$.
+
+The second formula says that the inequalities are additive, so it should be also
+true with respect to the structure $\structure{M}$.
+\begin{exercise}
+  Show that the second formula is true with respect to $\structure{M}$.
+\end{exercise}
+
+\begin{exercise}
+  Let us consider a signature $(=; +, \cdot, 0, 1)$ and two models with this
+  signature: $\structure{R} = (\R; =; +, \cdot, 0, 1)$, and
+  $\structure{Q} = (\Q; =; +, \cdot, 0, 1)$.
+  Find a predicate formula $\phi$ in this signature such that
+  $\structure{R} \models \phi$ but $\structure{Q} \not\models \phi$.
+\end{exercise}
+

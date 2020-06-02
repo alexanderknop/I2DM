@@ -1,0 +1,146 @@
+\chapter{Natural Deduction}
+\marginurl{%
+  Natural Deduction for Predicate Logic:\\\noindent
+  Introduction to Mathematical Logic \#6
+}{youtu.be/GVht3ES2qqo}
+By analogy with the tautology, in the predicate logic we wish to prove that a
+formula is true, whenever the structure and the values of the variables we
+choose. Such formulas are called \textit{logically valid}.
+
+In addition, we may define semantic implication for predicate formulas.
+We say that a set of predicate formulas $\Sigma$ in a signature $\mathcal{S}$
+semantically implies a formula $\phi$ ($\Sigma \models \phi$) in the signature
+iff any structure with the signature $\mathcal{S}$ modeling $\Sigma$ models
+$\phi$ as well.
+
+Natural deduction for the predicate formulas is defined in the same manner as
+the natural deduction for the propositional formulas but now the lines are
+predicate formulas and we can use four additional rules.
+
+\paragraph{Universal quantifier.}
+The first logically-valid formula we use as a rule is
+$A(x) \implies (\forall y \ A(y))$,
+this rule allows us to introduce a universal quantifier.
+In order to use the following rule, $x$ should not be a free variable of
+an open hypothesis.
+\[
+  \begin{nd}
+    \have [m] {1} {A(x)}
+    \have [~] {2} {\forall y \  A(y)} \Ai{1}
+  \end{nd}
+\]
+The second logically-valid formula we use as a rule says that if a statement is
+true for all the values of a variable, then it is also true when you substitute
+some specific term instead of the variable, i.e. $(\forall x \ A(x)) \implies
+A(t))$, this rule allows us to eliminate an universal quantifier.
+\[
+  \begin{nd}
+    \have [m] {1} {\forall x \  A(x)}
+    \have [~] {2} {A(t)} \Ae{1}
+  \end{nd}
+\]
+
+\paragraph{Existential quantifier.}
+The first formula for the exisential quantifier says that you can name any term
+in the formula by a variable and formula is still true for some value of the
+variable. The corresponding formula is $A(t) \implies (\exists x \ A(x))$.
+\[
+  \begin{nd}
+    \have [m] {1} {A(t)}
+    \have [~] {2} {\exists x \ A(x)} \Ei{1}
+  \end{nd}
+\]
+
+The last rule says that if $A(x)$ is true for some $x$ and we know that $A(y)$
+implies $B$, then we can derive $B$ (note that this is true only when
+$y$ is not used in $B$). Thus we can apply the following rule when $y$ is not
+be a free variable neither of $B$ nor of any open hypothesis.
+\[
+  \begin{nd}
+    \have [m] {1} {\exists x \ A(x)}
+    \open
+      \hypo [i] {2} {A(y)}
+      \have[j] {3} {B}
+    \close
+    \have [~] {4} {B} \Ee{1, 2-3}
+  \end{nd}
+\]
+\section{Examples of Derivations}
+First example $\forall x \ F(x) \lor \lnot(\forall x \ F(x))$ is a special form
+of the law of excluded middle, which we proved
+in the previous chapter. However, in order to emphasize that the propositional
+logic can prove all the statements provable in the predicate case we present
+the proof of this statement as well.
+
+\noindent $
+  \begin{nd}
+    \hypo {1} {}
+    \open
+      \hypo {2} {\lnot (\forall x \  F(x) \lor \lnot (\forall x \  F(x)))}
+      \open
+        \hypo {3} {\forall x \  F(x)}
+        \have {4} {\forall x \  F(x) \lor \lnot (\forall x \  F(x))} \oi{3}
+        \have {5} {\perp} \ne{2, 4}
+      \close
+      \have {6} {\lnot (\forall x \  F(x))} \ni{3-5}
+      \have {7} {\forall x \  F(x) \lor \lnot (\forall x \  F(x))} \oi{6}
+      \have {8} {\perp} \ne{2, 8}
+    \close
+    \have {9} {\forall x \  F(x) \lor \lnot (\forall x \  F(x))} \by{IP}{2-8}
+  \end{nd}
+$
+
+Unfortunately, this example just shows that a statement provable in the
+propositional logic can be proven in the predicate logic. The next example is
+an example that cannot be expressed in the propositional logic, we
+prove that if we know that
+$\forall x \forall y \ R(x, y) \implies R(y, x)$, the we can derive
+$\forall x \forall y \ ((R(x, y) \implies R(y, x)) \land
+  (R(y, x) \implies R(x, y)))$.
+
+
+\noindent $
+  \begin{nd}
+    \hypo {1} {\forall x \forall y \ R(x, y) \implies R(y, x)}
+
+    \have {2} {\forall y \ R(x', y) \implies R(y, x')} \Ae{1}
+    \have {3} {R(x', y') \implies R(y', x')} \Ae{2}
+    \have {4} {\forall y \ R(y', y) \implies R(y, y')} \Ae{1}
+    \have {5} {R(y', x') \implies R(x', y')} \Ae{4}
+    \have {6} {(R(x', y') \implies R(y', x')) \land R(y', x') \implies R(x', y')}
+              \ai{3, 5}
+    \have {6} {\forall y \ (R(x', y) \implies R(y, x')) \land
+      (R(y, x') \implies R(x', y))}
+              \Ai{6}
+    \have {6} {\forall x \forall y \ (R(x, y) \implies R(y, x)) \land
+      (R(y, x) \implies R(x, y))}
+              \Ai{7}
+  \end{nd}
+$
+
+\section{Soundness and Completeness}
+Like in the propositional case, the most important properties of the natural
+deduction are the following two theorems.
+
+\begin{theorem}[completeness of natural deductions, G\"odel]
+    Let $\phi$ be a predicate formula. If $\phi$ is logically valid, then
+    there is a proof of $\phi$. Moreover, if $\Sigma \models \phi$,
+    for some finite set of predicate formulas $\Sigma$, then there is a
+    derivation of $\phi$ from $\Sigma$.
+\end{theorem}
+
+\begin{theorem}[soundness of natural deductions]
+    Let $\phi$ be a predicate formula. If there is a proof of $\phi$, then
+    $\phi$ is logically valid. Moreover, if there is a derivation of $\phi$ from
+    $\Sigma$, for some finite set of predicate formulas $\Sigma$, then
+    $\Sigma \models \phi$.
+\end{theorem}
+
+\begin{chapterendexercises}
+  \exercise Give a natural deduction derivation of
+    $\forall x \ A(x) \implies \forall x \ B(x)$ from
+    $\forall x \ (A(x) \implies B(x))$.
+  \exercise Give a natural deduction derivation of
+    $\exists x \ ( A(x) \lor B(x))$ from
+    $\exists x \  A(x) \lor \exists x \  B(x)$.
+\end{chapterendexercises}

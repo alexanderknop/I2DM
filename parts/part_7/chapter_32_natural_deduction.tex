@@ -1,16 +1,22 @@
 \chapter{Natural Deduction For Propositional Logic}
+\label{chapter:propositional-deduction}
 \marginurl{%
   Natural Deduction:\\\noindent
   Introduction to Mathematical Logic \#3
 }{youtu.be/PfVafyptFtM}
 
-The problem of the method discussed in \Cref{chapter:propositional-truth} is that we
-need to consider \textbf{all} possible values of the variables. Let us now
-consider a more complicated example. Imagine that we know that $\lnot q$,
-$p \limplies q$. Using the contraposition argument and modus ponens we may derive
-$\lnot p$. Indeed, by contraposition we may conclude that
-$\lnot q \limplies \lnot p$ and modus ponens implies that $\lnot p$ is true since
-$\lnot q$ is true.
+There are two issues with thr method discussed in
+\Cref{chapter:propositional-truth}: first to check a semantic implication 
+we need to consider \textbf{all} possible values of the variables, secondly this
+method does not look like the proofs we use in mathematics.
+
+In this chapter we introduce the way to check semantic implications that looks 
+more similar to real-life proofs.
+Let us illustrate this using the following example. Imagine that we know that
+$\lnot q$, $p \limplies q$. Using the contraposition argument and modus ponens
+we may derive $\lnot p$. Indeed, by contraposition we may conclude that 
+$\lnot q \limplies \lnot p$ and modus ponens implies that $\lnot p$ is true
+since $\lnot q$ is true.
 
 In other words, we can combine several tautologies to prove another tautology.
 Apparently it is enough to fix some small number of tautologies to derive all
@@ -267,16 +273,17 @@ theorems.
 
 
 Proofs of these two theorems are not that difficult but very technical. So
-prove these statements on examples to at least illustrate them.
+we will leave these theorems without proofs and just give some ideas behid 
+their proofs.
 
 \paragraph{Completeness of natural deductions.}
-Proofs of this statement exploit the following idea: if a propositional formula
+The proof of this statement exploits the following idea: if a propositional formula
 is a tautology, then we can verify this statement using the truth table. So
-the proof simply brute-forces all the values of the variables of a formula and
-checks that the formula is indeed true.
-Consider a tautology $(\lnot A \land \lnot B) \limplies \lnot (A \lor B)$.
-The proof of this tautology is as follows.
+the proof may simply brute-force all the values of the variables of a formula
+and check that the formula is indeed true.
 
+For example, consider a tautology $(\lnot A \land \lnot B) \limplies \lnot (A \lor B)$.
+The proof of this tautology is as follows.
 First we derive $A \lor \lnot A$ and $B \lor \lnot B$, and we use these two
 formulas to consider cases using the elimination of disjunction.
 
@@ -388,10 +395,10 @@ Thus using introduction of the negation we can prove the statement.
 $
 
 \paragraph{Soundness of natural deductions.}
-Idea behind the soundness is also simple. We just explain that every line of
-the proof represent a tautology, including the last one. We illustrate this on
-the exaple of the proof of $A \lor \lnot A$. Recall that the proof of this
-tautology is the following.
+The idea behind the proof of the soundness is also simple. We just explain that
+every line of the proof represent a tautology, including the last one. We
+illustrate this on the exaple of the proof of $A \lor \lnot A$. Recall that the
+proof of this tautology is the following.
 
 \noindent $
   \begin{nd}

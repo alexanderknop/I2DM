@@ -7,21 +7,22 @@
 
 
 Typical theorem in mathematics have the following template:
-``if some statements are true, then some statement is also true''.
+``if some statements are true, then another statement is also true''.
 In propositional logic statements are described using propositional formulas.
 So our goal is to present a way to describe proofs of results that looks like:
 if $\phi_1$, \dots, $\phi_k$ are true, then $\psi$ is also true.
 
 This section discusses the method which is based on truth tables (we discussed
-it before in \Cref{chapter:predicates}).
+them before in \Cref{chapter:predicates}).
 
 We start from an example similar to
-the proof gaven in the beginning of the first chapter. Assume that we know
-that if $x$ is a real number such that $x < -2$ or $x > 2$, then $x^2 > 4$. We
-can derive that if $\lnot (x^2 > 4)$, then $\lnot (x < -2)$ and $\lnot (x > 2)$.
+the proof gaven in the beginning of the \Cref{chapter:proofs}. Assume that we
+know that if $x$ is a real number such that $x < -2$ or $x > 2$, then $x^2 > 4$.
+We can derive that if $\lnot (x^2 > 4)$, then $\lnot (x < -2)$ and 
+$\lnot (x > 2)$.
 
-In order to emphasize the logical structure of the argument let us denote
-the statement $x > 2$ by $p$, the statement $x < -2$ by $q$, and the statement
+In order to emphasize the logical structure of the argument let us denote the
+statement $x > 2$ by $p$, the statement $x < -2$ by $q$, and the statement 
 $x^2 > 4$ by $r$. In this case the argument is as follows:
 if $(p \lor q) \limplies r$ is true, then
 $\lnot r \limplies (\lnot p \land \lnot q)$ is true as well.
@@ -84,7 +85,7 @@ is satisfiable or not.\footnote{%
 }
 
 \section{Semantic Implication}
-As we mentioned at the beginning of the previous section, most of the
+As we mentioned at the beginning of the chapter, most of the
 statements in mathematics are in the form
 ``if some statements are true, then some statement is also true'';
 this type of statements can be described using the notion of semantic
@@ -99,10 +100,9 @@ $\substitute{\phi}{\rho} = \ltrue$ provided that
 $\substitute{\psi}{\rho} = \ltrue$ for all $\psi \in \Sigma$.
 (Note that the set $\Sigma$ may be infinite.)
 
-In the previous section we explained that if we have a finite set $\Sigma$,
-then it is possible to check whether a formula $\phi$ is semantically implied
-by $\Sigma$. Let us try to find out whether we can do the same for infinite
-sets $\Sigma$.
+We explained that if we have a finite set $\Sigma$, then it is possible to check
+whether a formula $\phi$ is semantically implied by $\Sigma$. Let us try to find
+out whether we can do the same for infinite sets $\Sigma$.
 
 Partial answer to this question is given by the following theorem.
 \begin{theorem}[compactness theorem]
