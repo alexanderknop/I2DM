@@ -1,5 +1,10 @@
 \chapter{Predicate Formulas}
 \label{chapter:predicate-formulas}
+\marginurl{%
+  Predicate Formulas:\\\noindent
+  Introduction to Mathematical Logic \#5
+}{youtu.be/yb9NvmXyFfg}
+
 In the previous chapters we studied propositional logic. But in real mathematics
 there are many non propositional formulas. For example, we may wish to prove
 that if a relation $R$ on $M$ is transitive, then
@@ -9,11 +14,6 @@ that if a relation $R$ on $M$ is transitive, then
 is true for any $w, x, y, z \in M$. This chapter defines a logical
 system that allows us to formally prove such statements.
 
-\section{Predicate Formulas}
-\marginurl{%
-  Predicate Formulas:\\\noindent
-  Introduction to Mathematical Logic \#5
-}{youtu.be/yb9NvmXyFfg}
 Let us write the previous statement in a formula-like form:
 \begin{multline*}
     \overbrace{
@@ -278,15 +278,15 @@ for all $\rho$.
 
 The second formula says that the inequalities are additive, so it should be also
 true with respect to the structure $\structure{M}$.
-\begin{exercise}
-  Show that the second formula is true with respect to $\structure{M}$.
-\end{exercise}
 
-\begin{exercise}
-  Let us consider a signature $(=; +, \cdot, 0, 1)$ and two models with this
-  signature: $\structure{R} = (\R; =; +, \cdot, 0, 1)$, and
-  $\structure{Q} = (\Q; =; +, \cdot, 0, 1)$.
-  Find a predicate formula $\phi$ in this signature such that
-  $\structure{R} \models \phi$ but $\structure{Q} \not\models \phi$.
-\end{exercise}
+\begin{chapterendexercises}
+  \exercise
+    Show that the second formula is true in $\structure{M}$.
+  \exercise
+    Let us consider a signature $(=; +, \cdot, 0, 1)$ and two models with this
+    signature: $\structure{R} = (\R; =; +, \cdot, 0, 1)$, and
+    $\structure{Q} = (\Q; =; +, \cdot, 0, 1)$.
+    Find a predicate formula $\phi$ in this signature such that
+    $\structure{R} \models \phi$ but $\structure{Q} \not\models \phi$.
+\end{chapterendexercises}
 
