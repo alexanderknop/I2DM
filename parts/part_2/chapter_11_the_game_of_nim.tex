@@ -97,3 +97,103 @@ $a \bitwisexor b = 0$. Which leads us to the next theorem.
   $(a' \bitwisexor b \bitwisexor c) \bitwisexor
       (a \bitwisexor b \bitwisexor c) =  a \bitwisexor a' = 0$, whence $a = a'$.
 \end{proof}
+
+Using Bouton's theorem we can analise games that do not look like thr game of
+Nim. An important example of such a game is the \emph{turning turtles} game.
+\begin{game}[Turning Turtles Game]
+  Given a horizontal line of $m$ coins with some coins showing heads and some
+  tails. Each turn, a player have to flip one coin from head to tail, and in the
+  same time (if he/she wants), flip one more coin to the left of it.
+\end{game}
+The game is equivalent to the game of Nim with each coin showing head in $k$th
+position equals to a pile of $k$ chips.
+\begin{enumerate}
+  \item Flip one coin of position $k$ from head to tail. This move is equivalent
+    with removing all stones from a pile with $k$ stones.
+  \item Flip one coin of position $k$ from head to tail and flip another coin
+    (from tail to head) to the left of it in position $t$. This move is equivalent
+    with removing some stones from a pile with $k$ stones leaving $t$ stones in
+    that pile.
+  \item Flip one coin of position $k$ from head to tail and flip another coin 
+    (from head to tail) to the left of it in position $t$. This move is equivalent
+    with removing some stones from a pile with $k$ stones leaving $t$ stones in that
+    pile. Note that having two piles with a same number of stones is the same as
+    having none of both piles by Bouton's theorem and the fact that 
+    $x \bitwisexor x = 0$.
+\end{enumerate}
+
+\section{Error-correcting Codes}
+Using developed methods we may solve the following quesiton about an extension
+of the game discussed in \Cref{chapter:strong-induction}:
+Alice has chosen a number from $1$ to $1000$. Bob wants to
+guess the number so he is asking Alice ``yes'' or ``no'' questions.
+How many questions does Bob need to ask to determine the number in the
+worst-case scenario if Alice may lie to one of Bob's questions?
+
+It is clear that Bob can use the same strategy as if Alice cannot lie bu ask
+every question twice and if the answer for the same question are different ask
+it third time. Hence, the number of questions necessary is at most $21$. In this
+section we show how Bob can guess the number using only $15$ questions.
+
+To solve this question we need to introduce the notion of error-correcting
+codes. To illustrate this notion consider completely different scenario.
+Two people wish to send a number from $\range{n}$ by sending $m$ bits;
+unfortunately the channel connecting them is not unreliable so among $m$ sent
+bits $d$ may be corrupted, but they still want to be able to reconstruct the
+original message. How can they do this? To answer this question we need to
+introduce error-correcting codes.
+\begin{definition}
+  Let $x, y \in \set{0, 1}^m$ we say that the Hamming distance 
+  $\hammingDist{x}{y}$between $x$ and
+  $y$ is the number of positions where these two strings are different.
+
+  A function $C : \range{n} \to \set{0, 1}^m$ is an error-correcting code
+  correcting $d$ errors if for any $z \in \set{0, 1}^m$ there is at most one 
+  $i$ such that $\hammingDist{C(i)}{z} \le d$.
+\end{definition}
+It is clear that if they know such a code, they can send a number from
+$\range{n}$ and reconstruct it back. We may also note that if Bob knows such a
+code for $n = 1000$ and $d = 1$, then Bob may guess the Alice's number using $m$
+questions.
+
+
+Hence, to prove that it is enough for Bob to ask 15 questions, we need to show
+that there is an error-correcting code with $n = 1000$, $m = 15$, and $d = 1$.
+One may notice that instead of constructing an error correcting code, it is
+enough to contruct a set $S \subseteq \set{0, 1}^m$ such that $S$ has $n$
+elements and $\hammingDist{x}{y} \ge 2d + 1$ for any $x, y \in S$. Indeed, assume
+such a set exists; without loss of generality $S = \set{x_1, \dots, x_n}$.
+Consider $C : \range{n} \to \set{0, 1}^m$ such that $C(i) = a_i$. We claim that
+$C$ is an error-correcting code correcting $d$ errors. Assume the opposite;
+i.e., that for some $z$ there are $i$, $j$ such that 
+$\hammingDist{C(i)}{z}, \hammingDist{C(j)}{z} \le d$. This implies that 
+$\hammingDist{C(i)}{C(j)} = \hammingDist{a_i}{a_j} \le 2d + 1$ which is a
+contradiction.
+
+
+In the rest of the section we construct such a set $S$ for $n \ge 1000$, $m =
+15$, and $d = 1$. Note that any two P-positions in turning turtles are different
+in at least $3$ positions. Hence, let us consider the set 
+$S \subseteq \set{0, 1}^m$ of P-positions in turning turtles with $m$ coins
+(heads are represented by $0$ and tails are represented by $1$). To finish the
+construction of the set, we use the following lemma that we prove in
+\Cref{chapter:principles}.
+\begin{lemma}
+\label{lemma:turning-turtles-number-P}
+  There are at least $2^{2^r - r - 1}$ P-positions in turning turtles with 
+  $2^r - 1$ coins.
+\end{lemma}
+
+Combining this together we prove the following theorem.
+\begin{theorem}
+  Let $r$ be an integer, let $n = 2^{2^r - r - 1}$, and $m = 2^r - 1$.
+  There is an error-correcting code $C : \range{n} \to \set{0, 1}^m$
+  correcting $1$ error.\footnote{%
+    Nonetheless that these constructions seem very artificial and theoretical,
+    in fact a code based on a very similar idea, the binary Golay code, was used
+    to encode pictures of Jupiter and Saturn sent by Voyager~1 and Voyager~2.
+  }
+\end{theorem}
+The code constructed in this section is called Hamming code and in
+\Cref{chapter:binomials} we will show that it is optimal; i.e., we cannot reduce
+$m$ without reducing $n$.
