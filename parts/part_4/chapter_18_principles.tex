@@ -114,6 +114,25 @@ finally prove \Cref{lemma:turning-turtles-number-P}.
   or equal to the number of P-positions in turning turtles.
 \end{proof}
 
+We can also use these principles to show that Hamming code is optimal.
+\begin{theorem}
+  Let $n = 2^{2^r - r - 1}$ and let $C : \range{n} \to \set{0, 1}^m$ be an
+  error-correcting code correcting $1$ error. Then $m \ge 2^r - 1$.
+\end{theorem}
+\begin{proof}
+  Let $B(i) = \set[{\hammingDist{C(i)}{x} \le 1}]{x \in \set{0, 1}^m}$.
+  By the definition of erorr-correcting codes, $B(i)$ and $B(j)$ are disjoint 
+  for $i \neq j$. Note that $\cardinality{B(i)} = 1 + m$ since if
+  $\hammingDist{C(i)}{x} \le 1$, then either $x = C(i)$ or they are different in
+  one out of $m$ coordinates. Therefore $\cardinality{\bigcup_{i = 1}^n B(i)}
+  = (1 + m) n \le 2^m$ since $\cardinality{\set{0, 1}^m} = 2^m$. 
+
+  Note that for a fixed $r$, $(1 + m) n$ and $2^m$ as functions of $m$ intersect
+  only in one point and the inequality is false for $m = 0$. Moreover, the
+  inequality became equality for $m = 2^r - 1$. Therefore in order for the
+  equality to be true we need $m \ge 2^r - 1$.
+\end{proof}
+
 \section{The Inclusion-exclusion Principle}
 
 The last principle we are going to discuss in this chapter is the
