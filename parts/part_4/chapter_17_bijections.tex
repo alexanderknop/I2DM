@@ -131,42 +131,42 @@ It is possible to note that the definition of the bijection consists of two part
 Both of these parts are interesting in their own regard, so they have their own
 names.
 \begin{definition}
-    Let $f : X \to Y$ be a function.
-    \begin{itemize}
-        \item We say that $f$ is a surjection iff every element of $Y$ is an image
-            of some element of $X$. In other words,
-            \[
-                \forall y \in Y~\exists x \in X\ f(x) = y.
-            \]
-        \item We say that $f$ is an injection iff images of any two elements
-            of $X$ are different. In other words,
-            \[
-                \forall x_1, x_2 \in X\ f(x_1) \neq f(x_2).
-            \]
-    \end{itemize}
+  Let $f : X \to Y$ be a function.
+  \begin{itemize}
+    \item We say that $f$ is a surjection iff every element of $Y$ is an image
+      of some element of $X$. In other words,
+      \[
+        \forall y \in Y~\exists x \in X\ f(x) = y.
+      \]
+      \item We say that $f$ is an injection iff images of any two elements
+        of $X$ are different. In other words,
+        \[
+          \forall x_1, x_2 \in X\ f(x_1) \neq f(x_2).
+        \]
+  \end{itemize}
 \end{definition}
 
 \begin{remark}
-    Let $f : X \to Y$ be an injection. Then $g : X \to \Im f$ such that
-    $f(x) = g(x)$ is a bijection.
+  Let $f : X \to Y$ be an injection. Then $g : X \to \Im f$ such that
+  $f(x) = g(x)$ is a bijection.
 \end{remark}
 
 \begin{exercise}
-    Let $\R^+ = \set[x > 0]{x \in \R}$. Is $f : \R^+ \to \R^+$ such that
-    $f(x) = x + 1$ a surjection/injection?
+  Let $\R^+ = \set[x > 0]{x \in \R}$. Is $f : \R^+ \to \R^+$ such that
+  $f(x) = x + 1$ a surjection/injection?
 \end{exercise}
 
 Like in the case of the bijection we may use surjections and injections to
 compare sizes of sets.
 \begin{theorem}
 \label{theorem:injections-surjections-inequalities}
-    Let $X$ and $Y$ be finite sets.
-    \begin{itemize}
-        \item If there is an injection from $X$ to $Y$, then $\cardinality{X}
-          \le \cardinality{Y}$.
-        \item If there is a surjection from $X$ to $Y$, then $\cardinality{X}
-          \ge \cardinality{Y}$.
-    \end{itemize}
+  Let $X$ and $Y$ be finite sets.
+  \begin{itemize}
+    \item If there is an injection from $X$ to $Y$, then $\cardinality{X}
+      \le \cardinality{Y}$.
+    \item If there is a surjection from $X$ to $Y$, then $\cardinality{X}
+      \ge \cardinality{Y}$.
+  \end{itemize}
 \end{theorem}
 
 \begin{chapterendexercises}

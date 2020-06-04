@@ -85,6 +85,35 @@ $\bigtimes_{i = 1}^{k + 1} X_i =
     2^{\cardinality{X}}$.
 \end{proof}
 
+Using this result and \Cref{theorem:injections-surjections-inequalities} we may
+finally prove \Cref{lemma:turning-turtles-number-P}.
+\begin{proof}[Proof of \Cref{lemma:turning-turtles-number-P}]
+  First note that any state in turning turtles can be described by a set 
+  $\set{a_1, \dots, a_\ell} \subseteq \range{m}$ of positions of heads; moreover
+  the position is a P-position iff 
+  $a_1 \bitwisexor a_2 \bitwisexor \dots \bitwisexor a_\ell = 0$.
+
+  We may also note that for any $n \in  \range{2^r}$ there is a set $C(n) =
+  \set{c_1, \dots, c_k} \subseteq \set{2^0, 2^1, 2^2, \dots, 2^{r - 1}}$ such
+  that 
+  $n \bitwisexor c_1 \bitwisexor a_2 \bitwisexor \dots \bitwisexor c_k = 0$.
+  Let $I = \range{m} \setminus \set{2^0, 2^1, 2^2, \dots, 2^{r - 1}}$.
+  It is clear that for any $J \subseteq I$ there is 
+  $C'(J) = \set{c_1, \dots, c_k} \subseteq 
+    \set{2^0, 2^1, 2^2, \dots, 2^{r - 1}}$ such that $J \cup C'(J)$ describes a
+  P-position in turning turtles.
+
+  Let $I = \set{i_1, \dots, i_{m - r}}$. We can define an injection 
+  $f : \set{0, 1}^{\cardinality{I}} \to 2^{\range{m}}$ such that $f(x)$ is a 
+  P-position in turning turtles. Indeed, the function $f$ such that
+  $f(x_1, \dots, x_{m - r}) = \set[x_j = 1]{i_j} \cup C'(\set[x_j = 1]{i_j})$
+  is an injection and $f(x_1, \dots, x_{m - r})$ is a P-position in turning
+  turtles.
+
+  Therefore $2^{m - r} = \cardinality{\set{0, 1}^{\cardinality{I}}}$ is greater
+  or equal to the number of P-positions in turning turtles.
+\end{proof}
+
 \section{The Inclusion-exclusion Principle}
 
 The last principle we are going to discuss in this chapter is the
