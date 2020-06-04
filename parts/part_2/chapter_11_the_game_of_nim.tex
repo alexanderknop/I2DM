@@ -68,7 +68,7 @@ a position $(a, b)$ in the $2$-pile Nim is a P-position iff
 $a \bitwisexor b = 0$. Which leads us to the next theorem.
 \begin{theorem}[Bouton]
 \label{theorem:bouton}
-  A position $(a, b, c)$ in the $3$-pile Nim is a P-position iff
+  A position $(a, b, c)$ in $3$-pile Nim is a P-position iff
   $a \bitwisexor b \bitwisexor c = 0$
 \end{theorem}
 \begin{proof}
@@ -98,7 +98,13 @@ $a \bitwisexor b = 0$. Which leads us to the next theorem.
       (a \bitwisexor b \bitwisexor c) =  a \bitwisexor a' = 0$, whence $a = a'$.
 \end{proof}
 
-Using Bouton's theorem we can analise games that do not look like thr game of
+\begin{exercise}
+  Prove that a position $(a_1, \dots, a_n)$ in $k$-pile Nim is a P-position
+  iff $a_1 \bitwisexor \dots \bitwisexor a_k = 0$.
+\end{exercise}
+
+
+Using Bouton's theorem we can analyse games that do not look like the game of
 Nim. An important example of such a game is the \emph{turning turtles} game.
 \begin{game}[Turning Turtles Game]
   Given a horizontal line of $m$ coins with some coins showing heads and some
@@ -123,7 +129,7 @@ position equals to a pile of $k$ chips.
 \end{enumerate}
 
 \section{Error-correcting Codes}
-Using developed methods we may solve the following quesiton about an extension
+Using developed methods we may solve the following question about an extension
 of the game discussed in \Cref{chapter:strong-induction}:
 Alice has chosen a number from $1$ to $1000$. Bob wants to
 guess the number so he is asking Alice ``yes'' or ``no'' questions.
@@ -160,7 +166,7 @@ questions.
 Hence, to prove that it is enough for Bob to ask 15 questions, we need to show
 that there is an error-correcting code with $n = 1000$, $m = 15$, and $d = 1$.
 One may notice that instead of constructing an error correcting code, it is
-enough to contruct a set $S \subseteq \set{0, 1}^m$ such that $S$ has $n$
+enough to construct a set $S \subseteq \set{0, 1}^m$ such that $S$ has $n$
 elements and $\hammingDist{x}{y} \ge 2d + 1$ for any $x, y \in S$. Indeed, assume
 such a set exists; without loss of generality $S = \set{x_1, \dots, x_n}$.
 Consider $C : \range{n} \to \set{0, 1}^m$ such that $C(i) = a_i$. We claim that
@@ -197,3 +203,28 @@ Combining this together we prove the following theorem.
 The code constructed in this section is called Hamming code and in
 \Cref{chapter:binomials} we will show that it is optimal; i.e., we cannot reduce
 $m$ without reducing $n$.
+
+\begin{chapterendexercises}
+  \exercise \emph{Nimble} is a game played on a board made of a line of squares
+    labeled $0$, $1$, \dots A finite number of coins is placed on squares with
+    possibly more than one coin on a square. A move consists in taking one coin
+    and moving it to any square to the left, possibly over some coins and
+    possibly onto a square containing some coins. Players, as usual, alternate
+    moves and the game ends when all the coins are on the square $0$. The last
+    player to move wins. Determine P- and N-positions in this game.
+  \exercise In \emph{staircase Nim}, a staircase of $n$ steps contains coins of
+    some of the steps. We can describe any position by a tuple $(a_1, \dots, a_n)$,
+    where $a_i$ is the number of coins on the $i$th step. A move in staircase
+    Nim consists of moving any number of coins from the $i$th step to 
+    $(i - 1)$th step. Coins reaching the ground (step $0$) are removed from the
+    play. The game ends when all the coins are removed. Players alternate moves;
+    the last player to move wins. Show that $(a_1, \dots, a_n)$ is a P-position
+    if coins on odd steps $(x_1, x_3, \dots)$ form a P-position in the game of
+    Nim.
+  \exercise In \emph{index-$k$ Nim} players can remove chips from at least
+    one but up to $k$ different piles. Show that $(a_1, \dots, a_n)$ is a
+    P-position in index-$k$ Nim iff 
+    $\sum_{j = 1}^n b_{j, i} \equiv 0 \pmod{k + 1}$ for every 
+    $i \in \set{0, 1, \dots, \ell}$, where $(b_{j, \ell} \dots b_{j, 0})_2$ is
+    the binary representation of $a_j$.
+\end{chapterendexercises}
