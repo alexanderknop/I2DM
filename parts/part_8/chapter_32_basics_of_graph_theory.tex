@@ -125,6 +125,16 @@ The essence of the proof of this lemma is the following statement.
   Let $G = (V, E)$ be a simple graph. Then $\sum_{v \in V} \deg_G(v) = 2|E|$.
 \end{theorem}
 
+It is intresting to note that this result allows to give another proof 
+\Cref{corollary:binommials-equality}. Let us consider a graph $H_n = 
+(\set{0, 1}^n, E_n)$ such that $(x, y) \in E_n$ iff $x$ and $y$ are 
+different in exactly one position. Note that $\deg_{H_n} x = n$ for all 
+$x \in \set{0, 1}^n$; hence, $|E_n| = n 2^n / 2 = n 2^{n - 1}$. In addition,
+note that there are $\binom{n}{k}$ vertices with $k$ many 1's and there are
+$k$ edges that turn $1$ into $0$; i.e., there are 
+$\sum_{k = 0}^n k \binom{n}{k}$ edges in $H_n$. Therefore, 
+$\sum_{k = 0}^n k \binom{n}{k} = n 2^{n - 1}$.
+
 \begin{chapterendexercises}
   \exercise Either draw a graph with the specified properties or explain why
     no such graph exists:

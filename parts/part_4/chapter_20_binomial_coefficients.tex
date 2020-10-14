@@ -371,7 +371,7 @@ of binomial coefficients.
   Let $n \in \N$. Then
   \begin{enumerate}
     \item $\sum_{k = 0}^n (-1)^k \binom{n}{k} = 0$ and
-    \item $\sum_{k = 0}^n (k + 1) \binom{n}{k} = n 2^{n - 1}$.
+    \item $\sum_{k = 0}^n k \binom{n}{k} = n 2^{n - 1}$.
   \end{enumerate}
 \end{corollary}
 \begin{proof}
@@ -382,12 +382,12 @@ of binomial coefficients.
         \sum_{k = 0}^n 1^{n - k} x^k \binom{n}{k} = (1 - 1)^n = 0.
       \]
     \item This equality is a bit more tricky. Let $x = 1$. Note that
-      \begin{multline*}
-        \sum_{k = 0}^n (k + 1) \binom{n}{k} = 
-        \sum_{k = 0}^n (k + 1) x^k 1^{n - k} \binom{n}{k} = \\
+      \[
+        \sum_{k = 0}^n k \binom{n}{k} = 
+	\sum_{k = 0}^n k x^{k - 1} 1^{n - k} \binom{n}{k} =
         \frac{d \sum_{k = 0}^n x^k \binom{n}{k}}{dx} = n (1 + x)^{n - 1}.
-      \end{multline*}
-      As a result, $\sum_{k = 0}^n (k + 1) \binom{n}{k} = n 2^n$.
+      \]
+      As a result, $\sum_{k = 0}^n k \binom{n}{k} = n 2^n$.
   \end{enumerate}
 \end{proof}
 
@@ -520,7 +520,8 @@ However, the method can be used in a more sophisticated way.
       \item $\sum_{k = 0}^n k^2$, and
       \item $\sum_{k = 0}^n k^3$.
     \end{enumerate*}
-
+  \exercise Prove the second statement from \Cref{corollary:binommials-equality}
+	using double counting.
   \exercise Show that 
     $\sum_{k = 2}^n k (k - 1) \binom{n}{k} = n (n - 1) 2^{n - 2}$ for any
     positive integer $n > 2$.
