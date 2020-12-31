@@ -8,7 +8,8 @@
 
 Let us consider a simple problem: what is bigger $2^n$ or $n$? In this chapter,
 we are going to study the simplest way to prove that $2^n > n$ for all positive
-integers $n$. First, let us check that it is true for small integers $n$.
+integers $n$. First, let us check that it is true for small positive integers
+$n$.
 \begin{center}
   \begin{tabular}{l l l  l  l  l  l  l  l}
     \toprule
@@ -20,23 +21,37 @@ integers $n$. First, let us check that it is true for small integers $n$.
   \end{tabular}
 \end{center}
 We may also note that $2^n$ is growing faster than $n$, so we expect that if
-$2^n > n$ for small integers $n$, then it is true for all positive integers $n$.
+$2^n > n$ for small positive integers $n$, then it is true for all positive
+integers $n$.
 
-In order to prove this statement formally, we use the following principle.
+Consider the following argument that uses proof by contradiction. Assume the
+statement is not true; i.e., there is a positive integer $n_0$ such that 
+$2^{n_0} \le n_0$. Consider the minimal such $n_0$ and call it $n^*$; i.e.,
+consider $n^*$ such that $2^{n^*} \le n^*$, but $2^{n* - 1} > n* - 1$.
+Note that $2^{n* - 1} + 2^{n* - 1} > n^* - 1 + n^* - 1 = 2n^* - 2 \ge n*$;
+hence, we get a contradiction. Therefore our assumption is false and $2^n > n$
+for any positive integer $n$.
+
+This argument looks simple, but it has a fatal flaw: we assume that the minimal
+$n$ exists, and it is not clear why it is true.
+
+To overcome this problem and make this proof formal we use the following
+principle.
 \begin{principle}[The Induction Principle]
   Let $P(n)$ be some statement about a positive integer $n$.
   Hence, $P(n)$ is true for every positive integer $n$ iff
   \begin{description}
     \item [(the base case)] $P(1)$ is true and
-    \item [(the induction step)] $P(k) \implies P(k + 1)$ is true
-      for all positive integers $k$.
+    \item [(the induction step)] $P(k - 1) \implies P(k)$ is true
+      for all integers $k > 1$.
   \end{description}
 \end{principle}
 
 Let us prove now the statement using this principle.
 We define $P(n)$ be the statement that ``$2^n > n$''.
-$P(1)$ is true since $2^1 > 1$. Let us assume now that $2^n > n$. Note that
-$2^{n + 1} = 2 \cdot 2^n > 2n \ge n + 1$. Hence, we proved the induction step.
+$P(1)$ is true since $2^1 > 1$. Let us assume now that $2^{n - 1} > n - 1$. Note
+that $2^n = 2 \cdot 2^{n - 1} > 2n \ge n - 2 \ge n$. Hence, we proved the
+induction step.
 
 
 \begin{template}
@@ -58,7 +73,7 @@ $2^{n + 1} = 2 \cdot 2^n > 2n \ge n + 1$. Hence, we proved the induction step.
   numbers $x \ge -1$.
 \end{exercise}
 \begin{solution}
-  We are going to prove that by induction by $n$.
+  We are going to prove that using induction by $n$.
 
   The base case is clear. We prove now the induction step. Assume the
   induction hypothesis: $(1 + x)^n \ge 1 + nx$. Note that  $(1 + x)^{n + 1} \ge
@@ -67,7 +82,7 @@ $2^{n + 1} = 2 \cdot 2^n > 2n \ge n + 1$. Hence, we proved the induction step.
 \end{solution}
 
 \section{Changing the Base Case}
-Let us consider functions $n^2$ and $2^n$.
+Let us consider the functions $n^2$ and $2^n$.
 
 \begin{center}
     \begin{tabular}{l  l  l  l  l  l  l  l  l}
@@ -80,27 +95,27 @@ Let us consider functions $n^2$ and $2^n$.
     \end{tabular}
 \end{center}
 Note that $2^n$ is greater than $n^2$ starting from $5$. But without some trick
-we can not prove this using induction since for $n = 3$ it is not true!
+we cannot prove this using induction since for $n \le 4$ it is not true!
 
 The trick is to use the statement $P(n)$ stating that $(n + 4)^2 < 2^{n + 4}$.
 The base case when $n = 1$ is true.
-Let us now prove the induction step. Assume that $P(k)$ is true i.e.
+Let us now prove the induction step. Assume that $P(k)$ is true; i.e.,
 $(k + 4)^2 < 2^{k + 4}$. Note that $2(k + 4)^2 < 2^{k + 1 + 4}$ but
 $(k + 5)^2 = k^2 + 10k + 25 \le 2k^2 + 16k + 32 = 2(k + 4)^2$.
 Which implies that
 $2^{k + 1 + 4} > (k + 5)^2$. So $P(k + 1)$ is also true.
 
-In order to avoid this strange $+4$ we may change the base
+In order to avoid this strange $+ 4$ we may change the base
 case and use the following argument.
 
 \begin{theorem}
 \label{theorem:induction-shifted-base}
     Let $P(n)$ be some statement about an integer $n$.
-    Hence, $P(n)$ is true for every integer $n > n_0$ iff
+    Then $P(n)$ is true for every integer $n > n_0$ iff
     \begin{description}
         \item [(the base case)] $P(n_0 + 1)$ is true and
-        \item [(the induction step)] $P(k) \implies P(k + 1)$ is true for all
-            integers $k > n_0$.
+        \item [(the induction step)] $P(k - 1) \implies P(k)$ is true for all
+            integers $k > n_0 + 1$.
     \end{description}
 \end{theorem}
 
@@ -111,16 +126,17 @@ $2(k + 4)^2 < 2^{k + 1 + 4}$ but
 $(k + 5)^2 = k^2 + 10k + 25 \le 2k^2 + 16k + 32 = 2(k + 4)^2$.
 
 Let us now prove the theorem. Note that the proof is based on an idea similar
-to the trick with $+4$, we just used.
+to the trick with $+ 4$, we just used.
 \begin{proof}[Proof of Theorem~\ref{theorem:induction-shifted-base}]
     \begin{description}
         \item[$\Rightarrow$] If $P(n)$ is true for any $n > n_0$ it is also true
             for $n = n_0 + 1$ which implies the base case. Additionally, it true for
-            $n = k + 1$ so the induction step is also true.
+            $n = k$ so the induction step is also true.
         \item[$\Leftarrow$] In this direction the proof is a bit harder. Let us
             consider a statement $Q(n)$ saying that $P(n + n_0)$ is true. Note that
             by the base case for $P$, $Q(1)$ is true; by the induction step for $P$
-            we know that $Q(n)$ implies $P(n + 1)$. As a result, by the induction
+            we know that $Q(k - 1)$ implies $Q(k)$ since $P(k + n_0 - 1)$
+            implies $P(k + n_0)$. As a result, by the induction
             principle $Q(n)$ is true for all positive integers $n$. Which implies
             that $P(n)$ is true for all integers $n > n_0$.
     \end{description}
@@ -128,7 +144,7 @@ to the trick with $+4$, we just used.
 
 \section{Inductive Definitions}
 
-We may also define objects inductively. Let us consider the sum
+We may also define objects inductively. Consider the sum
 $1 + 2 + \dots + n$ a line of dots indicating ``and so on'' which indicates the
 definition by induction. In this case, a more precise notation is
 $\sum_{i = 1}^n i$.
@@ -202,138 +218,130 @@ is the maximum of $a_1$, \dots, $a_k$. We may consider two following cases.
 
 \begin{exercise}
 \label{exercise:selection-sort}
-    Show that line~6 in the following sorting algorithm executes
-    $\frac{n (n + 1)}{2}$ times.
-
 \end{exercise}
 \begin{chapterendexercises}
-    \exercise Show that there does not exist the largest integer.
-    \exercise[recommended] Show that for any positive integer $n$, $n^2 + n$ is even.
-    \exercise Show that for any positive integer $n$, $3$ divides
-        $n^3 + 2n$.
-    \exercise Show that for any integer $n \ge 10$,
-        $n^3 \le 2^n$.
-    \exercise Show that for any positive integer $n$,
-        $\sum_{i = 0}^n x^i = \frac{1 - x^{n + 1}}{1 - x}$.
-    \exercise[recommended] Show that $\sum_{i = 1}^n i^2 =
-        \frac{n (n + 1)(2n + 1)}{6}$ for all integers $n \ge 1$.
-        \begin{solution}
-          We prove the statement using induction by $n$. The base case for $n =
-          1$ is clear. Let us prove the induction step now. The induction
-          hypothesis is 
-          $1^2 + 2^2 + 3^2 + \dots + n^2 = \frac{n (n + 1)(2n + 1)}{6}$. 
-          Note that
-          \begin{multline*}
-            1^2 + 2^2 + 3^2 + \dots + n^2 + (n + 1)^2 = \frac{n (n + 1)(2n + 1)}{6} +
-            (n + 1)^2 = \\
-            (n + 1)\frac{2n^2 + n + 6n + 6}{6} = (n + 1)\frac{(n + 2)(2n + 3)}{6}.
-          \end{multline*}
-          Hence, $1^2 + 2^2 + 3^2 + \dots + n^2 + (n + 1)^2 = 
-            \frac{(n + 1)(n + 2)(2n + 3)}{6}$.
-        \end{solution}
-    \exercise Show that $\sum_{i = 1}^n \frac{1}{i (i + 1)} = 
-      \frac{n}{n + 1}$ for all integers $n \ge 1$.
-    \exercise Show that $\sum_{i = 1}^n \frac{1}{i^2} \le 2$ for all integers 
-      $n \ge 1$.
-      \begin{solution}
-        Let us prove a stronger statement:
-        \[
-          1 + \frac{1}{2^2} + \dots + \frac{1}{n^2} \le 2 - \frac{1}{n}.
-        \]
+  \exercise Show that there does not exist the largest integer.
+  \exercise[recommended] Show that for any positive integer $n$, $n^2 + n$ is even.
+  \exercise Show that for any positive integer $n$, $3$ divides $n^3 + 2n$.
+  \exercise Show that for any integer $n \ge 10$, $n^3 \le 2^n$.
+  \exercise Show that for any positive integer $n$,
+    $\sum_{i = 0}^n x^i = \frac{1 - x^{n + 1}}{1 - x}$.
+  \exercise[recommended] Show that $\sum_{i = 1}^n i^2 = 
+    \frac{n (n + 1)(2n + 1)}{6}$ for all integers $n \ge 1$.
+    \begin{solution}
+      We prove the statement using induction by $n$. The base case for $n = 1$
+      is clear. Let us prove the induction step now. The induction hypothesis is
+      $1^2 + 2^2 + 3^2 + \dots + n^2 = \frac{n (n + 1)(2n + 1)}{6}$. 
+      Note that
+      \begin{multline*}
+        1^2 + 2^2 + 3^2 + \dots + n^2 + (n + 1)^2 = \frac{n (n + 1)(2n + 1)}{6} +
+        (n + 1)^2 = \\
+        (n + 1)\frac{2n^2 + n + 6n + 6}{6} = (n + 1)\frac{(n + 2)(2n + 3)}{6}.
+      \end{multline*}
+      Hence, $1^2 + 2^2 + 3^2 + \dots + n^2 + (n + 1)^2 = 
+      \frac{(n + 1)(n + 2)(2n + 3)}{6}$.
+    \end{solution}
+  \exercise Show that $\sum_{i = 1}^n \frac{1}{i (i + 1)} = 
+    \frac{n}{n + 1}$ for all integers $n \ge 1$.
+  \exercise Show that $\sum_{i = 1}^n \frac{1}{i^2} \le 2$ for all integers 
+    $n \ge 1$.
+    \begin{solution}
+      Let us prove a stronger statement:
+      \[
+        1 + \frac{1}{2^2} + \dots + \frac{1}{n^2} \le 2 - \frac{1}{n}.
+      \]
 
-        The base case is clear. We prove now the induction step. By the induction
-        hypothesis the following inequality holds
-        \[
-          1 + \frac{1}{2^2} + \dots + \frac{1}{(n - 1)^2} \le 2 - \frac{1}{n - 1}.
-        \]
-        Hence,
-        \[
-          1 + \frac{1}{2^2} + \dots + \frac{1}{n^2} \le 2 - \frac{1}{n - 1} + \frac{1}{n^2} = 2
-        \]
-        but $\frac{1}{n - 1} - \frac{1}{n^2} \ge \frac{1}{n}$. Indeed,
-        $\frac{1}{n - 1} \ge \frac{n + 1}{n^2}$ is equivalent to
-        $\frac{1}{(n - 1)^2} \ge \frac{1}{n^2}$ which is true. As a result we proved
-        the induction step.
-      \end{solution}
-    \exercise Show that $\sum_{i = 1}^n (2i - 1) = n^2$ for any positive
-        integer $n$.
-    \exercise Prove that $\sum_{i = 1}^n \frac{1}{i (i + 1)} =
-        \frac{n}{n + 1}$ for any positive integer $n$.
-    \exercise Prove that $\sum_{i = 1}^n (i + 1) 2^i = n 2^{n + 1}$
-        for all integers $n > 2$.
-        \begin{solution}
-          First we prove the base case for $n = 1$. Note that 
-          $\sum\limits_{i = 1}^1 (i + 1) 2^i = 2 \cdot 2 = 2^2$; hence, the base
-          case is true. Let us check the induction step from $k$ to $k + 1$. By
-          the induction hypothesis 
-          $\sum\limits_{i = 1}^k (i + 1) 2^i = k 2^{k + 1}$.
-          It is clear that
-          \begin{multline*}
-            \sum_{i = 1}^{k + 1} (i + 1) 2^i =
-            \sum_{i = 1}^k (i + 1) 2^i + (k + 2) 2^{k + 1} = \\
-            k 2^{k + 1} + (k + 2) 2^{k + 1} =
-            2 (k + 1) 2^{k + 1} = (k + 1) 2^{k + 2}.
-          \end{multline*}
-        \end{solution}
-    \exercise Let $a_1$, \dots, $a_n$ be a sequence of real numbers.
-        We define inductively
-        $\prod_{i = k}^n a_i$ as follows:
-        \begin{itemize}
-            \item $\prod_{i = 1}^1 a_i = a_1$ and
-            \item $\prod_{i = 1}^{k + 1} a_i =
-                \left( \prod_{i = 1}^k a_i \right) \cdot a_{k + 1}$.
-        \end{itemize}
-        \nomenclature[C]{$\prod_{i = 1}^k \alpha_i$}{denotes $\alpha_1 \cdot
-            \ldots \cdot \alpha_k$}
-
-        Prove that
-        $\prod_{i = 1}^{n - 1} \left(1 - \frac{1}{(i + 1)^2} \right) =
-        \frac{n + 1}{2n}$ for all integers $n > 1$.
-    \exercise Let us define $n!$ as follows: $1! = 1$ and
-      $n! = (n - 1)! \cdot n$. Show that $n! \ge 2^n$ for any $n \ge 4$.
-      \nomenclature[C]{$\factorial{n}$}{denotes $n \cdot (n - 1) \cdot (n - 2) \cdot \ldots
-        \cdot 1$}
-    \exercise[open] Find all the natural numbers $n$ such that $n! = m^2$ for
-      some integer $m$.
-    \exercise Show that
-      $\int\limits_0^{+\infty} x^n e^{- x} ~ \mathrm{d}x = n!$
-      for all $n \ge 0$.
-      \begin{solution}
-        We prove the statement using induction by $n$. The base case is for $n =
-        0$. It is easy to see that $\int\limits_0^{+\infty} e^{-x} ~ \mathrm{d}x
-        = (-e^{-x})\big\rvert_0^\infty = 1$.
- 
-        Let us prove the induction step from $k$ to $k + 1$. By the induction
-        hypothesis, $\int\limits_0^{+\infty} x^k e^{- x} ~ \mathrm{d}x = k!$.
-        Note that
-        \begin{multline*}
-          \int_0^{+\infty} x^{k + 1} e^{- x} ~ \mathrm{d}x =
-          -x^{k + 1} e^{- x}\big\rvert_0^\infty +
-            \int_0^{+\infty} (k + 1) x^k e^{- x} ~ \mathrm{d}x = \\
-          \int_0^{+\infty} (k + 1) x^k e^{- x} ~ \mathrm{d}x = (k + 1)!.
+      The base case is clear. We prove now the induction step. By the induction
+      hypothesis the following inequality holds
+      \[
+        1 + \frac{1}{2^2} + \dots + \frac{1}{(n - 1)^2} \le 2 - \frac{1}{n - 1}.
+      \]
+      Hence,
+      \[
+        1 + \frac{1}{2^2} + \dots + \frac{1}{n^2} \le 2 - \frac{1}{n - 1} + \frac{1}{n^2} = 2
+      \]
+      but $\frac{1}{n - 1} - \frac{1}{n^2} \ge \frac{1}{n}$. Indeed,
+      $\frac{1}{n - 1} \ge \frac{n + 1}{n^2}$ is equivalent to
+      $\frac{1}{(n - 1)^2} \ge \frac{1}{n^2}$ which is true. As a result we proved
+      the induction step.
+    \end{solution}
+  \exercise Show that $\sum_{i = 1}^n (2i - 1) = n^2$ for any positive integer $n$.
+  \exercise Prove that $\sum_{i = 1}^n \frac{1}{i (i + 1)} = \frac{n}{n + 1}$
+    for any positive integer $n$.
+  \exercise Prove that $\sum_{i = 1}^n (i + 1) 2^i = n 2^{n + 1}$ for all
+    integers $n > 2$.
+    \begin{solution}
+      First we prove the base case for $n = 1$. Note that 
+      $\sum\limits_{i = 1}^1 (i + 1) 2^i = 2 \cdot 2 = 2^2$; hence, the base
+      case is true. Let us check the induction step from $k$ to $k + 1$. By
+      the induction hypothesis 
+      $\sum\limits_{i = 1}^k (i + 1) 2^i = k 2^{k + 1}$.
+      It is clear that
+      \begin{multline*}
+        \sum_{i = 1}^{k + 1} (i + 1) 2^i =
+        \sum_{i = 1}^k (i + 1) 2^i + (k + 2) 2^{k + 1} = \\
+          k 2^{k + 1} + (k + 2) 2^{k + 1} =
+          2 (k + 1) 2^{k + 1} = (k + 1) 2^{k + 2}.
         \end{multline*}
       \end{solution}
-    \exercise Show that $\sum_{k = 1}^n k \cdot k! = (n + 1)! - 1$.
-    \exercise Show that \Cref{algorithm:selection-sort} executes line~6 exactly
-      $\frac{n (n + 1)}{2}$ times.
-      \begin{algorithm}
-        \begin{algorithmic}[1]
-          \Function{SelectionSort}{$a_1$, \dots, $a_n$}
-            \For{$i$ from $1$ to $n$}
-              \State{$r \gets a_i$}
-              \State{$\ell \gets i$}
-              \For{$j$ from $i$ to $n$}
-                \If{$a_j > r$}
-                  \State $r \gets a_j$
-                  \State $\ell \gets j$
-                \EndIf
-              \EndFor
-              \State{Swap $a_i$ and $a_\ell$.}
+  \exercise Let $a_1$, \dots, $a_n$ be a sequence of real numbers. We define
+    inductively
+    $\prod_{i = k}^n a_i$ as follows:
+    \begin{itemize}
+      \item $\prod_{i = 1}^1 a_i = a_1$ and
+      \item $\prod_{i = 1}^{k + 1} a_i =
+        \left( \prod_{i = 1}^k a_i \right) \cdot a_{k + 1}$.
+    \end{itemize}
+    \nomenclature[C]{$\prod_{i = 1}^k \alpha_i$}{denotes $\alpha_1 \cdot 
+      \ldots \cdot \alpha_k$}
+
+    Prove that
+    $\prod_{i = 1}^{n - 1} \left(1 - \frac{1}{(i + 1)^2} \right) =
+      \frac{n + 1}{2n}$ for all integers $n > 1$.
+  \exercise Let us define $n!$ as follows: $1! = 1$ and
+    $n! = (n - 1)! \cdot n$. Show that $n! \ge 2^n$ for any $n \ge 4$.
+    \nomenclature[C]{$\factorial{n}$}{denotes $n \cdot (n - 1) \cdot (n - 2) \cdot \ldots
+      \cdot 1$}
+  \exercise[open] Find all the natural numbers $n$ such that $n! = m^2$ for some
+    integer $m$.
+  \exercise Show that $\int\limits_0^{+\infty} x^n e^{- x} ~ \mathrm{d}x = n!$
+    for all $n \ge 0$.
+    \begin{solution}
+      We prove the statement using induction by $n$. The base case is for $n =
+      0$. It is easy to see that $\int\limits_0^{+\infty} e^{-x} ~ \mathrm{d}x
+      = (-e^{-x})\big\rvert_0^\infty = 1$.
+ 
+      Let us prove the induction step from $k$ to $k + 1$. By the induction
+      hypothesis, $\int\limits_0^{+\infty} x^k e^{- x} ~ \mathrm{d}x = k!$.
+      Note that
+      \begin{multline*}
+        \int_0^{+\infty} x^{k + 1} e^{- x} ~ \mathrm{d}x = 
+        -x^{k + 1} e^{- x}\big\rvert_0^\infty +
+          \int_0^{+\infty} (k + 1) x^k e^{- x} ~ \mathrm{d}x = \\
+        \int_0^{+\infty} (k + 1) x^k e^{- x} ~ \mathrm{d}x = (k + 1)!.
+      \end{multline*}
+    \end{solution}
+  \exercise Show that $\sum_{k = 1}^n k \cdot k! = (n + 1)! - 1$.
+  \exercise Show that \Cref{algorithm:selection-sort} executes line~6 exactly
+    $\frac{n (n + 1)}{2}$ times.
+    \begin{algorithm}
+      \begin{algorithmic}[1]
+        \Function{SelectionSort}{$a_1$, \dots, $a_n$}
+          \For{$i$ from $1$ to $n$}
+            \State{$r \gets a_i$}
+            \State{$\ell \gets i$}
+            \For{$j$ from $i$ to $n$}
+              \If{$a_j > r$}
+                \State $r \gets a_j$
+                \State $\ell \gets j$
+              \EndIf
             \EndFor
-          \EndFunction
-        \end{algorithmic}
-        \caption{The algorithm is selection sort, it sorts $a_1$, \dots, $a_n$.}
-        \label{algorithm:selection-sort}
-      \end{algorithm}
-    \exercise Show that \Cref{algorithm:selection-sort} sorts the array.
+          \State{Swap $a_i$ and $a_\ell$.}
+          \EndFor
+        \EndFunction
+      \end{algorithmic}
+      \caption{The algorithm is selection sort, it sorts $a_1$, \dots, $a_n$.}
+      \label{algorithm:selection-sort}
+    \end{algorithm}
+  \exercise Show that \Cref{algorithm:selection-sort} sorts the array.
 \end{chapterendexercises}
