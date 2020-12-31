@@ -62,21 +62,21 @@ this statement we need to know something again, which is a problem! In order to
 solve it, mathematicians introduced the notion of an \emph{axiom}.
 An axiom is a statement that is believed to be true and when we prove a statement
 we prove it under the assumption that these axioms are true\footnote{Note that
-in different parts of math axioms may be different.}.
+in different parts of mathematics axioms may be different.}.
 
 For example, we may consider axioms of inequalities for real numbers.
 \begin{enumerate}
-  \item Let $a, b \in \R$. Only one of the following is true:
+  \item Let $a$ and $b$ be real numbers. Only one of the following is true:
     \begin{itemize}
       \item $a < b$,
       \item $b < a$, or
       \item $a = b$.
     \end{itemize}
-  \item Let $a, b, c \in \R$. Then $a < b$ iff $a + c < b + c$ (iff is an
-    abbreviation for ``if and only if'').
-  \item Let $a, b, c \in \R$. Then $a < b$ iff $ac < bc$ provided
-    that $c > 0$ and $a < b$ iff $ac > bc$ if $c < 0$.
-  \item Let $a, b, c \in \R$. If $a < b$ and $b < c$, then $a < c$.
+  \item Let $a$, $b$, and $c$ be real numbers. Then $a < b$ iff $a + c < b + c$
+    (iff is an abbreviation for ``if and only if'').
+  \item Let $a$, $b$, and $c$ be real numbers. Then $a < b$ iff $ac < bc$
+    provided that $c > 0$ and $a < b$ iff $ac > bc$ if $c < 0$.
+  \item Let $a$, $b$, $c$ be real numbers. If $a < b$ and $b < c$, then $a < c$.
 \end{enumerate}
 
 \marginurl{%
@@ -92,14 +92,14 @@ then $a^2 > 0$. Note that $a > 0$, hence, by the third axiom $a^2 > 0$
 Similarly, we may prove that if $a < 0$, then $a^2 > 0$. And combining these
 two statements together we may prove that if $a \neq 0$, then $a^2 > 0$.
 
-Such a way of constructing proof is called direct proofs.
+Proofs like this are called direct proofs.
 
 \begin{exercise}
-  Axiomatic system for a four-point geometry.
+  Consider another set of axioms; these axioms describe some objects that look
+  like geometrical obejects, so they are called axioms of four-point geometry.
 
-  Undefined terms: point, line, is on.
-
-  Axioms:
+  These aximoms are using three undefined terms: ``point'', ``line'', and ``is
+  on''. The axioms are the following statements.
   \begin{itemize}
     \item For every pair of distinct points $x$ and $y$, there is a unique line
       $\ell$ such that x is on l and y is on l.
@@ -109,7 +109,8 @@ Such a way of constructing proof is called direct proofs.
     \item There are exactly four points.
     \item It is impossible for three points to be on the same line.
   \end{itemize}
-  Prove that there are at least two distinct lines.
+
+  Prove (using these axioms) that there are at least two distinct lines.
 \end{exercise}
 
 Let $n$ and $m$ be some integers. Using direct proofs we may prove the
@@ -143,12 +144,13 @@ In this case you would write something like this:
 
 Let us try to prove it completely formally using the following axioms.
 \begin{enumerate}
-  \item Let $a$, $b$, and $c$ be reals. If $a = b$ and $b = c$, then $a = c$.
-  \item Let $a$, $b$, and $c$ be reals. If $a = b$, then $a + c = b + c$ and
-    $c + a = c + b$.
-  \item Let $a$, $b$, and $c$ be reals. Then $a (b + c) = ab + ac$.
-  \item Let $a$ and $b$ be reals. Then $ab = ba$.
-  \item Let $a$ and $b$ be reals. Then $a + b = b + a$.
+  \item Let $a$, $b$, and $c$ be real number. If $a = b$ and $b = c$, then $a =
+    c$.
+  \item Let $a$, $b$, and $c$ be real numbers. If $a = b$, then $a + c = b + c$
+    and $c + a = c + b$.
+  \item Let $a$, $b$, and $c$ be real numbers. Then $a (b + c) = ab + ac$.
+  \item Let $a$ and $b$ be real numbers. Then $ab = ba$.
+  \item Let $a$ and $b$ be real numbers. Then $a + b = b + a$.
   \item Let $a$ be a real number. Then $a^2 = a \cdot a$ and $a \cdot a = a^2$.
   \item Let $a$ be a real number. Then $a + a = 2a$.
 \end{enumerate}
@@ -204,9 +206,8 @@ consider the following algorithm.
   \end{algorithmic}
   \caption{The algorithm that finds the maximum element of $a$, $b$, $c$.}
 \end{algorithm}
-Let us prove that it is correct i.e. it returns the maximum of $a$, $b$, and
-$c$. We need to consider
-the following cases.
+We may prove that it is correct; i.e. it returns the maximum of $a$, $b$, and
+$c$. We need to consider the following cases.
 \begin{itemize}
   \item If the maximum is equal to $a$. In this case, at line~2, we set $r = a$,
     at line~3 the inequality $b > r$ is false (since $a = r$ is the maximum) and
@@ -226,12 +227,12 @@ the following cases.
 \end{itemize}
 
 \section{Proofs in Real-life Mathematics}
-In this chapter we explicitly used axioms to prove statements. However, it
-leads us to really long and hard to understand proofs (the last example in the
-previous section is a good example of this phenomenon). Because of this
-mathematicians tend to skip steps in the proofs when they believe that they are
-clear. It is worth to mention a
-nice quotation of Scott Aaronson about this problem
+In this chapter in most of the cases we explicitly used axioms to prove
+statements. However, the resulting proofs are really long and hard to understand
+(the last example in the previous section is a good example of this phenomenon).
+Because of this mathematicians tend to skip steps in the proofs when they
+believe that they are clear. It is worth to mention a nice quotation of Scott
+Aaronson about this problem
 \begin{displayquote}
   When mathematicians say that a theorem has been ``proved,'' they still mean,
   as they always have, something more like: ``we’ve reached a social consensus
