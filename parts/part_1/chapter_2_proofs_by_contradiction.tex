@@ -5,18 +5,18 @@
   Introduction to Mathematical Reasoning \#3
 }{youtu.be/bWP0VYx75DI}
 \section{Proving Negative Statements}
-The direct method is not very convenient when we need to prove a negation of
-some statement.
+The direct method is not very convenient when we need to prove the negation of
+a statement.
 
 For example, we may try to prove that $78 n + 102 m = 11$ does not have integer
 solutions. It is not clear how to prove it directly since we can not consider
 all possible $n$ and $m$. Hence, we need another approach. Let us assume that
 such a solution $n$, $m$ exists. Note that $78 n + 102 m$ is even, but $11$ is
-odd. In other words, an odd number is equal to an even number, which is impossible.
-Thus, the assumption was false.
+odd. In other words, an odd number is equal to an even number, which is
+impossible. Thus, the assumption was false.
 
-Let us consider a more useful example, let us prove that if $p^2$ is even, then
-$p$ is also even ($p$ is an integer). Assume the opposite i.e. that $p^2$ is
+Consider another example, let us prove that if $p^2$ is even, then
+$p$ is also even ($p$ is an integer). Assume the opposite; i.e. that $p^2$ is
 even but $p$ is not.\footnote{%
   Note that we use here the statement that an integer $n$ is not even iff it is
   odd, which, formally speaking, should be proven.
@@ -58,12 +58,12 @@ irreducible fraction.
 \section{Proving Implications by Contradiction}
 This method works especially well when we need to prove an implication.
 Since the implication $A \implies B$ is false only when $A$ is true but $B$ is
-false. Hence, you need to derive a contradiction from the fact that $A$ is true
+false, it is enough to derive a contradiction from the fact that $A$ is true
 and $B$ is false.
 
 We have already seen such examples in the previous section, we proved that
-$p^2$ is even implies $p$ is even for any integer $p$. Let us consider another
-example. Let $a$ and $b$ be reals such that $a > b$. We need to show that
+$p^2$ is even implies $p$ is even, for any integer $p$. Let us consider another
+example. Let $a$ and $b$ be real numbers such that $a > b$. We need to show that
 $(ac < bc) \implies c < 0$. So we may assume that $ac < bc$ but $c \ge 0$. By
 the multiplicativity of the inequalities we know that if $(a > b)$ and $c > 0$,
 then $ac > bc$ which contradicts to $ac < bc$.
@@ -71,7 +71,7 @@ then $ac > bc$ which contradicts to $ac < bc$.
 A special case of such a proof is when we need to prove the implication
 $A \implies B$, assume that $B$ is false and derive that $A$ is false which
 contradicts to  $A$ (such proofs are called proofs by contraposition); note
-that the previous proof is a proof of this form.
+that the previous proof is a proof in this form.
 
 \section{Proof of ``OR'' Statements}
 Another important case is when we need to prove that at least one of two
