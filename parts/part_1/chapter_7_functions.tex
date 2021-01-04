@@ -295,54 +295,54 @@ make a domain smaller.
 
 \section{Composition of Functions}
 \begin{figure}
-    \begin{center}
-        \begin{tikzpicture}[
-            >=stealth,
-            bullet/.style={
-                fill=black,
-                circle,
-                minimum width=1pt,
-                inner sep=1pt
-            },
-            projection/.style={
-                ->,
-                thick,
-                shorten <=2pt,
-                shorten >=2pt
-            },
-            every fit/.style={
-                ellipse,
-                draw,
-                inner sep=0pt
-                }
-        ]
-            \node at (2,4.7) {$f$};
-            \draw[projection] (1,4.5) -- (3,4.5);
-            \node at (0,5) {$X$};
-            \node[bullet,label=below:$x$] (START)   at (0,2.5){};
-            \node at (4,5) {$Y$};
-            \node[bullet,label=below:$f(x)$] at (4,2.5){};
-            \node at (6,4.7) {$g$};
-            \draw[projection] (5,4.5) -- (7,4.5);
-            \node at (8,5) {$Z$};
-            \node[bullet,label=below:$g\big(f(x)\big)$] (END) at (8,2.5){};
+  \begin{center}
+    \begin{tikzpicture}[
+      >=stealth,
+      bullet/.style={
+        fill=black,
+        circle,
+        minimum width=1pt,
+        inner sep=1pt
+      },
+      projection/.style={
+        ->,
+        thick,
+        shorten <=2pt,
+        shorten >=2pt
+      },
+      every fit/.style={
+        ellipse,
+        draw,
+        inner sep=0pt
+      }
+    
+      \node at (2,4.7) {$f$};
+      \draw[projection] (1,4.5) -- (3,4.5);
+      \node at (0,5) {$X$};
+      \node[bullet,label=below:$x$] (START)   at (0,2.5){};
+      \node at (4,5) {$Y$};
+      \node[bullet,label=below:$f(x)$] at (4,2.5){};
+      \node at (6,4.7) {$g$};
+      \draw[projection] (5,4.5) -- (7,4.5);
+      \node at (8,5) {$Z$};
+      \node[bullet,label=below:$g\big(f(x)\big)$] (END) at (8,2.5){};
 
-            \draw [line width=8pt, yellow, shorten <=0.25cm,, shorten >=0.6cm, ->] 
-              (START.south) 
-              to[out=-50, in=-120, distance=4cm, ] 
-              node[black, midway, below, align = center, yshift = -0.25cm] 
-              {$g \circ f$} (END);
+      \draw [line width=8pt, yellow, shorten <=0.25cm,, shorten >=0.6cm, ->] 
+        (START.south) 
+        to[out=-50, in=-120, distance=4cm, ] 
+        node[black, midway, below, align = center, yshift = -0.25cm] 
+        {$g \circ f$} (END);
 
-            \draw (0,2.5) ellipse (1.02cm and 2.2cm);
-            \draw (4,2.5) ellipse (1.02cm and 2.2cm);
-            \draw (8,2.5) ellipse (1.02cm and 2.2cm);
+      \draw (0,2.5) ellipse (1.02cm and 2.2cm);
+      \draw (4,2.5) ellipse (1.02cm and 2.2cm);
+      \draw (8,2.5) ellipse (1.02cm and 2.2cm);
 
-            \draw[projection] (0.3,2.5) -- (3.7,2.5);
-            \draw[projection] (4.3,2.5) -- (7.7,2.5);
-        \end{tikzpicture}
-        \newline
-    \end{center}
-    \caption{Composition of functions}
+      \draw[projection] (0.3,2.5) -- (3.7,2.5);
+      \draw[projection] (4.3,2.5) -- (7.7,2.5);
+    \end{tikzpicture}
+    \newline
+  \end{center}
+  \caption{Composition of functions}
 \end{figure}
 
 Suppose $f : X \to Y$ and $g : Y \to Z$ be some function. Then, given an
@@ -399,42 +399,42 @@ the formula $x^2$ does not have $-1$ as a value.
 
 Thus we may give the following definition.
 \begin{definition}
-    The image of the function $f$ is defined as follows
-    \[
-        \Im f = \set[\exists x \in X\ f(x) = y]{y \in Y}
-        = \set[x \in X]{f(x)}
-    \]
-    (in other words it is the projection of the graph $D$ of $f$ on the second
-    coordinate: $\Im f = \set[(x, y) \in D]{y}$).
+  The image of the function $f$ is defined as follows
+  \[
+    \Im f = \set[\exists x \in X\ f(x) = y]{y \in Y}
+          = \set[x \in X]{f(x)}
+  \]
+  (in other words it is the projection of the graph $D$ of $f$ on the second
+  coordinate: $\Im f = \set[(x, y) \in D]{y}$).
 \end{definition}
 \nomenclature[F]{$\Im f$}{denotes the image of $f$}
 
 \begin{chapterendexercises}
-    \exercise Is there $x, y, z \in \N$ such that $29x + 30y + 31z = 366$.
-    \exercise Find then image of the function $f : \Z \to \Z$ such that
-        $f(x) = 3x$.
-    \exercise[recommended] Determine the following sets:
-        \begin{itemize}
-            \item $\set[\exists n \in \N \ m \le n]{m \in \N}$;
-            \item $\set[\forall n \in \N \ m \le n]{m \in \N}$;
-            \item $\set[\exists m \in \N \ m \le n]{n \in \N}$;
-            \item $\set[\forall m \in \N \ m \le n]{n \in \N}$.
-        \end{itemize}
-    \exercise Prove or disprove the following statements.
-        \begin{itemize}
-            \item $\forall m, n \in \N \  m \le n$.
-            \item $\exists m, n \in \N \ m \le n$.
-            \item $\exists m \in \N \  \forall n \in \N \  m \le n$.
-            \item $\forall m \in \N \  \exists n \in \N \  m \le n$.
-            \item $\exists n \in \N \  \forall m \in \N \  m \le n$.
-            \item $\forall n \in \N \  \exists m \in \N \  m \le n$.
-        \end{itemize}
-    \exercise[recommended]
-      We call elements of the set $\set{0, 1}^n$ Binary strings of length
-      $n$. Moreover, instead of $(c_1, \dots, c_n)$ we write $c_1, \dots, c_n$
-      and we call $c_i$s characters.
-      Show that all Binary strings of length $n$
-      may be ordered such that every successive strings in this order are
-      different only in one character.
-      (For example, for $n = 2$ the order may be $00$, $01$, $11$, $10$.)
+  \exercise Is there $x, y, z \in \N$ such that $29x + 30y + 31z = 366$.
+  \exercise Find then image of the function $f : \Z \to \Z$ such that
+    $f(x) = 3x$.
+  \exercise[recommended] Determine the following sets:
+    \begin{itemize}
+      \item $\set[\exists n \in \N \ m \le n]{m \in \N}$;
+      \item $\set[\forall n \in \N \ m \le n]{m \in \N}$;
+      \item $\set[\exists m \in \N \ m \le n]{n \in \N}$;
+      \item $\set[\forall m \in \N \ m \le n]{n \in \N}$.
+    \end{itemize}
+  \exercise Prove or disprove the following statements.
+    \begin{itemize}
+      \item $\forall m, n \in \N \  m \le n$.
+      \item $\exists m, n \in \N \ m \le n$.
+      \item $\exists m \in \N \  \forall n \in \N \  m \le n$.
+      \item $\forall m \in \N \  \exists n \in \N \  m \le n$.
+      \item $\exists n \in \N \  \forall m \in \N \  m \le n$.
+      \item $\forall n \in \N \  \exists m \in \N \  m \le n$.
+    \end{itemize}
+  \exercise[recommended]
+    We call elements of the set $\set{0, 1}^n$ Binary strings of length
+    $n$. Moreover, instead of $(c_1, \dots, c_n)$ we write $c_1, \dots, c_n$
+    and we call $c_i$s characters.
+    Show that all Binary strings of length $n$
+    may be ordered such that every successive strings in this order are
+    different only in one character.
+    (For example, for $n = 2$ the order may be $00$, $01$, $11$, $10$.)
 \end{chapterendexercises}
