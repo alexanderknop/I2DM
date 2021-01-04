@@ -7,9 +7,9 @@
 \section{The Intuitive Definition of a Set}
 A set is one of the two most important concepts in mathematics. Many mathematical
 statements involve ``an integer $n$'' or ``a real number $a$''. Set theory
-notation provides a simple way to express that $a$ is a real number. However,
-this language is much more expressible and it is impossible to imagine modern
-mathematics without this notation.
+notation provides a simple way to express that $a$ is a real number or that $a$
+is a natural number. However, this language is much more expressible and it is
+impossible to imagine modern mathematics without this notation.
 
 As in the previous chapter it is difficult to define a set formally so we give
 a less formal definition which should be enough to use the notation.
@@ -27,8 +27,7 @@ sets are:
       another it is not; in this book we are going to assume that $0$ is not a
       natural number.
     },
-    \nomenclature[S]{$\N$}{denotes the set of all integers greater
-    than $0$}
+    \nomenclature[S]{$\N$}{denotes the set of all integers greater than $0$}
   \item $\Q$ a set of rational numbers,
     \nomenclature[S]{$\Q$}{denotes the set of all rational numbers}
   \item $\mathbb{C}$ a set of complex numbers.
@@ -50,25 +49,6 @@ by the formula $x \in E$ and the negation of this statement by $x \not\in E$.
 For example, we proved that $\sqrt{2} \not\in \Q$.
 \nomenclature[S]{$x \in X$}{says that $x$ is an element of $X$} 
 \nomenclature[S]{$x \not\in Y$}{says that $x$ is not an element of $Y$} 
-
-
-
-\begin{exercise}
-  \label{exercise:inclusion}
-
-  Which of the following sets are included in which? Recall that a number is
-  prime iff it is an integer greater than $1$ and divisible only by $1$ and
-  itself.
-  \begin{enumerate}
-    \item The set of all positive integers less than $10$.
-    \item The set of all prime numbers less than $11$.
-    \item The set of all odd numbers greater than $1$ and less than $6$.
-    \item The set of all positive integers less than $10$.
-    \item The set whose only elements are $1$ and $2$.
-    \item The set whose only element is $1$.
-    \item The set of all prime numbers less than $11$.
-  \end{enumerate}
-\end{exercise}
 
 \section{Basic Relations Between Sets}
 Many problems in mathematics are problems of determining whether two descriptions
@@ -95,8 +75,24 @@ have elements, we denote it $\emptyset$.
 
 \nomenclature[S]{$A \subseteq B$}{says that $A$ is a subset of $B$}
 
-\nomenclature[S]{$\emptyset$}{denotes the set that does
-  not have elements}
+\nomenclature[S]{$\emptyset$}{denotes the set that does not have elements}
+
+\begin{exercise}
+  \label{exercise:inclusion}
+
+  Which of the following sets are included in which? Recall that a number is
+  prime iff it is an integer greater than $1$ and divisible only by $1$ and
+  itself.
+  \begin{enumerate}
+    \item The set of all positive integers less than $10$.
+    \item The set of all prime numbers less than $11$.
+    \item The set of all odd numbers greater than $1$ and less than $6$.
+    \item The set of all positive integers less than $10$.
+    \item The set whose only elements are $1$ and $2$.
+    \item The set whose only element is $1$.
+    \item The set of all prime numbers less than $11$.
+  \end{enumerate}
+\end{exercise}
 
 \subsection{Diagrams}
 If we think of a set $A$ as represented by all the points within a circle or
